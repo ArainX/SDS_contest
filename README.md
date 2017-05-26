@@ -1,2 +1,54 @@
-# 2017Guide
-2017 ì‚¼ì„±SDS ì•Œê³ ë¦¬ì¦˜ ê²½ì§„ëŒ€íšŒ - ìŠ¤íƒ€í¬ë˜í”„íŠ¸ (StarCraft : Broodwar)
+# README
+
+## History
+
+* 2017-05-15 uAlbertaBot À» Base ·Î ÇÏ°í, Aiur ¸¦ ºÎºĞÀûÀ¸·Î Âü°íÇÏ¿©, »ï¼ºSDS¿¡¼­ C++ ¹× JAVA ¹öÀü ¼öÁ¤ °³¹ßÀ» ÁøÇàÇÑ ÈÄ GPL License 3 ·Î ¹èÆ÷ÇÔ
+
+  * ÁÖ¿ä ¼öÁ¤»çÇ×
+
+    1. BuildManager °³¼±
+    1. SparCraft, BOSS µîÀ» Á¦°Å
+    1. StrategyManager °£¼ÒÈ­
+
+  * Âü°íÇÑ º¿ ÇÁ·Î±×·¥
+
+    1. uAlbertaBot
+    1. Aiur
+
+  * °³¹ßÀÚ
+    1. ½ÅÅÃ¼±
+    1. ±è´öÈ¯
+
+## µğÆæ´ø½Ã
+
+* C++
+
+BWAPI 4.1.2
+
+BWTA 2.2
+
+* JAVA
+
+BWMirror 2.5
+
+
+## ±ÇÀå °³¹ß È¯°æ
+
+* C++
+
+Visual Studio 2013 Express
+
+* JAVA
+
+JDK 1.8
+
+Eclipse
+
+
+## Âü°í) BasicBot Documentation »ı¼º
+
+* Doxygen 1.8.8 À» »ç¿ëÇÏ¿© BasicBot Documentation HTML À» »ı¼ºÇÏ¿´À½
+
+
+
+
