@@ -13,7 +13,6 @@ var searchData=
   ['drawconstructionqueueonscreenandmap',['drawConstructionQueueOnScreenAndMap',['../class_u_x_manager.html#a49ac6e1e9c02b93db0a891ca9f601733',1,'UXManager']]],
   ['drawenemyunitinfo',['DrawEnemyUnitInfo',['../class_config.html#a7d58406c1d6fc80d05d3f10ca4f3aaf8',1,'Config']]],
   ['drawforces',['drawForces',['../class_u_x_manager.html#ac8dc51fbaa7e8dd312907d3ac0fb767d',1,'UXManager']]],
-  ['drawgamecommandertimeconsumescreen',['drawGameCommanderTimeConsumeScreen',['../class_game_commander.html#a0498325407d1d52669b3b5fa344af2c8',1,'GameCommander']]],
   ['drawgameinfo',['DrawGameInfo',['../class_config.html#a7162a839bc0efb53567abcd082d560e1',1,'Config']]],
   ['drawgameinformationonscreen',['drawGameInformationOnScreen',['../class_u_x_manager.html#a44ad8350ce3fe78fdde24ce171dc2297',1,'UXManager']]],
   ['drawmapgrid',['DrawMapGrid',['../class_config.html#a3469fbee67a1bd4fe49284ef1f366491',1,'Config.DrawMapGrid()'],['../class_u_x_manager.html#ad8def99c7d36f97db5ab0ba7a8ea3599',1,'UXManager.drawMapGrid()']]],

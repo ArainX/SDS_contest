@@ -117,7 +117,7 @@ void BuildManager::update()
 						// ConstructionManager 가 건설 도중에 해당 위치에 건설이 어려워지면 다시 ConstructionPlaceFinder 를 통해 건설 가능 위치를 desiredPosition 주위에서 찾을 것이다
 						BWAPI::TilePosition desiredPosition = getDesiredPosition(t.getUnitType(), currentItem.seedLocation, currentItem.seedLocationStrategy);
 
-						//if (Config::Debug::LogToConsole) std::cout << "BuildManager "
+						// std::cout << "BuildManager "
 						//	<< currentItem.metaType.getUnitType().getName().c_str() << " desiredPosition " << desiredPosition.x << "," << desiredPosition.y << std::endl;
 
 						if (desiredPosition != BWAPI::TilePositions::None) {
@@ -127,7 +127,7 @@ void BuildManager::update()
 						else {
 							// 건물 가능 위치가 없는 경우는, Protoss_Pylon 가 없거나, Creep 이 없거나, Refinery 가 이미 다 지어져있거나, 정말 지을 공간이 주위에 없는 경우인데,
 							// 대부분의 경우 Pylon 이나 Hatchery가 지어지고 있는 중이므로, 다음 frame 에 건물 지을 공간을 다시 탐색하도록 한다. 
-							if (Config::Debug::LogToConsole) std::cout << "There is no place to construct " << currentItem.metaType.getUnitType().getName().c_str()
+							std::cout << "There is no place to construct " << currentItem.metaType.getUnitType().getName().c_str()
 								<< " strategy " << currentItem.seedLocationStrategy
 								<< " seedPosition " << currentItem.seedLocation.x << "," << currentItem.seedLocation.y
 								<< " desiredPosition " << desiredPosition.x << "," << desiredPosition.y << std::endl;
@@ -430,7 +430,7 @@ BWAPI::TilePosition BuildManager::getDesiredPosition(BWAPI::UnitType unitType, B
 	BWAPI::TilePosition desiredPosition = ConstructionPlaceFinder::Instance().getBuildLocationWithSeedPositionAndStrategy(unitType, seedPosition, seedPositionStrategy);
 
 	/*
-	if (Config::Debug::LogToConsole) std::cout << "ConstructionPlaceFinder getBuildLocationWithSeedPositionAndStrategy "
+	 std::cout << "ConstructionPlaceFinder getBuildLocationWithSeedPositionAndStrategy "
 		<< unitType.getName().c_str()
 		<< " strategy " << seedPositionStrategy
 		<< " seedPosition " << seedPosition.x << "," << seedPosition.y
@@ -468,7 +468,7 @@ BWAPI::TilePosition BuildManager::getDesiredPosition(BWAPI::UnitType unitType, B
 		if (findAnotherPlace) {
 			desiredPosition = ConstructionPlaceFinder::Instance().getBuildLocationWithSeedPositionAndStrategy(unitType, seedPosition, seedPositionStrategy);
 			/*
-			if (Config::Debug::LogToConsole) std::cout << "ConstructionPlaceFinder getBuildLocationWithSeedPositionAndStrategy "
+			 std::cout << "ConstructionPlaceFinder getBuildLocationWithSeedPositionAndStrategy "
 				<< unitType.getName().c_str()
 				<< " strategy " << seedPositionStrategy
 				<< " seedPosition " << seedPosition.x << "," << seedPosition.y

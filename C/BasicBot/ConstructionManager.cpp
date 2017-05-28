@@ -129,7 +129,7 @@ void ConstructionManager::assignWorkersToUnassignedBuildings()
 		// 건설 일꾼이 Unassigned 인 상태에서 getBuildLocationNear 로 건설할 위치를 다시 정한다. -> Assigned 
 		BWAPI::TilePosition testLocation = ConstructionPlaceFinder::Instance().getBuildLocationNear(b.type, b.desiredPosition);
 
-		//if (Config::Debug::LogToConsole) std::cout << "ConstructionPlaceFinder Selected Location : " << testLocation.x << "," << testLocation.y << std::endl;
+		// std::cout << "ConstructionPlaceFinder Selected Location : " << testLocation.x << "," << testLocation.y << std::endl;
 
 		if (testLocation == BWAPI::TilePositions::None || testLocation == BWAPI::TilePositions::Invalid || testLocation.isValid() == false) {
 						

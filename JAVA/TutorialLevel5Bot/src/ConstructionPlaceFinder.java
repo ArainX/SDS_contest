@@ -113,7 +113,7 @@ public class ConstructionPlaceFinder {
 				by = tempBaseLocation.getTilePosition().getY() + (int)(d * Math.sin(t) / Config.TILE_SIZE);
 				//std::cout << "i";
 				tempTilePosition = new TilePosition(bx, by);
-				//if (Config::Debug::LogToConsole) std::cout << "ConstructionPlaceFinder MainBaseBackYard tempTilePosition " << tempTilePosition.x << "," << tempTilePosition.y << std::endl;
+				// std::cout << "ConstructionPlaceFinder MainBaseBackYard tempTilePosition " << tempTilePosition.x << "," << tempTilePosition.y << std::endl;
 				
 				//std::cout << "k";
 				// 해당 지점이 같은 Region 에 속하고 Buildable 한 타일인지 확인
@@ -124,7 +124,7 @@ public class ConstructionPlaceFinder {
 					bx = tempBaseLocation.getTilePosition().getX() + (int)(d * Math.sin(t) / Config.TILE_SIZE);
 					by = tempBaseLocation.getTilePosition().getY() + (int)(d * Math.cos(t) / Config.TILE_SIZE);
 					tempTilePosition = new TilePosition(bx, by);
-					//if (Config::Debug::LogToConsole) std::cout << "ConstructionPlaceFinder MainBaseBackYard tempTilePosition " << tempTilePosition.x << "," << tempTilePosition.y << std::endl;
+					// std::cout << "ConstructionPlaceFinder MainBaseBackYard tempTilePosition " << tempTilePosition.x << "," << tempTilePosition.y << std::endl;
 					//std::cout << "m";
 
 					if (!tempTilePosition.isValid() || !MyBotModule.Broodwar.isBuildable(tempTilePosition.getX(), tempTilePosition.getY(), false)) {
@@ -132,7 +132,7 @@ public class ConstructionPlaceFinder {
 						bx = tempBaseLocation.getTilePosition().getX() - (int)(d * Math.sin(t) / Config.TILE_SIZE);
 						by = tempBaseLocation.getTilePosition().getY() - (int)(d * Math.cos(t) / Config.TILE_SIZE);
 						tempTilePosition = new TilePosition(bx, by);
-						//if (Config::Debug::LogToConsole) std::cout << "ConstructionPlaceFinder MainBaseBackYard tempTilePosition " << tempTilePosition.x << "," << tempTilePosition.y << std::endl;
+						// std::cout << "ConstructionPlaceFinder MainBaseBackYard tempTilePosition " << tempTilePosition.x << "," << tempTilePosition.y << std::endl;
 
 						if (!tempTilePosition.isValid() || !MyBotModule.Broodwar.isBuildable(tempTilePosition.getX(), tempTilePosition.getY(), false) || tempBaseRegion != BWTA.getRegion(new Position(bx*Config.TILE_SIZE, by*Config.TILE_SIZE))) {
 
@@ -140,7 +140,7 @@ public class ConstructionPlaceFinder {
 							bx = tempBaseLocation.getTilePosition().getX() + (int)(d * Math.cos(t) / Config.TILE_SIZE);
 							by = tempBaseLocation.getTilePosition().getY() - (int)(d * Math.sin(t) / Config.TILE_SIZE);
 							tempTilePosition = new TilePosition(bx, by);
-							//if (Config::Debug::LogToConsole) std::cout << "ConstructionPlaceFinder MainBaseBackYard tempTilePosition " << tempTilePosition.x << "," << tempTilePosition.y << std::endl;
+							// std::cout << "ConstructionPlaceFinder MainBaseBackYard tempTilePosition " << tempTilePosition.x << "," << tempTilePosition.y << std::endl;
 							//std::cout << "m";
 						}
 
@@ -154,7 +154,7 @@ public class ConstructionPlaceFinder {
 					desiredPosition = getBuildLocationNear(buildingType, tempTilePosition);
 				}
 				//std::cout << "w";
-				//if (Config::Debug::LogToConsole) std::cout << "ConstructionPlaceFinder MainBaseBackYard desiredPosition " << desiredPosition.x << "," << desiredPosition.y << std::endl;
+				// std::cout << "ConstructionPlaceFinder MainBaseBackYard desiredPosition " << desiredPosition.x << "," << desiredPosition.y << std::endl;
 				break;
 
 			case FirstExpansionLocation:
@@ -265,7 +265,7 @@ public class ConstructionPlaceFinder {
 
 			testPosition = getBuildLocationNear(buildingType, desiredPosition, buildingGapSpace, constructionPlaceSearchMethod);
 
-			//if (Config::Debug::LogToConsole) std::cout << "ConstructionPlaceFinder testPosition " << testPosition.x << "," << testPosition.y << std::endl;
+			// std::cout << "ConstructionPlaceFinder testPosition " << testPosition.x << "," << testPosition.y << std::endl;
 
 			if (testPosition != TilePosition.None && testPosition != TilePosition.Invalid)
 				return testPosition;
@@ -298,7 +298,7 @@ public class ConstructionPlaceFinder {
 	/// TODO 과제 : 건물을 계획없이 지을수 있는 곳에 짓는 것을 계속 하다보면, 유닛이 건물 사이에 갇히는 경우가 발생할 수 있는데, 이를 방지하는 방법은 생각해볼 과제입니다
 	public final TilePosition getBuildLocationNear(UnitType buildingType, TilePosition desiredPosition, int buildingGapSpace, int constructionPlaceSearchMethod)
 	{
-		//if (Config::Debug::LogToConsole) std::cout << std::endl << "getBuildLocationNear " << buildingType.getName().c_str() << " " << desiredPosition.x << "," << desiredPosition.y 
+		// std::cout << std::endl << "getBuildLocationNear " << buildingType.getName().c_str() << " " << desiredPosition.x << "," << desiredPosition.y 
 		//	<< " gap " << buildingGapSpace << " method " << constructionPlaceSearchMethod << std::endl;
 
 		//returns a valid build location near the desired tile position (x,y).
@@ -332,7 +332,7 @@ public class ConstructionPlaceFinder {
 
 					isPossiblePlace = canBuildHereWithSpace(new TilePosition(x, y), b, buildingGapSpace);
 
-					//if (Config::Debug::LogToConsole) std::cout << " " << x << "," << y << "=" << isPossiblePlace;
+					// std::cout << " " << x << "," << y << "=" << isPossiblePlace;
 
 					if (isPossiblePlace) {
 						resultPosition = new TilePosition(x, y);
@@ -410,7 +410,7 @@ public class ConstructionPlaceFinder {
 			{
 				isPossiblePlace = canBuildHereWithSpace(closestTiles[i], b, buildingGapSpace);
 
-				//if (Config::Debug::LogToConsole) std::cout << " " << closestTiles[i].x << "," << closestTiles[i].y << "=" << isPossiblePlace;
+				// std::cout << " " << closestTiles[i].x << "," << closestTiles[i].y << "=" << isPossiblePlace;
 
 				if (isPossiblePlace)
 				{

@@ -4,6 +4,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="generator" content="Doxygen 1.8.8"/>
 <title>BasicBot: Namespace Members</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
@@ -15,6 +16,7 @@
   $(document).ready(function() { searchBox.OnSelectItem(0); });
 </script>
 <link href="stylesheet.css" rel="stylesheet" type="text/css" />
+<link href="customdoxygen.css" rel="stylesheet" type="text/css"/>
 </head>
 <body>
 <div id="top"><!-- do not remove this div, it is closed by doxygen! -->
@@ -24,7 +26,7 @@
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;">
    <div id="projectname">BasicBot
-   &#160;<span id="projectnumber">v0.1 beta</span>
+   &#160;<span id="projectnumber">v0.9 beta</span>
    </div>
    <div id="projectbrief">BasicBot for Starcraft: Broodwar 1.16.1 with BWAPI 4.1.2</div>
   </td>
@@ -32,7 +34,7 @@
  </tbody>
 </table>
 <div class="ribbon">
-  <a href="https://github.com/TekseonShin/BasicBot">Fork me on GitHub</a>
+  <a href="https://github.com/SamsungSDS-Contest/2017Guide" target="_blank">Fork me on GitHub</a>
 </div>
 </div>
 <!-- end header part -->
@@ -45,8 +47,8 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
       <li><a href="index.html"><span>Main&#160;Page</span></a></li>
       <li class="current"><a href="namespaces.html"><span>Namespaces</span></a></li>
       <li><a href="annotated.html"><span>Classes</span></a></li>
-      <li><a href="https://github.com/TekseonShin/BasicBot/issues"><span>Issues</span></a></li>
-      <li><a href="https://github.com/TekseonShin/BasicBot/wiki"><span>Wiki</span></a></li>
+      <li><a href="https://github.com/SamsungSDS-Contest/2017Guide/issues"><span>Issues</span></a></li>
+      <li><a href="https://github.com/SamsungSDS-Contest/2017Guide/wiki"><span>Wiki</span></a></li>
       <li>
         <div id="MSearchBox" class="MSearchBoxInactive">
         <span class="left">
@@ -80,18 +82,6 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
       <li><a href="namespacemembers_eval.html"><span>Enumerator</span></a></li>
     </ul>
   </div>
-  <div id="navrow4" class="tabs3">
-    <ul class="tablist">
-      <li><a href="#index_b"><span>b</span></a></li>
-      <li><a href="#index_d"><span>d</span></a></li>
-      <li><a href="#index_e"><span>e</span></a></li>
-      <li><a href="#index_l"><span>l</span></a></li>
-      <li><a href="#index_m"><span>m</span></a></li>
-      <li><a href="#index_r"><span>r</span></a></li>
-      <li><a href="#index_s"><span>s</span></a></li>
-      <li class="current"><a href="#index_w"><span>w</span></a></li>
-    </ul>
-  </div>
 </div><!-- top -->
 <!-- window showing the filter options -->
 <div id="MSearchSelectWindow"
@@ -108,9 +98,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div>
 
 <div class="contents">
-&#160;
-
-<h3><a class="anchor" id="index_b"></a>- b -</h3><ul>
+&#160;<ul>
 <li>BotAuthors
 : <a class="el" href="namespace_config_1_1_bot_info.html#a829ef13222802716cca446fe2d1e71df">Config::BotInfo</a>
 </li>
@@ -135,10 +123,6 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <li>BuildingSupplyDepotSpacing
 : <a class="el" href="namespace_config_1_1_macro.html#a9bebd3dfbf3478a6bfee2e077b0ddb87">Config::Macro</a>
 </li>
-</ul>
-
-
-<h3><a class="anchor" id="index_d"></a>- d -</h3><ul>
 <li>DrawBuildingInfo
 : <a class="el" href="namespace_config_1_1_debug.html#ae6e5e968e87552ff013bb1f5a642d468">Config::Debug</a>
 </li>
@@ -178,54 +162,27 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <li>DrawWorkerInfo
 : <a class="el" href="namespace_config_1_1_debug.html#a5aa452ed55bab1ae51df6c2813d93ed5">Config::Debug</a>
 </li>
-</ul>
-
-
-<h3><a class="anchor" id="index_e"></a>- e -</h3><ul>
 <li>EnableCompleteMapInformation
 : <a class="el" href="namespace_config_1_1_b_w_a_p_i_options.html#a65bcba7d6110f7371a4f50a552fa805e">Config::BWAPIOptions</a>
 </li>
 <li>EnableUserInput
 : <a class="el" href="namespace_config_1_1_b_w_a_p_i_options.html#a313e9d6ece0c4c2fb733a34f38a50863">Config::BWAPIOptions</a>
 </li>
-</ul>
-
-
-<h3><a class="anchor" id="index_l"></a>- l -</h3><ul>
 <li>LogFilename
 : <a class="el" href="namespace_config_1_1_files.html#a7339d18d58fc90e1bee17a153b627179">Config::Files</a>
 </li>
-<li>LogToConsole
-: <a class="el" href="namespace_config_1_1_debug.html#aca759e27e6dd7a9d084349ae4efba1aa">Config::Debug</a>
-</li>
-</ul>
-
-
-<h3><a class="anchor" id="index_m"></a>- m -</h3><ul>
 <li>MAP_GRID_SIZE
 : <a class="el" href="namespace_config_1_1_tools.html#a5e530051d052228cf4b9e4a177c29ccb">Config::Tools</a>
 </li>
-</ul>
-
-
-<h3><a class="anchor" id="index_r"></a>- r -</h3><ul>
 <li>ReadDirectory
 : <a class="el" href="namespace_config_1_1_files.html#a9c821b6e74124ae9f5831b1d35bae3b8">Config::Files</a>
 </li>
-</ul>
-
-
-<h3><a class="anchor" id="index_s"></a>- s -</h3><ul>
 <li>SetFrameSkip
 : <a class="el" href="namespace_config_1_1_b_w_a_p_i_options.html#ae81697235ea5929a4a0374d5a1ff2b9d">Config::BWAPIOptions</a>
 </li>
 <li>SetLocalSpeed
 : <a class="el" href="namespace_config_1_1_b_w_a_p_i_options.html#a07c210b0dc82ac55c793088dabf5274d">Config::BWAPIOptions</a>
 </li>
-</ul>
-
-
-<h3><a class="anchor" id="index_w"></a>- w -</h3><ul>
 <li>WorkersPerRefinery
 : <a class="el" href="namespace_config_1_1_macro.html#aaab73aa0be50cacea83f499fe0725b8f">Config::Macro</a>
 </li>
@@ -237,7 +194,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <!-- HTML footer for doxygen 1.8.8-->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Fri May 26 2017 22:08:02 for BasicBot by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Sat May 27 2017 22:53:11 for BasicBot by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.8
 </small></address>

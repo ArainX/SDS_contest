@@ -5,6 +5,5 @@ var searchData=
   ['lasthealth',['lastHealth',['../struct_my_bot_1_1_unit_info.html#af8e0223099640e8149856fe1a2d710fd',1,'MyBot::UnitInfo']]],
   ['lastposition',['lastPosition',['../struct_my_bot_1_1_unit_info.html#a36c6e736b977154f6979cadf1fbf3a8c',1,'MyBot::UnitInfo']]],
   ['lastshields',['lastShields',['../struct_my_bot_1_1_unit_info.html#a77965ef28b90f4869a49b30a1e96166b',1,'MyBot::UnitInfo']]],
-  ['logfilename',['LogFilename',['../namespace_config_1_1_files.html#a7339d18d58fc90e1bee17a153b627179',1,'Config::Files']]],
-  ['logtoconsole',['LogToConsole',['../namespace_config_1_1_debug.html#aca759e27e6dd7a9d084349ae4efba1aa',1,'Config::Debug']]]
+  ['logfilename',['LogFilename',['../namespace_config_1_1_files.html#a7339d18d58fc90e1bee17a153b627179',1,'Config::Files']]]
 ];

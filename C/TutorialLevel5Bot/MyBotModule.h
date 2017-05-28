@@ -13,6 +13,7 @@
 #include "Common.h"
 #include "CommandUtil.h"
 #include "GameCommander.h"
+#include "UXManager.h"
 
 namespace MyBot
 {

@@ -7,6 +7,5 @@ var searchData=
   ['lastshields',['lastShields',['../struct_my_bot_1_1_unit_info.html#a77965ef28b90f4869a49b30a1e96166b',1,'MyBot::UnitInfo']]],
   ['len',['len',['../struct_my_bot_1_1double2.html#a447f0fa106cafbff2c1ced0403a10e89',1,'MyBot::double2']]],
   ['lensq',['lenSq',['../struct_my_bot_1_1double2.html#a29aca44650bb17ab5365327e05765a06',1,'MyBot::double2']]],
-  ['logfilename',['LogFilename',['../namespace_config_1_1_files.html#a7339d18d58fc90e1bee17a153b627179',1,'Config::Files']]],
-  ['logtoconsole',['LogToConsole',['../namespace_config_1_1_debug.html#aca759e27e6dd7a9d084349ae4efba1aa',1,'Config::Debug']]]
+  ['logfilename',['LogFilename',['../namespace_config_1_1_files.html#a7339d18d58fc90e1bee17a153b627179',1,'Config::Files']]]
 ];

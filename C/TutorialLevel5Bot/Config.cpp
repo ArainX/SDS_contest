@@ -4,7 +4,7 @@ namespace Config
 {
 	namespace BotInfo
 	{
-		std::string BotName = "MyBot";
+		std::string BotName = "NoNameBot";
 		std::string BotAuthors = "NoName";
 	}
 
@@ -28,10 +28,19 @@ namespace Config
 		extern int MAP_GRID_SIZE = 32;      
 	}
 
+	namespace Macro
+	{
+		int WorkersPerRefinery = 3;
+		int BuildingSpacing = 2;
+		int BuildingResourceDepotSpacing = 0;
+		int BuildingPylonEarlyStageSpacing = 4;
+		int BuildingPylonSpacing = 2;
+		int BuildingSupplyDepotSpacing = 0;
+		int BuildingDefenseTowerSpacing = 0;
+	}
+
 	namespace Debug
 	{
-		bool LogToConsole = false;
-
 		bool DrawGameInfo = true;
 		bool DrawUnitHealthBars = true;
 		bool DrawProductionInfo = true;
@@ -44,18 +53,7 @@ namespace Config
 		bool DrawEnemyUnitInfo = true;
 		bool DrawBWTAInfo = true;
 		bool DrawMapGrid = true;
-		bool DrawUnitTargetInfo = true;		
-	}
-
-	namespace Macro
-	{
-		int WorkersPerRefinery = 3;
-		int BuildingSpacing = 2;
-		int BuildingResourceDepotSpacing = 0;
-		int BuildingPylonEarlyStageSpacing = 4;
-		int BuildingPylonSpacing = 2;
-		int BuildingSupplyDepotSpacing = 0;
-		int BuildingDefenseTowerSpacing = 0;
+		bool DrawUnitTargetInfo = true;
 	}
 
 }

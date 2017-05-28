@@ -9,7 +9,6 @@ var searchData=
   ['drawbwtaresultonmap',['drawBWTAResultOnMap',['../class_u_x_manager.html#a3bf9978848507f33184d3b7a56636c88',1,'UXManager']]],
   ['drawconstructionqueueonscreenandmap',['drawConstructionQueueOnScreenAndMap',['../class_u_x_manager.html#a49ac6e1e9c02b93db0a891ca9f601733',1,'UXManager']]],
   ['drawforces',['drawForces',['../class_u_x_manager.html#ac8dc51fbaa7e8dd312907d3ac0fb767d',1,'UXManager']]],
-  ['drawgamecommandertimeconsumescreen',['drawGameCommanderTimeConsumeScreen',['../class_game_commander.html#a0498325407d1d52669b3b5fa344af2c8',1,'GameCommander']]],
   ['drawgameinformationonscreen',['drawGameInformationOnScreen',['../class_u_x_manager.html#a44ad8350ce3fe78fdde24ce171dc2297',1,'UXManager']]],
   ['drawmapgrid',['drawMapGrid',['../class_u_x_manager.html#ad8def99c7d36f97db5ab0ba7a8ea3599',1,'UXManager']]],
   ['drawplayers',['drawPlayers',['../class_u_x_manager.html#a3c0d257ec00e65ee55c89f2988bcb86f',1,'UXManager']]],

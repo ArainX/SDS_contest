@@ -86,7 +86,7 @@ BWAPI::TilePosition	ConstructionPlaceFinder::getBuildLocationWithSeedPositionAnd
 			by = tempBaseLocation->getTilePosition().y + (int)(d * std::sin(t) / TILE_SIZE);
 			//std::cout << "i";
 			tempTilePosition = BWAPI::TilePosition(bx, by);
-			//if (Config::Debug::LogToConsole) std::cout << "ConstructionPlaceFinder MainBaseBackYard tempTilePosition " << tempTilePosition.x << "," << tempTilePosition.y << std::endl;
+			// std::cout << "ConstructionPlaceFinder MainBaseBackYard tempTilePosition " << tempTilePosition.x << "," << tempTilePosition.y << std::endl;
 			
 			//std::cout << "k";
 			// 해당 지점이 같은 Region 에 속하고 Buildable 한 타일인지 확인
@@ -97,7 +97,7 @@ BWAPI::TilePosition	ConstructionPlaceFinder::getBuildLocationWithSeedPositionAnd
 				bx = tempBaseLocation->getTilePosition().x + (int)(d * std::sin(t) / TILE_SIZE);
 				by = tempBaseLocation->getTilePosition().y + (int)(d * std::cos(t) / TILE_SIZE);
 				tempTilePosition = BWAPI::TilePosition(bx, by);
-				//if (Config::Debug::LogToConsole) std::cout << "ConstructionPlaceFinder MainBaseBackYard tempTilePosition " << tempTilePosition.x << "," << tempTilePosition.y << std::endl;
+				// std::cout << "ConstructionPlaceFinder MainBaseBackYard tempTilePosition " << tempTilePosition.x << "," << tempTilePosition.y << std::endl;
 				//std::cout << "m";
 
 				if (!tempTilePosition.isValid() || !BWAPI::Broodwar->isBuildable(tempTilePosition.x, tempTilePosition.y, false)) {
@@ -105,7 +105,7 @@ BWAPI::TilePosition	ConstructionPlaceFinder::getBuildLocationWithSeedPositionAnd
 					bx = tempBaseLocation->getTilePosition().x - (int)(d * std::sin(t) / TILE_SIZE);
 					by = tempBaseLocation->getTilePosition().y - (int)(d * std::cos(t) / TILE_SIZE);
 					tempTilePosition = BWAPI::TilePosition(bx, by);
-					//if (Config::Debug::LogToConsole) std::cout << "ConstructionPlaceFinder MainBaseBackYard tempTilePosition " << tempTilePosition.x << "," << tempTilePosition.y << std::endl;
+					// std::cout << "ConstructionPlaceFinder MainBaseBackYard tempTilePosition " << tempTilePosition.x << "," << tempTilePosition.y << std::endl;
 
 					if (!tempTilePosition.isValid() || !BWAPI::Broodwar->isBuildable(tempTilePosition.x, tempTilePosition.y, false) || tempBaseRegion != BWTA::getRegion(BWAPI::Position(bx*TILE_SIZE, by*TILE_SIZE))) {
 
@@ -113,7 +113,7 @@ BWAPI::TilePosition	ConstructionPlaceFinder::getBuildLocationWithSeedPositionAnd
 						bx = tempBaseLocation->getTilePosition().x + (int)(d * std::cos(t) / TILE_SIZE);
 						by = tempBaseLocation->getTilePosition().y - (int)(d * std::sin(t) / TILE_SIZE);
 						tempTilePosition = BWAPI::TilePosition(bx, by);
-						//if (Config::Debug::LogToConsole) std::cout << "ConstructionPlaceFinder MainBaseBackYard tempTilePosition " << tempTilePosition.x << "," << tempTilePosition.y << std::endl;
+						// std::cout << "ConstructionPlaceFinder MainBaseBackYard tempTilePosition " << tempTilePosition.x << "," << tempTilePosition.y << std::endl;
 						//std::cout << "m";
 					}
 
@@ -127,7 +127,7 @@ BWAPI::TilePosition	ConstructionPlaceFinder::getBuildLocationWithSeedPositionAnd
 				desiredPosition = getBuildLocationNear(buildingType, tempTilePosition);
 			}
 			//std::cout << "w";
-			//if (Config::Debug::LogToConsole) std::cout << "ConstructionPlaceFinder MainBaseBackYard desiredPosition " << desiredPosition.x << "," << desiredPosition.y << std::endl;
+			// std::cout << "ConstructionPlaceFinder MainBaseBackYard desiredPosition " << desiredPosition.x << "," << desiredPosition.y << std::endl;
 			break;
 
 		case BuildOrderItem::SeedPositionStrategy::FirstExpansionLocation:
@@ -233,7 +233,7 @@ BWAPI::TilePosition	ConstructionPlaceFinder::getBuildLocationNear(BWAPI::UnitTyp
 
 		testPosition = getBuildLocationNear(buildingType, desiredPosition, buildingGapSpace, constructionPlaceSearchMethod);
 
-		//if (Config::Debug::LogToConsole) std::cout << "ConstructionPlaceFinder testPosition " << testPosition.x << "," << testPosition.y << std::endl;
+		// std::cout << "ConstructionPlaceFinder testPosition " << testPosition.x << "," << testPosition.y << std::endl;
 
 		if (testPosition != BWAPI::TilePositions::None && testPosition != BWAPI::TilePositions::Invalid)
 			return testPosition;
@@ -262,7 +262,7 @@ BWAPI::TilePosition	ConstructionPlaceFinder::getBuildLocationNear(BWAPI::UnitTyp
 
 BWAPI::TilePosition	ConstructionPlaceFinder::getBuildLocationNear(BWAPI::UnitType buildingType, BWAPI::TilePosition desiredPosition, int buildingGapSpace, size_t constructionPlaceSearchMethod) const
 {
-	//if (Config::Debug::LogToConsole) std::cout << std::endl << "getBuildLocationNear " << buildingType.getName().c_str() << " " << desiredPosition.x << "," << desiredPosition.y 
+	// std::cout << std::endl << "getBuildLocationNear " << buildingType.getName().c_str() << " " << desiredPosition.x << "," << desiredPosition.y 
 	//	<< " gap " << buildingGapSpace << " method " << constructionPlaceSearchMethod << std::endl;
 
 	//returns a valid build location near the desired tile position (x,y).
@@ -296,7 +296,7 @@ BWAPI::TilePosition	ConstructionPlaceFinder::getBuildLocationNear(BWAPI::UnitTyp
 
 				isPossiblePlace = this->canBuildHereWithSpace(BWAPI::TilePosition(x, y), b, buildingGapSpace);
 
-				//if (Config::Debug::LogToConsole) std::cout << " " << x << "," << y << "=" << isPossiblePlace;
+				// std::cout << " " << x << "," << y << "=" << isPossiblePlace;
 
 				if (isPossiblePlace) {
 					resultPosition = BWAPI::TilePosition(x, y);
@@ -374,7 +374,7 @@ BWAPI::TilePosition	ConstructionPlaceFinder::getBuildLocationNear(BWAPI::UnitTyp
 		{
 			isPossiblePlace = canBuildHereWithSpace(closestTiles[i], b, buildingGapSpace);
 
-			//if (Config::Debug::LogToConsole) std::cout << " " << closestTiles[i].x << "," << closestTiles[i].y << "=" << isPossiblePlace;
+			// std::cout << " " << closestTiles[i].x << "," << closestTiles[i].y << "=" << isPossiblePlace;
 
 			if (isPossiblePlace)
 			{

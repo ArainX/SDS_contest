@@ -4,6 +4,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="generator" content="Doxygen 1.8.8"/>
 <title>BasicBot: Main Page</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
@@ -15,6 +16,7 @@
   $(document).ready(function() { searchBox.OnSelectItem(0); });
 </script>
 <link href="stylesheet.css" rel="stylesheet" type="text/css" />
+<link href="customdoxygen.css" rel="stylesheet" type="text/css"/>
 </head>
 <body>
 <div id="top"><!-- do not remove this div, it is closed by doxygen! -->
@@ -24,7 +26,7 @@
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;">
    <div id="projectname">BasicBot
-   &#160;<span id="projectnumber">v0.1 beta</span>
+   &#160;<span id="projectnumber">v0.9 beta</span>
    </div>
    <div id="projectbrief">BasicBot for Starcraft: Broodwar 1.16.1 with BWAPI 4.1.2</div>
   </td>
@@ -32,7 +34,7 @@
  </tbody>
 </table>
 <div class="ribbon">
-  <a href="https://github.com/TekseonShin/BasicBot">Fork me on GitHub</a>
+  <a href="https://github.com/SamsungSDS-Contest/2017Guide" target="_blank">Fork me on GitHub</a>
 </div>
 </div>
 <!-- end header part -->
@@ -45,8 +47,8 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
       <li class="current"><a href="index.html"><span>Main&#160;Page</span></a></li>
       <li><a href="namespaces.html"><span>Namespaces</span></a></li>
       <li><a href="annotated.html"><span>Classes</span></a></li>
-      <li><a href="https://github.com/TekseonShin/BasicBot/issues"><span>Issues</span></a></li>
-      <li><a href="https://github.com/TekseonShin/BasicBot/wiki"><span>Wiki</span></a></li>
+      <li><a href="https://github.com/SamsungSDS-Contest/2017Guide/issues"><span>Issues</span></a></li>
+      <li><a href="https://github.com/SamsungSDS-Contest/2017Guide/wiki"><span>Wiki</span></a></li>
       <li>
         <div id="MSearchBox" class="MSearchBoxInactive">
         <span class="left">
@@ -85,65 +87,88 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="title">BasicBot Documentation</div>  </div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><h2>History</h2>
+<div class="textblock"><h2>프로젝트 개요</h2>
 <ul>
-<li>2017-05-15 uAlbertaBot 을 Base 로 하고, Aiur 를 부분적으로 참고하여, 삼성SDS에서 C++ 및 JAVA 버전 수정 개발을 진행한 후 GPL License 3 로 배포함<ul>
-<li>주요 수정사항<ol type="1">
-<li>BuildManager 개선</li>
-</ol>
-<ol type="1">
-<li>SparCraft, BOSS 등을 제거</li>
-</ol>
-<ol type="1">
-<li>StrategyManager 간소화</li>
-</ol>
-</li>
-<li>참고한 봇 프로그램<ol type="1">
-<li>uAlbertaBot</li>
-</ol>
-<ol type="1">
-<li>Aiur</li>
-</ol>
-</li>
-<li>개발자<ol type="1">
-<li>신택선</li>
-</ol>
-<ol type="1">
-<li>김덕환</li>
-</ol>
-</li>
+<li><b>2017 삼성SDS 알고리즘 경진대회를 위한 프로젝트</b></li>
+<li>**<a href="https://github.com/SamsungSDS-Contest/2017Guide/wiki">Wiki</a> : 경진대회 개발환경 설정 방법, 봇 개발 튜터리얼 및 가이드 제공**</li>
+<li>**<a href="https://github.com/SamsungSDS-Contest/2017Guide">Code</a> : 경진대회 봇 프로그램 개발의 시작점으로 사용할 BasicBot 소스코드 제공**</li>
 </ul>
-</li>
-</ul>
-<h2>디펜던시</h2>
+<h2>BasicBot 개발 취지 및 특이사항</h2>
 <ul>
-<li>C++</li>
+<li>**경진대회 결과물의 수준을 상향화 하기 위해 스타크래프트 봇 프로그램의 기본 기능 (미네랄 채취, 건물 짓기, 빌드오더 실행 등) 을 BasicBot 으로 개발하여 제공함**</li>
+<li>**경진대회 참가자들은 BasicBot 을 자유롭게 수정하여 개발을 수행한 후 소스코드를 제출하면 됨**<ul>
+<li>**단, Main, MyBotModule, UXManager 는 제출하더라도 원활한 대회 진행을 위해 봇 컴파일에 반영하지않음**</li>
 </ul>
-<p>BWAPI 4.1.2</p>
-<p>BWTA 2.2</p>
+</li>
+<li>**먼저 <a href="https://github.com/SamsungSDS-Contest/2017Guide/wiki">wiki</a> 에서 개발환경 설정 방법, 튜터리얼 및 가이드를 읽어본 후 개발하는 것을 권장함**</li>
+</ul>
+<h2>BasicBot 설치방법</h2>
 <ul>
-<li>JAVA</li>
+<li><b>master 브랜치를 Clone or download</b></li>
 </ul>
-<p>BWMirror 2.5</p>
+<h2>BasicBot Version</h2>
+<ul>
+<li><b>2017-05-29 : v0.9 beta Release (프리뷰 및 오픈 테스트를 위해 공개)</b></li>
+<li><b>2017-06-16 : v1.0 Release 예정 (실제 알고리즘 경진대회에서 사용)</b></li>
+<li>**<a href="https://github.com/SamsungSDS-Contest/2017Guide/issues">버그를 발견하여 알려주시거나 이슈를 제기하여주시면 예산 내에서 소정의 상품을 드립니다</a>**</li>
+</ul>
+<h2>BasicBot API Documentation</h2>
+<ul>
+<li><b>BasicBot API Documentation 웹사이트 : <a href="https://samsungsds-contest.github.io/2017Guide/">https://samsungsds-contest.github.io/2017Guide/</a></b></li>
+</ul>
+<h1>상세 설명</h1>
+<h2>Code 폴더 설명</h2>
+<table class="doxtable">
+<tr>
+<th>폴더명</th><th>설명  </th></tr>
+<tr>
+<td>C</td><td>BasicBot 및 TutorialBot 소스코드 C++ 버전 </td></tr>
+<tr>
+<td>JAVA</td><td>BasicBot 및 TutorialBot 소스코드 JAVA 버전 </td></tr>
+<tr>
+<td>docs\C</td><td>BasicBot API Documentation - C++ 버전 </td></tr>
+<tr>
+<td>docs\JAVA</td><td>BasicBot API Documentation - JAVA 버전 </td></tr>
+<tr>
+<td>Doxygen</td><td>BasicBot API Documentation 웹사이트 생성 자동화를 위한 Doxygen 설정 파일 </td></tr>
+</table>
+<h2>BasicBot 디펜던시</h2>
+<ul>
+<li>C++<ul>
+<li><a href="https://github.com/bwapi/bwapi">BWAPI 4.1.2</a> : 타 버전과 호환되지 않음</li>
+<li><a href="https://bitbucket.org/auriarte/bwta2">BWTA 2.2</a></li>
+</ul>
+</li>
+<li>JAVA<ul>
+<li><a href="https://github.com/vjurenka/BWMirror">BWMirror 2.5</a> : 타 버전과 호환되지 않음. BWAPI 4.1.2 및 BWTA 2 가 포함되어 있음</li>
+</ul>
+</li>
+</ul>
 <h2>권장 개발 환경</h2>
 <ul>
-<li>C++</li>
+<li>C++<ul>
+<li><a href="https://www.microsoft.com/en-US/download/details.aspx?id=44914">Visual Studio 2013 Express</a></li>
 </ul>
-<p>Visual Studio 2013 Express</p>
-<ul>
-<li>JAVA</li>
+</li>
+<li>JAVA<ul>
+<li><a href="http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html">JDK 32bit</a></li>
+<li><a href="https://eclipse.org/">Eclipse</a></li>
 </ul>
-<p>JDK 1.8</p>
-<p>Eclipse</p>
-<h2>참고) BasicBot Documentation 생성</h2>
+</li>
+</ul>
+<h2>BasicBot 개발 History</h2>
 <ul>
-<li>Doxygen 1.8.8 을 사용하여 BasicBot Documentation HTML 을 생성하였음 </li>
+<li>삼성SDS 알고리즘경진대회 준비 T/F에서 오픈소스 <a href="https://github.com/davechurchill/ualbertabot">uAlbertaBot</a>, <a href="https://github.com/AIUR-group/AIUR">Aiur</a>, <a href="https://github.com/Ravaelles/Atlantis">Atlantis</a>, <a href="https://github.com/Fobbah/bwsal">BWSAL</a> 등을 참고하여 BasicBot (C++ 버전 및 JAVA 버전) 을 개발한 후 GPL License 3 로 배포함</li>
+</ul>
+<h2>BasicBot API Documentation 생성 툴</h2>
+<ul>
+<li><a href="http://www.doxygen.org/index.html">Doxygen 1.8.8</a> 을 사용하여 BasicBot API Documentation 웹사이트를 생성하였음 </li>
 </ul>
 </div></div><!-- contents -->
 <!-- HTML footer for doxygen 1.8.8-->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Fri May 26 2017 22:08:02 for BasicBot by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Sat May 27 2017 22:53:11 for BasicBot by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.8
 </small></address>
