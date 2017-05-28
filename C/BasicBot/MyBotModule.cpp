@@ -66,6 +66,9 @@ void MyBotModule::onFrame(){
 	}
 
 	gameCommander.onFrame();
+
+	// 화면 출력 및 사용자 입력 처리
+	UXManager::Instance().update();
 }
 
 void MyBotModule::onSendText(std::string text){

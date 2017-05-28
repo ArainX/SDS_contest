@@ -38,8 +38,6 @@ public class Config {
     /// 로컬에서 게임을 실행할 때 전체 지도를 다 보이게 할 것인지 여부 (코드 제출 후 서버에서 게임을 실행할 때는 서버 설정을 사용함)    
 	public static final boolean EnableCompleteMapInformation = false;
 
-	/// 화면 표시 여부 - 로그
-	public static final boolean LogToConsole = true;
 	/// 화면 표시 여부 - 게임 정보
 	public static final boolean DrawGameInfo = true;
 	

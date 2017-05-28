@@ -7,30 +7,7 @@ import bwapi.Unit;
 public class GameCommander {
 
 	// 디버깅용 플래그 : 여러 Manager 중 어디에서 문제를 일으키는지 알기 위함 
-	private boolean isToLogConsole = false;
-	// 디버깅용 플래그 : 여러 Manager 중 어디에서 시간을 많이 쓰는지 알기 위함 
-	private boolean isToCheckTime = false;
-	
-	private long timeStarted = 0;
-	private long timeFinished = 0;
-	private long timeElapsedInInformationManager = 0;
-	private long timeElapsedInMapGrid = 0;
-	private long timeElapsedInWorkerManager = 0;
-	private long timeElapsedInBuildManager = 0;
-	private long timeElapsedInConstructionManager = 0;
-	private long timeElapsedInScoutManager = 0;
-	private long timeElapsedInStrategyManager = 0;
-	private long timeElapsedInUXManager = 0;
-	private long timeElapsedTotal = 0;
-	private long timeAccumulatedInInformationManager = 0;
-	private long timeAccumulatedInMapGrid = 0;
-	private long timeAccumulatedInWorkerManager = 0;
-	private long timeAccumulatedInBuildManager = 0;
-	private long timeAccumulatedInConstructionManager = 0;
-	private long timeAccumulatedInScoutManager = 0;
-	private long timeAccumulatedInStrategyManager = 0;
-	private long timeAccumulatedInUXManager = 0;
-	private long timeAccumulatedTotal = 0;
+	private boolean isToFindError = false;
 	
 	/// 경기가 시작될 때 일회적으로 발생하는 이벤트를 처리합니다
 	public void onStart() 
@@ -56,90 +33,44 @@ public class GameCommander {
 		}
 
 		try {
-			if ( isToLogConsole) System.out.print("\n(a");
+			if ( isToFindError) System.out.print("(a");
 
 			// 아군 베이스 위치. 적군 베이스 위치. 각 유닛들의 상태정보 등을 Map 자료구조에 저장/업데이트
-			if (isToCheckTime) timeStarted = System.currentTimeMillis();
 			InformationManager.Instance().update();
-			if (isToCheckTime) timeFinished = System.currentTimeMillis();
-			if (isToCheckTime) timeElapsedInInformationManager = (timeFinished - timeStarted);
 
-			if ( isToLogConsole) System.out.print("b");
+			if ( isToFindError) System.out.print("b");
 		
 			// 각 유닛의 위치를 자체 MapGrid 자료구조에 저장
-			if (isToCheckTime) timeStarted = System.currentTimeMillis();
 			MapGrid.Instance().update();
-			if (isToCheckTime) timeFinished = System.currentTimeMillis();
-			if (isToCheckTime) timeElapsedInMapGrid = (timeFinished - timeStarted);
 
-			if ( isToLogConsole) System.out.print("c");
+			if ( isToFindError) System.out.print("c");
 
 			// economy and base managers
 			// 일꾼 유닛에 대한 명령 (자원 채취, 이동 정도) 지시 및 정리
-			if (isToCheckTime) timeStarted = System.currentTimeMillis();
 			WorkerManager.Instance().update();
-			if (isToCheckTime) timeFinished = System.currentTimeMillis();
-			if (isToCheckTime) timeElapsedInWorkerManager = (timeFinished - timeStarted);
 
-			if ( isToLogConsole) System.out.print("d");
+			if ( isToFindError) System.out.print("d");
 
 			// 빌드오더큐를 관리하며, 빌드오더에 따라 실제 실행(유닛 훈련, 테크 업그레이드 등)을 지시한다.
-			if (isToCheckTime) timeStarted = System.currentTimeMillis();
 			BuildManager.Instance().update();
-			if (isToCheckTime) timeFinished = System.currentTimeMillis();
-			if (isToCheckTime) timeElapsedInBuildManager = (timeFinished - timeStarted);
 
-			if ( isToLogConsole) System.out.print("e");
+			if ( isToFindError) System.out.print("e");
 
 			// 빌드오더 중 건물 빌드에 대해서는, 일꾼유닛 선정, 위치선정, 건설 실시, 중단된 건물 빌드 재개를 지시한다
-			if (isToCheckTime) timeStarted = System.currentTimeMillis();
 			ConstructionManager.Instance().update();
-			if (isToCheckTime) timeFinished = System.currentTimeMillis();
-			if (isToCheckTime) timeElapsedInConstructionManager = (timeFinished - timeStarted);
 
-			if ( isToLogConsole) System.out.print("f");
+			if ( isToFindError) System.out.print("f");
 
 			// 게임 초기 정찰 유닛 지정 및 정찰 유닛 컨트롤을 실행한다
-			if (isToCheckTime) timeStarted = System.currentTimeMillis();
 			ScoutManager.Instance().update();
-			if (isToCheckTime) timeFinished = System.currentTimeMillis();
-			if (isToCheckTime) timeElapsedInScoutManager = (timeFinished - timeStarted);
 
-			if ( isToLogConsole) System.out.print("g");
+			if ( isToFindError) System.out.print("g");
 
 			// 전략적 판단 및 유닛 컨트롤
-			if (isToCheckTime) timeStarted = System.currentTimeMillis();
 			StrategyManager.Instance().update();
-			if (isToCheckTime) timeFinished = System.currentTimeMillis();
-			if (isToCheckTime) timeElapsedInStrategyManager = (timeFinished - timeStarted);
 
-			if ( isToLogConsole) System.out.print("h");
+			if ( isToFindError) System.out.print("h)");
 
-			// 화면 출력 및 사용자 입력 처리
-			if (isToCheckTime) timeStarted = System.currentTimeMillis();
-			UXManager.Instance().update();
-			if (isToCheckTime) timeFinished = System.currentTimeMillis();
-			if (isToCheckTime) timeElapsedInUXManager = (timeFinished - timeStarted);
-
-			if ( isToLogConsole) System.out.print("i)");
-
-			if (isToCheckTime) {				
-				timeAccumulatedInInformationManager += timeElapsedInInformationManager;
-				timeAccumulatedInMapGrid += timeElapsedInMapGrid;
-				timeAccumulatedInWorkerManager += timeElapsedInWorkerManager;
-				timeAccumulatedInBuildManager += timeElapsedInBuildManager;
-				timeAccumulatedInConstructionManager += timeElapsedInConstructionManager;
-				timeAccumulatedInScoutManager += timeElapsedInScoutManager;
-				timeAccumulatedInStrategyManager += timeElapsedInStrategyManager;
-				timeAccumulatedInUXManager += timeElapsedInUXManager;
-	
-				timeElapsedTotal = timeElapsedInInformationManager + timeElapsedInMapGrid + timeElapsedInWorkerManager
-						+ timeElapsedInBuildManager + timeElapsedInConstructionManager + timeElapsedInScoutManager
-						+ timeElapsedInStrategyManager + timeElapsedInUXManager;
-				timeAccumulatedTotal += timeElapsedTotal;
-
-				drawGameCommanderTimeConsumeScreen(400, 200);
-			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		}		
@@ -214,42 +145,6 @@ public class GameCommander {
 
 	/// 다른 플레이어로부터 텍스트를 전달받았을 때 발생하는 이벤트를 처리합니다
 	public void onReceiveText(Player player, String text){
-	}
-	
-	public void drawGameCommanderTimeConsumeScreen(int x, int y) {
-		MyBotModule.Broodwar.drawTextScreen(x, y, "<Time Consume>");
-		y += 10;
-		MyBotModule.Broodwar.drawTextScreen(x, y, "Manager");
-		MyBotModule.Broodwar.drawTextScreen(x+70, y, "Accumulated");
-		MyBotModule.Broodwar.drawTextScreen(x+140, y, "In Frame");
-		y += 10;
-		MyBotModule.Broodwar.drawTextScreen(x, y, "Information");
-		MyBotModule.Broodwar.drawTextScreen(x+70, y, (int)(timeAccumulatedInInformationManager*100/timeAccumulatedTotal)+"%%");
-		MyBotModule.Broodwar.drawTextScreen(x+140, y, (int)(timeElapsedInInformationManager*100/timeElapsedTotal)+"%%");
-		y += 10;
-		MyBotModule.Broodwar.drawTextScreen(x, y, "Worker");
-		MyBotModule.Broodwar.drawTextScreen(x+70, y, (int)(timeAccumulatedInWorkerManager*100/timeAccumulatedTotal)+"%%");
-		MyBotModule.Broodwar.drawTextScreen(x+140, y, (int)(timeElapsedInWorkerManager*100/timeElapsedTotal)+"%%");
-		y += 10;
-		MyBotModule.Broodwar.drawTextScreen(x, y, "Build");
-		MyBotModule.Broodwar.drawTextScreen(x+70, y, (int)(timeAccumulatedInBuildManager*100/timeAccumulatedTotal)+"%%");
-		MyBotModule.Broodwar.drawTextScreen(x+140, y, (int)(timeElapsedInBuildManager*100/timeElapsedTotal)+"%%");
-		y += 10;
-		MyBotModule.Broodwar.drawTextScreen(x, y, "Construction");
-		MyBotModule.Broodwar.drawTextScreen(x+70, y, (int)(timeAccumulatedInConstructionManager*100/timeAccumulatedTotal)+"%%");
-		MyBotModule.Broodwar.drawTextScreen(x+140, y, (int)(timeElapsedInConstructionManager*100/timeElapsedTotal)+"%%");
-		y += 10;
-		MyBotModule.Broodwar.drawTextScreen(x, y, "Scout");
-		MyBotModule.Broodwar.drawTextScreen(x+70, y, (int)(timeAccumulatedInScoutManager*100/timeAccumulatedTotal)+"%%");
-		MyBotModule.Broodwar.drawTextScreen(x+140, y, (int)(timeElapsedInScoutManager*100/timeElapsedTotal)+"%%");
-		y += 10;
-		MyBotModule.Broodwar.drawTextScreen(x, y, "Strategy");
-		MyBotModule.Broodwar.drawTextScreen(x+70, y, (int)(timeAccumulatedInStrategyManager*100/timeAccumulatedTotal)+"%%");
-		MyBotModule.Broodwar.drawTextScreen(x+140, y, (int)(timeElapsedInStrategyManager*100/timeElapsedTotal)+"%%");
-		y += 10;
-		MyBotModule.Broodwar.drawTextScreen(x, y, "UX");
-		MyBotModule.Broodwar.drawTextScreen(x+70, y, (int)(timeAccumulatedInUXManager*100/timeAccumulatedTotal)+"%%");
-		MyBotModule.Broodwar.drawTextScreen(x+140, y, (int)(timeElapsedInUXManager*100/timeElapsedTotal)+"%%");	
 	}
 
 }

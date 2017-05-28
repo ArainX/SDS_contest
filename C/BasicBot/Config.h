@@ -54,9 +54,6 @@ namespace Config
 	/// 디버그 관련 설정
 	namespace Debug
 	{
-		/// 화면 표시 여부 - 로그
-		extern bool LogToConsole;
-
 		/// 화면 표시 여부 - 게임 정보
 		extern bool DrawGameInfo;
 

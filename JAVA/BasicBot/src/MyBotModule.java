@@ -94,6 +94,9 @@ public class MyBotModule extends DefaultBWListener {
 		}
 
 		gameCommander.onFrame();
+		
+		// 화면 출력 및 사용자 입력 처리
+		UXManager.Instance().update();
 	}
 
 	/// 텍스트를 입력 후 엔터를 하여 다른 플레이어들에게 텍스트를 전달하려 할 때 발생하는 이벤트를 처리합니다

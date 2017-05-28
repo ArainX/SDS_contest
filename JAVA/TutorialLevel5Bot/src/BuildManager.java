@@ -154,9 +154,7 @@ public class BuildManager {
 							TilePosition desiredPosition = getDesiredPosition(t.getUnitType(), currentItem.seedLocation,
 									currentItem.seedLocationStrategy);
 
-							// if (Config::Debug::LogToConsole) std::cout +
-							// "BuildManager "
-							// +
+							// std::cout << "BuildManager " +
 							// currentItem.metaType.getUnitType().getName().c_str()
 							// + " desiredPosition " + desiredPosition.x + "," +
 							// desiredPosition.y + std::endl;
@@ -171,18 +169,15 @@ public class BuildManager {
 								// 없는 경우인데,
 								// 대부분의 경우 Pylon 이나 Hatchery가 지어지고 있는 중이므로, 다음
 								// frame 에 건물 지을 공간을 다시 탐색하도록 한다.
-								if (Config.LogToConsole) {
-
-									System.out.print(
-											"There is no place to construct " + currentItem.metaType.getUnitType()
-													+ " strategy " + currentItem.seedLocationStrategy);
-									if (currentItem.seedLocation != null)
-										System.out.print(" seedPosition " + currentItem.seedLocation.getX() + ","
-												+ currentItem.seedLocation.getY());
-									if (desiredPosition != null)
-										System.out.print(" desiredPosition " + desiredPosition.getX() + ","
-												+ desiredPosition.getY());
-								}
+								System.out.print(
+										"There is no place to construct " + currentItem.metaType.getUnitType()
+												+ " strategy " + currentItem.seedLocationStrategy);
+								if (currentItem.seedLocation != null)
+									System.out.print(" seedPosition " + currentItem.seedLocation.getX() + ","
+											+ currentItem.seedLocation.getY());
+								if (desiredPosition != null)
+									System.out.print(" desiredPosition " + desiredPosition.getX() + ","
+											+ desiredPosition.getY());
 								isOkToRemoveQueue = false;
 							}
 						}
@@ -517,7 +512,7 @@ public class BuildManager {
 				.getBuildLocationWithSeedPositionAndStrategy(unitType, seedPosition, seedPositionStrategy);
 
 		/*
-		 * if (Config::Debug::LogToConsole) std::cout +
+		 * std::cout +
 		 * "ConstructionPlaceFinder getBuildLocationWithSeedPositionAndStrategy "
 		 * + unitType.getName().c_str() + " strategy " + seedPositionStrategy +
 		 * " seedPosition " + seedPosition.x + "," + seedPosition.y +
@@ -557,7 +552,7 @@ public class BuildManager {
 				desiredPosition = ConstructionPlaceFinder.Instance()
 						.getBuildLocationWithSeedPositionAndStrategy(unitType, seedPosition, seedPositionStrategy);
 				/*
-				 * if (Config::Debug::LogToConsole) std::cout +
+				 * std::cout +
 				 * "ConstructionPlaceFinder getBuildLocationWithSeedPositionAndStrategy "
 				 * + unitType.getName().c_str() + " strategy " +
 				 * seedPositionStrategy + " seedPosition " + seedPosition.x +
