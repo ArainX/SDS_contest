@@ -75,7 +75,7 @@
 
 ## BasicBot 개발 History
 
-* 삼성SDS 알고리즘경진대회 준비 T/F에서 오픈소스 [uAlbertaBot](https://github.com/davechurchill/ualbertabot), [Aiur](https://github.com/AIUR-group/AIUR), [Atlantis](https://github.com/Ravaelles/Atlantis), [BWSAL](https://github.com/Fobbah/bwsal) 등을 참고하여 BasicBot (C++ 버전 및 JAVA 버전) 을 개발하여 배포함
+* 삼성SDS 알고리즘경진대회 준비 T/F에서 오픈소스 [uAlbertaBot](https://github.com/davechurchill/ualbertabot), [Atlantis](https://github.com/Ravaelles/Atlantis), [BWSAL](https://github.com/Fobbah/bwsal) 등을 참고하여 BasicBot (C++ 버전 및 JAVA 버전) 을 개발하여 배포함
 
 ## BasicBot API Documentation 생성 툴
 
