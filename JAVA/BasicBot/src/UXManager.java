@@ -32,6 +32,7 @@ public class UXManager {
 	private final char purple = '';
 	private final char white = '';
 	
+	private boolean hasSavedBWTAInfo = false;
 	private int[][] blue = null;
 	private int[][] cyan = null;
 	private int[][] orange = null;
@@ -45,8 +46,6 @@ public class UXManager {
 	
 	private String bulletTypeName = "";
 	private String tempUnitName = "";
-	
-	private boolean drawBWTAInfoFlag = true;
 	
 	private static UXManager instance = new UXManager();
 	
@@ -142,7 +141,7 @@ public class UXManager {
 	public void drawGameInformationOnScreen(int x, int y) {
 		MyBotModule.Broodwar.drawTextScreen(x, y, white + "Players : ");
 		MyBotModule.Broodwar.drawTextScreen(x + 50, y, MyBotModule.Broodwar.self().getTextColor() + MyBotModule.Broodwar.self().getName() + "(" + InformationManager.Instance().selfRace + ") " + white + " vs.  " + 
-				MyBotModule.Broodwar.enemy().getTextColor() + MyBotModule.Broodwar.enemy().getName() + "(" + InformationManager.Instance().enemyRace + ")");
+				InformationManager.Instance().enemyPlayer.getTextColor() + InformationManager.Instance().enemyPlayer.getName() + "(" + InformationManager.Instance().enemyRace + ")");
 		y += 12;
 
 		MyBotModule.Broodwar.drawTextScreen(x, y, white + "Map : ");
@@ -182,16 +181,16 @@ public class UXManager {
 	public void drawUnitExtendedInformationOnMap() {
 		int verticalOffset = -10;
 
-		if(InformationManager.Instance().getUnitData(MyBotModule.Broodwar.enemy()) != null)
+		if(InformationManager.Instance().getUnitData(InformationManager.Instance().enemyPlayer) != null)
 		{
 			// draw enemy units
-			Iterator<Unit> it = InformationManager.Instance().getUnitData(MyBotModule.Broodwar.enemy()).getUnits().keySet().iterator();
+			Iterator<Unit> it = InformationManager.Instance().getUnitData(InformationManager.Instance().enemyPlayer).getUnits().keySet().iterator();
 			
 			// C++ : for (final Unit kv : InformationManager.Instance().getUnitData(MyBotModule.game.enemy()).getUnits())
 			while(it.hasNext())
 			{
 				Unit unit = it.next();
-				final UnitInfo ui= InformationManager.Instance().getUnitData(MyBotModule.Broodwar.enemy()).getUnits().get(unit);
+				final UnitInfo ui= InformationManager.Instance().getUnitData(InformationManager.Instance().enemyPlayer).getUnits().get(unit);
 	
 				UnitType type = ui.getType();
 				int hitPoints = ui.getLastHealth();
@@ -257,7 +256,7 @@ public class UXManager {
 
 		// draw neutral units and our units
 		for (Unit unit : MyBotModule.Broodwar.getAllUnits()) {
-			if (unit.getPlayer() == MyBotModule.Broodwar.enemy()) {
+			if (unit.getPlayer() == InformationManager.Instance().enemyPlayer) {
 				continue;
 			}
 
@@ -268,7 +267,7 @@ public class UXManager {
 			int top = pos.getY() - unit.getType().dimensionUp();
 			int bottom = pos.getY() + unit.getType().dimensionDown();
 
-			//MyBotModule.game.drawBoxMap(BWAPI::Position(left, top), BWAPI::Position(right, bottom), Color.Grey, false);
+			//MyBotModule.game.drawBoxMap(BWAPI.Position(left, top), BWAPI.Position(right, bottom), Color.Grey, false);
 
 			// 유닛의 HitPoint 남아있는 비율 표시
 			if (!unit.getType().isResourceContainer() && unit.getType().maxHitPoints() > 0) {
@@ -371,9 +370,9 @@ public class UXManager {
 		//currentY += 10;
 
 		// 적군이 입은 피해 누적값
-		if(InformationManager.Instance().getUnitData(MyBotModule.Broodwar.enemy()) != null)
+		if(InformationManager.Instance().getUnitData(InformationManager.Instance().enemyPlayer) != null)
 		{
-			MyBotModule.Broodwar.drawTextScreen(x, currentY, brown + " Enemy Loss:" + white +" Minerals: " + red + InformationManager.Instance().getUnitData(MyBotModule.Broodwar.enemy()).getMineralsLost() + white + " Gas: " + teal + InformationManager.Instance().getUnitData(MyBotModule.Broodwar.enemy()).getGasLost());
+			MyBotModule.Broodwar.drawTextScreen(x, currentY, brown + " Enemy Loss:" + white +" Minerals: " + red + InformationManager.Instance().getUnitData(InformationManager.Instance().enemyPlayer).getMineralsLost() + white + " Gas: " + teal + InformationManager.Instance().getUnitData(InformationManager.Instance().enemyPlayer).getGasLost());
 		}
 			
 		// 적군의 UnitType 별 파악된 Unit 숫자를 표시
@@ -386,21 +385,21 @@ public class UXManager {
 		
 		Set<String> allUnit = new HashSet<String>();
 		Iterator<String> it = null;
-		if(InformationManager.Instance().getUnitData(MyBotModule.Broodwar.enemy()) != null)
+		if(InformationManager.Instance().getUnitData(InformationManager.Instance().enemyPlayer) != null)
 		{
-			it = InformationManager.Instance().getUnitData(MyBotModule.Broodwar.enemy()).getNumCreatedUnits().keySet().iterator();
+			it = InformationManager.Instance().getUnitData(InformationManager.Instance().enemyPlayer).getNumCreatedUnits().keySet().iterator();
 			while(it.hasNext())
 			{
 				String unit = it.next();
 				allUnit.add(unit);
 			}
-			it = InformationManager.Instance().getUnitData(MyBotModule.Broodwar.enemy()).getNumDeadUnits().keySet().iterator();
+			it = InformationManager.Instance().getUnitData(InformationManager.Instance().enemyPlayer).getNumDeadUnits().keySet().iterator();
 			while(it.hasNext())
 			{
 				String unit = it.next();
 				allUnit.add(unit);
 			}
-			it = InformationManager.Instance().getUnitData(MyBotModule.Broodwar.enemy()).getNumUnits().keySet().iterator();
+			it = InformationManager.Instance().getUnitData(InformationManager.Instance().enemyPlayer).getNumUnits().keySet().iterator();
 			while(it.hasNext())
 			{
 				String unit = it.next();
@@ -412,9 +411,9 @@ public class UXManager {
 			while(it.hasNext())
 			{
 				tempUnitName = it.next();
-				int numCreatedUnits = InformationManager.Instance().getUnitData(MyBotModule.Broodwar.enemy()).getNumCreatedUnits(tempUnitName);
-				int numDeadUnits = InformationManager.Instance().getUnitData(MyBotModule.Broodwar.enemy()).getNumDeadUnits(tempUnitName);
-				int numUnits = InformationManager.Instance().getUnitData(MyBotModule.Broodwar.enemy()).getNumUnits(tempUnitName);
+				int numCreatedUnits = InformationManager.Instance().getUnitData(InformationManager.Instance().enemyPlayer).getNumCreatedUnits(tempUnitName);
+				int numDeadUnits = InformationManager.Instance().getUnitData(InformationManager.Instance().enemyPlayer).getNumDeadUnits(tempUnitName);
+				int numUnits = InformationManager.Instance().getUnitData(InformationManager.Instance().enemyPlayer).getNumUnits(tempUnitName);
 	
 				if (numUnits > 0)
 				{
@@ -431,7 +430,7 @@ public class UXManager {
 	/// BWTA 라이브러리에 의한 Map 분석 결과 정보를 Map 에 표시합니다
 	public void drawBWTAResultOnMap() {
 		/*//we will iterate through all the base locations, and draw their outlines.
-		// C+ :: for (std::set<BWTA::BaseLocation*>::const_iterator i = BWTA::getBaseLocations().begin(); i != BWTA::getBaseLocations().end(); i++)
+		// C+ . for (std.set<BWTA.BaseLocation*>.const_iterator i = BWTA.getBaseLocations().begin(); i != BWTA.getBaseLocations().end(); i++)
 		for(BaseLocation baseLocation : BWTA.getBaseLocations())
 		{
 			TilePosition p = baseLocation.getTilePosition();
@@ -441,7 +440,7 @@ public class UXManager {
 			MyBotModule.Broodwar.drawBoxMap(p.getX() * 32, p.getY() * 32, p.getX() * 32 + 4 * 32, p.getY() * 32 + 3 * 32, Color.Blue);
 
 			//draw a circle at each mineral patch
-			// C++ : for (BWAPI::Unitset::iterator j = (*i).getStaticMinerals().begin(); j != (*i).getStaticMinerals().end(); j++)
+			// C++ : for (BWAPI.Unitset.iterator j = (*i).getStaticMinerals().begin(); j != (*i).getStaticMinerals().end(); j++)
 			for(Unit unit : baseLocation.getStaticMinerals())
 			{
 				Position q = unit.getInitialPosition();
@@ -449,7 +448,7 @@ public class UXManager {
 			}
 
 			//draw the outlines of vespene geysers
-			// C++ : for (BWAPI::Unitset::iterator j = (*i).getGeysers().begin(); j != (*i).getGeysers().end(); j++)
+			// C++ : for (BWAPI.Unitset.iterator j = (*i).getGeysers().begin(); j != (*i).getGeysers().end(); j++)
 			for(Unit unit :baseLocation.getGeysers() )
 			{
 				TilePosition q = unit.getInitialTilePosition();
@@ -464,7 +463,7 @@ public class UXManager {
 		}
 
 		//we will iterate through all the regions and draw the polygon outline of it in green.
-		// C++ : for (std::set<BWTA::Region*>::const_iterator r = BWTA::getRegions().begin(); r != BWTA::getRegions().end(); r++)
+		// C++ : for (std.set<BWTA.Region*>.const_iterator r = BWTA.getRegions().begin(); r != BWTA.getRegions().end(); r++)
 		for(Region region : BWTA.getRegions())
 		{
 			Polygon p = region.getPolygon();
@@ -477,10 +476,10 @@ public class UXManager {
 		}
 
 		//we will visualize the chokepoints with red lines
-		// C++ : for (std::set<BWTA::Region*>::const_iterator r = BWTA::getRegions().begin(); r != BWTA::getRegions().end(); r++)
+		// C++ : for (std.set<BWTA.Region*>.const_iterator r = BWTA.getRegions().begin(); r != BWTA.getRegions().end(); r++)
 		for(Region region : BWTA.getRegions())
 		{
-			// C++ : for (std::set<BWTA::Chokepoint*>::const_iterator c = (*r).getChokepoints().begin(); c != (*r).getChokepoints().end(); c++)
+			// C++ : for (std.set<BWTA.Chokepoint*>.const_iterator c = (*r).getChokepoints().begin(); c != (*r).getChokepoints().end(); c++)
 			for(Chokepoint Chokepoint : region.getChokepoints())
 			{
 				Position point1 = Chokepoint.getSides().first;
@@ -492,7 +491,7 @@ public class UXManager {
 		int cyanCount = 0;
 		int orangeCount = 0;
 		
-		if(drawBWTAInfoFlag)
+		if(hasSavedBWTAInfo == false)
 		{
 			for(BaseLocation baseLocation : BWTA.getBaseLocations())
 			{
@@ -526,7 +525,7 @@ public class UXManager {
 				blueIndex++;
 				
 				//draw a circle at each mineral patch
-				// C++ : for (BWAPI::Unitset::iterator j = (*i).getStaticMinerals().begin(); j != (*i).getStaticMinerals().end(); j++)
+				// C++ : for (BWAPI.Unitset.iterator j = (*i).getStaticMinerals().begin(); j != (*i).getStaticMinerals().end(); j++)
 				for(Unit unit : baseLocation.getStaticMinerals())
 				{
 					Position q = unit.getInitialPosition();
@@ -536,7 +535,7 @@ public class UXManager {
 				}
 
 				//draw the outlines of vespene geysers
-				// C++ : for (BWAPI::Unitset::iterator j = (*i).getGeysers().begin(); j != (*i).getGeysers().end(); j++)
+				// C++ : for (BWAPI.Unitset.iterator j = (*i).getGeysers().begin(); j != (*i).getGeysers().end(); j++)
 				for(Unit unit :baseLocation.getGeysers() )
 				{
 					TilePosition q = unit.getInitialTilePosition();
@@ -555,7 +554,7 @@ public class UXManager {
 			}
 
 			//we will iterate through all the regions and draw the polygon outline of it in green.
-			// C++ : for (std::set<BWTA::Region*>::const_iterator r = BWTA::getRegions().begin(); r != BWTA::getRegions().end(); r++)
+			// C++ : for (std.set<BWTA.Region*>.const_iterator r = BWTA.getRegions().begin(); r != BWTA.getRegions().end(); r++)
 			for(Region region : BWTA.getRegions())
 			{
 				Polygon p = region.getPolygon();
@@ -567,21 +566,22 @@ public class UXManager {
 			}
 
 			//we will visualize the chokepoints with red lines
-			// C++ : for (std::set<BWTA::Region*>::const_iterator r = BWTA::getRegions().begin(); r != BWTA::getRegions().end(); r++)
+			// C++ : for (std.set<BWTA.Region*>.const_iterator r = BWTA.getRegions().begin(); r != BWTA.getRegions().end(); r++)
 			for(Region region : BWTA.getRegions())
 			{
-				// C++ : for (std::set<BWTA::Chokepoint*>::const_iterator c = (*r).getChokepoints().begin(); c != (*r).getChokepoints().end(); c++)
+				// C++ : for (std.set<BWTA.Chokepoint*>.const_iterator c = (*r).getChokepoints().begin(); c != (*r).getChokepoints().end(); c++)
 				for(Chokepoint Chokepoint : region.getChokepoints())
 				{
 					red1.add(Chokepoint.getSides().first);
 					red2.add(Chokepoint.getSides().second);
 				}
 			}
-			drawBWTAInfoFlag = false;
+			hasSavedBWTAInfo = true;
 			
 //			System.out.println(blueCount + " " + cyanCount + " " + orangeCount + " " + yellowCount + " " + greenCount + " " + redCount);
 		}
-		else
+
+		if(hasSavedBWTAInfo)
 		{
 			for(int i1=0 ; i1<blue.length ; i1++)
 			{
@@ -606,7 +606,34 @@ public class UXManager {
 			for(int i6=0 ; i6<red1.size() ; i6++)
 			{
 				MyBotModule.Broodwar.drawLineMap(red1.get(i6), red2.get(i6), Color.Red);	
+			}			
+
+			if (InformationManager.Instance().getFirstChokePoint(MyBotModule.Broodwar.self()) != null) {
+				MyBotModule.Broodwar.drawTextMap(InformationManager.Instance().getMainBaseLocation(MyBotModule.Broodwar.self()).getPosition(), "My MainBaseLocation");
 			}
+			if (InformationManager.Instance().getFirstChokePoint(MyBotModule.Broodwar.self()) != null) {
+				MyBotModule.Broodwar.drawTextMap(InformationManager.Instance().getFirstChokePoint(MyBotModule.Broodwar.self()).getCenter(), "My First ChokePoint");
+			}
+			if (InformationManager.Instance().getSecondChokePoint(MyBotModule.Broodwar.self()) != null) {
+				MyBotModule.Broodwar.drawTextMap(InformationManager.Instance().getSecondChokePoint(MyBotModule.Broodwar.self()).getCenter(), "My Second ChokePoint");
+			}
+			if (InformationManager.Instance().getFirstExpansionLocation(MyBotModule.Broodwar.self()) != null) {
+				MyBotModule.Broodwar.drawTextMap(InformationManager.Instance().getFirstExpansionLocation(MyBotModule.Broodwar.self()).getPosition(), "My First ExpansionLocation");
+			}
+
+			if (InformationManager.Instance().getFirstChokePoint(InformationManager.Instance().enemyPlayer) != null) {
+				MyBotModule.Broodwar.drawTextMap(InformationManager.Instance().getMainBaseLocation(InformationManager.Instance().enemyPlayer).getPosition(), "Enemy MainBaseLocation");
+			}
+			if (InformationManager.Instance().getFirstChokePoint(InformationManager.Instance().enemyPlayer) != null) {
+				MyBotModule.Broodwar.drawTextMap(InformationManager.Instance().getFirstChokePoint(InformationManager.Instance().enemyPlayer).getCenter(), "Enemy First ChokePoint");
+			}
+			if (InformationManager.Instance().getSecondChokePoint(InformationManager.Instance().enemyPlayer) != null) {
+				MyBotModule.Broodwar.drawTextMap(InformationManager.Instance().getSecondChokePoint(InformationManager.Instance().enemyPlayer).getCenter(), "Enemy Second ChokePoint");
+			}
+			if (InformationManager.Instance().getFirstExpansionLocation(InformationManager.Instance().enemyPlayer) != null) {
+				MyBotModule.Broodwar.drawTextMap(InformationManager.Instance().getFirstExpansionLocation(InformationManager.Instance().enemyPlayer).getPosition(), "Enemy First ExpansionLocation");
+			}
+			
 		}
 	}
 
@@ -632,7 +659,7 @@ public class UXManager {
 			{
 				MyBotModule.Broodwar.drawTextMap(c * 32, r * 32, c + "," + r);
 			}
-		}
+		}		
 	}
 
 	/// BuildOrderQueue 를 Screen 에 표시합니다
@@ -640,7 +667,7 @@ public class UXManager {
 		MyBotModule.Broodwar.drawTextScreen(x, y, white + " <Build Order>");
 
 		/*
-		std::deque< BuildOrderItem >* queue = BuildManager::Instance().buildQueue.getQueue();
+		std.deque< BuildOrderItem >* queue = BuildManager.Instance().buildQueue.getQueue();
 		size_t reps = queue.size() < 24 ? queue.size() : 24;
 		for (size_t i(0); i<reps; i++) {
 			const MetaType & type = (*queue)[queue.size() - 1 - i].metaType;
@@ -651,7 +678,7 @@ public class UXManager {
 		Deque<BuildOrderItem> buildQueue = BuildManager.Instance().buildQueue.getQueue();
 		int itemCount = 0;
 
-		// C++ : for (std::deque<BuildOrderItem>::reverse_iterator itr = buildQueue.rbegin(); itr != buildQueue.rend(); itr++) {
+		// C++ : for (std.deque<BuildOrderItem>.reverse_iterator itr = buildQueue.rbegin(); itr != buildQueue.rend(); itr++) {
 		// C++ : 			BuildOrderItem & currentItem = *itr;
 		// C++ : 			MyBotModule.game.drawTextScreen(x, y + 10 + (itemCount * 10), " %s", currentItem.metaType.getName().c_str());
 		// C++ : 			itemCount++;
@@ -687,7 +714,7 @@ public class UXManager {
 		for(int i=0 ; i<tempArr.length ; i++){
 			unitsUnderConstruction.add((Unit)tempArr[i]);
 		}
-		// C++ : std::sort(unitsUnderConstruction.begin(), unitsUnderConstruction.end(), CompareWhenStarted());
+		// C++ : std.sort(unitsUnderConstruction.begin(), unitsUnderConstruction.end(), CompareWhenStarted());
 
 		MyBotModule.Broodwar.drawTextScreen(x, y, white + " <Build Status>");
 
@@ -857,7 +884,7 @@ public class UXManager {
 
 			/*
 			// ResourceDepot ~ Worker 사이에 직선 표시
-			BWAPI::Unit depot = workerData.getWorkerDepot(worker);
+			BWAPI.Unit depot = workerData.getWorkerDepot(worker);
 			if (depot) {
 				MyBotModule.game.drawLineMap(worker.getPosition().x, worker.getPosition().y, depot.getPosition().x, depot.getPosition().y, Color.Orange);
 			}
@@ -882,7 +909,7 @@ public class UXManager {
 		}
 
 		// get the enemy base location, if we have one
-		BaseLocation enemyBaseLocation = InformationManager.Instance().getMainBaseLocation(MyBotModule.Broodwar.enemy());
+		BaseLocation enemyBaseLocation = InformationManager.Instance().getMainBaseLocation(InformationManager.Instance().enemyPlayer);
 
 		if (enemyBaseLocation != null) {
 			MyBotModule.Broodwar.drawTextScreen(x, y, "Enemy MainBaseLocation : (" + enemyBaseLocation.getTilePosition().getX() + ", " + enemyBaseLocation.getTilePosition().getY() + ")");

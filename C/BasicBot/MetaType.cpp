@@ -174,7 +174,6 @@ std::string MetaType::getName() const
 	}
 	else
 	{
-		//UAB_ASSERT(false, "MetaType not found");
 		return "LOL";	
 	}
 }

@@ -49,27 +49,7 @@ namespace Config
 		extern bool EnableUserInput;
 		/// 로컬에서 게임을 실행할 때 전체 지도를 다 보이게 할 것인지 여부 (코드 제출 후 서버에서 게임을 실행할 때는 서버 설정을 사용함)
         extern bool EnableCompleteMapInformation;
-	}
-
-	/// 게임로직 관련 파라메터
-	namespace Macro
-	{
-		/// 각각의 Refinery 마다 투입할 일꾼 최대 숫자
-		extern int WorkersPerRefinery;
-
-		/// 건물과 건물간 띄울 최소한의 간격 - 일반적인 건물의 경우
-		extern int BuildingSpacing;
-		/// 건물과 건물간 띄울 최소한의 간격 - ResourceDepot 건물의 경우 (Nexus, Hatchery, Command Center)
-		extern int BuildingResourceDepotSpacing;
-		/// 건물과 건물간 띄울 최소한의 간격 - Protoss_Pylon 건물의 경우 - 게임 초기에
-		extern int BuildingPylonEarlyStageSpacing;
-		/// 건물과 건물간 띄울 최소한의 간격 - Protoss_Pylon 건물의 경우 - 게임 초기 이후에
-		extern int BuildingPylonSpacing;
-		/// 건물과 건물간 띄울 최소한의 간격 - Terran_Supply_Depot 건물의 경우
-		extern int BuildingSupplyDepotSpacing;
-		/// 건물과 건물간 띄울 최소한의 간격 - 방어 건물의 경우 (포톤캐논. 성큰콜로니. 스포어콜로니. 터렛. 벙커)
-		extern int BuildingDefenseTowerSpacing;
-	}
+    }
 	
 	/// 디버그 관련 설정
 	namespace Debug
@@ -107,5 +87,25 @@ namespace Config
 
 		/// 화면 표시 여부 - 마우스 커서
 		extern bool DrawMouseCursorInfo;
+	}
+
+	/// 게임로직 관련 파라메터
+	namespace Macro
+	{
+		/// 각각의 Refinery 마다 투입할 일꾼 최대 숫자
+		extern int WorkersPerRefinery;
+
+		/// 건물과 건물간 띄울 최소한의 간격 - 일반적인 건물의 경우
+		extern int BuildingSpacing;
+		/// 건물과 건물간 띄울 최소한의 간격 - ResourceDepot 건물의 경우 (Nexus, Hatchery, Command Center)
+		extern int BuildingResourceDepotSpacing; 
+		/// 건물과 건물간 띄울 최소한의 간격 - Protoss_Pylon 건물의 경우 - 게임 초기에
+		extern int BuildingPylonEarlyStageSpacing;
+		/// 건물과 건물간 띄울 최소한의 간격 - Protoss_Pylon 건물의 경우 - 게임 초기 이후에
+		extern int BuildingPylonSpacing;
+		/// 건물과 건물간 띄울 최소한의 간격 - Terran_Supply_Depot 건물의 경우
+		extern int BuildingSupplyDepotSpacing;
+		/// 건물과 건물간 띄울 최소한의 간격 - 방어 건물의 경우 (포톤캐논. 성큰콜로니. 스포어콜로니. 터렛. 벙커)
+		extern int BuildingDefenseTowerSpacing; 
 	}
 }

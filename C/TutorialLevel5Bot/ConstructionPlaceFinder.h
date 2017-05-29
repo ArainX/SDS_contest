@@ -13,7 +13,7 @@ namespace MyBot
 	namespace ConstructionPlaceSearchMethod
 	{
 		enum { 
-			SpiralMethod = 0,	///< 나선형으로 더 넓게 확장하며 탐색
+			SpiralMethod = 0,	///< 나선형으로 돌아가며 탐색
 			NewMethod = 1		///< 예비
 		};
 	}

@@ -459,25 +459,30 @@ void UXManager::drawBWTAResultOnMap()
 		}
 	}
 
-	// Ãß°¡
 	if (InformationManager::Instance().getFirstChokePoint(BWAPI::Broodwar->self()) != nullptr) {
-		BWAPI::Broodwar->drawTextMap(InformationManager::Instance().getFirstChokePoint(BWAPI::Broodwar->self())->getCenter(), "First ChokePoint");
+		BWAPI::Broodwar->drawTextMap(InformationManager::Instance().getMainBaseLocation(BWAPI::Broodwar->self())->getPosition(), "My MainBaseLocation");
+	}
+	if (InformationManager::Instance().getFirstChokePoint(BWAPI::Broodwar->self()) != nullptr) {
+		BWAPI::Broodwar->drawTextMap(InformationManager::Instance().getFirstChokePoint(BWAPI::Broodwar->self())->getCenter(), "My First ChokePoint");
 	}
 	if (InformationManager::Instance().getSecondChokePoint(BWAPI::Broodwar->self()) != nullptr) {
-		BWAPI::Broodwar->drawTextMap(InformationManager::Instance().getSecondChokePoint(BWAPI::Broodwar->self())->getCenter(), "Second ChokePoint");
+		BWAPI::Broodwar->drawTextMap(InformationManager::Instance().getSecondChokePoint(BWAPI::Broodwar->self())->getCenter(), "My Second ChokePoint");
 	}
 	if (InformationManager::Instance().getFirstExpansionLocation(BWAPI::Broodwar->self()) != nullptr) {
-		BWAPI::Broodwar->drawTextMap(InformationManager::Instance().getFirstExpansionLocation(BWAPI::Broodwar->self())->getPosition(), "First ExpansionLocation");
+		BWAPI::Broodwar->drawTextMap(InformationManager::Instance().getFirstExpansionLocation(BWAPI::Broodwar->self())->getPosition(), "My First ExpansionLocation");
 	}
 
 	if (InformationManager::Instance().getFirstChokePoint(BWAPI::Broodwar->enemy()) != nullptr) {
-		BWAPI::Broodwar->drawTextMap(InformationManager::Instance().getFirstChokePoint(BWAPI::Broodwar->enemy())->getCenter(), "First ChokePoint");
+		BWAPI::Broodwar->drawTextMap(InformationManager::Instance().getMainBaseLocation(BWAPI::Broodwar->enemy())->getPosition(), "Enemy MainBaseLocation");
+	}
+	if (InformationManager::Instance().getFirstChokePoint(BWAPI::Broodwar->enemy()) != nullptr) {
+		BWAPI::Broodwar->drawTextMap(InformationManager::Instance().getFirstChokePoint(BWAPI::Broodwar->enemy())->getCenter(), "Enemy First ChokePoint");
 	}
 	if (InformationManager::Instance().getSecondChokePoint(BWAPI::Broodwar->enemy()) != nullptr) {
-		BWAPI::Broodwar->drawTextMap(InformationManager::Instance().getSecondChokePoint(BWAPI::Broodwar->enemy())->getCenter(), "Second ChokePoint");
+		BWAPI::Broodwar->drawTextMap(InformationManager::Instance().getSecondChokePoint(BWAPI::Broodwar->enemy())->getCenter(), "Enemy Second ChokePoint");
 	}
 	if (InformationManager::Instance().getFirstExpansionLocation(BWAPI::Broodwar->enemy()) != nullptr) {
-		BWAPI::Broodwar->drawTextMap(InformationManager::Instance().getFirstExpansionLocation(BWAPI::Broodwar->enemy())->getPosition(), "First ExpansionLocation");
+		BWAPI::Broodwar->drawTextMap(InformationManager::Instance().getFirstExpansionLocation(BWAPI::Broodwar->enemy())->getPosition(), "Enemy First ExpansionLocation");
 	}
 
 }

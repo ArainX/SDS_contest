@@ -25,16 +25,6 @@ void reconnect()
 int main(int argc, const char* argv[])
 {
 	// 디버그는 std::cout 을 이용해서 합니다
-
-	// 스타크래프트 설치 위치 = C:\StarCraft\ 
-	std::string starcraftInstalledPath = RegistryUtil::getRegString("SOFTWARE\\Blizzard Entertainment\\Starcraft", "InstallPath");
-	if (starcraftInstalledPath.size() == 0) {
-		std::cout << "Could not open Windows Registry" << std::endl;;
-	}
-	else {
-		std::cout << "Starcraft Installed Path : " << starcraftInstalledPath << std::endl;
-	}
-
 	std::cout << "Connecting..." << std::endl;;
 	reconnect();
 

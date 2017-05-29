@@ -31,14 +31,24 @@ public class InformationManager {
 	public Race selfRace;			///< 적군 Player		
 	public Race enemyRace;			///< 적군 Player의 종족  
 
-	public List<Unit> validUnits = new ArrayList<Unit>();
-
+	/// 해당 Player의 StartLocation
+	/// 건물 여부를 기준으로 파악하기 때문에 부적절하게 판단할수도 있습니다 
 	private Map<Player, BaseLocation> mainBaseLocations = new HashMap<Player, BaseLocation>();
+
+	/// 해당 Player가 점령하고 있는 Region 이 있는 BaseLocation
+	/// 건물 여부를 기준으로 파악하기 때문에 부적절하게 판단할수도 있습니다 
 	private Map<Player, List<BaseLocation>> occupiedBaseLocations = new HashMap<Player, List<BaseLocation>>();
+
+	/// 해당 Player가 점령하고 있는 Region
+	/// 건물 여부를 기준으로 파악하기 때문에 부적절하게 판단할수도 있습니다 
 	private Map<Player, Set<Region>> occupiedRegions = new HashMap<Player, Set<Region>>();
 
+	/// 해당 Player의 mainBaseLocation 에서 가장 가까운 ChokePoint
 	private Map<Player, Chokepoint> firstChokePoint = new HashMap<Player, Chokepoint>();
+	/// 해당 Player의 mainBaseLocation 에서 가장 가까운 BaseLocation
 	private Map<Player, BaseLocation> firstExpansionLocation = new HashMap<Player, BaseLocation>();
+	/// 해당 Player의 mainBaseLocation 에서 두번째로 가까운 (firstChokePoint가 아닌) ChokePoint
+	/// 게임 맵에 따라서, secondChokePoint 는 일반 상식과 다른 지점이 될 수도 있습니다
 	private Map<Player, Chokepoint> secondChokePoint = new HashMap<Player, Chokepoint>();
 
 	/// Player - UnitData(각 Unit 과 그 Unit의 UnitInfo 를 Map 형태로 저장하는 자료구조) 를 저장하는 자료구조 객체
@@ -47,10 +57,6 @@ public class InformationManager {
 	/// static singleton 객체를 리턴합니다
 	public static InformationManager Instance() {
 		return instance;
-	}
-
-	public Player getSelf() {
-		return selfPlayer;
 	}
 
 	public InformationManager() {
@@ -101,9 +107,6 @@ public class InformationManager {
 	/// 전체 unit 의 정보를 업데이트 합니다 (UnitType, lastPosition, HitPoint 등)
 	public void updateUnitsInfo() {
 		// update our units info
-
-		validUnits.clear();
-		setValidUnits();
 		for (Unit unit : MyBotModule.Broodwar.enemy().getUnits()) {
 			updateUnitInfo(unit);
 		}
@@ -117,21 +120,6 @@ public class InformationManager {
 		}
 		if (unitData.get(selfPlayer) != null) {
 			unitData.get(selfPlayer).removeBadUnits();
-		}
-	}
-
-	// validates units as usable for distribution to various managers
-	public void setValidUnits() {
-		// make sure the unit is completed and alive and usable
-		for (Unit unit : MyBotModule.Broodwar.self().getUnits()) {
-			if (unit == null) {
-				continue;
-			}
-
-			if (unit.isCompleted() && unit.getHitPoints() > 0 && unit.exists() && unit.getType() != UnitType.Unknown
-					&& unit.getPosition() != Position.Unknown) {
-				validUnits.add(unit);
-			}
 		}
 	}
 
@@ -152,28 +140,6 @@ public class InformationManager {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-	}
-
-	// is the unit valid?
-	boolean isValidUnit(Unit unit) {
-		// we only care about our units and enemy units
-		if (unit.getPlayer() != MyBotModule.Broodwar.self() && unit.getPlayer() != MyBotModule.Broodwar.enemy()) {
-			return false;
-		}
-
-		// if it's a weird unit, don't bother
-		if (unit.getType() == UnitType.None || unit.getType() == UnitType.Unknown
-				|| unit.getType() == UnitType.Zerg_Larva || unit.getType() == UnitType.Zerg_Egg) {
-			return false;
-		}
-
-		// if the position isn't valid throw it out
-		if (!unit.getPosition().isValid()) {
-			return false;
-		}
-
-		// s'all good baby baby
-		return true;
 	}
 
 	/// Unit 에 대한 정보를 업데이트합니다
@@ -225,7 +191,7 @@ public class InformationManager {
 
 			// if it's a combat unit we care about
 			// and it's finished!
-			if (isCombatUnit(ui.getType()) && ui.isCompleted()) {
+			if (isCombatUnitType(ui.getType()) && ui.isCompleted()) {
 				// determine its attack range
 				int range = 0;
 				if (ui.getType().groundWeapon() != WeaponType.None) {
@@ -244,23 +210,6 @@ public class InformationManager {
 				unitInfo.add(ui);
 			}
 		}
-	}
-
-	public Unit getClosestUnitToTarget(UnitType type, Position target) {
-		Unit closestUnit = null;
-		double closestDist = 100000;
-
-		for (Unit unit : validUnits) {
-			if (unit.getType() == type) {
-				double dist = unit.getDistance(target);
-				if (closestUnit == null || dist < closestDist) {
-					closestUnit = unit;
-					closestDist = dist;
-				}
-			}
-		}
-
-		return closestUnit;
 	}
 
 	/// 해당 Player (아군 or 적군) 의 해당 UnitType 유닛 숫자를 리턴합니다 (훈련/건설 중인 유닛 숫자까지 포함)
@@ -402,40 +351,33 @@ public class InformationManager {
 	}
 
 	public void updateChokePointAndExpansionLocation() {
+				
 		if (mainBaseLocations.get(selfPlayer) != null) {
 			BaseLocation sourceBaseLocation = mainBaseLocations.get(selfPlayer);
 
-			// 맵 중앙 혹은 상대편 기지를 기준으로 FirstChokePoint, SecondChokePoint 산정
-			Position targetPosition = new Position(MyBotModule.Broodwar.mapWidth() * Config.TILE_SIZE / 2,
-					MyBotModule.Broodwar.mapHeight() * Config.TILE_SIZE / 2);
-			if (mainBaseLocations.get(enemyPlayer) != null) {
-				targetPosition = mainBaseLocations.get(enemyPlayer).getPosition();
+			firstChokePoint.put(selfPlayer, BWTA.getNearestChokepoint(sourceBaseLocation.getTilePosition()));
+						
+			double tempDistance;
+			double closestDistance = 1000000000;
+			for (BaseLocation targetBaseLocation : BWTA.getBaseLocations())
+			{
+				if (targetBaseLocation.getTilePosition().equals(mainBaseLocations.get(selfPlayer).getTilePosition())) continue;
+
+				tempDistance = BWTA.getGroundDistance(sourceBaseLocation.getTilePosition(), targetBaseLocation.getTilePosition());
+				if (tempDistance < closestDistance && tempDistance > 0) {
+					closestDistance = tempDistance;
+					firstExpansionLocation.put(selfPlayer, targetBaseLocation);
+				}
 			}
 
-			if (BWTA.isConnected(sourceBaseLocation.getTilePosition(), targetPosition.toTilePosition())) {
+			closestDistance = 1000000000;
+			for(Chokepoint chokepoint : BWTA.getChokepoints() ) {
+				if ( chokepoint.getCenter().equals(firstChokePoint.get(selfPlayer).getCenter())) continue;
 
-				firstChokePoint.put(selfPlayer, BWTA.getNearestChokepoint(sourceBaseLocation.getTilePosition()));
-
-				if (firstChokePoint.get(selfPlayer) != null) {
-
-					firstExpansionLocation.put(selfPlayer,
-							BWTA.getNearestBaseLocation(firstChokePoint.get(selfPlayer).getCenter().toTilePosition()));
-
-					if (firstExpansionLocation.get(selfPlayer) != null) {
-						double tempDistance;
-						double closestDistance = 100000000;
-						TilePosition tempTilePosition;
-						for (Chokepoint chokePoint : BWTA.getChokepoints()) {
-							if (chokePoint != BWTA.getNearestChokepoint(sourceBaseLocation.getTilePosition())) {
-								tempDistance = BWTA.getGroundDistance(chokePoint.getCenter().toTilePosition(),
-										firstExpansionLocation.get(selfPlayer).getTilePosition());
-								if (tempDistance < closestDistance) {
-									closestDistance = tempDistance;
-									secondChokePoint.put(selfPlayer, chokePoint);
-								}
-							}
-						}
-					}
+				tempDistance = BWTA.getGroundDistance(sourceBaseLocation.getTilePosition(), chokepoint.getCenter().toTilePosition());
+				if (tempDistance < closestDistance && tempDistance > 0) {
+					closestDistance = tempDistance;
+					secondChokePoint.put(selfPlayer, chokepoint);
 				}
 			}
 		}
@@ -443,37 +385,29 @@ public class InformationManager {
 		if (mainBaseLocations.get(enemyPlayer) != null) {
 			BaseLocation sourceBaseLocation = mainBaseLocations.get(enemyPlayer);
 
-			// 맵 중앙 혹은 상대편 기지를 기준으로 FirstChokePoint, SecondChokePoint 산정
-			Position targetPosition = new Position(MyBotModule.Broodwar.mapWidth() * Config.TILE_SIZE / 2,
-					MyBotModule.Broodwar.mapHeight() * Config.TILE_SIZE / 2);
-			if (mainBaseLocations.get(selfPlayer) != null) {
-				targetPosition = mainBaseLocations.get(selfPlayer).getPosition();
+			firstChokePoint.put(enemyPlayer, BWTA.getNearestChokepoint(sourceBaseLocation.getTilePosition()));
+			
+			double tempDistance;
+			double closestDistance = 1000000000;
+			for (BaseLocation targetBaseLocation : BWTA.getBaseLocations())
+			{
+				if (targetBaseLocation.getTilePosition().equals(mainBaseLocations.get(enemyPlayer).getTilePosition())) continue;
+
+				tempDistance = BWTA.getGroundDistance(sourceBaseLocation.getTilePosition(), targetBaseLocation.getTilePosition());
+				if (tempDistance < closestDistance && tempDistance > 0) {
+					closestDistance = tempDistance;
+					firstExpansionLocation.put(enemyPlayer, targetBaseLocation);
+				}
 			}
 
-			if (BWTA.isConnected(sourceBaseLocation.getTilePosition(), targetPosition.toTilePosition())) {
+			closestDistance = 1000000000;
+			for(Chokepoint chokepoint : BWTA.getChokepoints() ) {
+				if ( chokepoint.getCenter().equals(firstChokePoint.get(enemyPlayer).getCenter())) continue;
 
-				firstChokePoint.put(enemyPlayer, BWTA.getNearestChokepoint(sourceBaseLocation.getTilePosition()));
-
-				if (firstChokePoint.get(enemyPlayer) != null) {
-
-					firstExpansionLocation.put(enemyPlayer,
-							BWTA.getNearestBaseLocation(firstChokePoint.get(enemyPlayer).getCenter()));
-
-					if (firstExpansionLocation.get(enemyPlayer) != null) {
-						double tempDistance;
-						double closestDistance = 100000000;
-						TilePosition tempTilePosition;
-						for (Chokepoint chokePoint : BWTA.getChokepoints()) {
-							if (chokePoint != BWTA.getNearestChokepoint(sourceBaseLocation.getTilePosition())) {
-								tempDistance = BWTA.getGroundDistance(chokePoint.getCenter().toTilePosition(),
-										firstExpansionLocation.get(enemyPlayer).getTilePosition());
-								if (tempDistance < closestDistance) {
-									closestDistance = tempDistance;
-									secondChokePoint.put(enemyPlayer, chokePoint);
-								}
-							}
-						}
-					}
+				tempDistance = BWTA.getGroundDistance(sourceBaseLocation.getTilePosition(), chokepoint.getCenter().toTilePosition());
+				if (tempDistance < closestDistance && tempDistance > 0) {
+					closestDistance = tempDistance;
+					secondChokePoint.put(enemyPlayer, chokepoint);
 				}
 			}
 		}
@@ -615,16 +549,14 @@ public class InformationManager {
 	}
 
 	/// 해당 Player (아군 or 적군) 의 Main BaseLocation 에서 두번째로 가까운 ChokePoint 를 리턴합니다		 
+	/// 게임 맵에 따라서, secondChokePoint 는 일반 상식과 다른 지점이 될 수도 있습니다
 	public Chokepoint getSecondChokePoint(Player player) {
 		return secondChokePoint.get(player);
 	}
 
 	/// 해당 UnitType 이 전투 유닛인지 리턴합니다
-	public final boolean isCombatUnit(UnitType type) {
-		if (type == UnitType.Zerg_Lurker/*
-										 * || type == BWAPI::UnitTypes::
-										 * Protoss_Dark_Templar
-										 */) {
+	public final boolean isCombatUnitType(UnitType type) {
+		if (type == UnitType.Zerg_Lurker /* || type == UnitType.Protoss_Dark_Templar*/) {
 			return false;
 		}
 

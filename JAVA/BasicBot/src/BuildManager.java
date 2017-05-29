@@ -358,7 +358,7 @@ public class BuildManager {
 								//		+ unit.getID() + ")" + ", units on Addon Tile " + tilePos.getX() + ","
 								//		+ tilePos.getY() + " is " + u.getType() + "(ID : " + u.getID() + " Player : "
 								//		+ u.getPlayer().getName() + ")");
-								if (u.getPlayer() != InformationManager.Instance().getSelf()) {
+								if (u.getPlayer() != InformationManager.Instance().selfPlayer) {
 									isBlocked = false;
 								}
 							}
@@ -614,8 +614,6 @@ public class BuildManager {
 			// amount of training time remaining
 		} else if (type.isBuilding()) {
 			for (Unit u : MyBotModule.Broodwar.self().getUnits()) {
-				// UAB_ASSERT(u != null, "Unit was null");
-
 				if (u.getType() == type && u.isCompleted() && !u.isTraining() && !u.isLifted() && u.isPowered()) {
 
 					return u;
@@ -624,8 +622,6 @@ public class BuildManager {
 			// otherwise just return the first unit we come across
 		} else {
 			for (Unit u : MyBotModule.Broodwar.self().getUnits()) {
-				// UAB_ASSERT(u != null, "Unit was null");
-
 				if (u.getType() == type && u.isCompleted() && u.getHitPoints() > 0 && !u.isLifted() && u.isPowered()) {
 					return u;
 				}

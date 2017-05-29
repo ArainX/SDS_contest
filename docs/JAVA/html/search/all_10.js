@@ -44,7 +44,6 @@ var searchData=
   ['setunderconstruction',['setUnderConstruction',['../class_construction_task.html#a3523cdd0baff788e48a0d6d81a687c1e',1,'ConstructionTask']]],
   ['setunit',['setUnit',['../class_unit_info.html#a8ba020a0b6b588d3ca7ed693a478781d',1,'UnitInfo']]],
   ['setunitid',['setUnitID',['../class_unit_info.html#a74785d94cfb853a146b78db7a7bb5866',1,'UnitInfo']]],
-  ['setvalidunits',['setValidUnits',['../class_information_manager.html#a8c7929b251cc11abc2f8ca8afb6810a9',1,'InformationManager']]],
   ['setworkerjob',['setWorkerJob',['../class_worker_data.html#a46ad5cb7de45a6c4b0fab77a5fafdd80',1,'WorkerData.setWorkerJob(Unit unit, WorkerJob job, Unit jobUnit)'],['../class_worker_data.html#a0904c0d0c41f01f219658f7302db78a6',1,'WorkerData.setWorkerJob(Unit unit, WorkerJob job, UnitType jobUnitType)'],['../class_worker_data.html#a55da48623266e959b95493412b2017b1',1,'WorkerData.setWorkerJob(Unit unit, WorkerJob job, WorkerMoveData wmd)']]],
   ['size',['size',['../class_build_order_queue.html#a3f1c3a6737e7e363eb26392d5225822d',1,'BuildOrderQueue']]],
   ['skipcurrentitem',['skipCurrentItem',['../class_build_order_queue.html#aeed2fcfa3bde83a11d32a13195f15cee',1,'BuildOrderQueue']]],

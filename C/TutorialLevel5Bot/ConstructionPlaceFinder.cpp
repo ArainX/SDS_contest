@@ -277,113 +277,55 @@ BWAPI::TilePosition	ConstructionPlaceFinder::getBuildLocationNear(BWAPI::UnitTyp
 		
 	if (constructionPlaceSearchMethod == ConstructionPlaceSearchMethod::SpiralMethod)
 	{
-		// desiredPosition 으로부터 시작해서 spiral 하게 (아래->오른쪽->위->왼쪽->아래->..) 탐색하는 방법.by AIUR
-		// 무난한 방법.
-		//searches outward in a spiral.
-		int x = desiredPosition.x;
-		int y = desiredPosition.y;
-		int length = 1;
-		int j = 0;
-		bool first = true;
+		// desiredPosition 으로부터 시작해서 spiral 하게 탐색하는 방법
+		// 처음에는 아래 방향 (0,1) -> 오른쪽으로(1,0) -> 위로(0,-1) -> 왼쪽으로(-1,0) -> 아래로(0,1) -> ..
+		int currentX = desiredPosition.x;
+		int currentY = desiredPosition.y;
+		int spiralMaxLength = 1;
+		int numSteps = 0;
+		boolean isFirstStep = true;
 
-		// 처음에는 아래 방향
-		int dx = 0;
-		int dy = 1;
-		while (length < maxRange) //We'll ride the spiral to the end
+		int spiralDirectionX = 0;
+		int spiralDirectionY = 1;
+		while (spiralMaxLength < maxRange)
 		{
-			//if we can build here, return this tile position
-			if (x >= 0 && x < BWAPI::Broodwar->mapWidth() && y >= 0 && y < BWAPI::Broodwar->mapHeight()) {
+			if (currentX >= 0 && currentX < BWAPI::Broodwar->mapWidth() && currentY >= 0 && currentY <BWAPI::Broodwar->mapHeight()) {
 
-				isPossiblePlace = this->canBuildHereWithSpace(BWAPI::TilePosition(x, y), b, buildingGapSpace);
-
-				// std::cout << " " << x << "," << y << "=" << isPossiblePlace;
+				isPossiblePlace = canBuildHereWithSpace(BWAPI::TilePosition(currentX, currentY), b, buildingGapSpace);
 
 				if (isPossiblePlace) {
-					resultPosition = BWAPI::TilePosition(x, y);
+					resultPosition = BWAPI::TilePosition(currentX, currentY);
 					break;
 				}
 			}
 
-			//otherwise, move to another position
-			x = x + dx;
-			y = y + dy;
-			//count how many steps we take in this direction
-			j++;
-			if (j == length) //if we've reached the end, its time to turn
+			currentX = currentX + spiralDirectionX;
+			currentY = currentY + spiralDirectionY;
+			numSteps++;
+
+			// 다른 방향으로 전환한다
+			if (numSteps == spiralMaxLength)
 			{
-				//reset step counter
-				j = 0;
+				numSteps = 0;
 
-				//Spiral out. Keep going.
-				if (!first)
-					length++; //increment step counter if needed
+				if (!isFirstStep)
+					spiralMaxLength++;
 
-				//first=true for every other turn so we spiral out at the right rate
-				first = !first;
+				isFirstStep = !isFirstStep;
 
-				//turn counter clockwise 90 degrees:
-				// 아래로(0,1) -> 오른쪽으로(1,0) -> 위로(0,-1) -> 왼쪽으로(-1,0) -> 아래로(0,1) -> ..
-				if (dx == 0)
+				if (spiralDirectionX == 0)
 				{
-					dx = dy;
-					dy = 0;
+					spiralDirectionX = spiralDirectionY;
+					spiralDirectionY = 0;
 				}
 				else
 				{
-					dy = -dx;
-					dx = 0;
-				}
-			}
-			//Spiral out. Keep going.
-		}
-	}
-	/*
-	else if (constructionPlaceSearchMethod == ConstructionPlaceSearchMethod::BWAPIMethod) {
-		
-		// 참고1.BWAPI 개발자가 만들어놓은 getBuildLocation 함수를 사용해서 찾는 방법
-		// BWAPI::Broodwar->getBuildLocation(buildingType, desiredPosition, maxRange, buildingType == BWAPI::UnitTypes::Zerg_Creep_Colony)
-		// If BWAPI::Broodwar->self() is nullptr, this will crash
-		// 건물 지을 수 있는 공간이 있는데 못찾는 경우가 생긴다
-		// ResourceDepot 에서 먼 위치를 선정하는 경향이 있어서, 멀티 기지 방어나 섬 멀티 건설에 좋지않다. 
-		maxRange = 16;
-		for (; maxRange <= 64; maxRange = maxRange * 2) {
-
-			tempPosition = BWAPI::Broodwar->getBuildLocation(buildingType, desiredPosition, maxRange, buildingType == BWAPI::UnitTypes::Zerg_Creep_Colony);
-
-			if (tempPosition != BWAPI::TilePositions::Invalid && tempPosition != BWAPI::TilePositions::None) {
-				isPossiblePlace = canBuildHereWithSpace(tempPosition, b, buildingGapSpace);
-				if (isPossiblePlace) {
-					resultPosition = tempPosition;
-					break;
+					spiralDirectionY = -spiralDirectionX;
+					spiralDirectionX = 0;
 				}
 			}
 		}
-
 	}
-	else if (constructionPlaceSearchMethod == ConstructionPlaceSearchMethod::DistanceMapMethod) {
-		// 참고2. uAlbertaBot 의 DistanceMap 를 사용하는 방법
-		// const std::vector<BWAPI::TilePosition> & closestTiles = MapTools::Instance().getClosestTilesTo(BWAPI::Position(desiredPosition));
-		// for (size_t i(0); i < closestTiles.size(); ++i) isPossiblePlace = canBuildHereWithSpace(closestTiles[i], b, buildingGapSpace);
-		// desiredPosition 으로부터 가까운 타일들에 대해 체크해봐서 찾는 방법. by uAlbertaBot 
-		// get the precomputed vector of tile positions which are sorted closes to this location
-		// 건물 지을 수 있는 공간이 있는데 못찾는 경우가 생긴다
-		const std::vector<BWAPI::TilePosition> & closestTiles = MapTools::Instance().getClosestTilesTo(BWAPI::Position(desiredPosition));
-
-		// iterate through the list until we've found a suitable location
-		for (size_t i(0); i < closestTiles.size(); ++i)
-		{
-			isPossiblePlace = canBuildHereWithSpace(closestTiles[i], b, buildingGapSpace);
-
-			// std::cout << " " << closestTiles[i].x << "," << closestTiles[i].y << "=" << isPossiblePlace;
-
-			if (isPossiblePlace)
-			{
-				resultPosition = closestTiles[i];
-				break;
-			}
-		}
-	}
-	*/
 	else if (constructionPlaceSearchMethod == ConstructionPlaceSearchMethod::NewMethod) {
 	}
 

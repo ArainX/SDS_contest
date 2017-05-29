@@ -91,7 +91,7 @@ void InformationManager::onUnitDestroy(BWAPI::Unit unit)
     _unitData[unit->getPlayer()].removeUnit(unit);
 }
 
-bool InformationManager::isCombatUnit(BWAPI::UnitType type) const
+bool InformationManager::isCombatUnitType(BWAPI::UnitType type) const
 {
 	if (type == BWAPI::UnitTypes::Zerg_Lurker/* || type == BWAPI::UnitTypes::Protoss_Dark_Templar*/)
 	{
@@ -119,7 +119,7 @@ void InformationManager::getNearbyForce(std::vector<UnitInfo> & unitInfo, BWAPI:
 
 		// if it's a combat unit we care about
 		// and it's finished! 
-		if (isCombatUnit(ui.type) && ui.completed)
+		if (isCombatUnitType(ui.type) && ui.completed)
 		{
 			// determine its attack range
 			int range = 0;
@@ -281,26 +281,7 @@ void InformationManager::updateChokePointAndExpansionLocation()
 
 		BWTA::BaseLocation* sourceBaseLocation = _mainBaseLocations[selfPlayer];
 
-		// 맵 중앙 혹은 상대편 기지를 기준으로 FirstChokePoint, SecondChokePoint 산정
-		BWAPI::Position targetPosition(BWAPI::Broodwar->mapWidth() * TILE_SIZE / 2, BWAPI::Broodwar->mapHeight() * TILE_SIZE / 2);
-		if (_mainBaseLocations[enemyPlayer]) {
-			targetPosition = _mainBaseLocations[enemyPlayer]->getPosition();
-		}
-
-		// TODO JAVA도 수정
-		if (BWTA::isConnected(sourceBaseLocation->getTilePosition(), BWAPI::TilePosition(targetPosition))) {
-
-			int index = 0;
-			for (BWTA::Chokepoint* currentChokePoint : BWTA::getShortestPath2(sourceBaseLocation->getTilePosition(), BWAPI::TilePosition(targetPosition))) {
-				if (index == 0) {
-					_firstChokePoint[selfPlayer] = currentChokePoint;
-				}
-				else if (index == 1) {
-					_secondChokePoint[selfPlayer] = currentChokePoint;
-				}
-				index++;
-			}
-		}
+		_firstChokePoint[selfPlayer] = BWTA::getNearestChokepoint(sourceBaseLocation->getTilePosition());
 
 		double tempDistance;
 		double closestDistance = 1000000000;
@@ -308,12 +289,22 @@ void InformationManager::updateChokePointAndExpansionLocation()
 		{
 			if (targetBaseLocation == _mainBaseLocations[selfPlayer]) continue;
 
-			if (BWTA::isConnected(sourceBaseLocation->getTilePosition(), targetBaseLocation->getTilePosition())) {
-				tempDistance = BWTA::getGroundDistance(sourceBaseLocation->getTilePosition(), targetBaseLocation->getTilePosition());
-				if (tempDistance < closestDistance) {
-					closestDistance = tempDistance;
-					_firstExpansionLocation[selfPlayer] = targetBaseLocation;
-				}
+			tempDistance = BWTA::getGroundDistance(sourceBaseLocation->getTilePosition(), targetBaseLocation->getTilePosition());
+			if (tempDistance < closestDistance && tempDistance > 0 ) {
+				closestDistance = tempDistance;
+				_firstExpansionLocation[selfPlayer] = targetBaseLocation;
+			}
+		}
+		
+		closestDistance = 1000000000;
+		for (BWTA::Chokepoint * chokepoint : BWTA::getChokepoints())
+		{
+			if (chokepoint == _firstChokePoint[selfPlayer]) continue;
+
+			tempDistance = BWTA::getGroundDistance(sourceBaseLocation->getTilePosition(), BWAPI::TilePosition(chokepoint->getCenter()));
+			if (tempDistance < closestDistance && tempDistance > 0) {
+				closestDistance = tempDistance;
+				_secondChokePoint[selfPlayer] = chokepoint;
 			}
 		}
 	}
@@ -322,25 +313,7 @@ void InformationManager::updateChokePointAndExpansionLocation()
 
 		BWTA::BaseLocation* sourceBaseLocation = _mainBaseLocations[enemyPlayer];
 
-		BWAPI::Position targetPosition(BWAPI::Broodwar->mapWidth() * TILE_SIZE / 2, BWAPI::Broodwar->mapHeight() * TILE_SIZE / 2);
-		// 맵 중앙 혹은 상대편 기지를 기준으로 FirstChokePoint, SecondChokePoint 산정
-		if (_mainBaseLocations[selfPlayer]) {
-			targetPosition = _mainBaseLocations[selfPlayer]->getPosition();
-		}
-
-		if (BWTA::isConnected(sourceBaseLocation->getTilePosition(), BWAPI::TilePosition(targetPosition))) {
-
-			int index = 0;
-			for (BWTA::Chokepoint* currentChokePoint : BWTA::getShortestPath2(sourceBaseLocation->getTilePosition(), BWAPI::TilePosition(targetPosition))) {
-				if (index == 0) {
-					_firstChokePoint[enemyPlayer] = currentChokePoint;
-				}
-				else if (index == 1) {
-					_secondChokePoint[enemyPlayer] = currentChokePoint;
-				}
-				index++;
-			}
-		}
+		_firstChokePoint[enemyPlayer] = BWTA::getNearestChokepoint(sourceBaseLocation->getTilePosition());
 
 		double tempDistance;
 		double closestDistance = 1000000000;
@@ -348,12 +321,22 @@ void InformationManager::updateChokePointAndExpansionLocation()
 		{
 			if (targetBaseLocation == _mainBaseLocations[enemyPlayer]) continue;
 
-			if (BWTA::isConnected(sourceBaseLocation->getTilePosition(), targetBaseLocation->getTilePosition())) {
-				tempDistance = BWTA::getGroundDistance(sourceBaseLocation->getTilePosition(), targetBaseLocation->getTilePosition());
-				if (tempDistance < closestDistance) {
-					closestDistance = tempDistance;
-					_firstExpansionLocation[enemyPlayer] = targetBaseLocation;
-				}
+			tempDistance = BWTA::getGroundDistance(sourceBaseLocation->getTilePosition(), targetBaseLocation->getTilePosition());
+			if (tempDistance < closestDistance && tempDistance > 0) {
+				closestDistance = tempDistance;
+				_firstExpansionLocation[enemyPlayer] = targetBaseLocation;
+			}
+		}
+
+		closestDistance = 1000000000;
+		for (BWTA::Chokepoint * chokepoint : BWTA::getChokepoints())
+		{
+			if (chokepoint == _firstChokePoint[enemyPlayer]) continue;
+
+			tempDistance = BWTA::getGroundDistance(sourceBaseLocation->getTilePosition(), BWAPI::TilePosition(chokepoint->getCenter()));
+			if (tempDistance < closestDistance && tempDistance > 0) {
+				closestDistance = tempDistance;
+				_secondChokePoint[enemyPlayer] = chokepoint;
 			}
 		}
 	}

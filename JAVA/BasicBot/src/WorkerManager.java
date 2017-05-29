@@ -309,10 +309,12 @@ public class WorkerManager {
 		Unit closestUnit = null;
 		double closestDist = 100000;
 
-		for (Unit unit : InformationManager.Instance().validUnits)
+		for (Unit unit : MyBotModule.Broodwar.self().getUnits())
 		{
-			if (unit.getType().isWorker()
-				//&& !InformationManager::Instance().isAssigned(unit)
+			if (unit.isCompleted()
+				&& unit.getHitPoints() > 0
+				&& unit.exists()
+				&& unit.getType().isWorker()
 				&& WorkerManager.Instance().isMineralWorker(unit))
 			{
 				double dist = unit.getDistance(target);

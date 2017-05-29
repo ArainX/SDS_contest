@@ -10,7 +10,7 @@ var searchData=
   ['removedepot',['removeDepot',['../class_worker_data.html#a276961370dfd5d9c0a49b844c98e4a7b',1,'WorkerData']]],
   ['removehighestpriorityitem',['removeHighestPriorityItem',['../class_build_order_queue.html#ae7f1f4a1feadec6842737bf032d9166f',1,'BuildOrderQueue']]],
   ['removeunit',['removeUnit',['../class_unit_data.html#a424577498ffd92b9db8b0757e7d28d91',1,'UnitData']]],
-  ['repair',['repair',['../class_command_util.html#a3ae3d4c3d6f6e5ddfbb4af946fd77fc5',1,'CommandUtil.repair()'],['../enum_worker_data_1_1_worker_job.html#ab834639e065d6bed18625b7fd2484439',1,'WorkerData.WorkerJob.Repair()']]],
+  ['repair',['Repair',['../enum_worker_data_1_1_worker_job.html#ab834639e065d6bed18625b7fd2484439',1,'WorkerData.WorkerJob.Repair()'],['../class_command_util.html#a3ae3d4c3d6f6e5ddfbb4af946fd77fc5',1,'CommandUtil.repair()']]],
   ['reservetiles',['reserveTiles',['../class_construction_place_finder.html#aad511a523ab48641ff0506562ade56f0',1,'ConstructionPlaceFinder']]],
   ['reset',['reset',['../class_map_tools.html#abbf80f834f239166113bdb08b6ac2a75',1,'MapTools']]],
   ['resetfringe',['resetFringe',['../class_map_tools.html#a5b50cbcf925c6bb2ba124b8304a7d810',1,'MapTools']]],

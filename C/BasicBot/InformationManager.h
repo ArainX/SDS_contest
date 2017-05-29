@@ -15,12 +15,24 @@ namespace MyBot
 		/// Player - UnitData(각 Unit 과 그 Unit의 UnitInfo 를 Map 형태로 저장하는 자료구조) 를 저장하는 자료구조 객체
 		std::map<BWAPI::Player, UnitData>							_unitData;
 
+		/// 해당 Player의 StartLocation
+		/// 건물 여부를 기준으로 파악하기 때문에 부적절하게 판단할수도 있습니다 
 		std::map<BWAPI::Player, BWTA::BaseLocation * >				_mainBaseLocations;
+
+		/// 해당 Player가 점령하고 있는 Region 이 있는 BaseLocation
+		/// 건물 여부를 기준으로 파악하기 때문에 부적절하게 판단할수도 있습니다 
 		std::map<BWAPI::Player, std::list<BWTA::BaseLocation *> >	_occupiedBaseLocations;
+
+		/// 해당 Player가 점령하고 있는 Region
+		/// 건물 여부를 기준으로 파악하기 때문에 부적절하게 판단할수도 있습니다 
 		std::map<BWAPI::Player, std::set<BWTA::Region *> >			_occupiedRegions;
 
+		/// 해당 Player의 mainBaseLocation 에서 가장 가까운 ChokePoint
 		std::map<BWAPI::Player, BWTA::Chokepoint *>					_firstChokePoint;
+		/// 해당 Player의 mainBaseLocation 에서 가장 가까운 BaseLocation
 		std::map<BWAPI::Player, BWTA::BaseLocation *>				_firstExpansionLocation;
+		/// 해당 Player의 mainBaseLocation 에서 두번째로 가까운 (firstChokePoint가 아닌) ChokePoint
+		/// 게임 맵에 따라서, secondChokePoint 는 일반 상식과 다른 지점이 될 수도 있습니다
 		std::map<BWAPI::Player, BWTA::Chokepoint *>					_secondChokePoint;
 	
 		/// 전체 unit 의 정보를 업데이트 합니다 (UnitType, lastPosition, HitPoint 등)
@@ -91,6 +103,7 @@ namespace MyBot
 		BWTA::BaseLocation *    getFirstExpansionLocation(BWAPI::Player player);
 
 		/// 해당 Player (아군 or 적군) 의 Main BaseLocation 에서 두번째로 가까운 ChokePoint 를 리턴합니다		 
+		/// 게임 맵에 따라서, secondChokePoint 는 일반 상식과 다른 지점이 될 수도 있습니다
 		BWTA::Chokepoint *      getSecondChokePoint(BWAPI::Player player);
 
 
@@ -109,7 +122,7 @@ namespace MyBot
 		void                    getNearbyForce(std::vector<UnitInfo> & unitInfo, BWAPI::Position p, BWAPI::Player player, int radius);
 
 		/// 해당 UnitType 이 전투 유닛인지 리턴합니다
-		bool					isCombatUnit(BWAPI::UnitType type) const;
+		bool					isCombatUnitType(BWAPI::UnitType type) const;
 
 
 

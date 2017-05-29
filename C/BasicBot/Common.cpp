@@ -37,43 +37,6 @@ void Logger::overwriteToFile(const std::string & logFile, const std::string & ms
 }
 
 
-DWORD RegistryUtil::getSingleRegString(HKEY hBaseKey, const char *pszSubKey, const char *pszValueName, char *pszOutput, DWORD *dwOutSize)
-{
-	HKEY hKey = NULL;
-	pszOutput[0] = '\0';
-
-	// Open the key
-	DWORD dwErrCode = RegOpenKeyExA(hBaseKey, pszSubKey, 0, KEY_QUERY_VALUE, &hKey);
-	if (dwErrCode != ERROR_SUCCESS)
-		return dwErrCode;
-
-	// Query the value
-	dwErrCode = RegQueryValueExA(hKey, pszValueName, NULL, NULL, (LPBYTE)pszOutput, dwOutSize);
-
-	// Close key and return error code
-	RegCloseKey(hKey);
-	return dwErrCode;
-}
-
-std::string RegistryUtil::getRegString(const char *pszSubKey, const char *pszValueName)
-{
-	// Declare temporary string and size
-	char szTemp[MAX_PATH];
-	DWORD dwSize = MAX_PATH;
-
-	// Retrieve the key and value from HKCU
-	DWORD dwErrCode = getSingleRegString(HKEY_CURRENT_USER, pszSubKey, pszValueName, szTemp, &dwSize);
-	// If it's not found, then search HKLM
-	if (dwErrCode != ERROR_SUCCESS)
-	{
-		getSingleRegString(HKEY_LOCAL_MACHINE, pszSubKey, pszValueName, szTemp, &dwSize);
-	}
-
-	// Return the string
-	return std::string(szTemp);
-}
-
-
 std::string FileUtil::readFile(const std::string & filename)
 {
 	std::stringstream ss;

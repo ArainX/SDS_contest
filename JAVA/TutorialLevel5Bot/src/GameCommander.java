@@ -6,7 +6,7 @@ import bwapi.Unit;
 /// 스타크래프트 경기 도중 발생하는 이벤트들이 적절하게 처리되도록 해당 Manager 객체에게 이벤트를 전달하는 관리자 Controller 역할을 합니다
 public class GameCommander {
 
-	// 디버깅용 플래그 : 여러 Manager 중 어디에서 문제를 일으키는지 알기 위함 
+	/// 디버깅용 플래그 : 어느 Manager 가 에러를 일으키는지 알기위한 플래그
 	private boolean isToFindError = false;
 	
 	/// 경기가 시작될 때 일회적으로 발생하는 이벤트를 처리합니다

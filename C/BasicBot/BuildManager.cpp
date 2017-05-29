@@ -539,8 +539,6 @@ BWAPI::Unit BuildManager::selectUnitOfType(BWAPI::UnitType type, BWAPI::Position
     {
 		for (auto & u : BWAPI::Broodwar->self()->getUnits()) 
         {
-            //UAB_ASSERT(u != nullptr, "Unit was null");
-
 			if (u->getType() == type && u->isCompleted() && !u->isTraining() && !u->isLifted() &&u->isPowered()) {
 
 				return u;
@@ -552,8 +550,6 @@ BWAPI::Unit BuildManager::selectUnitOfType(BWAPI::UnitType type, BWAPI::Position
     {
 		for (auto & u : BWAPI::Broodwar->self()->getUnits()) 
 		{
-            //UAB_ASSERT(u != nullptr, "Unit was null");
-
 			if (u->getType() == type && u->isCompleted() && u->getHitPoints() > 0 && !u->isLifted() &&u->isPowered()) 
 			{
 				return u;

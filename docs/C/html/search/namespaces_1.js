@@ -7,7 +7,6 @@ var searchData=
   ['logger',['Logger',['../namespace_my_bot_1_1_logger.html',1,'MyBot']]],
   ['metatypes',['MetaTypes',['../namespace_my_bot_1_1_meta_types.html',1,'MyBot']]],
   ['mybot',['MyBot',['../namespace_my_bot.html',1,'']]],
-  ['registryutil',['RegistryUtil',['../namespace_my_bot_1_1_registry_util.html',1,'MyBot']]],
   ['scoutstatus',['ScoutStatus',['../namespace_my_bot_1_1_scout_status.html',1,'MyBot']]],
   ['unitutil',['UnitUtil',['../namespace_my_bot_1_1_unit_util.html',1,'MyBot']]]
 ];

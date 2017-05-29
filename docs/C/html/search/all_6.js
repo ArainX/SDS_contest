@@ -68,7 +68,6 @@ var searchData=
   ['getrace',['getRace',['../class_my_bot_1_1_meta_type.html#ab94546c4ca43445fa392bd0f1ad2cc49',1,'MyBot::MetaType']]],
   ['getrefinerybuildingtype',['getRefineryBuildingType',['../class_my_bot_1_1_information_manager.html#a9f21e02397d0c54334d80e479372a8d2',1,'MyBot::InformationManager']]],
   ['getrefinerypositionnear',['getRefineryPositionNear',['../class_my_bot_1_1_construction_place_finder.html#aff1beffbd9a9d57bcea210752401f301',1,'MyBot::ConstructionPlaceFinder']]],
-  ['getregstring',['getRegString',['../namespace_my_bot_1_1_registry_util.html#a206bebcb3ce440ca14086d95fe4e4347',1,'MyBot::RegistryUtil']]],
   ['getrepairworkers',['getRepairWorkers',['../class_my_bot_1_1_worker_data.html#a84a392fdc4b1fa1cac877dcacc43caa2',1,'MyBot::WorkerData']]],
   ['getreservedgas',['getReservedGas',['../class_my_bot_1_1_construction_manager.html#a96d488e702ee64586e126084b6899a8e',1,'MyBot::ConstructionManager']]],
   ['getreservedminerals',['getReservedMinerals',['../class_my_bot_1_1_construction_manager.html#abf60b5954780022909390a3568ea4780',1,'MyBot::ConstructionManager']]],
@@ -79,7 +78,6 @@ var searchData=
   ['getscoutunit',['getScoutUnit',['../class_my_bot_1_1_scout_manager.html#a411e7afbe75574af5533aa128399922a',1,'MyBot::ScoutManager']]],
   ['getscoutworker',['getScoutWorker',['../class_my_bot_1_1_worker_manager.html#ae0181d0b19fd13f5d10d5059c1d5635e',1,'MyBot::WorkerManager']]],
   ['getsecondchokepoint',['getSecondChokePoint',['../class_my_bot_1_1_information_manager.html#a920d8fc8320744cb19f78aa81984874c',1,'MyBot::InformationManager']]],
-  ['getsingleregstring',['getSingleRegString',['../namespace_my_bot_1_1_registry_util.html#a866baad53d808ac86365a055dbb9feab',1,'MyBot::RegistryUtil']]],
   ['getsortedtiles',['getSortedTiles',['../class_my_bot_1_1_distance_map.html#a9e4a2d633c9ecefd9c540859495191f3',1,'MyBot::DistanceMap']]],
   ['gettechtype',['getTechType',['../class_my_bot_1_1_meta_type.html#ab363244ba3f9251da691ac1bb362b87e',1,'MyBot::MetaType']]],
   ['gettilestoavoid',['getTilesToAvoid',['../class_my_bot_1_1_construction_place_finder.html#a9ee553d79a84604bd1be50781d985c63',1,'MyBot::ConstructionPlaceFinder']]],
@@ -100,6 +98,6 @@ var searchData=
   ['getworkerresource',['getWorkerResource',['../class_my_bot_1_1_worker_data.html#afa2116f495153325c3738f0e625c304f',1,'MyBot::WorkerData']]],
   ['getworkers',['getWorkers',['../class_my_bot_1_1_worker_data.html#a3205252187ae350c36a5489c96d62f2e',1,'MyBot::WorkerData']]],
   ['getworkertype',['getWorkerType',['../class_my_bot_1_1_information_manager.html#a3d1d33cab0515746c34b06c037529722',1,'MyBot::InformationManager']]],
-  ['gridcell',['GridCell',['../class_my_bot_1_1_grid_cell.html',1,'MyBot']]],
-  ['gridcell',['GridCell',['../class_my_bot_1_1_grid_cell.html#a7d5f7635cd22466ccc84804b20d5273f',1,'MyBot::GridCell']]]
+  ['gridcell',['GridCell',['../class_my_bot_1_1_grid_cell.html#a7d5f7635cd22466ccc84804b20d5273f',1,'MyBot::GridCell']]],
+  ['gridcell',['GridCell',['../class_my_bot_1_1_grid_cell.html',1,'MyBot']]]
 ];

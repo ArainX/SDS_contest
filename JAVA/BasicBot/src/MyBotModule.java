@@ -33,20 +33,20 @@ import bwapi.Unit;
 import bwapi.Flag.Enum;
 import bwta.BWTA;
 
-/// ë´‡í”„ë¡œê·¸ë¨ì˜ ê¸°ë³¸ì ì¸ ë¼ˆëŒ€ êµ¬ì¡°ë¥¼ ì •ì˜í•œ class ë¡œì„œ, ìŠ¤íƒ€í¬ë˜í”„íŠ¸ ëŒ€ê²° ë„ì¤‘ ë°œìƒí•˜ëŠ” ì´ë²¤íŠ¸ë“¤ì„ GameCommander class ì¸ìŠ¤í„´ìŠ¤ì—ê²Œ ì „ë‹¬í•©ë‹ˆë‹¤.
-/// MyBotModule classëŠ” ìˆ˜ì •ì„ í•˜ì§€ ë§ê³ ,
-/// ì‹¤ì œ ë´‡í”„ë¡œê·¸ë¨ ê°œë°œì€ GameCommander class ë¥¼ ìˆ˜ì •í•˜ëŠ” í˜•íƒœë¡œ ì§„í–‰í•˜ë„ë¡ í•©ë‹ˆë‹¤
+/// º¿ÇÁ·Î±×·¥ÀÇ ±âº»ÀûÀÎ »À´ë ±¸Á¶¸¦ Á¤ÀÇÇÑ class ·Î¼­, ½ºÅ¸Å©·¡ÇÁÆ® ´ë°á µµÁß ¹ß»ıÇÏ´Â ÀÌº¥Æ®µéÀ» GameCommander class ÀÎ½ºÅÏ½º¿¡°Ô Àü´ŞÇÕ´Ï´Ù.
+/// MyBotModule class´Â ¼öÁ¤À» ÇÏÁö ¸»°í,
+/// ½ÇÁ¦ º¿ÇÁ·Î±×·¥ °³¹ßÀº GameCommander class ¸¦ ¼öÁ¤ÇÏ´Â ÇüÅÂ·Î ÁøÇàÇÏµµ·Ï ÇÕ´Ï´Ù
 /// @see GameCommander
 public class MyBotModule extends DefaultBWListener {
 
-	/// BWAPI ì— í•´ë‹¹í•˜ëŠ” ë‚´ë¶€ ê°ì²´
+	/// BWAPI ¿¡ ÇØ´çÇÏ´Â ³»ºÎ °´Ã¼
 	private Mirror mirror = new Mirror();
 	
-	/// ìŠ¤íƒ€í¬ë˜í”„íŠ¸ ëŒ€ê²° ìƒí™© ì „ì²´ì— ëŒ€í•œ ìƒí™© íŒŒì•… ë° ì•¡ì…˜ ì‹¤í–‰ì„ ì œê³µí•˜ëŠ” ê°ì²´  
-	/// Cì–¸ì–´ì—ì„œ BWAPI::Broodwar ì— í•´ë‹¹í•©ë‹ˆë‹¤
+	/// ½ºÅ¸Å©·¡ÇÁÆ® ´ë°á »óÈ² ÀüÃ¼¿¡ ´ëÇÑ »óÈ² ÆÄ¾Ç ¹× ¾×¼Ç ½ÇÇàÀ» Á¦°øÇÏ´Â °´Ã¼  
+	/// C¾ğ¾î¿¡¼­ BWAPI::Broodwar ¿¡ ÇØ´çÇÕ´Ï´Ù
 	public static Game Broodwar;
 
-	/// ì‹¤ì œ ë´‡í”„ë¡œê·¸ë¨
+	/// ½ÇÁ¦ º¿ÇÁ·Î±×·¥
 	/// @see GameCommander			
 	private GameCommander gameCommander;
 
@@ -55,7 +55,7 @@ public class MyBotModule extends DefaultBWListener {
 		mirror.startGame();
 	}
 
-	/// ê²½ê¸°ê°€ ì‹œì‘ë  ë•Œ ì¼íšŒì ìœ¼ë¡œ ë°œìƒí•˜ëŠ” ì´ë²¤íŠ¸ë¥¼ ì²˜ë¦¬í•©ë‹ˆë‹¤
+	/// °æ±â°¡ ½ÃÀÛµÉ ¶§ ÀÏÈ¸ÀûÀ¸·Î ¹ß»ıÇÏ´Â ÀÌº¥Æ®¸¦ Ã³¸®ÇÕ´Ï´Ù
 	@Override
 	public void onStart() {
 
@@ -67,8 +67,8 @@ public class MyBotModule extends DefaultBWListener {
 
 		gameCommander = new GameCommander();
 		
-		// Config íŒŒì¼ ê´€ë¦¬ê°€ ë²ˆê±°ë¡­ê³ , ë°°í¬ ë° ì‚¬ìš©ì‹œ Config íŒŒì¼ ìœ„ì¹˜ë¥¼ ì§€ì •í•´ì£¼ëŠ” ê²ƒì´ ë²ˆê±°ë¡­ê¸° ë•Œë¬¸ì—, 
-		// Config ë¥¼ íŒŒì¼ë¡œë¶€í„° ì½ì–´ë“¤ì´ì§€ ì•Šê³ , Config í´ë˜ìŠ¤ì˜ ê°’ì„ ì‚¬ìš©í•˜ë„ë¡ í•œë‹¤.
+		// Config ÆÄÀÏ °ü¸®°¡ ¹ø°Å·Ó°í, ¹èÆ÷ ¹× »ç¿ë½Ã Config ÆÄÀÏ À§Ä¡¸¦ ÁöÁ¤ÇØÁÖ´Â °ÍÀÌ ¹ø°Å·Ó±â ¶§¹®¿¡, 
+		// Config ¸¦ ÆÄÀÏ·ÎºÎÅÍ ÀĞ¾îµéÀÌÁö ¾Ê°í, Config Å¬·¡½ºÀÇ °ªÀ» »ç¿ëÇÏµµ·Ï ÇÑ´Ù.
 		if(Config.EnableCompleteMapInformation){
 			Broodwar.enableFlag(Enum.CompleteMapInformation.getValue());
 		}
@@ -80,11 +80,11 @@ public class MyBotModule extends DefaultBWListener {
 		Broodwar.setCommandOptimizationLevel(1);
 
 		// Speedups for automated play, sets the number of milliseconds bwapi spends in each frame
-		// Fastest: 42 ms/frame.  1ì´ˆì— 24 frame. ì¼ë°˜ì ìœ¼ë¡œ 1ì´ˆì— 24frameì„ ê¸°ì¤€ ê²Œì„ì†ë„ë¡œ í•œë‹¤
-		// Normal: 67 ms/frame. 1ì´ˆì— 15 frame
-		// As fast as possible : 0 ms/frame. CPUê°€ í• ìˆ˜ìˆëŠ” ê°€ì¥ ë¹ ë¥¸ ì†ë„. 
+		// Fastest: 42 ms/frame.  1ÃÊ¿¡ 24 frame. ÀÏ¹İÀûÀ¸·Î 1ÃÊ¿¡ 24frameÀ» ±âÁØ °ÔÀÓ¼Óµµ·Î ÇÑ´Ù
+		// Normal: 67 ms/frame. 1ÃÊ¿¡ 15 frame
+		// As fast as possible : 0 ms/frame. CPU°¡ ÇÒ¼öÀÖ´Â °¡Àå ºü¸¥ ¼Óµµ. 
 		Broodwar.setLocalSpeed(Config.SetLocalSpeed);
-		// frameskipì„ ëŠ˜ë¦¬ë©´ í™”ë©´ í‘œì‹œë„ ì—…ë°ì´íŠ¸ ì•ˆí•˜ë¯€ë¡œ í›¨ì”¬ ë¹ ë¥´ë‹¤
+		// frameskipÀ» ´Ã¸®¸é È­¸é Ç¥½Ãµµ ¾÷µ¥ÀÌÆ® ¾ÈÇÏ¹Ç·Î ÈÎ¾À ºü¸£´Ù
 		Broodwar.setFrameSkip(Config.SetFrameSkip);
 
 		System.out.println("Map analyzing started");
@@ -96,7 +96,7 @@ public class MyBotModule extends DefaultBWListener {
 		gameCommander.onStart();
 	}
 
-	///  ê²½ê¸°ê°€ ì¢…ë£Œë  ë•Œ ì¼íšŒì ìœ¼ë¡œ ë°œìƒí•˜ëŠ” ì´ë²¤íŠ¸ë¥¼ ì²˜ë¦¬í•©ë‹ˆë‹¤
+	///  °æ±â°¡ Á¾·áµÉ ¶§ ÀÏÈ¸ÀûÀ¸·Î ¹ß»ıÇÏ´Â ÀÌº¥Æ®¸¦ Ã³¸®ÇÕ´Ï´Ù
 	@Override
 	public void onEnd(boolean isWinner) {
 		if (isWinner){
@@ -111,7 +111,7 @@ public class MyBotModule extends DefaultBWListener {
         System.exit(0);		
 	}
 
-	/// ê²½ê¸° ì§„í–‰ ì¤‘ ë§¤ í”„ë ˆì„ë§ˆë‹¤ ë°œìƒí•˜ëŠ” ì´ë²¤íŠ¸ë¥¼ ì²˜ë¦¬í•©ë‹ˆë‹¤
+	/// °æ±â ÁøÇà Áß ¸Å ÇÁ·¹ÀÓ¸¶´Ù ¹ß»ıÇÏ´Â ÀÌº¥Æ®¸¦ Ã³¸®ÇÕ´Ï´Ù
 	@Override
 	public void onFrame() {
 		if (Broodwar.isReplay()) {
@@ -120,11 +120,11 @@ public class MyBotModule extends DefaultBWListener {
 
 		gameCommander.onFrame();
 		
-		// í™”ë©´ ì¶œë ¥ ë° ì‚¬ìš©ì ì…ë ¥ ì²˜ë¦¬
+		// È­¸é Ãâ·Â ¹× »ç¿ëÀÚ ÀÔ·Â Ã³¸®
 		UXManager.Instance().update();
 	}
 
-	/// í…ìŠ¤íŠ¸ë¥¼ ì…ë ¥ í›„ ì—”í„°ë¥¼ í•˜ì—¬ ë‹¤ë¥¸ í”Œë ˆì´ì–´ë“¤ì—ê²Œ í…ìŠ¤íŠ¸ë¥¼ ì „ë‹¬í•˜ë ¤ í•  ë•Œ ë°œìƒí•˜ëŠ” ì´ë²¤íŠ¸ë¥¼ ì²˜ë¦¬í•©ë‹ˆë‹¤
+	/// ÅØ½ºÆ®¸¦ ÀÔ·Â ÈÄ ¿£ÅÍ¸¦ ÇÏ¿© ´Ù¸¥ ÇÃ·¹ÀÌ¾îµé¿¡°Ô ÅØ½ºÆ®¸¦ Àü´ŞÇÏ·Á ÇÒ ¶§ ¹ß»ıÇÏ´Â ÀÌº¥Æ®¸¦ Ã³¸®ÇÕ´Ï´Ù
 	@Override
 	public void onSendText(String text){
 		ParseTextCommand(text);
@@ -135,7 +135,7 @@ public class MyBotModule extends DefaultBWListener {
 		Broodwar.sendText(text);
 	}
 
-	/// ë‹¤ë¥¸ í”Œë ˆì´ì–´ë¡œë¶€í„° í…ìŠ¤íŠ¸ë¥¼ ì „ë‹¬ë°›ì•˜ì„ ë•Œ ë°œìƒí•˜ëŠ” ì´ë²¤íŠ¸ë¥¼ ì²˜ë¦¬í•©ë‹ˆë‹¤
+	/// ´Ù¸¥ ÇÃ·¹ÀÌ¾î·ÎºÎÅÍ ÅØ½ºÆ®¸¦ Àü´Ş¹Ş¾ÒÀ» ¶§ ¹ß»ıÇÏ´Â ÀÌº¥Æ®¸¦ Ã³¸®ÇÕ´Ï´Ù
 	@Override
 	public void onReceiveText(Player player, String text){
 		Broodwar.printf(player.getName() + " said \"" + text + "\"");
@@ -143,13 +143,13 @@ public class MyBotModule extends DefaultBWListener {
 		gameCommander.onReceiveText(player, text);
 	}
 
-	/// ë‹¤ë¥¸ í”Œë ˆì´ì–´ê°€ ëŒ€ê²°ì„ ë‚˜ê°”ì„ ë•Œ ë°œìƒí•˜ëŠ” ì´ë²¤íŠ¸ë¥¼ ì²˜ë¦¬í•©ë‹ˆë‹¤
+	/// ´Ù¸¥ ÇÃ·¹ÀÌ¾î°¡ ´ë°áÀ» ³ª°¬À» ¶§ ¹ß»ıÇÏ´Â ÀÌº¥Æ®¸¦ Ã³¸®ÇÕ´Ï´Ù
 	@Override
 	public void onPlayerLeft(Player player){
 		Broodwar.printf(player.getName() + " left the game.");
 	}
 
-	/// í•µë¯¸ì‚¬ì¼ ë°œì‚¬ê°€ ê°ì§€ë˜ì—ˆì„ ë•Œ ë°œìƒí•˜ëŠ” ì´ë²¤íŠ¸ë¥¼ ì²˜ë¦¬í•©ë‹ˆë‹¤
+	/// ÇÙ¹Ì»çÀÏ ¹ß»ç°¡ °¨ÁöµÇ¾úÀ» ¶§ ¹ß»ıÇÏ´Â ÀÌº¥Æ®¸¦ Ã³¸®ÇÕ´Ï´Ù
 	@Override
 	public void onNukeDetect(Position target){
 		if (target != Position.Unknown)	{
@@ -160,7 +160,7 @@ public class MyBotModule extends DefaultBWListener {
 		}
 	}
 
-	/// ìœ ë‹›(ê±´ë¬¼/ì§€ìƒìœ ë‹›/ê³µì¤‘ìœ ë‹›)ì´ Create ë  ë•Œ ë°œìƒí•˜ëŠ” ì´ë²¤íŠ¸ë¥¼ ì²˜ë¦¬í•©ë‹ˆë‹¤
+	/// À¯´Ö(°Ç¹°/Áö»óÀ¯´Ö/°øÁßÀ¯´Ö)ÀÌ Create µÉ ¶§ ¹ß»ıÇÏ´Â ÀÌº¥Æ®¸¦ Ã³¸®ÇÕ´Ï´Ù
 	@Override
 	public void onUnitCreate(Unit unit){
 		if (!Broodwar.isReplay()) {
@@ -177,8 +177,8 @@ public class MyBotModule extends DefaultBWListener {
 		}
 	}
 
-	/// ìœ ë‹›(ê±´ë¬¼/ì§€ìƒìœ ë‹›/ê³µì¤‘ìœ ë‹›)ì´ Morph ë  ë•Œ ë°œìƒí•˜ëŠ” ì´ë²¤íŠ¸ë¥¼ ì²˜ë¦¬í•©ë‹ˆë‹¤
-	/// Zerg ì¢…ì¡±ì˜ ìœ ë‹›ì€ ê±´ë¬¼ ê±´ì„¤ì´ë‚˜ ì§€ìƒìœ ë‹›/ê³µì¤‘ìœ ë‹› ìƒì‚°ì—ì„œ ê±°ì˜ ëŒ€ë¶€ë¶„ Morph í˜•íƒœë¡œ ì§„í–‰ë©ë‹ˆë‹¤
+	/// À¯´Ö(°Ç¹°/Áö»óÀ¯´Ö/°øÁßÀ¯´Ö)ÀÌ Morph µÉ ¶§ ¹ß»ıÇÏ´Â ÀÌº¥Æ®¸¦ Ã³¸®ÇÕ´Ï´Ù
+	/// Zerg Á¾Á·ÀÇ À¯´ÖÀº °Ç¹° °Ç¼³ÀÌ³ª Áö»óÀ¯´Ö/°øÁßÀ¯´Ö »ı»ê¿¡¼­ °ÅÀÇ ´ëºÎºĞ Morph ÇüÅÂ·Î ÁøÇàµË´Ï´Ù
 	@Override
 	public void onUnitMorph(Unit unit){
 		if (!Broodwar.isReplay()) {
@@ -195,12 +195,12 @@ public class MyBotModule extends DefaultBWListener {
 		}
 	}
 
-	///  ìœ ë‹›(ê±´ë¬¼/ì§€ìƒìœ ë‹›/ê³µì¤‘ìœ ë‹›)ì´ Destroy ë  ë•Œ ë°œìƒí•˜ëŠ” ì´ë²¤íŠ¸ë¥¼ ì²˜ë¦¬í•©ë‹ˆë‹¤
+	///  À¯´Ö(°Ç¹°/Áö»óÀ¯´Ö/°øÁßÀ¯´Ö)ÀÌ Destroy µÉ ¶§ ¹ß»ıÇÏ´Â ÀÌº¥Æ®¸¦ Ã³¸®ÇÕ´Ï´Ù
 	@Override
 	public void onUnitDestroy(Unit unit){
 		if (!Broodwar.isReplay()) {
 			
-			// íŒ¨ë°° ì—¬ë¶€ ì²´í¬ í›„ GG
+			// ÆĞ¹è ¿©ºÎ Ã¼Å© ÈÄ GG
 			int buildingCount = 0;
 			int workerCount = 0;
 
@@ -221,8 +221,8 @@ public class MyBotModule extends DefaultBWListener {
 		}
 	}
 
-	/// ìœ ë‹›(ê±´ë¬¼/ì§€ìƒìœ ë‹›/ê³µì¤‘ìœ ë‹›)ì´ Show ë  ë•Œ ë°œìƒí•˜ëŠ” ì´ë²¤íŠ¸ë¥¼ ì²˜ë¦¬í•©ë‹ˆë‹¤
-	/// ì•„êµ° ìœ ë‹›ì´ Create ë˜ì—ˆì„ ë•Œ ë¼ë“ ê°€, ì êµ° ìœ ë‹›ì´ Discover ë˜ì—ˆì„ ë•Œ ë°œìƒí•©ë‹ˆë‹¤
+	/// À¯´Ö(°Ç¹°/Áö»óÀ¯´Ö/°øÁßÀ¯´Ö)ÀÌ Show µÉ ¶§ ¹ß»ıÇÏ´Â ÀÌº¥Æ®¸¦ Ã³¸®ÇÕ´Ï´Ù
+	/// ¾Æ±º À¯´ÖÀÌ Create µÇ¾úÀ» ¶§ ¶óµç°¡, Àû±º À¯´ÖÀÌ Discover µÇ¾úÀ» ¶§ ¹ß»ıÇÕ´Ï´Ù
 	@Override
 	public void onUnitShow(Unit unit){
 		if (!Broodwar.isReplay()) {
@@ -230,8 +230,8 @@ public class MyBotModule extends DefaultBWListener {
 		}
 	}
 
-	/// ìœ ë‹›(ê±´ë¬¼/ì§€ìƒìœ ë‹›/ê³µì¤‘ìœ ë‹›)ì´ Hide ë  ë•Œ ë°œìƒí•˜ëŠ” ì´ë²¤íŠ¸ë¥¼ ì²˜ë¦¬í•©ë‹ˆë‹¤
-	/// ë³´ì´ë˜ ìœ ë‹›ì´ Hide ë  ë•Œ ë°œìƒí•©ë‹ˆë‹¤
+	/// À¯´Ö(°Ç¹°/Áö»óÀ¯´Ö/°øÁßÀ¯´Ö)ÀÌ Hide µÉ ¶§ ¹ß»ıÇÏ´Â ÀÌº¥Æ®¸¦ Ã³¸®ÇÕ´Ï´Ù
+	/// º¸ÀÌ´ø À¯´ÖÀÌ Hide µÉ ¶§ ¹ß»ıÇÕ´Ï´Ù
 	@Override
 	public void onUnitHide(Unit unit){
 		if (!Broodwar.isReplay()) {
@@ -239,8 +239,8 @@ public class MyBotModule extends DefaultBWListener {
 		}
 	}
 
-	/// ìœ ë‹›(ê±´ë¬¼/ì§€ìƒìœ ë‹›/ê³µì¤‘ìœ ë‹›)ì˜ ì†Œì† í”Œë ˆì´ì–´ê°€ ë°”ë€” ë•Œ ë°œìƒí•˜ëŠ” ì´ë²¤íŠ¸ë¥¼ ì²˜ë¦¬í•©ë‹ˆë‹¤
-	/// Gas Geyserì— ì–´ë–¤ í”Œë ˆì´ì–´ê°€ Refinery ê±´ë¬¼ì„ ê±´ì„¤í–ˆì„ ë•Œ, Refinery ê±´ë¬¼ì´ íŒŒê´´ë˜ì—ˆì„ ë•Œ, Protoss ì¢…ì¡± Dark Archon ì˜ Mind Control ì— ì˜í•´ ì†Œì† í”Œë ˆì´ì–´ê°€ ë°”ë€” ë•Œ ë°œìƒí•©ë‹ˆë‹¤
+	/// À¯´Ö(°Ç¹°/Áö»óÀ¯´Ö/°øÁßÀ¯´Ö)ÀÇ ¼Ò¼Ó ÇÃ·¹ÀÌ¾î°¡ ¹Ù²ğ ¶§ ¹ß»ıÇÏ´Â ÀÌº¥Æ®¸¦ Ã³¸®ÇÕ´Ï´Ù
+	/// Gas Geyser¿¡ ¾î¶² ÇÃ·¹ÀÌ¾î°¡ Refinery °Ç¹°À» °Ç¼³ÇßÀ» ¶§, Refinery °Ç¹°ÀÌ ÆÄ±«µÇ¾úÀ» ¶§, Protoss Á¾Á· Dark Archon ÀÇ Mind Control ¿¡ ÀÇÇØ ¼Ò¼Ó ÇÃ·¹ÀÌ¾î°¡ ¹Ù²ğ ¶§ ¹ß»ıÇÕ´Ï´Ù
 	@Override
 	public void onUnitRenegade(Unit unit){
 		if (!Broodwar.isReplay()) {
@@ -248,8 +248,8 @@ public class MyBotModule extends DefaultBWListener {
 		}
 	}
 
-	/// ìœ ë‹›(ê±´ë¬¼/ì§€ìƒìœ ë‹›/ê³µì¤‘ìœ ë‹›)ì´ Discover ë  ë•Œ ë°œìƒí•˜ëŠ” ì´ë²¤íŠ¸ë¥¼ ì²˜ë¦¬í•©ë‹ˆë‹¤
-	/// ì•„êµ° ìœ ë‹›ì´ Create ë˜ì—ˆì„ ë•Œ ë¼ë“ ê°€, ì êµ° ìœ ë‹›ì´ Discover ë˜ì—ˆì„ ë•Œ ë°œìƒí•©ë‹ˆë‹¤
+	/// À¯´Ö(°Ç¹°/Áö»óÀ¯´Ö/°øÁßÀ¯´Ö)ÀÌ Discover µÉ ¶§ ¹ß»ıÇÏ´Â ÀÌº¥Æ®¸¦ Ã³¸®ÇÕ´Ï´Ù
+	/// ¾Æ±º À¯´ÖÀÌ Create µÇ¾úÀ» ¶§ ¶óµç°¡, Àû±º À¯´ÖÀÌ Discover µÇ¾úÀ» ¶§ ¹ß»ıÇÕ´Ï´Ù
 	@Override
 	public void onUnitDiscover(Unit unit){
 		if (!Broodwar.isReplay()) {
@@ -257,8 +257,8 @@ public class MyBotModule extends DefaultBWListener {
 		}
 	}
 
-	/// ìœ ë‹›(ê±´ë¬¼/ì§€ìƒìœ ë‹›/ê³µì¤‘ìœ ë‹›)ì´ Evade ë  ë•Œ ë°œìƒí•˜ëŠ” ì´ë²¤íŠ¸ë¥¼ ì²˜ë¦¬í•©ë‹ˆë‹¤
-	/// ìœ ë‹›ì´ Destroy ë  ë•Œ ë°œìƒí•©ë‹ˆë‹¤
+	/// À¯´Ö(°Ç¹°/Áö»óÀ¯´Ö/°øÁßÀ¯´Ö)ÀÌ Evade µÉ ¶§ ¹ß»ıÇÏ´Â ÀÌº¥Æ®¸¦ Ã³¸®ÇÕ´Ï´Ù
+	/// À¯´ÖÀÌ Destroy µÉ ¶§ ¹ß»ıÇÕ´Ï´Ù
 	@Override
 	public void onUnitEvade(Unit unit){
 		if (!Broodwar.isReplay()) {
@@ -266,7 +266,7 @@ public class MyBotModule extends DefaultBWListener {
 		}
 	}
 
-	/// ìœ ë‹›(ê±´ë¬¼/ì§€ìƒìœ ë‹›/ê³µì¤‘ìœ ë‹›)ì˜ í•˜ë˜ ì¼ (ê±´ë¬¼ ê±´ì„¤, ì—…ê·¸ë ˆì´ë“œ, ì§€ìƒìœ ë‹› í›ˆë ¨ ë“±)ì´ ëë‚¬ì„ ë•Œ ë°œìƒí•˜ëŠ” ì´ë²¤íŠ¸ë¥¼ ì²˜ë¦¬í•©ë‹ˆë‹¤
+	/// À¯´Ö(°Ç¹°/Áö»óÀ¯´Ö/°øÁßÀ¯´Ö)ÀÇ ÇÏ´ø ÀÏ (°Ç¹° °Ç¼³, ¾÷±×·¹ÀÌµå, Áö»óÀ¯´Ö ÈÆ·Ã µî)ÀÌ ³¡³µÀ» ¶§ ¹ß»ıÇÏ´Â ÀÌº¥Æ®¸¦ Ã³¸®ÇÕ´Ï´Ù
 	@Override
 	public void onUnitComplete(Unit unit){
 		if (!Broodwar.isReplay()) {
@@ -274,14 +274,14 @@ public class MyBotModule extends DefaultBWListener {
 		}
 	}
 
-	/// ê²Œì„ì„ ì €ì¥í•  ë•Œ ë°œìƒí•˜ëŠ” ì´ë²¤íŠ¸ë¥¼ ì²˜ë¦¬í•©ë‹ˆë‹¤
+	/// °ÔÀÓÀ» ÀúÀåÇÒ ¶§ ¹ß»ıÇÏ´Â ÀÌº¥Æ®¸¦ Ã³¸®ÇÕ´Ï´Ù
 	@Override
 	public void onSaveGame(String gameName){
 		Broodwar.printf("The game was saved to \"" + gameName + "\".");
 	}
 
 
-	/// ì‚¬ìš©ìê°€ ì…ë ¥í•œ text ë¥¼ parse í•´ì„œ ì²˜ë¦¬í•©ë‹ˆë‹¤
+	/// »ç¿ëÀÚ°¡ ÀÔ·ÂÇÑ text ¸¦ parse ÇØ¼­ Ã³¸®ÇÕ´Ï´Ù
 	public void ParseTextCommand(String commandString)
 	{
 		// Make sure to use %s and pass the text as a parameter,

@@ -267,7 +267,9 @@ public class WorkerData {
 		{
 			if(workerDepotMap.get(unit.getID()) != null)
 			{
-				depotWorkerCount.put(workerDepotMap.get(unit.getID()).getID(), depotWorkerCount.get(workerDepotMap.get(unit.getID()).getID()) - 1);
+				if (depotWorkerCount.get(workerDepotMap.get(unit.getID()).getID()) != null) {
+					depotWorkerCount.put(workerDepotMap.get(unit.getID()).getID(), depotWorkerCount.get(workerDepotMap.get(unit.getID()).getID()) - 1);
+				}
 			}
 
 			workerDepotMap.remove(unit.getID()); // C++ : workerDepotMap.erase(unit);

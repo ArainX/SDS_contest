@@ -70,16 +70,6 @@ namespace MyBot
 		void overwriteToFile(const std::string & logFile, const std::string & msg);
 	};
 
-	/// 윈도우 레지스트리 유틸
-	namespace RegistryUtil {
-
-		/// 윈도우 레지스트리에서 값을 읽어들인다
-		DWORD getSingleRegString(HKEY hBaseKey, const char *pszSubKey, const char *pszValueName, char *pszOutput, DWORD *dwOutSize);
-
-		/// 윈도우 레지스트리에서 값을 읽어들인다
-		std::string getRegString(const char *pszSubKey, const char *pszValueName);
-	}
-
 	/// 파일 유틸
 	namespace FileUtil {
 		/// 파일 유틸 - 텍스트 파일을 읽어들인다

@@ -22,9 +22,8 @@ var searchData=
   ['movearoundenemybaselocation',['MoveAroundEnemyBaseLocation',['../namespace_my_bot_1_1_scout_status.html#a1171b452207555a9aaebec7a5e0d8950afe7a00e380d62dcac6cc866876a95e30',1,'MyBot::ScoutStatus']]],
   ['movingtoanotherbaselocation',['MovingToAnotherBaseLocation',['../namespace_my_bot_1_1_scout_status.html#a1171b452207555a9aaebec7a5e0d8950a997dd8a7239c1d9533b341653890d8d6',1,'MyBot::ScoutStatus']]],
   ['mybot',['MyBot',['../namespace_my_bot.html',1,'']]],
-  ['mybotmodule',['MyBotModule',['../class_my_bot_1_1_my_bot_module.html#a672ea6ac773955c4866bbd400d5e85e1',1,'MyBot::MyBotModule']]],
   ['mybotmodule',['MyBotModule',['../class_my_bot_1_1_my_bot_module.html',1,'MyBot']]],
-  ['registryutil',['RegistryUtil',['../namespace_my_bot_1_1_registry_util.html',1,'MyBot']]],
+  ['mybotmodule',['MyBotModule',['../class_my_bot_1_1_my_bot_module.html#a672ea6ac773955c4866bbd400d5e85e1',1,'MyBot::MyBotModule']]],
   ['scoutstatus',['ScoutStatus',['../namespace_my_bot_1_1_scout_status.html',1,'MyBot']]],
   ['unitutil',['UnitUtil',['../namespace_my_bot_1_1_unit_util.html',1,'MyBot']]]
 ];

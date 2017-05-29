@@ -143,7 +143,6 @@ public class MetaType {
 		}
 		else
 		{
-			//UAB_ASSERT(false, "MetaType not found");
 			return "LOL";	
 		}
 	}

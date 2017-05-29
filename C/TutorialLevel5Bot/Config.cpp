@@ -4,7 +4,7 @@ namespace Config
 {
 	namespace BotInfo
 	{
-		std::string BotName = "NoNameBot";
+		std::string BotName = "MyBot";
 		std::string BotAuthors = "NoName";
 	}
 
