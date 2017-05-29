@@ -1,3 +1,28 @@
+/*
++----------------------------------------------------------------------+
+| BasicBot                                                             |
++----------------------------------------------------------------------+
+| Samsung SDS - 2017 Algorithm Contest                                 |
++----------------------------------------------------------------------+
+|                                                                      |
++----------------------------------------------------------------------+
+| Author: Tekseon Shin  <tekseon.shin@gmail.com>                       |
+| Author: Duckhwan Kim  <duckhwan1982.kim@gmail.com>                   |
++----------------------------------------------------------------------+
+*/
+
+/*
++----------------------------------------------------------------------+
+| UAlbertaBot                                                          |
++----------------------------------------------------------------------+
+| University of Alberta - AIIDE StarCraft Competition                  |
++----------------------------------------------------------------------+
+|                                                                      |
++----------------------------------------------------------------------+
+| Author: David Churchill <dave.churchill@gmail.com>                   |
++----------------------------------------------------------------------+
+*/
+
 #include "MyBotModule.h"
 
 using namespace BWAPI;
@@ -19,8 +44,8 @@ void MyBotModule::onStart(){
 	time_t t;
 	srand((unsigned int)(time(&t)));
 
-	// Config ∆ƒ¿œ ∞¸∏Æ∞° π¯∞≈∑”∞Ì, πË∆˜ π◊ ªÁøÎΩ√ Config ∆ƒ¿œ ¿ßƒ°∏¶ ¡ˆ¡§«ÿ¡÷¥¬ ∞Õ¿Ã π¯∞≈∑”±‚ ∂ßπÆø°, 
-	// Config ∏¶ ∆ƒ¿œ∑Œ∫Œ≈Õ ¿–æÓµÈ¿Ã¡ˆ æ ∞Ì, Config ≈¨∑°Ω∫¿« ∞™¿ª ªÁøÎ«œµµ∑œ «’¥œ¥Ÿ.
+	// Config ÌååÏùº Í¥ÄÎ¶¨Í∞Ä Î≤àÍ±∞Î°≠Í≥†, Î∞∞Ìè¨ Î∞è ÏÇ¨Ïö©Ïãú Config ÌååÏùº ÏúÑÏπòÎ•º ÏßÄÏ†ïÌï¥Ï£ºÎäî Í≤ÉÏù¥ Î≤àÍ±∞Î°≠Í∏∞ ÎïåÎ¨∏Ïóê, 
+	// Config Î•º ÌååÏùºÎ°úÎ∂ÄÌÑ∞ ÏùΩÏñ¥Îì§Ïù¥ÏßÄ ÏïäÍ≥†, Config ÌÅ¥ÎûòÏä§Ïùò Í∞íÏùÑ ÏÇ¨Ïö©ÌïòÎèÑÎ°ù Ìï©ÎãàÎã§.
 	if (Config::BWAPIOptions::EnableCompleteMapInformation)
 	{
 		BWAPI::Broodwar->enableFlag(BWAPI::Flag::CompleteMapInformation);
@@ -35,11 +60,11 @@ void MyBotModule::onStart(){
 
 
 	// Speedups for automated play, sets the number of milliseconds bwapi spends in each frame
-	// Fastest: 42 ms/frame.  1√ ø° 24 frame. ¿œπ›¿˚¿∏∑Œ 1√ ø° 24frame¿ª ±‚¡ÿ ∞‘¿”º”µµ∑Œ «’¥œ¥Ÿ
-	// Normal: 67 ms/frame. 1√ ø° 15 frame
-	// As fast as possible : 0 ms/frame. CPU∞° «“ºˆ¿÷¥¬ ∞°¿Â ∫¸∏• º”µµ. 
+	// Fastest: 42 ms/frame.  1Ï¥àÏóê 24 frame. ÏùºÎ∞òÏ†ÅÏúºÎ°ú 1Ï¥àÏóê 24frameÏùÑ Í∏∞Ï§Ä Í≤åÏûÑÏÜçÎèÑÎ°ú Ìï©ÎãàÎã§
+	// Normal: 67 ms/frame. 1Ï¥àÏóê 15 frame
+	// As fast as possible : 0 ms/frame. CPUÍ∞Ä Ìï†ÏàòÏûàÎäî Í∞ÄÏû• Îπ†Î•∏ ÏÜçÎèÑ. 
 	BWAPI::Broodwar->setLocalSpeed(Config::BWAPIOptions::SetLocalSpeed);
-	// frameskip¿ª ¥√∏Æ∏È »≠∏È «•Ω√µµ æ˜µ•¿Ã∆Æ æ»«œπ«∑Œ »Œæ¿ ∫¸∏®¥œ¥Ÿ
+	// frameskipÏùÑ ÎäòÎ¶¨Î©¥ ÌôîÎ©¥ ÌëúÏãúÎèÑ ÏóÖÎç∞Ïù¥Ìä∏ ÏïàÌïòÎØÄÎ°ú Ìõ®Ïî¨ Îπ†Î¶ÖÎãàÎã§
 	BWAPI::Broodwar->setFrameSkip(Config::BWAPIOptions::SetFrameSkip);
 	
 	std::cout << "Map analyzing started" << std::endl;
@@ -67,7 +92,7 @@ void MyBotModule::onFrame(){
 
 	gameCommander.onFrame();
 
-	// »≠∏È √‚∑¬ π◊ ªÁøÎ¿⁄ ¿‘∑¬ √≥∏Æ
+	// ÌôîÎ©¥ Ï∂úÎ†• Î∞è ÏÇ¨Ïö©Ïûê ÏûÖÎ†• Ï≤òÎ¶¨
 	UXManager::Instance().update();
 }
 
@@ -140,7 +165,7 @@ void MyBotModule::onUnitMorph(BWAPI::Unit unit){
 void MyBotModule::onUnitDestroy(BWAPI::Unit unit){
 	if (!BWAPI::Broodwar->isReplay()){
 
-		// ∆–πË ø©∫Œ √º≈© »ƒ GG
+		// Ìå®Î∞∞ Ïó¨Î∂Ä Ï≤¥ÌÅ¨ ÌõÑ GG
 		int buildingCount = 0;
 		int workerCount = 0;
 
