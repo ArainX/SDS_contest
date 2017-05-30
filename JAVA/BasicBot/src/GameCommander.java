@@ -28,7 +28,10 @@ public class GameCommander {
 	/// 경기 진행 중 매 프레임마다 발생하는 이벤트를 처리합니다
 	public void onFrame()
 	{
-		if (MyBotModule.Broodwar.isPaused()) {
+		if (MyBotModule.Broodwar.isPaused()
+			|| MyBotModule.Broodwar.self() == null || MyBotModule.Broodwar.self().isDefeated() || MyBotModule.Broodwar.self().leftGame()
+			|| MyBotModule.Broodwar.enemy() == null || MyBotModule.Broodwar.enemy().isDefeated() || MyBotModule.Broodwar.enemy().leftGame()) 
+		{
 			return;
 		}
 

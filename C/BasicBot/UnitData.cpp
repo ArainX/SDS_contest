@@ -122,7 +122,7 @@ int UnitData::getNumCreatedUnits(BWAPI::UnitType t) const
 	return numCreatedUnits[t.getID()];
 }
 
-const std::map<BWAPI::Unit,UnitInfo> & UnitData::getUnits() const 
+const std::map<BWAPI::Unit, UnitInfo> & UnitData::getUnitAndUnitInfoMap() const
 { 
     return unitAndUnitInfoMap; 
 }

@@ -25,7 +25,9 @@ void GameCommander::onEnd(bool isWinner)
 
 void GameCommander::onFrame()
 {
-	if (BWAPI::Broodwar->isPaused()) {
+	if (BWAPI::Broodwar->isPaused() 
+		|| BWAPI::Broodwar->self() == nullptr || BWAPI::Broodwar->self()->isDefeated() || BWAPI::Broodwar->self()->leftGame()
+		|| BWAPI::Broodwar->enemy() == nullptr || BWAPI::Broodwar->enemy()->isDefeated() || BWAPI::Broodwar->enemy()->leftGame()) {
 		return;
 	}
 

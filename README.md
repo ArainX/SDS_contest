@@ -1,53 +1,53 @@
-# ì¤‘ìš”í•œ ì‚¬í•­
+# Áß¿äÇÑ »çÇ×
 
-## í”„ë¡œì íŠ¸ ê°œìš”
+## ÇÁ·ÎÁ§Æ® °³¿ä
 
-* **2017 ì‚¼ì„±SDS ì•Œê³ ë¦¬ì¦˜ ê²½ì§„ëŒ€íšŒë¥¼ ìœ„í•œ í”„ë¡œì íŠ¸**
+* **2017 »ï¼ºSDS ¾Ë°í¸®Áò °æÁø´ëÈ¸¸¦ À§ÇÑ ÇÁ·ÎÁ§Æ®**
 
-* **[Wiki](https://github.com/SamsungSDS-Contest/2017Guide/wiki) : ê²½ì§„ëŒ€íšŒ ê°œë°œí™˜ê²½ ì„¤ì • ë°©ë²•, ë´‡ ê°œë°œ íŠœí„°ë¦¬ì–¼ ë° ê°€ì´ë“œ ì œê³µ**
+* **[Wiki](https://github.com/SamsungSDS-Contest/2017Guide/wiki) : °æÁø´ëÈ¸ °³¹ßÈ¯°æ ¼³Á¤ ¹æ¹ı, º¿ °³¹ß Æ©ÅÍ¸®¾ó ¹× °¡ÀÌµå Á¦°ø**
 
-* **[Code](https://github.com/SamsungSDS-Contest/2017Guide) : ê²½ì§„ëŒ€íšŒ ë´‡ í”„ë¡œê·¸ë¨ ê°œë°œì˜ ì‹œì‘ì ìœ¼ë¡œ ì‚¬ìš©í•  BasicBot ì†ŒìŠ¤ì½”ë“œ ì œê³µ**
+* **[Code](https://github.com/SamsungSDS-Contest/2017Guide) : °æÁø´ëÈ¸ º¿ ÇÁ·Î±×·¥ °³¹ßÀÇ ½ÃÀÛÁ¡À¸·Î »ç¿ëÇÒ BasicBot ¼Ò½ºÄÚµå Á¦°ø**
 
-## BasicBot ê°œë°œ ì·¨ì§€ ë° íŠ¹ì´ì‚¬í•­
+## BasicBot °³¹ß ÃëÁö ¹× Æ¯ÀÌ»çÇ×
 
-* **ê²½ì§„ëŒ€íšŒ ê²°ê³¼ë¬¼ì˜ ìˆ˜ì¤€ì„ ìƒí–¥í™” í•˜ê¸° ìœ„í•´ ìŠ¤íƒ€í¬ë˜í”„íŠ¸ ë´‡ í”„ë¡œê·¸ë¨ì˜ ê¸°ë³¸ ê¸°ëŠ¥ (ë¯¸ë„¤ë„ ì±„ì·¨, ê±´ë¬¼ ì§“ê¸°, ë¹Œë“œì˜¤ë” ì‹¤í–‰ ë“±) ì„ BasicBot ìœ¼ë¡œ ê°œë°œí•˜ì—¬ ì œê³µí•¨**
+* **°æÁø´ëÈ¸ °á°ú¹°ÀÇ ¼öÁØÀ» »óÇâÈ­ ÇÏ±â À§ÇØ ½ºÅ¸Å©·¡ÇÁÆ® º¿ ÇÁ·Î±×·¥ÀÇ ±âº» ±â´É (¹Ì³×¶ö Ã¤Ãë, °Ç¹° Áş±â, ºôµå¿À´õ ½ÇÇà µî) À» BasicBot À¸·Î °³¹ßÇÏ¿© Á¦°øÇÔ**
 
-* **ê²½ì§„ëŒ€íšŒ ì°¸ê°€ìë“¤ì€ BasicBot ì„ ììœ ë¡­ê²Œ ìˆ˜ì •í•˜ì—¬ ê°œë°œì„ ìˆ˜í–‰í•œ í›„ ì†ŒìŠ¤ì½”ë“œë¥¼ ì œì¶œí•˜ë©´ ë¨**
+* **°æÁø´ëÈ¸ Âü°¡ÀÚµéÀº BasicBot À» ÀÚÀ¯·Ó°Ô ¼öÁ¤ÇÏ¿© °³¹ßÀ» ¼öÇàÇÑ ÈÄ ¼Ò½ºÄÚµå¸¦ Á¦ÃâÇÏ¸é µÊ**
 
-  * **ë‹¨, Main, MyBotModule, UXManager ëŠ” ì œì¶œí•˜ë”ë¼ë„ ì›í™œí•œ ëŒ€íšŒ ì§„í–‰ì„ ìœ„í•´ ë´‡ ì»´íŒŒì¼ì— ë°˜ì˜í•˜ì§€ì•ŠìŒ**
+  * **´Ü, Main, MyBotModule, UXManager ´Â Á¦ÃâÇÏ´õ¶óµµ ¿øÈ°ÇÑ ´ëÈ¸ ÁøÇàÀ» À§ÇØ º¿ ÄÄÆÄÀÏ¿¡ ¹İ¿µÇÏÁö¾ÊÀ½**
 
-* **ë¨¼ì € [wiki](https://github.com/SamsungSDS-Contest/2017Guide/wiki) ì—ì„œ ê°œë°œí™˜ê²½ ì„¤ì • ë°©ë²•, íŠœí„°ë¦¬ì–¼ ë° ê°€ì´ë“œë¥¼ ì½ì–´ë³¸ í›„ ê°œë°œí•˜ëŠ” ê²ƒì„ ê¶Œì¥í•¨**
+* **¸ÕÀú [wiki](https://github.com/SamsungSDS-Contest/2017Guide/wiki) ¿¡¼­ °³¹ßÈ¯°æ ¼³Á¤ ¹æ¹ı, Æ©ÅÍ¸®¾ó ¹× °¡ÀÌµå¸¦ ÀĞ¾îº» ÈÄ °³¹ßÇÏ´Â °ÍÀ» ±ÇÀåÇÔ**
 
-## BasicBot ì„¤ì¹˜ë°©ë²•
+## BasicBot ¼³Ä¡¹æ¹ı
 
-* **master ë¸Œëœì¹˜ë¥¼ Clone or download**
+* **master ºê·£Ä¡¸¦ Clone or download**
 
 ## BasicBot Version
 
-* **2017-05-29 : v0.9 beta Release (í”„ë¦¬ë·° ë° ì˜¤í”ˆ í…ŒìŠ¤íŠ¸ë¥¼ ìœ„í•´ ê³µê°œ)**
+* **2017-05-29 : v0.9 beta Release (ÇÁ¸®ºä ¹× ¿ÀÇÂ Å×½ºÆ®¸¦ À§ÇØ °ø°³)**
 
-* **2017-06-16 : v1.0 Release ì˜ˆì • (ì‹¤ì œ ì•Œê³ ë¦¬ì¦˜ ê²½ì§„ëŒ€íšŒì—ì„œ ì‚¬ìš©)**
+* **2017-06-16 : v1.0 Release ¿¹Á¤ (½ÇÁ¦ ¾Ë°í¸®Áò °æÁø´ëÈ¸¿¡¼­ »ç¿ë)**
 
-* **[ë²„ê·¸ë¥¼ ë°œê²¬í•˜ì—¬ ì•Œë ¤ì£¼ì‹œê±°ë‚˜ ì´ìŠˆë¥¼ ì œê¸°í•˜ì—¬ì£¼ì‹œë©´ ì˜ˆì‚° ë‚´ì—ì„œ ì†Œì •ì˜ ìƒí’ˆì„ ë“œë¦½ë‹ˆë‹¤](https://github.com/SamsungSDS-Contest/2017Guide/issues)**
+* **[¹ö±×¸¦ ¹ß°ßÇÏ¿© ¾Ë·ÁÁÖ½Ã°Å³ª ÀÌ½´¸¦ Á¦±âÇÏ¿©ÁÖ½Ã¸é ¿¹»ê ³»¿¡¼­ ¼ÒÁ¤ÀÇ »óÇ°À» µå¸³´Ï´Ù](https://github.com/SamsungSDS-Contest/2017Guide/issues)**
 
 
 ## BasicBot API Documentation
 
-* **BasicBot API Documentation ì›¹ì‚¬ì´íŠ¸ : [https://samsungsds-contest.github.io/2017Guide/](https://samsungsds-contest.github.io/2017Guide/)**
+* **BasicBot API Documentation À¥»çÀÌÆ® : [https://samsungsds-contest.github.io/2017Guide/](https://samsungsds-contest.github.io/2017Guide/)**
 
-# ìƒì„¸ ì„¤ëª…
+# »ó¼¼ ¼³¸í
 
-## Code í´ë” ì„¤ëª…
+## Code Æú´õ ¼³¸í
 
-|í´ë”ëª…|ì„¤ëª…|
+|Æú´õ¸í|¼³¸í|
 |----|----|
-|C|BasicBot ë° TutorialBot ì†ŒìŠ¤ì½”ë“œ C++ ë²„ì „|
-|JAVA|BasicBot ë° TutorialBot ì†ŒìŠ¤ì½”ë“œ JAVA ë²„ì „|
-|docs\\C|BasicBot API Documentation - C++ ë²„ì „|
-|docs\\JAVA|BasicBot API Documentation - JAVA ë²„ì „|
-|Doxygen|BasicBot API Documentation ì›¹ì‚¬ì´íŠ¸ ìƒì„± ìë™í™”ë¥¼ ìœ„í•œ Doxygen ì„¤ì • íŒŒì¼|
+|C|BasicBot ¹× TutorialBot ¼Ò½ºÄÚµå C++ ¹öÀü|
+|JAVA|BasicBot ¹× TutorialBot ¼Ò½ºÄÚµå JAVA ¹öÀü|
+|docs\\C|BasicBot API Documentation - C++ ¹öÀü|
+|docs\\JAVA|BasicBot API Documentation - JAVA ¹öÀü|
+|Doxygen|BasicBot API Documentation À¥»çÀÌÆ® »ı¼º ÀÚµ¿È­¸¦ À§ÇÑ Doxygen ¼³Á¤ ÆÄÀÏ|
 
-## BasicBot ë””íœë˜ì‹œ
+## BasicBot µğÆæ´ø½Ã
 
 * **StarCraft : Brood War 1.16.1**
 
@@ -59,10 +59,10 @@
 
 * **JAVA**
 
-  * **[BWMirror 2.5](https://github.com/vjurenka/BWMirror) : BWAPI 4.1.2 ë° BWTA 2 ê°€ í¬í•¨ë˜ì–´ ìˆìŒ**
+  * **[BWMirror 2.5](https://github.com/vjurenka/BWMirror) : BWAPI 4.1.2 ¹× BWTA 2 °¡ Æ÷ÇÔµÇ¾î ÀÖÀ½**
 
 
-## ê¶Œì¥ ê°œë°œ í™˜ê²½
+## ±ÇÀå °³¹ß È¯°æ
 
 * C++
 
@@ -75,10 +75,10 @@
   * [Eclipse](https://eclipse.org/)
 
 
-## BasicBot ê°œë°œ History
+## BasicBot °³¹ß History
 
-* ì‚¼ì„±SDS ì•Œê³ ë¦¬ì¦˜ê²½ì§„ëŒ€íšŒ ì¤€ë¹„ T/Fì—ì„œ ì˜¤í”ˆì†ŒìŠ¤ [uAlbertaBot](https://github.com/davechurchill/ualbertabot), [Atlantis](https://github.com/Ravaelles/Atlantis), [BWSAL](https://github.com/Fobbah/bwsal) ë“±ì„ ì°¸ê³ í•˜ì—¬ BasicBot (C++ ë²„ì „ ë° JAVA ë²„ì „) ì„ ê°œë°œí•˜ì—¬ ë°°í¬í•¨
+* »ï¼ºSDS ¾Ë°í¸®Áò°æÁø´ëÈ¸ ÁØºñ T/F¿¡¼­ ¿ÀÇÂ¼Ò½º [uAlbertaBot](https://github.com/davechurchill/ualbertabot), [Atlantis](https://github.com/Ravaelles/Atlantis), [BWSAL](https://github.com/Fobbah/bwsal) µîÀ» Âü°íÇÏ¿© BasicBot (C++ ¹öÀü ¹× JAVA ¹öÀü) À» °³¹ßÇÏ¿© ¹èÆ÷ÇÔ
 
-## BasicBot API Documentation ìƒì„± íˆ´
+## BasicBot API Documentation »ı¼º Åø
 
-* [Doxygen 1.8.8](http://www.doxygen.org/index.html) ì„ ì‚¬ìš©í•˜ì—¬ BasicBot API Documentation ì›¹ì‚¬ì´íŠ¸ë¥¼ ìƒì„±í•˜ì˜€ìŒ
+* [Doxygen 1.8.8](http://www.doxygen.org/index.html) À» »ç¿ëÇÏ¿© BasicBot API Documentation À¥»çÀÌÆ®¸¦ »ı¼ºÇÏ¿´À½

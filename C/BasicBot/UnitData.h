@@ -49,15 +49,23 @@ namespace MyBot
 	class UnitData
 	{
 		/// Unit 과 UnitInfo 를 Map 형태로 저장하는 자료구조 
+		/// C++ 에서는 Unit 포인터를 Key 로 사용하지만, 
+		/// JAVA 에서는 Unit 자료구조의 equals 메쏘드 때문에 오작동하므로 Unit.getID() 값을 Key 로 사용함
 		UnitAndUnitInfoMap						unitAndUnitInfoMap;
 
 		const bool isBadUnitInfo(const UnitInfo & ui) const;
 
 		/// UnitType별 파괴/사망한 유닛 숫자 누적값
+		/// C++ 에서는 UnitType 의 열거형 값을 Key 로 사용하지만, 
+		/// JAVA 에서는 UnitType 의 열거형 값이 부재하므로 Unit.getType() 값을 Key 로 사용함
 		std::vector<int>						numDeadUnits;
 		/// UnitType별 건설/훈련했던 유닛 숫자 누적값
+		/// C++ 에서는 UnitType 의 열거형 값을 Key 로 사용하지만, 
+		/// JAVA 에서는 UnitType 의 열거형 값이 부재하므로 Unit.getType() 값을 Key 로 사용함
 		std::vector<int>						numCreatedUnits;
 		/// UnitType별 존재하는 유닛 숫자 카운트. 적군 유닛의 경우 식별된 유닛 숫자 카운트
+		/// C++ 에서는 UnitType 의 열거형 값을 Key 로 사용하지만, 
+		/// JAVA 에서는 UnitType 의 열거형 값이 부재하므로 Unit.getType() 값을 Key 로 사용함
 		std::vector<int>						numUnits;
 
 		/// 사망한 유닛을 생산하는데 소요되었던 Mineral 의 누적값 (얼마나 손해를 보았는가 계산하기 위함임)
@@ -93,6 +101,6 @@ namespace MyBot
 		/// 해당 UnitType 의 식별된 Unit 건설/훈련 누적값을 리턴합니다
 		int		getNumCreatedUnits(BWAPI::UnitType t)		const;
 
-		const	std::map<BWAPI::Unit,UnitInfo> & getUnits() const;
+		const	std::map<BWAPI::Unit, UnitInfo> & getUnitAndUnitInfoMap() const;
 	};
 }

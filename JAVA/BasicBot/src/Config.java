@@ -30,7 +30,7 @@ public class Config {
 	/// Fastest: 42 ms/frame.  1초에 24 frame. 일반적으로 1초에 24frame을 기준 게임속도로 합니다
 	/// Normal: 67 ms/frame. 1초에 15 frame
 	/// As fast as possible : 0 ms/frame. CPU가 할수있는 가장 빠른 속도.
-	public static final int SetLocalSpeed = 20;
+	public static final int SetLocalSpeed = 10;
 	
 	/// 로컬에서 게임을 실행할 때 FrameSkip (코드 제출 후 서버에서 게임을 실행할 때는 서버 설정을 사용함)
 	/// frameskip을 늘리면 화면 표시도 업데이트 안하므로 훨씬 빠릅니다

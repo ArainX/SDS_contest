@@ -184,13 +184,12 @@ public class UXManager {
 		if(InformationManager.Instance().getUnitData(InformationManager.Instance().enemyPlayer) != null)
 		{
 			// draw enemy units
-			Iterator<Unit> it = InformationManager.Instance().getUnitData(InformationManager.Instance().enemyPlayer).getUnits().keySet().iterator();
+			Iterator<Integer> it = InformationManager.Instance().getUnitData(InformationManager.Instance().enemyPlayer).getUnitAndUnitInfoMap().keySet().iterator();
 			
 			// C++ : for (final Unit kv : InformationManager.Instance().getUnitData(MyBotModule.game.enemy()).getUnits())
 			while(it.hasNext())
 			{
-				Unit unit = it.next();
-				final UnitInfo ui= InformationManager.Instance().getUnitData(InformationManager.Instance().enemyPlayer).getUnits().get(unit);
+				final UnitInfo ui= InformationManager.Instance().getUnitData(InformationManager.Instance().enemyPlayer).getUnitAndUnitInfoMap().get(it.next());
 	
 				UnitType type = ui.getType();
 				int hitPoints = ui.getLastHealth();

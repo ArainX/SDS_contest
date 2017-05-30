@@ -15,9 +15,13 @@ namespace MyBot
 		/// Player - UnitData(각 Unit 과 그 Unit의 UnitInfo 를 Map 형태로 저장하는 자료구조) 를 저장하는 자료구조 객체
 		std::map<BWAPI::Player, UnitData>							_unitData;
 
-		/// 해당 Player의 StartLocation
+		/// 해당 Player의 주요 건물들이 있는 BaseLocation. 
+		/// 처음에는 StartLocation 으로 지정. mainBaseLocation 내 모든 건물이 파괴될 경우 재지정
 		/// 건물 여부를 기준으로 파악하기 때문에 부적절하게 판단할수도 있습니다 
 		std::map<BWAPI::Player, BWTA::BaseLocation * >				_mainBaseLocations;
+
+		/// 해당 Player의 mainBaseLocation 이 변경되었는가 (firstChokePoint, secondChokePoint, firstExpansionLocation 를 재지정 했는가)
+		std::map<BWAPI::Player, bool>								_mainBaseLocationChanged;
 
 		/// 해당 Player가 점령하고 있는 Region 이 있는 BaseLocation
 		/// 건물 여부를 기준으로 파악하기 때문에 부적절하게 판단할수도 있습니다 
@@ -80,12 +84,8 @@ namespace MyBot
 		/// @param radius TilePosition 단위
 		bool					hasBuildingAroundBaseLocation(BWTA::BaseLocation * baseLocation, BWAPI::Player player, int radius = 10);
 		
-		/// 해당 Region 에 적군 건물이 존재하는지 리턴합니다
-		bool					existsEnemyBuildingInRegion(BWTA::Region * region);
-		
-		/// 해당 Region 에 아군 건물이 존재하는지 리턴합니다
-		bool					existsMyBuildingInRegion(BWTA::Region * region);
-		
+		/// 해당 Region 에 해당 Player의 건물이 존재하는지 리턴합니다
+		bool					existsPlayerBuildingInRegion(BWTA::Region * region, BWAPI::Player player);		
 
 		/// 해당 Player (아군 or 적군) 가 건물을 건설해서 점령한 Region 목록을 리턴합니다
 		std::set<BWTA::Region *> &  getOccupiedRegions(BWAPI::Player player);
@@ -110,7 +110,7 @@ namespace MyBot
 
 		/// 해당 Player (아군 or 적군) 의 모든 유닛 목록 (가장 최근값) UnitAndUnitInfoMap 을 리턴합니다		 
 		/// 파악된 정보만을 리턴하기 때문에 적군의 정보는 틀린 값일 수 있습니다
-		const UnitAndUnitInfoMap &           getUnitInfo(BWAPI::Player player) const;
+		const UnitAndUnitInfoMap &           getUnitAndUnitInfoMap(BWAPI::Player player) const;
 		/// 해당 Player (아군 or 적군) 의 모든 유닛 통계 UnitData 을 리턴합니다		 
 		const UnitData &        getUnitData(BWAPI::Player player) const;
 

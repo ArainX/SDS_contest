@@ -184,7 +184,7 @@ void UXManager::drawUnitExtendedInformationOnMap()
 	int verticalOffset = -10;
 
 	// draw enemy units
-	for (const auto & kv : InformationManager::Instance().getUnitData(BWAPI::Broodwar->enemy()).getUnits())
+	for (const auto & kv : InformationManager::Instance().getUnitData(BWAPI::Broodwar->enemy()).getUnitAndUnitInfoMap())
 	{
 		const UnitInfo & ui(kv.second);
 

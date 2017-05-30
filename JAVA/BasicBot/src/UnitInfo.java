@@ -91,6 +91,19 @@ public class UnitInfo {
 		this.completed = completed;
 	}
 	
+	@Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof UnitInfo)) return false;
+
+        UnitInfo that = (UnitInfo) o;
+
+        if (this.getUnitID() != that.getUnitID()) return false;
+
+        return true;
+    }
+
+	
 //		const bool operator == (BWAPI::Unit unit) const
 //		{
 //			return unitID == unit->getID();
