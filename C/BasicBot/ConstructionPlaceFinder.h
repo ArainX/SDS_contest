@@ -9,82 +9,82 @@
 
 namespace MyBot
 {
-	/// °Ç¼³À§Ä¡ Å½»ö ¹æ¹ı
+	/// ê±´ì„¤ìœ„ì¹˜ íƒìƒ‰ ë°©ë²•
 	namespace ConstructionPlaceSearchMethod
 	{
 		enum { 
-			SpiralMethod = 0,	///< ³ª¼±ÇüÀ¸·Î µ¹¾Æ°¡¸ç Å½»ö
-			NewMethod = 1		///< ¿¹ºñ
+			SpiralMethod = 0,	///< ë‚˜ì„ í˜•ìœ¼ë¡œ ëŒì•„ê°€ë©° íƒìƒ‰
+			NewMethod = 1		///< ì˜ˆë¹„
 		};
 	}
 
-	/// °Ç¼³À§Ä¡ Å½»öÀ» À§ÇÑ class
+	/// ê±´ì„¤ìœ„ì¹˜ íƒìƒ‰ì„ ìœ„í•œ class
 	class ConstructionPlaceFinder
 	{
 		ConstructionPlaceFinder();
 
-		/// °Ç¹° °Ç¼³ ¿¹Á¤ Å¸ÀÏÀ» ÀúÀåÇØ³õ±â À§ÇÑ 2Â÷¿ø ¹è¿­
-		/// TilePosition ´ÜÀ§ÀÌ±â ¶§¹®¿¡ º¸Åë 128*128 »çÀÌÁî°¡ µÈ´Ù
-		/// Âü°í·Î, °Ç¹°ÀÌ ÀÌ¹Ì Áö¾îÁø Å¸ÀÏÀº ÀúÀåÇÏÁö ¾Ê´Â´Ù
+		/// ê±´ë¬¼ ê±´ì„¤ ì˜ˆì • íƒ€ì¼ì„ ì €ì¥í•´ë†“ê¸° ìœ„í•œ 2ì°¨ì› ë°°ì—´
+		/// TilePosition ë‹¨ìœ„ì´ê¸° ë•Œë¬¸ì— ë³´í†µ 128*128 ì‚¬ì´ì¦ˆê°€ ëœë‹¤
+		/// ì°¸ê³ ë¡œ, ê±´ë¬¼ì´ ì´ë¯¸ ì§€ì–´ì§„ íƒ€ì¼ì€ ì €ì¥í•˜ì§€ ì•ŠëŠ”ë‹¤
 		std::vector< std::vector<bool> > _reserveMap;
 
-		/// BaseLocation °ú Mineral / Geyser »çÀÌÀÇ Å¸ÀÏµéÀ» ´ã´Â ÀÚ·á±¸Á¶. ¿©±â¿¡´Â Addon ÀÌ¿Ü¿¡´Â °Ç¹°À» ÁşÁö ¾Êµµ·Ï ÇÕ´Ï´Ù
+		/// BaseLocation ê³¼ Mineral / Geyser ì‚¬ì´ì˜ íƒ€ì¼ë“¤ì„ ë‹´ëŠ” ìë£Œêµ¬ì¡°. ì—¬ê¸°ì—ëŠ” Addon ì´ì™¸ì—ëŠ” ê±´ë¬¼ì„ ì§“ì§€ ì•Šë„ë¡ í•©ë‹ˆë‹¤
 		std::set< BWAPI::TilePosition > _tilesToAvoid;
 
-		/// BaseLocation °ú Mineral / Geyser »çÀÌÀÇ Å¸ÀÏµéÀ» Ã£¾Æ _tilesToAvoid ¿¡ ÀúÀåÇÕ´Ï´Ù
-		/// BaseLocation °ú Geyser »çÀÌ, ResourceDepot °Ç¹°°ú Mineral »çÀÌ °ø°£À¸·Î °Ç¹° °Ç¼³ Àå¼Ò¸¦ Á¤ÇÏ¸é 
-		/// ÀÏ²Û À¯´ÖµéÀÌ Àå¾Ö¹°ÀÌ µÇ¾î¼­ °Ç¼³ ½ÃÀÛµÇ±â±îÁö ½Ã°£ÀÌ ¿À·¡°É¸®°í, Áö¾îÁø °Ç¹°ÀÌ Àå¾Ö¹°ÀÌ µÇ¾î¼­ ÀÚ¿ø Ã¤Ãë ¼Óµµµµ ´À·ÁÁö±â ¶§¹®¿¡, ÀÌ °ø°£Àº °Ç¹°À» ÁşÁö ¾Ê´Â °ø°£À¸·Î µÎ±â À§ÇÔÀÔ´Ï´Ù
+		/// BaseLocation ê³¼ Mineral / Geyser ì‚¬ì´ì˜ íƒ€ì¼ë“¤ì„ ì°¾ì•„ _tilesToAvoid ì— ì €ì¥í•©ë‹ˆë‹¤
+		/// BaseLocation ê³¼ Geyser ì‚¬ì´, ResourceDepot ê±´ë¬¼ê³¼ Mineral ì‚¬ì´ ê³µê°„ìœ¼ë¡œ ê±´ë¬¼ ê±´ì„¤ ì¥ì†Œë¥¼ ì •í•˜ë©´ 
+		/// ì¼ê¾¼ ìœ ë‹›ë“¤ì´ ì¥ì• ë¬¼ì´ ë˜ì–´ì„œ ê±´ì„¤ ì‹œì‘ë˜ê¸°ê¹Œì§€ ì‹œê°„ì´ ì˜¤ë˜ê±¸ë¦¬ê³ , ì§€ì–´ì§„ ê±´ë¬¼ì´ ì¥ì• ë¬¼ì´ ë˜ì–´ì„œ ìì› ì±„ì·¨ ì†ë„ë„ ëŠë ¤ì§€ê¸° ë•Œë¬¸ì—, ì´ ê³µê°„ì€ ê±´ë¬¼ì„ ì§“ì§€ ì•ŠëŠ” ê³µê°„ìœ¼ë¡œ ë‘ê¸° ìœ„í•¨ì…ë‹ˆë‹¤
 		void					setTilesToAvoid();
 		
-		/// ÇØ´ç buildingType ÀÌ °Ç¼³µÉ ¼ö ÀÖ´Â À§Ä¡¸¦ desiredPosition ±ÙÃ³¿¡¼­ Å½»öÇØ¼­ Å½»ö°á°ú¸¦ ¸®ÅÏÇÕ´Ï´Ù
-		/// buildingGapSpace¸¦ ¹İ¿µÇØ¼­ canBuildHereWithSpace ¸¦ »ç¿ëÇØ¼­ Ã¼Å©
-		/// ¸øÃ£´Â´Ù¸é BWAPI::TilePositions::None À» ¸®ÅÏÇÕ´Ï´Ù
-		/// TODO °úÁ¦ : °Ç¹°À» °èÈ¹¾øÀÌ ÁöÀ»¼ö ÀÖ´Â °÷¿¡ Áş´Â °ÍÀ» °è¼Ó ÇÏ´Ùº¸¸é, À¯´ÖÀÌ °Ç¹° »çÀÌ¿¡ °¤È÷´Â °æ¿ì°¡ ¹ß»ıÇÒ ¼ö ÀÖ´Âµ¥, ÀÌ¸¦ ¹æÁöÇÏ´Â ¹æ¹ıÀº »ı°¢ÇØº¼ °úÁ¦ÀÔ´Ï´Ù
+		/// í•´ë‹¹ buildingType ì´ ê±´ì„¤ë  ìˆ˜ ìˆëŠ” ìœ„ì¹˜ë¥¼ desiredPosition ê·¼ì²˜ì—ì„œ íƒìƒ‰í•´ì„œ íƒìƒ‰ê²°ê³¼ë¥¼ ë¦¬í„´í•©ë‹ˆë‹¤
+		/// buildingGapSpaceë¥¼ ë°˜ì˜í•´ì„œ canBuildHereWithSpace ë¥¼ ì‚¬ìš©í•´ì„œ ì²´í¬
+		/// ëª»ì°¾ëŠ”ë‹¤ë©´ BWAPI::TilePositions::None ì„ ë¦¬í„´í•©ë‹ˆë‹¤
+		/// TODO ê³¼ì œ : ê±´ë¬¼ì„ ê³„íšì—†ì´ ì§€ì„ìˆ˜ ìˆëŠ” ê³³ì— ì§“ëŠ” ê²ƒì„ ê³„ì† í•˜ë‹¤ë³´ë©´, ìœ ë‹›ì´ ê±´ë¬¼ ì‚¬ì´ì— ê°‡íˆëŠ” ê²½ìš°ê°€ ë°œìƒí•  ìˆ˜ ìˆëŠ”ë°, ì´ë¥¼ ë°©ì§€í•˜ëŠ” ë°©ë²•ì€ ìƒê°í•´ë³¼ ê³¼ì œì…ë‹ˆë‹¤
 		BWAPI::TilePosition		getBuildLocationNear(BWAPI::UnitType buildingType, BWAPI::TilePosition desiredPosition, int buildingGapSpace, size_t constructionPlaceSearchMethod) const;
 
 	public:
 
-		/// static singleton °´Ã¼¸¦ ¸®ÅÏÇÕ´Ï´Ù
+		/// static singleton ê°ì²´ë¥¼ ë¦¬í„´í•©ë‹ˆë‹¤
 		static ConstructionPlaceFinder & Instance();
 
 
-		/// seedPosition ¹× seedPositionStrategy ÆÄ¶ó¸ŞÅÍ¸¦ È°¿ëÇØ¼­ °Ç¹° °Ç¼³ °¡´É À§Ä¡¸¦ Å½»öÇØ¼­ ¸®ÅÏÇÕ´Ï´Ù
-		/// seedPosition ÁÖÀ§¿¡¼­ °¡´ÉÇÑ °÷À» ¼±Á¤ÇÏ°Å³ª, seedPositionStrategy ¿¡ µû¶ó ÁöÇü ºĞ¼®°á°ú ÇØ´ç ÁöÁ¡ ÁÖÀ§¿¡¼­ °¡´ÉÇÑ °÷À» ¼±Á¤ÇÕ´Ï´Ù
-		/// seedPosition, seedPositionStrategy À» ÀÔ·ÂÇÏÁö ¾ÊÀ¸¸é, MainBaseLocation ÁÖÀ§¿¡¼­ °¡´ÉÇÑ °÷À» ¸®ÅÏÇÕ´Ï´Ù
+		/// seedPosition ë° seedPositionStrategy íŒŒë¼ë©”í„°ë¥¼ í™œìš©í•´ì„œ ê±´ë¬¼ ê±´ì„¤ ê°€ëŠ¥ ìœ„ì¹˜ë¥¼ íƒìƒ‰í•´ì„œ ë¦¬í„´í•©ë‹ˆë‹¤
+		/// seedPosition ì£¼ìœ„ì—ì„œ ê°€ëŠ¥í•œ ê³³ì„ ì„ ì •í•˜ê±°ë‚˜, seedPositionStrategy ì— ë”°ë¼ ì§€í˜• ë¶„ì„ê²°ê³¼ í•´ë‹¹ ì§€ì  ì£¼ìœ„ì—ì„œ ê°€ëŠ¥í•œ ê³³ì„ ì„ ì •í•©ë‹ˆë‹¤
+		/// seedPosition, seedPositionStrategy ì„ ì…ë ¥í•˜ì§€ ì•Šìœ¼ë©´, MainBaseLocation ì£¼ìœ„ì—ì„œ ê°€ëŠ¥í•œ ê³³ì„ ë¦¬í„´í•©ë‹ˆë‹¤
 		BWAPI::TilePosition		getBuildLocationWithSeedPositionAndStrategy(BWAPI::UnitType buildingType, BWAPI::TilePosition seedPosition = BWAPI::TilePositions::None, BuildOrderItem::SeedPositionStrategy seedPositionStrategy = BuildOrderItem::SeedPositionStrategy::MainBaseLocation) const;
 
-		/// desiredPosition ±ÙÃ³¿¡¼­ °Ç¹° °Ç¼³ °¡´É À§Ä¡¸¦ Å½»öÇØ¼­ ¸®ÅÏÇÕ´Ï´Ù
-		/// desiredPosition ÁÖÀ§¿¡¼­ °¡´ÉÇÑ °÷À» Ã£¾Æ ¹İÈ¯ÇÕ´Ï´Ù
-		/// desiredPosition ÀÌ valid ÇÑ °÷ÀÌ ¾Æ´Ï¶ó¸é, desiredPosition ¸¦ MainBaseLocation ·Î ÇØ¼­ ÁÖÀ§¸¦ Ã£´Â´Ù
+		/// desiredPosition ê·¼ì²˜ì—ì„œ ê±´ë¬¼ ê±´ì„¤ ê°€ëŠ¥ ìœ„ì¹˜ë¥¼ íƒìƒ‰í•´ì„œ ë¦¬í„´í•©ë‹ˆë‹¤
+		/// desiredPosition ì£¼ìœ„ì—ì„œ ê°€ëŠ¥í•œ ê³³ì„ ì°¾ì•„ ë°˜í™˜í•©ë‹ˆë‹¤
+		/// desiredPosition ì´ valid í•œ ê³³ì´ ì•„ë‹ˆë¼ë©´, desiredPosition ë¥¼ MainBaseLocation ë¡œ í•´ì„œ ì£¼ìœ„ë¥¼ ì°¾ëŠ”ë‹¤
 		/// Returns a suitable TilePosition to build a given building type near specified TilePosition aroundTile.
-		/// Returns BWAPI::TilePositions::None, if suitable TilePosition is not exists (´Ù¸¥ À¯´ÖµéÀÌ ÀÚ¸®¿¡ ÀÖ¾î¼­, Pylon, Creep, °Ç¹°ÁöÀ» Å¸ÀÏ °ø°£ÀÌ ÀüÇô ¾ø´Â °æ¿ì µî)
+		/// Returns BWAPI::TilePositions::None, if suitable TilePosition is not exists (ë‹¤ë¥¸ ìœ ë‹›ë“¤ì´ ìë¦¬ì— ìˆì–´ì„œ, Pylon, Creep, ê±´ë¬¼ì§€ì„ íƒ€ì¼ ê³µê°„ì´ ì „í˜€ ì—†ëŠ” ê²½ìš° ë“±)
 		BWAPI::TilePosition		getBuildLocationNear(BWAPI::UnitType buildingType, BWAPI::TilePosition desiredPosition) const;
 
-		/// seedPosition ±ÙÃ³¿¡¼­ Refinery °Ç¹° °Ç¼³ °¡´É À§Ä¡¸¦ Å½»öÇØ¼­ ¸®ÅÏÇÕ´Ï´Ù
-		/// Áöµµ»óÀÇ ¿©·¯ °¡½º ±¤»ê (Resource_Vespene_Geyser) Áß ¿¹¾àµÇ¾îÀÖÁö ¾ÊÀº °÷(isReservedTile), ´Ù¸¥ ¼¶ÀÌ ¾Æ´Ñ °÷, ÀÌ¹Ì Refinery °¡ Áö¾îÁ®ÀÖÁö¾ÊÀº °÷ Áß 
-		/// seedPosition °ú °¡Àå °¡±î¿î °÷À» ¸®ÅÏÇÕ´Ï´Ù
+		/// seedPosition ê·¼ì²˜ì—ì„œ Refinery ê±´ë¬¼ ê±´ì„¤ ê°€ëŠ¥ ìœ„ì¹˜ë¥¼ íƒìƒ‰í•´ì„œ ë¦¬í„´í•©ë‹ˆë‹¤
+		/// ì§€ë„ìƒì˜ ì—¬ëŸ¬ ê°€ìŠ¤ ê´‘ì‚° (Resource_Vespene_Geyser) ì¤‘ ì˜ˆì•½ë˜ì–´ìˆì§€ ì•Šì€ ê³³(isReservedTile), ë‹¤ë¥¸ ì„¬ì´ ì•„ë‹Œ ê³³, ì´ë¯¸ Refinery ê°€ ì§€ì–´ì ¸ìˆì§€ì•Šì€ ê³³ ì¤‘ 
+		/// seedPosition ê³¼ ê°€ì¥ ê°€ê¹Œìš´ ê³³ì„ ë¦¬í„´í•©ë‹ˆë‹¤
 		BWAPI::TilePosition		getRefineryPositionNear(BWAPI::TilePosition seedPosition = BWAPI::TilePositions::None) const;
 		
-		bool					isBuildableTile(const ConstructionTask & b,int x,int y) const;		///< °Ç¹° °Ç¼³ °¡´É Å¸ÀÏÀÎÁö ¿©ºÎ¸¦ ¸®ÅÏÇÕ´Ï´Ù
-		void					reserveTiles(BWAPI::TilePosition position, int width, int height);	///< °Ç¹° °Ç¼³ ¿¹Á¤ Å¸ÀÏ·Î ¿¹¾àÇØ¼­, ´Ù¸¥ °Ç¹°À» Áßº¹ÇØ¼­ ÁşÁö ¾Êµµ·Ï ÇÕ´Ï´Ù
-		void					freeTiles(BWAPI::TilePosition position, int width, int height);		///< °Ç¹° °Ç¼³ ¿¹Á¤ Å¸ÀÏ·Î ¿¹¾àÇß´ø °ÍÀ» ÇØÁ¦ÇÕ´Ï´Ù
+		bool					isBuildableTile(const ConstructionTask & b,int x,int y) const;		///< ê±´ë¬¼ ê±´ì„¤ ê°€ëŠ¥ íƒ€ì¼ì¸ì§€ ì—¬ë¶€ë¥¼ ë¦¬í„´í•©ë‹ˆë‹¤
+		void					reserveTiles(BWAPI::TilePosition position, int width, int height);	///< ê±´ë¬¼ ê±´ì„¤ ì˜ˆì • íƒ€ì¼ë¡œ ì˜ˆì•½í•´ì„œ, ë‹¤ë¥¸ ê±´ë¬¼ì„ ì¤‘ë³µí•´ì„œ ì§“ì§€ ì•Šë„ë¡ í•©ë‹ˆë‹¤
+		void					freeTiles(BWAPI::TilePosition position, int width, int height);		///< ê±´ë¬¼ ê±´ì„¤ ì˜ˆì • íƒ€ì¼ë¡œ ì˜ˆì•½í–ˆë˜ ê²ƒì„ í•´ì œí•©ë‹ˆë‹¤
 		bool					isReservedTile(int x, int y) const;
-		std::vector< std::vector<bool> > & getReserveMap();											///< reserveMapÀ» ¸®ÅÏÇÕ´Ï´Ù
+		std::vector< std::vector<bool> > & getReserveMap();											///< reserveMapì„ ë¦¬í„´í•©ë‹ˆë‹¤
 
 		
-		std::set< BWAPI::TilePosition > & getTilesToAvoid();										///< BaseLocation °ú Mineral / Geyser »çÀÌÀÇ Å¸ÀÏµéÀÇ ¸ñ·ÏÀ» ¸®ÅÏÇÕ´Ï´Ù		
-		bool					isTilesToAvoid(int x, int y) const;									///< (x, y) °¡ BaseLocation °ú Mineral / Geyser »çÀÌÀÇ Å¸ÀÏ¿¡ ÇØ´çÇÏ´ÂÁö ¿©ºÎ¸¦ ¸®ÅÏÇÕ´Ï´Ù
+		std::set< BWAPI::TilePosition > & getTilesToAvoid();										///< BaseLocation ê³¼ Mineral / Geyser ì‚¬ì´ì˜ íƒ€ì¼ë“¤ì˜ ëª©ë¡ì„ ë¦¬í„´í•©ë‹ˆë‹¤		
+		bool					isTilesToAvoid(int x, int y) const;									///< (x, y) ê°€ BaseLocation ê³¼ Mineral / Geyser ì‚¬ì´ì˜ íƒ€ì¼ì— í•´ë‹¹í•˜ëŠ”ì§€ ì—¬ë¶€ë¥¼ ë¦¬í„´í•©ë‹ˆë‹¤
 
-		/// ÇØ´ç À§Ä¡°¡ BaseLocation °ú °ãÄ¡´ÂÁö ¿©ºÎ¸¦ ¸®ÅÏÇÕ´Ï´Ù
-		/// BaseLocation ¿¡´Â ResourceDepot °Ç¹°¸¸ °Ç¼³ÇÏ°í, ´Ù¸¥ °Ç¹°Àº °Ç¼³ÇÏÁö ¾Ê±â À§ÇÔÀÔ´Ï´Ù
+		/// í•´ë‹¹ ìœ„ì¹˜ê°€ BaseLocation ê³¼ ê²¹ì¹˜ëŠ”ì§€ ì—¬ë¶€ë¥¼ ë¦¬í„´í•©ë‹ˆë‹¤
+		/// BaseLocation ì—ëŠ” ResourceDepot ê±´ë¬¼ë§Œ ê±´ì„¤í•˜ê³ , ë‹¤ë¥¸ ê±´ë¬¼ì€ ê±´ì„¤í•˜ì§€ ì•Šê¸° ìœ„í•¨ì…ë‹ˆë‹¤
 		bool					isOverlapsWithBaseLocation(BWAPI::TilePosition tile,BWAPI::UnitType type) const;	
 		
-		/// ÇØ´ç À§Ä¡¿¡ °Ç¹° °Ç¼³ÀÌ °¡´ÉÇÑÁö ¿©ºÎ¸¦ ¸®ÅÏÇÕ´Ï´Ù
-		/// Broodwar ÀÇ canBuildHere ¹× _reserveMap ¿Í isOverlapsWithBaseLocation À» Ã¼Å©ÇÕ´Ï´Ù
+		/// í•´ë‹¹ ìœ„ì¹˜ì— ê±´ë¬¼ ê±´ì„¤ì´ ê°€ëŠ¥í•œì§€ ì—¬ë¶€ë¥¼ ë¦¬í„´í•©ë‹ˆë‹¤
+		/// Broodwar ì˜ canBuildHere ë° _reserveMap ì™€ isOverlapsWithBaseLocation ì„ ì²´í¬í•©ë‹ˆë‹¤
 		bool					canBuildHere(BWAPI::TilePosition position, const ConstructionTask & b) const;
 
-		/// ÇØ´ç À§Ä¡¿¡ °Ç¹° °Ç¼³ÀÌ °¡´ÉÇÑÁö ¿©ºÎ¸¦ buildingGapSpace Á¶°ÇÀ» Æ÷ÇÔÇØ¼­ ÆÇ´ÜÇÏ¿© ¸®ÅÏÇÕ´Ï´Ù
-		/// Broodwar ÀÇ canBuildHere, isBuildableTile, isReservedTile ¸¦ Ã¼Å©ÇÕ´Ï´Ù
+		/// í•´ë‹¹ ìœ„ì¹˜ì— ê±´ë¬¼ ê±´ì„¤ì´ ê°€ëŠ¥í•œì§€ ì—¬ë¶€ë¥¼ buildingGapSpace ì¡°ê±´ì„ í¬í•¨í•´ì„œ íŒë‹¨í•˜ì—¬ ë¦¬í„´í•©ë‹ˆë‹¤
+		/// Broodwar ì˜ canBuildHere, isBuildableTile, isReservedTile ë¥¼ ì²´í¬í•©ë‹ˆë‹¤
 		bool					canBuildHereWithSpace(BWAPI::TilePosition position, const ConstructionTask & b, int buildingGapSpace = 2) const;
 
 	};

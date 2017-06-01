@@ -10,14 +10,14 @@ import bwta.BWTA;
 
 public class MyBotModule extends DefaultBWListener {
 
-	/// BWAPI ¿¡ ÇØ´çÇÏ´Â ³»ºÎ °´Ã¼
+	/// BWAPI ì— í•´ë‹¹í•˜ëŠ” ë‚´ë¶€ ê°ì²´
 	private Mirror mirror = new Mirror();
 	
-	/// ½ºÅ¸Å©·¡ÇÁÆ® ´ë°á »óÈ² ÀüÃ¼¿¡ ´ëÇÑ »óÈ² ÆÄ¾Ç ¹× ¾×¼Ç ½ÇÇàÀ» Á¦°øÇÏ´Â °´Ã¼  
-	/// C¾ğ¾î¿¡¼­ BWAPI::Broodwar ¿¡ ÇØ´çÇÕ´Ï´Ù
+	/// ìŠ¤íƒ€í¬ë˜í”„íŠ¸ ëŒ€ê²° ìƒí™© ì „ì²´ì— ëŒ€í•œ ìƒí™© íŒŒì•… ë° ì•¡ì…˜ ì‹¤í–‰ì„ ì œê³µí•˜ëŠ” ê°ì²´  
+	/// Cì–¸ì–´ì—ì„œ BWAPI::Broodwar ì— í•´ë‹¹í•©ë‹ˆë‹¤
 	public static Game Broodwar;
 
-	/// ½ÇÁ¦ º¿ÇÁ·Î±×·¥
+	/// ì‹¤ì œ ë´‡í”„ë¡œê·¸ë¨
 	/// @see GameCommander			
 	private GameCommander gameCommander;
 	
@@ -36,21 +36,21 @@ public class MyBotModule extends DefaultBWListener {
 
 		gameCommander = new GameCommander();
 		
-		// ÀüÃ¼ Áöµµ ¹× »ó´ëÆí ÀÌº¥Æ®µé ´Ù ÆÄ¾ÇÇÏ´Â ¸ğµå
+		// ì „ì²´ ì§€ë„ ë° ìƒëŒ€í¸ ì´ë²¤íŠ¸ë“¤ ë‹¤ íŒŒì•…í•˜ëŠ” ëª¨ë“œ
 		//game.enableFlag(Enum.CompleteMapInformation.getValue());
 
-		// Å°º¸µå/¸¶¿ì½º·Î °ÔÀÓ ÇÃ·¹ÀÌ¸¦ ÁøÇàÇÒ ¼ö ÀÖ´Â ¸ğµå
+		// í‚¤ë³´ë“œ/ë§ˆìš°ìŠ¤ë¡œ ê²Œì„ í”Œë ˆì´ë¥¼ ì§„í–‰í•  ìˆ˜ ìˆëŠ” ëª¨ë“œ
 		Broodwar.enableFlag(Enum.UserInput.getValue());
 
-		// µ¿ÀÏÇÑ °ÔÀÓ ¸í·ÉÀº ÇÏ³ª·Î Ã³¸®ÇØ¼­ CPU ºÎ´ãÀ» ÁÙ¿©ÁÜ
+		// ë™ì¼í•œ ê²Œì„ ëª…ë ¹ì€ í•˜ë‚˜ë¡œ ì²˜ë¦¬í•´ì„œ CPU ë¶€ë‹´ì„ ì¤„ì—¬ì¤Œ
 		Broodwar.setCommandOptimizationLevel(1);
 
 		// Speedups for automated play, sets the number of milliseconds bwapi spends in each frame
-		// Fastest: 42 ms/frame.  1ÃÊ¿¡ 24 frame. ÀÏ¹İÀûÀ¸·Î 1ÃÊ¿¡ 24frameÀ» ±âÁØ °ÔÀÓ¼Óµµ·Î ÇÑ´Ù
-		// Normal: 67 ms/frame. 1ÃÊ¿¡ 15 frame
-		// As fast as possible : 0 ms/frame. CPU°¡ ÇÒ¼öÀÖ´Â °¡Àå ºü¸¥ ¼Óµµ. 
+		// Fastest: 42 ms/frame.  1ì´ˆì— 24 frame. ì¼ë°˜ì ìœ¼ë¡œ 1ì´ˆì— 24frameì„ ê¸°ì¤€ ê²Œì„ì†ë„ë¡œ í•œë‹¤
+		// Normal: 67 ms/frame. 1ì´ˆì— 15 frame
+		// As fast as possible : 0 ms/frame. CPUê°€ í• ìˆ˜ìˆëŠ” ê°€ì¥ ë¹ ë¥¸ ì†ë„. 
 		Broodwar.setLocalSpeed(15);
-		// frameskipÀ» ´Ã¸®¸é È­¸é Ç¥½Ãµµ ¾÷µ¥ÀÌÆ® ¾ÈÇÏ¹Ç·Î ÈÎ¾À ºü¸£´Ù
+		// frameskipì„ ëŠ˜ë¦¬ë©´ í™”ë©´ í‘œì‹œë„ ì—…ë°ì´íŠ¸ ì•ˆí•˜ë¯€ë¡œ í›¨ì”¬ ë¹ ë¥´ë‹¤
 		Broodwar.setFrameSkip(0);
 
 		System.out.println("Map analyzing started");
@@ -82,7 +82,7 @@ public class MyBotModule extends DefaultBWListener {
 
 	@Override
 	public void onFrame() {
-		// ¸®ÇÃ·¹ÀÌ Àç»ıÀÏ °æ¿ì ¾Æ¹«°Íµµ ÇÏÁö ¾ÊÀ½
+		// ë¦¬í”Œë ˆì´ ì¬ìƒì¼ ê²½ìš° ì•„ë¬´ê²ƒë„ í•˜ì§€ ì•ŠìŒ
 		if (Broodwar.isReplay()) {
 			return;
 		}

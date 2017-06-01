@@ -7,10 +7,10 @@ namespace MyBot
 {
 	class WorkerManager
 	{
-		// Worker ~ Mineral Field °£ assign °ü°è¸¦ ÀúÀåÇÏ´Â map
+		// Worker ~ Mineral Field ê°„ assign ê´€ê³„ë¥¼ ì €ì¥í•˜ëŠ” map
 		std::map<BWAPI::Unit, BWAPI::Unit> workerMineralAssignment;
 
-		// °¢°¢ÀÇ Mineral Field ¿¡ assign µÈ Worker ¼ıÀÚ ¸¦ ÀúÀåÇÏ´Â map
+		// ê°ê°ì˜ Mineral Field ì— assign ëœ Worker ìˆ«ì ë¥¼ ì €ì¥í•˜ëŠ” map
 		std::map<BWAPI::Unit, int> workerCountOnMineral;
 
 		WorkerManager();

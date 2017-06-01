@@ -11,11 +11,11 @@
 
 namespace MyBot
 {
-	/// ½ÇÁ¦ º¿ÇÁ·Î±×·¥ÀÇ º»Ã¼°¡ µÇ´Â class
-	/// ½ºÅ¸Å©·¡ÇÁÆ® °æ±â µµÁß ¹ß»ýÇÏ´Â ÀÌº¥Æ®µéÀÌ ÀûÀýÇÏ°Ô Ã³¸®µÇµµ·Ï ÇØ´ç Manager °´Ã¼¿¡°Ô ÀÌº¥Æ®¸¦ Àü´ÞÇÏ´Â °ü¸®ÀÚ Controller ¿ªÇÒÀ» ÇÕ´Ï´Ù
+	/// ì‹¤ì œ ë´‡í”„ë¡œê·¸ëž¨ì˜ ë³¸ì²´ê°€ ë˜ëŠ” class
+	/// ìŠ¤íƒ€í¬ëž˜í”„íŠ¸ ê²½ê¸° ë„ì¤‘ ë°œìƒí•˜ëŠ” ì´ë²¤íŠ¸ë“¤ì´ ì ì ˆí•˜ê²Œ ì²˜ë¦¬ë˜ë„ë¡ í•´ë‹¹ Manager ê°ì²´ì—ê²Œ ì´ë²¤íŠ¸ë¥¼ ì „ë‹¬í•˜ëŠ” ê´€ë¦¬ìž Controller ì—­í• ì„ í•©ë‹ˆë‹¤
 	class GameCommander 
 	{
-		/// µð¹ö±ë¿ë ÇÃ·¡±× : ¾î´À Manager °¡ ¿¡·¯¸¦ ÀÏÀ¸Å°´ÂÁö ¾Ë±âÀ§ÇÑ ÇÃ·¡±×
+		/// ë””ë²„ê¹…ìš© í”Œëž˜ê·¸ : ì–´ëŠ Manager ê°€ ì—ëŸ¬ë¥¼ ì¼ìœ¼í‚¤ëŠ”ì§€ ì•Œê¸°ìœ„í•œ í”Œëž˜ê·¸
 		bool isToFindError;
 
 	public:
@@ -23,45 +23,45 @@ namespace MyBot
 		GameCommander();
 		~GameCommander();
 		
-		/// °æ±â°¡ ½ÃÀÛµÉ ¶§ ÀÏÈ¸ÀûÀ¸·Î ¹ß»ýÇÏ´Â ÀÌº¥Æ®¸¦ Ã³¸®ÇÕ´Ï´Ù
+		/// ê²½ê¸°ê°€ ì‹œìž‘ë  ë•Œ ì¼íšŒì ìœ¼ë¡œ ë°œìƒí•˜ëŠ” ì´ë²¤íŠ¸ë¥¼ ì²˜ë¦¬í•©ë‹ˆë‹¤
 		void onStart();
-		/// °æ±â°¡ Á¾·áµÉ ¶§ ÀÏÈ¸ÀûÀ¸·Î ¹ß»ýÇÏ´Â ÀÌº¥Æ®¸¦ Ã³¸®ÇÕ´Ï´Ù
+		/// ê²½ê¸°ê°€ ì¢…ë£Œë  ë•Œ ì¼íšŒì ìœ¼ë¡œ ë°œìƒí•˜ëŠ” ì´ë²¤íŠ¸ë¥¼ ì²˜ë¦¬í•©ë‹ˆë‹¤
 		void onEnd(bool isWinner);
-		/// °æ±â ÁøÇà Áß ¸Å ÇÁ·¹ÀÓ¸¶´Ù ¹ß»ýÇÏ´Â ÀÌº¥Æ®¸¦ Ã³¸®ÇÕ´Ï´Ù
+		/// ê²½ê¸° ì§„í–‰ ì¤‘ ë§¤ í”„ë ˆìž„ë§ˆë‹¤ ë°œìƒí•˜ëŠ” ì´ë²¤íŠ¸ë¥¼ ì²˜ë¦¬í•©ë‹ˆë‹¤
 		void onFrame();
 
-		/// ÅØ½ºÆ®¸¦ ÀÔ·Â ÈÄ ¿£ÅÍ¸¦ ÇÏ¿© ´Ù¸¥ ÇÃ·¹ÀÌ¾îµé¿¡°Ô ÅØ½ºÆ®¸¦ Àü´ÞÇÏ·Á ÇÒ ¶§ ¹ß»ýÇÏ´Â ÀÌº¥Æ®¸¦ Ã³¸®ÇÕ´Ï´Ù
+		/// í…ìŠ¤íŠ¸ë¥¼ ìž…ë ¥ í›„ ì—”í„°ë¥¼ í•˜ì—¬ ë‹¤ë¥¸ í”Œë ˆì´ì–´ë“¤ì—ê²Œ í…ìŠ¤íŠ¸ë¥¼ ì „ë‹¬í•˜ë ¤ í•  ë•Œ ë°œìƒí•˜ëŠ” ì´ë²¤íŠ¸ë¥¼ ì²˜ë¦¬í•©ë‹ˆë‹¤
 		void onSendText(std::string text);
-		/// ´Ù¸¥ ÇÃ·¹ÀÌ¾î·ÎºÎÅÍ ÅØ½ºÆ®¸¦ Àü´Þ¹Þ¾ÒÀ» ¶§ ¹ß»ýÇÏ´Â ÀÌº¥Æ®¸¦ Ã³¸®ÇÕ´Ï´Ù
+		/// ë‹¤ë¥¸ í”Œë ˆì´ì–´ë¡œë¶€í„° í…ìŠ¤íŠ¸ë¥¼ ì „ë‹¬ë°›ì•˜ì„ ë•Œ ë°œìƒí•˜ëŠ” ì´ë²¤íŠ¸ë¥¼ ì²˜ë¦¬í•©ë‹ˆë‹¤
 		void onReceiveText(BWAPI::Player player, std::string text);
 
-		/// À¯´Ö(°Ç¹°/Áö»óÀ¯´Ö/°øÁßÀ¯´Ö)ÀÌ Create µÉ ¶§ ¹ß»ýÇÏ´Â ÀÌº¥Æ®¸¦ Ã³¸®ÇÕ´Ï´Ù
+		/// ìœ ë‹›(ê±´ë¬¼/ì§€ìƒìœ ë‹›/ê³µì¤‘ìœ ë‹›)ì´ Create ë  ë•Œ ë°œìƒí•˜ëŠ” ì´ë²¤íŠ¸ë¥¼ ì²˜ë¦¬í•©ë‹ˆë‹¤
 		void onUnitCreate(BWAPI::Unit unit);
-		///  À¯´Ö(°Ç¹°/Áö»óÀ¯´Ö/°øÁßÀ¯´Ö)ÀÌ Destroy µÉ ¶§ ¹ß»ýÇÏ´Â ÀÌº¥Æ®¸¦ Ã³¸®ÇÕ´Ï´Ù
+		///  ìœ ë‹›(ê±´ë¬¼/ì§€ìƒìœ ë‹›/ê³µì¤‘ìœ ë‹›)ì´ Destroy ë  ë•Œ ë°œìƒí•˜ëŠ” ì´ë²¤íŠ¸ë¥¼ ì²˜ë¦¬í•©ë‹ˆë‹¤
 		void onUnitDestroy(BWAPI::Unit unit);
 
-		/// À¯´Ö(°Ç¹°/Áö»óÀ¯´Ö/°øÁßÀ¯´Ö)ÀÌ Morph µÉ ¶§ ¹ß»ýÇÏ´Â ÀÌº¥Æ®¸¦ Ã³¸®ÇÕ´Ï´Ù
-		/// Zerg Á¾Á·ÀÇ À¯´ÖÀº °Ç¹° °Ç¼³ÀÌ³ª Áö»óÀ¯´Ö/°øÁßÀ¯´Ö »ý»ê¿¡¼­ °ÅÀÇ ´ëºÎºÐ Morph ÇüÅÂ·Î ÁøÇàµË´Ï´Ù
+		/// ìœ ë‹›(ê±´ë¬¼/ì§€ìƒìœ ë‹›/ê³µì¤‘ìœ ë‹›)ì´ Morph ë  ë•Œ ë°œìƒí•˜ëŠ” ì´ë²¤íŠ¸ë¥¼ ì²˜ë¦¬í•©ë‹ˆë‹¤
+		/// Zerg ì¢…ì¡±ì˜ ìœ ë‹›ì€ ê±´ë¬¼ ê±´ì„¤ì´ë‚˜ ì§€ìƒìœ ë‹›/ê³µì¤‘ìœ ë‹› ìƒì‚°ì—ì„œ ê±°ì˜ ëŒ€ë¶€ë¶„ Morph í˜•íƒœë¡œ ì§„í–‰ë©ë‹ˆë‹¤
 		void onUnitMorph(BWAPI::Unit unit);
 
-		/// À¯´Ö(°Ç¹°/Áö»óÀ¯´Ö/°øÁßÀ¯´Ö)ÀÇ ¼Ò¼Ó ÇÃ·¹ÀÌ¾î°¡ ¹Ù²ð ¶§ ¹ß»ýÇÏ´Â ÀÌº¥Æ®¸¦ Ã³¸®ÇÕ´Ï´Ù
-		/// Gas Geyser¿¡ ¾î¶² ÇÃ·¹ÀÌ¾î°¡ Refinery °Ç¹°À» °Ç¼³ÇßÀ» ¶§, Refinery °Ç¹°ÀÌ ÆÄ±«µÇ¾úÀ» ¶§, Protoss Á¾Á· Dark Archon ÀÇ Mind Control ¿¡ ÀÇÇØ ¼Ò¼Ó ÇÃ·¹ÀÌ¾î°¡ ¹Ù²ð ¶§ ¹ß»ýÇÕ´Ï´Ù
+		/// ìœ ë‹›(ê±´ë¬¼/ì§€ìƒìœ ë‹›/ê³µì¤‘ìœ ë‹›)ì˜ ì†Œì† í”Œë ˆì´ì–´ê°€ ë°”ë€” ë•Œ ë°œìƒí•˜ëŠ” ì´ë²¤íŠ¸ë¥¼ ì²˜ë¦¬í•©ë‹ˆë‹¤
+		/// Gas Geyserì— ì–´ë–¤ í”Œë ˆì´ì–´ê°€ Refinery ê±´ë¬¼ì„ ê±´ì„¤í–ˆì„ ë•Œ, Refinery ê±´ë¬¼ì´ íŒŒê´´ë˜ì—ˆì„ ë•Œ, Protoss ì¢…ì¡± Dark Archon ì˜ Mind Control ì— ì˜í•´ ì†Œì† í”Œë ˆì´ì–´ê°€ ë°”ë€” ë•Œ ë°œìƒí•©ë‹ˆë‹¤
 		void onUnitRenegade(BWAPI::Unit unit);
-		/// À¯´Ö(°Ç¹°/Áö»óÀ¯´Ö/°øÁßÀ¯´Ö)ÀÇ ÇÏ´ø ÀÏ (°Ç¹° °Ç¼³, ¾÷±×·¹ÀÌµå, Áö»óÀ¯´Ö ÈÆ·Ã µî)ÀÌ ³¡³µÀ» ¶§ ¹ß»ýÇÏ´Â ÀÌº¥Æ®¸¦ Ã³¸®ÇÕ´Ï´Ù
+		/// ìœ ë‹›(ê±´ë¬¼/ì§€ìƒìœ ë‹›/ê³µì¤‘ìœ ë‹›)ì˜ í•˜ë˜ ì¼ (ê±´ë¬¼ ê±´ì„¤, ì—…ê·¸ë ˆì´ë“œ, ì§€ìƒìœ ë‹› í›ˆë ¨ ë“±)ì´ ëë‚¬ì„ ë•Œ ë°œìƒí•˜ëŠ” ì´ë²¤íŠ¸ë¥¼ ì²˜ë¦¬í•©ë‹ˆë‹¤
 		void onUnitComplete(BWAPI::Unit unit);
 
-		/// À¯´Ö(°Ç¹°/Áö»óÀ¯´Ö/°øÁßÀ¯´Ö)ÀÌ Discover µÉ ¶§ ¹ß»ýÇÏ´Â ÀÌº¥Æ®¸¦ Ã³¸®ÇÕ´Ï´Ù
-		/// ¾Æ±º À¯´ÖÀÌ Create µÇ¾úÀ» ¶§ ¶óµç°¡, Àû±º À¯´ÖÀÌ Discover µÇ¾úÀ» ¶§ ¹ß»ýÇÕ´Ï´Ù
+		/// ìœ ë‹›(ê±´ë¬¼/ì§€ìƒìœ ë‹›/ê³µì¤‘ìœ ë‹›)ì´ Discover ë  ë•Œ ë°œìƒí•˜ëŠ” ì´ë²¤íŠ¸ë¥¼ ì²˜ë¦¬í•©ë‹ˆë‹¤
+		/// ì•„êµ° ìœ ë‹›ì´ Create ë˜ì—ˆì„ ë•Œ ë¼ë“ ê°€, ì êµ° ìœ ë‹›ì´ Discover ë˜ì—ˆì„ ë•Œ ë°œìƒí•©ë‹ˆë‹¤
 		void onUnitDiscover(BWAPI::Unit unit);
-		/// À¯´Ö(°Ç¹°/Áö»óÀ¯´Ö/°øÁßÀ¯´Ö)ÀÌ Evade µÉ ¶§ ¹ß»ýÇÏ´Â ÀÌº¥Æ®¸¦ Ã³¸®ÇÕ´Ï´Ù
-		/// À¯´ÖÀÌ Destroy µÉ ¶§ ¹ß»ýÇÕ´Ï´Ù
+		/// ìœ ë‹›(ê±´ë¬¼/ì§€ìƒìœ ë‹›/ê³µì¤‘ìœ ë‹›)ì´ Evade ë  ë•Œ ë°œìƒí•˜ëŠ” ì´ë²¤íŠ¸ë¥¼ ì²˜ë¦¬í•©ë‹ˆë‹¤
+		/// ìœ ë‹›ì´ Destroy ë  ë•Œ ë°œìƒí•©ë‹ˆë‹¤
 		void onUnitEvade(BWAPI::Unit unit);
 
-		/// À¯´Ö(°Ç¹°/Áö»óÀ¯´Ö/°øÁßÀ¯´Ö)ÀÌ Show µÉ ¶§ ¹ß»ýÇÏ´Â ÀÌº¥Æ®¸¦ Ã³¸®ÇÕ´Ï´Ù
-		/// ¾Æ±º À¯´ÖÀÌ Create µÇ¾úÀ» ¶§ ¶óµç°¡, Àû±º À¯´ÖÀÌ Discover µÇ¾úÀ» ¶§ ¹ß»ýÇÕ´Ï´Ù
+		/// ìœ ë‹›(ê±´ë¬¼/ì§€ìƒìœ ë‹›/ê³µì¤‘ìœ ë‹›)ì´ Show ë  ë•Œ ë°œìƒí•˜ëŠ” ì´ë²¤íŠ¸ë¥¼ ì²˜ë¦¬í•©ë‹ˆë‹¤
+		/// ì•„êµ° ìœ ë‹›ì´ Create ë˜ì—ˆì„ ë•Œ ë¼ë“ ê°€, ì êµ° ìœ ë‹›ì´ Discover ë˜ì—ˆì„ ë•Œ ë°œìƒí•©ë‹ˆë‹¤
 		void onUnitShow(BWAPI::Unit unit);
-		/// À¯´Ö(°Ç¹°/Áö»óÀ¯´Ö/°øÁßÀ¯´Ö)ÀÌ Hide µÉ ¶§ ¹ß»ýÇÏ´Â ÀÌº¥Æ®¸¦ Ã³¸®ÇÕ´Ï´Ù
-		/// º¸ÀÌ´ø À¯´ÖÀÌ Hide µÉ ¶§ ¹ß»ýÇÕ´Ï´Ù
+		/// ìœ ë‹›(ê±´ë¬¼/ì§€ìƒìœ ë‹›/ê³µì¤‘ìœ ë‹›)ì´ Hide ë  ë•Œ ë°œìƒí•˜ëŠ” ì´ë²¤íŠ¸ë¥¼ ì²˜ë¦¬í•©ë‹ˆë‹¤
+		/// ë³´ì´ë˜ ìœ ë‹›ì´ Hide ë  ë•Œ ë°œìƒí•©ë‹ˆë‹¤
 		void onUnitHide(BWAPI::Unit unit);
 	};
 

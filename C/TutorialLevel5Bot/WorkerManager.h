@@ -8,18 +8,18 @@
 
 namespace MyBot
 {
-	/// ÀÏ²Û À¯´ÖµéÀÇ »óÅÂ¸¦ °ü¸®ÇÏ°í ÄÁÆ®·ÑÇÏ´Â class
+	/// ì¼ê¾¼ ìœ ë‹›ë“¤ì˜ ìƒíƒœë¥¼ ê´€ë¦¬í•˜ê³  ì»¨íŠ¸ë¡¤í•˜ëŠ” class
 	class WorkerManager
 	{
-		/// °¢ Worker ¿¡ ´ëÇÑ WorkerJob »óÈ²À» ÀúÀåÇÏ´Â ÀÚ·á±¸Á¶ °´Ã¼
+		/// ê° Worker ì— ëŒ€í•œ WorkerJob ìƒí™©ì„ ì €ì¥í•˜ëŠ” ìë£Œêµ¬ì¡° ê°ì²´
 		WorkerData  workerData;
 
-		/// ÀÏ²Û Áß ÇÑ¸íÀ» Repair Worker ·Î Á¤ÇØ¼­, ÀüÃ¼ ¼ö¸® ´ë»óÀ» ÇÏ³ª¾¿ ¼ø¼­´ë·Î ¼ö¸®ÇÕ´Ï´Ù
+		/// ì¼ê¾¼ ì¤‘ í•œëª…ì„ Repair Worker ë¡œ ì •í•´ì„œ, ì „ì²´ ìˆ˜ë¦¬ ëŒ€ìƒì„ í•˜ë‚˜ì”© ìˆœì„œëŒ€ë¡œ ìˆ˜ë¦¬í•©ë‹ˆë‹¤
 		BWAPI::Unit currentRepairWorker;
 				
 		void        updateWorkerStatus();
 
-		/// Idle ÀÏ²ÛÀ» Mineral ÀÏ²ÛÀ¸·Î ¸¸µì´Ï´Ù
+		/// Idle ì¼ê¾¼ì„ Mineral ì¼ê¾¼ìœ¼ë¡œ ë§Œë“­ë‹ˆë‹¤
 		void        handleIdleWorkers();
 
 		void        handleGasWorkers();
@@ -32,81 +32,81 @@ namespace MyBot
 		WorkerManager();
 
 	public:
-		/// static singleton °´Ã¼¸¦ ¸®ÅÏÇÕ´Ï´Ù
+		/// static singleton ê°ì²´ë¥¼ ë¦¬í„´í•©ë‹ˆë‹¤
 		static WorkerManager &  Instance();
 
-		/// ÀÏ²Û À¯´ÖµéÀÇ »óÅÂ¸¦ ÀúÀåÇÏ´Â workerData °´Ã¼¸¦ ¾÷µ¥ÀÌÆ®ÇÏ°í, ÀÏ²Û À¯´ÖµéÀÌ ÀÚ¿ø Ã¤Ãë µî ÀÓ¹« ¼öÇàÀ» ÇÏµµ·Ï ÇÕ´Ï´Ù
+		/// ì¼ê¾¼ ìœ ë‹›ë“¤ì˜ ìƒíƒœë¥¼ ì €ì¥í•˜ëŠ” workerData ê°ì²´ë¥¼ ì—…ë°ì´íŠ¸í•˜ê³ , ì¼ê¾¼ ìœ ë‹›ë“¤ì´ ìì› ì±„ì·¨ ë“± ì„ë¬´ ìˆ˜í–‰ì„ í•˜ë„ë¡ í•©ë‹ˆë‹¤
 		void        update();
 
-		/// ÀÏ²Û À¯´ÖµéÀÇ »óÅÂ¸¦ ÀúÀåÇÏ´Â workerData °´Ã¼¸¦ ¾÷µ¥ÀÌÆ®ÇÕ´Ï´Ù
+		/// ì¼ê¾¼ ìœ ë‹›ë“¤ì˜ ìƒíƒœë¥¼ ì €ì¥í•˜ëŠ” workerData ê°ì²´ë¥¼ ì—…ë°ì´íŠ¸í•©ë‹ˆë‹¤
 		void        onUnitDestroy(BWAPI::Unit unit);
 
-		/// ÀÏ²Û À¯´ÖµéÀÇ »óÅÂ¸¦ ÀúÀåÇÏ´Â workerData °´Ã¼¸¦ ¾÷µ¥ÀÌÆ®ÇÕ´Ï´Ù
+		/// ì¼ê¾¼ ìœ ë‹›ë“¤ì˜ ìƒíƒœë¥¼ ì €ì¥í•˜ëŠ” workerData ê°ì²´ë¥¼ ì—…ë°ì´íŠ¸í•©ë‹ˆë‹¤
 		void        onUnitMorph(BWAPI::Unit unit);
 
-		/// ÀÏ²Û À¯´ÖµéÀÇ »óÅÂ¸¦ ÀúÀåÇÏ´Â workerData °´Ã¼¸¦ ¾÷µ¥ÀÌÆ®ÇÕ´Ï´Ù
+		/// ì¼ê¾¼ ìœ ë‹›ë“¤ì˜ ìƒíƒœë¥¼ ì €ì¥í•˜ëŠ” workerData ê°ì²´ë¥¼ ì—…ë°ì´íŠ¸í•©ë‹ˆë‹¤
 		void        onUnitShow(BWAPI::Unit unit);
 		
 		
-		/// ÀÏ²Û À¯´ÖµéÀÇ »óÅÂ¸¦ ÀúÀåÇÏ´Â workerData °´Ã¼¸¦ ¸®ÅÏÇÕ´Ï´Ù
+		/// ì¼ê¾¼ ìœ ë‹›ë“¤ì˜ ìƒíƒœë¥¼ ì €ì¥í•˜ëŠ” workerData ê°ì²´ë¥¼ ë¦¬í„´í•©ë‹ˆë‹¤
 		WorkerData  getWorkerData();
 
 
 
-		/// ÇØ´ç ÀÏ²Û À¯´Ö unit ÀÇ WorkerJob °ª¸¦ Idle ·Î º¯°æÇÕ´Ï´Ù
+		/// í•´ë‹¹ ì¼ê¾¼ ìœ ë‹› unit ì˜ WorkerJob ê°’ë¥¼ Idle ë¡œ ë³€ê²½í•©ë‹ˆë‹¤
 		void        setIdleWorker(BWAPI::Unit unit);
 		
-		/// idle »óÅÂÀÎ ÀÏ²Û À¯´Ö unit ÀÇ ¼ıÀÚ¸¦ ¸®ÅÏÇÕ´Ï´Ù
+		/// idle ìƒíƒœì¸ ì¼ê¾¼ ìœ ë‹› unit ì˜ ìˆ«ìë¥¼ ë¦¬í„´í•©ë‹ˆë‹¤
 		int         getNumIdleWorkers();
 
 
 
-		/// ÇØ´ç ÀÏ²Û À¯´Ö unit ÀÇ WorkerJob °ª¸¦ Mineral ·Î º¯°æÇÕ´Ï´Ù
+		/// í•´ë‹¹ ì¼ê¾¼ ìœ ë‹› unit ì˜ WorkerJob ê°’ë¥¼ Mineral ë¡œ ë³€ê²½í•©ë‹ˆë‹¤
 		void        setMineralWorker(BWAPI::Unit unit);
 		int         getNumMineralWorkers();
 		bool        isMineralWorker(BWAPI::Unit worker);
 
-		/// target À¸·ÎºÎÅÍ °¡Àå °¡±î¿î Mineral ÀÏ²Û À¯´ÖÀ» ¸®ÅÏÇÕ´Ï´Ù
+		/// target ìœ¼ë¡œë¶€í„° ê°€ì¥ ê°€ê¹Œìš´ Mineral ì¼ê¾¼ ìœ ë‹›ì„ ë¦¬í„´í•©ë‹ˆë‹¤
 		BWAPI::Unit getClosestMineralWorkerTo(BWAPI::Position target);
 
-		/// ÇØ´ç ÀÏ²Û À¯´Ö unit À¸·ÎºÎÅÍ °¡Àå °¡±î¿î ResourceDepot °Ç¹°À» ¸®ÅÏÇÕ´Ï´Ù
+		/// í•´ë‹¹ ì¼ê¾¼ ìœ ë‹› unit ìœ¼ë¡œë¶€í„° ê°€ì¥ ê°€ê¹Œìš´ ResourceDepot ê±´ë¬¼ì„ ë¦¬í„´í•©ë‹ˆë‹¤
 		BWAPI::Unit getClosestResourceDepotFromWorker(BWAPI::Unit worker);
 
 
-		/// Mineral ÀÏ²Û À¯´Öµé Áß¿¡¼­ Gas ÀÓ¹«¸¦ ¼öÇàÇÒ ÀÏ²Û À¯´ÖÀ» Á¤ÇØ¼­ ¸®ÅÏÇÕ´Ï´Ù
-		/// Idle ÀÏ²ÛÀº Build, Repair, Scout µî ´Ù¸¥ ÀÓ¹«¿¡ ¸ÕÀú ÅõÀÔµÇ¾î¾ß ÇÏ±â ¶§¹®¿¡ Mineral ÀÏ²Û Áß¿¡¼­¸¸ Á¤ÇÕ´Ï´Ù
+		/// Mineral ì¼ê¾¼ ìœ ë‹›ë“¤ ì¤‘ì—ì„œ Gas ì„ë¬´ë¥¼ ìˆ˜í–‰í•  ì¼ê¾¼ ìœ ë‹›ì„ ì •í•´ì„œ ë¦¬í„´í•©ë‹ˆë‹¤
+		/// Idle ì¼ê¾¼ì€ Build, Repair, Scout ë“± ë‹¤ë¥¸ ì„ë¬´ì— ë¨¼ì € íˆ¬ì…ë˜ì–´ì•¼ í•˜ê¸° ë•Œë¬¸ì— Mineral ì¼ê¾¼ ì¤‘ì—ì„œë§Œ ì •í•©ë‹ˆë‹¤
 		BWAPI::Unit chooseGasWorkerFromMineralWorkers(BWAPI::Unit refinery);
 		int         getNumGasWorkers();
 
-		/// Mineral È¤Àº Idle ÀÏ²Û À¯´Öµé Áß¿¡¼­ Scout ÀÓ¹«¸¦ ¼öÇàÇÒ ÀÏ²Û À¯´ÖÀ» Á¤ÇØ¼­ ¸®ÅÏÇÕ´Ï´Ù
+		/// Mineral í˜¹ì€ Idle ì¼ê¾¼ ìœ ë‹›ë“¤ ì¤‘ì—ì„œ Scout ì„ë¬´ë¥¼ ìˆ˜í–‰í•  ì¼ê¾¼ ìœ ë‹›ì„ ì •í•´ì„œ ë¦¬í„´í•©ë‹ˆë‹¤
 		BWAPI::Unit getScoutWorker();
 		void        setScoutWorker(BWAPI::Unit worker);
 		bool        isScoutWorker(BWAPI::Unit worker);
 
-		/// buildingPosition ¿¡¼­ °¡Àå °¡±î¿î Move È¤Àº Idle È¤Àº Mineral ÀÏ²Û À¯´Öµé Áß¿¡¼­ Construction ÀÓ¹«¸¦ ¼öÇàÇÒ ÀÏ²Û À¯´ÖÀ» Á¤ÇØ¼­ ¸®ÅÏÇÕ´Ï´Ù
-		/// Move / Idle Worker Áß¿¡¼­ ¸ÕÀú ¼±Á¤ÇÏ°í, ¾øÀ¸¸é Mineral Worker Áß¿¡¼­ ¼±Á¤ÇÕ´Ï´Ù
-		/// ÀÏ²Û À¯´ÖÀÌ 2°³ ÀÌ»óÀÌ¸é, avoidWorkerID ¿¡ ÇØ´çÇÏ´Â worker ´Â ¼±Á¤ÇÏÁö ¾Êµµ·Ï ÇÕ´Ï´Ù
+		/// buildingPosition ì—ì„œ ê°€ì¥ ê°€ê¹Œìš´ Move í˜¹ì€ Idle í˜¹ì€ Mineral ì¼ê¾¼ ìœ ë‹›ë“¤ ì¤‘ì—ì„œ Construction ì„ë¬´ë¥¼ ìˆ˜í–‰í•  ì¼ê¾¼ ìœ ë‹›ì„ ì •í•´ì„œ ë¦¬í„´í•©ë‹ˆë‹¤
+		/// Move / Idle Worker ì¤‘ì—ì„œ ë¨¼ì € ì„ ì •í•˜ê³ , ì—†ìœ¼ë©´ Mineral Worker ì¤‘ì—ì„œ ì„ ì •í•©ë‹ˆë‹¤
+		/// ì¼ê¾¼ ìœ ë‹›ì´ 2ê°œ ì´ìƒì´ë©´, avoidWorkerID ì— í•´ë‹¹í•˜ëŠ” worker ëŠ” ì„ ì •í•˜ì§€ ì•Šë„ë¡ í•©ë‹ˆë‹¤
 		/// if setJobAsConstructionWorker is true (default), it will be flagged as a builder unit
 		/// if setJobAsConstructionWorker is false, we just want to see which worker will build a building
 		BWAPI::Unit chooseConstuctionWorkerClosestTo(BWAPI::UnitType buildingType, BWAPI::TilePosition buildingPosition, bool setJobAsConstructionWorker = true, int avoidWorkerID = 0);
 		void        setConstructionWorker(BWAPI::Unit worker, BWAPI::UnitType buildingType);
 		bool        isConstructionWorker(BWAPI::Unit worker);
 
-		/// position ¿¡¼­ °¡Àå °¡±î¿î Mineral È¤Àº Idle È¤Àº Move ÀÏ²Û À¯´Öµé Áß¿¡¼­ Repair ÀÓ¹«¸¦ ¼öÇàÇÒ ÀÏ²Û À¯´ÖÀ» Á¤ÇØ¼­ ¸®ÅÏÇÕ´Ï´Ù
+		/// position ì—ì„œ ê°€ì¥ ê°€ê¹Œìš´ Mineral í˜¹ì€ Idle í˜¹ì€ Move ì¼ê¾¼ ìœ ë‹›ë“¤ ì¤‘ì—ì„œ Repair ì„ë¬´ë¥¼ ìˆ˜í–‰í•  ì¼ê¾¼ ìœ ë‹›ì„ ì •í•´ì„œ ë¦¬í„´í•©ë‹ˆë‹¤
 		BWAPI::Unit chooseRepairWorkerClosestTo(BWAPI::Position p, int maxRange = 100000000);
 		void        setRepairWorker(BWAPI::Unit worker, BWAPI::Unit unitToRepair);
 		void        stopRepairing(BWAPI::Unit worker);
 	
-		/// position ¿¡¼­ °¡Àå °¡±î¿î Mineral È¤Àº Idle ÀÏ²Û À¯´Öµé Áß¿¡¼­ Move ÀÓ¹«¸¦ ¼öÇàÇÒ ÀÏ²Û À¯´ÖÀ» Á¤ÇØ¼­ ¸®ÅÏÇÕ´Ï´Ù
+		/// position ì—ì„œ ê°€ì¥ ê°€ê¹Œìš´ Mineral í˜¹ì€ Idle ì¼ê¾¼ ìœ ë‹›ë“¤ ì¤‘ì—ì„œ Move ì„ë¬´ë¥¼ ìˆ˜í–‰í•  ì¼ê¾¼ ìœ ë‹›ì„ ì •í•´ì„œ ë¦¬í„´í•©ë‹ˆë‹¤
 		void        setMoveWorker(BWAPI::Unit worker, int m, int g, BWAPI::Position p);
 		BWAPI::Unit chooseMoveWorkerClosestTo(BWAPI::Position p);
 
-		/// ÇØ´ç ÀÏ²Û À¯´ÖÀ¸·ÎºÎÅÍ °¡Àå °¡±î¿î Àû±º À¯´ÖÀ» ¸®ÅÏÇÕ´Ï´Ù
+		/// í•´ë‹¹ ì¼ê¾¼ ìœ ë‹›ìœ¼ë¡œë¶€í„° ê°€ì¥ ê°€ê¹Œìš´ ì êµ° ìœ ë‹›ì„ ë¦¬í„´í•©ë‹ˆë‹¤
 		BWAPI::Unit getClosestEnemyUnitFromWorker(BWAPI::Unit worker);
 
-		/// ÇØ´ç ÀÏ²Û À¯´Ö¿¡°Ô Combat ÀÓ¹«¸¦ ºÎ¿©ÇÕ´Ï´Ù
+		/// í•´ë‹¹ ì¼ê¾¼ ìœ ë‹›ì—ê²Œ Combat ì„ë¬´ë¥¼ ë¶€ì—¬í•©ë‹ˆë‹¤
 		void        setCombatWorker(BWAPI::Unit worker);
-		/// ¸ğµç Combat ÀÏ²Û À¯´Ö¿¡ ´ëÇØ ÀÓ¹«¸¦ ÇØÁ¦ÇÕ´Ï´Ù
+		/// ëª¨ë“  Combat ì¼ê¾¼ ìœ ë‹›ì— ëŒ€í•´ ì„ë¬´ë¥¼ í•´ì œí•©ë‹ˆë‹¤
 		void        stopCombat();
 
 	};

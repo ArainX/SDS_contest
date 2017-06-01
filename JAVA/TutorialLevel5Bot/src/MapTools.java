@@ -31,7 +31,7 @@ public class MapTools {
 	
 	private static MapTools instance = new MapTools();
 	
-	/// static singleton °´Ã¼¸¦ ¸®ÅÏÇÕ´Ï´Ù
+	/// static singleton ê°ì²´ë¥¼ ë¦¬í„´í•©ë‹ˆë‹¤
 	public static MapTools Instance() {
 		return instance;
 	}
@@ -113,7 +113,7 @@ public class MapTools {
 		}
 	}
 
-	/// from ¿¡¼­ to ±îÁö Áö»óÀ¯´ÖÀÌ ÀÌµ¿ÇÒ °æ¿ìÀÇ °Å¸® (walk distance)
+	/// from ì—ì„œ to ê¹Œì§€ ì§€ìƒìœ ë‹›ì´ ì´ë™í•  ê²½ìš°ì˜ ê±°ë¦¬ (walk distance)
 	private int getGroundDistance(Position origin,Position destination)
 	{
 		// if we have too many maps, reset our stored maps in case we run out of memory
@@ -233,7 +233,7 @@ public class MapTools {
 		}
 	}
 
-	/// Position ¿¡¼­ °¡±î¿î ¼ø¼­´ë·Î Å¸ÀÏÀÇ ¸ñ·ÏÀ» ¹İÈ¯ÇÑ´Ù
+	/// Position ì—ì„œ ê°€ê¹Œìš´ ìˆœì„œëŒ€ë¡œ íƒ€ì¼ì˜ ëª©ë¡ì„ ë°˜í™˜í•œë‹¤
 	public final Vector<TilePosition> getClosestTilesTo(Position pos)
 	{
 		// make sure the distance map is calculated with pos as a destination
@@ -247,7 +247,7 @@ public class MapTools {
 		return new TilePosition(index % cols,index / cols);
 	}
 	
-	// »ç¿ëÇÏÁö ¾Ê´Â API. Áöµµ¸¦ ÆÄ½ÌÇØ¼­ ÆÄÀÏ·Î ÀúÀåÇØµĞ´Ù
+	// ì‚¬ìš©í•˜ì§€ ì•ŠëŠ” API. ì§€ë„ë¥¼ íŒŒì‹±í•´ì„œ íŒŒì¼ë¡œ ì €ì¥í•´ë‘”ë‹¤
 	/*public void parseMap()
 	{
 		//MyBotModule.game.printf("Parsing Map Information");

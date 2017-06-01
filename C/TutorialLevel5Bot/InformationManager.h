@@ -5,40 +5,44 @@
 
 namespace MyBot
 {
-	/// °ÔÀÓ »óÈ²Á¤º¸ Áß ÀÏºÎ¸¦ ÀÚÃ¼ ÀÚ·á±¸Á¶ ¹× º¯¼öµé¿¡ ÀúÀåÇÏ°í ¾÷µ¥ÀÌÆ®ÇÏ´Â class
-	/// ÇöÀç °ÔÀÓ »óÈ²Á¤º¸´Â BWAPI::Broodwar ¸¦ Á¶È¸ÇÏ¿© ÆÄ¾ÇÇÒ ¼ö ÀÖÁö¸¸, °ú°Å °ÔÀÓ »óÈ²Á¤º¸´Â BWAPI::Broodwar ¸¦ ÅëÇØ Á¶È¸°¡ ºÒ°¡´ÉÇÏ±â ¶§¹®¿¡ InformationManager¿¡¼­ º°µµ °ü¸®ÇÏµµ·Ï ÇÕ´Ï´Ù
-	/// ¶ÇÇÑ, BWAPI::Broodwar ³ª BWTA µîÀ» ÅëÇØ Á¶È¸ÇÒ ¼ö ÀÖ´Â Á¤º¸ÀÌÁö¸¸ ÀüÃ³¸® / º°µµ °ü¸®ÇÏ´Â °ÍÀÌ À¯¿ëÇÑ °Íµµ InformationManager¿¡¼­ º°µµ °ü¸®ÇÏµµ·Ï ÇÕ´Ï´Ù
+	/// ê²Œì„ ìƒí™©ì •ë³´ ì¤‘ ì¼ë¶€ë¥¼ ìì²´ ìë£Œêµ¬ì¡° ë° ë³€ìˆ˜ë“¤ì— ì €ì¥í•˜ê³  ì—…ë°ì´íŠ¸í•˜ëŠ” class
+	/// í˜„ì¬ ê²Œì„ ìƒí™©ì •ë³´ëŠ” BWAPI::Broodwar ë¥¼ ì¡°íšŒí•˜ì—¬ íŒŒì•…í•  ìˆ˜ ìˆì§€ë§Œ, ê³¼ê±° ê²Œì„ ìƒí™©ì •ë³´ëŠ” BWAPI::Broodwar ë¥¼ í†µí•´ ì¡°íšŒê°€ ë¶ˆê°€ëŠ¥í•˜ê¸° ë•Œë¬¸ì— InformationManagerì—ì„œ ë³„ë„ ê´€ë¦¬í•˜ë„ë¡ í•©ë‹ˆë‹¤
+	/// ë˜í•œ, BWAPI::Broodwar ë‚˜ BWTA ë“±ì„ í†µí•´ ì¡°íšŒí•  ìˆ˜ ìˆëŠ” ì •ë³´ì´ì§€ë§Œ ì „ì²˜ë¦¬ / ë³„ë„ ê´€ë¦¬í•˜ëŠ” ê²ƒì´ ìœ ìš©í•œ ê²ƒë„ InformationManagerì—ì„œ ë³„ë„ ê´€ë¦¬í•˜ë„ë¡ í•©ë‹ˆë‹¤
 	class InformationManager 
 	{
 		InformationManager();
 
-		/// Player - UnitData(°¢ Unit °ú ±× UnitÀÇ UnitInfo ¸¦ Map ÇüÅÂ·Î ÀúÀåÇÏ´Â ÀÚ·á±¸Á¶) ¸¦ ÀúÀåÇÏ´Â ÀÚ·á±¸Á¶ °´Ã¼
+		/// Player - UnitData(ê° Unit ê³¼ ê·¸ Unitì˜ UnitInfo ë¥¼ Map í˜•íƒœë¡œ ì €ì¥í•˜ëŠ” ìë£Œêµ¬ì¡°) ë¥¼ ì €ì¥í•˜ëŠ” ìë£Œêµ¬ì¡° ê°ì²´
 		std::map<BWAPI::Player, UnitData>							_unitData;
 
-		/// ÇØ´ç PlayerÀÇ StartLocation
-		/// °Ç¹° ¿©ºÎ¸¦ ±âÁØÀ¸·Î ÆÄ¾ÇÇÏ±â ¶§¹®¿¡ ºÎÀûÀıÇÏ°Ô ÆÇ´ÜÇÒ¼öµµ ÀÖ½À´Ï´Ù 
+		/// í•´ë‹¹ Playerì˜ ì£¼ìš” ê±´ë¬¼ë“¤ì´ ìˆëŠ” BaseLocation. 
+		/// ì²˜ìŒì—ëŠ” StartLocation ìœ¼ë¡œ ì§€ì •. mainBaseLocation ë‚´ ëª¨ë“  ê±´ë¬¼ì´ íŒŒê´´ë  ê²½ìš° ì¬ì§€ì •
+		/// ê±´ë¬¼ ì—¬ë¶€ë¥¼ ê¸°ì¤€ìœ¼ë¡œ íŒŒì•…í•˜ê¸° ë•Œë¬¸ì— ë¶€ì ì ˆí•˜ê²Œ íŒë‹¨í• ìˆ˜ë„ ìˆìŠµë‹ˆë‹¤ 
 		std::map<BWAPI::Player, BWTA::BaseLocation * >				_mainBaseLocations;
 
-		/// ÇØ´ç Player°¡ Á¡·ÉÇÏ°í ÀÖ´Â Region ÀÌ ÀÖ´Â BaseLocation
-		/// °Ç¹° ¿©ºÎ¸¦ ±âÁØÀ¸·Î ÆÄ¾ÇÇÏ±â ¶§¹®¿¡ ºÎÀûÀıÇÏ°Ô ÆÇ´ÜÇÒ¼öµµ ÀÖ½À´Ï´Ù 
+		/// í•´ë‹¹ Playerì˜ mainBaseLocation ì´ ë³€ê²½ë˜ì—ˆëŠ”ê°€ (firstChokePoint, secondChokePoint, firstExpansionLocation ë¥¼ ì¬ì§€ì • í–ˆëŠ”ê°€)
+		std::map<BWAPI::Player, bool>								_mainBaseLocationChanged;
+
+		/// í•´ë‹¹ Playerê°€ ì ë ¹í•˜ê³  ìˆëŠ” Region ì´ ìˆëŠ” BaseLocation
+		/// ê±´ë¬¼ ì—¬ë¶€ë¥¼ ê¸°ì¤€ìœ¼ë¡œ íŒŒì•…í•˜ê¸° ë•Œë¬¸ì— ë¶€ì ì ˆí•˜ê²Œ íŒë‹¨í• ìˆ˜ë„ ìˆìŠµë‹ˆë‹¤ 
 		std::map<BWAPI::Player, std::list<BWTA::BaseLocation *> >	_occupiedBaseLocations;
 
-		/// ÇØ´ç Player°¡ Á¡·ÉÇÏ°í ÀÖ´Â Region
-		/// °Ç¹° ¿©ºÎ¸¦ ±âÁØÀ¸·Î ÆÄ¾ÇÇÏ±â ¶§¹®¿¡ ºÎÀûÀıÇÏ°Ô ÆÇ´ÜÇÒ¼öµµ ÀÖ½À´Ï´Ù 
+		/// í•´ë‹¹ Playerê°€ ì ë ¹í•˜ê³  ìˆëŠ” Region
+		/// ê±´ë¬¼ ì—¬ë¶€ë¥¼ ê¸°ì¤€ìœ¼ë¡œ íŒŒì•…í•˜ê¸° ë•Œë¬¸ì— ë¶€ì ì ˆí•˜ê²Œ íŒë‹¨í• ìˆ˜ë„ ìˆìŠµë‹ˆë‹¤ 
 		std::map<BWAPI::Player, std::set<BWTA::Region *> >			_occupiedRegions;
 
-		/// ÇØ´ç PlayerÀÇ mainBaseLocation ¿¡¼­ °¡Àå °¡±î¿î ChokePoint
+		/// í•´ë‹¹ Playerì˜ mainBaseLocation ì—ì„œ ê°€ì¥ ê°€ê¹Œìš´ ChokePoint
 		std::map<BWAPI::Player, BWTA::Chokepoint *>					_firstChokePoint;
-		/// ÇØ´ç PlayerÀÇ mainBaseLocation ¿¡¼­ °¡Àå °¡±î¿î BaseLocation
+		/// í•´ë‹¹ Playerì˜ mainBaseLocation ì—ì„œ ê°€ì¥ ê°€ê¹Œìš´ BaseLocation
 		std::map<BWAPI::Player, BWTA::BaseLocation *>				_firstExpansionLocation;
-		/// ÇØ´ç PlayerÀÇ mainBaseLocation ¿¡¼­ µÎ¹øÂ°·Î °¡±î¿î (firstChokePoint°¡ ¾Æ´Ñ) ChokePoint
-		/// °ÔÀÓ ¸Ê¿¡ µû¶ó¼­, secondChokePoint ´Â ÀÏ¹İ »ó½Ä°ú ´Ù¸¥ ÁöÁ¡ÀÌ µÉ ¼öµµ ÀÖ½À´Ï´Ù
+		/// í•´ë‹¹ Playerì˜ mainBaseLocation ì—ì„œ ë‘ë²ˆì§¸ë¡œ ê°€ê¹Œìš´ (firstChokePointê°€ ì•„ë‹Œ) ChokePoint
+		/// ê²Œì„ ë§µì— ë”°ë¼ì„œ, secondChokePoint ëŠ” ì¼ë°˜ ìƒì‹ê³¼ ë‹¤ë¥¸ ì§€ì ì´ ë  ìˆ˜ë„ ìˆìŠµë‹ˆë‹¤
 		std::map<BWAPI::Player, BWTA::Chokepoint *>					_secondChokePoint;
 	
-		/// ÀüÃ¼ unit ÀÇ Á¤º¸¸¦ ¾÷µ¥ÀÌÆ® ÇÕ´Ï´Ù (UnitType, lastPosition, HitPoint µî)
+		/// ì „ì²´ unit ì˜ ì •ë³´ë¥¼ ì—…ë°ì´íŠ¸ í•©ë‹ˆë‹¤ (UnitType, lastPosition, HitPoint ë“±)
 		void                    updateUnitsInfo();
 
-		/// ÇØ´ç unit ÀÇ Á¤º¸¸¦ ¾÷µ¥ÀÌÆ® ÇÕ´Ï´Ù (UnitType, lastPosition, HitPoint µî)
+		/// í•´ë‹¹ unit ì˜ ì •ë³´ë¥¼ ì—…ë°ì´íŠ¸ í•©ë‹ˆë‹¤ (UnitType, lastPosition, HitPoint ë“±)
 		void                    updateUnitInfo(BWAPI::Unit unit);
 		void                    updateBaseLocationInfo();
 		void					updateChokePointAndExpansionLocation();
@@ -46,114 +50,110 @@ namespace MyBot
 
 	public:
 
-		/// static singleton °´Ã¼¸¦ ¸®ÅÏÇÕ´Ï´Ù
+		/// static singleton ê°ì²´ë¥¼ ë¦¬í„´í•©ë‹ˆë‹¤
 		static InformationManager & Instance();
 			
-		BWAPI::Player       selfPlayer;		///< ¾Æ±º Player		
-		BWAPI::Race			selfRace;		///< ¾Æ±º PlayerÀÇ Á¾Á·		
-		BWAPI::Player       enemyPlayer;	///< Àû±º Player		
-		BWAPI::Race			enemyRace;		///< Àû±º PlayerÀÇ Á¾Á·  
+		BWAPI::Player       selfPlayer;		///< ì•„êµ° Player		
+		BWAPI::Race			selfRace;		///< ì•„êµ° Playerì˜ ì¢…ì¡±		
+		BWAPI::Player       enemyPlayer;	///< ì êµ° Player		
+		BWAPI::Race			enemyRace;		///< ì êµ° Playerì˜ ì¢…ì¡±  
 		
-		/// Unit ¹× BaseLocation, ChokePoint µî¿¡ ´ëÇÑ Á¤º¸¸¦ ¾÷µ¥ÀÌÆ®ÇÕ´Ï´Ù
+		/// Unit ë° BaseLocation, ChokePoint ë“±ì— ëŒ€í•œ ì •ë³´ë¥¼ ì—…ë°ì´íŠ¸í•©ë‹ˆë‹¤
 		void                    update();
 
-		/// Unit ¿¡ ´ëÇÑ Á¤º¸¸¦ ¾÷µ¥ÀÌÆ®ÇÕ´Ï´Ù
+		/// Unit ì— ëŒ€í•œ ì •ë³´ë¥¼ ì—…ë°ì´íŠ¸í•©ë‹ˆë‹¤
 		void					onUnitShow(BWAPI::Unit unit)        { updateUnitInfo(unit); }
-		/// Unit ¿¡ ´ëÇÑ Á¤º¸¸¦ ¾÷µ¥ÀÌÆ®ÇÕ´Ï´Ù
+		/// Unit ì— ëŒ€í•œ ì •ë³´ë¥¼ ì—…ë°ì´íŠ¸í•©ë‹ˆë‹¤
 		void					onUnitHide(BWAPI::Unit unit)        { updateUnitInfo(unit); }
-		/// Unit ¿¡ ´ëÇÑ Á¤º¸¸¦ ¾÷µ¥ÀÌÆ®ÇÕ´Ï´Ù
+		/// Unit ì— ëŒ€í•œ ì •ë³´ë¥¼ ì—…ë°ì´íŠ¸í•©ë‹ˆë‹¤
 		void					onUnitCreate(BWAPI::Unit unit)		{ updateUnitInfo(unit); }
-		/// Unit ¿¡ ´ëÇÑ Á¤º¸¸¦ ¾÷µ¥ÀÌÆ®ÇÕ´Ï´Ù
+		/// Unit ì— ëŒ€í•œ ì •ë³´ë¥¼ ì—…ë°ì´íŠ¸í•©ë‹ˆë‹¤
 		void					onUnitComplete(BWAPI::Unit unit)    { updateUnitInfo(unit); }
-		/// Unit ¿¡ ´ëÇÑ Á¤º¸¸¦ ¾÷µ¥ÀÌÆ®ÇÕ´Ï´Ù
+		/// Unit ì— ëŒ€í•œ ì •ë³´ë¥¼ ì—…ë°ì´íŠ¸í•©ë‹ˆë‹¤
 		void					onUnitMorph(BWAPI::Unit unit)       { updateUnitInfo(unit); }
-		/// Unit ¿¡ ´ëÇÑ Á¤º¸¸¦ ¾÷µ¥ÀÌÆ®ÇÕ´Ï´Ù
+		/// Unit ì— ëŒ€í•œ ì •ë³´ë¥¼ ì—…ë°ì´íŠ¸í•©ë‹ˆë‹¤
 		void					onUnitRenegade(BWAPI::Unit unit)    { updateUnitInfo(unit); }
-		/// Unit ¿¡ ´ëÇÑ Á¤º¸¸¦ ¾÷µ¥ÀÌÆ®ÇÕ´Ï´Ù 
-		/// À¯´ÖÀÌ ÆÄ±«/»ç¸ÁÇÑ °æ¿ì, ÇØ´ç À¯´Ö Á¤º¸¸¦ »èÁ¦ÇÕ´Ï´Ù
+		/// Unit ì— ëŒ€í•œ ì •ë³´ë¥¼ ì—…ë°ì´íŠ¸í•©ë‹ˆë‹¤ 
+		/// ìœ ë‹›ì´ íŒŒê´´/ì‚¬ë§í•œ ê²½ìš°, í•´ë‹¹ ìœ ë‹› ì •ë³´ë¥¼ ì‚­ì œí•©ë‹ˆë‹¤
 		void					onUnitDestroy(BWAPI::Unit unit);
 			
 		
-		/// ÇØ´ç BaseLocation ¿¡ playerÀÇ °Ç¹°ÀÌ Á¸ÀçÇÏ´ÂÁö ¸®ÅÏÇÕ´Ï´Ù
-		/// @param baseLocation ´ë»ó BaseLocation
-		/// @param player ¾Æ±º / Àû±º
-		/// @param radius TilePosition ´ÜÀ§
+		/// í•´ë‹¹ BaseLocation ì— playerì˜ ê±´ë¬¼ì´ ì¡´ì¬í•˜ëŠ”ì§€ ë¦¬í„´í•©ë‹ˆë‹¤
+		/// @param baseLocation ëŒ€ìƒ BaseLocation
+		/// @param player ì•„êµ° / ì êµ°
+		/// @param radius TilePosition ë‹¨ìœ„
 		bool					hasBuildingAroundBaseLocation(BWTA::BaseLocation * baseLocation, BWAPI::Player player, int radius = 10);
 		
-		/// ÇØ´ç Region ¿¡ Àû±º °Ç¹°ÀÌ Á¸ÀçÇÏ´ÂÁö ¸®ÅÏÇÕ´Ï´Ù
-		bool					existsEnemyBuildingInRegion(BWTA::Region * region);
-		
-		/// ÇØ´ç Region ¿¡ ¾Æ±º °Ç¹°ÀÌ Á¸ÀçÇÏ´ÂÁö ¸®ÅÏÇÕ´Ï´Ù
-		bool					existsMyBuildingInRegion(BWTA::Region * region);
-		
+		/// í•´ë‹¹ Region ì— í•´ë‹¹ Playerì˜ ê±´ë¬¼ì´ ì¡´ì¬í•˜ëŠ”ì§€ ë¦¬í„´í•©ë‹ˆë‹¤
+		bool					existsPlayerBuildingInRegion(BWTA::Region * region, BWAPI::Player player);		
 
-		/// ÇØ´ç Player (¾Æ±º or Àû±º) °¡ °Ç¹°À» °Ç¼³ÇØ¼­ Á¡·ÉÇÑ Region ¸ñ·ÏÀ» ¸®ÅÏÇÕ´Ï´Ù
+		/// í•´ë‹¹ Player (ì•„êµ° or ì êµ°) ê°€ ê±´ë¬¼ì„ ê±´ì„¤í•´ì„œ ì ë ¹í•œ Region ëª©ë¡ì„ ë¦¬í„´í•©ë‹ˆë‹¤
 		std::set<BWTA::Region *> &  getOccupiedRegions(BWAPI::Player player);
 
-		/// ÇØ´ç Player (¾Æ±º or Àû±º) ÀÇ °Ç¹°À» °Ç¼³ÇØ¼­ Á¡·ÉÇÑ BaseLocation ¸ñ·ÏÀ» ¸®ÅÏÇÕ´Ï´Ù		 
+		/// í•´ë‹¹ Player (ì•„êµ° or ì êµ°) ì˜ ê±´ë¬¼ì„ ê±´ì„¤í•´ì„œ ì ë ¹í•œ BaseLocation ëª©ë¡ì„ ë¦¬í„´í•©ë‹ˆë‹¤		 
 		std::list<BWTA::BaseLocation *> & getOccupiedBaseLocations(BWAPI::Player player);
 
-		/// ÇØ´ç Player (¾Æ±º or Àû±º) ÀÇ Main BaseLocation À» ¸®ÅÏÇÕ´Ï´Ù		 
+		/// í•´ë‹¹ Player (ì•„êµ° or ì êµ°) ì˜ Main BaseLocation ì„ ë¦¬í„´í•©ë‹ˆë‹¤		 
 		BWTA::BaseLocation *	getMainBaseLocation(BWAPI::Player player);
 
-		/// ÇØ´ç Player (¾Æ±º or Àû±º) ÀÇ Main BaseLocation ¿¡¼­ °¡Àå °¡±î¿î ChokePoint ¸¦ ¸®ÅÏÇÕ´Ï´Ù		 
+		/// í•´ë‹¹ Player (ì•„êµ° or ì êµ°) ì˜ Main BaseLocation ì—ì„œ ê°€ì¥ ê°€ê¹Œìš´ ChokePoint ë¥¼ ë¦¬í„´í•©ë‹ˆë‹¤		 
 		BWTA::Chokepoint *      getFirstChokePoint(BWAPI::Player player);
 
-		/// ÇØ´ç Player (¾Æ±º or Àû±º) ÀÇ Main BaseLocation ¿¡¼­ °¡Àå °¡±î¿î Expansion BaseLocation ¸¦ ¸®ÅÏÇÕ´Ï´Ù		 
+		/// í•´ë‹¹ Player (ì•„êµ° or ì êµ°) ì˜ Main BaseLocation ì—ì„œ ê°€ì¥ ê°€ê¹Œìš´ Expansion BaseLocation ë¥¼ ë¦¬í„´í•©ë‹ˆë‹¤		 
 		BWTA::BaseLocation *    getFirstExpansionLocation(BWAPI::Player player);
 
-		/// ÇØ´ç Player (¾Æ±º or Àû±º) ÀÇ Main BaseLocation ¿¡¼­ µÎ¹øÂ°·Î °¡±î¿î ChokePoint ¸¦ ¸®ÅÏÇÕ´Ï´Ù		 
-		/// °ÔÀÓ ¸Ê¿¡ µû¶ó¼­, secondChokePoint ´Â ÀÏ¹İ »ó½Ä°ú ´Ù¸¥ ÁöÁ¡ÀÌ µÉ ¼öµµ ÀÖ½À´Ï´Ù
+		/// í•´ë‹¹ Player (ì•„êµ° or ì êµ°) ì˜ Main BaseLocation ì—ì„œ ë‘ë²ˆì§¸ë¡œ ê°€ê¹Œìš´ ChokePoint ë¥¼ ë¦¬í„´í•©ë‹ˆë‹¤		 
+		/// ê²Œì„ ë§µì— ë”°ë¼ì„œ, secondChokePoint ëŠ” ì¼ë°˜ ìƒì‹ê³¼ ë‹¤ë¥¸ ì§€ì ì´ ë  ìˆ˜ë„ ìˆìŠµë‹ˆë‹¤
 		BWTA::Chokepoint *      getSecondChokePoint(BWAPI::Player player);
 
 
 
-		/// ÇØ´ç Player (¾Æ±º or Àû±º) ÀÇ ¸ğµç À¯´Ö ¸ñ·Ï (°¡Àå ÃÖ±Ù°ª) UnitAndUnitInfoMap À» ¸®ÅÏÇÕ´Ï´Ù		 
-		/// ÆÄ¾ÇµÈ Á¤º¸¸¸À» ¸®ÅÏÇÏ±â ¶§¹®¿¡ Àû±ºÀÇ Á¤º¸´Â Æ²¸° °ªÀÏ ¼ö ÀÖ½À´Ï´Ù
-		const UnitAndUnitInfoMap &           getUnitInfo(BWAPI::Player player) const;
-		/// ÇØ´ç Player (¾Æ±º or Àû±º) ÀÇ ¸ğµç À¯´Ö Åë°è UnitData À» ¸®ÅÏÇÕ´Ï´Ù		 
+		/// í•´ë‹¹ Player (ì•„êµ° or ì êµ°) ì˜ ëª¨ë“  ìœ ë‹› ëª©ë¡ (ê°€ì¥ ìµœê·¼ê°’) UnitAndUnitInfoMap ì„ ë¦¬í„´í•©ë‹ˆë‹¤		 
+		/// íŒŒì•…ëœ ì •ë³´ë§Œì„ ë¦¬í„´í•˜ê¸° ë•Œë¬¸ì— ì êµ°ì˜ ì •ë³´ëŠ” í‹€ë¦° ê°’ì¼ ìˆ˜ ìˆìŠµë‹ˆë‹¤
+		const UnitAndUnitInfoMap &           getUnitAndUnitInfoMap(BWAPI::Player player) const;
+		/// í•´ë‹¹ Player (ì•„êµ° or ì êµ°) ì˜ ëª¨ë“  ìœ ë‹› í†µê³„ UnitData ì„ ë¦¬í„´í•©ë‹ˆë‹¤		 
 		const UnitData &        getUnitData(BWAPI::Player player) const;
 
 
-		/// ÇØ´ç Player (¾Æ±º or Àû±º) ÀÇ ÇØ´ç UnitType À¯´Ö ¼ıÀÚ¸¦ ¸®ÅÏÇÕ´Ï´Ù (ÈÆ·Ã/°Ç¼³ ÁßÀÎ À¯´Ö ¼ıÀÚ±îÁö Æ÷ÇÔ)
+		/// í•´ë‹¹ Player (ì•„êµ° or ì êµ°) ì˜ í•´ë‹¹ UnitType ìœ ë‹› ìˆ«ìë¥¼ ë¦¬í„´í•©ë‹ˆë‹¤ (í›ˆë ¨/ê±´ì„¤ ì¤‘ì¸ ìœ ë‹› ìˆ«ìê¹Œì§€ í¬í•¨)
 		int						getNumUnits(BWAPI::UnitType type, BWAPI::Player player);
 
-		/// ÇØ´ç Player (¾Æ±º or Àû±º) ÀÇ position ÁÖÀ§ÀÇ À¯´Ö ¸ñ·ÏÀ» unitInfo ¿¡ ÀúÀåÇÕ´Ï´Ù		 
+		/// í•´ë‹¹ Player (ì•„êµ° or ì êµ°) ì˜ position ì£¼ìœ„ì˜ ìœ ë‹› ëª©ë¡ì„ unitInfo ì— ì €ì¥í•©ë‹ˆë‹¤		 
 		void                    getNearbyForce(std::vector<UnitInfo> & unitInfo, BWAPI::Position p, BWAPI::Player player, int radius);
 
-		/// ÇØ´ç UnitType ÀÌ ÀüÅõ À¯´ÖÀÎÁö ¸®ÅÏÇÕ´Ï´Ù
+		/// í•´ë‹¹ UnitType ì´ ì „íˆ¬ ìœ ë‹›ì¸ì§€ ë¦¬í„´í•©ë‹ˆë‹¤
 		bool					isCombatUnitType(BWAPI::UnitType type) const;
 
 
 
-		// ÇØ´ç Á¾Á·ÀÇ UnitType Áß ResourceDepot ±â´ÉÀ» ÇÏ´Â UnitTypeÀ» ¸®ÅÏÇÕ´Ï´Ù
+		// í•´ë‹¹ ì¢…ì¡±ì˜ UnitType ì¤‘ ResourceDepot ê¸°ëŠ¥ì„ í•˜ëŠ” UnitTypeì„ ë¦¬í„´í•©ë‹ˆë‹¤
 		BWAPI::UnitType			getBasicResourceDepotBuildingType(BWAPI::Race race = BWAPI::Races::None);
 
-		// ÇØ´ç Á¾Á·ÀÇ UnitType Áß Refinery ±â´ÉÀ» ÇÏ´Â UnitTypeÀ» ¸®ÅÏÇÕ´Ï´Ù
+		// í•´ë‹¹ ì¢…ì¡±ì˜ UnitType ì¤‘ Refinery ê¸°ëŠ¥ì„ í•˜ëŠ” UnitTypeì„ ë¦¬í„´í•©ë‹ˆë‹¤
 		BWAPI::UnitType			getRefineryBuildingType(BWAPI::Race race = BWAPI::Races::None);
 
-		// ÇØ´ç Á¾Á·ÀÇ UnitType Áß SupplyProvider ±â´ÉÀ» ÇÏ´Â UnitTypeÀ» ¸®ÅÏÇÕ´Ï´Ù
+		// í•´ë‹¹ ì¢…ì¡±ì˜ UnitType ì¤‘ SupplyProvider ê¸°ëŠ¥ì„ í•˜ëŠ” UnitTypeì„ ë¦¬í„´í•©ë‹ˆë‹¤
 		BWAPI::UnitType			getBasicSupplyProviderUnitType(BWAPI::Race race = BWAPI::Races::None);
 
-		// ÇØ´ç Á¾Á·ÀÇ UnitType Áß Worker ¿¡ ÇØ´çÇÏ´Â UnitTypeÀ» ¸®ÅÏÇÕ´Ï´Ù
+		// í•´ë‹¹ ì¢…ì¡±ì˜ UnitType ì¤‘ Worker ì— í•´ë‹¹í•˜ëŠ” UnitTypeì„ ë¦¬í„´í•©ë‹ˆë‹¤
 		BWAPI::UnitType			getWorkerType(BWAPI::Race race = BWAPI::Races::None);
 
-		// ÇØ´ç Á¾Á·ÀÇ UnitType Áß Basic Combat Unit ¿¡ ÇØ´çÇÏ´Â UnitTypeÀ» ¸®ÅÏÇÕ´Ï´Ù
+		// í•´ë‹¹ ì¢…ì¡±ì˜ UnitType ì¤‘ Basic Combat Unit ì— í•´ë‹¹í•˜ëŠ” UnitTypeì„ ë¦¬í„´í•©ë‹ˆë‹¤
 		BWAPI::UnitType			getBasicCombatUnitType(BWAPI::Race race = BWAPI::Races::None);
 
-		// ÇØ´ç Á¾Á·ÀÇ UnitType Áß Basic Combat Unit À» »ı»êÇÏ±â À§ÇØ °Ç¼³ÇØ¾ßÇÏ´Â UnitTypeÀ» ¸®ÅÏÇÕ´Ï´Ù
+		// í•´ë‹¹ ì¢…ì¡±ì˜ UnitType ì¤‘ Basic Combat Unit ì„ ìƒì‚°í•˜ê¸° ìœ„í•´ ê±´ì„¤í•´ì•¼í•˜ëŠ” UnitTypeì„ ë¦¬í„´í•©ë‹ˆë‹¤
 		BWAPI::UnitType			getBasicCombatBuildingType(BWAPI::Race race = BWAPI::Races::None);
 
-		// ÇØ´ç Á¾Á·ÀÇ UnitType Áß Advanced Combat Unit ¿¡ ÇØ´çÇÏ´Â UnitTypeÀ» ¸®ÅÏÇÕ´Ï´Ù
+		// í•´ë‹¹ ì¢…ì¡±ì˜ UnitType ì¤‘ Advanced Combat Unit ì— í•´ë‹¹í•˜ëŠ” UnitTypeì„ ë¦¬í„´í•©ë‹ˆë‹¤
 		BWAPI::UnitType			getAdvancedCombatUnitType(BWAPI::Race race = BWAPI::Races::None);
 
-		// ÇØ´ç Á¾Á·ÀÇ UnitType Áß Observer ¿¡ ÇØ´çÇÏ´Â UnitTypeÀ» ¸®ÅÏÇÕ´Ï´Ù
+		// í•´ë‹¹ ì¢…ì¡±ì˜ UnitType ì¤‘ Observer ì— í•´ë‹¹í•˜ëŠ” UnitTypeì„ ë¦¬í„´í•©ë‹ˆë‹¤
 		BWAPI::UnitType			getObserverUnitType(BWAPI::Race race = BWAPI::Races::None);
 
-		// ÇØ´ç Á¾Á·ÀÇ UnitType Áß Basic Depense ±â´ÉÀ» ÇÏ´Â UnitTypeÀ» ¸®ÅÏÇÕ´Ï´Ù
+		// í•´ë‹¹ ì¢…ì¡±ì˜ UnitType ì¤‘ Basic Depense ê¸°ëŠ¥ì„ í•˜ëŠ” UnitTypeì„ ë¦¬í„´í•©ë‹ˆë‹¤
 		BWAPI::UnitType			getBasicDefenseBuildingType(BWAPI::Race race = BWAPI::Races::None);
 
-		// ÇØ´ç Á¾Á·ÀÇ UnitType Áß Advanced Depense ±â´ÉÀ» ÇÏ´Â UnitTypeÀ» ¸®ÅÏÇÕ´Ï´Ù
+		// í•´ë‹¹ ì¢…ì¡±ì˜ UnitType ì¤‘ Advanced Depense ê¸°ëŠ¥ì„ í•˜ëŠ” UnitTypeì„ ë¦¬í„´í•©ë‹ˆë‹¤
 		BWAPI::UnitType			getAdvancedDefenseBuildingType(BWAPI::Race race = BWAPI::Races::None);
 	};
 }

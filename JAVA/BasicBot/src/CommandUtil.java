@@ -187,7 +187,7 @@ public class CommandUtil {
 		}
 	}
 
-	// ¹Ì»ç¿ë
+	// ë¯¸ì‚¬ìš©
 //	public double GetDistanceBetweenTwoRectangles(Rect rect1, Rect rect2)
 //	{
 //		Rect & mostLeft = rect1.x < rect2.x ? rect1 : rect2;
@@ -303,7 +303,7 @@ public class CommandUtil {
 		return count;
 	}
 
-	// ÀüÃ¼ ¼øÂ÷Å½»öÀ» ÇÏ±â ¶§¹®¿¡ ´À¸®´Ù
+	// ì „ì²´ ìˆœì°¨íƒìƒ‰ì„ í•˜ê¸° ë•Œë¬¸ì— ëŠë¦¬ë‹¤
 	public Unit GetClosestUnitTypeToTarget(UnitType type, Position target)
 	{
 		Unit closestUnit = null;

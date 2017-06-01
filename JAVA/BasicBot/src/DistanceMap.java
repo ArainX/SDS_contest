@@ -9,9 +9,9 @@ import bwta.BWTA;
 
 public class DistanceMap {
 
-	// Áöµµ¸¦ ¹ÙµÏÆÇÃ³·³ Cell µé·Î ³ª´©°í, ¸Å frame ¸¶´Ù °¢ Cell ÀÇ timeLastVisited ½Ã°£Á¤º¸, timeLastOpponentSeen ½Ã°£Á¤º¸, ourUnits ¿Í oppUnits ¸ñ·ÏÀ» ¾÷µ¥ÀÌÆ® ÇÑ´Ù
-	// °¡Àå ¸¶Áö¸·¿¡ ¹æ¹®Çß´ø ½Ã°¢ÀÌ ¾ğÁ¦ÀÎÁö -> Scout ¿¡ È°¿ë
-	// °¡Àå ¸¶Áö¸·¿¡ ÀûÀ» ¹ß°ßÇß ½Ã°¢ÀÌ ¾ğÁ¦ÀÎÁö -> Àû ÀÇµµ ÆÄ¾Ç, Àû ºÎ´ë ÆÄ¾Ç, Àü·« ¼ö¸³¿¡ È°¿ë
+	// ì§€ë„ë¥¼ ë°”ë‘‘íŒì²˜ëŸ¼ Cell ë“¤ë¡œ ë‚˜ëˆ„ê³ , ë§¤ frame ë§ˆë‹¤ ê° Cell ì˜ timeLastVisited ì‹œê°„ì •ë³´, timeLastOpponentSeen ì‹œê°„ì •ë³´, ourUnits ì™€ oppUnits ëª©ë¡ì„ ì—…ë°ì´íŠ¸ í•œë‹¤
+	// ê°€ì¥ ë§ˆì§€ë§‰ì— ë°©ë¬¸í–ˆë˜ ì‹œê°ì´ ì–¸ì œì¸ì§€ -> Scout ì— í™œìš©
+	// ê°€ì¥ ë§ˆì§€ë§‰ì— ì ì„ ë°œê²¬í–ˆ ì‹œê°ì´ ì–¸ì œì¸ì§€ -> ì  ì˜ë„ íŒŒì•…, ì  ë¶€ëŒ€ íŒŒì•…, ì „ëµ ìˆ˜ë¦½ì— í™œìš©
 	class GridCell
 	{
 		private int timeLastVisited;

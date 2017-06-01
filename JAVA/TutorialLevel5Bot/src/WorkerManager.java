@@ -6,28 +6,28 @@ import bwapi.Unit;
 import bwapi.UnitType;
 import bwta.BWTA;
 
-/// ÀÏ²Û À¯´ÖµéÀÇ »óÅÂ¸¦ °ü¸®ÇÏ°í ÄÁÆ®·ÑÇÏ´Â class
+/// ì¼ê¾¼ ìœ ë‹›ë“¤ì˜ ìƒíƒœë¥¼ ê´€ë¦¬í•˜ê³  ì»¨íŠ¸ë¡¤í•˜ëŠ” class
 public class WorkerManager {
 
-	/// °¢ Worker ¿¡ ´ëÇÑ WorkerJob »óÈ²À» ÀúÀåÇÏ´Â ÀÚ·á±¸Á¶ °´Ã¼
+	/// ê° Worker ì— ëŒ€í•œ WorkerJob ìƒí™©ì„ ì €ì¥í•˜ëŠ” ìë£Œêµ¬ì¡° ê°ì²´
 	private WorkerData workerData = new WorkerData();
 	
 	private CommandUtil commandUtil = new CommandUtil();
 	
-	/// ÀÏ²Û Áß ÇÑ¸íÀ» Repair Worker ·Î Á¤ÇØ¼­, ÀüÃ¼ ¼ö¸® ´ë»óÀ» ÇÏ³ª¾¿ ¼ø¼­´ë·Î ¼ö¸®ÇÕ´Ï´Ù
+	/// ì¼ê¾¼ ì¤‘ í•œëª…ì„ Repair Worker ë¡œ ì •í•´ì„œ, ì „ì²´ ìˆ˜ë¦¬ ëŒ€ìƒì„ í•˜ë‚˜ì”© ìˆœì„œëŒ€ë¡œ ìˆ˜ë¦¬í•©ë‹ˆë‹¤
 	private Unit currentRepairWorker = null;
 	
 	private static WorkerManager instance = new WorkerManager();
 	
-	/// static singleton °´Ã¼¸¦ ¸®ÅÏÇÕ´Ï´Ù
+	/// static singleton ê°ì²´ë¥¼ ë¦¬í„´í•©ë‹ˆë‹¤
 	public static WorkerManager Instance() {
 		return instance;
 	}
 	
-	/// ÀÏ²Û À¯´ÖµéÀÇ »óÅÂ¸¦ ÀúÀåÇÏ´Â workerData °´Ã¼¸¦ ¾÷µ¥ÀÌÆ®ÇÏ°í, ÀÏ²Û À¯´ÖµéÀÌ ÀÚ¿ø Ã¤Ãë µî ÀÓ¹« ¼öÇàÀ» ÇÏµµ·Ï ÇÕ´Ï´Ù
+	/// ì¼ê¾¼ ìœ ë‹›ë“¤ì˜ ìƒíƒœë¥¼ ì €ì¥í•˜ëŠ” workerData ê°ì²´ë¥¼ ì—…ë°ì´íŠ¸í•˜ê³ , ì¼ê¾¼ ìœ ë‹›ë“¤ì´ ìì› ì±„ì·¨ ë“± ì„ë¬´ ìˆ˜í–‰ì„ í•˜ë„ë¡ í•©ë‹ˆë‹¤
 	public void update() {
 
-		// 1ÃÊ¿¡ 1¹ø¸¸ ½ÇÇàÇÑ´Ù
+		// 1ì´ˆì— 1ë²ˆë§Œ ì‹¤í–‰í•œë‹¤
 		if (MyBotModule.Broodwar.getFrameCount() % 24 != 0) return;
 
 		updateWorkerStatus();
@@ -40,8 +40,8 @@ public class WorkerManager {
 	
 	public void updateWorkerStatus() 
 	{
-		// Drone Àº °Ç¼³À» À§ÇØ isConstructing = true »óÅÂ·Î °Ç¼³Àå¼Ò±îÁö ÀÌµ¿ÇÑ ÈÄ, 
-		// Àá±ñ getBuildType() == none °¡ µÇ¾ú´Ù°¡, isConstructing = true, isMorphing = true °¡ µÈ ÈÄ, °Ç¼³À» ½ÃÀÛÇÑ´Ù
+		// Drone ì€ ê±´ì„¤ì„ ìœ„í•´ isConstructing = true ìƒíƒœë¡œ ê±´ì„¤ì¥ì†Œê¹Œì§€ ì´ë™í•œ í›„, 
+		// ì ê¹ getBuildType() == none ê°€ ë˜ì—ˆë‹¤ê°€, isConstructing = true, isMorphing = true ê°€ ëœ í›„, ê±´ì„¤ì„ ì‹œì‘í•œë‹¤
 
 		// for each of our Workers
 		for (Unit worker : workerData.getWorkers())
@@ -74,7 +74,7 @@ public class WorkerManager {
 				continue;
 			}
 
-			// °ÔÀÓ»ó¿¡¼­ worker°¡ isIdle »óÅÂ°¡ µÇ¾úÀ¸¸é (»õ·Î Åº»ıÇß°Å³ª, ±×Àü ÀÓ¹«°¡ ³¡³­ °æ¿ì), WorkerData µµ Idle ·Î ¸ÂÃá ÈÄ, handleGasWorkers, handleIdleWorkers µî¿¡¼­ »õ ÀÓ¹«¸¦ ÁöÁ¤ÇÑ´Ù 
+			// ê²Œì„ìƒì—ì„œ workerê°€ isIdle ìƒíƒœê°€ ë˜ì—ˆìœ¼ë©´ (ìƒˆë¡œ íƒ„ìƒí–ˆê±°ë‚˜, ê·¸ì „ ì„ë¬´ê°€ ëë‚œ ê²½ìš°), WorkerData ë„ Idle ë¡œ ë§ì¶˜ í›„, handleGasWorkers, handleIdleWorkers ë“±ì—ì„œ ìƒˆ ì„ë¬´ë¥¼ ì§€ì •í•œë‹¤ 
 			if ( worker.isIdle() )
 			{
 				/*
@@ -94,7 +94,7 @@ public class WorkerManager {
 				}
 				*/
 
-				// workerData ¿¡¼­ Build / Move / Scout ·Î ÀÓ¹«ÁöÁ¤ÇÑ °æ¿ì, worker ´Â Áï ÀÓ¹« ¼öÇà µµÁß (ÀÓ¹« ¿Ï·á Àü) ¿¡ ÀÏ½ÃÀûÀ¸·Î isIdle »óÅÂ°¡ µÉ ¼ö ÀÖ´Ù 
+				// workerData ì—ì„œ Build / Move / Scout ë¡œ ì„ë¬´ì§€ì •í•œ ê²½ìš°, worker ëŠ” ì¦‰ ì„ë¬´ ìˆ˜í–‰ ë„ì¤‘ (ì„ë¬´ ì™„ë£Œ ì „) ì— ì¼ì‹œì ìœ¼ë¡œ isIdle ìƒíƒœê°€ ë  ìˆ˜ ìˆë‹¤ 
 				if ((workerData.getWorkerJob(worker) != WorkerData.WorkerJob.Build)
 					&& (workerData.getWorkerJob(worker) != WorkerData.WorkerJob.Move)
 					&& (workerData.getWorkerJob(worker) != WorkerData.WorkerJob.Scout))  
@@ -108,7 +108,7 @@ public class WorkerManager {
 			{
 				Unit refinery = workerData.getWorkerResource(worker);
 
-				// if the refinery doesn't exist anymore (ÆÄ±«µÇ¾úÀ» °æ¿ì)
+				// if the refinery doesn't exist anymore (íŒŒê´´ë˜ì—ˆì„ ê²½ìš°)
 				if (refinery == null || !refinery.exists() ||	refinery.getHitPoints() <= 0)
 				{
 					workerData.setWorkerJob(worker, WorkerData.WorkerJob.Idle, (Unit)null);
@@ -120,7 +120,7 @@ public class WorkerManager {
 			{
 				Unit repairTargetUnit = workerData.getWorkerRepairUnit(worker);
 							
-				// ´ë»óÀÌ ÆÄ±«µÇ¾ú°Å³ª, ¼ö¸®°¡ ´Ù ³¡³­ °æ¿ì
+				// ëŒ€ìƒì´ íŒŒê´´ë˜ì—ˆê±°ë‚˜, ìˆ˜ë¦¬ê°€ ë‹¤ ëë‚œ ê²½ìš°
 				if (repairTargetUnit == null || !repairTargetUnit.exists() || repairTargetUnit.getHitPoints() <= 0 || repairTargetUnit.getHitPoints() == repairTargetUnit.getType().maxHitPoints())
 				{
 					workerData.setWorkerJob(worker, WorkerData.WorkerJob.Idle, (Unit)null);
@@ -135,14 +135,14 @@ public class WorkerManager {
 		// for each unit we have
 		for (Unit unit : MyBotModule.Broodwar.self().getUnits())
 		{
-			// refinery °¡ °Ç¼³ completed µÇ¾úÀ¸¸é,
+			// refinery ê°€ ê±´ì„¤ completed ë˜ì—ˆìœ¼ë©´,
 			if (unit.getType().isRefinery() && unit.isCompleted() )
 			{
 				// get the number of workers currently assigned to it
 				int numAssigned = workerData.getNumAssignedWorkers(unit);
 
 				// if it's less than we want it to be, fill 'er up
-				// ´ÜÁ¡ : ¹Ì³×¶ö ÀÏ²ÛÀº ÀûÀºµ¥ °¡½º ÀÏ²ÛÀº ¹«Á¶°Ç 3~4¸íÀÎ °æ¿ì ¹ß»ı.
+				// ë‹¨ì  : ë¯¸ë„¤ë„ ì¼ê¾¼ì€ ì ì€ë° ê°€ìŠ¤ ì¼ê¾¼ì€ ë¬´ì¡°ê±´ 3~4ëª…ì¸ ê²½ìš° ë°œìƒ.
 				for (int i = 0; i<(Config.WorkersPerRefinery - numAssigned); ++i)
 				{
 					Unit gasWorker = chooseGasWorkerFromMineralWorkers(unit);
@@ -155,7 +155,7 @@ public class WorkerManager {
 		}
 	}
 
-	/// Idle ÀÏ²ÛÀ» Mineral ÀÏ²ÛÀ¸·Î ¸¸µì´Ï´Ù
+	/// Idle ì¼ê¾¼ì„ Mineral ì¼ê¾¼ìœ¼ë¡œ ë§Œë“­ë‹ˆë‹¤
 	public void handleIdleWorkers() 
 	{
 		// for each of our workers
@@ -184,7 +184,7 @@ public class WorkerManager {
 			{
 				WorkerMoveData data = workerData.getWorkerMoveData(worker);
 
-				// ¸ñÀûÁö¿¡ µµÂøÇÑ °æ¿ì ÀÌµ¿ ¸í·ÉÀ» ÇØÁ¦ÇÑ´Ù
+				// ëª©ì ì§€ì— ë„ì°©í•œ ê²½ìš° ì´ë™ ëª…ë ¹ì„ í•´ì œí•œë‹¤
 				if (worker.getPosition().getDistance(data.getPosition()) < 4) {
 					setIdleWorker(worker);
 				}
@@ -225,17 +225,17 @@ public class WorkerManager {
 
 		for (Unit unit : MyBotModule.Broodwar.self().getUnits())
 		{
-			// °Ç¹°ÀÇ °æ¿ì ¾Æ¹«¸® ¸Ö¾îµµ ¹«Á¶°Ç ¼ö¸®. ÀÏ²Û ÇÑ¸íÀÌ ¼ø¼­´ë·Î ¼ö¸®
+			// ê±´ë¬¼ì˜ ê²½ìš° ì•„ë¬´ë¦¬ ë©€ì–´ë„ ë¬´ì¡°ê±´ ìˆ˜ë¦¬. ì¼ê¾¼ í•œëª…ì´ ìˆœì„œëŒ€ë¡œ ìˆ˜ë¦¬
 			if (unit.getType().isBuilding() && unit.isCompleted() == true && unit.getHitPoints() < unit.getType().maxHitPoints())
 			{
 				Unit repairWorker = chooseRepairWorkerClosestTo(unit.getPosition(), 0);
 				setRepairWorker(repairWorker, unit);
 				break;
 			}
-			// ¸ŞÄ«´Ğ À¯´Ö (SCV, ½ÃÁîÅÊÅ©, ·¹ÀÌ¾² µî)ÀÇ °æ¿ì ±ÙÃ³¿¡ SCV°¡ ÀÖ´Â °æ¿ì ¼ö¸®. ÀÏ²Û ÇÑ¸íÀÌ ¼ø¼­´ë·Î ¼ö¸®
+			// ë©”ì¹´ë‹‰ ìœ ë‹› (SCV, ì‹œì¦ˆíƒ±í¬, ë ˆì´ì“° ë“±)ì˜ ê²½ìš° ê·¼ì²˜ì— SCVê°€ ìˆëŠ” ê²½ìš° ìˆ˜ë¦¬. ì¼ê¾¼ í•œëª…ì´ ìˆœì„œëŒ€ë¡œ ìˆ˜ë¦¬
 			else if (unit.getType().isMechanical() && unit.isCompleted() == true && unit.getHitPoints() < unit.getType().maxHitPoints())
 			{
-				// SCV ´Â ¼ö¸® ´ë»ó¿¡¼­ Á¦¿Ü. ÀüÅõ À¯´Ö¸¸ ¼ö¸®ÇÏµµ·Ï ÇÑ´Ù
+				// SCV ëŠ” ìˆ˜ë¦¬ ëŒ€ìƒì—ì„œ ì œì™¸. ì „íˆ¬ ìœ ë‹›ë§Œ ìˆ˜ë¦¬í•˜ë„ë¡ í•œë‹¤
 				if (unit.getType() != UnitType.Terran_SCV) {
 					Unit repairWorker = chooseRepairWorkerClosestTo(unit.getPosition(), 10 * Config.TILE_SIZE);
 					setRepairWorker(repairWorker, unit);
@@ -246,7 +246,7 @@ public class WorkerManager {
 		}
 	}
 
-	/// position ¿¡¼­ °¡Àå °¡±î¿î Mineral È¤Àº Idle È¤Àº Move ÀÏ²Û À¯´Öµé Áß¿¡¼­ Repair ÀÓ¹«¸¦ ¼öÇàÇÒ ÀÏ²Û À¯´ÖÀ» Á¤ÇØ¼­ ¸®ÅÏÇÕ´Ï´Ù
+	/// position ì—ì„œ ê°€ì¥ ê°€ê¹Œìš´ Mineral í˜¹ì€ Idle í˜¹ì€ Move ì¼ê¾¼ ìœ ë‹›ë“¤ ì¤‘ì—ì„œ Repair ì„ë¬´ë¥¼ ìˆ˜í–‰í•  ì¼ê¾¼ ìœ ë‹›ì„ ì •í•´ì„œ ë¦¬í„´í•©ë‹ˆë‹¤
 	public Unit chooseRepairWorkerClosestTo(Position p, int maxRange)
 	{
 		if (!p.isValid()) return null;
@@ -287,7 +287,7 @@ public class WorkerManager {
 		return closestWorker;
 	}
 
-	/// ÇØ´ç ÀÏ²Û À¯´Ö unit ÀÇ WorkerJob °ª¸¦ Mineral ·Î º¯°æÇÕ´Ï´Ù
+	/// í•´ë‹¹ ì¼ê¾¼ ìœ ë‹› unit ì˜ WorkerJob ê°’ë¥¼ Mineral ë¡œ ë³€ê²½í•©ë‹ˆë‹¤
 	public void setMineralWorker(Unit unit)
 	{
 		if (unit == null) return;
@@ -303,7 +303,7 @@ public class WorkerManager {
 		}
 	}
 	
-	/// target À¸·ÎºÎÅÍ °¡Àå °¡±î¿î Mineral ÀÏ²Û À¯´ÖÀ» ¸®ÅÏÇÕ´Ï´Ù
+	/// target ìœ¼ë¡œë¶€í„° ê°€ì¥ ê°€ê¹Œìš´ Mineral ì¼ê¾¼ ìœ ë‹›ì„ ë¦¬í„´í•©ë‹ˆë‹¤
 	public Unit getClosestMineralWorkerTo(Position target)
 	{
 		Unit closestUnit = null;
@@ -329,7 +329,7 @@ public class WorkerManager {
 		return closestUnit;
 	}
 
-	/// ÇØ´ç ÀÏ²Û À¯´Ö unit À¸·ÎºÎÅÍ °¡Àå °¡±î¿î ResourceDepot °Ç¹°À» ¸®ÅÏÇÕ´Ï´Ù
+	/// í•´ë‹¹ ì¼ê¾¼ ìœ ë‹› unit ìœ¼ë¡œë¶€í„° ê°€ì¥ ê°€ê¹Œìš´ ResourceDepot ê±´ë¬¼ì„ ë¦¬í„´í•©ë‹ˆë‹¤
 	public Unit getClosestResourceDepotFromWorker(Unit worker)
 	{
 		if (worker == null) return null;
@@ -341,19 +341,19 @@ public class WorkerManager {
 		{
 			if (unit == null) continue;
 			
-			// °¡Àå °¡±î¿î, ÀÏ²Û¼ö°¡ ²Ë Â÷Áö¾ÊÀº, ¿Ï¼ºµÈ ResourceDepot (È¤Àº Lair ³ª Hive·Î º¯ÇüÁßÀÎ °Ç¹°)À» Ã£´Â´Ù
+			// ê°€ì¥ ê°€ê¹Œìš´, ì¼ê¾¼ìˆ˜ê°€ ê½‰ ì°¨ì§€ì•Šì€, ì™„ì„±ëœ ResourceDepot (í˜¹ì€ Lair ë‚˜ Hiveë¡œ ë³€í˜•ì¤‘ì¸ ê±´ë¬¼)ì„ ì°¾ëŠ”ë‹¤
 			if (unit.getType().isResourceDepot()
 				&& (unit.isCompleted() || unit.getType() == UnitType.Zerg_Lair || unit.getType() == UnitType.Zerg_Hive) )
 			{
 				double distance = unit.getDistance(worker);
 
-				// ÀÏ´Ü ¿©·¯ ResourceDepot Áß ÇÏ³ª´Â ¼±ÅÃµÇµµ·Ï ÇÑ´Ù
+				// ì¼ë‹¨ ì—¬ëŸ¬ ResourceDepot ì¤‘ í•˜ë‚˜ëŠ” ì„ íƒë˜ë„ë¡ í•œë‹¤
 				if (closestDepot == null)
 				{
 					closestDepot = unit;
 					closestDistance = distance;
 				}
-				// ´õ °¡±î¿î ResourceDepot ÀÌ ÀÖ°í, ÀÏ²Û ¼ö°¡ ²Ë Â÷Áö ¾Ê¾Ò´Ù¸é °Å±â °¡µµ·Ï ÇÑ´Ù
+				// ë” ê°€ê¹Œìš´ ResourceDepot ì´ ìˆê³ , ì¼ê¾¼ ìˆ˜ê°€ ê½‰ ì°¨ì§€ ì•Šì•˜ë‹¤ë©´ ê±°ê¸° ê°€ë„ë¡ í•œë‹¤
 				else if (distance < closestDistance
 					&& workerData.depotHasEnoughMineralWorkers(unit) == false) 
 				{
@@ -366,7 +366,7 @@ public class WorkerManager {
 		return closestDepot;
 	}
 
-	/// ÇØ´ç ÀÏ²Û À¯´Ö unit ÀÇ WorkerJob °ª¸¦ Idle ·Î º¯°æÇÕ´Ï´Ù
+	/// í•´ë‹¹ ì¼ê¾¼ ìœ ë‹› unit ì˜ WorkerJob ê°’ë¥¼ Idle ë¡œ ë³€ê²½í•©ë‹ˆë‹¤
 	public void setIdleWorker(Unit unit)
 	{
 		if (unit == null) return;
@@ -374,8 +374,8 @@ public class WorkerManager {
 		workerData.setWorkerJob(unit, WorkerData.WorkerJob.Idle, (Unit)null);
 	}
 
-	/// Mineral ÀÏ²Û À¯´Öµé Áß¿¡¼­ Gas ÀÓ¹«¸¦ ¼öÇàÇÒ ÀÏ²Û À¯´ÖÀ» Á¤ÇØ¼­ ¸®ÅÏÇÕ´Ï´Ù
-	/// Idle ÀÏ²ÛÀº Build, Repair, Scout µî ´Ù¸¥ ÀÓ¹«¿¡ ¸ÕÀú ÅõÀÔµÇ¾î¾ß ÇÏ±â ¶§¹®¿¡ Mineral ÀÏ²Û Áß¿¡¼­¸¸ Á¤ÇÕ´Ï´Ù
+	/// Mineral ì¼ê¾¼ ìœ ë‹›ë“¤ ì¤‘ì—ì„œ Gas ì„ë¬´ë¥¼ ìˆ˜í–‰í•  ì¼ê¾¼ ìœ ë‹›ì„ ì •í•´ì„œ ë¦¬í„´í•©ë‹ˆë‹¤
+	/// Idle ì¼ê¾¼ì€ Build, Repair, Scout ë“± ë‹¤ë¥¸ ì„ë¬´ì— ë¨¼ì € íˆ¬ì…ë˜ì–´ì•¼ í•˜ê¸° ë•Œë¬¸ì— Mineral ì¼ê¾¼ ì¤‘ì—ì„œë§Œ ì •í•©ë‹ˆë‹¤
 	public Unit chooseGasWorkerFromMineralWorkers(Unit refinery)
 	{
 		if (refinery == null) return null;
@@ -408,9 +408,9 @@ public class WorkerManager {
 		workerData.setWorkerJob(worker, WorkerData.WorkerJob.Build, buildingType);
 	}
 
-	/// buildingPosition ¿¡¼­ °¡Àå °¡±î¿î Move È¤Àº Idle È¤Àº Mineral ÀÏ²Û À¯´Öµé Áß¿¡¼­ Construction ÀÓ¹«¸¦ ¼öÇàÇÒ ÀÏ²Û À¯´ÖÀ» Á¤ÇØ¼­ ¸®ÅÏÇÕ´Ï´Ù
-	/// Move / Idle Worker Áß¿¡¼­ ¸ÕÀú ¼±Á¤ÇÏ°í, ¾øÀ¸¸é Mineral Worker Áß¿¡¼­ ¼±Á¤ÇÕ´Ï´Ù
-	/// ÀÏ²Û À¯´ÖÀÌ 2°³ ÀÌ»óÀÌ¸é, avoidWorkerID ¿¡ ÇØ´çÇÏ´Â worker ´Â ¼±Á¤ÇÏÁö ¾Êµµ·Ï ÇÕ´Ï´Ù
+	/// buildingPosition ì—ì„œ ê°€ì¥ ê°€ê¹Œìš´ Move í˜¹ì€ Idle í˜¹ì€ Mineral ì¼ê¾¼ ìœ ë‹›ë“¤ ì¤‘ì—ì„œ Construction ì„ë¬´ë¥¼ ìˆ˜í–‰í•  ì¼ê¾¼ ìœ ë‹›ì„ ì •í•´ì„œ ë¦¬í„´í•©ë‹ˆë‹¤
+	/// Move / Idle Worker ì¤‘ì—ì„œ ë¨¼ì € ì„ ì •í•˜ê³ , ì—†ìœ¼ë©´ Mineral Worker ì¤‘ì—ì„œ ì„ ì •í•©ë‹ˆë‹¤
+	/// ì¼ê¾¼ ìœ ë‹›ì´ 2ê°œ ì´ìƒì´ë©´, avoidWorkerID ì— í•´ë‹¹í•˜ëŠ” worker ëŠ” ì„ ì •í•˜ì§€ ì•Šë„ë¡ í•©ë‹ˆë‹¤
 	/// if setJobAsConstructionWorker is true (default), it will be flagged as a builder unit
 	/// if setJobAsConstructionWorker is false, we just want to see which worker will build a building
 	public Unit chooseConstuctionWorkerClosestTo(UnitType buildingType, TilePosition buildingPosition, boolean setJobAsConstructionWorker, int avoidWorkerID)
@@ -426,7 +426,7 @@ public class WorkerManager {
 		{
 			if (unit == null) continue;
 
-			// worker °¡ 2°³ ÀÌ»óÀÌ¸é, avoidWorkerID ´Â ÇÇÇÑ´Ù
+			// worker ê°€ 2ê°œ ì´ìƒì´ë©´, avoidWorkerID ëŠ” í”¼í•œë‹¤
 			if (workerData.getWorkers().size() >= 2 && avoidWorkerID != 0 && unit.getID() == avoidWorkerID) continue;
 
 			// Move / Idle Worker
@@ -443,7 +443,7 @@ public class WorkerManager {
 				}
 			}
 
-			// Move / Idle Worker °¡ ¾øÀ»¶§, ´Ù¸¥ Worker Áß¿¡¼­ Â÷ÃâÇÑ´Ù 
+			// Move / Idle Worker ê°€ ì—†ì„ë•Œ, ë‹¤ë¥¸ Worker ì¤‘ì—ì„œ ì°¨ì¶œí•œë‹¤ 
 			if (unit.isCompleted() 
 				&& (workerData.getWorkerJob(unit) != WorkerData.WorkerJob.Move && workerData.getWorkerJob(unit) != WorkerData.WorkerJob.Idle && workerData.getWorkerJob(unit) != WorkerData.WorkerJob.Build))
 			{
@@ -478,7 +478,7 @@ public class WorkerManager {
 	}
 	
 
-	/// Mineral È¤Àº Idle ÀÏ²Û À¯´Öµé Áß¿¡¼­ Scout ÀÓ¹«¸¦ ¼öÇàÇÒ ÀÏ²Û À¯´ÖÀ» Á¤ÇØ¼­ ¸®ÅÏÇÕ´Ï´Ù
+	/// Mineral í˜¹ì€ Idle ì¼ê¾¼ ìœ ë‹›ë“¤ ì¤‘ì—ì„œ Scout ì„ë¬´ë¥¼ ìˆ˜í–‰í•  ì¼ê¾¼ ìœ ë‹›ì„ ì •í•´ì„œ ë¦¬í„´í•©ë‹ˆë‹¤
 	public Unit getScoutWorker()
 	{
 	    // for each of our workers
@@ -536,7 +536,7 @@ public class WorkerManager {
 		return closestWorker;
 	}
 
-	/// position ¿¡¼­ °¡Àå °¡±î¿î Mineral È¤Àº Idle ÀÏ²Û À¯´Öµé Áß¿¡¼­ Move ÀÓ¹«¸¦ ¼öÇàÇÒ ÀÏ²Û À¯´ÖÀ» Á¤ÇØ¼­ ¸®ÅÏÇÕ´Ï´Ù
+	/// position ì—ì„œ ê°€ì¥ ê°€ê¹Œìš´ Mineral í˜¹ì€ Idle ì¼ê¾¼ ìœ ë‹›ë“¤ ì¤‘ì—ì„œ Move ì„ë¬´ë¥¼ ìˆ˜í–‰í•  ì¼ê¾¼ ìœ ë‹›ì„ ì •í•´ì„œ ë¦¬í„´í•©ë‹ˆë‹¤
 	public void setMoveWorker(Unit worker, int mineralsNeeded, int gasNeeded, Position p)
 	{
 		// set up the pointer
@@ -572,7 +572,7 @@ public class WorkerManager {
 	}
 
 
-	/// ÇØ´ç ÀÏ²Û À¯´ÖÀ¸·ÎºÎÅÍ °¡Àå °¡±î¿î Àû±º À¯´ÖÀ» ¸®ÅÏÇÕ´Ï´Ù
+	/// í•´ë‹¹ ì¼ê¾¼ ìœ ë‹›ìœ¼ë¡œë¶€í„° ê°€ì¥ ê°€ê¹Œìš´ ì êµ° ìœ ë‹›ì„ ë¦¬í„´í•©ë‹ˆë‹¤
 	public Unit getClosestEnemyUnitFromWorker(Unit worker)
 	{
 		if (worker == null) return null;
@@ -594,7 +594,7 @@ public class WorkerManager {
 		return closestUnit;
 	}
 
-	/// ÇØ´ç ÀÏ²Û À¯´Ö¿¡°Ô Combat ÀÓ¹«¸¦ ºÎ¿©ÇÕ´Ï´Ù
+	/// í•´ë‹¹ ì¼ê¾¼ ìœ ë‹›ì—ê²Œ Combat ì„ë¬´ë¥¼ ë¶€ì—¬í•©ë‹ˆë‹¤
 	public void setCombatWorker(Unit worker)
 	{
 		if (worker == null) return;
@@ -602,7 +602,7 @@ public class WorkerManager {
 		workerData.setWorkerJob(worker, WorkerData.WorkerJob.Combat, (Unit)null);
 	}
 
-	/// ¸ğµç Combat ÀÏ²Û À¯´Ö¿¡ ´ëÇØ ÀÓ¹«¸¦ ÇØÁ¦ÇÕ´Ï´Ù
+	/// ëª¨ë“  Combat ì¼ê¾¼ ìœ ë‹›ì— ëŒ€í•´ ì„ë¬´ë¥¼ í•´ì œí•©ë‹ˆë‹¤
 	public void stopCombat()
 	{
 		for (Unit worker : workerData.getWorkers())
@@ -626,7 +626,7 @@ public class WorkerManager {
 		workerData.setWorkerJob(worker, WorkerData.WorkerJob.Idle, (Unit)null);
 	}
 
-	/// ÀÏ²Û À¯´ÖµéÀÇ »óÅÂ¸¦ ÀúÀåÇÏ´Â workerData °´Ã¼¸¦ ¾÷µ¥ÀÌÆ®ÇÕ´Ï´Ù
+	/// ì¼ê¾¼ ìœ ë‹›ë“¤ì˜ ìƒíƒœë¥¼ ì €ì¥í•˜ëŠ” workerData ê°ì²´ë¥¼ ì—…ë°ì´íŠ¸í•©ë‹ˆë‹¤
 	public void onUnitMorph(Unit unit)
 	{
 		if (unit == null) return;
@@ -640,12 +640,12 @@ public class WorkerManager {
 		// if something morphs into a building, it was a worker (Zerg Drone)
 		if (unit.getType().isBuilding() && unit.getPlayer() == MyBotModule.Broodwar.self() && unit.getPlayer().getRace() == Race.Zerg)
 		{
-			// ÇØ´ç worker ¸¦ workerData ¿¡¼­ »èÁ¦ÇÑ´Ù
+			// í•´ë‹¹ worker ë¥¼ workerData ì—ì„œ ì‚­ì œí•œë‹¤
 			workerData.workerDestroyed(unit);
 		}
 	}
 
-	/// ÀÏ²Û À¯´ÖµéÀÇ »óÅÂ¸¦ ÀúÀåÇÏ´Â workerData °´Ã¼¸¦ ¾÷µ¥ÀÌÆ®ÇÕ´Ï´Ù
+	/// ì¼ê¾¼ ìœ ë‹›ë“¤ì˜ ìƒíƒœë¥¼ ì €ì¥í•˜ëŠ” workerData ê°ì²´ë¥¼ ì—…ë°ì´íŠ¸í•©ë‹ˆë‹¤
 	public void onUnitShow(Unit unit)
 	{
 		if (unit == null) return;
@@ -669,8 +669,8 @@ public class WorkerManager {
 
 	}
 
-	// ÀÏÇÏ°íÀÖ´Â resource depot ¿¡ ÃæºĞÇÑ ¼öÀÇ mineral worker µéÀÌ ÁöÁ¤µÇ¾î ÀÖ´Ù¸é, idle »óÅÂ·Î ¸¸µç´Ù
-	// idle worker ¿¡°Ô mineral job À» ºÎ¿©ÇÒ ¶§, mineral worker °¡ ºÎÁ·ÇÑ resource depot À¸·Î ÀÌµ¿ÇÏ°Ô µÈ´Ù  
+	// ì¼í•˜ê³ ìˆëŠ” resource depot ì— ì¶©ë¶„í•œ ìˆ˜ì˜ mineral worker ë“¤ì´ ì§€ì •ë˜ì–´ ìˆë‹¤ë©´, idle ìƒíƒœë¡œ ë§Œë“ ë‹¤
+	// idle worker ì—ê²Œ mineral job ì„ ë¶€ì—¬í•  ë•Œ, mineral worker ê°€ ë¶€ì¡±í•œ resource depot ìœ¼ë¡œ ì´ë™í•˜ê²Œ ëœë‹¤  
 	public void rebalanceWorkers()
 	{
 		for (Unit worker : workerData.getWorkers())
@@ -693,7 +693,7 @@ public class WorkerManager {
 		}
 	}
 
-	/// ÀÏ²Û À¯´ÖµéÀÇ »óÅÂ¸¦ ÀúÀåÇÏ´Â workerData °´Ã¼¸¦ ¾÷µ¥ÀÌÆ®ÇÕ´Ï´Ù
+	/// ì¼ê¾¼ ìœ ë‹›ë“¤ì˜ ìƒíƒœë¥¼ ì €ì¥í•˜ëŠ” workerData ê°ì²´ë¥¼ ì—…ë°ì´íŠ¸í•©ë‹ˆë‹¤
 	public void onUnitDestroy(Unit unit) 
 	{
 		if (unit == null) return;
@@ -740,7 +740,7 @@ public class WorkerManager {
 		return workerData.getNumMineralWorkers();	
 	}
 
-	/// idle »óÅÂÀÎ ÀÏ²Û À¯´Ö unit ÀÇ ¼ıÀÚ¸¦ ¸®ÅÏÇÕ´Ï´Ù
+	/// idle ìƒíƒœì¸ ì¼ê¾¼ ìœ ë‹› unit ì˜ ìˆ«ìë¥¼ ë¦¬í„´í•©ë‹ˆë‹¤
 	public int getNumIdleWorkers() 
 	{
 		return workerData.getNumIdleWorkers();	
@@ -751,7 +751,7 @@ public class WorkerManager {
 		return workerData.getNumGasWorkers();
 	}
 
-	/// ÀÏ²Û À¯´ÖµéÀÇ »óÅÂ¸¦ ÀúÀåÇÏ´Â workerData °´Ã¼¸¦ ¸®ÅÏÇÕ´Ï´Ù
+	/// ì¼ê¾¼ ìœ ë‹›ë“¤ì˜ ìƒíƒœë¥¼ ì €ì¥í•˜ëŠ” workerData ê°ì²´ë¥¼ ë¦¬í„´í•©ë‹ˆë‹¤
 	public WorkerData getWorkerData()
 	{
 		return workerData;

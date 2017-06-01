@@ -5,33 +5,33 @@
 
 namespace MyBot
 {
-	/// ºôµå ¸í·É
+	/// ë¹Œë“œ ëª…ë ¹
 	struct BuildOrderItem
 	{
 		MetaType			metaType;		///< the thing we want to 'build'
 		int					priority;		///< the priority at which to place it in the queue
 		bool				blocking;		///< whether or not we block further items
-		BWAPI::TilePosition seedLocation;	///< °Ç¼³ À§Ä¡
-		int					producerID;		///< producer unitID (°Ç¹°ID, À¯´ÖID)
+		BWAPI::TilePosition seedLocation;	///< ê±´ì„¤ ìœ„ì¹˜
+		int					producerID;		///< producer unitID (ê±´ë¬¼ID, ìœ ë‹›ID)
 
-		/// °Ç¼³À§Ä¡ ÃÊ¾È °áÁ¤ Á¤Ã¥
-		/// ÇâÈÄ ÀûÁø ±æ¸ñ, ¾ğ´ö À§ µî Ãß°¡
+		/// ê±´ì„¤ìœ„ì¹˜ ì´ˆì•ˆ ê²°ì • ì •ì±…
+		/// í–¥í›„ ì ì§„ ê¸¸ëª©, ì–¸ë• ìœ„ ë“± ì¶”ê°€
 		enum SeedPositionStrategy { 
-			MainBaseLocation,			///< ¾Æ±º º£ÀÌ½º
-			MainBaseBackYard,			///< ¾Æ±º º£ÀÌ½º µŞÆí
-			FirstChokePoint,			///< ¾Æ±º Ã¹¹øÂ° ±æ¸ñ
-			FirstExpansionLocation,		///< ¾Æ±º Ã¹¹øÂ° ¾Õ¸¶´ç
-			SecondChokePoint,			///< ¾Æ±º µÎ¹øÂ° ±æ¸ñ
-			SecondExpansionLocation,	///< ¾Æ±º µÎ¹øÂ° ¾Õ¸¶´ç
-			SeedPositionSpecified		///< º°µµ ÁöÁ¤ À§Ä¡
+			MainBaseLocation,			///< ì•„êµ° ë² ì´ìŠ¤
+			MainBaseBackYard,			///< ì•„êµ° ë² ì´ìŠ¤ ë’·í¸
+			FirstChokePoint,			///< ì•„êµ° ì²«ë²ˆì§¸ ê¸¸ëª©
+			FirstExpansionLocation,		///< ì•„êµ° ì²«ë²ˆì§¸ ì•ë§ˆë‹¹
+			SecondChokePoint,			///< ì•„êµ° ë‘ë²ˆì§¸ ê¸¸ëª©
+			SecondExpansionLocation,	///< ì•„êµ° ë‘ë²ˆì§¸ ì•ë§ˆë‹¹
+			SeedPositionSpecified		///< ë³„ë„ ì§€ì • ìœ„ì¹˜
 		};
-		SeedPositionStrategy		seedLocationStrategy;	///< °Ç¼³À§Ä¡ ÃÊ¾È °áÁ¤ Á¤Ã¥
+		SeedPositionStrategy		seedLocationStrategy;	///< ê±´ì„¤ìœ„ì¹˜ ì´ˆì•ˆ ê²°ì • ì •ì±…
 
-		/// °Ç¼³ À§Ä¡´Â SeedPositionStrategy::MainBaseLocation À» ÅëÇØ Ã£´Â´Ù
-		/// @param _metaType : ºôµå ´ë»ó Å¸ÀÔ
-		/// @param _priority : 0 = °¡Àå ³·Àº ¿ì¼±¼øÀ§. ¼ıÀÚ°¡ Å¬¼ö·Ï ´õ ³ôÀº ¿ì¼±¼øÀ§. Å¥¿¡ ÀÖ´Â ¾ÆÀÌÅÛµé Áß¿¡¼­ °¡Àå ³ôÀº ¿ì¼±¼øÀ§ÀÇ ¾ÆÀÌÅÛ (¿ì¼±¼øÀ§°¡ ³ôÀ¸¸é ¸ÕÀú Å¥¿¡ ³ÖÀº °Í)ÀÌ ¸ÕÀú »ı»ê ÁøÇàµÊ. 
-		/// @param _blocking : true = Áö±İ ÀÌ°ÍÀ» »ı»êÇÒ ¼ö ¾øÀ¸¸é, ÀÌ°Í »ı»ê °¡´ÉÇØÁú¶§±îÁö ±â´Ù¸².  false = Áö±İ ÀÌ°ÍÀ» »ı»êÀ» ÇÒ ¼ö ¾øÀ¸¸é ´ÙÀ½°Í ¸ÕÀú »ı»ê ½ÇÇà.
-		/// @param _producerID : producerID ¸¦ ÁöÁ¤ÇÏ¸é ÇØ´ç unit ÀÌ ºôµå¸¦ ½ÇÇàÇÏ°Ô ÇÔ
+		/// ê±´ì„¤ ìœ„ì¹˜ëŠ” SeedPositionStrategy::MainBaseLocation ì„ í†µí•´ ì°¾ëŠ”ë‹¤
+		/// @param _metaType : ë¹Œë“œ ëŒ€ìƒ íƒ€ì…
+		/// @param _priority : 0 = ê°€ì¥ ë‚®ì€ ìš°ì„ ìˆœìœ„. ìˆ«ìê°€ í´ìˆ˜ë¡ ë” ë†’ì€ ìš°ì„ ìˆœìœ„. íì— ìˆëŠ” ì•„ì´í…œë“¤ ì¤‘ì—ì„œ ê°€ì¥ ë†’ì€ ìš°ì„ ìˆœìœ„ì˜ ì•„ì´í…œ (ìš°ì„ ìˆœìœ„ê°€ ë†’ìœ¼ë©´ ë¨¼ì € íì— ë„£ì€ ê²ƒ)ì´ ë¨¼ì € ìƒì‚° ì§„í–‰ë¨. 
+		/// @param _blocking : true = ì§€ê¸ˆ ì´ê²ƒì„ ìƒì‚°í•  ìˆ˜ ì—†ìœ¼ë©´, ì´ê²ƒ ìƒì‚° ê°€ëŠ¥í•´ì§ˆë•Œê¹Œì§€ ê¸°ë‹¤ë¦¼.  false = ì§€ê¸ˆ ì´ê²ƒì„ ìƒì‚°ì„ í•  ìˆ˜ ì—†ìœ¼ë©´ ë‹¤ìŒê²ƒ ë¨¼ì € ìƒì‚° ì‹¤í–‰.
+		/// @param _producerID : producerID ë¥¼ ì§€ì •í•˜ë©´ í•´ë‹¹ unit ì´ ë¹Œë“œë¥¼ ì‹¤í–‰í•˜ê²Œ í•¨
 		BuildOrderItem(MetaType _metaType, int _priority = 0, bool _blocking = true, int _producerID = -1)
 			: metaType(_metaType)
 			, priority(_priority)
@@ -42,7 +42,7 @@ namespace MyBot
 		{
 		}
 
-		/// °Ç¼³ À§Ä¡¸¦ seedLocation ÁÖÀ§¿¡¼­ Ã£´Â´Ù
+		/// ê±´ì„¤ ìœ„ì¹˜ë¥¼ seedLocation ì£¼ìœ„ì—ì„œ ì°¾ëŠ”ë‹¤
 		BuildOrderItem(MetaType _metaType, BWAPI::TilePosition _seedLocation, int _priority = 0, bool _blocking = true, int _producerID = -1)
 			: metaType(_metaType)
 			, priority(_priority)
@@ -53,7 +53,7 @@ namespace MyBot
 		{
 		}
 
-		/// °Ç¼³ À§Ä¡¸¦ seedPositionStrategy ¸¦ ÀÌ¿ëÇØ¼­ Ã£´Â´Ù. ¸øÃ£À» °æ¿ì, ´Ù¸¥ SeedPositionStrategy ·Î °è¼Ó Ã£´Â´Ù
+		/// ê±´ì„¤ ìœ„ì¹˜ë¥¼ seedPositionStrategy ë¥¼ ì´ìš©í•´ì„œ ì°¾ëŠ”ë‹¤. ëª»ì°¾ì„ ê²½ìš°, ë‹¤ë¥¸ SeedPositionStrategy ë¡œ ê³„ì† ì°¾ëŠ”ë‹¤
 		BuildOrderItem(MetaType _metaType, SeedPositionStrategy _SeedPositionStrategy, int _priority = 0, bool _blocking = true, int _producerID = -1)
 			: metaType(_metaType)
 			, priority(_priority)
@@ -72,19 +72,19 @@ namespace MyBot
 		}
 	};
 
-	/// ºôµå ¿À´õ ¸ñ·Ï ÀÚ·á±¸Á¶ class
+	/// ë¹Œë“œ ì˜¤ë” ëª©ë¡ ìë£Œêµ¬ì¡° class
 	class BuildOrderQueue
 	{
-		/// BuildOrderItem µéÀ» Double Ended Queue ÀÚ·á±¸Á¶·Î °ü¸®ÇÕ´Ï´Ù
-		/// lowest priority ÀÎ BuildOrderItemÀº front ¿¡, highest priority ÀÎ BuildOrderItem Àº back ¿¡ À§Ä¡ÇÏ°Ô ÇÕ´Ï´Ù
+		/// BuildOrderItem ë“¤ì„ Double Ended Queue ìë£Œêµ¬ì¡°ë¡œ ê´€ë¦¬í•©ë‹ˆë‹¤
+		/// lowest priority ì¸ BuildOrderItemì€ front ì—, highest priority ì¸ BuildOrderItem ì€ back ì— ìœ„ì¹˜í•˜ê²Œ í•©ë‹ˆë‹¤
 		std::deque< BuildOrderItem >			queue;
 
 		int lowestPriority;
 		int highestPriority;
 		int defaultPrioritySpacing;
 
-		/// iteration À» ÇÏ±â À§ÇÑ Âü°í°ª
-		/// highest priority ÀÎ BuildOrderItem À¸·ÎºÎÅÍ ¸î°³³ª skip Çß´Â°¡. 
+		/// iteration ì„ í•˜ê¸° ìœ„í•œ ì°¸ê³ ê°’
+		/// highest priority ì¸ BuildOrderItem ìœ¼ë¡œë¶€í„° ëª‡ê°œë‚˜ skip í–ˆëŠ”ê°€. 
 		int numSkippedItems;
 
 	public:
@@ -94,7 +94,7 @@ namespace MyBot
 		/// queues something with a given priority
 		void queueItem(BuildOrderItem b);
 
-		/// ºôµå¿À´õ¸¦ °¡Àå ³ôÀº ¿ì¼±¼øÀ§·Î buildQueue ¿¡ Ãß°¡ÇÑ´Ù. blocking (´Ù¸¥ °ÍÀ» »ı»êÇÏÁö ¾Ê°í, ÀÌ°ÍÀ» »ı»ê °¡´ÉÇÏ°Ô µÉ ¶§±îÁö ±â´Ù¸®´Â ¸ğµå) ±âº»°ªÀº true ÀÌ´Ù
+		/// ë¹Œë“œì˜¤ë”ë¥¼ ê°€ì¥ ë†’ì€ ìš°ì„ ìˆœìœ„ë¡œ buildQueue ì— ì¶”ê°€í•œë‹¤. blocking (ë‹¤ë¥¸ ê²ƒì„ ìƒì‚°í•˜ì§€ ì•Šê³ , ì´ê²ƒì„ ìƒì‚° ê°€ëŠ¥í•˜ê²Œ ë  ë•Œê¹Œì§€ ê¸°ë‹¤ë¦¬ëŠ” ëª¨ë“œ) ê¸°ë³¸ê°’ì€ true ì´ë‹¤
 		void queueAsHighestPriority(MetaType				_metaType, bool blocking = true, int _producerID = -1);		
 		void queueAsHighestPriority(MetaType                _metaType, BuildOrderItem::SeedPositionStrategy _seedPositionStrategy = BuildOrderItem::SeedPositionStrategy::MainBaseLocation, bool blocking = true);
 		void queueAsHighestPriority(MetaType                _metaType, BWAPI::TilePosition _seedPosition, bool blocking = true);
@@ -103,7 +103,7 @@ namespace MyBot
 		void queueAsHighestPriority(BWAPI::TechType         _techType, bool blocking = true, int _producerID = -1);
 		void queueAsHighestPriority(BWAPI::UpgradeType      _upgradeType, bool blocking = true, int _producerID = -1);
 
-		/// ºôµå¿À´õ¸¦ °¡Àå ³·Àº ¿ì¼±¼øÀ§·Î buildQueue ¿¡ Ãß°¡ÇÑ´Ù. blocking (´Ù¸¥ °ÍÀ» »ı»êÇÏÁö ¾Ê°í, ÀÌ°ÍÀ» »ı»ê °¡´ÉÇÏ°Ô µÉ ¶§±îÁö ±â´Ù¸®´Â ¸ğµå) ±âº»°ªÀº true ÀÌ´Ù
+		/// ë¹Œë“œì˜¤ë”ë¥¼ ê°€ì¥ ë‚®ì€ ìš°ì„ ìˆœìœ„ë¡œ buildQueue ì— ì¶”ê°€í•œë‹¤. blocking (ë‹¤ë¥¸ ê²ƒì„ ìƒì‚°í•˜ì§€ ì•Šê³ , ì´ê²ƒì„ ìƒì‚° ê°€ëŠ¥í•˜ê²Œ ë  ë•Œê¹Œì§€ ê¸°ë‹¤ë¦¬ëŠ” ëª¨ë“œ) ê¸°ë³¸ê°’ì€ true ì´ë‹¤
 		void queueAsLowestPriority(MetaType				   _metaType, bool blocking = true, int _producerID = -1);
 		void queueAsLowestPriority(MetaType                _metaType, BuildOrderItem::SeedPositionStrategy _seedPositionStrategy = BuildOrderItem::SeedPositionStrategy::MainBaseLocation, bool blocking = true);
 		void queueAsLowestPriority(MetaType                _metaType, BWAPI::TilePosition _seedPosition, bool blocking = true);
@@ -122,12 +122,12 @@ namespace MyBot
 
 		bool canSkipCurrentItem();
 		void skipCurrentItem();										///< increments skippedItems
-		void removeCurrentItem();									///< skippedItems ´ÙÀ½ÀÇ item À» Á¦°ÅÇÕ´Ï´Ù
+		void removeCurrentItem();									///< skippedItems ë‹¤ìŒì˜ item ì„ ì œê±°í•©ë‹ˆë‹¤
 		BuildOrderItem getNextItem();								///< returns the highest priority item
 
-		/// BuildOrderQueue¿¡ ÇØ´ç type ÀÇ Item ÀÌ ¸î °³ Á¸ÀçÇÏ´ÂÁö ¸®ÅÏÇÑ´Ù. queryTilePosition À» ÀÔ·ÂÇÑ °æ¿ì, °Ç¹°¿¡ ´ëÇØ¼­ Ãß°¡ Å½»öÇÑ´Ù
+		/// BuildOrderQueueì— í•´ë‹¹ type ì˜ Item ì´ ëª‡ ê°œ ì¡´ì¬í•˜ëŠ”ì§€ ë¦¬í„´í•œë‹¤. queryTilePosition ì„ ì…ë ¥í•œ ê²½ìš°, ê±´ë¬¼ì— ëŒ€í•´ì„œ ì¶”ê°€ íƒìƒ‰í•œë‹¤
 		int getItemCount(MetaType                _metaType, BWAPI::TilePosition queryTilePosition = BWAPI::TilePositions::None);
-		/// BuildOrderQueue¿¡ ÇØ´ç type ÀÇ Item ÀÌ ¸î °³ Á¸ÀçÇÏ´ÂÁö ¸®ÅÏÇÑ´Ù. queryTilePosition À» ÀÔ·ÂÇÑ °æ¿ì, °Ç¹°¿¡ ´ëÇØ¼­ Ãß°¡ Å½»öÇÑ´Ù
+		/// BuildOrderQueueì— í•´ë‹¹ type ì˜ Item ì´ ëª‡ ê°œ ì¡´ì¬í•˜ëŠ”ì§€ ë¦¬í„´í•œë‹¤. queryTilePosition ì„ ì…ë ¥í•œ ê²½ìš°, ê±´ë¬¼ì— ëŒ€í•´ì„œ ì¶”ê°€ íƒìƒ‰í•œë‹¤
 		int getItemCount(BWAPI::UnitType         _unitType, BWAPI::TilePosition queryTilePosition = BWAPI::TilePositions::None);
 		int getItemCount(BWAPI::TechType         _techType);
 		int getItemCount(BWAPI::UpgradeType      _upgradeType);

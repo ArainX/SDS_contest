@@ -25,25 +25,25 @@ namespace MyBot
 	{
 
 	public:
-		/// ÀÏ²Û À¯´Ö¿¡°Ô ÁöÁ¤ÇÏ´Â ÀÓ¹«ÀÇ Á¾·ù
+		/// ì¼ê¾¼ ìœ ë‹›ì—ê²Œ ì§€ì •í•˜ëŠ” ì„ë¬´ì˜ ì¢…ë¥˜
 		enum WorkerJob { 
-			Minerals, 		///< ¹Ì³×¶ö Ã¤Ãë 
-			Gas,			///< °¡½º Ã¤Ãë
-			Build,			///< °Ç¹° °Ç¼³
-			Combat, 		///< ÀüÅõ
-			Idle,			///< ÇÏ´Â ÀÏ ¾øÀ½. ´ë±â »óÅÂ. 
-			Repair,			///< ¼ö¸®. Terran_SCV ¸¸ °¡´É
-			Move,			///< ÀÌµ¿
-			Scout, 			///< Á¤Âû. Move¿Í ´Ù¸§. Mineral / Gas / Build µîÀÇ ´Ù¸¥ ÀÓ¹«·Î Â÷ÃâµÇÁö ¾Ê°Ô µÊ. 
-			Default 		///< ±âº». ¹Ì¼³Á¤ »óÅÂ. 
+			Minerals, 		///< ë¯¸ë„¤ë„ ì±„ì·¨ 
+			Gas,			///< ê°€ìŠ¤ ì±„ì·¨
+			Build,			///< ê±´ë¬¼ ê±´ì„¤
+			Combat, 		///< ì „íˆ¬
+			Idle,			///< í•˜ëŠ” ì¼ ì—†ìŒ. ëŒ€ê¸° ìƒíƒœ. 
+			Repair,			///< ìˆ˜ë¦¬. Terran_SCV ë§Œ ê°€ëŠ¥
+			Move,			///< ì´ë™
+			Scout, 			///< ì •ì°°. Moveì™€ ë‹¤ë¦„. Mineral / Gas / Build ë“±ì˜ ë‹¤ë¥¸ ì„ë¬´ë¡œ ì°¨ì¶œë˜ì§€ ì•Šê²Œ ë¨. 
+			Default 		///< ê¸°ë³¸. ë¯¸ì„¤ì • ìƒíƒœ. 
 		};
 
 	private:
 
-		/// ÀÏ²Û ¸ñ·Ï
+		/// ì¼ê¾¼ ëª©ë¡
 		BWAPI::Unitset								  workers;
 
-		/// ResourceDepot ¸ñ·Ï
+		/// ResourceDepot ëª©ë¡
 		BWAPI::Unitset								  depots;
 
 		std::map<BWAPI::Unit, enum WorkerJob>         workerJobMap;

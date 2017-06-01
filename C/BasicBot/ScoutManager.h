@@ -8,14 +8,14 @@ namespace MyBot
 	namespace ScoutStatus
 	{
 		enum { 
-			NoScout=0,						///< Á¤Âû À¯´ÖÀ» ¹ÌÁöÁ¤ÇÑ »óÅÂ
-			MovingToAnotherBaseLocation=1,	///< Àû±ºÀÇ BaseLocation ÀÌ ¹Ì¹ß°ßµÈ »óÅÂ¿¡¼­ Á¤Âû À¯´ÖÀ» ÀÌµ¿½ÃÅ°°í ÀÖ´Â »óÅÂ
-			MoveAroundEnemyBaseLocation=2   ///< Àû±ºÀÇ BaseLocation ÀÌ ¹ß°ßµÈ »óÅÂ¿¡¼­ Á¤Âû À¯´ÖÀ» ÀÌµ¿½ÃÅ°°í ÀÖ´Â »óÅÂ
+			NoScout=0,						///< ì •ì°° ìœ ë‹›ì„ ë¯¸ì§€ì •í•œ ìƒíƒœ
+			MovingToAnotherBaseLocation=1,	///< ì êµ°ì˜ BaseLocation ì´ ë¯¸ë°œê²¬ëœ ìƒíƒœì—ì„œ ì •ì°° ìœ ë‹›ì„ ì´ë™ì‹œí‚¤ê³  ìˆëŠ” ìƒíƒœ
+			MoveAroundEnemyBaseLocation=2   ///< ì êµ°ì˜ BaseLocation ì´ ë°œê²¬ëœ ìƒíƒœì—ì„œ ì •ì°° ìœ ë‹›ì„ ì´ë™ì‹œí‚¤ê³  ìˆëŠ” ìƒíƒœ
 		};
 	}
 
-	/// °ÔÀÓ ÃÊ¹İ¿¡ ÀÏ²Û À¯´Ö Áß¿¡¼­ Á¤Âû À¯´ÖÀ» ÇÏ³ª ÁöÁ¤ÇÏ°í, Á¤Âû À¯´ÖÀ» ÀÌµ¿½ÃÄÑ Á¤ÂûÀ» ¼öÇàÇÏ´Â class
-	/// Àû±ºÀÇ BaseLocation À§Ä¡¸¦ ¾Ë¾Æ³»´Â °Í±îÁö¸¸ °³¹ßµÇ¾îÀÖ½À´Ï´Ù
+	/// ê²Œì„ ì´ˆë°˜ì— ì¼ê¾¼ ìœ ë‹› ì¤‘ì—ì„œ ì •ì°° ìœ ë‹›ì„ í•˜ë‚˜ ì§€ì •í•˜ê³ , ì •ì°° ìœ ë‹›ì„ ì´ë™ì‹œì¼œ ì •ì°°ì„ ìˆ˜í–‰í•˜ëŠ” class
+	/// ì êµ°ì˜ BaseLocation ìœ„ì¹˜ë¥¼ ì•Œì•„ë‚´ëŠ” ê²ƒê¹Œì§€ë§Œ ê°œë°œë˜ì–´ìˆìŠµë‹ˆë‹¤
 	class ScoutManager
 	{
 		ScoutManager();
@@ -31,10 +31,10 @@ namespace MyBot
 		std::vector<BWAPI::Position>    enemyBaseRegionVertices;
 		BWAPI::Position					currentScoutTargetPosition;
 		
-		/// Á¤Âû À¯´ÖÀ» ÇÊ¿äÇÏ¸é »õ·Î ÁöÁ¤ÇÕ´Ï´Ù
+		/// ì •ì°° ìœ ë‹›ì„ í•„ìš”í•˜ë©´ ìƒˆë¡œ ì§€ì •í•©ë‹ˆë‹¤
 		void							assignScoutIfNeeded();
 
-		/// Á¤Âû À¯´ÖÀ» ÀÌµ¿½ÃÅµ´Ï´Ù
+		/// ì •ì°° ìœ ë‹›ì„ ì´ë™ì‹œí‚µë‹ˆë‹¤
 		void                            moveScoutUnit();
 
 		void                            calculateEnemyRegionVertices();
@@ -42,22 +42,22 @@ namespace MyBot
 		int                             getClosestVertexIndex(BWAPI::Unit unit);
 
 	public:
-		/// static singleton °´Ã¼¸¦ ¸®ÅÏÇÕ´Ï´Ù
+		/// static singleton ê°ì²´ë¥¼ ë¦¬í„´í•©ë‹ˆë‹¤
 		static ScoutManager & Instance();
 
-		/// Á¤Âû À¯´ÖÀ» ÁöÁ¤ÇÏ°í, Á¤Âû »óÅÂ¸¦ ¾÷µ¥ÀÌÆ®ÇÏ°í, Á¤Âû À¯´ÖÀ» ÀÌµ¿½ÃÅµ´Ï´Ù
+		/// ì •ì°° ìœ ë‹›ì„ ì§€ì •í•˜ê³ , ì •ì°° ìƒíƒœë¥¼ ì—…ë°ì´íŠ¸í•˜ê³ , ì •ì°° ìœ ë‹›ì„ ì´ë™ì‹œí‚µë‹ˆë‹¤
 		void update();
 
-		/// Á¤Âû À¯´ÖÀ» ¸®ÅÏÇÕ´Ï´Ù
+		/// ì •ì°° ìœ ë‹›ì„ ë¦¬í„´í•©ë‹ˆë‹¤
 		BWAPI::Unit getScoutUnit();
 
-		// Á¤Âû »óÅÂ¸¦ ¸®ÅÏÇÕ´Ï´Ù
+		// ì •ì°° ìƒíƒœë¥¼ ë¦¬í„´í•©ë‹ˆë‹¤
 		int getScoutStatus();
 		
-		/// Á¤Âû À¯´ÖÀÇ ÀÌµ¿ ¸ñÇ¥ BaseLocation À» ¸®ÅÏÇÕ´Ï´Ù
+		/// ì •ì°° ìœ ë‹›ì˜ ì´ë™ ëª©í‘œ BaseLocation ì„ ë¦¬í„´í•©ë‹ˆë‹¤
 		BWTA::BaseLocation * getScoutTargetBaseLocation();
 				
-		/// Àû±ºÀÇ Main Base Location ÀÌ ÀÖ´Â Region ÀÇ °æ°è¼±¿¡ ÇØ´çÇÏ´Â Vertex µéÀÇ ¸ñ·ÏÀ» ¸®ÅÏÇÕ´Ï´Ù
+		/// ì êµ°ì˜ Main Base Location ì´ ìˆëŠ” Region ì˜ ê²½ê³„ì„ ì— í•´ë‹¹í•˜ëŠ” Vertex ë“¤ì˜ ëª©ë¡ì„ ë¦¬í„´í•©ë‹ˆë‹¤
 		std::vector<BWAPI::Position> & getEnemyRegionVertices();
 	};
 }

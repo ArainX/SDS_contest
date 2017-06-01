@@ -9,14 +9,14 @@ import bwapi.UnitType;
 import bwapi.Unitset;
 import bwta.BWTA;
 
-/// Áöµµ¸¦ ¹ÙµÏÆÇÃ³·³ Cell µé·Î ³ª´©°í, ¸Å frame ¸¶´Ù °¢ Cell ÀÇ timeLastVisited ½Ã°£Á¤º¸, timeLastOpponentSeen ½Ã°£Á¤º¸, ourUnits ¿Í oppUnits ¸ñ·ÏÀ» ¾÷µ¥ÀÌÆ® ÇÕ´Ï´Ù
+/// ì§€ë„ë¥¼ ë°”ë‘‘íŒì²˜ëŸ¼ Cell ë“¤ë¡œ ë‚˜ëˆ„ê³ , ë§¤ frame ë§ˆë‹¤ ê° Cell ì˜ timeLastVisited ì‹œê°„ì •ë³´, timeLastOpponentSeen ì‹œê°„ì •ë³´, ourUnits ì™€ oppUnits ëª©ë¡ì„ ì—…ë°ì´íŠ¸ í•©ë‹ˆë‹¤
 public class MapGrid {
 
-	/// Áöµµ¸¦ ¹ÙµÏÆÇÃ³·³ Cell µé·Î ³ª´©±â À§ÇØ¼­ Á¤ÀÇÇÑ ÇÏ³ªÀÇ Cell
+	/// ì§€ë„ë¥¼ ë°”ë‘‘íŒì²˜ëŸ¼ Cell ë“¤ë¡œ ë‚˜ëˆ„ê¸° ìœ„í•´ì„œ ì •ì˜í•œ í•˜ë‚˜ì˜ Cell
 	class GridCell
 	{
-		private int timeLastVisited; 		///< °¡Àå ¸¶Áö¸·¿¡ ¹æ¹®Çß´ø ½Ã°¢ÀÌ ¾ğÁ¦ÀÎÁö -> Scout ¿¡ È°¿ë		
-		private int timeLastOpponentSeen;	///< °¡Àå ¸¶Áö¸·¿¡ ÀûÀ» ¹ß°ßÇß´ø ½Ã°¢ÀÌ ¾ğÁ¦ÀÎÁö -> Àû ÀÇµµ ÆÄ¾Ç, Àû ºÎ´ë ÆÄ¾Ç, Àü·« ¼ö¸³¿¡ È°¿ë
+		private int timeLastVisited; 		///< ê°€ì¥ ë§ˆì§€ë§‰ì— ë°©ë¬¸í–ˆë˜ ì‹œê°ì´ ì–¸ì œì¸ì§€ -> Scout ì— í™œìš©		
+		private int timeLastOpponentSeen;	///< ê°€ì¥ ë§ˆì§€ë§‰ì— ì ì„ ë°œê²¬í–ˆë˜ ì‹œê°ì´ ì–¸ì œì¸ì§€ -> ì  ì˜ë„ íŒŒì•…, ì  ë¶€ëŒ€ íŒŒì•…, ì „ëµ ìˆ˜ë¦½ì— í™œìš©
 		private List<Unit> ourUnits= new ArrayList<Unit>();
 		private List<Unit> oppUnits= new ArrayList<Unit>();
 		private Position center;
@@ -44,7 +44,7 @@ public class MapGrid {
 
 	private static MapGrid instance = new MapGrid(MyBotModule.Broodwar.mapHeight() * 32, MyBotModule.Broodwar.mapHeight() * 32, Config.MAP_GRID_SIZE);
 	
-	/// static singleton °´Ã¼¸¦ ¸®ÅÏÇÕ´Ï´Ù
+	/// static singleton ê°ì²´ë¥¼ ë¦¬í„´í•©ë‹ˆë‹¤
 	public static MapGrid Instance() {
 		return instance;
 	}
@@ -170,7 +170,7 @@ public class MapGrid {
 		}
 	}
 
-	/// °¢ Cell ÀÇ timeLastVisited ½Ã°£Á¤º¸, timeLastOpponentSeen ½Ã°£Á¤º¸, ourUnits ¿Í oppUnits ¸ñ·Ï µîÀ» ¾÷µ¥ÀÌÆ® ÇÕ´Ï´Ù
+	/// ê° Cell ì˜ timeLastVisited ì‹œê°„ì •ë³´, timeLastOpponentSeen ì‹œê°„ì •ë³´, ourUnits ì™€ oppUnits ëª©ë¡ ë“±ì„ ì—…ë°ì´íŠ¸ í•©ë‹ˆë‹¤
 	public void update()
 	{
 		// clear the grid
@@ -206,8 +206,8 @@ public class MapGrid {
 		return getCellByIndex(pos.getY() / cellSize, pos.getX() / cellSize);
 	}
 	
-	/// ÇØ´ç position ±ÙÃ³¿¡ ÀÖ´Â ¾Æ±º È¤Àº Àû±º À¯´ÖµéÀÇ ¸ñ·ÏÀ» UnitSet ¿¡ ÀúÀåÇÕ´Ï´Ù
-	/// BWAPI::Broodwar->self()->getUnitsOnTile, getUnitsInRectangle, getUnitsInRadius, getClosestUnit ÇÔ¼ö¿Í À¯»çÇÏÁö¸¸ ¾²ÀÓ»õ°¡ ´Ù¸¨´Ï´Ù
+	/// í•´ë‹¹ position ê·¼ì²˜ì— ìˆëŠ” ì•„êµ° í˜¹ì€ ì êµ° ìœ ë‹›ë“¤ì˜ ëª©ë¡ì„ UnitSet ì— ì €ì¥í•©ë‹ˆë‹¤
+	/// BWAPI::Broodwar->self()->getUnitsOnTile, getUnitsInRectangle, getUnitsInRadius, getClosestUnit í•¨ìˆ˜ì™€ ìœ ì‚¬í•˜ì§€ë§Œ ì“°ì„ìƒˆê°€ ë‹¤ë¦…ë‹ˆë‹¤
 	public void getUnitsNear(Unitset units, Position center, int radius, boolean ourUnits, boolean oppUnits)
 	{
 		final int x0 = Math.max((center.getX() - radius) / cellSize, 0);

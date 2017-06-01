@@ -9,7 +9,7 @@ import bwapi.TilePosition;
 import bwapi.UnitType;
 import bwapi.UpgradeType;
 
-/// ºôµå ¿À´õ ¸ñ·Ï ÀÚ·á±¸Á¶ class
+/// ë¹Œë“œ ì˜¤ë” ëª©ë¡ ìë£Œêµ¬ì¡° class
 public class BuildOrderQueue {
 	
 	private enum SeedPositionStrategy { MainBaseLocation, MainBaseBackYard, FirstChokePoint, FirstExpansionLocation, SecondChokePoint, SecondExpansionLocation, SeedPositionSpecified };
@@ -19,12 +19,12 @@ public class BuildOrderQueue {
 	private int lowestPriority;
 	private int defaultPrioritySpacing;
 
-	/// iteration À» ÇÏ±â À§ÇÑ Âü°í°ª
-	/// highest priority ÀÎ BuildOrderItem À¸·ÎºÎÅÍ ¸î°³³ª skip Çß´Â°¡. 
+	/// iteration ì„ í•˜ê¸° ìœ„í•œ ì°¸ê³ ê°’
+	/// highest priority ì¸ BuildOrderItem ìœ¼ë¡œë¶€í„° ëª‡ê°œë‚˜ skip í–ˆëŠ”ê°€. 
 	private int numSkippedItems;
 	
-	/// BuildOrderItem µéÀ» Double Ended Queue ÀÚ·á±¸Á¶·Î °ü¸®ÇÕ´Ï´Ù
-	/// lowest priority ÀÎ BuildOrderItemÀº front ¿¡, highest priority ÀÎ BuildOrderItem Àº back ¿¡ À§Ä¡ÇÏ°Ô ÇÕ´Ï´Ù
+	/// BuildOrderItem ë“¤ì„ Double Ended Queue ìë£Œêµ¬ì¡°ë¡œ ê´€ë¦¬í•©ë‹ˆë‹¤
+	/// lowest priority ì¸ BuildOrderItemì€ front ì—, highest priority ì¸ BuildOrderItem ì€ back ì— ìœ„ì¹˜í•˜ê²Œ í•©ë‹ˆë‹¤
 	private Deque<BuildOrderItem> queue = new ArrayDeque<BuildOrderItem>();
 	
 	public BuildOrderQueue()
@@ -53,14 +53,14 @@ public class BuildOrderQueue {
 		numSkippedItems = 0;
 
 		// the queue will be sorted with the highest priority at the back
-		// C ¿¡¼­´Â highest °¡ back ¿¡ ÀÖÁö¸¸, JAVA ¿¡¼­´Â highest °¡ fist ¿¡ ÀÖ´Ù 
+		// C ì—ì„œëŠ” highest ê°€ back ì— ìˆì§€ë§Œ, JAVA ì—ì„œëŠ” highest ê°€ fist ì— ìˆë‹¤ 
 		return queue.getFirst();   //  queue.back(); C++
 	}
 
 	/// returns the highest priority item
 	public BuildOrderItem getNextItem() 
 	{
-		// TODO : assert Á¦°Å
+		// TODO : assert ì œê±°
 		//assert(queue.size() - 1 - numSkippedItems >= 0);
 
 		// the queue will be sorted with the highest priority at the back
@@ -70,10 +70,10 @@ public class BuildOrderQueue {
 		return (BuildOrderItem)tempArr[numSkippedItems];
 	}
 
-	/// BuildOrderQueue¿¡ ÇØ´ç type ÀÇ Item ÀÌ ¸î °³ Á¸ÀçÇÏ´ÂÁö ¸®ÅÏÇÑ´Ù. queryTilePosition À» ÀÔ·ÂÇÑ °æ¿ì, °Ç¹°¿¡ ´ëÇØ¼­ Ãß°¡ Å½»öÇÑ´Ù
+	/// BuildOrderQueueì— í•´ë‹¹ type ì˜ Item ì´ ëª‡ ê°œ ì¡´ì¬í•˜ëŠ”ì§€ ë¦¬í„´í•œë‹¤. queryTilePosition ì„ ì…ë ¥í•œ ê²½ìš°, ê±´ë¬¼ì— ëŒ€í•´ì„œ ì¶”ê°€ íƒìƒ‰í•œë‹¤
 	public int getItemCount(MetaType queryType, TilePosition queryTilePosition)
 	{
-		// queryTilePosition À» ÀÔ·ÂÇÑ °æ¿ì, °Å¸®ÀÇ maxRange. Å¸ÀÏ´ÜÀ§
+		// queryTilePosition ì„ ì…ë ¥í•œ ê²½ìš°, ê±°ë¦¬ì˜ maxRange. íƒ€ì¼ë‹¨ìœ„
 		int maxRange = 16;
 		
 		int itemCount = 0;
@@ -129,13 +129,13 @@ public class BuildOrderQueue {
 		return itemCount;
 	}
 
-	/// BuildOrderQueue¿¡ ÇØ´ç type ÀÇ Item ÀÌ ¸î °³ Á¸ÀçÇÏ´ÂÁö ¸®ÅÏÇÑ´Ù. queryTilePosition À» ÀÔ·ÂÇÑ °æ¿ì, °Ç¹°¿¡ ´ëÇØ¼­ Ãß°¡ Å½»öÇÑ´Ù
+	/// BuildOrderQueueì— í•´ë‹¹ type ì˜ Item ì´ ëª‡ ê°œ ì¡´ì¬í•˜ëŠ”ì§€ ë¦¬í„´í•œë‹¤. queryTilePosition ì„ ì…ë ¥í•œ ê²½ìš°, ê±´ë¬¼ì— ëŒ€í•´ì„œ ì¶”ê°€ íƒìƒ‰í•œë‹¤
 	public int getItemCount(MetaType queryType)
 	{
 		return getItemCount(queryType, null);
 	}
 	
-	/// BuildOrderQueue¿¡ ÇØ´ç type ÀÇ Item ÀÌ ¸î °³ Á¸ÀçÇÏ´ÂÁö ¸®ÅÏÇÑ´Ù. queryTilePosition À» ÀÔ·ÂÇÑ °æ¿ì, °Ç¹°¿¡ ´ëÇØ¼­ Ãß°¡ Å½»öÇÑ´Ù
+	/// BuildOrderQueueì— í•´ë‹¹ type ì˜ Item ì´ ëª‡ ê°œ ì¡´ì¬í•˜ëŠ”ì§€ ë¦¬í„´í•œë‹¤. queryTilePosition ì„ ì…ë ¥í•œ ê²½ìš°, ê±´ë¬¼ì— ëŒ€í•´ì„œ ì¶”ê°€ íƒìƒ‰í•œë‹¤
 	public int getItemCount(UnitType unitType, TilePosition queryTilePosition)
 	{
 		return getItemCount(new MetaType(unitType), queryTilePosition);
@@ -223,7 +223,7 @@ public class BuildOrderQueue {
 		lowestPriority  = (b.priority < lowestPriority)  ? b.priority : lowestPriority;
 	}
 
-	/// ºôµå¿À´õ¸¦ °¡Àå ³ôÀº ¿ì¼±¼øÀ§·Î buildQueue ¿¡ Ãß°¡ÇÑ´Ù. blocking (´Ù¸¥ °ÍÀ» »ı»êÇÏÁö ¾Ê°í, ÀÌ°ÍÀ» »ı»ê °¡´ÉÇÏ°Ô µÉ ¶§±îÁö ±â´Ù¸®´Â ¸ğµå) ±âº»°ªÀº true ÀÌ´Ù
+	/// ë¹Œë“œì˜¤ë”ë¥¼ ê°€ì¥ ë†’ì€ ìš°ì„ ìˆœìœ„ë¡œ buildQueue ì— ì¶”ê°€í•œë‹¤. blocking (ë‹¤ë¥¸ ê²ƒì„ ìƒì‚°í•˜ì§€ ì•Šê³ , ì´ê²ƒì„ ìƒì‚° ê°€ëŠ¥í•˜ê²Œ ë  ë•Œê¹Œì§€ ê¸°ë‹¤ë¦¬ëŠ” ëª¨ë“œ) ê¸°ë³¸ê°’ì€ true ì´ë‹¤
 public void queueAsHighestPriority(MetaType metaType, boolean blocking, int producerID)
 	{
 		// the new priority will be higher
@@ -295,7 +295,7 @@ public void queueAsHighestPriority(MetaType metaType, boolean blocking, int prod
 		queueAsHighestPriority(upgradeType, blocking, -1);
 	}
 
-	/// ºôµå¿À´õ¸¦ °¡Àå ³·Àº ¿ì¼±¼øÀ§·Î buildQueue ¿¡ Ãß°¡ÇÑ´Ù. blocking (´Ù¸¥ °ÍÀ» »ı»êÇÏÁö ¾Ê°í, ÀÌ°ÍÀ» »ı»ê °¡´ÉÇÏ°Ô µÉ ¶§±îÁö ±â´Ù¸®´Â ¸ğµå) ±âº»°ªÀº true ÀÌ´Ù
+	/// ë¹Œë“œì˜¤ë”ë¥¼ ê°€ì¥ ë‚®ì€ ìš°ì„ ìˆœìœ„ë¡œ buildQueue ì— ì¶”ê°€í•œë‹¤. blocking (ë‹¤ë¥¸ ê²ƒì„ ìƒì‚°í•˜ì§€ ì•Šê³ , ì´ê²ƒì„ ìƒì‚° ê°€ëŠ¥í•˜ê²Œ ë  ë•Œê¹Œì§€ ê¸°ë‹¤ë¦¬ëŠ” ëª¨ë“œ) ê¸°ë³¸ê°’ì€ true ì´ë‹¤
 	public void queueAsLowestPriority(MetaType metaType, boolean blocking, int producerID)
 	{
 		// the new priority will be higher
@@ -384,7 +384,7 @@ public void queueAsHighestPriority(MetaType metaType, boolean blocking, int prod
 		lowestPriority  = queue.isEmpty() ? 0 : lowestPriority;
 	}
 
-	/// skippedItems ´ÙÀ½ÀÇ item À» Á¦°ÅÇÕ´Ï´Ù
+	/// skippedItems ë‹¤ìŒì˜ item ì„ ì œê±°í•©ë‹ˆë‹¤
 	public void removeCurrentItem() 
 	{
 		// remove the back element of the vector

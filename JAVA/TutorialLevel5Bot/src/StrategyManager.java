@@ -9,10 +9,10 @@ import bwta.BWTA;
 import bwta.BaseLocation;
 import bwta.Chokepoint;
 
-/// »óÈ²À» ÆÇ´ÜÇÏ¿©, Á¤Âû, ºôµå, °ø°İ, ¹æ¾î µîÀ» ¼öÇàÇÏµµ·Ï ÃÑ°ı ÁöÈÖ¸¦ ÇÏ´Â class
-/// InformationManager ¿¡ ÀÖ´Â Á¤º¸µé·ÎºÎÅÍ »óÈ²À» ÆÇ´ÜÇÏ°í, 
-/// BuildManager ÀÇ buildQueue¿¡ ºôµå (°Ç¹° °Ç¼³ / À¯´Ö ÈÆ·Ã / Å×Å© ¸®¼­Ä¡ / ¾÷±×·¹ÀÌµå) ¸í·ÉÀ» ÀÔ·ÂÇÕ´Ï´Ù.
-/// Á¤Âû, ºôµå, °ø°İ, ¹æ¾î µîÀ» ¼öÇàÇÏ´Â ÄÚµå°¡ µé¾î°¡´Â class
+/// ìƒí™©ì„ íŒë‹¨í•˜ì—¬, ì •ì°°, ë¹Œë“œ, ê³µê²©, ë°©ì–´ ë“±ì„ ìˆ˜í–‰í•˜ë„ë¡ ì´ê´„ ì§€íœ˜ë¥¼ í•˜ëŠ” class
+/// InformationManager ì— ìˆëŠ” ì •ë³´ë“¤ë¡œë¶€í„° ìƒí™©ì„ íŒë‹¨í•˜ê³ , 
+/// BuildManager ì˜ buildQueueì— ë¹Œë“œ (ê±´ë¬¼ ê±´ì„¤ / ìœ ë‹› í›ˆë ¨ / í…Œí¬ ë¦¬ì„œì¹˜ / ì—…ê·¸ë ˆì´ë“œ) ëª…ë ¹ì„ ì…ë ¥í•©ë‹ˆë‹¤.
+/// ì •ì°°, ë¹Œë“œ, ê³µê²©, ë°©ì–´ ë“±ì„ ìˆ˜í–‰í•˜ëŠ” ì½”ë“œê°€ ë“¤ì–´ê°€ëŠ” class
 public class StrategyManager {
 
 	private static StrategyManager instance = new StrategyManager();
@@ -22,7 +22,7 @@ public class StrategyManager {
 	private boolean isFullScaleAttackStarted;
 	private boolean isInitialBuildOrderFinished;
 
-	/// static singleton °´Ã¼¸¦ ¸®ÅÏÇÕ´Ï´Ù
+	/// static singleton ê°ì²´ë¥¼ ë¦¬í„´í•©ë‹ˆë‹¤
 	public static StrategyManager Instance() {
 		return instance;
 	}
@@ -32,17 +32,17 @@ public class StrategyManager {
 		isInitialBuildOrderFinished = false;
 	}
 
-	/// °æ±â°¡ ½ÃÀÛµÉ ¶§ ÀÏÈ¸ÀûÀ¸·Î Àü·« ÃÊ±â ¼¼ÆÃ °ü·Ã ·ÎÁ÷À» ½ÇÇàÇÕ´Ï´Ù
+	/// ê²½ê¸°ê°€ ì‹œì‘ë  ë•Œ ì¼íšŒì ìœ¼ë¡œ ì „ëµ ì´ˆê¸° ì„¸íŒ… ê´€ë ¨ ë¡œì§ì„ ì‹¤í–‰í•©ë‹ˆë‹¤
 	public void onStart() {
 		setInitialBuildOrder();		
 	}
 
-	///  °æ±â°¡ Á¾·áµÉ ¶§ ÀÏÈ¸ÀûÀ¸·Î Àü·« °á°ú Á¤¸® °ü·Ã ·ÎÁ÷À» ½ÇÇàÇÕ´Ï´Ù
+	///  ê²½ê¸°ê°€ ì¢…ë£Œë  ë•Œ ì¼íšŒì ìœ¼ë¡œ ì „ëµ ê²°ê³¼ ì •ë¦¬ ê´€ë ¨ ë¡œì§ì„ ì‹¤í–‰í•©ë‹ˆë‹¤
 	public void onEnd(boolean isWinner) {
 
 	}
 
-	/// °æ±â ÁøÇà Áß ¸Å ÇÁ·¹ÀÓ¸¶´Ù °æ±â Àü·« °ü·Ã ·ÎÁ÷À» ½ÇÇàÇÕ´Ï´Ù
+	/// ê²½ê¸° ì§„í–‰ ì¤‘ ë§¤ í”„ë ˆì„ë§ˆë‹¤ ê²½ê¸° ì „ëµ ê´€ë ¨ ë¡œì§ì„ ì‹¤í–‰í•©ë‹ˆë‹¤
 	public void update() {
 		if (BuildManager.Instance().buildQueue.isEmpty()) {
 			isInitialBuildOrderFinished = true;
@@ -65,46 +65,46 @@ public class StrategyManager {
 			BuildManager.Instance().buildQueue.queueAsLowestPriority(InformationManager.Instance().getWorkerType());
 			BuildManager.Instance().buildQueue.queueAsLowestPriority(InformationManager.Instance().getWorkerType());
 
-			// SupplyUsed°¡ 7 ÀÏ¶§ ÆÄÀÏ·± ºôµå
+			// SupplyUsedê°€ 7 ì¼ë•Œ íŒŒì¼ëŸ° ë¹Œë“œ
 			BuildManager.Instance().buildQueue.queueAsLowestPriority(InformationManager.Instance().getBasicSupplyProviderUnitType(), BuildOrderItem.SeedPositionStrategy.MainBaseLocation);
 
 			BuildManager.Instance().buildQueue.queueAsLowestPriority(InformationManager.Instance().getWorkerType());
 
-			// SupplyUsed°¡ 8 ÀÏ¶§ 1¹øÂ° °ÔÀÌÆ®¿şÀÌ ºôµå
+			// SupplyUsedê°€ 8 ì¼ë•Œ 1ë²ˆì§¸ ê²Œì´íŠ¸ì›¨ì´ ë¹Œë“œ
 			BuildManager.Instance().buildQueue.queueAsLowestPriority(UnitType.Protoss_Gateway, BuildOrderItem.SeedPositionStrategy.MainBaseLocation);
 			
 			BuildManager.Instance().buildQueue.queueAsLowestPriority(InformationManager.Instance().getWorkerType());
 
-			// SupplyUsed°¡ 9 ÀÏ¶§ °¡½º ¸®ÆÄÀÌ³Ê¸® ºôµå
+			// SupplyUsedê°€ 9 ì¼ë•Œ ê°€ìŠ¤ ë¦¬íŒŒì´ë„ˆë¦¬ ë¹Œë“œ
 			BuildManager.Instance().buildQueue.queueAsLowestPriority(InformationManager.Instance().getRefineryBuildingType());
 
 			BuildManager.Instance().buildQueue.queueAsLowestPriority(InformationManager.Instance().getWorkerType());
 
-			// SupplyUsed°¡ 10 ÀÏ¶§ »çÀÌ¹ö³×Æ½½º ÄÚ¾î ºôµå
+			// SupplyUsedê°€ 10 ì¼ë•Œ ì‚¬ì´ë²„ë„¤í‹±ìŠ¤ ì½”ì–´ ë¹Œë“œ
 			BuildManager.Instance().buildQueue.queueAsLowestPriority(UnitType.Protoss_Cybernetics_Core, BuildOrderItem.SeedPositionStrategy.MainBaseLocation);
 
-			// 1¹øÂ° Áú·µ ºôµå
+			// 1ë²ˆì§¸ ì§ˆëŸ¿ ë¹Œë“œ
 			BuildManager.Instance().buildQueue.queueAsLowestPriority(UnitType.Protoss_Zealot);
 
-			// SupplyUsed°¡ 12 ÀÏ¶§ ½ÃÅ¸µ¨ ¿Àºê ¾ÆµĞ ºôµå
+			// SupplyUsedê°€ 12 ì¼ë•Œ ì‹œíƒ€ë¸ ì˜¤ë¸Œ ì•„ë‘” ë¹Œë“œ
 			BuildManager.Instance().buildQueue.queueAsLowestPriority(UnitType.Protoss_Citadel_of_Adun);
 
 			BuildManager.Instance().buildQueue.queueAsLowestPriority(InformationManager.Instance().getWorkerType());
 			BuildManager.Instance().buildQueue.queueAsLowestPriority(InformationManager.Instance().getWorkerType());
 
-			// SupplyUsed°¡ 14 ÀÏ¶§ ÅÛÇÃ·¯ ¾ÆÄ«ÀÌºê, 2¹øÂ° °ÔÀÌÆ®¿şÀÌ ºôµå
+			// SupplyUsedê°€ 14 ì¼ë•Œ í…œí”ŒëŸ¬ ì•„ì¹´ì´ë¸Œ, 2ë²ˆì§¸ ê²Œì´íŠ¸ì›¨ì´ ë¹Œë“œ
 			BuildManager.Instance().buildQueue.queueAsLowestPriority(UnitType.Protoss_Templar_Archives);
 			BuildManager.Instance().buildQueue.queueAsLowestPriority(UnitType.Protoss_Gateway, BuildOrderItem.SeedPositionStrategy.MainBaseLocation);
 
-			// 2¹øÂ° Áú·µ ºôµå
+			// 2ë²ˆì§¸ ì§ˆëŸ¿ ë¹Œë“œ
 			BuildManager.Instance().buildQueue.queueAsLowestPriority(UnitType.Protoss_Zealot);
 
-			// SupplyUsed°¡ 16 ÀÏ¶§ ÆÄÀÏ·± ºôµå
+			// SupplyUsedê°€ 16 ì¼ë•Œ íŒŒì¼ëŸ° ë¹Œë“œ
 			BuildManager.Instance().buildQueue.queueAsLowestPriority(InformationManager.Instance().getBasicSupplyProviderUnitType(), BuildOrderItem.SeedPositionStrategy.MainBaseLocation);
 
 			BuildManager.Instance().buildQueue.queueAsLowestPriority(InformationManager.Instance().getWorkerType());
 
-			// 4¸¶¸® ´ÙÅ© ÅÛÇÃ·¯ ºôµå ÈÄ ÆÄÀÏ·± ºôµå
+			// 4ë§ˆë¦¬ ë‹¤í¬ í…œí”ŒëŸ¬ ë¹Œë“œ í›„ íŒŒì¼ëŸ° ë¹Œë“œ
 			BuildManager.Instance().buildQueue.queueAsLowestPriority(UnitType.Protoss_Dark_Templar);
 			BuildManager.Instance().buildQueue.queueAsLowestPriority(UnitType.Protoss_Dark_Templar);
 			BuildManager.Instance().buildQueue.queueAsLowestPriority(UnitType.Protoss_Dark_Templar);
@@ -114,26 +114,26 @@ public class StrategyManager {
 		}
 	}
 
-	// ÀÏ²Û °è¼Ó Ãß°¡ »ı»ê
+	// ì¼ê¾¼ ê³„ì† ì¶”ê°€ ìƒì‚°
 	public void executeWorkerTraining() {
 
-		// InitialBuildOrder ÁøÇàÁß¿¡´Â ¾Æ¹«°Íµµ ÇÏÁö ¾Ê½À´Ï´Ù
+		// InitialBuildOrder ì§„í–‰ì¤‘ì—ëŠ” ì•„ë¬´ê²ƒë„ í•˜ì§€ ì•ŠìŠµë‹ˆë‹¤
 		if (isInitialBuildOrderFinished == false) {
 			return;
 		}
 
 		if (MyBotModule.Broodwar.self().minerals() >= 50) {
-			// workerCount = ÇöÀç ÀÏ²Û ¼ö + »ı»êÁßÀÎ ÀÏ²Û ¼ö
+			// workerCount = í˜„ì¬ ì¼ê¾¼ ìˆ˜ + ìƒì‚°ì¤‘ì¸ ì¼ê¾¼ ìˆ˜
 			int workerCount = MyBotModule.Broodwar.self().allUnitCount(InformationManager.Instance().getWorkerType());
 
 			if (MyBotModule.Broodwar.self().getRace() == Race.Zerg) {
 				for (Unit unit : MyBotModule.Broodwar.self().getUnits()) {
 					if (unit.getType() == UnitType.Zerg_Egg) {
-						// Zerg_Egg ¿¡°Ô morph ¸í·ÉÀ» ³»¸®¸é isMorphing = true,
-						// isBeingConstructed = true, isConstructing = true °¡ µÈ´Ù
-						// Zerg_Egg °¡ ´Ù¸¥ À¯´ÖÀ¸·Î ¹Ù²î¸é¼­ »õ·Î ¸¸µé¾îÁø À¯´ÖÀº Àá½Ã
-						// isBeingConstructed = true, isConstructing = true °¡
-						// µÇ¾ú´Ù°¡,
+						// Zerg_Egg ì—ê²Œ morph ëª…ë ¹ì„ ë‚´ë¦¬ë©´ isMorphing = true,
+						// isBeingConstructed = true, isConstructing = true ê°€ ëœë‹¤
+						// Zerg_Egg ê°€ ë‹¤ë¥¸ ìœ ë‹›ìœ¼ë¡œ ë°”ë€Œë©´ì„œ ìƒˆë¡œ ë§Œë“¤ì–´ì§„ ìœ ë‹›ì€ ì ì‹œ
+						// isBeingConstructed = true, isConstructing = true ê°€
+						// ë˜ì—ˆë‹¤ê°€,
 						if (unit.isMorphing() && unit.getBuildType() == UnitType.Zerg_Drone) {
 							workerCount++;
 						}
@@ -153,7 +153,7 @@ public class StrategyManager {
 				for (Unit unit : MyBotModule.Broodwar.self().getUnits()) {
 					if (unit.getType().isResourceDepot()) {
 						if (unit.isTraining() == false || unit.getLarva().size() > 0) {
-							// ºôµåÅ¥¿¡ ÀÏ²Û »ı»êÀÌ 1°³´Â ÀÖµµ·Ï ÇÑ´Ù
+							// ë¹Œë“œíì— ì¼ê¾¼ ìƒì‚°ì´ 1ê°œëŠ” ìˆë„ë¡ í•œë‹¤
 							if (BuildManager.Instance().buildQueue
 									.getItemCount(InformationManager.Instance().getWorkerType(), null) == 0) {
 								// std.cout << "worker enqueue" << std.endl;
@@ -167,49 +167,49 @@ public class StrategyManager {
 		}
 	}
 
-	// Supply DeadLock ¿¹¹æ ¹× SupplyProvider °¡ ºÎÁ·ÇØÁú »óÈ² ¿¡ ´ëÇÑ ¼±Á¦Àû ´ëÀÀÀ¸·Î¼­
-	// SupplyProvider¸¦ Ãß°¡ °Ç¼³/»ı»êÇÑ´Ù
+	// Supply DeadLock ì˜ˆë°© ë° SupplyProvider ê°€ ë¶€ì¡±í•´ì§ˆ ìƒí™© ì— ëŒ€í•œ ì„ ì œì  ëŒ€ì‘ìœ¼ë¡œì„œ
+	// SupplyProviderë¥¼ ì¶”ê°€ ê±´ì„¤/ìƒì‚°í•œë‹¤
 	public void executeSupplyManagement() {
 
-		// InitialBuildOrder ÁøÇàÁß¿¡´Â ¾Æ¹«°Íµµ ÇÏÁö ¾Ê½À´Ï´Ù
+		// InitialBuildOrder ì§„í–‰ì¤‘ì—ëŠ” ì•„ë¬´ê²ƒë„ í•˜ì§€ ì•ŠìŠµë‹ˆë‹¤
 		if (isInitialBuildOrderFinished == false) {
 			return;
 		}
 
-		// 1ÃÊ¿¡ ÇÑ¹ø¸¸ ½ÇÇà
+		// 1ì´ˆì— í•œë²ˆë§Œ ì‹¤í–‰
 		if (MyBotModule.Broodwar.getFrameCount() % 24 != 0) {
 			return;
 		}
 
-		// °ÔÀÓ¿¡¼­´Â ¼­ÇÃ¶óÀÌ °ªÀÌ 200±îÁö ÀÖÁö¸¸, BWAPI ¿¡¼­´Â ¼­ÇÃ¶óÀÌ °ªÀÌ 400±îÁö ÀÖ´Ù
-		// Àú±Û¸µ 1¸¶¸®°¡ °ÔÀÓ¿¡¼­´Â ¼­ÇÃ¶óÀÌ¸¦ 0.5 Â÷ÁöÇÏÁö¸¸, BWAPI ¿¡¼­´Â ¼­ÇÃ¶óÀÌ¸¦ 1 Â÷ÁöÇÑ´Ù
+		// ê²Œì„ì—ì„œëŠ” ì„œí”Œë¼ì´ ê°’ì´ 200ê¹Œì§€ ìˆì§€ë§Œ, BWAPI ì—ì„œëŠ” ì„œí”Œë¼ì´ ê°’ì´ 400ê¹Œì§€ ìˆë‹¤
+		// ì €ê¸€ë§ 1ë§ˆë¦¬ê°€ ê²Œì„ì—ì„œëŠ” ì„œí”Œë¼ì´ë¥¼ 0.5 ì°¨ì§€í•˜ì§€ë§Œ, BWAPI ì—ì„œëŠ” ì„œí”Œë¼ì´ë¥¼ 1 ì°¨ì§€í•œë‹¤
 		if (MyBotModule.Broodwar.self().supplyTotal() <= 400) {
 
-			// ¼­ÇÃ¶óÀÌ°¡ ´Ù ²ËÃ¡À»¶§ »õ ¼­ÇÃ¶óÀÌ¸¦ ÁöÀ¸¸é Áö¿¬ÀÌ ¸¹ÀÌ ÀÏ¾î³ª¹Ç·Î, supplyMargin (°ÔÀÓ¿¡¼­ÀÇ ¼­ÇÃ¶óÀÌ ¸¶Áø °ªÀÇ 2¹è)¸¸Å­ ºÎÁ·ÇØÁö¸é »õ ¼­ÇÃ¶óÀÌ¸¦ Áşµµ·Ï ÇÑ´Ù
-			// ÀÌ·¸°Ô °ªÀ» Á¤ÇØ³õÀ¸¸é, °ÔÀÓ ÃÊ¹İºÎ¿¡´Â ¼­ÇÃ¶óÀÌ¸¦ ³Ê¹« ÀÏÂï Áş°í, °ÔÀÓ ÈÄ¹İºÎ¿¡´Â ¼­ÇÃ¶óÀÌ¸¦ ³Ê¹« ´Ê°Ô Áş°Ô µÈ´Ù
+			// ì„œí”Œë¼ì´ê°€ ë‹¤ ê½‰ì°¼ì„ë•Œ ìƒˆ ì„œí”Œë¼ì´ë¥¼ ì§€ìœ¼ë©´ ì§€ì—°ì´ ë§ì´ ì¼ì–´ë‚˜ë¯€ë¡œ, supplyMargin (ê²Œì„ì—ì„œì˜ ì„œí”Œë¼ì´ ë§ˆì§„ ê°’ì˜ 2ë°°)ë§Œí¼ ë¶€ì¡±í•´ì§€ë©´ ìƒˆ ì„œí”Œë¼ì´ë¥¼ ì§“ë„ë¡ í•œë‹¤
+			// ì´ë ‡ê²Œ ê°’ì„ ì •í•´ë†“ìœ¼ë©´, ê²Œì„ ì´ˆë°˜ë¶€ì—ëŠ” ì„œí”Œë¼ì´ë¥¼ ë„ˆë¬´ ì¼ì° ì§“ê³ , ê²Œì„ í›„ë°˜ë¶€ì—ëŠ” ì„œí”Œë¼ì´ë¥¼ ë„ˆë¬´ ëŠ¦ê²Œ ì§“ê²Œ ëœë‹¤
 			int supplyMargin = 12;
 
-			// currentSupplyShortage ¸¦ °è»êÇÑ´Ù
+			// currentSupplyShortage ë¥¼ ê³„ì‚°í•œë‹¤
 			int currentSupplyShortage = MyBotModule.Broodwar.self().supplyUsed() + supplyMargin - MyBotModule.Broodwar.self().supplyTotal();
 
 			if (currentSupplyShortage > 0) {
 				
-				// »ı»ê/°Ç¼³ ÁßÀÎ Supply¸¦ ¼¾´Ù
+				// ìƒì‚°/ê±´ì„¤ ì¤‘ì¸ Supplyë¥¼ ì„¼ë‹¤
 				int onBuildingSupplyCount = 0;
 
-				// Àú±× Á¾Á·ÀÎ °æ¿ì, »ı»êÁßÀÎ Zerg_Overlord (Zerg_Egg) ¸¦ ¼¾´Ù. Hatchery µî °Ç¹°Àº ¼¼Áö ¾Ê´Â´Ù
+				// ì €ê·¸ ì¢…ì¡±ì¸ ê²½ìš°, ìƒì‚°ì¤‘ì¸ Zerg_Overlord (Zerg_Egg) ë¥¼ ì„¼ë‹¤. Hatchery ë“± ê±´ë¬¼ì€ ì„¸ì§€ ì•ŠëŠ”ë‹¤
 				if (MyBotModule.Broodwar.self().getRace() == Race.Zerg) {
 					for (Unit unit : MyBotModule.Broodwar.self().getUnits()) {
 						if (unit.getType() == UnitType.Zerg_Egg && unit.getBuildType() == UnitType.Zerg_Overlord) {
 							onBuildingSupplyCount += UnitType.Zerg_Overlord.supplyProvided();
 						}
-						// °«ÅÂ¾î³­ Overlord ´Â ¾ÆÁ÷ SupplyTotal ¿¡ ¹İ¿µ¾ÈµÇ¾î¼­, Ãß°¡ Ä«¿îÆ®¸¦ ÇØÁà¾ßÇÔ
+						// ê°“íƒœì–´ë‚œ Overlord ëŠ” ì•„ì§ SupplyTotal ì— ë°˜ì˜ì•ˆë˜ì–´ì„œ, ì¶”ê°€ ì¹´ìš´íŠ¸ë¥¼ í•´ì¤˜ì•¼í•¨
 						if (unit.getType() == UnitType.Zerg_Overlord && unit.isConstructing()) {
 							onBuildingSupplyCount += UnitType.Zerg_Overlord.supplyProvided();
 						}
 					}
 				}
-				// Àú±× Á¾Á·ÀÌ ¾Æ´Ñ °æ¿ì, °Ç¼³ÁßÀÎ Protoss_Pylon, Terran_Supply_Depot ¸¦ ¼¾´Ù. Nexus, Command Center µî °Ç¹°Àº ¼¼Áö ¾Ê´Â´Ù
+				// ì €ê·¸ ì¢…ì¡±ì´ ì•„ë‹Œ ê²½ìš°, ê±´ì„¤ì¤‘ì¸ Protoss_Pylon, Terran_Supply_Depot ë¥¼ ì„¼ë‹¤. Nexus, Command Center ë“± ê±´ë¬¼ì€ ì„¸ì§€ ì•ŠëŠ”ë‹¤
 				else {
 					onBuildingSupplyCount += ConstructionManager.Instance().getConstructionQueueItemCount(
 							InformationManager.Instance().getBasicSupplyProviderUnitType(), null)
@@ -220,7 +220,7 @@ public class StrategyManager {
 
 				if (currentSupplyShortage > onBuildingSupplyCount) {
 					
-					// BuildQueue ÃÖ»ó´Ü¿¡ SupplyProvider °¡ ÀÖÁö ¾ÊÀ¸¸é enqueue ÇÑ´Ù
+					// BuildQueue ìµœìƒë‹¨ì— SupplyProvider ê°€ ìˆì§€ ì•Šìœ¼ë©´ enqueue í•œë‹¤
 					boolean isToEnqueue = true;
 					if (!BuildManager.Instance().buildQueue.isEmpty()) {
 						BuildOrderItem currentItem = BuildManager.Instance().buildQueue.getHighestPriorityItem();
@@ -243,12 +243,12 @@ public class StrategyManager {
 
 	public void executeBasicCombatUnitTraining() {
 
-		// InitialBuildOrder ÁøÇàÁß¿¡´Â ¾Æ¹«°Íµµ ÇÏÁö ¾Ê½À´Ï´Ù
+		// InitialBuildOrder ì§„í–‰ì¤‘ì—ëŠ” ì•„ë¬´ê²ƒë„ í•˜ì§€ ì•ŠìŠµë‹ˆë‹¤
 		if (isInitialBuildOrderFinished == false) {
 			return;
 		}
 
-		// ±âº» º´·Â Ãß°¡ ÈÆ·Ã
+		// ê¸°ë³¸ ë³‘ë ¥ ì¶”ê°€ í›ˆë ¨
 		if (MyBotModule.Broodwar.self().minerals() >= 200 && MyBotModule.Broodwar.self().supplyUsed() < 390) {
 			for (Unit unit : MyBotModule.Broodwar.self().getUnits()) {
 				if (unit.getType() == InformationManager.Instance().getBasicCombatBuildingType()) {
@@ -267,7 +267,7 @@ public class StrategyManager {
 
 	public void executeCombat() {
 
-		// °ø°İ ¸ğµå°¡ ¾Æ´Ò ¶§¿¡´Â ÀüÅõÀ¯´ÖµéÀ» ¾Æ±º Áø¿µ ±æ¸ñ¿¡ Áı°á½ÃÄÑ¼­ ¹æ¾î
+		// ê³µê²© ëª¨ë“œê°€ ì•„ë‹ ë•Œì—ëŠ” ì „íˆ¬ìœ ë‹›ë“¤ì„ ì•„êµ° ì§„ì˜ ê¸¸ëª©ì— ì§‘ê²°ì‹œì¼œì„œ ë°©ì–´
 		if (isFullScaleAttackStarted == false) {
 			Chokepoint firstChokePoint = BWTA.getNearestChokepoint(InformationManager.Instance().getMainBaseLocation(InformationManager.Instance().selfPlayer).getTilePosition());
 
@@ -277,7 +277,7 @@ public class StrategyManager {
 				}
 			}
 
-			// Protoss_Dark_Templar À¯´ÖÀÌ 2°³ ÀÌ»ó »ı»êµÇ¾ú°í, Àû±º À§Ä¡°¡ ÆÄ¾ÇµÇ¾úÀ¸¸é ÃÑ°ø°İ ¸ğµå·Î ÀüÈ¯
+			// Protoss_Dark_Templar ìœ ë‹›ì´ 2ê°œ ì´ìƒ ìƒì‚°ë˜ì—ˆê³ , ì êµ° ìœ„ì¹˜ê°€ íŒŒì•…ë˜ì—ˆìœ¼ë©´ ì´ê³µê²© ëª¨ë“œë¡œ ì „í™˜
 			if (MyBotModule.Broodwar.self().completedUnitCount(UnitType.Protoss_Dark_Templar) >= 2) {
 				if (InformationManager.Instance().enemyPlayer != null
 					&& InformationManager.Instance().enemyRace != Race.Unknown  
@@ -286,7 +286,7 @@ public class StrategyManager {
 				}
 			}
 		}
-		// °ø°İ ¸ğµå°¡ µÇ¸é, ¸ğµç ÀüÅõÀ¯´ÖµéÀ» Àû±º Main BaseLocation ·Î °ø°İ °¡µµ·Ï ÇÕ´Ï´Ù
+		// ê³µê²© ëª¨ë“œê°€ ë˜ë©´, ëª¨ë“  ì „íˆ¬ìœ ë‹›ë“¤ì„ ì êµ° Main BaseLocation ë¡œ ê³µê²© ê°€ë„ë¡ í•©ë‹ˆë‹¤
 		else {
 			//std.cout << "enemy OccupiedBaseLocations : " << InformationManager.Instance().getOccupiedBaseLocations(InformationManager.Instance()._enemy).size() << std.endl;
 			
@@ -294,7 +294,7 @@ public class StrategyManager {
 					&& InformationManager.Instance().enemyRace != Race.Unknown 
 					&& InformationManager.Instance().getOccupiedBaseLocations(InformationManager.Instance().enemyPlayer).size() > 0) 
 			{					
-				// °ø°İ ´ë»ó Áö¿ª °áÁ¤
+				// ê³µê²© ëŒ€ìƒ ì§€ì—­ ê²°ì •
 				BaseLocation targetBaseLocation = null;
 				double closestDistance = 100000000;
 
@@ -311,16 +311,16 @@ public class StrategyManager {
 
 				if (targetBaseLocation != null) {
 					for (Unit unit : MyBotModule.Broodwar.self().getUnits()) {
-						// °Ç¹°Àº Á¦¿Ü
+						// ê±´ë¬¼ì€ ì œì™¸
 						if (unit.getType().isBuilding()) {
 							continue;
 						}
-						// ¸ğµç ÀÏ²ÛÀº Á¦¿Ü
+						// ëª¨ë“  ì¼ê¾¼ì€ ì œì™¸
 						if (unit.getType().isWorker()) {
 							continue;
 						}
 											
-						// canAttack À¯´ÖÀº attackMove Command ·Î °ø°İÀ» º¸³À´Ï´Ù
+						// canAttack ìœ ë‹›ì€ attackMove Command ë¡œ ê³µê²©ì„ ë³´ëƒ…ë‹ˆë‹¤
 						if (unit.canAttack()) {
 							
 							if (unit.isIdle()) {

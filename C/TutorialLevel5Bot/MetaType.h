@@ -4,7 +4,7 @@
 
 namespace MyBot
 {
-	/// BuildManager µî¿¡¼­ UnitType, TechType, UpgradeType ±¸ºĞ¾øÀÌ µ¿ÀÏÇÑ Method ·Î ½ÇÇàÇÒ ¼ö ÀÖ°Ô ÇÏ±â À§ÇØ ¸¸µç Wrapper class
+	/// BuildManager ë“±ì—ì„œ UnitType, TechType, UpgradeType êµ¬ë¶„ì—†ì´ ë™ì¼í•œ Method ë¡œ ì‹¤í–‰í•  ìˆ˜ ìˆê²Œ í•˜ê¸° ìœ„í•´ ë§Œë“  Wrapper class
 	namespace MetaTypes
 	{
 		enum {
@@ -15,7 +15,7 @@ namespace MyBot
 		};
 	}
 
-	/// BuildManager µî¿¡¼­ UnitType, TechType, UpgradeType ±¸ºĞ¾øÀÌ µ¿ÀÏÇÑ Method ·Î ½ÇÇàÇÒ ¼ö ÀÖ°Ô ÇÏ±â À§ÇØ ¸¸µç Wrapper class
+	/// BuildManager ë“±ì—ì„œ UnitType, TechType, UpgradeType êµ¬ë¶„ì—†ì´ ë™ì¼í•œ Method ë¡œ ì‹¤í–‰í•  ìˆ˜ ìˆê²Œ í•˜ê¸° ìœ„í•´ ë§Œë“  Wrapper class
 	class MetaType
 	{
 		size_t                  _type;

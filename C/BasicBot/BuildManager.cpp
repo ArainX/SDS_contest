@@ -6,19 +6,19 @@ BuildManager::BuildManager()
 {
 }
 
-// ºôµå¿À´õ Å¥¿¡ ÀÖ´Â °Í¿¡ ´ëÇØ »ı»ê / °Ç¼³ / ¸®¼­Ä¡ / ¾÷±×·¹ÀÌµå¸¦ ½ÇÇàÇÑ´Ù
+// ë¹Œë“œì˜¤ë” íì— ìˆëŠ” ê²ƒì— ëŒ€í•´ ìƒì‚° / ê±´ì„¤ / ë¦¬ì„œì¹˜ / ì—…ê·¸ë ˆì´ë“œë¥¼ ì‹¤í–‰í•œë‹¤
 void BuildManager::update()
 {
-	// 1ÃÊ(24ÇÁ·¹ÀÓ)¿¡ 4¹ø Á¤µµ¸¸ ½ÇÇàÇØµµ ÃæºĞÇÏ´Ù
+	// 1ì´ˆ(24í”„ë ˆì„)ì— 4ë²ˆ ì •ë„ë§Œ ì‹¤í–‰í•´ë„ ì¶©ë¶„í•˜ë‹¤
 	if (BWAPI::Broodwar->getFrameCount() % 6 != 0) return;
 
 	if (buildQueue.isEmpty()) {
 		return;
 	}
 
-	// Dead Lock À» Ã¼Å©ÇØ¼­ Á¦°ÅÇÑ´Ù
+	// Dead Lock ì„ ì²´í¬í•´ì„œ ì œê±°í•œë‹¤
 	checkBuildOrderQueueDeadlockAndAndFixIt();
-	// Dead Lock Á¦°ÅÈÄ Empty µÉ ¼ö ÀÖ´Ù
+	// Dead Lock ì œê±°í›„ Empty ë  ìˆ˜ ìˆë‹¤
 	if (buildQueue.isEmpty()) {
 		return;
 	}
@@ -50,11 +50,11 @@ void BuildManager::update()
 		BWAPI::Unit secondProducer = nullptr;
 		bool canMake;
 
-		// °Ç¹°À» ¸¸µé¼ö ÀÖ´Â À¯´Ö(ÀÏ²Û)ÀÌ³ª, À¯´ÖÀ» ¸¸µé¼ö ÀÖ´Â À¯´Ö(°Ç¹° or À¯´Ö)ÀÌ ÀÖÀ¸¸é
+		// ê±´ë¬¼ì„ ë§Œë“¤ìˆ˜ ìˆëŠ” ìœ ë‹›(ì¼ê¾¼)ì´ë‚˜, ìœ ë‹›ì„ ë§Œë“¤ìˆ˜ ìˆëŠ” ìœ ë‹›(ê±´ë¬¼ or ìœ ë‹›)ì´ ìˆìœ¼ë©´
 		if (producer != nullptr) {
 
 			// check to see if we can make it right now
-			// Áö±İ ÇØ´ç À¯´ÖÀ» °Ç¼³/»ı»ê ÇÒ ¼ö ÀÖ´ÂÁö¿¡ ´ëÇØ ÀÚ¿ø, ¼­ÇÃ¶óÀÌ, Å×Å© Æ®¸®, producer ¸¸À» °®°í ÆÇ´ÜÇÑ´Ù
+			// ì§€ê¸ˆ í•´ë‹¹ ìœ ë‹›ì„ ê±´ì„¤/ìƒì‚° í•  ìˆ˜ ìˆëŠ”ì§€ì— ëŒ€í•´ ìì›, ì„œí”Œë¼ì´, í…Œí¬ íŠ¸ë¦¬, producer ë§Œì„ ê°–ê³  íŒë‹¨í•œë‹¤
 			canMake = canMakeNow(producer, currentItem.metaType);
 			
 			/*
@@ -63,8 +63,8 @@ void BuildManager::update()
 			}
 			*/
 
-			// ÇÁ·ÎÅä½º Á¾Á· À¯´Ö Áß Protoss_Archon / Protoss_Dark_Archon Àº ±âÁ¸ Protoss_High_Templar / Protoss_Dark_Templar µÎ À¯´ÖÀ» ÇÕÃ¼½ÃÅ°´Â ±â¼úÀ» ½á¼­ ¸¸µé±â ¶§¹®¿¡ 
-			// secondProducer À» Ãß°¡·Î Ã£¾Æ È®ÀÎÇÑ´Ù
+			// í”„ë¡œí† ìŠ¤ ì¢…ì¡± ìœ ë‹› ì¤‘ Protoss_Archon / Protoss_Dark_Archon ì€ ê¸°ì¡´ Protoss_High_Templar / Protoss_Dark_Templar ë‘ ìœ ë‹›ì„ í•©ì²´ì‹œí‚¤ëŠ” ê¸°ìˆ ì„ ì¨ì„œ ë§Œë“¤ê¸° ë•Œë¬¸ì— 
+			// secondProducer ì„ ì¶”ê°€ë¡œ ì°¾ì•„ í™•ì¸í•œë‹¤
 			if (canMake) {
 				if (currentItem.metaType.isUnit()) {
 					if (currentItem.metaType.getUnitType() == BWAPI::UnitTypes::Protoss_Archon || currentItem.metaType.getUnitType() == BWAPI::UnitTypes::Protoss_Dark_Archon) {
@@ -86,35 +86,35 @@ void BuildManager::update()
 			{
 				if (t.getUnitType().isBuilding()) {
 
-					// Àú±× Á¾Á· °Ç¹° Áß Zerg_Lair, Zerg_Hive, Zerg_Greater_Spire, Zerg_Sunken_Colony, Zerg_Spore_Colony ´Â ±âÁ¸ °Ç¹°À» Morph ½ÃÄÑ ¸¸µç´Ù
-					// Morph¸¦ ½ÃÀÛÇÏ¸é isMorphing = true, isBeingConstructed = true, isConstructing = true °¡ µÇ°í
-					// ¿Ï¼ºµÇ¸é isMorphing = false, isBeingConstructed = false, isConstructing = false, isCompleted = true °¡ µÈ´Ù
+					// ì €ê·¸ ì¢…ì¡± ê±´ë¬¼ ì¤‘ Zerg_Lair, Zerg_Hive, Zerg_Greater_Spire, Zerg_Sunken_Colony, Zerg_Spore_Colony ëŠ” ê¸°ì¡´ ê±´ë¬¼ì„ Morph ì‹œì¼œ ë§Œë“ ë‹¤
+					// Morphë¥¼ ì‹œì‘í•˜ë©´ isMorphing = true, isBeingConstructed = true, isConstructing = true ê°€ ë˜ê³ 
+					// ì™„ì„±ë˜ë©´ isMorphing = false, isBeingConstructed = false, isConstructing = false, isCompleted = true ê°€ ëœë‹¤
 					if (t.getUnitType().getRace() == BWAPI::Races::Zerg && t.getUnitType().whatBuilds().first.isBuilding())
 					{
 						producer->morph(t.getUnitType());
 					}
-					// Å×¶õ Addon °Ç¹°ÀÇ °æ¿ì (Addon °Ç¹°À» ÁöÀ»¼ö ÀÖ´ÂÁö´Â getProducer ÇÔ¼ö¿¡¼­ ÀÌ¹Ì Ã¼Å©¿Ï·á)
-					// ¸ğ°Ç¹°ÀÌ Addon °Ç¹° Áş±â Àü¿¡´Â canBuildAddon = true, isConstructing = false, canCommand = true ÀÌ´Ù°¡ 
-					// Addon °Ç¹°À» Áş±â ½ÃÀÛÇÏ¸é canBuildAddon = false, isConstructing = true, canCommand = true °¡ µÇ°í (Addon °Ç¹° °Ç¼³ Ãë¼Ò´Â °¡´ÉÇÏ³ª Train µî Ä¿¸Çµå´Â ºÒ°¡´É)
-					// ¿Ï¼ºµÇ¸é canBuildAddon = false, isConstructing = false °¡ µÈ´Ù
+					// í…Œë€ Addon ê±´ë¬¼ì˜ ê²½ìš° (Addon ê±´ë¬¼ì„ ì§€ì„ìˆ˜ ìˆëŠ”ì§€ëŠ” getProducer í•¨ìˆ˜ì—ì„œ ì´ë¯¸ ì²´í¬ì™„ë£Œ)
+					// ëª¨ê±´ë¬¼ì´ Addon ê±´ë¬¼ ì§“ê¸° ì „ì—ëŠ” canBuildAddon = true, isConstructing = false, canCommand = true ì´ë‹¤ê°€ 
+					// Addon ê±´ë¬¼ì„ ì§“ê¸° ì‹œì‘í•˜ë©´ canBuildAddon = false, isConstructing = true, canCommand = true ê°€ ë˜ê³  (Addon ê±´ë¬¼ ê±´ì„¤ ì·¨ì†ŒëŠ” ê°€ëŠ¥í•˜ë‚˜ Train ë“± ì»¤ë§¨ë“œëŠ” ë¶ˆê°€ëŠ¥)
+					// ì™„ì„±ë˜ë©´ canBuildAddon = false, isConstructing = false ê°€ ëœë‹¤
 					else if (t.getUnitType().isAddon()) {
 						
 						//std::cout << "addon build start " << std::endl;
 						
 						producer->buildAddon(t.getUnitType());
-						// Å×¶õ Addon °Ç¹°ÀÇ °æ¿ì Á¤»óÀûÀ¸·Î buildAddon ¸í·ÉÀ» ³»·Áµµ SCV°¡ ¸ğ°Ç¹° ±ÙÃ³¿¡ ÀÖÀ» ¶§ ÇÑµ¿¾È buildAddon ¸í·ÉÀÌ Ãë¼ÒµÇ´Â °æ¿ì°¡ ÀÖ¾î¼­
-						// ¸ğ°Ç¹°ÀÌ isConstructing = true »óÅÂ·Î ¹Ù²ï °ÍÀ» È®ÀÎÇÑ ÈÄ buildQueue ¿¡¼­ Á¦°ÅÇØ¾ßÇÑ´Ù
+						// í…Œë€ Addon ê±´ë¬¼ì˜ ê²½ìš° ì •ìƒì ìœ¼ë¡œ buildAddon ëª…ë ¹ì„ ë‚´ë ¤ë„ SCVê°€ ëª¨ê±´ë¬¼ ê·¼ì²˜ì— ìˆì„ ë•Œ í•œë™ì•ˆ buildAddon ëª…ë ¹ì´ ì·¨ì†Œë˜ëŠ” ê²½ìš°ê°€ ìˆì–´ì„œ
+						// ëª¨ê±´ë¬¼ì´ isConstructing = true ìƒíƒœë¡œ ë°”ë€ ê²ƒì„ í™•ì¸í•œ í›„ buildQueue ì—ì„œ ì œê±°í•´ì•¼í•œë‹¤
 						if (producer->isConstructing() == false) {
 							isOkToRemoveQueue = false;
 						}
 						//std::cout << "8";
 					}
-					// ±×¿Ü ´ëºÎºĞ °Ç¹°ÀÇ °æ¿ì
+					// ê·¸ì™¸ ëŒ€ë¶€ë¶„ ê±´ë¬¼ì˜ ê²½ìš°
 					else 
 					{
-						// ConstructionPlaceFinder ¸¦ ÅëÇØ °Ç¼³ °¡´É À§Ä¡ desiredPosition ¸¦ ¾Ë¾Æ³»¼­
-						// ConstructionManager ÀÇ ConstructionTask Queue¿¡ Ãß°¡¸¦ ÇØ¼­ desiredPosition ¿¡ °Ç¼³À» ÇÏ°Ô ÇÑ´Ù. 
-						// ConstructionManager °¡ °Ç¼³ µµÁß¿¡ ÇØ´ç À§Ä¡¿¡ °Ç¼³ÀÌ ¾î·Á¿öÁö¸é ´Ù½Ã ConstructionPlaceFinder ¸¦ ÅëÇØ °Ç¼³ °¡´É À§Ä¡¸¦ desiredPosition ÁÖÀ§¿¡¼­ Ã£À» °ÍÀÌ´Ù
+						// ConstructionPlaceFinder ë¥¼ í†µí•´ ê±´ì„¤ ê°€ëŠ¥ ìœ„ì¹˜ desiredPosition ë¥¼ ì•Œì•„ë‚´ì„œ
+						// ConstructionManager ì˜ ConstructionTask Queueì— ì¶”ê°€ë¥¼ í•´ì„œ desiredPosition ì— ê±´ì„¤ì„ í•˜ê²Œ í•œë‹¤. 
+						// ConstructionManager ê°€ ê±´ì„¤ ë„ì¤‘ì— í•´ë‹¹ ìœ„ì¹˜ì— ê±´ì„¤ì´ ì–´ë ¤ì›Œì§€ë©´ ë‹¤ì‹œ ConstructionPlaceFinder ë¥¼ í†µí•´ ê±´ì„¤ ê°€ëŠ¥ ìœ„ì¹˜ë¥¼ desiredPosition ì£¼ìœ„ì—ì„œ ì°¾ì„ ê²ƒì´ë‹¤
 						BWAPI::TilePosition desiredPosition = getDesiredPosition(t.getUnitType(), currentItem.seedLocation, currentItem.seedLocationStrategy);
 
 						// std::cout << "BuildManager "
@@ -125,8 +125,8 @@ void BuildManager::update()
 							ConstructionManager::Instance().addConstructionTask(t.getUnitType(), desiredPosition);
 						}
 						else {
-							// °Ç¹° °¡´É À§Ä¡°¡ ¾ø´Â °æ¿ì´Â, Protoss_Pylon °¡ ¾ø°Å³ª, Creep ÀÌ ¾ø°Å³ª, Refinery °¡ ÀÌ¹Ì ´Ù Áö¾îÁ®ÀÖ°Å³ª, Á¤¸» ÁöÀ» °ø°£ÀÌ ÁÖÀ§¿¡ ¾ø´Â °æ¿ìÀÎµ¥,
-							// ´ëºÎºĞÀÇ °æ¿ì Pylon ÀÌ³ª Hatchery°¡ Áö¾îÁö°í ÀÖ´Â ÁßÀÌ¹Ç·Î, ´ÙÀ½ frame ¿¡ °Ç¹° ÁöÀ» °ø°£À» ´Ù½Ã Å½»öÇÏµµ·Ï ÇÑ´Ù. 
+							// ê±´ë¬¼ ê°€ëŠ¥ ìœ„ì¹˜ê°€ ì—†ëŠ” ê²½ìš°ëŠ”, Protoss_Pylon ê°€ ì—†ê±°ë‚˜, Creep ì´ ì—†ê±°ë‚˜, Refinery ê°€ ì´ë¯¸ ë‹¤ ì§€ì–´ì ¸ìˆê±°ë‚˜, ì •ë§ ì§€ì„ ê³µê°„ì´ ì£¼ìœ„ì— ì—†ëŠ” ê²½ìš°ì¸ë°,
+							// ëŒ€ë¶€ë¶„ì˜ ê²½ìš° Pylon ì´ë‚˜ Hatcheryê°€ ì§€ì–´ì§€ê³  ìˆëŠ” ì¤‘ì´ë¯€ë¡œ, ë‹¤ìŒ frame ì— ê±´ë¬¼ ì§€ì„ ê³µê°„ì„ ë‹¤ì‹œ íƒìƒ‰í•˜ë„ë¡ í•œë‹¤. 
 							std::cout << "There is no place to construct " << currentItem.metaType.getUnitType().getName().c_str()
 								<< " strategy " << currentItem.seedLocationStrategy
 								<< " seedPosition " << currentItem.seedLocation.x << "," << currentItem.seedLocation.y
@@ -136,30 +136,30 @@ void BuildManager::update()
 						}
 					}
 				}
-				// Áö»óÀ¯´Ö / °øÁßÀ¯´ÖÀÇ °æ¿ì
+				// ì§€ìƒìœ ë‹› / ê³µì¤‘ìœ ë‹›ì˜ ê²½ìš°
 				else {
-					// Àú±× Áö»óÀ¯´Ö / °øÁßÀ¯´Ö
+					// ì €ê·¸ ì§€ìƒìœ ë‹› / ê³µì¤‘ìœ ë‹›
 					if (t.getUnitType().getRace() == BWAPI::Races::Zerg)
 					{
-						// Àú±× Á¾Á· À¯´ÖÀÇ °ÅÀÇ ´ëºÎºĞÀº Morph ½ÃÄÑ ¸¸µç´Ù
+						// ì €ê·¸ ì¢…ì¡± ìœ ë‹›ì˜ ê±°ì˜ ëŒ€ë¶€ë¶„ì€ Morph ì‹œì¼œ ë§Œë“ ë‹¤
 						if (t.getUnitType() != BWAPI::UnitTypes::Zerg_Infested_Terran)
 						{
 							producer->morph(t.getUnitType());
 						}
-						// Àú±× Á¾Á· À¯´Ö Áß Zerg_Infested_Terran Àº Train ½ÃÄÑ ¸¸µç´Ù
+						// ì €ê·¸ ì¢…ì¡± ìœ ë‹› ì¤‘ Zerg_Infested_Terran ì€ Train ì‹œì¼œ ë§Œë“ ë‹¤
 						else {
 							producer->train(t.getUnitType());
 						}
 					}
-					// ÇÁ·ÎÅä½º Áö»óÀ¯´Ö / °øÁßÀ¯´Ö
+					// í”„ë¡œí† ìŠ¤ ì§€ìƒìœ ë‹› / ê³µì¤‘ìœ ë‹›
 					else if (t.getUnitType().getRace() == BWAPI::Races::Protoss)
 					{						
-						// ÇÁ·ÎÅä½º Á¾Á· À¯´Ö Áß Protoss_Archon Àº ±âÁ¸ Protoss_High_Templar µÎ À¯´ÖÀ» ÇÕÃ¼½ÃÅ°´Â ±â¼úÀ» ½á¼­ ¸¸µç´Ù 
+						// í”„ë¡œí† ìŠ¤ ì¢…ì¡± ìœ ë‹› ì¤‘ Protoss_Archon ì€ ê¸°ì¡´ Protoss_High_Templar ë‘ ìœ ë‹›ì„ í•©ì²´ì‹œí‚¤ëŠ” ê¸°ìˆ ì„ ì¨ì„œ ë§Œë“ ë‹¤ 
 						if (t.getUnitType() == BWAPI::UnitTypes::Protoss_Archon)
 						{
 							producer->useTech(BWAPI::TechTypes::Archon_Warp, secondProducer);
 						}
-						// ÇÁ·ÎÅä½º Á¾Á· À¯´Ö Áß Protoss_Dark_Archon Àº ±âÁ¸ Protoss_Dark_Templar µÎ À¯´ÖÀ» ÇÕÃ¼½ÃÅ°´Â ±â¼úÀ» ½á¼­ ¸¸µç´Ù 
+						// í”„ë¡œí† ìŠ¤ ì¢…ì¡± ìœ ë‹› ì¤‘ Protoss_Dark_Archon ì€ ê¸°ì¡´ Protoss_Dark_Templar ë‘ ìœ ë‹›ì„ í•©ì²´ì‹œí‚¤ëŠ” ê¸°ìˆ ì„ ì¨ì„œ ë§Œë“ ë‹¤ 
 						else if (t.getUnitType() == BWAPI::UnitTypes::Protoss_Dark_Archon)
 						{
 							producer->useTech( BWAPI::TechTypes::Dark_Archon_Meld, secondProducer);
@@ -168,7 +168,7 @@ void BuildManager::update()
 							producer->train(t.getUnitType());
 						}
 					}
-					// Å×¶õ Áö»óÀ¯´Ö / °øÁßÀ¯´Ö
+					// í…Œë€ ì§€ìƒìœ ë‹› / ê³µì¤‘ìœ ë‹›
 					else {
 						producer->train(t.getUnitType());
 					}
@@ -230,7 +230,7 @@ BWAPI::Unit BuildManager::getProducer(MetaType t, BWAPI::Position closestTo, int
 		if (unit->isLifted())                                   { continue; }
 
 		if (producerID != -1 && unit->getID() != producerID)	{ continue; }
-		// TODO : ½ºÄ³·´, Interceptor ÀÇ °æ¿ì, max ²ËÃ¡À¸¸é ´õ ¸ø¸¸µç´Ù
+		// TODO : ìŠ¤ìºëŸ½, Interceptor ì˜ ê²½ìš°, max ê½‰ì°¼ìœ¼ë©´ ë” ëª»ë§Œë“ ë‹¤
         
 		// if the type requires an addon and the producer doesn't have one
 		typedef std::pair<BWAPI::UnitType, int> ReqPair;
@@ -252,8 +252,8 @@ BWAPI::Unit BuildManager::getProducer(MetaType t, BWAPI::Position closestTo, int
             // if the unit already has an addon, it can't make one
             if (unit->getAddon() != nullptr)					{ continue; }
 
-			// ¸ğ°Ç¹°Àº °Ç¼³µÇ°í ÀÖ´Â Áß¿¡´Â isCompleted = false, isConstructing = true, canBuildAddon = false ÀÌ´Ù°¡
-			// °Ç¼³ÀÌ ¿Ï¼ºµÈ ÈÄ ¸î ÇÁ·¹ÀÓµ¿¾ÈÀº isCompleted = true ÀÌÁö¸¸, canBuildAddon = false ÀÎ °æ¿ì°¡ ÀÖ´Ù
+			// ëª¨ê±´ë¬¼ì€ ê±´ì„¤ë˜ê³  ìˆëŠ” ì¤‘ì—ëŠ” isCompleted = false, isConstructing = true, canBuildAddon = false ì´ë‹¤ê°€
+			// ê±´ì„¤ì´ ì™„ì„±ëœ í›„ ëª‡ í”„ë ˆì„ë™ì•ˆì€ isCompleted = true ì´ì§€ë§Œ, canBuildAddon = false ì¸ ê²½ìš°ê°€ ìˆë‹¤
 			if (!unit->canBuildAddon() )						{ continue; }
 
             // if we just told this unit to build an addon, then it will not be building another one
@@ -278,14 +278,14 @@ BWAPI::Unit BuildManager::getProducer(MetaType t, BWAPI::Position closestTo, int
 					BWAPI::TilePosition tilePos(addonPosition.x + i, addonPosition.y + j);
 
                     // if the map won't let you build here, we can't build it.  
-					// ¸Ê Å¸ÀÏ ÀÚÃ¼°¡ °Ç¼³ ºÒ°¡´ÉÇÑ Å¸ÀÏÀÎ °æ¿ì + ±âÁ¸ °Ç¹°ÀÌ ÇØ´ç Å¸ÀÏ¿¡ ÀÌ¹Ì ÀÖ´Â°æ¿ì
+					// ë§µ íƒ€ì¼ ìì²´ê°€ ê±´ì„¤ ë¶ˆê°€ëŠ¥í•œ íƒ€ì¼ì¸ ê²½ìš° + ê¸°ì¡´ ê±´ë¬¼ì´ í•´ë‹¹ íƒ€ì¼ì— ì´ë¯¸ ìˆëŠ”ê²½ìš°
                     if (!BWAPI::Broodwar->isBuildable(tilePos, true))
                     {
                         isBlocked = true;
                     }
 
                     // if there are any units on the addon tile, we can't build it
-					// ¾Æ±º À¯´ÖÀº Addon ÁöÀ» À§Ä¡¿¡ ÀÖ¾îµµ ±¦ÂúÀ½. (Àû±º À¯´ÖÀº Addon ÁöÀ» À§Ä¡¿¡ ÀÖÀ¸¸é °Ç¼³ ¾ÈµÇ´ÂÁö´Â ¾ÆÁ÷ ºÒÈ®½ÇÇÔ)
+					// ì•„êµ° ìœ ë‹›ì€ Addon ì§€ì„ ìœ„ì¹˜ì— ìˆì–´ë„ ê´œì°®ìŒ. (ì êµ° ìœ ë‹›ì€ Addon ì§€ì„ ìœ„ì¹˜ì— ìˆìœ¼ë©´ ê±´ì„¤ ì•ˆë˜ëŠ”ì§€ëŠ” ì•„ì§ ë¶ˆí™•ì‹¤í•¨)
                     BWAPI::Unitset uot = BWAPI::Broodwar->getUnitsOnTile(tilePos.x, tilePos.y);
 					for (auto & u : uot) {
 						//std::cout << std::endl << "Construct " << t.getName() 
@@ -312,7 +312,7 @@ BWAPI::Unit BuildManager::getProducer(MetaType t, BWAPI::Position closestTo, int
     return getClosestUnitToPosition(candidateProducers, closestTo);
 }
 
-// Protoss_Archon / Protoss_Dark_Archon ¸¦ ¸¸µé±â À§ÇØ producer ¿Í °°Àº typeÀÇ, producer °¡ ¾Æ´Ñ ´Ù¸¥ Unit Áß¿¡¼­ °¡Àå °¡±î¿î UnitÀ» Ã£´Â´Ù
+// Protoss_Archon / Protoss_Dark_Archon ë¥¼ ë§Œë“¤ê¸° ìœ„í•´ producer ì™€ ê°™ì€ typeì˜, producer ê°€ ì•„ë‹Œ ë‹¤ë¥¸ Unit ì¤‘ì—ì„œ ê°€ì¥ ê°€ê¹Œìš´ Unitì„ ì°¾ëŠ”ë‹¤
 BWAPI::Unit BuildManager::getAnotherProducer(BWAPI::Unit producer, BWAPI::Position closestTo)
 {
 	if (producer == nullptr) return nullptr;
@@ -367,8 +367,8 @@ BWAPI::Unit BuildManager::getClosestUnitToPosition(const BWAPI::Unitset & units,
     return closestUnit;
 }
 
-// Áö±İ ÇØ´ç À¯´ÖÀ» °Ç¼³/»ı»ê ÇÒ ¼ö ÀÖ´ÂÁö¿¡ ´ëÇØ ÀÚ¿ø, ¼­ÇÃ¶óÀÌ, Å×Å© Æ®¸®, producer ¸¸À» °®°í ÆÇ´ÜÇÑ´Ù
-// ÇØ´ç À¯´ÖÀÌ °Ç¹°ÀÏ °æ¿ì °Ç¹° ÁöÀ» À§Ä¡ÀÇ ÀûÀı ¿©ºÎ (Å½»öÇß¾ú´ø Å¸ÀÏÀÎÁö, °Ç¼³ °¡´ÉÇÑ Å¸ÀÏÀÎÁö, ÁÖÀ§¿¡ PylonÀÌ ÀÖ´ÂÁö, CreepÀÌ ÀÖ´Â °÷ÀÎÁö µî) ´Â ÆÇ´ÜÇÏÁö ¾Ê´Â´Ù
+// ì§€ê¸ˆ í•´ë‹¹ ìœ ë‹›ì„ ê±´ì„¤/ìƒì‚° í•  ìˆ˜ ìˆëŠ”ì§€ì— ëŒ€í•´ ìì›, ì„œí”Œë¼ì´, í…Œí¬ íŠ¸ë¦¬, producer ë§Œì„ ê°–ê³  íŒë‹¨í•œë‹¤
+// í•´ë‹¹ ìœ ë‹›ì´ ê±´ë¬¼ì¼ ê²½ìš° ê±´ë¬¼ ì§€ì„ ìœ„ì¹˜ì˜ ì ì ˆ ì—¬ë¶€ (íƒìƒ‰í–ˆì—ˆë˜ íƒ€ì¼ì¸ì§€, ê±´ì„¤ ê°€ëŠ¥í•œ íƒ€ì¼ì¸ì§€, ì£¼ìœ„ì— Pylonì´ ìˆëŠ”ì§€, Creepì´ ìˆëŠ” ê³³ì¸ì§€ ë“±) ëŠ” íŒë‹¨í•˜ì§€ ì•ŠëŠ”ë‹¤
 bool BuildManager::canMakeNow(BWAPI::Unit producer, MetaType t)
 {
 	if (producer == nullptr) {
@@ -422,9 +422,9 @@ bool BuildManager::canMake(MetaType t)
 
 }
 
-// °Ç¼³ °¡´É À§Ä¡¸¦ Ã£´Â´Ù
-// seedLocationStrategy °¡ SeedPositionSpecified ÀÎ °æ¿ì¿¡´Â ±× ±ÙÃ³¸¸ Ã£¾Æº¸°í, SeedPositionSpecified ÀÌ ¾Æ´Ñ °æ¿ì¿¡´Â seedLocationStrategy ¸¦ Á¶±İ¾¿ ¹Ù²ã°¡¸ç °è¼Ó Ã£¾Æº»´Ù.
-// (MainBase -> MainBase ÁÖÀ§ -> MainBase ±æ¸ñ -> MainBase °¡±î¿î ¾Õ¸¶´ç -> MainBase °¡±î¿î ¾Õ¸¶´çÀÇ ±æ¸ñ -> ´Ù¸¥ ¸ÖÆ¼ À§Ä¡ -> Å½»ö Á¾·á)
+// ê±´ì„¤ ê°€ëŠ¥ ìœ„ì¹˜ë¥¼ ì°¾ëŠ”ë‹¤
+// seedLocationStrategy ê°€ SeedPositionSpecified ì¸ ê²½ìš°ì—ëŠ” ê·¸ ê·¼ì²˜ë§Œ ì°¾ì•„ë³´ê³ , SeedPositionSpecified ì´ ì•„ë‹Œ ê²½ìš°ì—ëŠ” seedLocationStrategy ë¥¼ ì¡°ê¸ˆì”© ë°”ê¿”ê°€ë©° ê³„ì† ì°¾ì•„ë³¸ë‹¤.
+// (MainBase -> MainBase ì£¼ìœ„ -> MainBase ê¸¸ëª© -> MainBase ê°€ê¹Œìš´ ì•ë§ˆë‹¹ -> MainBase ê°€ê¹Œìš´ ì•ë§ˆë‹¹ì˜ ê¸¸ëª© -> ë‹¤ë¥¸ ë©€í‹° ìœ„ì¹˜ -> íƒìƒ‰ ì¢…ë£Œ)
 BWAPI::TilePosition BuildManager::getDesiredPosition(BWAPI::UnitType unitType, BWAPI::TilePosition seedPosition, BuildOrderItem::SeedPositionStrategy seedPositionStrategy)
 {
 	BWAPI::TilePosition desiredPosition = ConstructionPlaceFinder::Instance().getBuildLocationWithSeedPositionAndStrategy(unitType, seedPosition, seedPositionStrategy);
@@ -437,7 +437,7 @@ BWAPI::TilePosition BuildManager::getDesiredPosition(BWAPI::UnitType unitType, B
 		<< " desiredPosition " << desiredPosition.x << "," << desiredPosition.y << std::endl;
 	*/
 
-	// desiredPosition À» Ã£À» ¼ö ¾ø´Â °æ¿ì
+	// desiredPosition ì„ ì°¾ì„ ìˆ˜ ì—†ëŠ” ê²½ìš°
 	bool findAnotherPlace = true;
 	while (desiredPosition == BWAPI::TilePositions::None) {
 
@@ -464,7 +464,7 @@ BWAPI::TilePosition BuildManager::getDesiredPosition(BWAPI::UnitType unitType, B
 			break;
 		}
 
-		// ´Ù¸¥ °÷À» ´õ Ã£¾Æº»´Ù
+		// ë‹¤ë¥¸ ê³³ì„ ë” ì°¾ì•„ë³¸ë‹¤
 		if (findAnotherPlace) {
 			desiredPosition = ConstructionPlaceFinder::Instance().getBuildLocationWithSeedPositionAndStrategy(unitType, seedPosition, seedPositionStrategy);
 			/*
@@ -475,7 +475,7 @@ BWAPI::TilePosition BuildManager::getDesiredPosition(BWAPI::UnitType unitType, B
 				<< " desiredPosition " << desiredPosition.x << "," << desiredPosition.y << std::endl;
 			*/
 		}
-		// ´Ù¸¥ °÷À» ´õ Ã£¾Æº¸Áö ¾Ê°í, ³¡³½´Ù
+		// ë‹¤ë¥¸ ê³³ì„ ë” ì°¾ì•„ë³´ì§€ ì•Šê³ , ëë‚¸ë‹¤
 		else {
 			break;
 		}
@@ -484,13 +484,13 @@ BWAPI::TilePosition BuildManager::getDesiredPosition(BWAPI::UnitType unitType, B
 	return desiredPosition;
 }
 
-// »ç¿ë°¡´É ¹Ì³×¶ö = ÇöÀç º¸À¯ ¹Ì³×¶ö - »ç¿ëÇÏ±â·Î ¿¹¾àµÇ¾îÀÖ´Â ¹Ì³×¶ö
+// ì‚¬ìš©ê°€ëŠ¥ ë¯¸ë„¤ë„ = í˜„ì¬ ë³´ìœ  ë¯¸ë„¤ë„ - ì‚¬ìš©í•˜ê¸°ë¡œ ì˜ˆì•½ë˜ì–´ìˆëŠ” ë¯¸ë„¤ë„
 int BuildManager::getAvailableMinerals()
 {
 	return BWAPI::Broodwar->self()->minerals() - ConstructionManager::Instance().getReservedMinerals();
 }
 
-// »ç¿ë°¡´É °¡½º = ÇöÀç º¸À¯ °¡½º - »ç¿ëÇÏ±â·Î ¿¹¾àµÇ¾îÀÖ´Â °¡½º
+// ì‚¬ìš©ê°€ëŠ¥ ê°€ìŠ¤ = í˜„ì¬ ë³´ìœ  ê°€ìŠ¤ - ì‚¬ìš©í•˜ê¸°ë¡œ ì˜ˆì•½ë˜ì–´ìˆëŠ” ê°€ìŠ¤
 int BuildManager::getAvailableGas()
 {
 	return BWAPI::Broodwar->self()->gas() - ConstructionManager::Instance().getReservedGas();
@@ -580,17 +580,17 @@ bool BuildManager::isProducerWillExist(BWAPI::UnitType producerType)
 	if (BWAPI::Broodwar->self()->completedUnitCount(producerType) == 0
 		&& BWAPI::Broodwar->self()->incompleteUnitCount(producerType) == 0)
 	{
-		// producer °¡ °Ç¹° ÀÎ °æ¿ì : °Ç¹°ÀÌ °Ç¼³ ÁßÀÎÁö Ãß°¡ ÆÄ¾Ç
-		// ¸¸µé·Á´Â unitType = Addon °Ç¹°. Lair. Hive. Greater Spire. Sunken Colony. Spore Colony. ÇÁ·ÎÅä½º ¹× Å×¶õÀÇ Áö»óÀ¯´Ö / °øÁßÀ¯´Ö. 
+		// producer ê°€ ê±´ë¬¼ ì¸ ê²½ìš° : ê±´ë¬¼ì´ ê±´ì„¤ ì¤‘ì¸ì§€ ì¶”ê°€ íŒŒì•…
+		// ë§Œë“¤ë ¤ëŠ” unitType = Addon ê±´ë¬¼. Lair. Hive. Greater Spire. Sunken Colony. Spore Colony. í”„ë¡œí† ìŠ¤ ë° í…Œë€ì˜ ì§€ìƒìœ ë‹› / ê³µì¤‘ìœ ë‹›. 
 		if (producerType.isBuilding()) {
 			if (ConstructionManager::Instance().getConstructionQueueItemCount(producerType) == 0) {
 				isProducerWillExist = false;
 			}
 		}
-		// producer °¡ °Ç¹°ÀÌ ¾Æ´Ñ °æ¿ì : producer °¡ »ı¼ºµÉ ¿¹Á¤ÀÎÁö Ãß°¡ ÆÄ¾Ç
-		// producerType : ÀÏ²Û. Larva. Hydralisk, Mutalisk 
+		// producer ê°€ ê±´ë¬¼ì´ ì•„ë‹Œ ê²½ìš° : producer ê°€ ìƒì„±ë  ì˜ˆì •ì¸ì§€ ì¶”ê°€ íŒŒì•…
+		// producerType : ì¼ê¾¼. Larva. Hydralisk, Mutalisk 
 		else {
-			// Larva ´Â ½Ã°£ÀÌ Áö³ª¸é Hatchery, Lair, Hive ·ÎºÎÅÍ »ı¼ºµÇ±â ¶§¹®¿¡ ÇØ´ç °Ç¹°ÀÌ ÀÖ´ÂÁö Ãß°¡ ÆÄ¾Ç
+			// Larva ëŠ” ì‹œê°„ì´ ì§€ë‚˜ë©´ Hatchery, Lair, Hive ë¡œë¶€í„° ìƒì„±ë˜ê¸° ë•Œë¬¸ì— í•´ë‹¹ ê±´ë¬¼ì´ ìˆëŠ”ì§€ ì¶”ê°€ íŒŒì•…
 			if (producerType == BWAPI::UnitTypes::Zerg_Larva)
 			{
 				if (BWAPI::Broodwar->self()->completedUnitCount(BWAPI::UnitTypes::Zerg_Hatchery) == 0
@@ -608,7 +608,7 @@ bool BuildManager::isProducerWillExist(BWAPI::UnitType producerType)
 					}
 				}
 			}
-			// Hydralisk, Mutalisk ´Â Egg ·ÎºÎÅÍ »ı¼ºµÇ±â ¶§¹®¿¡ Ãß°¡ ÆÄ¾Ç
+			// Hydralisk, Mutalisk ëŠ” Egg ë¡œë¶€í„° ìƒì„±ë˜ê¸° ë•Œë¬¸ì— ì¶”ê°€ íŒŒì•…
 			else if (producerType.getRace() == BWAPI::Races::Zerg) {
 				bool isInEgg = false;
 				for (auto & unit : BWAPI::Broodwar->self()->getUnits())
@@ -616,7 +616,7 @@ bool BuildManager::isProducerWillExist(BWAPI::UnitType producerType)
 					if (unit->getType() == BWAPI::UnitTypes::Zerg_Egg && unit->getBuildType() == producerType) {
 						isInEgg = true;
 					}
-					// °«ÅÂ¾î³­ À¯´ÖÀº ¾ÆÁ÷ ¹İ¿µ¾ÈµÇ¾îÀÖÀ» ¼ö ÀÖ¾î¼­, Ãß°¡ Ä«¿îÆ®¸¦ ÇØÁà¾ßÇÔ 
+					// ê°“íƒœì–´ë‚œ ìœ ë‹›ì€ ì•„ì§ ë°˜ì˜ì•ˆë˜ì–´ìˆì„ ìˆ˜ ìˆì–´ì„œ, ì¶”ê°€ ì¹´ìš´íŠ¸ë¥¼ í•´ì¤˜ì•¼í•¨ 
 					if (unit->getType() == producerType && unit->isConstructing()) {
 						isInEgg = true;
 					}
@@ -636,7 +636,7 @@ bool BuildManager::isProducerWillExist(BWAPI::UnitType producerType)
 
 void BuildManager::checkBuildOrderQueueDeadlockAndAndFixIt()
 {
-	// ºôµå¿À´õ¸¦ ¼öÁ¤ÇÒ ¼ö ÀÖ´Â ÇÁ·¹ÀÓÀÎÁö ¸ÕÀú ÆÇ´ÜÇÑ´Ù
+	// ë¹Œë“œì˜¤ë”ë¥¼ ìˆ˜ì •í•  ìˆ˜ ìˆëŠ” í”„ë ˆì„ì¸ì§€ ë¨¼ì € íŒë‹¨í•œë‹¤
 	// this will be true if any unit is on the first frame if it's training time remaining
 	// this can cause issues for the build order search system so don't plan a search on these frames
 	bool canPlanBuildOrderNow = true;
@@ -663,23 +663,23 @@ void BuildManager::checkBuildOrderQueueDeadlockAndAndFixIt()
 		return;
 	}
 
-	// BuildQueue ÀÇ HighestPriority ¿¡ ÀÖ´Â BuildQueueItem ÀÌ skip ºÒ°¡´ÉÇÑ °ÍÀÎµ¥, ¼±ÇàÁ¶°ÇÀÌ ÃæÁ·µÉ ¼ö ¾ø°Å³ª, ½ÇÇàÀÌ ¾ÕÀ¸·Îµµ °è¼Ó ºÒ°¡´ÉÇÑ °æ¿ì, dead lock ÀÌ ¹ß»ıÇÑ´Ù
-	// ¼±Çà °Ç¹°À» BuildQueue¿¡ Ãß°¡ÇØ³ÖÀ»Áö, ÇØ´ç BuildQueueItem À» »èÁ¦ÇÒÁö Àü·«ÀûÀ¸·Î ÆÇ´ÜÇØ¾ß ÇÑ´Ù
+	// BuildQueue ì˜ HighestPriority ì— ìˆëŠ” BuildQueueItem ì´ skip ë¶ˆê°€ëŠ¥í•œ ê²ƒì¸ë°, ì„ í–‰ì¡°ê±´ì´ ì¶©ì¡±ë  ìˆ˜ ì—†ê±°ë‚˜, ì‹¤í–‰ì´ ì•ìœ¼ë¡œë„ ê³„ì† ë¶ˆê°€ëŠ¥í•œ ê²½ìš°, dead lock ì´ ë°œìƒí•œë‹¤
+	// ì„ í–‰ ê±´ë¬¼ì„ BuildQueueì— ì¶”ê°€í•´ë„£ì„ì§€, í•´ë‹¹ BuildQueueItem ì„ ì‚­ì œí• ì§€ ì „ëµì ìœ¼ë¡œ íŒë‹¨í•´ì•¼ í•œë‹¤
 	BuildOrderQueue * buildQueue = BuildManager::Instance().getBuildQueue();
 	if (!buildQueue->isEmpty())
 	{
 		BuildOrderItem currentItem = buildQueue->getHighestPriorityItem();
 
-		// TODO : ¼öÁ¤. canSkipCurrentItem ¹®Á¦ÀÖ´Â°¡?
+		// TODO : ìˆ˜ì •. canSkipCurrentItem ë¬¸ì œìˆëŠ”ê°€?
 		//if (buildQueue->canSkipCurrentItem() == false)
 		if (currentItem.blocking == true)
 		{
 			bool isDeadlockCase = false;
 
-			// producerTypeÀ» ¸ÕÀú ¾Ë¾Æ³½´Ù
+			// producerTypeì„ ë¨¼ì € ì•Œì•„ë‚¸ë‹¤
 			BWAPI::UnitType producerType = currentItem.metaType.whatBuilds();
 
-			// °Ç¹°ÀÌ³ª À¯´ÖÀÇ °æ¿ì
+			// ê±´ë¬¼ì´ë‚˜ ìœ ë‹›ì˜ ê²½ìš°
 			if (currentItem.metaType.isUnit())
 			{
 				BWAPI::UnitType unitType = currentItem.metaType.getUnitType();
@@ -695,26 +695,26 @@ void BuildManager::checkBuildOrderQueueDeadlockAndAndFixIt()
 				<< std::endl;
 				*/
 
-				// °Ç¹°À» »ı»êÇÏ´Â À¯´ÖÀÌ³ª, À¯´ÖÀ» »ı»êÇÏ´Â °Ç¹°ÀÌ Á¸ÀçÇÏÁö ¾Ê°í, °Ç¼³ ¿¹Á¤ÀÌÁöµµ ¾ÊÀ¸¸é dead lock
+				// ê±´ë¬¼ì„ ìƒì‚°í•˜ëŠ” ìœ ë‹›ì´ë‚˜, ìœ ë‹›ì„ ìƒì‚°í•˜ëŠ” ê±´ë¬¼ì´ ì¡´ì¬í•˜ì§€ ì•Šê³ , ê±´ì„¤ ì˜ˆì •ì´ì§€ë„ ì•Šìœ¼ë©´ dead lock
 				if (isProducerWillExist(producerType) == false) {
 					isDeadlockCase = true;
 				}
 
-				// Refinery °Ç¹°ÀÇ °æ¿ì, Refinery °¡ °Ç¼³µÇÁö ¾ÊÀº Geyser°¡ ÀÖ´Â °æ¿ì¿¡¸¸ °¡´É
+				// Refinery ê±´ë¬¼ì˜ ê²½ìš°, Refinery ê°€ ê±´ì„¤ë˜ì§€ ì•Šì€ Geyserê°€ ìˆëŠ” ê²½ìš°ì—ë§Œ ê°€ëŠ¥
 				if (!isDeadlockCase && unitType == InformationManager::Instance().getRefineryBuildingType())
 				{
 					bool hasAvailableGeyser = true;
 
-					// Refinery°¡ Áö¾îÁú ¼ö ÀÖ´Â Àå¼Ò¸¦ Ã£¾Æº»´Ù
+					// Refineryê°€ ì§€ì–´ì§ˆ ìˆ˜ ìˆëŠ” ì¥ì†Œë¥¼ ì°¾ì•„ë³¸ë‹¤
 					BWAPI::TilePosition testLocation = getDesiredPosition(unitType, currentItem.seedLocation, currentItem.seedLocationStrategy);
 					
-					// Refinery ¸¦ ÁöÀ¸·Á´Â Àå¼Ò¸¦ Ã£À» ¼ö ¾øÀ¸¸é dead lock
+					// Refinery ë¥¼ ì§€ìœ¼ë ¤ëŠ” ì¥ì†Œë¥¼ ì°¾ì„ ìˆ˜ ì—†ìœ¼ë©´ dead lock
 					if (testLocation == BWAPI::TilePositions::None || testLocation == BWAPI::TilePositions::Invalid || testLocation.isValid() == false) {
 						std::cout << "Build Order Dead lock case -> Cann't find place to construct " << unitType.getName() << std::endl;
 						hasAvailableGeyser = false;
 					}
 					else {
-						// Refinery ¸¦ ÁöÀ¸·Á´Â Àå¼Ò¿¡ Refinery °¡ ÀÌ¹Ì °Ç¼³µÇ¾î ÀÖ´Ù¸é dead lock 
+						// Refinery ë¥¼ ì§€ìœ¼ë ¤ëŠ” ì¥ì†Œì— Refinery ê°€ ì´ë¯¸ ê±´ì„¤ë˜ì–´ ìˆë‹¤ë©´ dead lock 
 						BWAPI::Unitset uot = BWAPI::Broodwar->getUnitsOnTile(testLocation);
 						for (auto & u : uot) {
 							if (u->getType().isRefinery() && u->exists()) {
@@ -729,7 +729,7 @@ void BuildManager::checkBuildOrderQueueDeadlockAndAndFixIt()
 					}
 				}
 				
-				// ¼±Çà ±â¼ú ¸®¼­Ä¡°¡ µÇ¾îÀÖÁö ¾Ê°í, ¸®¼­Ä¡ ÁßÀÌÁöµµ ¾ÊÀ¸¸é dead lock
+				// ì„ í–‰ ê¸°ìˆ  ë¦¬ì„œì¹˜ê°€ ë˜ì–´ìˆì§€ ì•Šê³ , ë¦¬ì„œì¹˜ ì¤‘ì´ì§€ë„ ì•Šìœ¼ë©´ dead lock
 				if (!isDeadlockCase && requiredTechType != BWAPI::TechTypes::None)
 				{
 					if (BWAPI::Broodwar->self()->hasResearched(requiredTechType) == false) {
@@ -739,7 +739,7 @@ void BuildManager::checkBuildOrderQueueDeadlockAndAndFixIt()
 					}
 				}
 
-				// ¼±Çà °Ç¹°/À¯´ÖÀÌ ÀÖ´Âµ¥ 
+				// ì„ í–‰ ê±´ë¬¼/ìœ ë‹›ì´ ìˆëŠ”ë° 
 				if (!isDeadlockCase && requiredUnits.size() > 0)
 				{
 					for (auto & u : requiredUnits)
@@ -755,18 +755,18 @@ void BuildManager::checkBuildOrderQueueDeadlockAndAndFixIt()
 							<< std::endl;
 							*/
 
-							// ¼±Çà °Ç¹° / À¯´ÖÀÌ Á¸ÀçÇÏÁö ¾Ê°í, »ı»ê ÁßÀÌÁöµµ ¾Ê°í
+							// ì„ í–‰ ê±´ë¬¼ / ìœ ë‹›ì´ ì¡´ì¬í•˜ì§€ ì•Šê³ , ìƒì‚° ì¤‘ì´ì§€ë„ ì•Šê³ 
 							if (BWAPI::Broodwar->self()->completedUnitCount(requiredUnitType) == 0
 								&& BWAPI::Broodwar->self()->incompleteUnitCount(requiredUnitType) == 0)
 							{
-								// ¼±Çà °Ç¹°ÀÌ °Ç¼³ ¿¹Á¤ÀÌÁöµµ ¾ÊÀ¸¸é dead lock
+								// ì„ í–‰ ê±´ë¬¼ì´ ê±´ì„¤ ì˜ˆì •ì´ì§€ë„ ì•Šìœ¼ë©´ dead lock
 								if (requiredUnitType.isBuilding())
 								{
 									if (ConstructionManager::Instance().getConstructionQueueItemCount(requiredUnitType) == 0) {
 										isDeadlockCase = true;
 									}
 								}
-								// ¼±Çà À¯´ÖÀÌ Larva ÀÎ Zerg À¯´ÖÀÇ °æ¿ì, Larva, Hatchery, Lair, Hive °¡ ÇÏ³ªµµ Á¸ÀçÇÏÁö ¾Ê°í, °Ç¼³ ¿¹Á¤ÀÌÁö ¾ÊÀº °æ¿ì¿¡ dead lock
+								// ì„ í–‰ ìœ ë‹›ì´ Larva ì¸ Zerg ìœ ë‹›ì˜ ê²½ìš°, Larva, Hatchery, Lair, Hive ê°€ í•˜ë‚˜ë„ ì¡´ì¬í•˜ì§€ ì•Šê³ , ê±´ì„¤ ì˜ˆì •ì´ì§€ ì•Šì€ ê²½ìš°ì— dead lock
 								else if (requiredUnitType == BWAPI::UnitTypes::Zerg_Larva)
 								{
 									if (BWAPI::Broodwar->self()->completedUnitCount(BWAPI::UnitTypes::Zerg_Hatchery) == 0
@@ -789,18 +789,18 @@ void BuildManager::checkBuildOrderQueueDeadlockAndAndFixIt()
 					}
 				}
 
-				// °Ç¹°ÀÌ ¾Æ´Ñ Áö»ó/°øÁß À¯´ÖÀÎ °æ¿ì, ¼­ÇÃ¶óÀÌ°¡ 400 ²Ë Ã¡À¸¸é dead lock
+				// ê±´ë¬¼ì´ ì•„ë‹Œ ì§€ìƒ/ê³µì¤‘ ìœ ë‹›ì¸ ê²½ìš°, ì„œí”Œë¼ì´ê°€ 400 ê½‰ ì°¼ìœ¼ë©´ dead lock
 				if (!isDeadlockCase && !unitType.isBuilding()
 					&& BWAPI::Broodwar->self()->supplyTotal() == 400 && BWAPI::Broodwar->self()->supplyUsed() + unitType.supplyRequired() > 400)
 				{
 					isDeadlockCase = true;
 				}
 
-				// °Ç¹°ÀÌ ¾Æ´Ñ Áö»ó/°øÁß À¯´ÖÀÎ °æ¿ì, ¼­ÇÃ¶óÀÌ°¡ ºÎÁ·ÇÏ¸é dead lock ÀÌÁö¸¸, ¼­ÇÃ¶óÀÌ ºÎÁ·ÇÏ´Ù°í Áö»ó/°øÁßÀ¯´Ö ºôµå¸¦ Ãë¼ÒÇÏ±âº¸´Ù´Â »¡¸® ¼­ÇÃ¶óÀÌ¸¦ Áşµµ·Ï ÇÏ±â À§ÇØ, 
-				// ÀÌ°ÍÀº StrategyManager µî¿¡¼­ µû·Î Ã³¸®ÇÏµµ·Ï ÇÑ´Ù 
+				// ê±´ë¬¼ì´ ì•„ë‹Œ ì§€ìƒ/ê³µì¤‘ ìœ ë‹›ì¸ ê²½ìš°, ì„œí”Œë¼ì´ê°€ ë¶€ì¡±í•˜ë©´ dead lock ì´ì§€ë§Œ, ì„œí”Œë¼ì´ ë¶€ì¡±í•˜ë‹¤ê³  ì§€ìƒ/ê³µì¤‘ìœ ë‹› ë¹Œë“œë¥¼ ì·¨ì†Œí•˜ê¸°ë³´ë‹¤ëŠ” ë¹¨ë¦¬ ì„œí”Œë¼ì´ë¥¼ ì§“ë„ë¡ í•˜ê¸° ìœ„í•´, 
+				// ì´ê²ƒì€ StrategyManager ë“±ì—ì„œ ë”°ë¡œ ì²˜ë¦¬í•˜ë„ë¡ í•œë‹¤ 
 
-				// Pylon ÀÌ ÇÊ¿äÇÑ °Ç¹°ÀÎ °æ¿ì, ÇØ´ç Áö¿ª ÁÖÀ§¿¡ ¸ÕÀú Áö¾îÁ®¾ß ÇÏ´Âµ¥, Pylon ÀÌ ÇØ´ç Áö¿ª ÁÖÀ§¿¡ ¾øÀ¸¸é dead lock
-				// Pylon ¹üÀ§¸¦ Á¤È®ÇÏ°Ô ÆÄ¾ÇÇÏ°Å³ª  ¸¸µé¾îÁú ¿¹Á¤ÀÎ°Í, °Ç¼³ÁøÇàÁßÀÎ °ÍÀº ÀÏ´Ü Ã¼Å©ÇÏÁö ¾Ê´Â´Ù
+				// Pylon ì´ í•„ìš”í•œ ê±´ë¬¼ì¸ ê²½ìš°, í•´ë‹¹ ì§€ì—­ ì£¼ìœ„ì— ë¨¼ì € ì§€ì–´ì ¸ì•¼ í•˜ëŠ”ë°, Pylon ì´ í•´ë‹¹ ì§€ì—­ ì£¼ìœ„ì— ì—†ìœ¼ë©´ dead lock
+				// Pylon ë²”ìœ„ë¥¼ ì •í™•í•˜ê²Œ íŒŒì•…í•˜ê±°ë‚˜  ë§Œë“¤ì–´ì§ˆ ì˜ˆì •ì¸ê²ƒ, ê±´ì„¤ì§„í–‰ì¤‘ì¸ ê²ƒì€ ì¼ë‹¨ ì²´í¬í•˜ì§€ ì•ŠëŠ”ë‹¤
 				if (!isDeadlockCase && unitType.isBuilding() && unitType.requiresPsi() 
 					&& currentItem.seedLocationStrategy == BuildOrderItem::SeedPositionStrategy::SeedPositionSpecified)
 				{
@@ -819,8 +819,8 @@ void BuildManager::checkBuildOrderQueueDeadlockAndAndFixIt()
 					}
 				}
 
-				// Creep ÀÌ ÇÊ¿äÇÑ °Ç¹°ÀÎ °æ¿ì, ÇØ´ç Áö¿ª ÁÖÀ§¿¡ Hatchery³ª Creep Colony µîÀÌ ÀÖ¾î¾ß ÇÏ´Âµ¥, ÇØ´ç Áö¿ª ÁÖÀ§¿¡ ¾øÀ¸¸é dead lock
-				// Creep ¹üÀ§¸¦ Á¤È®ÇÏ°Ô ÆÄ¾ÇÇÏ°Å³ª  ¸¸µé¾îÁú ¿¹Á¤ÀÎ°Í, °Ç¼³ÁøÇàÁßÀÎ °ÍÀº ÀÏ´Ü Ã¼Å©ÇÏÁö ¾Ê´Â´Ù
+				// Creep ì´ í•„ìš”í•œ ê±´ë¬¼ì¸ ê²½ìš°, í•´ë‹¹ ì§€ì—­ ì£¼ìœ„ì— Hatcheryë‚˜ Creep Colony ë“±ì´ ìˆì–´ì•¼ í•˜ëŠ”ë°, í•´ë‹¹ ì§€ì—­ ì£¼ìœ„ì— ì—†ìœ¼ë©´ dead lock
+				// Creep ë²”ìœ„ë¥¼ ì •í™•í•˜ê²Œ íŒŒì•…í•˜ê±°ë‚˜  ë§Œë“¤ì–´ì§ˆ ì˜ˆì •ì¸ê²ƒ, ê±´ì„¤ì§„í–‰ì¤‘ì¸ ê²ƒì€ ì¼ë‹¨ ì²´í¬í•˜ì§€ ì•ŠëŠ”ë‹¤
 				if (!isDeadlockCase && unitType.isBuilding() && unitType.requiresCreep()
 					&& currentItem.seedLocationStrategy == BuildOrderItem::SeedPositionStrategy::SeedPositionSpecified)
 				{
@@ -842,7 +842,7 @@ void BuildManager::checkBuildOrderQueueDeadlockAndAndFixIt()
 				}
 
 			}
-			// Å×Å©ÀÇ °æ¿ì, ÇØ´ç ¸®¼­Ä¡¸¦ ÀÌ¹Ì Çß°Å³ª, ÀÌ¹Ì ÇÏ°íÀÖ°Å³ª, ¸®¼­Ä¡¸¦ ÇÏ´Â °Ç¹° ¹× ¼±Çà°Ç¹°ÀÌ Á¸ÀçÇÏÁö¾Ê°í °Ç¼³¿¹Á¤ÀÌÁöµµ ¾ÊÀ¸¸é dead lock
+			// í…Œí¬ì˜ ê²½ìš°, í•´ë‹¹ ë¦¬ì„œì¹˜ë¥¼ ì´ë¯¸ í–ˆê±°ë‚˜, ì´ë¯¸ í•˜ê³ ìˆê±°ë‚˜, ë¦¬ì„œì¹˜ë¥¼ í•˜ëŠ” ê±´ë¬¼ ë° ì„ í–‰ê±´ë¬¼ì´ ì¡´ì¬í•˜ì§€ì•Šê³  ê±´ì„¤ì˜ˆì •ì´ì§€ë„ ì•Šìœ¼ë©´ dead lock
 			else if (currentItem.metaType.isTech())
 			{
 				BWAPI::TechType techType = currentItem.metaType.getTechType();
@@ -866,8 +866,8 @@ void BuildManager::checkBuildOrderQueueDeadlockAndAndFixIt()
 				{
 					if (ConstructionManager::Instance().getConstructionQueueItemCount(producerType) == 0) {
 
-						// Å×Å© ¸®¼­Ä¡ÀÇ producerTypeÀÌ Addon °Ç¹°ÀÎ °æ¿ì, Addon °Ç¹° °Ç¼³ÀÌ ¸í·É ³»·ÁÁ³Áö¸¸ ½ÃÀÛµÇ±â Á÷Àü¿¡´Â getUnits, completedUnitCount, incompleteUnitCount ¿¡¼­ È®ÀÎÇÒ ¼ö ¾ø´Ù
-						// producerTypeÀÇ producerType °Ç¹°¿¡ ÀÇÇØ Addon °Ç¹° °Ç¼³ÀÇ ¸í·ÉÀÌ µé¾î°¬´ÂÁö±îÁö È®ÀÎÇØ¾ß ÇÑ´Ù
+						// í…Œí¬ ë¦¬ì„œì¹˜ì˜ producerTypeì´ Addon ê±´ë¬¼ì¸ ê²½ìš°, Addon ê±´ë¬¼ ê±´ì„¤ì´ ëª…ë ¹ ë‚´ë ¤ì¡Œì§€ë§Œ ì‹œì‘ë˜ê¸° ì§ì „ì—ëŠ” getUnits, completedUnitCount, incompleteUnitCount ì—ì„œ í™•ì¸í•  ìˆ˜ ì—†ë‹¤
+						// producerTypeì˜ producerType ê±´ë¬¼ì— ì˜í•´ Addon ê±´ë¬¼ ê±´ì„¤ì˜ ëª…ë ¹ì´ ë“¤ì–´ê°”ëŠ”ì§€ê¹Œì§€ í™•ì¸í•´ì•¼ í•œë‹¤
 						if (producerType.isAddon()) {
 
 							bool isAddonConstructing = false;
@@ -881,7 +881,7 @@ void BuildManager::checkBuildOrderQueueDeadlockAndAndFixIt()
 									if (unit == nullptr) continue;
 									if (unit->getType() != producerTypeOfProducerType)	{ continue; }
 
-									// ¸ğ°Ç¹°ÀÌ ¿Ï¼ºµÇ¾îÀÖ°í, ¸ğ°Ç¹°ÀÌ ÇØ´ç Addon °Ç¹°À» °Ç¼³ÁßÀÎÁö È®ÀÎÇÑ´Ù
+									// ëª¨ê±´ë¬¼ì´ ì™„ì„±ë˜ì–´ìˆê³ , ëª¨ê±´ë¬¼ì´ í•´ë‹¹ Addon ê±´ë¬¼ì„ ê±´ì„¤ì¤‘ì¸ì§€ í™•ì¸í•œë‹¤
 									if (unit->isCompleted() && unit->isConstructing() && unit->getBuildType() == producerType) {
 										isAddonConstructing = true;
 										break;
@@ -915,7 +915,7 @@ void BuildManager::checkBuildOrderQueueDeadlockAndAndFixIt()
 					}
 				}
 			}
-			// ¾÷±×·¹ÀÌµåÀÇ °æ¿ì, ÇØ´ç ¾÷±×·¹ÀÌµå¸¦ ÀÌ¹Ì Çß°Å³ª, ÀÌ¹Ì ÇÏ°íÀÖ°Å³ª, ¾÷±×·¹ÀÌµå¸¦ ÇÏ´Â °Ç¹° ¹× ¼±Çà°Ç¹°ÀÌ Á¸ÀçÇÏÁöµµ ¾Ê°í °Ç¼³¿¹Á¤ÀÌÁöµµ ¾ÊÀ¸¸é dead lock
+			// ì—…ê·¸ë ˆì´ë“œì˜ ê²½ìš°, í•´ë‹¹ ì—…ê·¸ë ˆì´ë“œë¥¼ ì´ë¯¸ í–ˆê±°ë‚˜, ì´ë¯¸ í•˜ê³ ìˆê±°ë‚˜, ì—…ê·¸ë ˆì´ë“œë¥¼ í•˜ëŠ” ê±´ë¬¼ ë° ì„ í–‰ê±´ë¬¼ì´ ì¡´ì¬í•˜ì§€ë„ ì•Šê³  ê±´ì„¤ì˜ˆì •ì´ì§€ë„ ì•Šìœ¼ë©´ dead lock
 			else if (currentItem.metaType.isUpgrade())
 			{
 				BWAPI::UpgradeType upgradeType = currentItem.metaType.getUpgradeType();
@@ -942,8 +942,8 @@ void BuildManager::checkBuildOrderQueueDeadlockAndAndFixIt()
 					&& BWAPI::Broodwar->self()->incompleteUnitCount(producerType) == 0) {
 					if (ConstructionManager::Instance().getConstructionQueueItemCount(producerType) == 0) {
 
-						// ¾÷±×·¹ÀÌµåÀÇ producerTypeÀÌ Addon °Ç¹°ÀÎ °æ¿ì, Addon °Ç¹° °Ç¼³ÀÌ ½ÃÀÛµÇ±â Á÷Àü¿¡´Â getUnits, completedUnitCount, incompleteUnitCount ¿¡¼­ È®ÀÎÇÒ ¼ö ¾ø´Ù
-						// producerTypeÀÇ producerType °Ç¹°¿¡ ÀÇÇØ Addon °Ç¹° °Ç¼³ÀÌ ½ÃÀÛµÇ¾ú´ÂÁö±îÁö È®ÀÎÇØ¾ß ÇÑ´Ù						
+						// ì—…ê·¸ë ˆì´ë“œì˜ producerTypeì´ Addon ê±´ë¬¼ì¸ ê²½ìš°, Addon ê±´ë¬¼ ê±´ì„¤ì´ ì‹œì‘ë˜ê¸° ì§ì „ì—ëŠ” getUnits, completedUnitCount, incompleteUnitCount ì—ì„œ í™•ì¸í•  ìˆ˜ ì—†ë‹¤
+						// producerTypeì˜ producerType ê±´ë¬¼ì— ì˜í•´ Addon ê±´ë¬¼ ê±´ì„¤ì´ ì‹œì‘ë˜ì—ˆëŠ”ì§€ê¹Œì§€ í™•ì¸í•´ì•¼ í•œë‹¤						
 						if (producerType.isAddon()) {
 
 							bool isAddonConstructing = false;
@@ -956,7 +956,7 @@ void BuildManager::checkBuildOrderQueueDeadlockAndAndFixIt()
 								{
 									if (unit == nullptr) continue;
 									if (unit->getType() != producerTypeOfProducerType)	{ continue; }
-									// ¸ğ°Ç¹°ÀÌ ¿Ï¼ºµÇ¾îÀÖ°í, ¸ğ°Ç¹°ÀÌ ÇØ´ç Addon °Ç¹°À» °Ç¼³ÁßÀÎÁö È®ÀÎÇÑ´Ù
+									// ëª¨ê±´ë¬¼ì´ ì™„ì„±ë˜ì–´ìˆê³ , ëª¨ê±´ë¬¼ì´ í•´ë‹¹ Addon ê±´ë¬¼ì„ ê±´ì„¤ì¤‘ì¸ì§€ í™•ì¸í•œë‹¤
 									if (unit->isCompleted() && unit->isConstructing() && unit->getBuildType() == producerType) {
 										isAddonConstructing = true;
 										break;

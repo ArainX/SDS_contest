@@ -23,7 +23,7 @@ public class BuildManager {
 	
 	private void buildWorkerUnits()
 	{
-		// ÀÚ¿øÀÌ 50ÀÌ»ó ÀÖÀ¸¸é ÀÏ²Û À¯´ÖÀ» ÈÆ·ÃÇÑ´Ù
+		// ìì›ì´ 50ì´ìƒ ìˆìœ¼ë©´ ì¼ê¾¼ ìœ ë‹›ì„ í›ˆë ¨í•œë‹¤
 		if (MyBotModule.Broodwar.self().minerals() >= 50) {
 			buildWorkerUnit();
 		}
@@ -45,7 +45,7 @@ public class BuildManager {
 			targetUnitType = UnitType.Zerg_Drone;
 		}
 			
-		// ResourceDepot °Ç¹°ÀÌ ÀÏ²Û À¯´ÖÀ» »ı»ê °¡´ÉÇÑ »óÅÂÀÌ¸é »ı»êÀ» ¸í·ÉÇÑ´Ù
+		// ResourceDepot ê±´ë¬¼ì´ ì¼ê¾¼ ìœ ë‹›ì„ ìƒì‚° ê°€ëŠ¥í•œ ìƒíƒœì´ë©´ ìƒì‚°ì„ ëª…ë ¹í•œë‹¤
 		for (Unit unit : MyBotModule.Broodwar.self().getUnits())
 		{
 			if (unit.getType().isResourceDepot() ){
@@ -70,7 +70,7 @@ public class BuildManager {
 	{
 		UnitType targetUnitType = UnitType.None;
 	
-		// ÀÚ¿øÀÌ 100ÀÌ»ó ÀÖÀ¸¸é ¸ÕÀú ÀüÅõ À¯´ÖÀ» ÈÆ·ÃÇÑ´Ù
+		// ìì›ì´ 100ì´ìƒ ìˆìœ¼ë©´ ë¨¼ì € ì „íˆ¬ ìœ ë‹›ì„ í›ˆë ¨í•œë‹¤
 		if (MyBotModule.Broodwar.self().minerals() >= 100) {
 			if (MyBotModule.Broodwar.self().getRace() == Race.Protoss) {
 				targetUnitType = UnitType.Protoss_Zealot;
@@ -91,7 +91,7 @@ public class BuildManager {
 		Unit producer = null;
 		UnitType producerUnitType = targetUnitType.whatBuilds().first;
 	
-		// targetUnitTypeÀ» »ı»ê °¡´ÉÇÑ »óÅÂ°¡ µÇ¸é »ı»êÀ» ¸í·ÉÇÑ´Ù
+		// targetUnitTypeì„ ìƒì‚° ê°€ëŠ¥í•œ ìƒíƒœê°€ ë˜ë©´ ìƒì‚°ì„ ëª…ë ¹í•œë‹¤
 		for (Unit unit : MyBotModule.Broodwar.self().getUnits())
 		{
 			if (unit.getType() == producerUnitType) {
@@ -116,7 +116,7 @@ public class BuildManager {
 	{
 		UnitType targetUnitType = UnitType.None;
 	
-		// ÀÚ¿øÀÌ 200ÀÌ»ó ÀÖÀ¸¸é ÀüÅõÀ¯´Ö »ı»ê °Ç¹°À» °Ç¼³ ÇÑ´Ù
+		// ìì›ì´ 200ì´ìƒ ìˆìœ¼ë©´ ì „íˆ¬ìœ ë‹› ìƒì‚° ê±´ë¬¼ì„ ê±´ì„¤ í•œë‹¤
 		if (MyBotModule.Broodwar.self().minerals() >= 200) {
 			if (MyBotModule.Broodwar.self().getRace() == Race.Protoss) {
 				targetUnitType = UnitType.Protoss_Gateway;
@@ -130,8 +130,8 @@ public class BuildManager {
 			constructBuilding(targetUnitType);
 		}
 	
-		// ÀÚ¿øÀÌ 100ÀÌ»ó ÀÖ°í, ¼­ÇÃ¶óÀÌ°¡ ºÎÁ·ÇØÁö¸é SupplyProvider ¿¡ ÇØ´çÇÏ´Â À¯´ÖÀ» ¸¸µç´Ù
-		// ¼­ÇÃ¶óÀÌ ¼ıÀÚ´Â ½ºÅ¸Å©·¡ÇÁÆ® °ÔÀÓ¿¡¼­ Ç¥½ÃµÇ´Â ¼ıÀÚÀÇ 2¹è·Î °è»êÇØ¾ßÇÑ´Ù
+		// ìì›ì´ 100ì´ìƒ ìˆê³ , ì„œí”Œë¼ì´ê°€ ë¶€ì¡±í•´ì§€ë©´ SupplyProvider ì— í•´ë‹¹í•˜ëŠ” ìœ ë‹›ì„ ë§Œë“ ë‹¤
+		// ì„œí”Œë¼ì´ ìˆ«ìëŠ” ìŠ¤íƒ€í¬ë˜í”„íŠ¸ ê²Œì„ì—ì„œ í‘œì‹œë˜ëŠ” ìˆ«ìì˜ 2ë°°ë¡œ ê³„ì‚°í•´ì•¼í•œë‹¤
 		if (MyBotModule.Broodwar.self().minerals() >= 100
 			&& MyBotModule.Broodwar.self().supplyUsed() + 6 > MyBotModule.Broodwar.self().supplyTotal()) {
 			if (MyBotModule.Broodwar.self().getRace() == Race.Protoss) {
@@ -151,7 +151,7 @@ public class BuildManager {
 	
 	private void constructBuilding(UnitType targetBuildingType)
 	{
-		// ÀÏ²Û Áß ¹Ì³×¶öÀ» ¿î¹İÇÏ°í ÀÖÁö ¾ÊÀº ÀÏ²Û ÇÏ³ª¸¦ producer·Î ¼±Á¤ÇÑ´Ù
+		// ì¼ê¾¼ ì¤‘ ë¯¸ë„¤ë„ì„ ìš´ë°˜í•˜ê³  ìˆì§€ ì•Šì€ ì¼ê¾¼ í•˜ë‚˜ë¥¼ producerë¡œ ì„ ì •í•œë‹¤
 		Unit producer = null;
 		UnitType producerUnitType = targetBuildingType.whatBuilds().first;
 	
@@ -173,9 +173,9 @@ public class BuildManager {
 			return;
 		}
 	
-		// °Ç¹°À» °Ç¼³ÇÒ À§Ä¡¸¦ Start Location ±ÙÃ³¿¡¼­ Ã£´Â´Ù
-		// Ã³À½¿¡´Â Start Location ¹İ°æ 4Å¸ÀÏ¿¡ ´ëÇØ Ã£¾Æº¸°í, 
-		// ´ÙÀ½¿¡´Â Start Location ¹İ°æ 8Å¸ÀÏ¿¡ ´ëÇØ Ã£¾Æº¸´Â ½ÄÀ¸·Î ¹üÀ§¸¦ ³ĞÇô³ª°£´Ù
+		// ê±´ë¬¼ì„ ê±´ì„¤í•  ìœ„ì¹˜ë¥¼ Start Location ê·¼ì²˜ì—ì„œ ì°¾ëŠ”ë‹¤
+		// ì²˜ìŒì—ëŠ” Start Location ë°˜ê²½ 4íƒ€ì¼ì— ëŒ€í•´ ì°¾ì•„ë³´ê³ , 
+		// ë‹¤ìŒì—ëŠ” Start Location ë°˜ê²½ 8íƒ€ì¼ì— ëŒ€í•´ ì°¾ì•„ë³´ëŠ” ì‹ìœ¼ë¡œ ë²”ìœ„ë¥¼ ë„“í˜€ë‚˜ê°„ë‹¤
 		TilePosition seedPosition = InformationManager.Instance().mainBaseLocations.get(InformationManager.Instance().selfPlayer).getTilePosition();
 		TilePosition desiredPosition = TilePosition.None;
 		int maxRange = 32;

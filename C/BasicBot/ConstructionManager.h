@@ -10,15 +10,15 @@
 
 namespace MyBot
 {
-	/// °Ç¹° °Ç¼³ Construction ¸í·É ¸ñ·ÏÀ» ¸®½ºÆ®·Î °ü¸®ÇÏ°í, °Ç¹° °Ç¼³ ¸í·ÉÀÌ Àß ¼öÇàµÇµµ·Ï ÄÁÆ®·ÑÇÏ´Â class
+	/// ê±´ë¬¼ ê±´ì„¤ Construction ëª…ë ¹ ëª©ë¡ì„ ë¦¬ìŠ¤íŠ¸ë¡œ ê´€ë¦¬í•˜ê³ , ê±´ë¬¼ ê±´ì„¤ ëª…ë ¹ì´ ì˜ ìˆ˜í–‰ë˜ë„ë¡ ì»¨íŠ¸ë¡¤í•˜ëŠ” class
 	class ConstructionManager
 	{
 		ConstructionManager();
 
-		/// °Ç¼³ ÇÊ¿ä ÀÚ¿øÀ» ¹Ì¸® ¿¹¾àÇØ³õ°í, 
-		/// °Ç¼³ ´ë»ó Àå¼Ò°¡ ¹Ì°³Ã´ Àå¼ÒÀÎ °æ¿ì °Ç¼³ ÀÏ²ÛÀ» ÀÌµ¿½ÃÄÑ °á±¹ °Ç¼³ÀÌ ½ÃÀÛµÇ°Ô ÇÏ°í, 
-		/// °Ç¼³ ÀÏ²ÛÀÌ µµÁß¿¡ Á×´Â °æ¿ì ´Ù¸¥ °Ç¼³ ÀÏ²ÛÀ» ÁöÁ¤ÇÏ¿© °Ç¼³À» ¼öÇàÇÏ°Ô ÇÏ±â À§ÇØ
-		/// Construction Task µéÀÇ ¸ñ·ÏÀ» constructionQueue ·Î À¯ÁöÇÕ´Ï´Ù
+		/// ê±´ì„¤ í•„ìš” ìì›ì„ ë¯¸ë¦¬ ì˜ˆì•½í•´ë†“ê³ , 
+		/// ê±´ì„¤ ëŒ€ìƒ ì¥ì†Œê°€ ë¯¸ê°œì²™ ì¥ì†Œì¸ ê²½ìš° ê±´ì„¤ ì¼ê¾¼ì„ ì´ë™ì‹œì¼œ ê²°êµ­ ê±´ì„¤ì´ ì‹œì‘ë˜ê²Œ í•˜ê³ , 
+		/// ê±´ì„¤ ì¼ê¾¼ì´ ë„ì¤‘ì— ì£½ëŠ” ê²½ìš° ë‹¤ë¥¸ ê±´ì„¤ ì¼ê¾¼ì„ ì§€ì •í•˜ì—¬ ê±´ì„¤ì„ ìˆ˜í–‰í•˜ê²Œ í•˜ê¸° ìœ„í•´
+		/// Construction Task ë“¤ì˜ ëª©ë¡ì„ constructionQueue ë¡œ ìœ ì§€í•©ë‹ˆë‹¤
 		std::vector<ConstructionTask> constructionQueue;
 
 		int             reservedMinerals;				///< minerals reserved for planned buildings
@@ -27,8 +27,8 @@ namespace MyBot
 		bool            isEvolvedBuilding(BWAPI::UnitType type);
 		bool            isBuildingPositionExplored(const ConstructionTask & b) const;
 
-		/// constructionQueue ¿¡¼­ °Ç¼³ »óÅÂ°¡ UnderConstruction ÀÎ ConstructionTask ¿©·¯°³¸¦ »èÁ¦ÇÕ´Ï´Ù
-		/// °Ç¼³À» ½ÃÀÛÇß¾ú´ø ConstructionTask ÀÌ±â ¶§¹®¿¡ _reservedMinerals, _reservedGas ´Â °Çµå¸®Áö ¾Ê´Â´Ù
+		/// constructionQueue ì—ì„œ ê±´ì„¤ ìƒíƒœê°€ UnderConstruction ì¸ ConstructionTask ì—¬ëŸ¬ê°œë¥¼ ì‚­ì œí•©ë‹ˆë‹¤
+		/// ê±´ì„¤ì„ ì‹œì‘í–ˆì—ˆë˜ ConstructionTask ì´ê¸° ë•Œë¬¸ì— _reservedMinerals, _reservedGas ëŠ” ê±´ë“œë¦¬ì§€ ì•ŠëŠ”ë‹¤
 		void            removeCompletedConstructionTasks(const std::vector<ConstructionTask> & toRemove);
 
 		/// STEP 1: DO BOOK KEEPING ON WORKERS WHICH MAY HAVE DIED
@@ -40,40 +40,40 @@ namespace MyBot
 		/// STEP 4: UPDATE DATA STRUCTURES FOR BUILDINGS STARTING CONSTRUCTION
 		void            checkForStartedConstruction();
 		/// STEP 5: IF WE ARE TERRAN, THIS MATTERS
-		/// Å×¶õÀº °Ç¼³À» ½ÃÀÛÇÑ ÈÄ, °Ç¼³ µµÁß¿¡ ÀÏ²ÛÀÌ Á×À» ¼ö ÀÖ½À´Ï´Ù. ÀÌ °æ¿ì, °Ç¹°¿¡ ´ëÇØ ´Ù½Ã ´Ù¸¥ SCV¸¦ ÇÒ´çÇÕ´Ï´Ù
-		/// Âü°í·Î, ÇÁ·ÎÅä½º / Àú±×´Â °Ç¼³À» ½ÃÀÛÇÏ¸é ÀÏ²Û Æ÷ÀÎÅÍ¸¦ null ·Î ¸¸µé±â ¶§¹®¿¡ (constructionWorker = null) °Ç¼³ µµÁß¿¡ Á×Àº ÀÏ²ÛÀ» ½Å°æ¾µ ÇÊ¿ä ¾ø½À´Ï´Ù 
+		/// í…Œë€ì€ ê±´ì„¤ì„ ì‹œì‘í•œ í›„, ê±´ì„¤ ë„ì¤‘ì— ì¼ê¾¼ì´ ì£½ì„ ìˆ˜ ìˆìŠµë‹ˆë‹¤. ì´ ê²½ìš°, ê±´ë¬¼ì— ëŒ€í•´ ë‹¤ì‹œ ë‹¤ë¥¸ SCVë¥¼ í• ë‹¹í•©ë‹ˆë‹¤
+		/// ì°¸ê³ ë¡œ, í”„ë¡œí† ìŠ¤ / ì €ê·¸ëŠ” ê±´ì„¤ì„ ì‹œì‘í•˜ë©´ ì¼ê¾¼ í¬ì¸í„°ë¥¼ null ë¡œ ë§Œë“¤ê¸° ë•Œë¬¸ì— (constructionWorker = null) ê±´ì„¤ ë„ì¤‘ì— ì£½ì€ ì¼ê¾¼ì„ ì‹ ê²½ì“¸ í•„ìš” ì—†ìŠµë‹ˆë‹¤ 
 		void            checkForDeadTerranBuilders();
 		/// STEP 6: CHECK FOR COMPLETED BUILDINGS
 		void            checkForCompletedBuildings();
 		
-		/// °Ç¼³ µ¥µå¶ôÀ» Ã¼Å©ÇÏ°í, ÇØ°áÇÕ´Ï´Ù
+		/// ê±´ì„¤ ë°ë“œë½ì„ ì²´í¬í•˜ê³ , í•´ê²°í•©ë‹ˆë‹¤
 		void            checkForDeadlockConstruction();	
 
 	public:
-		/// static singleton °´Ã¼¸¦ ¸®ÅÏÇÕ´Ï´Ù
+		/// static singleton ê°ì²´ë¥¼ ë¦¬í„´í•©ë‹ˆë‹¤
 		static ConstructionManager &	Instance();
 
-		/// constructionQueue ¿¡ ´ëÇØ Dead lock ÀÌ ÀÖÀ¸¸é Á¦°ÅÇÏ°í, constructionQueue ³» ConstructionTask µéÀÌ ÁøÇàµÇµµ·Ï °ü¸®ÇÕ´Ï´Ù
+		/// constructionQueue ì— ëŒ€í•´ Dead lock ì´ ìˆìœ¼ë©´ ì œê±°í•˜ê³ , constructionQueue ë‚´ ConstructionTask ë“¤ì´ ì§„í–‰ë˜ë„ë¡ ê´€ë¦¬í•©ë‹ˆë‹¤
 		void                update();
 
-		/// constructionQueue ¸¦ ¸®ÅÏÇÕ´Ï´Ù
+		/// constructionQueue ë¥¼ ë¦¬í„´í•©ë‹ˆë‹¤
 		std::vector<ConstructionTask> * getConstructionQueue();
 
-		/// constructionQueue ¿¡ ConstructionTask ¸¦ Ãß°¡ÇÕ´Ï´Ù
+		/// constructionQueue ì— ConstructionTask ë¥¼ ì¶”ê°€í•©ë‹ˆë‹¤
 		void                addConstructionTask(BWAPI::UnitType type,BWAPI::TilePosition desiredPosition);
-		/// constructionQueue ¿¡¼­ ConstructionTask ¸¦ Ãë¼ÒÇÕ´Ï´Ù
+		/// constructionQueue ì—ì„œ ConstructionTask ë¥¼ ì·¨ì†Œí•©ë‹ˆë‹¤
 		void				cancelConstructionTask(BWAPI::UnitType type, BWAPI::TilePosition desiredPosition);
 		
-		/// constructionQueue ³» ConstructionTask °¹¼ö¸¦ ¸®ÅÏÇÕ´Ï´Ù
-		/// queryTilePosition À» ÀÔ·ÂÇÑ °æ¿ì, À§Ä¡°£ °Å¸®±îÁöµµ °í·ÁÇÕ´Ï´Ù
+		/// constructionQueue ë‚´ ConstructionTask ê°¯ìˆ˜ë¥¼ ë¦¬í„´í•©ë‹ˆë‹¤
+		/// queryTilePosition ì„ ì…ë ¥í•œ ê²½ìš°, ìœ„ì¹˜ê°„ ê±°ë¦¬ê¹Œì§€ë„ ê³ ë ¤í•©ë‹ˆë‹¤
 		int                 getConstructionQueueItemCount(BWAPI::UnitType queryType, BWAPI::TilePosition queryTilePosition = BWAPI::TilePositions::None);
 
-		/// constructionQueue ³» ConstructionTask °¹¼ö¸¦ ¸®ÅÏÇÕ´Ï´Ù
+		/// constructionQueue ë‚´ ConstructionTask ê°¯ìˆ˜ë¥¼ ë¦¬í„´í•©ë‹ˆë‹¤
 		std::vector<BWAPI::UnitType> buildingsQueued();
 
-		/// Construction À» À§ÇØ ¿¹ºñÇØµĞ Mineral ¼ıÀÚ¸¦ ¸®ÅÏÇÕ´Ï´Ù
+		/// Construction ì„ ìœ„í•´ ì˜ˆë¹„í•´ë‘” Mineral ìˆ«ìë¥¼ ë¦¬í„´í•©ë‹ˆë‹¤
 		int                 getReservedMinerals();
-		/// Construction À» À§ÇØ ¿¹ºñÇØµĞ Gas ¼ıÀÚ¸¦ ¸®ÅÏÇÕ´Ï´Ù
+		/// Construction ì„ ìœ„í•´ ì˜ˆë¹„í•´ë‘” Gas ìˆ«ìë¥¼ ë¦¬í„´í•©ë‹ˆë‹¤
 		int                 getReservedGas();
 	};
 }

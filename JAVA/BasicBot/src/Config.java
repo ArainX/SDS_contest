@@ -3,102 +3,102 @@ import java.util.Set;
 import bwapi.Color;
 import bwapi.UnitType;
 
-/// º¿ ÇÁ·Î±×·¥ ¼³Á¤
+/// ë´‡ í”„ë¡œê·¸ë¨ ì„¤ì •
 public class Config {
 
 	
 	
-	/// º¿ ÀÌ¸§
+	/// ë´‡ ì´ë¦„
 	public static final String BotName = "NoNameBot";
-	/// º¿ °³¹ßÀÚ ÀÌ¸§
+	/// ë´‡ ê°œë°œì ì´ë¦„
 	public static final String BotAuthors = "NoName";
 	
 	
 	
-	/// ·Î±× ÆÄÀÏ ÀÌ¸§
+	/// ë¡œê·¸ íŒŒì¼ ì´ë¦„
 	public static final String LogFilename = "log.txt";
-	/// ÀĞ±â ÆÄÀÏ °æ·Î
+	/// ì½ê¸° íŒŒì¼ ê²½ë¡œ
 	public static final String ReadDirectory = "bwapi-data\\AI\\MyBot\\read\\";
-	/// ¾²±â ÆÄÀÏ °æ·Î
+	/// ì“°ê¸° íŒŒì¼ ê²½ë¡œ
 	public static final String WriteDirectory = "bwapi-data\\AI\\MyBot\\write\\";		
 
 	
 	
 
-	/// ·ÎÄÃ¿¡¼­ °ÔÀÓÀ» ½ÇÇàÇÒ ¶§ °ÔÀÓ½ºÇÇµå (ÄÚµå Á¦Ãâ ÈÄ ¼­¹ö¿¡¼­ °ÔÀÓÀ» ½ÇÇàÇÒ ¶§´Â ¼­¹ö ¼³Á¤À» »ç¿ëÇÔ)
+	/// ë¡œì»¬ì—ì„œ ê²Œì„ì„ ì‹¤í–‰í•  ë•Œ ê²Œì„ìŠ¤í”¼ë“œ (ì½”ë“œ ì œì¶œ í›„ ì„œë²„ì—ì„œ ê²Œì„ì„ ì‹¤í–‰í•  ë•ŒëŠ” ì„œë²„ ì„¤ì •ì„ ì‚¬ìš©í•¨)
 	/// Speedups for automated play, sets the number of milliseconds bwapi spends in each frame
-	/// Fastest: 42 ms/frame.  1ÃÊ¿¡ 24 frame. ÀÏ¹İÀûÀ¸·Î 1ÃÊ¿¡ 24frameÀ» ±âÁØ °ÔÀÓ¼Óµµ·Î ÇÕ´Ï´Ù
-	/// Normal: 67 ms/frame. 1ÃÊ¿¡ 15 frame
-	/// As fast as possible : 0 ms/frame. CPU°¡ ÇÒ¼öÀÖ´Â °¡Àå ºü¸¥ ¼Óµµ.
+	/// Fastest: 42 ms/frame.  1ì´ˆì— 24 frame. ì¼ë°˜ì ìœ¼ë¡œ 1ì´ˆì— 24frameì„ ê¸°ì¤€ ê²Œì„ì†ë„ë¡œ í•©ë‹ˆë‹¤
+	/// Normal: 67 ms/frame. 1ì´ˆì— 15 frame
+	/// As fast as possible : 0 ms/frame. CPUê°€ í• ìˆ˜ìˆëŠ” ê°€ì¥ ë¹ ë¥¸ ì†ë„.
 	public static final int SetLocalSpeed = 10;
 	
-	/// ·ÎÄÃ¿¡¼­ °ÔÀÓÀ» ½ÇÇàÇÒ ¶§ FrameSkip (ÄÚµå Á¦Ãâ ÈÄ ¼­¹ö¿¡¼­ °ÔÀÓÀ» ½ÇÇàÇÒ ¶§´Â ¼­¹ö ¼³Á¤À» »ç¿ëÇÔ)
-	/// frameskipÀ» ´Ã¸®¸é È­¸é Ç¥½Ãµµ ¾÷µ¥ÀÌÆ® ¾ÈÇÏ¹Ç·Î ÈÎ¾À ºü¸¨´Ï´Ù
+	/// ë¡œì»¬ì—ì„œ ê²Œì„ì„ ì‹¤í–‰í•  ë•Œ FrameSkip (ì½”ë“œ ì œì¶œ í›„ ì„œë²„ì—ì„œ ê²Œì„ì„ ì‹¤í–‰í•  ë•ŒëŠ” ì„œë²„ ì„¤ì •ì„ ì‚¬ìš©í•¨)
+	/// frameskipì„ ëŠ˜ë¦¬ë©´ í™”ë©´ í‘œì‹œë„ ì—…ë°ì´íŠ¸ ì•ˆí•˜ë¯€ë¡œ í›¨ì”¬ ë¹ ë¦…ë‹ˆë‹¤
     public static final int SetFrameSkip = 0;
     
-    /// ·ÎÄÃ¿¡¼­ °ÔÀÓÀ» ½ÇÇàÇÒ ¶§ »ç¿ëÀÚ Å°º¸µå/¸¶¿ì½º ÀÔ·Â Çã¿ë ¿©ºÎ (ÄÚµå Á¦Ãâ ÈÄ ¼­¹ö¿¡¼­ °ÔÀÓÀ» ½ÇÇàÇÒ ¶§´Â ¼­¹ö ¼³Á¤À» »ç¿ëÇÔ)	
+    /// ë¡œì»¬ì—ì„œ ê²Œì„ì„ ì‹¤í–‰í•  ë•Œ ì‚¬ìš©ì í‚¤ë³´ë“œ/ë§ˆìš°ìŠ¤ ì…ë ¥ í—ˆìš© ì—¬ë¶€ (ì½”ë“œ ì œì¶œ í›„ ì„œë²„ì—ì„œ ê²Œì„ì„ ì‹¤í–‰í•  ë•ŒëŠ” ì„œë²„ ì„¤ì •ì„ ì‚¬ìš©í•¨)	
     public static final boolean EnableUserInput = true;
     
-    /// ·ÎÄÃ¿¡¼­ °ÔÀÓÀ» ½ÇÇàÇÒ ¶§ ÀüÃ¼ Áöµµ¸¦ ´Ù º¸ÀÌ°Ô ÇÒ °ÍÀÎÁö ¿©ºÎ (ÄÚµå Á¦Ãâ ÈÄ ¼­¹ö¿¡¼­ °ÔÀÓÀ» ½ÇÇàÇÒ ¶§´Â ¼­¹ö ¼³Á¤À» »ç¿ëÇÔ)    
+    /// ë¡œì»¬ì—ì„œ ê²Œì„ì„ ì‹¤í–‰í•  ë•Œ ì „ì²´ ì§€ë„ë¥¼ ë‹¤ ë³´ì´ê²Œ í•  ê²ƒì¸ì§€ ì—¬ë¶€ (ì½”ë“œ ì œì¶œ í›„ ì„œë²„ì—ì„œ ê²Œì„ì„ ì‹¤í–‰í•  ë•ŒëŠ” ì„œë²„ ì„¤ì •ì„ ì‚¬ìš©í•¨)    
 	public static final boolean EnableCompleteMapInformation = false;
 
 	
-	/// MapGrid ¿¡¼­ ÇÑ °³ GridCell ÀÇ size
+	/// MapGrid ì—ì„œ í•œ ê°œ GridCell ì˜ size
 	public static final int MAP_GRID_SIZE = 32;
 	
-	/// StarCraft ¹× BWAPI ¿¡¼­ 1 Tile = 32 * 32 Point (Pixel) ÀÔ´Ï´Ù
-	/// Position Àº Point (Pixel) ´ÜÀ§ÀÌ°í, TilePosition Àº Tile ´ÜÀ§ÀÔ´Ï´Ù 
+	/// StarCraft ë° BWAPI ì—ì„œ 1 Tile = 32 * 32 Point (Pixel) ì…ë‹ˆë‹¤
+	/// Position ì€ Point (Pixel) ë‹¨ìœ„ì´ê³ , TilePosition ì€ Tile ë‹¨ìœ„ì…ë‹ˆë‹¤ 
 	public static final int TILE_SIZE = 32;
 
-	/// °¢°¢ÀÇ Refinery ¸¶´Ù ÅõÀÔÇÒ ÀÏ²Û ÃÖ´ë ¼ıÀÚ
+	/// ê°ê°ì˜ Refinery ë§ˆë‹¤ íˆ¬ì…í•  ì¼ê¾¼ ìµœëŒ€ ìˆ«ì
 	public static final int WorkersPerRefinery = 3;
-	/// °Ç¹°°ú °Ç¹°°£ ¶ç¿ï ÃÖ¼ÒÇÑÀÇ °£°İ - ÀÏ¹İÀûÀÎ °Ç¹°ÀÇ °æ¿ì
+	/// ê±´ë¬¼ê³¼ ê±´ë¬¼ê°„ ë„ìš¸ ìµœì†Œí•œì˜ ê°„ê²© - ì¼ë°˜ì ì¸ ê±´ë¬¼ì˜ ê²½ìš°
 	public static final int BuildingSpacing = 2;
-	/// °Ç¹°°ú °Ç¹°°£ ¶ç¿ï ÃÖ¼ÒÇÑÀÇ °£°İ - ResourceDepot °Ç¹°ÀÇ °æ¿ì (Nexus, Hatchery, Command Center)
+	/// ê±´ë¬¼ê³¼ ê±´ë¬¼ê°„ ë„ìš¸ ìµœì†Œí•œì˜ ê°„ê²© - ResourceDepot ê±´ë¬¼ì˜ ê²½ìš° (Nexus, Hatchery, Command Center)
 	public static final int BuildingResourceDepotSpacing = 0;
-	/// °Ç¹°°ú °Ç¹°°£ ¶ç¿ï ÃÖ¼ÒÇÑÀÇ °£°İ - Protoss_Pylon °Ç¹°ÀÇ °æ¿ì - °ÔÀÓ ÃÊ±â¿¡
+	/// ê±´ë¬¼ê³¼ ê±´ë¬¼ê°„ ë„ìš¸ ìµœì†Œí•œì˜ ê°„ê²© - Protoss_Pylon ê±´ë¬¼ì˜ ê²½ìš° - ê²Œì„ ì´ˆê¸°ì—
 	public static final int BuildingPylonEarlyStageSpacing = 4;
-	/// °Ç¹°°ú °Ç¹°°£ ¶ç¿ï ÃÖ¼ÒÇÑÀÇ °£°İ - Protoss_Pylon °Ç¹°ÀÇ °æ¿ì - °ÔÀÓ ÃÊ±â ÀÌÈÄ¿¡
+	/// ê±´ë¬¼ê³¼ ê±´ë¬¼ê°„ ë„ìš¸ ìµœì†Œí•œì˜ ê°„ê²© - Protoss_Pylon ê±´ë¬¼ì˜ ê²½ìš° - ê²Œì„ ì´ˆê¸° ì´í›„ì—
 	public static final int BuildingPylonSpacing = 2;
-	/// °Ç¹°°ú °Ç¹°°£ ¶ç¿ï ÃÖ¼ÒÇÑÀÇ °£°İ - Terran_Supply_Depot °Ç¹°ÀÇ °æ¿ì
+	/// ê±´ë¬¼ê³¼ ê±´ë¬¼ê°„ ë„ìš¸ ìµœì†Œí•œì˜ ê°„ê²© - Terran_Supply_Depot ê±´ë¬¼ì˜ ê²½ìš°
 	public static final int BuildingSupplyDepotSpacing = 0;
-	/// °Ç¹°°ú °Ç¹°°£ ¶ç¿ï ÃÖ¼ÒÇÑÀÇ °£°İ - ¹æ¾î °Ç¹°ÀÇ °æ¿ì (Æ÷ÅæÄ³³í. ¼ºÅ«Äİ·Î´Ï. ½ºÆ÷¾îÄİ·Î´Ï. ÅÍ·¿. º¡Ä¿)
+	/// ê±´ë¬¼ê³¼ ê±´ë¬¼ê°„ ë„ìš¸ ìµœì†Œí•œì˜ ê°„ê²© - ë°©ì–´ ê±´ë¬¼ì˜ ê²½ìš° (í¬í†¤ìºë…¼. ì„±í°ì½œë¡œë‹ˆ. ìŠ¤í¬ì–´ì½œë¡œë‹ˆ. í„°ë ›. ë²™ì»¤)
 	public static final int BuildingDefenseTowerSpacing = 0; 
 	
 	
 	
 
-	/// È­¸é Ç¥½Ã ¿©ºÎ - °ÔÀÓ Á¤º¸
+	/// í™”ë©´ í‘œì‹œ ì—¬ë¶€ - ê²Œì„ ì •ë³´
 	public static final boolean DrawGameInfo = true;
 	
-	/// È­¸é Ç¥½Ã ¿©ºÎ - ¹Ì³×¶ö, °¡½º
+	/// í™”ë©´ í‘œì‹œ ì—¬ë¶€ - ë¯¸ë„¤ë„, ê°€ìŠ¤
 	public static final boolean DrawResourceInfo = true;
-	/// È­¸é Ç¥½Ã ¿©ºÎ - Áöµµ
+	/// í™”ë©´ í‘œì‹œ ì—¬ë¶€ - ì§€ë„
 	public static final boolean DrawBWTAInfo = true;
-	/// È­¸é Ç¥½Ã ¿©ºÎ - ¹ÙµÏÆÇ
+	/// í™”ë©´ í‘œì‹œ ì—¬ë¶€ - ë°”ë‘‘íŒ
 	public static final boolean DrawMapGrid = true;
 
-	/// È­¸é Ç¥½Ã ¿©ºÎ - À¯´Ö HitPoint
+	/// í™”ë©´ í‘œì‹œ ì—¬ë¶€ - ìœ ë‹› HitPoint
 	public static final boolean DrawUnitHealthBars = true;
-	/// È­¸é Ç¥½Ã ¿©ºÎ - À¯´Ö Åë°è
+	/// í™”ë©´ í‘œì‹œ ì—¬ë¶€ - ìœ ë‹› í†µê³„
 	public static final boolean DrawEnemyUnitInfo = true;
-	/// È­¸é Ç¥½Ã ¿©ºÎ - À¯´Ö ~ Target °£ Á÷¼±
+	/// í™”ë©´ í‘œì‹œ ì—¬ë¶€ - ìœ ë‹› ~ Target ê°„ ì§ì„ 
 	public static final boolean DrawUnitTargetInfo = true;
 
-	/// È­¸é Ç¥½Ã ¿©ºÎ - ºôµå Å¥
+	/// í™”ë©´ í‘œì‹œ ì—¬ë¶€ - ë¹Œë“œ í
 	public static final boolean DrawProductionInfo = true;
 
-	/// È­¸é Ç¥½Ã ¿©ºÎ - °Ç¹° Construction »óÈ²
+	/// í™”ë©´ í‘œì‹œ ì—¬ë¶€ - ê±´ë¬¼ Construction ìƒí™©
 	public static final boolean DrawBuildingInfo = true;
-	/// È­¸é Ç¥½Ã ¿©ºÎ - °Ç¹° ConstructionPlace ¿¹¾à »óÈ²
+	/// í™”ë©´ í‘œì‹œ ì—¬ë¶€ - ê±´ë¬¼ ConstructionPlace ì˜ˆì•½ ìƒí™©
 	public static final boolean DrawReservedBuildingTiles = true;
 	
-	/// È­¸é Ç¥½Ã ¿©ºÎ - Á¤Âû »óÅÂ
+	/// í™”ë©´ í‘œì‹œ ì—¬ë¶€ - ì •ì°° ìƒíƒœ
 	public static final boolean DrawScoutInfo = true;
-	/// È­¸é Ç¥½Ã ¿©ºÎ - ÀÏ²Û ¸ñ·Ï
+	/// í™”ë©´ í‘œì‹œ ì—¬ë¶€ - ì¼ê¾¼ ëª©ë¡
 	public static final boolean DrawWorkerInfo = true;
 	
-	/// È­¸é Ç¥½Ã ¿©ºÎ - ¸¶¿ì½º Ä¿¼­	
+	/// í™”ë©´ í‘œì‹œ ì—¬ë¶€ - ë§ˆìš°ìŠ¤ ì»¤ì„œ	
 	public static final boolean DrawMouseCursorInfo = true;
 
 	public static final Color ColorLineTarget = Color.White;

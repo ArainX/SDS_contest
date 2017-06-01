@@ -6,50 +6,50 @@ import bwapi.TilePosition;
 import bwapi.Unit;
 import bwapi.UnitType;
 
-/// °Ç¹° °Ç¼³ Construction Task ÀÚ·á±¸Á¶
+/// ê±´ë¬¼ ê±´ì„¤ Construction Task ìë£Œêµ¬ì¡°
 public class ConstructionTask {
 
-	/// °Ç¹° °Ç¼³ Construction Task ÀÇ ÁøÇà »óÅÂ
+	/// ê±´ë¬¼ ê±´ì„¤ Construction Task ì˜ ì§„í–‰ ìƒíƒœ
 	public enum ConstructionStatus { 
-		Unassigned,				///< Construction ÀÏ²ÛÀÌ ¹ÌÁöÁ¤ µÇ¾îÀÖ´Â »óÅÂ
-		Assigned,				///< Construction ÀÏ²ÛÀÌ ÁöÁ¤ µÇ¾úÁö¸¸, Construction ÀÏ²ÛÀÌ °Ç¼³À» Âø¼öÇÏÁö´Â ¾ÊÀº »óÅÂ
-		UnderConstruction		///< Construction ÀÏ²ÛÀÌ ÁöÁ¤ µÇ¾î °Ç¼³ ÀÛ¾÷À» ÇÏ°íÀÖ´Â »óÅÂ
+		Unassigned,				///< Construction ì¼ê¾¼ì´ ë¯¸ì§€ì • ë˜ì–´ìˆëŠ” ìƒíƒœ
+		Assigned,				///< Construction ì¼ê¾¼ì´ ì§€ì • ë˜ì—ˆì§€ë§Œ, Construction ì¼ê¾¼ì´ ê±´ì„¤ì„ ì°©ìˆ˜í•˜ì§€ëŠ” ì•Šì€ ìƒíƒœ
+		UnderConstruction		///< Construction ì¼ê¾¼ì´ ì§€ì • ë˜ì–´ ê±´ì„¤ ì‘ì—…ì„ í•˜ê³ ìˆëŠ” ìƒíƒœ
 	};
 	
-	/// °Ç¹°ÀÇ Å¸ÀÔ
+	/// ê±´ë¬¼ì˜ íƒ€ì…
 	private UnitType type;
 	
-	/// °Ç¹°À» ÁöÀ¸·Á°í °èÈ¹ÇÑ À§Ä¡
-	/// ÀÏ²ÛÀÌ °Ç¹°À» ÁöÀ¸·¯ °¡´Â µµÁß ÇØ´ç À§Ä¡¿¡ Àå¾Ö¹°ÀÌ ÀÖ°Ô µÇ´Âµî ¹®Á¦°¡ »ı±â¸é ÀÌ À§Ä¡¸¦ Áß½ÉÀ¸·Î ´Ù½Ã °Ç¹° ÁöÀ» À§Ä¡¸¦ Å½»öÇØ¼­ Á¤ÇÕ´Ï´Ù
+	/// ê±´ë¬¼ì„ ì§€ìœ¼ë ¤ê³  ê³„íší•œ ìœ„ì¹˜
+	/// ì¼ê¾¼ì´ ê±´ë¬¼ì„ ì§€ìœ¼ëŸ¬ ê°€ëŠ” ë„ì¤‘ í•´ë‹¹ ìœ„ì¹˜ì— ì¥ì• ë¬¼ì´ ìˆê²Œ ë˜ëŠ”ë“± ë¬¸ì œê°€ ìƒê¸°ë©´ ì´ ìœ„ì¹˜ë¥¼ ì¤‘ì‹¬ìœ¼ë¡œ ë‹¤ì‹œ ê±´ë¬¼ ì§€ì„ ìœ„ì¹˜ë¥¼ íƒìƒ‰í•´ì„œ ì •í•©ë‹ˆë‹¤
 	private TilePosition desiredPosition;
 	
-	/// °Ç¹°ÀÌ ½ÇÁ¦·Î °Ç¼³µÇ´Â À§Ä¡
+	/// ê±´ë¬¼ì´ ì‹¤ì œë¡œ ê±´ì„¤ë˜ëŠ” ìœ„ì¹˜
 	private TilePosition finalPosition;
 	
-	/// °Ç¹° °Ç¼³ Construction Task ÀÇ ÁøÇà »óÅÂ
+	/// ê±´ë¬¼ ê±´ì„¤ Construction Task ì˜ ì§„í–‰ ìƒíƒœ
 	private int status;
 	
-	/// ÇØ´ç °Ç¹°ÀÇ °Ç¼³ Construction Task ¸¦ ¹ŞÀº ÀÏ²Û À¯´Ö
+	/// í•´ë‹¹ ê±´ë¬¼ì˜ ê±´ì„¤ Construction Task ë¥¼ ë°›ì€ ì¼ê¾¼ ìœ ë‹›
 	private Unit constructionWorker;
 	
-	/// ÇØ´ç °Ç¹°ÀÇ °Ç¼³ Construction À» ½ÇÇàÇÏ´Â À¯´Ö
-	/// buildingUnit °ªÀº Ã³À½¿¡ nullptr ·Î ¼¼ÆÃµÇ°í, construction ÀÌ ½ÃÀÛµÇ¾î isBeingConstructed, underConstrunction »óÅÂ°¡ µÇ¾î¾ß ºñ·Î¼Ò °ªÀÌ Ã¤¿öÁø´Ù
+	/// í•´ë‹¹ ê±´ë¬¼ì˜ ê±´ì„¤ Construction ì„ ì‹¤í–‰í•˜ëŠ” ìœ ë‹›
+	/// buildingUnit ê°’ì€ ì²˜ìŒì— nullptr ë¡œ ì„¸íŒ…ë˜ê³ , construction ì´ ì‹œì‘ë˜ì–´ isBeingConstructed, underConstrunction ìƒíƒœê°€ ë˜ì–´ì•¼ ë¹„ë¡œì†Œ ê°’ì´ ì±„ì›Œì§„ë‹¤
 	private Unit buildingUnit;
 
-	/// ÇØ´ç °Ç¹°ÀÇ °Ç¼³ Construction Task ¸¦ ¹ŞÀº ÀÏ²Û À¯´Ö¿¡°Ô build ¸í·ÉÀ» Áö½ÃÇÏ¿´´ÂÁö ¿©ºÎ.
-	/// ÇÑ¹øµµ ¾È°¡º» Å¸ÀÏ¿¡´Â build ¸í·ÉÀ» ³»¸± ¼ö ¾øÀ¸¹Ç·Î, ÀÏ´Ü buildCommandGiven = false ÀÎ »óÅÂ·Î ÀÏ²ÛÀ» ÇØ´ç Å¸ÀÏ À§Ä¡·Î ÀÌµ¿½ÃÅ² ÈÄ, 
-	/// ÀÏ²ÛÀÌ ÇØ´ç Å¸ÀÏ À§Ä¡ ±ÙÃ³·Î ¿À¸é buildCommand Áö½Ã¸¦ ÇÕ´Ï´Ù
+	/// í•´ë‹¹ ê±´ë¬¼ì˜ ê±´ì„¤ Construction Task ë¥¼ ë°›ì€ ì¼ê¾¼ ìœ ë‹›ì—ê²Œ build ëª…ë ¹ì„ ì§€ì‹œí•˜ì˜€ëŠ”ì§€ ì—¬ë¶€.
+	/// í•œë²ˆë„ ì•ˆê°€ë³¸ íƒ€ì¼ì—ëŠ” build ëª…ë ¹ì„ ë‚´ë¦´ ìˆ˜ ì—†ìœ¼ë¯€ë¡œ, ì¼ë‹¨ buildCommandGiven = false ì¸ ìƒíƒœë¡œ ì¼ê¾¼ì„ í•´ë‹¹ íƒ€ì¼ ìœ„ì¹˜ë¡œ ì´ë™ì‹œí‚¨ í›„, 
+	/// ì¼ê¾¼ì´ í•´ë‹¹ íƒ€ì¼ ìœ„ì¹˜ ê·¼ì²˜ë¡œ ì˜¤ë©´ buildCommand ì§€ì‹œë¥¼ í•©ë‹ˆë‹¤
 	private boolean buildCommandGiven;
 	
-	/// ÇØ´ç °Ç¹°ÀÇ °Ç¼³ Construction Task ¸¦ ¹ŞÀº ÀÏ²Û À¯´Ö¿¡°Ô build ¸í·ÉÀ» Áö½ÃÇÑ ½Ã°¢
+	/// í•´ë‹¹ ê±´ë¬¼ì˜ ê±´ì„¤ Construction Task ë¥¼ ë°›ì€ ì¼ê¾¼ ìœ ë‹›ì—ê²Œ build ëª…ë ¹ì„ ì§€ì‹œí•œ ì‹œê°
 	private int lastBuildCommandGivenFrame;
 	
-	/// ÇØ´ç °Ç¹°ÀÇ °Ç¼³ Construction Task ¸¦ ÃÖ±Ù¿¡ ¹Ş¾Ò´ø ÀÏ²Û À¯´ÖÀÇ ID
-	/// ÀÏ²Û À¯´ÖÀÌ Construction Task ¸¦ ¹Ş¾ÒÁö¸¸ ½ÇÁ¦ ¼öÇàÀº ¸øÇÏ´Â »óÅÂÀÏ °æ¿ì, »õ·Ó°Ô ÀÏ²Û À¯´ÖÀ» ¼±Á¤ÇØ¼­ Construction Task ¸¦ ºÎ¿©ÇÏ´Âµ¥, 
-	/// ¸Å¹ø ¶È°°Àº ÀÏ²Û À¯´ÖÀÌ Construction Task ¸¦ ¹ŞÁö ¾Ê°Ô ÇÏ±â À§ÇØ¼­ °ü¸®
+	/// í•´ë‹¹ ê±´ë¬¼ì˜ ê±´ì„¤ Construction Task ë¥¼ ìµœê·¼ì— ë°›ì•˜ë˜ ì¼ê¾¼ ìœ ë‹›ì˜ ID
+	/// ì¼ê¾¼ ìœ ë‹›ì´ Construction Task ë¥¼ ë°›ì•˜ì§€ë§Œ ì‹¤ì œ ìˆ˜í–‰ì€ ëª»í•˜ëŠ” ìƒíƒœì¼ ê²½ìš°, ìƒˆë¡­ê²Œ ì¼ê¾¼ ìœ ë‹›ì„ ì„ ì •í•´ì„œ Construction Task ë¥¼ ë¶€ì—¬í•˜ëŠ”ë°, 
+	/// ë§¤ë²ˆ ë˜‘ê°™ì€ ì¼ê¾¼ ìœ ë‹›ì´ Construction Task ë¥¼ ë°›ì§€ ì•Šê²Œ í•˜ê¸° ìœ„í•´ì„œ ê´€ë¦¬
 	private int lastConstructionWorkerID;
 	
-	/// Construction Task °¡ °Ç¼³ ÀÛ¾÷ ½ÃÀÛÇß´Â°¡ ¿©ºÎ
+	/// Construction Task ê°€ ê±´ì„¤ ì‘ì—… ì‹œì‘í–ˆëŠ”ê°€ ì—¬ë¶€
 	private boolean underConstruction;
 
 	public ConstructionTask()

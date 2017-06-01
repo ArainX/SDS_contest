@@ -23,7 +23,7 @@ void BuildManager::update()
 
 void BuildManager::buildWorkerUnits()
 {
-	// ÀÚ¿øÀÌ 50ÀÌ»ó ÀÖÀ¸¸é ÀÏ²Û À¯´ÖÀ» ÈÆ·ÃÇÑ´Ù
+	// ìžì›ì´ 50ì´ìƒ ìžˆìœ¼ë©´ ì¼ê¾¼ ìœ ë‹›ì„ í›ˆë ¨í•œë‹¤
 	if (BWAPI::Broodwar->self()->minerals() >= 50) {
 		buildWorkerUnit();
 	}
@@ -45,7 +45,7 @@ void BuildManager::buildWorkerUnit()
 		targetUnitType = BWAPI::UnitTypes::Zerg_Drone;
 	}
 		
-	// ResourceDepot °Ç¹°ÀÌ ÀÏ²Û À¯´ÖÀ» »ý»ê °¡´ÉÇÑ »óÅÂÀÌ¸é »ý»êÀ» ¸í·ÉÇÑ´Ù
+	// ResourceDepot ê±´ë¬¼ì´ ì¼ê¾¼ ìœ ë‹›ì„ ìƒì‚° ê°€ëŠ¥í•œ ìƒíƒœì´ë©´ ìƒì‚°ì„ ëª…ë ¹í•œë‹¤
 	for (auto & unit : BWAPI::Broodwar->self()->getUnits())
 	{
 		if (unit->getType().isResourceDepot() ){
@@ -70,7 +70,7 @@ void BuildManager::buildCombatUnits()
 {
 	BWAPI::UnitType targetUnitType;
 
-	// ÀÚ¿øÀÌ 100ÀÌ»ó ÀÖÀ¸¸é ¸ÕÀú ÀüÅõ À¯´ÖÀ» ÈÆ·ÃÇÑ´Ù
+	// ìžì›ì´ 100ì´ìƒ ìžˆìœ¼ë©´ ë¨¼ì € ì „íˆ¬ ìœ ë‹›ì„ í›ˆë ¨í•œë‹¤
 	if (BWAPI::Broodwar->self()->minerals() >= 100) {
 		if (BWAPI::Broodwar->self()->getRace() == BWAPI::Races::Protoss) {
 			targetUnitType = BWAPI::UnitTypes::Protoss_Zealot;
@@ -91,7 +91,7 @@ void BuildManager::trainUnit(BWAPI::UnitType targetUnitType)
 	BWAPI::Unit producer = nullptr;
 	BWAPI::UnitType producerUnitType = targetUnitType.whatBuilds().first;
 
-	// targetUnitTypeÀ» »ý»ê °¡´ÉÇÑ »óÅÂ°¡ µÇ¸é »ý»êÀ» ¸í·ÉÇÑ´Ù
+	// targetUnitTypeì„ ìƒì‚° ê°€ëŠ¥í•œ ìƒíƒœê°€ ë˜ë©´ ìƒì‚°ì„ ëª…ë ¹í•œë‹¤
 	for (auto & unit : BWAPI::Broodwar->self()->getUnits())
 	{
 		if (unit->getType() == producerUnitType) {
@@ -116,7 +116,7 @@ void BuildManager::constructBuildings()
 {
 	BWAPI::UnitType targetUnitType;
 
-	// ÀÚ¿øÀÌ 200ÀÌ»ó ÀÖÀ¸¸é ÀüÅõÀ¯´Ö »ý»ê °Ç¹°À» °Ç¼³ ÇÑ´Ù
+	// ìžì›ì´ 200ì´ìƒ ìžˆìœ¼ë©´ ì „íˆ¬ìœ ë‹› ìƒì‚° ê±´ë¬¼ì„ ê±´ì„¤ í•œë‹¤
 	if (BWAPI::Broodwar->self()->minerals() >= 200) {
 		if (BWAPI::Broodwar->self()->getRace() == BWAPI::Races::Protoss) {
 			targetUnitType = BWAPI::UnitTypes::Protoss_Gateway;
@@ -130,8 +130,8 @@ void BuildManager::constructBuildings()
 		constructBuilding(targetUnitType);
 	}
 
-	// ÀÚ¿øÀÌ 100ÀÌ»ó ÀÖ°í, ¼­ÇÃ¶óÀÌ°¡ ºÎÁ·ÇØÁö¸é SupplyProvider ¿¡ ÇØ´çÇÏ´Â À¯´ÖÀ» ¸¸µç´Ù
-	// ¼­ÇÃ¶óÀÌ ¼ýÀÚ´Â ½ºÅ¸Å©·¡ÇÁÆ® °ÔÀÓ¿¡¼­ Ç¥½ÃµÇ´Â ¼ýÀÚÀÇ 2¹è·Î °è»êÇØ¾ßÇÑ´Ù
+	// ìžì›ì´ 100ì´ìƒ ìžˆê³ , ì„œí”Œë¼ì´ê°€ ë¶€ì¡±í•´ì§€ë©´ SupplyProvider ì— í•´ë‹¹í•˜ëŠ” ìœ ë‹›ì„ ë§Œë“ ë‹¤
+	// ì„œí”Œë¼ì´ ìˆ«ìžëŠ” ìŠ¤íƒ€í¬ëž˜í”„íŠ¸ ê²Œìž„ì—ì„œ í‘œì‹œë˜ëŠ” ìˆ«ìžì˜ 2ë°°ë¡œ ê³„ì‚°í•´ì•¼í•œë‹¤
 	if (BWAPI::Broodwar->self()->minerals() >= 100
 		&& BWAPI::Broodwar->self()->supplyUsed() + 6 > BWAPI::Broodwar->self()->supplyTotal()) {
 		if (BWAPI::Broodwar->self()->getRace() == BWAPI::Races::Protoss) {
@@ -151,7 +151,7 @@ void BuildManager::constructBuildings()
 
 void BuildManager::constructBuilding(BWAPI::UnitType targetBuildingType)
 {
-	// ÀÏ²Û Áß ¹Ì³×¶öÀ» ¿î¹ÝÇÏ°í ÀÖÁö ¾ÊÀº ÀÏ²Û ÇÏ³ª¸¦ producer·Î ¼±Á¤ÇÑ´Ù
+	// ì¼ê¾¼ ì¤‘ ë¯¸ë„¤ëž„ì„ ìš´ë°˜í•˜ê³  ìžˆì§€ ì•Šì€ ì¼ê¾¼ í•˜ë‚˜ë¥¼ producerë¡œ ì„ ì •í•œë‹¤
 	BWAPI::Unit producer = nullptr;
 	BWAPI::UnitType producerUnitType = targetBuildingType.whatBuilds().first;
 
@@ -173,9 +173,9 @@ void BuildManager::constructBuilding(BWAPI::UnitType targetBuildingType)
 		return;
 	}
 
-	// °Ç¹°À» °Ç¼³ÇÒ À§Ä¡¸¦ Start Location ±ÙÃ³¿¡¼­ Ã£´Â´Ù
-	// Ã³À½¿¡´Â Start Location ¹Ý°æ 4Å¸ÀÏ¿¡ ´ëÇØ Ã£¾Æº¸°í, 
-	// ´ÙÀ½¿¡´Â Start Location ¹Ý°æ 8Å¸ÀÏ¿¡ ´ëÇØ Ã£¾Æº¸´Â ½ÄÀ¸·Î ¹üÀ§¸¦ ³ÐÇô³ª°£´Ù
+	// ê±´ë¬¼ì„ ê±´ì„¤í•  ìœ„ì¹˜ë¥¼ Start Location ê·¼ì²˜ì—ì„œ ì°¾ëŠ”ë‹¤
+	// ì²˜ìŒì—ëŠ” Start Location ë°˜ê²½ 4íƒ€ì¼ì— ëŒ€í•´ ì°¾ì•„ë³´ê³ , 
+	// ë‹¤ìŒì—ëŠ” Start Location ë°˜ê²½ 8íƒ€ì¼ì— ëŒ€í•´ ì°¾ì•„ë³´ëŠ” ì‹ìœ¼ë¡œ ë²”ìœ„ë¥¼ ë„“í˜€ë‚˜ê°„ë‹¤
 	BWAPI::TilePosition seedPosition = InformationManager::Instance()._mainBaseLocations[InformationManager::Instance().selfPlayer]->getTilePosition();
 	BWAPI::TilePosition desiredPosition = BWAPI::TilePositions::None;
 	int maxRange = 32;

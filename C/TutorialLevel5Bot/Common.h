@@ -62,7 +62,7 @@ namespace MyBot
 		}
 	};
 
-	/// ·Î±× À¯Æ¿
+	/// ë¡œê·¸ ìœ í‹¸
 	namespace Logger
 	{
 		void appendTextToFile(const std::string & logFile, const std::string & msg);
@@ -70,15 +70,15 @@ namespace MyBot
 		void overwriteToFile(const std::string & logFile, const std::string & msg);
 	};
 
-	/// ÆÄÀÏ À¯Æ¿
+	/// íŒŒì¼ ìœ í‹¸
 	namespace FileUtil {
-		/// ÆÄÀÏ À¯Æ¿ - ÅØ½ºÆ® ÆÄÀÏÀ» ÀĞ¾îµéÀÎ´Ù
+		/// íŒŒì¼ ìœ í‹¸ - í…ìŠ¤íŠ¸ íŒŒì¼ì„ ì½ì–´ë“¤ì¸ë‹¤
 		std::string readFile(const std::string & filename);
 
-		/// ÆÄÀÏ À¯Æ¿ - °æ±â °á°ú¸¦ ÅØ½ºÆ® ÆÄÀÏ·ÎºÎÅÍ ÀĞ¾îµéÀÎ´Ù
+		/// íŒŒì¼ ìœ í‹¸ - ê²½ê¸° ê²°ê³¼ë¥¼ í…ìŠ¤íŠ¸ íŒŒì¼ë¡œë¶€í„° ì½ì–´ë“¤ì¸ë‹¤
 		void readResults();
 
-		/// ÆÄÀÏ À¯Æ¿ - °æ±â °á°ú¸¦ ÅØ½ºÆ® ÆÄÀÏ¿¡ ÀúÀåÇÑ´Ù
+		/// íŒŒì¼ ìœ í‹¸ - ê²½ê¸° ê²°ê³¼ë¥¼ í…ìŠ¤íŠ¸ íŒŒì¼ì— ì €ì¥í•œë‹¤
 		void writeResults();
 	}	
 

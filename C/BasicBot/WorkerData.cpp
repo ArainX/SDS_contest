@@ -22,7 +22,7 @@ void WorkerData::workerDestroyed(BWAPI::Unit unit)
 	workers.erase(unit);
 }
 
-// WorkerJob::Idle ·Î ÀÏ´Ü Ãß°¡ÇÑ´Ù
+// WorkerJob::Idle ë¡œ ì¼ë‹¨ ì¶”ê°€í•œë‹¤
 void WorkerData::addWorker(BWAPI::Unit unit)
 {
 	if (!unit) { return; }
@@ -144,7 +144,7 @@ void WorkerData::setWorkerJob(BWAPI::Unit unit, enum WorkerJob job, BWAPI::Unit 
 			workerRepairMap[unit] = jobUnit;
 
 			// start repairing if it is not repairing 
-			// ±âÁ¸ÀÌ ÀÌ¹Ì ¼ö¸®¸¦ ÇÏ°í ÀÖÀ¸¸é °è¼Ó ±âÁ¸ °ÍÀ» ¼ö¸®ÇÑ´Ù
+			// ê¸°ì¡´ì´ ì´ë¯¸ ìˆ˜ë¦¬ë¥¼ í•˜ê³  ìžˆìœ¼ë©´ ê³„ì† ê¸°ì¡´ ê²ƒì„ ìˆ˜ë¦¬í•œë‹¤
 			if (!unit->isRepairing())
 			{
 				CommandUtil::repair(unit, jobUnit);

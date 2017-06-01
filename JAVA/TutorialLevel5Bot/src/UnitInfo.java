@@ -3,8 +3,8 @@ import bwapi.Position;
 import bwapi.Unit;
 import bwapi.UnitType;
 
-/// ÇØ´ç UnitÀÇ ID, UnitType, ¼Ò¼Ó Player, HitPoint, lastPosition, completed(°Ç¹°ÀÌ ¿Ï¼ºµÈ °ÍÀÎÁö) µîÀ» ÀúÀåÇØµÎ´Â ÀÚ·á±¸Á¶
-/// Àû±º À¯´ÖÀÇ °æ¿ì ¾Æ±º ½Ã¾ß ³»¿¡ ÀÖÁö ¾Ê¾Æ invisible »óÅÂ°¡ µÇ¾úÀ» ¶§ Á¤º¸¸¦ Á¶È¸ÇÒ¼öµµ ¾ø¾îÁö°í ÆÄ¾ÇÇß´ø Á¤º¸µµ À¯½ÇµÇ±â ¶§¹®¿¡ º°µµ ÀÚ·á±¸Á¶°¡ ÇÊ¿äÇÕ´Ï´Ù
+/// í•´ë‹¹ Unitì˜ ID, UnitType, ì†Œì† Player, HitPoint, lastPosition, completed(ê±´ë¬¼ì´ ì™„ì„±ëœ ê²ƒì¸ì§€) ë“±ì„ ì €ì¥í•´ë‘ëŠ” ìë£Œêµ¬ì¡°
+/// ì êµ° ìœ ë‹›ì˜ ê²½ìš° ì•„êµ° ì‹œì•¼ ë‚´ì— ìˆì§€ ì•Šì•„ invisible ìƒíƒœê°€ ë˜ì—ˆì„ ë•Œ ì •ë³´ë¥¼ ì¡°íšŒí• ìˆ˜ë„ ì—†ì–´ì§€ê³  íŒŒì•…í–ˆë˜ ì •ë³´ë„ ìœ ì‹¤ë˜ê¸° ë•Œë¬¸ì— ë³„ë„ ìë£Œêµ¬ì¡°ê°€ í•„ìš”í•©ë‹ˆë‹¤
 public class UnitInfo {
 
 	private int unitID;
@@ -90,6 +90,19 @@ public class UnitInfo {
 	public void setCompleted(boolean completed) {
 		this.completed = completed;
 	}
+	
+	@Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof UnitInfo)) return false;
+
+        UnitInfo that = (UnitInfo) o;
+
+        if (this.getUnitID() != that.getUnitID()) return false;
+
+        return true;
+    }
+
 	
 //		const bool operator == (BWAPI::Unit unit) const
 //		{

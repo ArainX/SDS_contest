@@ -4,34 +4,34 @@ import bwapi.Color;
 import bwapi.TilePosition;
 import bwapi.UnitType;
 
-/// ºôµå ¸í·É
+/// ë¹Œë“œ ëª…ë ¹
 public class BuildOrderItem {
 
 	public MetaType metaType;			///< the thing we want to 'build'
 	public int priority;				///< the priority at which to place it in the queue
 	public boolean blocking;			///< whether or not we block further items
-	public TilePosition seedLocation; 	///< °Ç¼³ À§Ä¡
-	public int producerID;				///< producer unitID (°Ç¹°ID, À¯´ÖID)
+	public TilePosition seedLocation; 	///< ê±´ì„¤ ìœ„ì¹˜
+	public int producerID;				///< producer unitID (ê±´ë¬¼ID, ìœ ë‹›ID)
 	
-	/// °Ç¼³À§Ä¡ ÃÊ¾È °áÁ¤ Á¤Ã¥
-	/// ÇâÈÄ ÀûÁø ±æ¸ñ, ¾ð´ö À§ µî Ãß°¡
+	/// ê±´ì„¤ìœ„ì¹˜ ì´ˆì•ˆ ê²°ì • ì •ì±…
+	/// í–¥í›„ ì ì§„ ê¸¸ëª©, ì–¸ë• ìœ„ ë“± ì¶”ê°€
 	public enum SeedPositionStrategy { 
-		MainBaseLocation,			///< ¾Æ±º º£ÀÌ½º
-		MainBaseBackYard,			///< ¾Æ±º º£ÀÌ½º µÞÆí
-		FirstChokePoint,			///< ¾Æ±º Ã¹¹øÂ° ±æ¸ñ
-		FirstExpansionLocation,		///< ¾Æ±º Ã¹¹øÂ° ¾Õ¸¶´ç
-		SecondChokePoint,			///< ¾Æ±º µÎ¹øÂ° ±æ¸ñ
-		SecondExpansionLocation,	///< ¾Æ±º µÎ¹øÂ° ¾Õ¸¶´ç
-		SeedPositionSpecified		///< º°µµ ÁöÁ¤ À§Ä¡
+		MainBaseLocation,			///< ì•„êµ° ë² ì´ìŠ¤
+		MainBaseBackYard,			///< ì•„êµ° ë² ì´ìŠ¤ ë’·íŽ¸
+		FirstChokePoint,			///< ì•„êµ° ì²«ë²ˆì§¸ ê¸¸ëª©
+		FirstExpansionLocation,		///< ì•„êµ° ì²«ë²ˆì§¸ ì•žë§ˆë‹¹
+		SecondChokePoint,			///< ì•„êµ° ë‘ë²ˆì§¸ ê¸¸ëª©
+		SecondExpansionLocation,	///< ì•„êµ° ë‘ë²ˆì§¸ ì•žë§ˆë‹¹
+		SeedPositionSpecified		///< ë³„ë„ ì§€ì • ìœ„ì¹˜
 	};
 	
-	public SeedPositionStrategy seedLocationStrategy;	///< °Ç¼³À§Ä¡ ÃÊ¾È °áÁ¤ Á¤Ã¥
+	public SeedPositionStrategy seedLocationStrategy;	///< ê±´ì„¤ìœ„ì¹˜ ì´ˆì•ˆ ê²°ì • ì •ì±…
 	
-	/// °Ç¼³ À§Ä¡´Â SeedPositionStrategy::MainBaseLocation À» ÅëÇØ Ã£´Â´Ù
-	/// @param metaType : ºôµå ´ë»ó Å¸ÀÔ
-	/// @param priority : 0 = °¡Àå ³·Àº ¿ì¼±¼øÀ§. ¼ýÀÚ°¡ Å¬¼ö·Ï ´õ ³ôÀº ¿ì¼±¼øÀ§. Å¥¿¡ ÀÖ´Â ¾ÆÀÌÅÛµé Áß¿¡¼­ °¡Àå ³ôÀº ¿ì¼±¼øÀ§ÀÇ ¾ÆÀÌÅÛ (¿ì¼±¼øÀ§°¡ ³ôÀ¸¸é ¸ÕÀú Å¥¿¡ ³ÖÀº °Í)ÀÌ ¸ÕÀú »ý»ê ÁøÇàµÊ. 
-	/// @param blocking : true = Áö±Ý ÀÌ°ÍÀ» »ý»êÇÒ ¼ö ¾øÀ¸¸é, ÀÌ°Í »ý»ê °¡´ÉÇØÁú¶§±îÁö ±â´Ù¸².  false = Áö±Ý ÀÌ°ÍÀ» »ý»êÀ» ÇÒ ¼ö ¾øÀ¸¸é ´ÙÀ½°Í ¸ÕÀú »ý»ê ½ÇÇà.
-	/// @param producerID : producerID ¸¦ ÁöÁ¤ÇÏ¸é ÇØ´ç unit ÀÌ ºôµå¸¦ ½ÇÇàÇÏ°Ô ÇÔ
+	/// ê±´ì„¤ ìœ„ì¹˜ëŠ” SeedPositionStrategy::MainBaseLocation ì„ í†µí•´ ì°¾ëŠ”ë‹¤
+	/// @param metaType : ë¹Œë“œ ëŒ€ìƒ íƒ€ìž…
+	/// @param priority : 0 = ê°€ìž¥ ë‚®ì€ ìš°ì„ ìˆœìœ„. ìˆ«ìžê°€ í´ìˆ˜ë¡ ë” ë†’ì€ ìš°ì„ ìˆœìœ„. íì— ìžˆëŠ” ì•„ì´í…œë“¤ ì¤‘ì—ì„œ ê°€ìž¥ ë†’ì€ ìš°ì„ ìˆœìœ„ì˜ ì•„ì´í…œ (ìš°ì„ ìˆœìœ„ê°€ ë†’ìœ¼ë©´ ë¨¼ì € íì— ë„£ì€ ê²ƒ)ì´ ë¨¼ì € ìƒì‚° ì§„í–‰ë¨. 
+	/// @param blocking : true = ì§€ê¸ˆ ì´ê²ƒì„ ìƒì‚°í•  ìˆ˜ ì—†ìœ¼ë©´, ì´ê²ƒ ìƒì‚° ê°€ëŠ¥í•´ì§ˆë•Œê¹Œì§€ ê¸°ë‹¤ë¦¼.  false = ì§€ê¸ˆ ì´ê²ƒì„ ìƒì‚°ì„ í•  ìˆ˜ ì—†ìœ¼ë©´ ë‹¤ìŒê²ƒ ë¨¼ì € ìƒì‚° ì‹¤í–‰.
+	/// @param producerID : producerID ë¥¼ ì§€ì •í•˜ë©´ í•´ë‹¹ unit ì´ ë¹Œë“œë¥¼ ì‹¤í–‰í•˜ê²Œ í•¨
 	public BuildOrderItem(MetaType metaType, int priority, boolean blocking, int producerID)
 	{
 		this.metaType = metaType;
@@ -55,7 +55,7 @@ public class BuildOrderItem {
 		this(metaType, 0, true, -1);
 	}
 
-	/// °Ç¼³ À§Ä¡¸¦ seedLocation ÁÖÀ§¿¡¼­ Ã£´Â´Ù
+	/// ê±´ì„¤ ìœ„ì¹˜ë¥¼ seedLocation ì£¼ìœ„ì—ì„œ ì°¾ëŠ”ë‹¤
 	public BuildOrderItem(MetaType metaType, TilePosition seedLocation, int priority, boolean blocking, int producerID)
 	{
 		this.metaType = metaType;
@@ -74,7 +74,7 @@ public class BuildOrderItem {
 		this(metaType, seedLocation, priority, true, -1);
 	}
 
-	/// °Ç¼³ À§Ä¡¸¦ seedPositionStrategy ¸¦ ÀÌ¿ëÇØ¼­ Ã£´Â´Ù. ¸øÃ£À» °æ¿ì, ´Ù¸¥ SeedPositionStrategy ·Î °è¼Ó Ã£´Â´Ù
+	/// ê±´ì„¤ ìœ„ì¹˜ë¥¼ seedPositionStrategy ë¥¼ ì´ìš©í•´ì„œ ì°¾ëŠ”ë‹¤. ëª»ì°¾ì„ ê²½ìš°, ë‹¤ë¥¸ SeedPositionStrategy ë¡œ ê³„ì† ì°¾ëŠ”ë‹¤
 	public BuildOrderItem(MetaType metaType, SeedPositionStrategy seedPositionStrategy, int priority, boolean blocking, int producerID)
 	{
 		this.metaType = metaType;

@@ -9,10 +9,10 @@ import bwta.BaseLocation;
 
 public class WorkerManager {
 
-	// Worker ~ Mineral Field °£ assign °ü°è¸¦ ÀúÀåÇÏ´Â map
+	// Worker ~ Mineral Field ê°„ assign ê´€ê³„ë¥¼ ì €ì¥í•˜ëŠ” map
 	private Map<Integer, Unit> workerMineralAssignment = new HashMap<Integer, Unit>();
 
-	// °¢°¢ÀÇ Mineral Field ¿¡ assign µÈ Worker ¼ıÀÚ ¸¦ ÀúÀåÇÏ´Â map
+	// ê°ê°ì˜ Mineral Field ì— assign ëœ Worker ìˆ«ì ë¥¼ ì €ì¥í•˜ëŠ” map
 	private Map<Integer, Integer> workerCountOnMineral = new HashMap<Integer, Integer>();
 
 	private static WorkerManager instance = new WorkerManager();
@@ -33,23 +33,23 @@ public class WorkerManager {
 	
 	public void update() {
 		
-		// °¢°¢ÀÇ Worker ¿¡ ´ëÇØ¼­
-		// °¡Àå °¡±î¿î ¾Æ±º ResourceDepot ±ÙÃ³ÀÇ, °¡Àå °¡±î¿î Mineral ¿¡ Ã¤ÃëÇÏµµ·Ï ÇÏµÇ (°Å¸® °è»ê ÇÊ¿ä)
-		// Worker µéÀÌ ¿©·¯ Mineral ¿¡ ºĞ»êµÇµµ·Ï ÇÑ´Ù (°¢°¢ÀÇ Mineral ¿¡ ÇÒ´çµÈ worker µéÀÇ ¼ıÀÚ¸¦ ÀúÀå / ÃÖ½ÅÈ­ ÇØ¾ß ÇÑ´Ù)
+		// ê°ê°ì˜ Worker ì— ëŒ€í•´ì„œ
+		// ê°€ì¥ ê°€ê¹Œìš´ ì•„êµ° ResourceDepot ê·¼ì²˜ì˜, ê°€ì¥ ê°€ê¹Œìš´ Mineral ì— ì±„ì·¨í•˜ë„ë¡ í•˜ë˜ (ê±°ë¦¬ ê³„ì‚° í•„ìš”)
+		// Worker ë“¤ì´ ì—¬ëŸ¬ Mineral ì— ë¶„ì‚°ë˜ë„ë¡ í•œë‹¤ (ê°ê°ì˜ Mineral ì— í• ë‹¹ëœ worker ë“¤ì˜ ìˆ«ìë¥¼ ì €ì¥ / ìµœì‹ í™” í•´ì•¼ í•œë‹¤)
 	
-		// worker ´Â ÀÏÀÌ ¾øÀ» ¶§µµ idle »óÅÂ°¡ µÇÁö¸¸, ÀÏÀ» ¼öÇàÇÏ´Â µµÁß¿¡µµ Àá±ñ idle »óÅÂ°¡ µÈ´Ù
+		// worker ëŠ” ì¼ì´ ì—†ì„ ë•Œë„ idle ìƒíƒœê°€ ë˜ì§€ë§Œ, ì¼ì„ ìˆ˜í–‰í•˜ëŠ” ë„ì¤‘ì—ë„ ì ê¹ idle ìƒíƒœê°€ ëœë‹¤
 		for (Unit unit : MyBotModule.Broodwar.self().getUnits()){
 	
 			if (unit == null) continue;
 			
 			if (unit.getType().isWorker()) {
 	
-				// unit ÀÌ idle »óÅÂÀÌ°í, Åº»ıÇÑ ÀÌÈÄÀÌ¸é 
+				// unit ì´ idle ìƒíƒœì´ê³ , íƒ„ìƒí•œ ì´í›„ì´ë©´ 
 				if (unit.isIdle() && unit.isCompleted())
 				{
 					System.out.println(unit.getType() + " " + unit.getID() + " is idle");
 	
-					// unit ¿¡°Ô ÀûÀıÇÑ Mineral À» Ã£¾Æ, ±× Mineral ·Î Right Click À» ÇÑ´Ù
+					// unit ì—ê²Œ ì ì ˆí•œ Mineral ì„ ì°¾ì•„, ê·¸ Mineral ë¡œ Right Click ì„ í•œë‹¤
 					Unit bestMineral = getBestMineralTo(unit);
 	
 					if (bestMineral != null) {
@@ -59,16 +59,16 @@ public class WorkerManager {
 	
 						unit.gather(bestMineral);
 	
-						// unit °ú Mineral °£ assign Á¤º¸¸¦ ¾÷µ¥ÀÌÆ®ÇÑ´Ù
+						// unit ê³¼ Mineral ê°„ assign ì •ë³´ë¥¼ ì—…ë°ì´íŠ¸í•œë‹¤
 						workerMineralAssignment.put(new Integer(unit.getID()), bestMineral);
-						// Mineral º° assigned unit ¼ıÀÚ¸¦ ¾÷µ¥ÀÌÆ®ÇÑ´Ù
+						// Mineral ë³„ assigned unit ìˆ«ìë¥¼ ì—…ë°ì´íŠ¸í•œë‹¤
 						increaseWorkerCountOnMineral(bestMineral, 1);
 					}
 				}
 			}
 		}
 	
-		// Mineral º° assigned unit ¼ıÀÚ¸¦ È­¸é¿¡ Ç¥½Ã
+		// Mineral ë³„ assigned unit ìˆ«ìë¥¼ í™”ë©´ì— í‘œì‹œ
 		for (Integer i : workerMineralAssignment.keySet()) {
 			Unit mineral = workerMineralAssignment.get(i);
 			if (workerCountOnMineral.containsKey(new Integer(mineral.getID()))) {
@@ -78,7 +78,7 @@ public class WorkerManager {
 		}
 
 		/*
-		// Worker º° Mineral ÁöÁ¤À» ÄÜ¼Ö¿¡ Ç¥½Ã
+		// Worker ë³„ Mineral ì§€ì •ì„ ì½˜ì†”ì— í‘œì‹œ
 		System.out.println("\nworkerMineralAssignment size " + workerMineralAssignment.size());
 		for (Integer i : workerMineralAssignment.keySet()) {
 			System.out.println("worker " + i + " ~ mineral " + workerMineralAssignment.get(i).getID());
@@ -91,9 +91,9 @@ public class WorkerManager {
 	{
 		if (worker == null) return null;
 	
-		// workerÀ¸·ÎºÎÅÍ °¡Àå °¡±î¿î BaseLocationÀ» Ã£´Â´Ù
+		// workerìœ¼ë¡œë¶€í„° ê°€ì¥ ê°€ê¹Œìš´ BaseLocationì„ ì°¾ëŠ”ë‹¤
 		BaseLocation closestBaseLocation = null;
-		// 128 * 128 Å¸ÀÏ»çÀÌÁîÀÇ ¸Ê¿¡¼­ °¡Àå ¸Õ °Å¸®´Â sqrt(128 * 32  * 128 * 32 + 128 * 32 * 128 * 32) = 5792.6 point 
+		// 128 * 128 íƒ€ì¼ì‚¬ì´ì¦ˆì˜ ë§µì—ì„œ ê°€ì¥ ë¨¼ ê±°ë¦¬ëŠ” sqrt(128 * 32  * 128 * 32 + 128 * 32 * 128 * 32) = 5792.6 point 
 		double closestDistance = 1000000000;
 	
 		for (BaseLocation baseLocation : BWTA.getBaseLocations()){
@@ -116,23 +116,23 @@ public class WorkerManager {
 		System.out.println("closestBaseLocation from " + worker.getType() + " " + worker.getID()
 			+ " is " + closestBaseLocation.getTilePosition().getX() + "," + closestBaseLocation.getTilePosition().getY());
 	
-		// ÇØ´ç BaseLocation ÀÇ Mineral µé Áß¿¡¼­ worker °¡ °¡Àå Àû°Ô ÁöÁ¤µÇ¾îÀÖ´Â °Í, ±×Áß¿¡¼­µµ BaseLocation À¸·ÎºÎÅÍ °¡Àå °¡±î¿î °ÍÀ» Ã£´Â´Ù
+		// í•´ë‹¹ BaseLocation ì˜ Mineral ë“¤ ì¤‘ì—ì„œ worker ê°€ ê°€ì¥ ì ê²Œ ì§€ì •ë˜ì–´ìˆëŠ” ê²ƒ, ê·¸ì¤‘ì—ì„œë„ BaseLocation ìœ¼ë¡œë¶€í„° ê°€ì¥ ê°€ê¹Œìš´ ê²ƒì„ ì°¾ëŠ”ë‹¤
 		Unit bestMineral = null;
 		double bestDistance = 1000000000;
 		int bestNumAssigned = 1000000000;
 	
-		//BaseLocation.getMinerals() . ¾îµÎ¿î ¿µ¿ª¿¡ ÀÖÀ¸¸é, null À» ¸®ÅÏ
-		//BaseLocation.getStaticMinerals() . ¾îµÎ¿î ¿µ¿ª¿¡ ÀÖÀ¸¸é, UnitTypes.Unknown À» ¸®ÅÏ
+		//BaseLocation.getMinerals() . ì–´ë‘ìš´ ì˜ì—­ì— ìˆìœ¼ë©´, null ì„ ë¦¬í„´
+		//BaseLocation.getStaticMinerals() . ì–´ë‘ìš´ ì˜ì—­ì— ìˆìœ¼ë©´, UnitTypes.Unknown ì„ ë¦¬í„´
 		for (Unit mineral : closestBaseLocation.getMinerals()){
 			if (mineral == null) continue;
 	
-			// ÇØ´ç Mineral ¿¡ ÁöÁ¤µÈ worker ¼ıÀÚ
+			// í•´ë‹¹ Mineral ì— ì§€ì •ëœ worker ìˆ«ì
 			int numAssigned = 0;
 			if (workerCountOnMineral.containsKey(new Integer(mineral.getID())) ){
 				Integer n = workerCountOnMineral.get(new Integer(mineral.getID()));
 				numAssigned = n.intValue();
 			}
-			// ÇØ´ç Mineral °ú BaseLocation °£ÀÇ °Å¸®
+			// í•´ë‹¹ Mineral ê³¼ BaseLocation ê°„ì˜ ê±°ë¦¬
 			double dist = mineral.getDistance(closestBaseLocation.getPosition());
 	
 			if (numAssigned < bestNumAssigned)
@@ -157,7 +157,7 @@ public class WorkerManager {
 	
 	public void increaseWorkerCountOnMineral(Unit mineral, int num)
 	{
-		// Mineral ¿¡ assign µÈ worker ¼ıÀÚ¸¦ º¯°æÇÑ´Ù
+		// Mineral ì— assign ëœ worker ìˆ«ìë¥¼ ë³€ê²½í•œë‹¤
 		if (workerCountOnMineral.containsKey(new Integer(mineral.getID())))
 		{
 			workerCountOnMineral.replace(new Integer(mineral.getID()), new Integer(workerCountOnMineral.get(mineral.getID()) + num));
@@ -174,7 +174,7 @@ public class WorkerManager {
 	
 		if (unit.getType().isWorker() && unit.getPlayer() == MyBotModule.Broodwar.self()) 
 		{
-			// ÇØ´ç ÀÏ²Û°ú Mineral °£ assign Á¤º¸¸¦ »èÁ¦ÇÑ´Ù
+			// í•´ë‹¹ ì¼ê¾¼ê³¼ Mineral ê°„ assign ì •ë³´ë¥¼ ì‚­ì œí•œë‹¤
 			System.out.println("removeWorker " + unit.getID() + " from Mineral Worker ");
 			increaseWorkerCountOnMineral(workerMineralAssignment.get(unit.getID()), -1);
 			workerMineralAssignment.remove(unit.getID());
@@ -185,10 +185,10 @@ public class WorkerManager {
 	{
 		if (unit == null) return;
 	
-		// Àú±× Á¾Á· ÀÏ²ÛÀÌ °Ç¹°·Î morph ÇÑ °æ¿ì
+		// ì €ê·¸ ì¢…ì¡± ì¼ê¾¼ì´ ê±´ë¬¼ë¡œ morph í•œ ê²½ìš°
 		if (unit.getPlayer().getRace() == Race.Zerg && unit.getPlayer() == MyBotModule.Broodwar.self() && unit.getType().isBuilding())
 		{
-			// ÇØ´ç ÀÏ²Û°ú Mineral °£ assign Á¤º¸¸¦ »èÁ¦ÇÑ´Ù
+			// í•´ë‹¹ ì¼ê¾¼ê³¼ Mineral ê°„ assign ì •ë³´ë¥¼ ì‚­ì œí•œë‹¤
 			System.out.println("removeWorker " + unit.getID() + " from Mineral Worker ");				
 			increaseWorkerCountOnMineral(workerMineralAssignment.get(unit.getID()), -1);
 			workerMineralAssignment.remove(unit.getID());

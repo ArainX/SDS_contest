@@ -12,28 +12,28 @@ import bwta.BaseLocation;
 import bwta.Chokepoint;
 import bwta.Region;
 
-/// °Ç¼³À§Ä¡ Å½»öÀ» À§ÇÑ class
+/// ê±´ì„¤ìœ„ì¹˜ íƒìƒ‰ì„ ìœ„í•œ class
 public class ConstructionPlaceFinder {
 
-	/// °Ç¼³À§Ä¡ Å½»ö ¹æ¹ı
+	/// ê±´ì„¤ìœ„ì¹˜ íƒìƒ‰ ë°©ë²•
 	public enum ConstructionPlaceSearchMethod { 
-		SpiralMethod,	///< ³ª¼±ÇüÀ¸·Î µ¹¾Æ°¡¸ç Å½»ö 
-		NewMethod 		///< ¿¹ºñ
+		SpiralMethod,	///< ë‚˜ì„ í˜•ìœ¼ë¡œ ëŒì•„ê°€ë©° íƒìƒ‰ 
+		NewMethod 		///< ì˜ˆë¹„
 	};
 	
-	/// °Ç¹° °Ç¼³ ¿¹Á¤ Å¸ÀÏÀ» ÀúÀåÇØ³õ±â À§ÇÑ 2Â÷¿ø ¹è¿­
-	/// TilePosition ´ÜÀ§ÀÌ±â ¶§¹®¿¡ º¸Åë 128*128 »çÀÌÁî°¡ µÈ´Ù
-	/// Âü°í·Î, °Ç¹°ÀÌ ÀÌ¹Ì Áö¾îÁø Å¸ÀÏÀº ÀúÀåÇÏÁö ¾Ê´Â´Ù
+	/// ê±´ë¬¼ ê±´ì„¤ ì˜ˆì • íƒ€ì¼ì„ ì €ì¥í•´ë†“ê¸° ìœ„í•œ 2ì°¨ì› ë°°ì—´
+	/// TilePosition ë‹¨ìœ„ì´ê¸° ë•Œë¬¸ì— ë³´í†µ 128*128 ì‚¬ì´ì¦ˆê°€ ëœë‹¤
+	/// ì°¸ê³ ë¡œ, ê±´ë¬¼ì´ ì´ë¯¸ ì§€ì–´ì§„ íƒ€ì¼ì€ ì €ì¥í•˜ì§€ ì•ŠëŠ”ë‹¤
 	private boolean[][] reserveMap = new boolean[128][128];
 	
-	/// BaseLocation °ú Mineral / Geyser »çÀÌÀÇ Å¸ÀÏµéÀ» ´ã´Â ÀÚ·á±¸Á¶. ¿©±â¿¡´Â Addon ÀÌ¿Ü¿¡´Â °Ç¹°À» ÁşÁö ¾Êµµ·Ï ÇÕ´Ï´Ù	
+	/// BaseLocation ê³¼ Mineral / Geyser ì‚¬ì´ì˜ íƒ€ì¼ë“¤ì„ ë‹´ëŠ” ìë£Œêµ¬ì¡°. ì—¬ê¸°ì—ëŠ” Addon ì´ì™¸ì—ëŠ” ê±´ë¬¼ì„ ì§“ì§€ ì•Šë„ë¡ í•©ë‹ˆë‹¤	
 	private Set<TilePosition> tilesToAvoid = new HashSet<TilePosition>();
 	
 	private static ConstructionPlaceFinder instance = new ConstructionPlaceFinder();
 	
 	private static boolean isInitialized = false;
 	
-	/// static singleton °´Ã¼¸¦ ¸®ÅÏÇÕ´Ï´Ù
+	/// static singleton ê°ì²´ë¥¼ ë¦¬í„´í•©ë‹ˆë‹¤
 	public static ConstructionPlaceFinder Instance() {
 		if (isInitialized == false) {
 			instance.setTilesToAvoid();
@@ -42,21 +42,21 @@ public class ConstructionPlaceFinder {
 		return instance;
 	}
 
-	/// seedPosition ¹× seedPositionStrategy ÆÄ¶ó¸ŞÅÍ¸¦ È°¿ëÇØ¼­ °Ç¹° °Ç¼³ °¡´É À§Ä¡¸¦ Å½»öÇØ¼­ ¸®ÅÏÇÕ´Ï´Ù
-	/// seedPosition ÁÖÀ§¿¡¼­ °¡´ÉÇÑ °÷À» ¼±Á¤ÇÏ°Å³ª, seedPositionStrategy ¿¡ µû¶ó ÁöÇü ºĞ¼®°á°ú ÇØ´ç ÁöÁ¡ ÁÖÀ§¿¡¼­ °¡´ÉÇÑ °÷À» ¼±Á¤ÇÕ´Ï´Ù
-	/// seedPosition, seedPositionStrategy À» ÀÔ·ÂÇÏÁö ¾ÊÀ¸¸é, MainBaseLocation ÁÖÀ§¿¡¼­ °¡´ÉÇÑ °÷À» ¸®ÅÏÇÕ´Ï´Ù
+	/// seedPosition ë° seedPositionStrategy íŒŒë¼ë©”í„°ë¥¼ í™œìš©í•´ì„œ ê±´ë¬¼ ê±´ì„¤ ê°€ëŠ¥ ìœ„ì¹˜ë¥¼ íƒìƒ‰í•´ì„œ ë¦¬í„´í•©ë‹ˆë‹¤
+	/// seedPosition ì£¼ìœ„ì—ì„œ ê°€ëŠ¥í•œ ê³³ì„ ì„ ì •í•˜ê±°ë‚˜, seedPositionStrategy ì— ë”°ë¼ ì§€í˜• ë¶„ì„ê²°ê³¼ í•´ë‹¹ ì§€ì  ì£¼ìœ„ì—ì„œ ê°€ëŠ¥í•œ ê³³ì„ ì„ ì •í•©ë‹ˆë‹¤
+	/// seedPosition, seedPositionStrategy ì„ ì…ë ¥í•˜ì§€ ì•Šìœ¼ë©´, MainBaseLocation ì£¼ìœ„ì—ì„œ ê°€ëŠ¥í•œ ê³³ì„ ë¦¬í„´í•©ë‹ˆë‹¤
 	public final TilePosition getBuildLocationWithSeedPositionAndStrategy(UnitType buildingType, TilePosition seedPosition, BuildOrderItem.SeedPositionStrategy seedPositionStrategy)
 	{
 		TilePosition desiredPosition = TilePosition.None;
 
-		// seedPosition À» ÀÔ·ÂÇÑ °æ¿ì ±× ±ÙÃ³¿¡¼­ Ã£´Â´Ù
-		// TODO °úÁ¦ : ±× ±ÙÃ³¿¡¼­ ¸øÃ£À¸¸é ¾î¶»°Ô ÇÒÁö »ı°¢ÇØº¼ °úÁ¦ÀÌ´Ù 
+		// seedPosition ì„ ì…ë ¥í•œ ê²½ìš° ê·¸ ê·¼ì²˜ì—ì„œ ì°¾ëŠ”ë‹¤
+		// TODO ê³¼ì œ : ê·¸ ê·¼ì²˜ì—ì„œ ëª»ì°¾ìœ¼ë©´ ì–´ë–»ê²Œ í• ì§€ ìƒê°í•´ë³¼ ê³¼ì œì´ë‹¤ 
 		if (seedPosition != TilePosition.None  && seedPosition.isValid() )
 		{
 			//std::cout << "getBuildLocationNear " << seedPosition.x << ", " << seedPosition.y << std::endl;
 			desiredPosition = getBuildLocationNear(buildingType, seedPosition);
 		}
-		// seedPosition À» ÀÔ·ÂÇÏÁö ¾ÊÀº °æ¿ì
+		// seedPosition ì„ ì…ë ¥í•˜ì§€ ì•Šì€ ê²½ìš°
 		else {
 			Chokepoint tempChokePoint;
 			BaseLocation tempBaseLocation;
@@ -79,11 +79,11 @@ public class ConstructionPlaceFinder {
 
 				//std::cout << "y";
 
-				// (vx, vy) = BaseLocation ¿Í ChokePoint °£ Â÷ÀÌ º¤ÅÍ = °Å¸® d ¿Í °¢µµ t º¤ÅÍ. ´ÜÀ§´Â position
-				// ½ºÅ¸Å©·¡ÇÁÆ® ÁÂÇ¥°è : ¿À¸¥ÂÊÀ¸·Î °¥¼ö·Ï x °¡ Áõ°¡ (µ¥Ä«¸£Æ® ÁÂÇ¥°è¿Í µ¿ÀÏ). ¾Æ·¡·Î °¥¼ö·Ï y°¡ Áõ°¡ (yÃà¸¸ µ¥Ä«¸£Æ® ÁÂÇ¥°è¿Í ¹İ´ë)
-				// »ï°¢ÇÔ¼ö °ªÀº µ¥Ä«¸£Æ® ÁÂÇ¥°è¿¡¼­ °è»êÇÏ¹Ç·Î, vy¸¦ ºÎÈ£ ¹İ´ë·Î ÇØ¼­ °¢µµ t °ªÀ» ±¸ÇÔ 
+				// (vx, vy) = BaseLocation ì™€ ChokePoint ê°„ ì°¨ì´ ë²¡í„° = ê±°ë¦¬ d ì™€ ê°ë„ t ë²¡í„°. ë‹¨ìœ„ëŠ” position
+				// ìŠ¤íƒ€í¬ë˜í”„íŠ¸ ì¢Œí‘œê³„ : ì˜¤ë¥¸ìª½ìœ¼ë¡œ ê°ˆìˆ˜ë¡ x ê°€ ì¦ê°€ (ë°ì¹´ë¥´íŠ¸ ì¢Œí‘œê³„ì™€ ë™ì¼). ì•„ë˜ë¡œ ê°ˆìˆ˜ë¡ yê°€ ì¦ê°€ (yì¶•ë§Œ ë°ì¹´ë¥´íŠ¸ ì¢Œí‘œê³„ì™€ ë°˜ëŒ€)
+				// ì‚¼ê°í•¨ìˆ˜ ê°’ì€ ë°ì¹´ë¥´íŠ¸ ì¢Œí‘œê³„ì—ì„œ ê³„ì‚°í•˜ë¯€ë¡œ, vyë¥¼ ë¶€í˜¸ ë°˜ëŒ€ë¡œ í•´ì„œ ê°ë„ t ê°’ì„ êµ¬í•¨ 
 
-				// MainBaseLocation ÀÌ null ÀÌ°Å³ª, ChokePoint °¡ null ÀÌ¸é, MainBaseLocation ÁÖÀ§¿¡¼­ °¡´ÉÇÑ °÷À» ¸®ÅÏÇÑ´Ù
+				// MainBaseLocation ì´ null ì´ê±°ë‚˜, ChokePoint ê°€ null ì´ë©´, MainBaseLocation ì£¼ìœ„ì—ì„œ ê°€ëŠ¥í•œ ê³³ì„ ë¦¬í„´í•œë‹¤
 				if (tempBaseLocation == null ) {
 					//std::cout << "q";
 					desiredPosition = getBuildLocationNear(buildingType, InformationManager.Instance().getMainBaseLocation(MyBotModule.Broodwar.self()).getTilePosition());
@@ -95,19 +95,19 @@ public class ConstructionPlaceFinder {
 					break;
 				}
 
-				// BaseLocation ¿¡¼­ ChokePoint ·ÎÀÇ º¤ÅÍ¸¦ ±¸ÇÑ´Ù
+				// BaseLocation ì—ì„œ ChokePoint ë¡œì˜ ë²¡í„°ë¥¼ êµ¬í•œë‹¤
 				vx = tempChokePoint.getCenter().getX() - tempBaseLocation.getPosition().getX();
 				//std::cout << "vx : " << vx ;
 				vy = (tempChokePoint.getCenter().getY() - tempBaseLocation.getPosition().getY()) * (-1);
 				//std::cout << "vy : " << vy;
-				d = Math.sqrt(vx * vx + vy * vy) * 0.5; // BaseLocation ¿Í ChokePoint °£ °Å¸®º¸´Ù Á¶±İ ÂªÀº °Å¸®·Î Á¶Á¤. BaseLocation°¡ ÀÖ´Â RegionÀº ´ëºÎºĞ Á÷»ç°¢Çü ÇüÅÂÀÌ±â ¶§¹®
+				d = Math.sqrt(vx * vx + vy * vy) * 0.5; // BaseLocation ì™€ ChokePoint ê°„ ê±°ë¦¬ë³´ë‹¤ ì¡°ê¸ˆ ì§§ì€ ê±°ë¦¬ë¡œ ì¡°ì •. BaseLocationê°€ ìˆëŠ” Regionì€ ëŒ€ë¶€ë¶„ ì§ì‚¬ê°í˜• í˜•íƒœì´ê¸° ë•Œë¬¸
 				//std::cout << "d : " << d;
-				t = Math.atan2(vy, vx + 0.0001); // ¶óµğ¾È ´ÜÀ§
+				t = Math.atan2(vy, vx + 0.0001); // ë¼ë””ì•ˆ ë‹¨ìœ„
 				//std::cout << "t : " << t;
 
-				// cos(t+90), sin(t+180) µî »ï°¢ÇÔ¼ö Trigonometric functions of allied angles À» ÀÌ¿ë. yÃà¿¡ ´ëÇØ¼­´Â ¹İ´ëºÎÈ£·Î Àû¿ë
+				// cos(t+90), sin(t+180) ë“± ì‚¼ê°í•¨ìˆ˜ Trigonometric functions of allied angles ì„ ì´ìš©. yì¶•ì— ëŒ€í•´ì„œëŠ” ë°˜ëŒ€ë¶€í˜¸ë¡œ ì ìš©
 
-				// BaseLocation ¿¡¼­ ChokePoint ¹İ´ëÂÊ ¹æÇâÀÇ Back Yard : µ¥Ä«¸£Æ® ÁÂÇ¥°è¿¡¼­ (cos(t+180) = -cos(t), sin(t+180) = -sin(t))
+				// BaseLocation ì—ì„œ ChokePoint ë°˜ëŒ€ìª½ ë°©í–¥ì˜ Back Yard : ë°ì¹´ë¥´íŠ¸ ì¢Œí‘œê³„ì—ì„œ (cos(t+180) = -cos(t), sin(t+180) = -sin(t))
 				bx = tempBaseLocation.getTilePosition().getX() - (int)(d * Math.cos(t) / Config.TILE_SIZE);
 				by = tempBaseLocation.getTilePosition().getY() + (int)(d * Math.sin(t) / Config.TILE_SIZE);
 				//std::cout << "i";
@@ -115,11 +115,11 @@ public class ConstructionPlaceFinder {
 				// std::cout << "ConstructionPlaceFinder MainBaseBackYard tempTilePosition " << tempTilePosition.x << "," << tempTilePosition.y << std::endl;
 				
 				//std::cout << "k";
-				// ÇØ´ç ÁöÁ¡ÀÌ °°Àº Region ¿¡ ¼ÓÇÏ°í Buildable ÇÑ Å¸ÀÏÀÎÁö È®ÀÎ
+				// í•´ë‹¹ ì§€ì ì´ ê°™ì€ Region ì— ì†í•˜ê³  Buildable í•œ íƒ€ì¼ì¸ì§€ í™•ì¸
 				if (!tempTilePosition.isValid() || !MyBotModule.Broodwar.isBuildable(tempTilePosition.getX(), tempTilePosition.getY(), false) || tempBaseRegion != BWTA.getRegion(new Position(bx*Config.TILE_SIZE, by*Config.TILE_SIZE))) {
 					//std::cout << "l";
 
-					// BaseLocation ¿¡¼­ ChokePoint ¹æÇâ¿¡ ´ëÇØ ¿À¸¥ÂÊÀ¸·Î 90µµ ²ªÀº ¹æÇâÀÇ Back Yard : µ¥Ä«¸£Æ® ÁÂÇ¥°è¿¡¼­ (cos(t-90) = sin(t),   sin(t-90) = - cos(t))
+					// BaseLocation ì—ì„œ ChokePoint ë°©í–¥ì— ëŒ€í•´ ì˜¤ë¥¸ìª½ìœ¼ë¡œ 90ë„ êº¾ì€ ë°©í–¥ì˜ Back Yard : ë°ì¹´ë¥´íŠ¸ ì¢Œí‘œê³„ì—ì„œ (cos(t-90) = sin(t),   sin(t-90) = - cos(t))
 					bx = tempBaseLocation.getTilePosition().getX() + (int)(d * Math.sin(t) / Config.TILE_SIZE);
 					by = tempBaseLocation.getTilePosition().getY() + (int)(d * Math.cos(t) / Config.TILE_SIZE);
 					tempTilePosition = new TilePosition(bx, by);
@@ -127,7 +127,7 @@ public class ConstructionPlaceFinder {
 					//std::cout << "m";
 
 					if (!tempTilePosition.isValid() || !MyBotModule.Broodwar.isBuildable(tempTilePosition.getX(), tempTilePosition.getY(), false)) {
-						// BaseLocation ¿¡¼­ ChokePoint ¹æÇâ¿¡ ´ëÇØ ¿ŞÂÊÀ¸·Î 90µµ ²ªÀº ¹æÇâÀÇ Back Yard : µ¥Ä«¸£Æ® ÁÂÇ¥°è¿¡¼­ (cos(t+90) = -sin(t),   sin(t+90) = cos(t))
+						// BaseLocation ì—ì„œ ChokePoint ë°©í–¥ì— ëŒ€í•´ ì™¼ìª½ìœ¼ë¡œ 90ë„ êº¾ì€ ë°©í–¥ì˜ Back Yard : ë°ì¹´ë¥´íŠ¸ ì¢Œí‘œê³„ì—ì„œ (cos(t+90) = -sin(t),   sin(t+90) = cos(t))
 						bx = tempBaseLocation.getTilePosition().getX() - (int)(d * Math.sin(t) / Config.TILE_SIZE);
 						by = tempBaseLocation.getTilePosition().getY() - (int)(d * Math.cos(t) / Config.TILE_SIZE);
 						tempTilePosition = new TilePosition(bx, by);
@@ -135,7 +135,7 @@ public class ConstructionPlaceFinder {
 
 						if (!tempTilePosition.isValid() || !MyBotModule.Broodwar.isBuildable(tempTilePosition.getX(), tempTilePosition.getY(), false) || tempBaseRegion != BWTA.getRegion(new Position(bx*Config.TILE_SIZE, by*Config.TILE_SIZE))) {
 
-							// BaseLocation ¿¡¼­ ChokePoint ¹æÇâ Àı¹İ ÁöÁ¡ÀÇ Back Yard : µ¥Ä«¸£Æ® ÁÂÇ¥°è¿¡¼­ (cos(t),   sin(t))
+							// BaseLocation ì—ì„œ ChokePoint ë°©í–¥ ì ˆë°˜ ì§€ì ì˜ Back Yard : ë°ì¹´ë¥´íŠ¸ ì¢Œí‘œê³„ì—ì„œ (cos(t),   sin(t))
 							bx = tempBaseLocation.getTilePosition().getX() + (int)(d * Math.cos(t) / Config.TILE_SIZE);
 							by = tempBaseLocation.getTilePosition().getY() - (int)(d * Math.sin(t) / Config.TILE_SIZE);
 							tempTilePosition = new TilePosition(bx, by);
@@ -199,11 +199,11 @@ public class ConstructionPlaceFinder {
 		return desiredPosition;
 	}
 
-	/// desiredPosition ±ÙÃ³¿¡¼­ °Ç¹° °Ç¼³ °¡´É À§Ä¡¸¦ Å½»öÇØ¼­ ¸®ÅÏÇÕ´Ï´Ù
-	/// desiredPosition ÁÖÀ§¿¡¼­ °¡´ÉÇÑ °÷À» Ã£¾Æ ¹İÈ¯ÇÕ´Ï´Ù
-	/// desiredPosition ÀÌ valid ÇÑ °÷ÀÌ ¾Æ´Ï¶ó¸é, desiredPosition ¸¦ MainBaseLocation ·Î ÇØ¼­ ÁÖÀ§¸¦ Ã£´Â´Ù
+	/// desiredPosition ê·¼ì²˜ì—ì„œ ê±´ë¬¼ ê±´ì„¤ ê°€ëŠ¥ ìœ„ì¹˜ë¥¼ íƒìƒ‰í•´ì„œ ë¦¬í„´í•©ë‹ˆë‹¤
+	/// desiredPosition ì£¼ìœ„ì—ì„œ ê°€ëŠ¥í•œ ê³³ì„ ì°¾ì•„ ë°˜í™˜í•©ë‹ˆë‹¤
+	/// desiredPosition ì´ valid í•œ ê³³ì´ ì•„ë‹ˆë¼ë©´, desiredPosition ë¥¼ MainBaseLocation ë¡œ í•´ì„œ ì£¼ìœ„ë¥¼ ì°¾ëŠ”ë‹¤
 	/// Returns a suitable TilePosition to build a given building type near specified TilePosition aroundTile.
-	/// Returns BWAPI::TilePositions::None, if suitable TilePosition is not exists (´Ù¸¥ À¯´ÖµéÀÌ ÀÚ¸®¿¡ ÀÖ¾î¼­, Pylon, Creep, °Ç¹°ÁöÀ» Å¸ÀÏ °ø°£ÀÌ ÀüÇô ¾ø´Â °æ¿ì µî)
+	/// Returns BWAPI::TilePositions::None, if suitable TilePosition is not exists (ë‹¤ë¥¸ ìœ ë‹›ë“¤ì´ ìë¦¬ì— ìˆì–´ì„œ, Pylon, Creep, ê±´ë¬¼ì§€ì„ íƒ€ì¼ ê³µê°„ì´ ì „í˜€ ì—†ëŠ” ê²½ìš° ë“±)
 	public final TilePosition getBuildLocationNear(UnitType buildingType, TilePosition desiredPosition)
 	{
 		if (buildingType.isRefinery())
@@ -228,23 +228,23 @@ public class ConstructionPlaceFinder {
 
 		TilePosition testPosition = TilePosition.None;
 
-		// TODO °úÁ¦ : °Ç¼³ À§Ä¡ Å½»ö ¹æ¹ıÀº ConstructionPlaceSearchMethod::SpiralMethod ·Î ÇÏ´Âµ¥, ´õ ÁÁÀº ¹æ¹ıÀº »ı°¢ÇØº¼ °úÁ¦ÀÌ´Ù
+		// TODO ê³¼ì œ : ê±´ì„¤ ìœ„ì¹˜ íƒìƒ‰ ë°©ë²•ì€ ConstructionPlaceSearchMethod::SpiralMethod ë¡œ í•˜ëŠ”ë°, ë” ì¢‹ì€ ë°©ë²•ì€ ìƒê°í•´ë³¼ ê³¼ì œì´ë‹¤
 		int constructionPlaceSearchMethod = ConstructionPlaceSearchMethod.SpiralMethod.ordinal();
 		
-		// ÀÏ¹İÀûÀÎ °Ç¹°¿¡ ´ëÇØ¼­´Â °Ç¹° Å©±âº¸´Ù Config::Macro::BuildingSpacing Ä­ ¸¸Å­ »óÇÏÁÂ¿ì·Î ´õ ³Ğ°Ô ¿©À¯°ø°£À» µÎ¾î¼­ ºó ÀÚ¸®¸¦ °Ë»öÇÑ´Ù
+		// ì¼ë°˜ì ì¸ ê±´ë¬¼ì— ëŒ€í•´ì„œëŠ” ê±´ë¬¼ í¬ê¸°ë³´ë‹¤ Config::Macro::BuildingSpacing ì¹¸ ë§Œí¼ ìƒí•˜ì¢Œìš°ë¡œ ë” ë„“ê²Œ ì—¬ìœ ê³µê°„ì„ ë‘ì–´ì„œ ë¹ˆ ìë¦¬ë¥¼ ê²€ìƒ‰í•œë‹¤
 		int buildingGapSpace = Config.BuildingSpacing;
 
 		// ResourceDepot (Nexus, Command Center, Hatchery),
 		// Protoss_Pylon, Terran_Supply_Depot, 
-		// Protoss_Photon_Cannon, Terran_Bunker, Terran_Missile_Turret, Zerg_Creep_Colony ´Â ´Ù¸¥ °Ç¹° ¹Ù·Î ¿·¿¡ ºÙ¿© Áş´Â °æ¿ì°¡ ¸¹À¸¹Ç·Î 
-		// buildingGapSpaceÀ» ´Ù¸¥ Config °ªÀ¸·Î ¼³Á¤ÇÏµµ·Ï ÇÑ´Ù
+		// Protoss_Photon_Cannon, Terran_Bunker, Terran_Missile_Turret, Zerg_Creep_Colony ëŠ” ë‹¤ë¥¸ ê±´ë¬¼ ë°”ë¡œ ì˜†ì— ë¶™ì—¬ ì§“ëŠ” ê²½ìš°ê°€ ë§ìœ¼ë¯€ë¡œ 
+		// buildingGapSpaceì„ ë‹¤ë¥¸ Config ê°’ìœ¼ë¡œ ì„¤ì •í•˜ë„ë¡ í•œë‹¤
 		if (buildingType.isResourceDepot()) {
 			buildingGapSpace = Config.BuildingResourceDepotSpacing;		
 		}
 		else if (buildingType == UnitType.Protoss_Pylon) {
 			int numPylons = MyBotModule.Broodwar.self().completedUnitCount(UnitType.Protoss_Pylon);
 			
-			// Protoss_Pylon Àº Æ¯È÷ ÃÖÃÊ 2°³ °Ç¼³ÇÒ¶§´Â Config::Macro::BuildingPylonEarlyStageSpacing °ªÀ¸·Î ¼³Á¤ÇÑ´Ù
+			// Protoss_Pylon ì€ íŠ¹íˆ ìµœì´ˆ 2ê°œ ê±´ì„¤í• ë•ŒëŠ” Config::Macro::BuildingPylonEarlyStageSpacing ê°’ìœ¼ë¡œ ì„¤ì •í•œë‹¤
 			if (numPylons < 3) {
 				buildingGapSpace = Config.BuildingPylonEarlyStageSpacing;
 			}
@@ -269,11 +269,11 @@ public class ConstructionPlaceFinder {
 			if (testPosition != TilePosition.None && testPosition != TilePosition.Invalid)
 				return testPosition;
 					
-			// Ã£À» ¼ö ¾ø´Ù¸é, buildingGapSpace °ªÀ» ÁÙ¿©¼­ ´Ù½Ã Å½»öÇÑ´Ù
-			// buildingGapSpace °ªÀÌ 1ÀÌ¸é Áö»óÀ¯´ÖÀÌ ¸øÁö³ª°¡´Â °æ¿ì°¡ ¸¹¾Æ  Á¦¿ÜÇÏµµ·Ï ÇÑ´Ù 
-			// 4 -> 3 -> 2 -> 0 -> Å½»ö Á¾·á
-			//      3 -> 2 -> 0 -> Å½»ö Á¾·á 
-			//           1 -> 0 -> Å½»ö Á¾·á
+			// ì°¾ì„ ìˆ˜ ì—†ë‹¤ë©´, buildingGapSpace ê°’ì„ ì¤„ì—¬ì„œ ë‹¤ì‹œ íƒìƒ‰í•œë‹¤
+			// buildingGapSpace ê°’ì´ 1ì´ë©´ ì§€ìƒìœ ë‹›ì´ ëª»ì§€ë‚˜ê°€ëŠ” ê²½ìš°ê°€ ë§ì•„  ì œì™¸í•˜ë„ë¡ í•œë‹¤ 
+			// 4 -> 3 -> 2 -> 0 -> íƒìƒ‰ ì¢…ë£Œ
+			//      3 -> 2 -> 0 -> íƒìƒ‰ ì¢…ë£Œ 
+			//           1 -> 0 -> íƒìƒ‰ ì¢…ë£Œ
 			if (buildingGapSpace > 2) {
 				buildingGapSpace -= 1;
 			}
@@ -291,10 +291,10 @@ public class ConstructionPlaceFinder {
 		return TilePosition.None;
 	}
 
-	/// ÇØ´ç buildingType ÀÌ °Ç¼³µÉ ¼ö ÀÖ´Â À§Ä¡¸¦ desiredPosition ±ÙÃ³¿¡¼­ Å½»öÇØ¼­ Å½»ö°á°ú¸¦ ¸®ÅÏÇÕ´Ï´Ù
-	/// buildingGapSpace¸¦ ¹İ¿µÇØ¼­ canBuildHereWithSpace ¸¦ »ç¿ëÇØ¼­ Ã¼Å©
-	/// ¸øÃ£´Â´Ù¸é BWAPI::TilePositions::None À» ¸®ÅÏÇÕ´Ï´Ù
-	/// TODO °úÁ¦ : °Ç¹°À» °èÈ¹¾øÀÌ ÁöÀ»¼ö ÀÖ´Â °÷¿¡ Áş´Â °ÍÀ» °è¼Ó ÇÏ´Ùº¸¸é, À¯´ÖÀÌ °Ç¹° »çÀÌ¿¡ °¤È÷´Â °æ¿ì°¡ ¹ß»ıÇÒ ¼ö ÀÖ´Âµ¥, ÀÌ¸¦ ¹æÁöÇÏ´Â ¹æ¹ıÀº »ı°¢ÇØº¼ °úÁ¦ÀÔ´Ï´Ù
+	/// í•´ë‹¹ buildingType ì´ ê±´ì„¤ë  ìˆ˜ ìˆëŠ” ìœ„ì¹˜ë¥¼ desiredPosition ê·¼ì²˜ì—ì„œ íƒìƒ‰í•´ì„œ íƒìƒ‰ê²°ê³¼ë¥¼ ë¦¬í„´í•©ë‹ˆë‹¤
+	/// buildingGapSpaceë¥¼ ë°˜ì˜í•´ì„œ canBuildHereWithSpace ë¥¼ ì‚¬ìš©í•´ì„œ ì²´í¬
+	/// ëª»ì°¾ëŠ”ë‹¤ë©´ BWAPI::TilePositions::None ì„ ë¦¬í„´í•©ë‹ˆë‹¤
+	/// TODO ê³¼ì œ : ê±´ë¬¼ì„ ê³„íšì—†ì´ ì§€ì„ìˆ˜ ìˆëŠ” ê³³ì— ì§“ëŠ” ê²ƒì„ ê³„ì† í•˜ë‹¤ë³´ë©´, ìœ ë‹›ì´ ê±´ë¬¼ ì‚¬ì´ì— ê°‡íˆëŠ” ê²½ìš°ê°€ ë°œìƒí•  ìˆ˜ ìˆëŠ”ë°, ì´ë¥¼ ë°©ì§€í•˜ëŠ” ë°©ë²•ì€ ìƒê°í•´ë³¼ ê³¼ì œì…ë‹ˆë‹¤
 	public final TilePosition getBuildLocationNear(UnitType buildingType, TilePosition desiredPosition, int buildingGapSpace, int constructionPlaceSearchMethod)
 	{
 		// std::cout << std::endl << "getBuildLocationNear " << buildingType.getName().c_str() << " " << desiredPosition.x << "," << desiredPosition.y 
@@ -305,15 +305,15 @@ public class ConstructionPlaceFinder {
 		TilePosition tempPosition;
 		ConstructionTask b = new ConstructionTask(buildingType, desiredPosition);
 
-		// maxRange ¸¦ ¼³Á¤ÇÏÁö ¾Ê°Å³ª, maxRange ¸¦ 128À¸·Î ¼³Á¤ÇÏ¸é Áöµµ ÀüÃ¼¸¦ ´Ù Å½»öÇÏ´Âµ¥, ¸Å¿ì ´À·ÁÁú»Ó¸¸ ¾Æ´Ï¶ó, ´ëºÎºĞÀÇ °æ¿ì ºÒÇÊ¿äÇÑ Å½»öÀÌ µÈ´Ù
-		// maxRange ´Â 16 ~ 64°¡ Àû´çÇÏ´Ù
+		// maxRange ë¥¼ ì„¤ì •í•˜ì§€ ì•Šê±°ë‚˜, maxRange ë¥¼ 128ìœ¼ë¡œ ì„¤ì •í•˜ë©´ ì§€ë„ ì „ì²´ë¥¼ ë‹¤ íƒìƒ‰í•˜ëŠ”ë°, ë§¤ìš° ëŠë ¤ì§ˆë¿ë§Œ ì•„ë‹ˆë¼, ëŒ€ë¶€ë¶„ì˜ ê²½ìš° ë¶ˆí•„ìš”í•œ íƒìƒ‰ì´ ëœë‹¤
+		// maxRange ëŠ” 16 ~ 64ê°€ ì ë‹¹í•˜ë‹¤
 		int maxRange = 32; // maxRange = BWAPI::Broodwar->mapWidth()/4;
 		boolean isPossiblePlace = false;
 			
 		if (constructionPlaceSearchMethod == ConstructionPlaceSearchMethod.SpiralMethod.ordinal())
 		{
-			// desiredPosition À¸·ÎºÎÅÍ ½ÃÀÛÇØ¼­ spiral ÇÏ°Ô Å½»öÇÏ´Â ¹æ¹ı
-			// Ã³À½¿¡´Â ¾Æ·¡ ¹æÇâ (0,1) -> ¿À¸¥ÂÊÀ¸·Î(1,0) -> À§·Î(0,-1) -> ¿ŞÂÊÀ¸·Î(-1,0) -> ¾Æ·¡·Î(0,1) -> ..
+			// desiredPosition ìœ¼ë¡œë¶€í„° ì‹œì‘í•´ì„œ spiral í•˜ê²Œ íƒìƒ‰í•˜ëŠ” ë°©ë²•
+			// ì²˜ìŒì—ëŠ” ì•„ë˜ ë°©í–¥ (0,1) -> ì˜¤ë¥¸ìª½ìœ¼ë¡œ(1,0) -> ìœ„ë¡œ(0,-1) -> ì™¼ìª½ìœ¼ë¡œ(-1,0) -> ì•„ë˜ë¡œ(0,1) -> ..
 			int currentX = desiredPosition.getX();
 			int currentY = desiredPosition.getY();
 			int spiralMaxLength = 1;
@@ -338,7 +338,7 @@ public class ConstructionPlaceFinder {
 				currentY = currentY + spiralDirectionY;
 				numSteps++;
 				
-				// ´Ù¸¥ ¹æÇâÀ¸·Î ÀüÈ¯ÇÑ´Ù
+				// ë‹¤ë¥¸ ë°©í–¥ìœ¼ë¡œ ì „í™˜í•œë‹¤
 				if (numSteps == spiralMaxLength)
 				{
 					numSteps = 0;
@@ -367,8 +367,8 @@ public class ConstructionPlaceFinder {
 		return resultPosition;
 	}
 
-	/// ÇØ´ç À§Ä¡¿¡ °Ç¹° °Ç¼³ÀÌ °¡´ÉÇÑÁö ¿©ºÎ¸¦ buildingGapSpace Á¶°ÇÀ» Æ÷ÇÔÇØ¼­ ÆÇ´ÜÇÏ¿© ¸®ÅÏÇÕ´Ï´Ù
-	/// Broodwar ÀÇ canBuildHere, isBuildableTile, isReservedTile ¸¦ Ã¼Å©ÇÕ´Ï´Ù
+	/// í•´ë‹¹ ìœ„ì¹˜ì— ê±´ë¬¼ ê±´ì„¤ì´ ê°€ëŠ¥í•œì§€ ì—¬ë¶€ë¥¼ buildingGapSpace ì¡°ê±´ì„ í¬í•¨í•´ì„œ íŒë‹¨í•˜ì—¬ ë¦¬í„´í•©ë‹ˆë‹¤
+	/// Broodwar ì˜ canBuildHere, isBuildableTile, isReservedTile ë¥¼ ì²´í¬í•©ë‹ˆë‹¤
 	public final boolean canBuildHereWithSpace(TilePosition position, final ConstructionTask b, int buildingGapSpace)
 	{
 		//if we can't build here, we of course can't build here with space
@@ -382,7 +382,7 @@ public class ConstructionPlaceFinder {
 		int height = b.getType().tileHeight();
 
 		// define the rectangle of the building spot
-		// °Ç¹° Å©±âº¸´Ù »óÇÏÁÂ¿ì·Î ´õ Å« »ç°¢Çü
+		// ê±´ë¬¼ í¬ê¸°ë³´ë‹¤ ìƒí•˜ì¢Œìš°ë¡œ ë” í° ì‚¬ê°í˜•
 		int startx;
 		int starty;
 		int endx;
@@ -390,11 +390,11 @@ public class ConstructionPlaceFinder {
 
 		boolean horizontalOnly = false;
 
-		// Refinery ÀÇ °æ¿ì GapSpace¸¦ Ã¼Å©ÇÒ ÇÊ¿ä ¾ø´Ù
+		// Refinery ì˜ ê²½ìš° GapSpaceë¥¼ ì²´í¬í•  í•„ìš” ì—†ë‹¤
 		if (b.getType().isRefinery())
 		{
 		}
-		// Addon Å¸ÀÔÀÇ °Ç¹°ÀÏ °æ¿ì¿¡´Â, ±× Addon °Ç¹° ¿ŞÂÊ¿¡ whatBuilds °Ç¹°ÀÌ ÀÖ´ÂÁö¸¦ Ã¼Å©ÇÑ´Ù
+		// Addon íƒ€ì…ì˜ ê±´ë¬¼ì¼ ê²½ìš°ì—ëŠ”, ê·¸ Addon ê±´ë¬¼ ì™¼ìª½ì— whatBuilds ê±´ë¬¼ì´ ìˆëŠ”ì§€ë¥¼ ì²´í¬í•œë‹¤
 		if (b.getType().isAddon())
 		{
 			final UnitType builderType = b.getType().whatBuilds().first;
@@ -406,7 +406,7 @@ public class ConstructionPlaceFinder {
 			endx = position.getX() + width + buildingGapSpace;
 			endy = position.getY() + height + buildingGapSpace;
 
-			// builderTile¿¡ Lifted °Ç¹°ÀÌ ¾Æ´Ï°í whatBuilds °Ç¹°ÀÌ ¾Æ´Ñ °Ç¹°ÀÌ ÀÖ´ÂÁö Ã¼Å©
+			// builderTileì— Lifted ê±´ë¬¼ì´ ì•„ë‹ˆê³  whatBuilds ê±´ë¬¼ì´ ì•„ë‹Œ ê±´ë¬¼ì´ ìˆëŠ”ì§€ ì²´í¬
 			for (int i = 0; i <= builderType.tileWidth(); ++i)
 			{
 				for (int j = 0; j <= builderType.tileHeight(); ++j)
@@ -432,7 +432,7 @@ public class ConstructionPlaceFinder {
 				width += 2;
 			}
 
-			// »óÇÏÁÂ¿ì¿¡ buildingGapSpace ¸¸Å­ °£°İÀ» ¶ç¿î´Ù
+			// ìƒí•˜ì¢Œìš°ì— buildingGapSpace ë§Œí¼ ê°„ê²©ì„ ë„ìš´ë‹¤
 			if (horizontalOnly == false)
 			{
 				startx = position.getX() - buildingGapSpace;
@@ -440,7 +440,7 @@ public class ConstructionPlaceFinder {
 				endx = position.getX() + width + buildingGapSpace;
 				endy = position.getY() + height + buildingGapSpace;
 			}
-			// ÁÂ¿ì·Î¸¸ buildingGapSpace ¸¸Å­ °£°İÀ» ¶ç¿î´Ù
+			// ì¢Œìš°ë¡œë§Œ buildingGapSpace ë§Œí¼ ê°„ê²©ì„ ë„ìš´ë‹¤
 			else {
 				startx = position.getX() - buildingGapSpace;
 				starty = position.getY();
@@ -448,7 +448,7 @@ public class ConstructionPlaceFinder {
 				endy = position.getY() + height;
 			}
 
-			// Å×¶õÁ¾Á· °Ç¹°ÀÇ °æ¿ì ´Ù¸¥ °Ç¹°ÀÇ Addon °ø°£À» È®º¸ÇØÁÖ±â À§ÇØ, ¿ŞÂÊ 2Ä­Àº ¹İµå½Ã GapSpace°¡ µÇµµ·Ï ÇÑ´Ù
+			// í…Œë€ì¢…ì¡± ê±´ë¬¼ì˜ ê²½ìš° ë‹¤ë¥¸ ê±´ë¬¼ì˜ Addon ê³µê°„ì„ í™•ë³´í•´ì£¼ê¸° ìœ„í•´, ì™¼ìª½ 2ì¹¸ì€ ë°˜ë“œì‹œ GapSpaceê°€ ë˜ë„ë¡ í•œë‹¤
 			if (b.getType().getRace() == Race.Terran) {
 				if (buildingGapSpace < 2) {
 					startx = position.getX() - 2;
@@ -456,7 +456,7 @@ public class ConstructionPlaceFinder {
 				}
 			}
 
-			// °Ç¹°ÀÌ Â÷ÁöÇÒ °ø°£ »Ó ¾Æ´Ï¶ó ÁÖÀ§ÀÇ buildingGapSpace °ø°£±îÁö ´Ù ºñ¾îÀÖ´ÂÁö, °Ç¼³°¡´ÉÇÑ Å¸ÀÏÀÎÁö, ¿¹¾àµÇ¾îÀÖ´Â°ÍÀº ¾Æ´ÑÁö, TilesToAvoid ¿¡ ÇØ´çÇÏÁö ¾Ê´ÂÁö Ã¼Å©
+			// ê±´ë¬¼ì´ ì°¨ì§€í•  ê³µê°„ ë¿ ì•„ë‹ˆë¼ ì£¼ìœ„ì˜ buildingGapSpace ê³µê°„ê¹Œì§€ ë‹¤ ë¹„ì–´ìˆëŠ”ì§€, ê±´ì„¤ê°€ëŠ¥í•œ íƒ€ì¼ì¸ì§€, ì˜ˆì•½ë˜ì–´ìˆëŠ”ê²ƒì€ ì•„ë‹Œì§€, TilesToAvoid ì— í•´ë‹¹í•˜ì§€ ì•ŠëŠ”ì§€ ì²´í¬
 			for (int x = startx; x < endx; x++)
 			{
 				for (int y = starty; y < endy; y++)
@@ -471,7 +471,7 @@ public class ConstructionPlaceFinder {
 						return false;
 					}
 
-					// ResourceDepot / Addon °Ç¹°ÀÌ ¾Æ´Ñ ÀÏ¹İ °Ç¹°ÀÇ °æ¿ì, BaseLocation °ú Geyser »çÀÌ Å¸ÀÏ (TilesToAvoid) ¿¡´Â °Ç¹°À» ÁşÁö ¾Ê´Â´Ù
+					// ResourceDepot / Addon ê±´ë¬¼ì´ ì•„ë‹Œ ì¼ë°˜ ê±´ë¬¼ì˜ ê²½ìš°, BaseLocation ê³¼ Geyser ì‚¬ì´ íƒ€ì¼ (TilesToAvoid) ì—ëŠ” ê±´ë¬¼ì„ ì§“ì§€ ì•ŠëŠ”ë‹¤
 					if (b.getType().isResourceDepot() == false && b.getType().isAddon() == false) {
 						if (isTilesToAvoid(x, y)) {
 							return false;
@@ -490,9 +490,9 @@ public class ConstructionPlaceFinder {
 		return true;
 	}
 
-	/// ÇØ´ç À§Ä¡¿¡ °Ç¹° °Ç¼³ÀÌ °¡´ÉÇÑÁö ¿©ºÎ¸¦ ¸®ÅÏÇÕ´Ï´Ù
+	/// í•´ë‹¹ ìœ„ì¹˜ì— ê±´ë¬¼ ê±´ì„¤ì´ ê°€ëŠ¥í•œì§€ ì—¬ë¶€ë¥¼ ë¦¬í„´í•©ë‹ˆë‹¤
 	// checks to see if a building can be built at a certain location
-	// Broodwar ÀÇ canBuildHere ¹× _reserveMap ¿Í isOverlapsWithBaseLocation À» Ã¼Å©
+	// Broodwar ì˜ canBuildHere ë° _reserveMap ì™€ isOverlapsWithBaseLocation ì„ ì²´í¬
 	public final boolean canBuildHere(TilePosition position, final ConstructionTask b)
 	{
 		/*if (!b.type.isRefinery() && !InformationManager::Instance().tileContainsUnit(position))
@@ -521,7 +521,7 @@ public class ConstructionPlaceFinder {
 		}
 
 		// if it overlaps a base location return false
-		// ResourceDepot °Ç¹°ÀÌ ¾Æ´Ñ ´Ù¸¥ °Ç¹°Àº BaseLocation À§Ä¡¿¡ ÁşÁö ¸øÇÏµµ·Ï ÇÑ´Ù
+		// ResourceDepot ê±´ë¬¼ì´ ì•„ë‹Œ ë‹¤ë¥¸ ê±´ë¬¼ì€ BaseLocation ìœ„ì¹˜ì— ì§“ì§€ ëª»í•˜ë„ë¡ í•œë‹¤
 		if (isOverlapsWithBaseLocation(position, b.getType()))
 		{
 			return false;
@@ -530,9 +530,9 @@ public class ConstructionPlaceFinder {
 		return true;
 	}
 
-	/// seedPosition ±ÙÃ³¿¡¼­ Refinery °Ç¹° °Ç¼³ °¡´É À§Ä¡¸¦ Å½»öÇØ¼­ ¸®ÅÏÇÕ´Ï´Ù
-	/// Áöµµ»óÀÇ ¿©·¯ °¡½º ±¤»ê (Resource_Vespene_Geyser) Áß ¿¹¾àµÇ¾îÀÖÁö ¾ÊÀº °÷(isReservedTile), ´Ù¸¥ ¼¶ÀÌ ¾Æ´Ñ °÷, ÀÌ¹Ì Refinery °¡ Áö¾îÁ®ÀÖÁö¾ÊÀº °÷ Áß 
-	/// seedPosition °ú °¡Àå °¡±î¿î °÷À» ¸®ÅÏÇÕ´Ï´Ù
+	/// seedPosition ê·¼ì²˜ì—ì„œ Refinery ê±´ë¬¼ ê±´ì„¤ ê°€ëŠ¥ ìœ„ì¹˜ë¥¼ íƒìƒ‰í•´ì„œ ë¦¬í„´í•©ë‹ˆë‹¤
+	/// ì§€ë„ìƒì˜ ì—¬ëŸ¬ ê°€ìŠ¤ ê´‘ì‚° (Resource_Vespene_Geyser) ì¤‘ ì˜ˆì•½ë˜ì–´ìˆì§€ ì•Šì€ ê³³(isReservedTile), ë‹¤ë¥¸ ì„¬ì´ ì•„ë‹Œ ê³³, ì´ë¯¸ Refinery ê°€ ì§€ì–´ì ¸ìˆì§€ì•Šì€ ê³³ ì¤‘ 
+	/// seedPosition ê³¼ ê°€ì¥ ê°€ê¹Œìš´ ê³³ì„ ë¦¬í„´í•©ë‹ˆë‹¤
 	public final TilePosition getRefineryPositionNear(TilePosition seedPosition)
 	{
 		if (seedPosition == TilePosition.None || seedPosition == TilePosition.Unknown || seedPosition == TilePosition.Invalid || seedPosition.isValid() == false)
@@ -546,15 +546,15 @@ public class ConstructionPlaceFinder {
 		// for each geyser
 		for (Unit geyser : MyBotModule.Broodwar.getStaticGeysers())
 		{
-			// geyser->getType() À» ÇÏ¸é, Unknown ÀÌ°Å³ª, Resource_Vespene_Geyser ÀÌ°Å³ª, Terran_Refinery ¿Í °°ÀÌ °Ç¹°¸íÀÌ ³ª¿À°í, 
-			// °Ç¹°ÀÌ ÆÄ±«µÇ¾îµµ ÀÚµ¿À¸·Î Resource_Vespene_Geyser ·Î µ¹¾Æ°¡Áö ¾Ê´Â´Ù
+			// geyser->getType() ì„ í•˜ë©´, Unknown ì´ê±°ë‚˜, Resource_Vespene_Geyser ì´ê±°ë‚˜, Terran_Refinery ì™€ ê°™ì´ ê±´ë¬¼ëª…ì´ ë‚˜ì˜¤ê³ , 
+			// ê±´ë¬¼ì´ íŒŒê´´ë˜ì–´ë„ ìë™ìœ¼ë¡œ Resource_Vespene_Geyser ë¡œ ëŒì•„ê°€ì§€ ì•ŠëŠ”ë‹¤
 
 			Position geyserPos = geyser.getInitialPosition();
 			TilePosition geyserTilePos = geyser.getInitialTilePosition();
 
 			//std::cout << " geyserTilePos " << geyserTilePos.x << "," << geyserTilePos.y << std::endl;
 
-			// ÀÌ¹Ì ¿¹¾àµÇ¾îÀÖ´Â°¡
+			// ì´ë¯¸ ì˜ˆì•½ë˜ì–´ìˆëŠ”ê°€
 			if (isReservedTile(geyserTilePos.getX(), geyserTilePos.getY())) {
 				continue;
 			}
@@ -565,9 +565,9 @@ public class ConstructionPlaceFinder {
 				continue;
 			}
 
-			// ÀÌ¹Ì Áö¾îÁ® ÀÖ´Â°¡
+			// ì´ë¯¸ ì§€ì–´ì ¸ ìˆëŠ”ê°€
 			boolean refineryAlreadyBuilt = false;
-			// ¼öÁ¤
+			// ìˆ˜ì •
 			List<Unit> alreadyBuiltUnits = MyBotModule.Broodwar.getUnitsInRadius(geyserPos, 4 * Config.TILE_SIZE);
 
 			for (Unit u : alreadyBuiltUnits) {
@@ -595,8 +595,8 @@ public class ConstructionPlaceFinder {
 		return closestGeyser;
 	}
 
-	/// ÇØ´ç À§Ä¡°¡ BaseLocation °ú °ãÄ¡´ÂÁö ¿©ºÎ¸¦ ¸®ÅÏÇÕ´Ï´Ù
-	/// BaseLocation ¿¡´Â ResourceDepot °Ç¹°¸¸ °Ç¼³ÇÏ°í, ´Ù¸¥ °Ç¹°Àº °Ç¼³ÇÏÁö ¾Ê±â À§ÇÔÀÔ´Ï´Ù
+	/// í•´ë‹¹ ìœ„ì¹˜ê°€ BaseLocation ê³¼ ê²¹ì¹˜ëŠ”ì§€ ì—¬ë¶€ë¥¼ ë¦¬í„´í•©ë‹ˆë‹¤
+	/// BaseLocation ì—ëŠ” ResourceDepot ê±´ë¬¼ë§Œ ê±´ì„¤í•˜ê³ , ë‹¤ë¥¸ ê±´ë¬¼ì€ ê±´ì„¤í•˜ì§€ ì•Šê¸° ìœ„í•¨ì…ë‹ˆë‹¤
 	public final boolean isOverlapsWithBaseLocation(TilePosition tile, UnitType type)
 	{
 		// if it's a resource depot we don't care if it overlaps
@@ -634,7 +634,7 @@ public class ConstructionPlaceFinder {
 		return false;
 	}
 
-	/// °Ç¹° °Ç¼³ °¡´É Å¸ÀÏÀÎÁö ¿©ºÎ¸¦ ¸®ÅÏÇÕ´Ï´Ù
+	/// ê±´ë¬¼ ê±´ì„¤ ê°€ëŠ¥ íƒ€ì¼ì¸ì§€ ì—¬ë¶€ë¥¼ ë¦¬í„´í•©ë‹ˆë‹¤
 	public final boolean isBuildableTile(final ConstructionTask b, int x, int y)
 	{
 		TilePosition tp = new TilePosition(x, y);
@@ -643,14 +643,14 @@ public class ConstructionPlaceFinder {
 			return false;
 		}
 
-		// ¸Ê µ¥ÀÌÅÍ »Ó¸¸ ¾Æ´Ï¶ó ºôµù µ¥ÀÌÅÍ¸¦ ¸ğµÎ °í·ÁÇØ¼­ isBuildable Ã¼Å©
+		// ë§µ ë°ì´í„° ë¿ë§Œ ì•„ë‹ˆë¼ ë¹Œë”© ë°ì´í„°ë¥¼ ëª¨ë‘ ê³ ë ¤í•´ì„œ isBuildable ì²´í¬
 		//if (BWAPI::Broodwar->isBuildable(x, y) == false)
 		if (MyBotModule.Broodwar.isBuildable(x, y, true) == false)
 		{
 			return false;
 		}
 
-		// constructionWorker ÀÌ¿ÜÀÇ ´Ù¸¥ À¯´ÖÀÌ ÀÖÀ¸¸é false¸¦ ¸®ÅÏÇÑ´Ù
+		// constructionWorker ì´ì™¸ì˜ ë‹¤ë¥¸ ìœ ë‹›ì´ ìˆìœ¼ë©´ falseë¥¼ ë¦¬í„´í•œë‹¤
 		for (Unit unit : MyBotModule.Broodwar.getUnitsOnTile(x, y))
 		{
 			if ((b.getConstructionWorker() != null) && (unit != b.getConstructionWorker()))
@@ -662,7 +662,7 @@ public class ConstructionPlaceFinder {
 		return true;
 	}
 
-	/// °Ç¹° °Ç¼³ ¿¹Á¤ Å¸ÀÏ·Î ¿¹¾àÇØ¼­, ´Ù¸¥ °Ç¹°À» Áßº¹ÇØ¼­ ÁşÁö ¾Êµµ·Ï ÇÕ´Ï´Ù
+	/// ê±´ë¬¼ ê±´ì„¤ ì˜ˆì • íƒ€ì¼ë¡œ ì˜ˆì•½í•´ì„œ, ë‹¤ë¥¸ ê±´ë¬¼ì„ ì¤‘ë³µí•´ì„œ ì§“ì§€ ì•Šë„ë¡ í•©ë‹ˆë‹¤
 	public void reserveTiles(TilePosition position, int width, int height)
 	{
 		/*int rwidth = reserveMap.size();
@@ -688,7 +688,7 @@ public class ConstructionPlaceFinder {
 		}
 	}
 	
-	/// °Ç¹° °Ç¼³ ¿¹Á¤ Å¸ÀÏ·Î ¿¹¾àÇß´ø °ÍÀ» ÇØÁ¦ÇÕ´Ï´Ù
+	/// ê±´ë¬¼ ê±´ì„¤ ì˜ˆì • íƒ€ì¼ë¡œ ì˜ˆì•½í–ˆë˜ ê²ƒì„ í•´ì œí•©ë‹ˆë‹¤
 	public void freeTiles(TilePosition position, int width, int height)
 	{
 		/*int rwidth = reserveMap.size();
@@ -716,7 +716,7 @@ public class ConstructionPlaceFinder {
 		}
 	}
 
-	// °Ç¹° °Ç¼³ ¿¹¾àµÇ¾îÀÖ´Â Å¸ÀÏÀÎÁö Ã¼Å©
+	// ê±´ë¬¼ ê±´ì„¤ ì˜ˆì•½ë˜ì–´ìˆëŠ” íƒ€ì¼ì¸ì§€ ì²´í¬
 	public final boolean isReservedTile(int x, int y)
 	{
 		/*int rwidth = reserveMap.size();
@@ -737,12 +737,12 @@ public class ConstructionPlaceFinder {
 		return reserveMap[x][y];
 	}
 
-	/// reserveMapÀ» ¸®ÅÏÇÕ´Ï´Ù
+	/// reserveMapì„ ë¦¬í„´í•©ë‹ˆë‹¤
 	public boolean[][] getReserveMap() {
 		return reserveMap;
 	}
 
-	/// (x, y) °¡ BaseLocation °ú Mineral / Geyser »çÀÌÀÇ Å¸ÀÏ¿¡ ÇØ´çÇÏ´ÂÁö ¿©ºÎ¸¦ ¸®ÅÏÇÕ´Ï´Ù
+	/// (x, y) ê°€ BaseLocation ê³¼ Mineral / Geyser ì‚¬ì´ì˜ íƒ€ì¼ì— í•´ë‹¹í•˜ëŠ”ì§€ ì—¬ë¶€ë¥¼ ë¦¬í„´í•©ë‹ˆë‹¤
 	public final boolean isTilesToAvoid(int x, int y)
 	{
 		for (TilePosition t : tilesToAvoid) {
@@ -754,18 +754,18 @@ public class ConstructionPlaceFinder {
 		return false;
 	}
 
-	/// BaseLocation °ú Mineral / Geyser »çÀÌÀÇ Å¸ÀÏµéÀ» Ã£¾Æ _tilesToAvoid ¿¡ ÀúÀåÇÕ´Ï´Ù
-	/// BaseLocation °ú Geyser »çÀÌ, ResourceDepot °Ç¹°°ú Mineral »çÀÌ °ø°£À¸·Î °Ç¹° °Ç¼³ Àå¼Ò¸¦ Á¤ÇÏ¸é 
-	/// ÀÏ²Û À¯´ÖµéÀÌ Àå¾Ö¹°ÀÌ µÇ¾î¼­ °Ç¼³ ½ÃÀÛµÇ±â±îÁö ½Ã°£ÀÌ ¿À·¡°É¸®°í, Áö¾îÁø °Ç¹°ÀÌ Àå¾Ö¹°ÀÌ µÇ¾î¼­ ÀÚ¿ø Ã¤Ãë ¼Óµµµµ ´À·ÁÁö±â ¶§¹®¿¡, ÀÌ °ø°£Àº °Ç¹°À» ÁşÁö ¾Ê´Â °ø°£À¸·Î µÎ±â À§ÇÔÀÔ´Ï´Ù
+	/// BaseLocation ê³¼ Mineral / Geyser ì‚¬ì´ì˜ íƒ€ì¼ë“¤ì„ ì°¾ì•„ _tilesToAvoid ì— ì €ì¥í•©ë‹ˆë‹¤
+	/// BaseLocation ê³¼ Geyser ì‚¬ì´, ResourceDepot ê±´ë¬¼ê³¼ Mineral ì‚¬ì´ ê³µê°„ìœ¼ë¡œ ê±´ë¬¼ ê±´ì„¤ ì¥ì†Œë¥¼ ì •í•˜ë©´ 
+	/// ì¼ê¾¼ ìœ ë‹›ë“¤ì´ ì¥ì• ë¬¼ì´ ë˜ì–´ì„œ ê±´ì„¤ ì‹œì‘ë˜ê¸°ê¹Œì§€ ì‹œê°„ì´ ì˜¤ë˜ê±¸ë¦¬ê³ , ì§€ì–´ì§„ ê±´ë¬¼ì´ ì¥ì• ë¬¼ì´ ë˜ì–´ì„œ ìì› ì±„ì·¨ ì†ë„ë„ ëŠë ¤ì§€ê¸° ë•Œë¬¸ì—, ì´ ê³µê°„ì€ ê±´ë¬¼ì„ ì§“ì§€ ì•ŠëŠ” ê³µê°„ìœ¼ë¡œ ë‘ê¸° ìœ„í•¨ì…ë‹ˆë‹¤
 	public void setTilesToAvoid()
 	{
-		// ResourceDepot °Ç¹°ÀÇ width = 4 Å¸ÀÏ, height = 3 Å¸ÀÏ
-		// Geyser ÀÇ            width = 4 Å¸ÀÏ, height = 2 Å¸ÀÏ
-		// Mineral ÀÇ           width = 2 Å¸ÀÏ, height = 1 Å¸ÀÏ
+		// ResourceDepot ê±´ë¬¼ì˜ width = 4 íƒ€ì¼, height = 3 íƒ€ì¼
+		// Geyser ì˜            width = 4 íƒ€ì¼, height = 2 íƒ€ì¼
+		// Mineral ì˜           width = 2 íƒ€ì¼, height = 1 íƒ€ì¼
 
 		for (BaseLocation base : BWTA.getBaseLocations())
 		{
-			// Island ÀÏ °æ¿ì °Ç¹° ÁöÀ» °ø°£ÀÌ Àı´ëÀûÀ¸·Î Á¼±â ¶§¹®¿¡ °Ç¹° ¾ÈÁş´Â °ø°£À» µÎÁö ¾Ê´Â´Ù
+			// Island ì¼ ê²½ìš° ê±´ë¬¼ ì§€ì„ ê³µê°„ì´ ì ˆëŒ€ì ìœ¼ë¡œ ì¢ê¸° ë•Œë¬¸ì— ê±´ë¬¼ ì•ˆì§“ëŠ” ê³µê°„ì„ ë‘ì§€ ì•ŠëŠ”ë‹¤
 			if (base.isIsland()) continue;
 			if (BWTA.isConnected(base.getTilePosition(), InformationManager.Instance().getMainBaseLocation(MyBotModule.Broodwar.self()).getTilePosition()) == false) continue;
 
@@ -775,7 +775,7 @@ public class ConstructionPlaceFinder {
 			int bx4 = base.getTilePosition().getX() + 4;
 			int by3 = base.getTilePosition().getY() + 3;
 
-			// BaseLocation °ú Geyser »çÀÌÀÇ Å¸ÀÏÀ» BWTA::getShortestPath ¸¦ »ç¿ëÇØ¼­ ±¸ÇÑ ÈÄ _tilesToAvoid ¿¡ Ãß°¡
+			// BaseLocation ê³¼ Geyser ì‚¬ì´ì˜ íƒ€ì¼ì„ BWTA::getShortestPath ë¥¼ ì‚¬ìš©í•´ì„œ êµ¬í•œ í›„ _tilesToAvoid ì— ì¶”ê°€
 			for (Unit geyser : base.getGeysers())
 			{
 				TilePosition closeGeyserPosition = geyser.getInitialTilePosition();
@@ -800,13 +800,13 @@ public class ConstructionPlaceFinder {
 				}
 
 				/*
-				// Geyser °¡ Base Location ÀÇ ¾î´À¹æÇâ¿¡ ÀÖ´Â°¡¿¡ µû¶ó ÃÖ¼ÒÇÑÀÇ Å¸ÀÏ¸¸ ÆÇ´ÜÇØ¼­ tilesToAvoid ¿¡ Ãß°¡ÇÏ´Â ¹æ¹ıµµ ÀÖ´Ù
+				// Geyser ê°€ Base Location ì˜ ì–´ëŠë°©í–¥ì— ìˆëŠ”ê°€ì— ë”°ë¼ ìµœì†Œí•œì˜ íƒ€ì¼ë§Œ íŒë‹¨í•´ì„œ tilesToAvoid ì— ì¶”ê°€í•˜ëŠ” ë°©ë²•ë„ ìˆë‹¤
 				//
-				//    11½Ã¹æÇâ   12½Ã¹æÇâ  1½Ã¹æÇâ
+				//    11ì‹œë°©í–¥   12ì‹œë°©í–¥  1ì‹œë°©í–¥
 				//
-				//     9½Ã¹æÇâ             3½Ã¹æÇâ
+				//     9ì‹œë°©í–¥             3ì‹œë°©í–¥
 				//
-				//     7½Ã¹æÇâ    6½Ã¹æÇâ  5½Ã¹æÇâ
+				//     7ì‹œë°©í–¥    6ì‹œë°©í–¥  5ì‹œë°©í–¥
 				int whichPosition = 0;
 
 				// dimensions of the tilesToAvoid
@@ -815,61 +815,61 @@ public class ConstructionPlaceFinder {
 				int vy0 = 0;
 				int vy1 = 0;
 
-				// 11½Ã ¹æÇâ
+				// 11ì‹œ ë°©í–¥
 				if (gx0 < bx0 && gy0 < by0) {
-					vx0 = gx0 + 1; // Geyser ÀÇ Áß¾Ó
-					vy0 = gy0;     // Geyser ÀÇ »ó´Ü
-					vx1 = bx0 + 3; // ResourceDepot ÀÇ Áß¾Ó
-					vy1 = by0;     // ResourceDepotÀÇ »ó´Ü
+					vx0 = gx0 + 1; // Geyser ì˜ ì¤‘ì•™
+					vy0 = gy0;     // Geyser ì˜ ìƒë‹¨
+					vx1 = bx0 + 3; // ResourceDepot ì˜ ì¤‘ì•™
+					vy1 = by0;     // ResourceDepotì˜ ìƒë‹¨
 				}
-				// 9½Ã ¹æÇâ
+				// 9ì‹œ ë°©í–¥
 				else if (gx0 < bx0 && gy0 <= by3) {
-					vx0 = gx4; // Geyser ÀÇ ¿À¸¥ÂÊ³¡
-					vy0 = gy0; // Geyser ÀÇ »ó´Ü
-					vx1 = bx0; // ResourceDepot ÀÇ ¿ŞÂÊ³¡
-					vy1 = gy2; // Geyser ÀÇ ÇÏ´Ü 
+					vx0 = gx4; // Geyser ì˜ ì˜¤ë¥¸ìª½ë
+					vy0 = gy0; // Geyser ì˜ ìƒë‹¨
+					vx1 = bx0; // ResourceDepot ì˜ ì™¼ìª½ë
+					vy1 = gy2; // Geyser ì˜ í•˜ë‹¨ 
 				}
-				// 7½Ã ¹æÇâ
+				// 7ì‹œ ë°©í–¥
 				else if (gx0 < bx0 && gy2 > by3) {
-					vx0 = gx0 + 1; // Geyser ÀÇ »ó´Ü Áß¾Ó
-					vy0 = by3;     // ResourceDepot ÀÇ ÇÏ´Ü
-					vx1 = bx0 + 3; // ResourceDepot ÀÇ ÇÏ´Ü Áß¾Ó
-					vy1 = gy0;     // Geyser ÀÇ »ó´Ü
+					vx0 = gx0 + 1; // Geyser ì˜ ìƒë‹¨ ì¤‘ì•™
+					vy0 = by3;     // ResourceDepot ì˜ í•˜ë‹¨
+					vx1 = bx0 + 3; // ResourceDepot ì˜ í•˜ë‹¨ ì¤‘ì•™
+					vy1 = gy0;     // Geyser ì˜ ìƒë‹¨
 				}
-				// 6½Ã ¹æÇâ
+				// 6ì‹œ ë°©í–¥
 				else if (gx0 < bx4 && gy0 > by3) {
-					vx0 = bx0 + 1; // ResourceDepot ÀÇ ÇÏ´Ü Áß¾Ó
-					vy0 = by3;     // ResourceDepot ÀÇ ÇÏ´Ü 
-					vx1 = gx0 + 3; // Geyser ÀÇ »ó´Ü Áß¾Ó
-					vy1 = gy0;     // Geyser ÀÇ »ó´Ü
+					vx0 = bx0 + 1; // ResourceDepot ì˜ í•˜ë‹¨ ì¤‘ì•™
+					vy0 = by3;     // ResourceDepot ì˜ í•˜ë‹¨ 
+					vx1 = gx0 + 3; // Geyser ì˜ ìƒë‹¨ ì¤‘ì•™
+					vy1 = gy0;     // Geyser ì˜ ìƒë‹¨
 				}
-				// 12½Ã ¹æÇâ
+				// 12ì‹œ ë°©í–¥
 				else if (gx0 < bx4 && gy0 < by0) {
-					vx0 = gx0;     // Geyser ÀÇ ÇÏ´Ü ¿ŞÂÊ³¡
+					vx0 = gx0;     // Geyser ì˜ í•˜ë‹¨ ì™¼ìª½ë
 					vy0 = gy2; 
-					vx1 = gx0 + 3; // Geyser ÀÇ Áß¾Ó
-					vy1 = by0;     // ResourceDepot ÀÇ »ó´Ü
+					vx1 = gx0 + 3; // Geyser ì˜ ì¤‘ì•™
+					vy1 = by0;     // ResourceDepot ì˜ ìƒë‹¨
 				}
-				// 1½Ã ¹æÇâ
+				// 1ì‹œ ë°©í–¥
 				else if (gx0 > bx0 && gy0 < by0) {
-					vx0 = bx0 + 2; // ResourceDepot ÀÇ »ó´Ü Áß¾Ó
-					vy0 = gy0 + 1; // Geyser ÀÇ ÇÏ´Ü
-					vx1 = gx0 + 2; // Geyser ÀÇ Áß¾Ó
-					vy1 = by0 + 1; // ResourceDepot ÀÇ »ó´Ü
+					vx0 = bx0 + 2; // ResourceDepot ì˜ ìƒë‹¨ ì¤‘ì•™
+					vy0 = gy0 + 1; // Geyser ì˜ í•˜ë‹¨
+					vx1 = gx0 + 2; // Geyser ì˜ ì¤‘ì•™
+					vy1 = by0 + 1; // ResourceDepot ì˜ ìƒë‹¨
 				}
-				// 5½Ã ¹æÇâ
+				// 5ì‹œ ë°©í–¥
 				else if (gx0 > bx0 && gy0 >= by3) {
-					vx0 = bx0 + 2; // ResourceDepot ÀÇ ÇÏ´Ü Áß¾Ó
-					vy0 = by0 + 2; // ResourceDepot ÀÇ ÇÏ´Ü
-					vx1 = gx0 + 2; // Geyser ÀÇ Áß¾Ó
-					vy1 = gy0 + 1; // Geyser ÀÇ ÇÏ´Ü
+					vx0 = bx0 + 2; // ResourceDepot ì˜ í•˜ë‹¨ ì¤‘ì•™
+					vy0 = by0 + 2; // ResourceDepot ì˜ í•˜ë‹¨
+					vx1 = gx0 + 2; // Geyser ì˜ ì¤‘ì•™
+					vy1 = gy0 + 1; // Geyser ì˜ í•˜ë‹¨
 				}
-				// 3½Ã ¹æÇâ
+				// 3ì‹œ ë°©í–¥
 				else if (gx0 > bx0 && gy0 >= by0) {
-					vx0 = bx4; // ResourceDepot ÀÇ ¿À¸¥ÂÊ³¡
-					vy0 = gy0; // Geyser ÀÇ »ó´Ü
-					vx1 = gx0; // Geyser ÀÇ ¿ŞÂÊ ³¡
-					vy1 = gy2; // Geyser ÀÇ ÇÏ´Ü
+					vx0 = bx4; // ResourceDepot ì˜ ì˜¤ë¥¸ìª½ë
+					vy0 = gy0; // Geyser ì˜ ìƒë‹¨
+					vx1 = gx0; // Geyser ì˜ ì™¼ìª½ ë
+					vy1 = gy2; // Geyser ì˜ í•˜ë‹¨
 				}
 
 				for (int i = vx0; i < vx1; i++) {
@@ -881,7 +881,7 @@ public class ConstructionPlaceFinder {
 
 			}
 
-			// BaseLocation °ú Mineral »çÀÌÀÇ Å¸ÀÏÀ» BWTA::getShortestPath ¸¦ »ç¿ëÇØ¼­ ±¸ÇÑ ÈÄ _tilesToAvoid ¿¡ Ãß°¡
+			// BaseLocation ê³¼ Mineral ì‚¬ì´ì˜ íƒ€ì¼ì„ BWTA::getShortestPath ë¥¼ ì‚¬ìš©í•´ì„œ êµ¬í•œ í›„ _tilesToAvoid ì— ì¶”ê°€
 			for (Unit mineral : base.getMinerals())
 			{
 				TilePosition closeMineralPosition = mineral.getInitialTilePosition();
@@ -906,7 +906,7 @@ public class ConstructionPlaceFinder {
 		}
 	}
 	
-	/// BaseLocation °ú Mineral / Geyser »çÀÌÀÇ Å¸ÀÏµéÀÇ ¸ñ·ÏÀ» ¸®ÅÏÇÕ´Ï´Ù		
+	/// BaseLocation ê³¼ Mineral / Geyser ì‚¬ì´ì˜ íƒ€ì¼ë“¤ì˜ ëª©ë¡ì„ ë¦¬í„´í•©ë‹ˆë‹¤		
 	public Set<TilePosition> getTilesToAvoid() {
 		return tilesToAvoid;
 	}

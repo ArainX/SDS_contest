@@ -21,8 +21,8 @@ import bwta.Chokepoint;
 import bwta.Polygon;
 import bwta.Region;
 
-/// º¿ ÇÁ·Î±×·¥ °³¹ßÀÇ ÆíÀÇ¼º Çâ»óÀ» À§ÇØ °ÔÀÓ È­¸é¿¡ Ãß°¡ Á¤º¸µéÀ» Ç¥½ÃÇÏ´Â class
-/// ¿©·¯ Manager µé·ÎºÎÅÍ Á¤º¸¸¦ Á¶È¸ÇÏ¿© Screen È¤Àº Map ¿¡ Á¤º¸¸¦ Ç¥½ÃÇÕ´Ï´Ù
+/// ë´‡ í”„ë¡œê·¸ë¨ ê°œë°œì˜ í¸ì˜ì„± í–¥ìƒì„ ìœ„í•´ ê²Œì„ í™”ë©´ì— ì¶”ê°€ ì •ë³´ë“¤ì„ í‘œì‹œí•˜ëŠ” class
+/// ì—¬ëŸ¬ Manager ë“¤ë¡œë¶€í„° ì •ë³´ë¥¼ ì¡°íšŒí•˜ì—¬ Screen í˜¹ì€ Map ì— ì •ë³´ë¥¼ í‘œì‹œí•©ë‹ˆë‹¤
 public class UXManager {
 
 	private final Character brown = '';
@@ -49,16 +49,16 @@ public class UXManager {
 	
 	private static UXManager instance = new UXManager();
 	
-	/// static singleton °´Ã¼¸¦ ¸®ÅÏÇÕ´Ï´Ù
+	/// static singleton ê°ì²´ë¥¼ ë¦¬í„´í•©ë‹ˆë‹¤
 	public static UXManager Instance() {
 		return instance;
 	}
 	
-	/// °æ±â°¡ ½ÃÀÛµÉ ¶§ ÀÏÈ¸ÀûÀ¸·Î Ãß°¡ Á¤º¸¸¦ Ãâ·ÂÇÕ´Ï´Ù
+	/// ê²½ê¸°ê°€ ì‹œì‘ë  ë•Œ ì¼íšŒì ìœ¼ë¡œ ì¶”ê°€ ì •ë³´ë¥¼ ì¶œë ¥í•©ë‹ˆë‹¤
 	public void onStart() {
 	}
 
-	/// °æ±â ÁøÇà Áß ¸Å ÇÁ·¹ÀÓ¸¶´Ù Ãß°¡ Á¤º¸¸¦ Ãâ·ÂÇÏ°í »ç¿ëÀÚ ÀÔ·ÂÀ» Ã³¸®ÇÕ´Ï´Ù
+	/// ê²½ê¸° ì§„í–‰ ì¤‘ ë§¤ í”„ë ˆì„ë§ˆë‹¤ ì¶”ê°€ ì •ë³´ë¥¼ ì¶œë ¥í•˜ê³  ì‚¬ìš©ì ì…ë ¥ì„ ì²˜ë¦¬í•©ë‹ˆë‹¤
 	public void update() {
 		drawGameInformationOnScreen(5, 5);
 
@@ -74,26 +74,26 @@ public class UXManager {
 			drawMapGrid();
 		}
 
-		// ºôµå¿À´õÅ¥ : ºôµå ½ÇÇà Àü
+		// ë¹Œë“œì˜¤ë”í : ë¹Œë“œ ì‹¤í–‰ ì „
 		if (Config.DrawProductionInfo) {
 			drawBuildOrderQueueOnScreen(80, 60);
 		}
 
-		// ºôµå ½ÇÇà »óÈ² : °Ç¹° °Ç¼³, À¯´Ö »ı»ê, ¾÷±×·¹ÀÌµå, ¸®¼­Ä¡
+		// ë¹Œë“œ ì‹¤í–‰ ìƒí™© : ê±´ë¬¼ ê±´ì„¤, ìœ ë‹› ìƒì‚°, ì—…ê·¸ë ˆì´ë“œ, ë¦¬ì„œì¹˜
 		if (Config.DrawProductionInfo) {
 			drawBuildStatusOnScreen(200, 60);
 		}
 
-		// °Ç¹° °Ç¼³ Å¥. °Ç¹° °Ç¼³ »óÈ²
+		// ê±´ë¬¼ ê±´ì„¤ í. ê±´ë¬¼ ê±´ì„¤ ìƒí™©
 		if (Config.DrawBuildingInfo) {
 			drawConstructionQueueOnScreenAndMap(200, 150);
 		}
 
-		// °Ç¹°ÀÌ °Ç¼³µÉ À§Ä¡
+		// ê±´ë¬¼ì´ ê±´ì„¤ë  ìœ„ì¹˜
 		if (Config.DrawReservedBuildingTiles) {
-			// °Ç¹° °Ç¼³ Àå¼Ò ¿¹¾à ÁöÁ¡
+			// ê±´ë¬¼ ê±´ì„¤ ì¥ì†Œ ì˜ˆì•½ ì§€ì 
 			drawReservedBuildingTilesOnMap();
-			// °Ç¹° °Ç¼³ ºÒ°¡ ±¸¿ª (¹Ì³×¶ö/°¡½º/º£ÀÌ½º »çÀÌ)
+			// ê±´ë¬¼ ê±´ì„¤ ë¶ˆê°€ êµ¬ì—­ (ë¯¸ë„¤ë„/ê°€ìŠ¤/ë² ì´ìŠ¤ ì‚¬ì´)
 			drawTilesToAvoidOnMap();
 		}
 
@@ -103,28 +103,28 @@ public class UXManager {
 		}
 
 		if (Config.DrawWorkerInfo) {
-			// °¢ ÀÏ²ÛµéÀÇ ÀÓ¹« »óÈ²
+			// ê° ì¼ê¾¼ë“¤ì˜ ì„ë¬´ ìƒí™©
 			drawWorkerStateOnScreen(5, 60);
 
-			// º£ÀÌ½ºÄ·ÇÁ´ç ÀÏ²Û ¼ö
+			// ë² ì´ìŠ¤ìº í”„ë‹¹ ì¼ê¾¼ ìˆ˜
 			drawWorkerCountOnMap();
 		}
 
-		// ÀÏ²Û ÀÚ¿øÃ¤Ãë ÀÓ¹« »óÈ²
+		// ì¼ê¾¼ ìì›ì±„ì·¨ ì„ë¬´ ìƒí™©
 		if (Config.DrawResourceInfo) {
 			drawWorkerMiningStatusOnMap();
 		}
 
-		// Á¤Âû
+		// ì •ì°°
 		if (Config.DrawScoutInfo) {
 			drawScoutInformation(220,330);
 		}
 
-		// °ø°İ
+		// ê³µê²©
 		if (Config.DrawUnitTargetInfo) {
 			drawUnitTargetOnMap();
 
-			// ¹Ì»çÀÏ, ·²Ä¿ÀÇ º¸ÀÌÁö¾Ê´Â °ø°İµîÀ» Ç¥½Ã
+			// ë¯¸ì‚¬ì¼, ëŸ´ì»¤ì˜ ë³´ì´ì§€ì•ŠëŠ” ê³µê²©ë“±ì„ í‘œì‹œ
 			drawBulletsOnMap();
 		}
 		
@@ -137,7 +137,7 @@ public class UXManager {
 
 	}
 
-	// °ÔÀÓ °³¿ä Á¤º¸¸¦ Screen ¿¡ Ç¥½ÃÇÕ´Ï´Ù
+	// ê²Œì„ ê°œìš” ì •ë³´ë¥¼ Screen ì— í‘œì‹œí•©ë‹ˆë‹¤
 	public void drawGameInformationOnScreen(int x, int y) {
 		MyBotModule.Broodwar.drawTextScreen(x, y, white + "Players : ");
 		MyBotModule.Broodwar.drawTextScreen(x + 50, y, MyBotModule.Broodwar.self().getTextColor() + MyBotModule.Broodwar.self().getName() + "(" + InformationManager.Instance().selfRace + ") " + white + " vs.  " + 
@@ -154,20 +154,20 @@ public class UXManager {
 		MyBotModule.Broodwar.drawTextScreen(x + 90, y, "" + white + (int)(MyBotModule.Broodwar.getFrameCount() / (23.8 * 60)) + ":" + (int)((int)(MyBotModule.Broodwar.getFrameCount() / 23.8) % 60));
 	}
 
-	/// APM (Action Per Minute) ¼ıÀÚ¸¦ Screen ¿¡ Ç¥½ÃÇÕ´Ï´Ù
+	/// APM (Action Per Minute) ìˆ«ìë¥¼ Screen ì— í‘œì‹œí•©ë‹ˆë‹¤
 	public void drawAPM(int x, int y) {
 		int bwapiAPM = MyBotModule.Broodwar.getAPM();
 		MyBotModule.Broodwar.drawTextScreen(x, y, "APM : " + bwapiAPM);
 	}
 
-	/// Players Á¤º¸¸¦ Screen ¿¡ Ç¥½ÃÇÕ´Ï´Ù
+	/// Players ì •ë³´ë¥¼ Screen ì— í‘œì‹œí•©ë‹ˆë‹¤
 	public void drawPlayers() {
 		for (Player p : MyBotModule.Broodwar.getPlayers()) {
 			MyBotModule.Broodwar.sendText("Player [" + p.getID() + "]: " + p.getName() + " is in force: " + p.getForce().getName());
 		}
 	}
 
-	/// Player µéÀÇ ÆÀ (Force) µéÀÇ Á¤º¸¸¦ Screen ¿¡ Ç¥½ÃÇÕ´Ï´Ù
+	/// Player ë“¤ì˜ íŒ€ (Force) ë“¤ì˜ ì •ë³´ë¥¼ Screen ì— í‘œì‹œí•©ë‹ˆë‹¤
 	public void drawForces() {
 		for (Force f :  MyBotModule.Broodwar.getForces()) {
 			MyBotModule.Broodwar.sendText("Force " + f.getName() + " has the following players:");
@@ -177,7 +177,7 @@ public class UXManager {
 		}
 	}
 
-	/// Unit ÀÇ HitPoint µî Ãß°¡ Á¤º¸¸¦ Map ¿¡ Ç¥½ÃÇÕ´Ï´Ù
+	/// Unit ì˜ HitPoint ë“± ì¶”ê°€ ì •ë³´ë¥¼ Map ì— í‘œì‹œí•©ë‹ˆë‹¤
 	public void drawUnitExtendedInformationOnMap() {
 		int verticalOffset = -10;
 
@@ -202,13 +202,13 @@ public class UXManager {
 				int top = pos.getY() - type.dimensionUp();
 				int bottom = pos.getY() + type.dimensionDown();
 	
-				// Àû À¯´ÖÀÌ¸é ÁÖÀ§¿¡ ¹Ú½º Ç¥½Ã
+				// ì  ìœ ë‹›ì´ë©´ ì£¼ìœ„ì— ë°•ìŠ¤ í‘œì‹œ
 				if (!MyBotModule.Broodwar.isVisible(ui.getLastPosition().toTilePosition())) {
 					MyBotModule.Broodwar.drawBoxMap(new Position(left, top), new Position(right, bottom), Color.Grey, false);
 					MyBotModule.Broodwar.drawTextMap(new Position(left + 3, top + 4), ui.getType().toString());
 				}
 	
-				// À¯´ÖÀÇ HitPoint ³²¾ÆÀÖ´Â ºñÀ² Ç¥½Ã
+				// ìœ ë‹›ì˜ HitPoint ë‚¨ì•„ìˆëŠ” ë¹„ìœ¨ í‘œì‹œ
 				if (!type.isResourceContainer() && type.maxHitPoints() > 0)
 				{
 					double hpRatio = (double)hitPoints / (double)type.maxHitPoints();
@@ -232,7 +232,7 @@ public class UXManager {
 					}
 				}
 	
-				// À¯´ÖÀÇ Shield ³²¾ÆÀÖ´Â ºñÀ² Ç¥½Ã
+				// ìœ ë‹›ì˜ Shield ë‚¨ì•„ìˆëŠ” ë¹„ìœ¨ í‘œì‹œ
 				if (!type.isResourceContainer() && type.maxShields() > 0) {
 					double shieldRatio = (double)shields / (double)type.maxShields();
 	
@@ -268,7 +268,7 @@ public class UXManager {
 
 			//MyBotModule.game.drawBoxMap(BWAPI.Position(left, top), BWAPI.Position(right, bottom), Color.Grey, false);
 
-			// À¯´ÖÀÇ HitPoint ³²¾ÆÀÖ´Â ºñÀ² Ç¥½Ã
+			// ìœ ë‹›ì˜ HitPoint ë‚¨ì•„ìˆëŠ” ë¹„ìœ¨ í‘œì‹œ
 			if (!unit.getType().isResourceContainer() && unit.getType().maxHitPoints() > 0) {
 				double hpRatio = (double)unit.getHitPoints() / (double)unit.getType().maxHitPoints();
 
@@ -291,7 +291,7 @@ public class UXManager {
 				}
 			}
 
-			// À¯´ÖÀÇ Shield ³²¾ÆÀÖ´Â ºñÀ² Ç¥½Ã
+			// ìœ ë‹›ì˜ Shield ë‚¨ì•„ìˆëŠ” ë¹„ìœ¨ í‘œì‹œ
 			if (!unit.getType().isResourceContainer() && unit.getType().maxShields() > 0) {
 				double shieldRatio = (double)unit.getShields() / (double)unit.getType().maxShields();
 
@@ -310,7 +310,7 @@ public class UXManager {
 				}
 			}
 
-			// Mineral / Gas °¡ ¾ó¸¶³ª ³²¾ÆÀÖ´Â°¡
+			// Mineral / Gas ê°€ ì–¼ë§ˆë‚˜ ë‚¨ì•„ìˆëŠ”ê°€
 			if (unit.getType().isResourceContainer() && unit.getInitialResources() > 0) {
 				double mineralRatio = (double)unit.getResources() / (double)unit.getInitialResources();
 
@@ -331,31 +331,31 @@ public class UXManager {
 		}
 	}
 
-	/// UnitType º° Åë°è Á¤º¸¸¦ Screen ¿¡ Ç¥½ÃÇÕ´Ï´Ù
+	/// UnitType ë³„ í†µê³„ ì •ë³´ë¥¼ Screen ì— í‘œì‹œí•©ë‹ˆë‹¤
 	public void drawUnitStatisticsOnScreen(int x, int y) {
 		int currentY = y;
 
-		// ¾Æ±ºÀÌ ÀÔÀº ÇÇÇØ ´©Àû°ª
+		// ì•„êµ°ì´ ì…ì€ í”¼í•´ ëˆ„ì ê°’
 		MyBotModule.Broodwar.drawTextScreen(x, currentY, white + " Self Loss:" + white + " Minerals: " + brown + InformationManager.Instance().getUnitData(MyBotModule.Broodwar.self()).getMineralsLost() + white + " Gas: " + red + InformationManager.Instance().getUnitData(MyBotModule.Broodwar.self()).getGasLost());
 		currentY += 10;
 
-		// ¾Æ±º ¸ğµç À¯´Ö ¼ıÀÚ ÇÕ°è
+		// ì•„êµ° ëª¨ë“  ìœ ë‹› ìˆ«ì í•©ê³„
 		//MyBotModule.Broodwar.drawTextScreen(x, currentY,  white + " allUnitCount: " + MyBotModule.Broodwar.self().allUnitCount(UnitType.AllUnits));
 		//currentY += 10;
 
-		// ¾Æ±º °Ç¼³/ÈÆ·Ã ¿Ï·áÇÑ À¯´Ö ¼ıÀÚ ÇÕ°è
+		// ì•„êµ° ê±´ì„¤/í›ˆë ¨ ì™„ë£Œí•œ ìœ ë‹› ìˆ«ì í•©ê³„
 		//MyBotModule.Broodwar.drawTextScreen(x, currentY,  white + " completedUnitCount: " + MyBotModule.Broodwar.self().completedUnitCount(UnitType.AllUnits));
 		//currentY += 10;
 
-		// ¾Æ±º °Ç¼³/ÈÆ·ÃÁßÀÎ À¯´Ö ¼ıÀÚ ÇÕ°è
+		// ì•„êµ° ê±´ì„¤/í›ˆë ¨ì¤‘ì¸ ìœ ë‹› ìˆ«ì í•©ê³„
 		//MyBotModule.Broodwar.drawTextScreen(x, currentY,  white + " incompleteUnitCount: " + MyBotModule.Broodwar.self().incompleteUnitCount(UnitType.AllUnits));
 		//currentY += 10;
 
-		// ¾Æ±º À¯´Ö ÆÄ±«/»ç¸Á ¼ıÀÚ ´©Àû°ª
+		// ì•„êµ° ìœ ë‹› íŒŒê´´/ì‚¬ë§ ìˆ«ì ëˆ„ì ê°’
 		//MyBotModule.Broodwar.drawTextScreen(x, currentY,  white + " deadUnitCount: " + MyBotModule.Broodwar.self().deadUnitCount(UnitType.AllUnits));
 		//currentY += 10;
 
-		// »ó´ë¹æ À¯´ÖÀ» ÆÄ±«/»ç¸Á ½ÃÅ² ¼ıÀÚ ´©Àû°ª
+		// ìƒëŒ€ë°© ìœ ë‹›ì„ íŒŒê´´/ì‚¬ë§ ì‹œí‚¨ ìˆ«ì ëˆ„ì ê°’
 		//MyBotModule.Broodwar.drawTextScreen(x, currentY,  white + " killedUnitCount: " + MyBotModule.Broodwar.self().killedUnitCount(UnitType.AllUnits));
 		//currentY += 10;
 
@@ -368,13 +368,13 @@ public class UXManager {
 		//MyBotModule.Broodwar.drawTextScreen(x, currentY,  white + " KillScore: " + MyBotModule.Broodwar.self().getKillScore());
 		//currentY += 10;
 
-		// Àû±ºÀÌ ÀÔÀº ÇÇÇØ ´©Àû°ª
+		// ì êµ°ì´ ì…ì€ í”¼í•´ ëˆ„ì ê°’
 		if(InformationManager.Instance().getUnitData(InformationManager.Instance().enemyPlayer) != null)
 		{
 			MyBotModule.Broodwar.drawTextScreen(x, currentY, brown + " Enemy Loss:" + white +" Minerals: " + red + InformationManager.Instance().getUnitData(InformationManager.Instance().enemyPlayer).getMineralsLost() + white + " Gas: " + teal + InformationManager.Instance().getUnitData(InformationManager.Instance().enemyPlayer).getGasLost());
 		}
 			
-		// Àû±ºÀÇ UnitType º° ÆÄ¾ÇµÈ Unit ¼ıÀÚ¸¦ Ç¥½Ã
+		// ì êµ°ì˜ UnitType ë³„ íŒŒì•…ëœ Unit ìˆ«ìë¥¼ í‘œì‹œ
 		MyBotModule.Broodwar.drawTextScreen(x,		 currentY + 20, white + " UNIT NAME");
 		MyBotModule.Broodwar.drawTextScreen(x + 110, currentY + 20, white + " Created");
 		MyBotModule.Broodwar.drawTextScreen(x + 150, currentY + 20, white + " Dead");
@@ -426,7 +426,7 @@ public class UXManager {
 		}
 	}
 
-	/// BWTA ¶óÀÌºê·¯¸®¿¡ ÀÇÇÑ Map ºĞ¼® °á°ú Á¤º¸¸¦ Map ¿¡ Ç¥½ÃÇÕ´Ï´Ù
+	/// BWTA ë¼ì´ë¸ŒëŸ¬ë¦¬ì— ì˜í•œ Map ë¶„ì„ ê²°ê³¼ ì •ë³´ë¥¼ Map ì— í‘œì‹œí•©ë‹ˆë‹¤
 	public void drawBWTAResultOnMap() {
 		/*//we will iterate through all the base locations, and draw their outlines.
 		// C+ . for (std.set<BWTA.BaseLocation*>.const_iterator i = BWTA.getBaseLocations().begin(); i != BWTA.getBaseLocations().end(); i++)
@@ -636,7 +636,7 @@ public class UXManager {
 		}
 	}
 
-	/// Tile Position ±×¸®µå¸¦ Map ¿¡ Ç¥½ÃÇÕ´Ï´Ù
+	/// Tile Position ê·¸ë¦¬ë“œë¥¼ Map ì— í‘œì‹œí•©ë‹ˆë‹¤
 	public void drawMapGrid() {
 		int	cellSize = MapGrid.Instance().getCellSize();
 		int	mapWidth = MapGrid.Instance().getMapWidth();
@@ -661,7 +661,7 @@ public class UXManager {
 		}		
 	}
 
-	/// BuildOrderQueue ¸¦ Screen ¿¡ Ç¥½ÃÇÕ´Ï´Ù
+	/// BuildOrderQueue ë¥¼ Screen ì— í‘œì‹œí•©ë‹ˆë‹¤
 	public void drawBuildOrderQueueOnScreen(int x, int y) {
 		MyBotModule.Broodwar.drawTextScreen(x, y, white + " <Build Order>");
 
@@ -694,9 +694,9 @@ public class UXManager {
 		}
 	}
 
-	/// Build ÁøÇà »óÅÂ¸¦ Screen ¿¡ Ç¥½ÃÇÕ´Ï´Ù
+	/// Build ì§„í–‰ ìƒíƒœë¥¼ Screen ì— í‘œì‹œí•©ë‹ˆë‹¤
 	public void drawBuildStatusOnScreen(int x, int y) {
-		// °Ç¼³ / ÈÆ·Ã ÁßÀÎ À¯´Ö ÁøÇà»óÈ² Ç¥½Ã
+		// ê±´ì„¤ / í›ˆë ¨ ì¤‘ì¸ ìœ ë‹› ì§„í–‰ìƒí™© í‘œì‹œ
 		Vector<Unit> unitsUnderConstruction = new Vector<Unit>();
 		for (Unit unit : MyBotModule.Broodwar.self().getUnits())
 		{
@@ -731,12 +731,12 @@ public class UXManager {
 			MyBotModule.Broodwar.drawTextScreen(x, y, "" + white + t + " (" + unit.getRemainingBuildTime() + ")");
 		}
 
-		// Tech Research Ç¥½Ã
+		// Tech Research í‘œì‹œ
 
-		// Upgrade Ç¥½Ã
+		// Upgrade í‘œì‹œ
 	}
 
-	/// Construction À» ÇÏ±â À§ÇØ ¿¹¾àÇØµĞ Tile µéÀ» Map ¿¡ Ç¥½ÃÇÕ´Ï´Ù
+	/// Construction ì„ í•˜ê¸° ìœ„í•´ ì˜ˆì•½í•´ë‘” Tile ë“¤ì„ Map ì— í‘œì‹œí•©ë‹ˆë‹¤
 	public void drawReservedBuildingTilesOnMap() {
 		boolean[][] reserveMap = ConstructionPlaceFinder.Instance().getReserveMap();
 		if(reserveMap.length > 0 && reserveMap[0] != null && reserveMap[0].length > 0)
@@ -762,7 +762,7 @@ public class UXManager {
 		}
 	}
 	
-	/// Construction À» ÇÏÁö ¸øÇÏ´Â Tile µéÀ» Map ¿¡ Ç¥½ÃÇÕ´Ï´Ù
+	/// Construction ì„ í•˜ì§€ ëª»í•˜ëŠ” Tile ë“¤ì„ Map ì— í‘œì‹œí•©ë‹ˆë‹¤
 	public void drawTilesToAvoidOnMap() {
 		Set<TilePosition> tilesToAvoid = ConstructionPlaceFinder.Instance().getTilesToAvoid();
 		for (TilePosition t : tilesToAvoid)
@@ -776,7 +776,7 @@ public class UXManager {
 		}
 	}
 
-	/// ConstructionQueue ¸¦ Screen ¿¡ Ç¥½ÃÇÕ´Ï´Ù
+	/// ConstructionQueue ë¥¼ Screen ì— í‘œì‹œí•©ë‹ˆë‹¤
 	public void drawConstructionQueueOnScreenAndMap(int x, int y) {
 		MyBotModule.Broodwar.drawTextScreen(x, y, white + " <Construction Status>");
 
@@ -817,7 +817,7 @@ public class UXManager {
 		}
 	}
 
-	/// Unit ÀÇ Id ¸¦ Map ¿¡ Ç¥½ÃÇÕ´Ï´Ù
+	/// Unit ì˜ Id ë¥¼ Map ì— í‘œì‹œí•©ë‹ˆë‹¤
 	public void drawUnitIdOnMap() {
 		for (Unit unit : MyBotModule.Broodwar.self().getUnits())
 		{
@@ -825,7 +825,7 @@ public class UXManager {
 		}
 	}
 
-	/// Worker Unit µéÀÇ »óÅÂ¸¦ Screen ¿¡ Ç¥½ÃÇÕ´Ï´Ù
+	/// Worker Unit ë“¤ì˜ ìƒíƒœë¥¼ Screen ì— í‘œì‹œí•©ë‹ˆë‹¤
 	public void drawWorkerStateOnScreen(int x, int y) {
 		WorkerData  workerData = WorkerManager.Instance().getWorkerData();
 
@@ -837,7 +837,7 @@ public class UXManager {
 		{
 			if (unit == null) continue;
 
-			// Mineral / Gas / Idle Worker ´Â Ç¥½Ã ¾ÈÇÑ´Ù
+			// Mineral / Gas / Idle Worker ëŠ” í‘œì‹œ ì•ˆí•œë‹¤
 			if (workerData.getJobCode(unit) == 'M' || workerData.getJobCode(unit) == 'I' || workerData.getJobCode(unit) == 'G') {
 				continue;
 			}
@@ -853,7 +853,7 @@ public class UXManager {
 		}
 	}
 
-	/// ResourceDepot º° Worker ¼ıÀÚ¸¦ Map ¿¡ Ç¥½ÃÇÕ´Ï´Ù
+	/// ResourceDepot ë³„ Worker ìˆ«ìë¥¼ Map ì— í‘œì‹œí•©ë‹ˆë‹¤
 	public void drawWorkerCountOnMap() {
 		for (Unit depot : WorkerManager.Instance().getWorkerData().getDepots())
 		{
@@ -867,7 +867,7 @@ public class UXManager {
 		}
 	}
 
-	/// Worker Unit ÀÇ ÀÚ¿øÃ¤Ãë ÇöÈ²À» Map ¿¡ Ç¥½ÃÇÕ´Ï´Ù
+	/// Worker Unit ì˜ ìì›ì±„ì·¨ í˜„í™©ì„ Map ì— í‘œì‹œí•©ë‹ˆë‹¤
 	public void drawWorkerMiningStatusOnMap() {
 		WorkerData  workerData = WorkerManager.Instance().getWorkerData();
 
@@ -882,7 +882,7 @@ public class UXManager {
 			MyBotModule.Broodwar.drawLineMap(worker.getPosition().getX(), worker.getPosition().getY(), pos.getX(), pos.getY(), Color.Cyan);
 
 			/*
-			// ResourceDepot ~ Worker »çÀÌ¿¡ Á÷¼± Ç¥½Ã
+			// ResourceDepot ~ Worker ì‚¬ì´ì— ì§ì„  í‘œì‹œ
 			BWAPI.Unit depot = workerData.getWorkerDepot(worker);
 			if (depot) {
 				MyBotModule.game.drawLineMap(worker.getPosition().x, worker.getPosition().y, depot.getPosition().x, depot.getPosition().y, Color.Orange);
@@ -891,7 +891,7 @@ public class UXManager {
 		}
 	}
 
-	/// Á¤Âû »óÅÂ¸¦ Screen ¿¡ Ç¥½ÃÇÕ´Ï´Ù
+	/// ì •ì°° ìƒíƒœë¥¼ Screen ì— í‘œì‹œí•©ë‹ˆë‹¤
 	public void drawScoutInformation(int x, int y)
 	{
 		int currentScoutStatus = ScoutManager.Instance().getScoutStatus();
@@ -959,7 +959,7 @@ public class UXManager {
 		}
 	}
 
-	/// Unit ÀÇ Target À¸·Î ÀÕ´Â ¼±À» Map ¿¡ Ç¥½ÃÇÕ´Ï´Ù
+	/// Unit ì˜ Target ìœ¼ë¡œ ì‡ëŠ” ì„ ì„ Map ì— í‘œì‹œí•©ë‹ˆë‹¤
 	public void drawUnitTargetOnMap() 
 	{
 		for (Unit unit : MyBotModule.Broodwar.self().getUnits())
@@ -982,8 +982,8 @@ public class UXManager {
 		}
 	}
 
-	/// Bullet À» Map ¿¡ Ç¥½ÃÇÕ´Ï´Ù 
-	/// Cloaking Unit ÀÇ Bullet Ç¥½Ã¿¡ ¾²ÀÔ´Ï´Ù
+	/// Bullet ì„ Map ì— í‘œì‹œí•©ë‹ˆë‹¤ 
+	/// Cloaking Unit ì˜ Bullet í‘œì‹œì— ì“°ì…ë‹ˆë‹¤
 	public void drawBulletsOnMap()
 	{
 		for (Bullet b : MyBotModule.Broodwar.getBullets())
@@ -1030,7 +1030,7 @@ public class UXManager {
 			else if(b.getType() == BulletType.Unknown) bulletTypeName = "Unknown";
 			else if(b.getType() == BulletType.Yamato_Gun) bulletTypeName = "Yamato_Gun";
 			
-			// ¾Æ±º °ÍÀÌ¸é ³ì»ö, Àû±º °ÍÀÌ¸é »¡°£»ö
+			// ì•„êµ° ê²ƒì´ë©´ ë…¹ìƒ‰, ì êµ° ê²ƒì´ë©´ ë¹¨ê°„ìƒ‰
 			MyBotModule.Broodwar.drawLineMap(p, new Position(p.getX() + (int)velocityX, p.getY() + (int)velocityY), b.getPlayer() == MyBotModule.Broodwar.self() ? Color.Green : Color.Red);
 			if(b.getType() != null)
 			{

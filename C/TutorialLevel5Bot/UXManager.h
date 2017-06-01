@@ -12,101 +12,101 @@
 
 namespace MyBot
 {
-	/// º¿ ÇÁ·Î±×·¥ °³¹ßÀÇ ÆíÀÇ¼º Çâ»óÀ» À§ÇØ °ÔÀÓ È­¸é¿¡ Ãß°¡ Á¤º¸µéÀ» Ç¥½ÃÇÏ´Â class
-	/// ¿©·¯ Manager µé·ÎºÎÅÍ Á¤º¸¸¦ Á¶È¸ÇÏ¿© Screen È¤Àº Map ¿¡ Á¤º¸¸¦ Ç¥½ÃÇÕ´Ï´Ù
+	/// ë´‡ í”„ë¡œê·¸ëž¨ ê°œë°œì˜ íŽ¸ì˜ì„± í–¥ìƒì„ ìœ„í•´ ê²Œìž„ í™”ë©´ì— ì¶”ê°€ ì •ë³´ë“¤ì„ í‘œì‹œí•˜ëŠ” class
+	/// ì—¬ëŸ¬ Manager ë“¤ë¡œë¶€í„° ì •ë³´ë¥¼ ì¡°íšŒí•˜ì—¬ Screen í˜¹ì€ Map ì— ì •ë³´ë¥¼ í‘œì‹œí•©ë‹ˆë‹¤
 	class UXManager
 	{
 		UXManager();
 
 		const int dotRadius = 2;
 
-		// °ÔÀÓ °³¿ä Á¤º¸¸¦ Screen ¿¡ Ç¥½ÃÇÕ´Ï´Ù
+		// ê²Œìž„ ê°œìš” ì •ë³´ë¥¼ Screen ì— í‘œì‹œí•©ë‹ˆë‹¤
 		void drawGameInformationOnScreen(int x, int y);
 		
-		/// APM (Action Per Minute) ¼ýÀÚ¸¦ Screen ¿¡ Ç¥½ÃÇÕ´Ï´Ù
+		/// APM (Action Per Minute) ìˆ«ìžë¥¼ Screen ì— í‘œì‹œí•©ë‹ˆë‹¤
 		void drawAPM(int x, int y);
 
-		/// Players Á¤º¸¸¦ Screen ¿¡ Ç¥½ÃÇÕ´Ï´Ù
+		/// Players ì •ë³´ë¥¼ Screen ì— í‘œì‹œí•©ë‹ˆë‹¤
 		void drawPlayers();
 
-		/// Player µéÀÇ ÆÀ (Force) µéÀÇ Á¤º¸¸¦ Screen ¿¡ Ç¥½ÃÇÕ´Ï´Ù
+		/// Player ë“¤ì˜ íŒ€ (Force) ë“¤ì˜ ì •ë³´ë¥¼ Screen ì— í‘œì‹œí•©ë‹ˆë‹¤
 		void drawForces();
 
 
 
-		/// BWTA ¶óÀÌºê·¯¸®¿¡ ÀÇÇÑ Map ºÐ¼® °á°ú Á¤º¸¸¦ Map ¿¡ Ç¥½ÃÇÕ´Ï´Ù
+		/// BWTA ë¼ì´ë¸ŒëŸ¬ë¦¬ì— ì˜í•œ Map ë¶„ì„ ê²°ê³¼ ì •ë³´ë¥¼ Map ì— í‘œì‹œí•©ë‹ˆë‹¤
 		void drawBWTAResultOnMap();
 
-		/// Tile Position ±×¸®µå¸¦ Map ¿¡ Ç¥½ÃÇÕ´Ï´Ù
+		/// Tile Position ê·¸ë¦¬ë“œë¥¼ Map ì— í‘œì‹œí•©ë‹ˆë‹¤
 		void drawMapGrid();
 
 
-		/// BuildOrderQueue ¸¦ Screen ¿¡ Ç¥½ÃÇÕ´Ï´Ù
+		/// BuildOrderQueue ë¥¼ Screen ì— í‘œì‹œí•©ë‹ˆë‹¤
 		void drawBuildOrderQueueOnScreen(int x, int y);
 
-		/// ConstructionQueue ¸¦ Screen ¿¡ Ç¥½ÃÇÕ´Ï´Ù
+		/// ConstructionQueue ë¥¼ Screen ì— í‘œì‹œí•©ë‹ˆë‹¤
 		void drawConstructionQueueOnScreenAndMap(int x, int y);
 
-		/// Construction À» ÇÏ±â À§ÇØ ¿¹¾àÇØµÐ Tile µéÀ» Map ¿¡ Ç¥½ÃÇÕ´Ï´Ù
+		/// Construction ì„ í•˜ê¸° ìœ„í•´ ì˜ˆì•½í•´ë‘” Tile ë“¤ì„ Map ì— í‘œì‹œí•©ë‹ˆë‹¤
 		void drawReservedBuildingTilesOnMap();
 
-		/// Construction À» ÇÏÁö ¸øÇÏ´Â Tile µéÀ» Map ¿¡ Ç¥½ÃÇÕ´Ï´Ù
+		/// Construction ì„ í•˜ì§€ ëª»í•˜ëŠ” Tile ë“¤ì„ Map ì— í‘œì‹œí•©ë‹ˆë‹¤
 		void drawTilesToAvoidOnMap();
 
-		/// Build ÁøÇà »óÅÂ¸¦ Screen ¿¡ Ç¥½ÃÇÕ´Ï´Ù
+		/// Build ì§„í–‰ ìƒíƒœë¥¼ Screen ì— í‘œì‹œí•©ë‹ˆë‹¤
 		void drawBuildStatusOnScreen(int x, int y);
 
 
-		/// Unit ÀÇ HitPoint µî Ãß°¡ Á¤º¸¸¦ Map ¿¡ Ç¥½ÃÇÕ´Ï´Ù
+		/// Unit ì˜ HitPoint ë“± ì¶”ê°€ ì •ë³´ë¥¼ Map ì— í‘œì‹œí•©ë‹ˆë‹¤
 		void drawUnitExtendedInformationOnMap();
 
-		/// UnitType º° Åë°è Á¤º¸¸¦ Screen ¿¡ Ç¥½ÃÇÕ´Ï´Ù
+		/// UnitType ë³„ í†µê³„ ì •ë³´ë¥¼ Screen ì— í‘œì‹œí•©ë‹ˆë‹¤
 		void drawUnitStatisticsOnScreen(int x, int y);
 
-		/// Unit ÀÇ Id ¸¦ Map ¿¡ Ç¥½ÃÇÕ´Ï´Ù
+		/// Unit ì˜ Id ë¥¼ Map ì— í‘œì‹œí•©ë‹ˆë‹¤
 		void drawUnitIdOnMap();
 
-		/// Unit ÀÇ Target À¸·Î ÀÕ´Â ¼±À» Map ¿¡ Ç¥½ÃÇÕ´Ï´Ù
+		/// Unit ì˜ Target ìœ¼ë¡œ ìž‡ëŠ” ì„ ì„ Map ì— í‘œì‹œí•©ë‹ˆë‹¤
 		void drawUnitTargetOnMap();
 
-		/// Bullet À» Map ¿¡ Ç¥½ÃÇÕ´Ï´Ù 
-		/// Cloaking Unit ÀÇ Bullet Ç¥½Ã¿¡ ¾²ÀÔ´Ï´Ù
+		/// Bullet ì„ Map ì— í‘œì‹œí•©ë‹ˆë‹¤ 
+		/// Cloaking Unit ì˜ Bullet í‘œì‹œì— ì“°ìž…ë‹ˆë‹¤
 		void drawBulletsOnMap();
 
 
 
-		/// Worker Unit ÀÇ ÀÚ¿øÃ¤Ãë ÇöÈ²À» Map ¿¡ Ç¥½ÃÇÕ´Ï´Ù
+		/// Worker Unit ì˜ ìžì›ì±„ì·¨ í˜„í™©ì„ Map ì— í‘œì‹œí•©ë‹ˆë‹¤
 		void drawWorkerMiningStatusOnMap();
 
-		/// ResourceDepot º° Worker ¼ýÀÚ¸¦ Map ¿¡ Ç¥½ÃÇÕ´Ï´Ù
+		/// ResourceDepot ë³„ Worker ìˆ«ìžë¥¼ Map ì— í‘œì‹œí•©ë‹ˆë‹¤
 		void drawWorkerCountOnMap();
 
-		/// Worker Unit µéÀÇ »óÅÂ¸¦ Screen ¿¡ Ç¥½ÃÇÕ´Ï´Ù
+		/// Worker Unit ë“¤ì˜ ìƒíƒœë¥¼ Screen ì— í‘œì‹œí•©ë‹ˆë‹¤
 		void drawWorkerStateOnScreen(int x, int y);
 
 
-		/// Á¤Âû »óÅÂ¸¦ Screen ¿¡ Ç¥½ÃÇÕ´Ï´Ù
+		/// ì •ì°° ìƒíƒœë¥¼ Screen ì— í‘œì‹œí•©ë‹ˆë‹¤
 		void drawScoutInformation(int x, int y);
 
 	public:
-		/// static singleton °´Ã¼¸¦ ¸®ÅÏÇÕ´Ï´Ù
+		/// static singleton ê°ì²´ë¥¼ ë¦¬í„´í•©ë‹ˆë‹¤
 		static UXManager &	Instance();
 
-		/// °æ±â°¡ ½ÃÀÛµÉ ¶§ ÀÏÈ¸ÀûÀ¸·Î Ãß°¡ Á¤º¸¸¦ Ãâ·ÂÇÕ´Ï´Ù
+		/// ê²½ê¸°ê°€ ì‹œìž‘ë  ë•Œ ì¼íšŒì ìœ¼ë¡œ ì¶”ê°€ ì •ë³´ë¥¼ ì¶œë ¥í•©ë‹ˆë‹¤
 		void onStart();
 
-		/// °æ±â ÁøÇà Áß ¸Å ÇÁ·¹ÀÓ¸¶´Ù Ãß°¡ Á¤º¸¸¦ Ãâ·ÂÇÏ°í »ç¿ëÀÚ ÀÔ·ÂÀ» Ã³¸®ÇÕ´Ï´Ù
+		/// ê²½ê¸° ì§„í–‰ ì¤‘ ë§¤ í”„ë ˆìž„ë§ˆë‹¤ ì¶”ê°€ ì •ë³´ë¥¼ ì¶œë ¥í•˜ê³  ì‚¬ìš©ìž ìž…ë ¥ì„ ì²˜ë¦¬í•©ë‹ˆë‹¤
 		void update();
 	};
 
-	/// ºôµå ÁøÇà»óÈ²À» ºôµå ½ÃÀÛ ¼ø¼­´ë·Î Á¤·ÄÇÏ¿© Ç¥½ÃÇÏ±â À§ÇÑ Comparator class
+	/// ë¹Œë“œ ì§„í–‰ìƒí™©ì„ ë¹Œë“œ ì‹œìž‘ ìˆœì„œëŒ€ë¡œ ì •ë ¬í•˜ì—¬ í‘œì‹œí•˜ê¸° ìœ„í•œ Comparator class
 	class CompareWhenStarted
 	{
 	public:
 
 		CompareWhenStarted() {}
 
-		/// ºôµå ÁøÇà»óÈ²À» ºôµå ½ÃÀÛ ¼ø¼­´ë·Î Á¤·ÄÇÏ¿© Ç¥½ÃÇÏ±â À§ÇÑ sorting operator
+		/// ë¹Œë“œ ì§„í–‰ìƒí™©ì„ ë¹Œë“œ ì‹œìž‘ ìˆœì„œëŒ€ë¡œ ì •ë ¬í•˜ì—¬ í‘œì‹œí•˜ê¸° ìœ„í•œ sorting operator
 		bool operator() (BWAPI::Unit u1, BWAPI::Unit u2)
 		{
 			int startedU1 = BWAPI::Broodwar->getFrameCount() - (u1->getType().buildTime() - u1->getRemainingBuildTime());

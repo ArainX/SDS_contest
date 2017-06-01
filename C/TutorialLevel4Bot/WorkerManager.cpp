@@ -22,23 +22,23 @@ WorkerManager::WorkerManager()
 
 void WorkerManager::update() 
 {
-	// °¢°¢ÀÇ Worker ¿¡ ´ëÇØ¼­
-	// °¡Àå °¡±î¿î ¾Æ±º ResourceDepot ±ÙÃ³ÀÇ, °¡Àå °¡±î¿î Mineral ¿¡ Ã¤ÃëÇÏµµ·Ï ÇÏµÇ (°Å¸® °è»ê ÇÊ¿ä)
-	// Worker µéÀÌ ¿©·¯ Mineral ¿¡ ºĞ»êµÇµµ·Ï ÇÑ´Ù (°¢°¢ÀÇ Mineral ¿¡ ÇÒ´çµÈ worker µéÀÇ ¼ıÀÚ¸¦ ÀúÀå / ÃÖ½ÅÈ­ ÇØ¾ß ÇÑ´Ù)
+	// ê°ê°ì˜ Worker ì— ëŒ€í•´ì„œ
+	// ê°€ì¥ ê°€ê¹Œìš´ ì•„êµ° ResourceDepot ê·¼ì²˜ì˜, ê°€ì¥ ê°€ê¹Œìš´ Mineral ì— ì±„ì·¨í•˜ë„ë¡ í•˜ë˜ (ê±°ë¦¬ ê³„ì‚° í•„ìš”)
+	// Worker ë“¤ì´ ì—¬ëŸ¬ Mineral ì— ë¶„ì‚°ë˜ë„ë¡ í•œë‹¤ (ê°ê°ì˜ Mineral ì— í• ë‹¹ëœ worker ë“¤ì˜ ìˆ«ìë¥¼ ì €ì¥ / ìµœì‹ í™” í•´ì•¼ í•œë‹¤)
 
-	// worker ´Â ÀÏÀÌ ¾øÀ» ¶§µµ idle »óÅÂ°¡ µÇÁö¸¸, ÀÏÀ» ¼öÇàÇÏ´Â µµÁß¿¡µµ Àá±ñ idle »óÅÂ°¡ µÈ´Ù
+	// worker ëŠ” ì¼ì´ ì—†ì„ ë•Œë„ idle ìƒíƒœê°€ ë˜ì§€ë§Œ, ì¼ì„ ìˆ˜í–‰í•˜ëŠ” ë„ì¤‘ì—ë„ ì ê¹ idle ìƒíƒœê°€ ëœë‹¤
 	for (auto & unit : BWAPI::Broodwar->self()->getUnits()){
 
 		if (!unit) continue;
 		
 		if (unit->getType().isWorker()) {
 
-			// unit ÀÌ idle »óÅÂÀÌ°í, Åº»ıÇÑ ÀÌÈÄÀÌ¸é 
+			// unit ì´ idle ìƒíƒœì´ê³ , íƒ„ìƒí•œ ì´í›„ì´ë©´ 
 			if (unit->isIdle() && unit->isCompleted())
 			{
 				std::cout << unit->getType().getName() << " " << unit->getID() << " is idle" << std::endl;
 
-				// unit ¿¡°Ô ÀûÀıÇÑ Mineral À» Ã£¾Æ, ±× Mineral ·Î Right Click À» ÇÑ´Ù
+				// unit ì—ê²Œ ì ì ˆí•œ Mineral ì„ ì°¾ì•„, ê·¸ Mineral ë¡œ Right Click ì„ í•œë‹¤
 				BWAPI::Unit bestMineral = getBestMineralTo(unit);
 
 				if (bestMineral) {
@@ -47,16 +47,16 @@ void WorkerManager::update()
 
 					unit->gather(bestMineral);
 
-					// unit °ú Mineral °£ assign Á¤º¸¸¦ ¾÷µ¥ÀÌÆ®ÇÑ´Ù
+					// unit ê³¼ Mineral ê°„ assign ì •ë³´ë¥¼ ì—…ë°ì´íŠ¸í•œë‹¤
 					workerMineralAssignment[unit] = bestMineral;
-					// Mineral º° assigned unit ¼ıÀÚ¸¦ ¾÷µ¥ÀÌÆ®ÇÑ´Ù
+					// Mineral ë³„ assigned unit ìˆ«ìë¥¼ ì—…ë°ì´íŠ¸í•œë‹¤
 					increaseWorkerCountOnMineral(bestMineral, 1);
 				}
 			}
 		}
 	}
 
-	// Mineral º° assigned unit ¼ıÀÚ¸¦ È­¸é¿¡ Ç¥½Ã
+	// Mineral ë³„ assigned unit ìˆ«ìë¥¼ í™”ë©´ì— í‘œì‹œ
 	for (auto & i : workerMineralAssignment) {
 		if (i.first != nullptr && i.second != nullptr) {
 			BWAPI::Unit mineral = i.second;
@@ -71,9 +71,9 @@ BWAPI::Unit WorkerManager::getBestMineralTo(BWAPI::Unit worker)
 {
 	if (!worker) return nullptr;
 
-	// workerÀ¸·ÎºÎÅÍ °¡Àå °¡±î¿î BaseLocationÀ» Ã£´Â´Ù
+	// workerìœ¼ë¡œë¶€í„° ê°€ì¥ ê°€ê¹Œìš´ BaseLocationì„ ì°¾ëŠ”ë‹¤
 	BWTA::BaseLocation * closestBaseLocation = nullptr;
-	// 128 * 128 Å¸ÀÏ»çÀÌÁîÀÇ ¸Ê¿¡¼­ °¡Àå ¸Õ °Å¸®´Â sqrt(128 * 32  * 128 * 32 + 128 * 32 * 128 * 32) = 5792.6 point 
+	// 128 * 128 íƒ€ì¼ì‚¬ì´ì¦ˆì˜ ë§µì—ì„œ ê°€ì¥ ë¨¼ ê±°ë¦¬ëŠ” sqrt(128 * 32  * 128 * 32 + 128 * 32 * 128 * 32) = 5792.6 point 
 	double closestDistance = 1000000000;
 
 	for (auto & baseLocation : BWTA::getBaseLocations()){
@@ -95,19 +95,19 @@ BWAPI::Unit WorkerManager::getBestMineralTo(BWAPI::Unit worker)
 	std::cout << "closestBaseLocation from " << worker->getType().getName() << " " << worker->getID()
 		<< " is " << closestBaseLocation->getTilePosition().x << "," << closestBaseLocation->getTilePosition().y << std::endl;
 
-	// ÇØ´ç BaseLocation ÀÇ Mineral µé Áß¿¡¼­ worker °¡ °¡Àå Àû°Ô ÁöÁ¤µÇ¾îÀÖ´Â °Í, ±×Áß¿¡¼­µµ BaseLocation À¸·ÎºÎÅÍ °¡Àå °¡±î¿î °ÍÀ» Ã£´Â´Ù
+	// í•´ë‹¹ BaseLocation ì˜ Mineral ë“¤ ì¤‘ì—ì„œ worker ê°€ ê°€ì¥ ì ê²Œ ì§€ì •ë˜ì–´ìˆëŠ” ê²ƒ, ê·¸ì¤‘ì—ì„œë„ BaseLocation ìœ¼ë¡œë¶€í„° ê°€ì¥ ê°€ê¹Œìš´ ê²ƒì„ ì°¾ëŠ”ë‹¤
 	BWAPI::Unit bestMineral = nullptr;
 	double bestDistance = 1000000000;
 	int bestNumAssigned = 1000000000;
 
-	//BaseLocation->getMinerals() -> ¾îµÎ¿î ¿µ¿ª¿¡ ÀÖÀ¸¸é, null À» ¸®ÅÏ
-	//BaseLocation->getStaticMinerals() -> ¾îµÎ¿î ¿µ¿ª¿¡ ÀÖÀ¸¸é, BWAPI::UnitTypes::Unknown À» ¸®ÅÏ
+	//BaseLocation->getMinerals() -> ì–´ë‘ìš´ ì˜ì—­ì— ìˆìœ¼ë©´, null ì„ ë¦¬í„´
+	//BaseLocation->getStaticMinerals() -> ì–´ë‘ìš´ ì˜ì—­ì— ìˆìœ¼ë©´, BWAPI::UnitTypes::Unknown ì„ ë¦¬í„´
 	for (auto & mineral : closestBaseLocation->getMinerals()){
 		if (!mineral) continue;
 
-		// ÇØ´ç Mineral ¿¡ ÁöÁ¤µÈ worker ¼ıÀÚ
+		// í•´ë‹¹ Mineral ì— ì§€ì •ëœ worker ìˆ«ì
 		int numAssigned = workerCountOnMineral.find(mineral) == workerCountOnMineral.end() ? 0 : workerCountOnMineral[mineral];
-		// ÇØ´ç Mineral °ú BaseLocation °£ÀÇ °Å¸®
+		// í•´ë‹¹ Mineral ê³¼ BaseLocation ê°„ì˜ ê±°ë¦¬
 		double dist = mineral->getDistance(closestBaseLocation->getPosition());
 
 		if (numAssigned < bestNumAssigned)
@@ -132,7 +132,7 @@ BWAPI::Unit WorkerManager::getBestMineralTo(BWAPI::Unit worker)
 
 void WorkerManager::increaseWorkerCountOnMineral(BWAPI::Unit mineral, int num)
 {
-	// Mineral ¿¡ assign µÈ worker ¼ıÀÚ¸¦ º¯°æÇÑ´Ù
+	// Mineral ì— assign ëœ worker ìˆ«ìë¥¼ ë³€ê²½í•œë‹¤
 	if (workerCountOnMineral.find(mineral) == workerCountOnMineral.end())
 	{
 		workerCountOnMineral[mineral] = num;
@@ -149,7 +149,7 @@ void WorkerManager::onUnitDestroy(BWAPI::Unit unit)
 
 	if (unit->getType().isWorker() && unit->getPlayer() == BWAPI::Broodwar->self()) 
 	{
-		// ÇØ´ç ÀÏ²Û°ú Mineral °£ assign Á¤º¸¸¦ »èÁ¦ÇÑ´Ù
+		// í•´ë‹¹ ì¼ê¾¼ê³¼ Mineral ê°„ assign ì •ë³´ë¥¼ ì‚­ì œí•œë‹¤
 		std::cout << "removeWorker " << unit->getID() << " from Mineral Worker " << std::endl;
 		increaseWorkerCountOnMineral(workerMineralAssignment[unit], -1);
 		workerMineralAssignment.erase(unit);
@@ -159,10 +159,10 @@ void WorkerManager::onUnitMorph(BWAPI::Unit unit)
 {
 	if (!unit) return;
 
-	// Àú±× Á¾Á· ÀÏ²ÛÀÌ °Ç¹°·Î morph ÇÑ °æ¿ì
+	// ì €ê·¸ ì¢…ì¡± ì¼ê¾¼ì´ ê±´ë¬¼ë¡œ morph í•œ ê²½ìš°
 	if (unit->getPlayer()->getRace() == BWAPI::Races::Zerg && unit->getPlayer() == BWAPI::Broodwar->self() && unit->getType().isBuilding())
 	{
-		// ÇØ´ç ÀÏ²Û°ú Mineral °£ assign Á¤º¸¸¦ »èÁ¦ÇÑ´Ù
+		// í•´ë‹¹ ì¼ê¾¼ê³¼ Mineral ê°„ assign ì •ë³´ë¥¼ ì‚­ì œí•œë‹¤
 		std::cout << "removeWorker " << unit->getID() << " from Mineral Worker " << std::endl;				
 		increaseWorkerCountOnMineral(workerMineralAssignment[unit], -1);
 		workerMineralAssignment.erase(unit);

@@ -16,25 +16,25 @@ void GameCommander::onEnd(bool isWinner)
 
 void GameCommander::onFrame()
 {
-	// ¾Æ±º º£ÀÌ½º À§Ä¡. Àû±º º£ÀÌ½º À§Ä¡ Á¤º¸¸¦ ÀúÀå/¾÷µ¥ÀÌÆ®ÇÑ´Ù
+	// ì•„êµ° ë² ì´ìŠ¤ ìœ„ì¹˜. ì êµ° ë² ì´ìŠ¤ ìœ„ì¹˜ ì •ë³´ë¥¼ ì €ì¥/ì—…ë°ì´íŠ¸í•œë‹¤
 	InformationManager::Instance().update();
 
-	// ÇÃ·¹ÀÌ¾î Á¤º¸ Ç¥½Ã - InformationManager ÀÇ ¸â¹öº¯¼ö »ç¿ë
+	// í”Œë ˆì´ì–´ ì •ë³´ í‘œì‹œ - InformationManager ì˜ ë©¤ë²„ë³€ìˆ˜ ì‚¬ìš©
 	BWAPI::Broodwar->drawTextScreen(5, 5, "My Player: %c%s (%s) ",
 		BWAPI::Broodwar->self()->getTextColor(), BWAPI::Broodwar->self()->getName().c_str(), InformationManager::Instance().selfRace.c_str());
 	BWAPI::Broodwar->drawTextScreen(5, 15, "Enemy Player: %c%s (%s)",
 		BWAPI::Broodwar->enemy()->getTextColor(), BWAPI::Broodwar->enemy()->getName().c_str(), InformationManager::Instance().enemyRace.c_str());
 
-	// ÇöÀç FrameCount Ç¥½Ã
+	// í˜„ì¬ FrameCount í‘œì‹œ
 	BWAPI::Broodwar->drawTextScreen(300, 100, "FrameCount: %d", BWAPI::Broodwar->getFrameCount());
 
-	// À¯´Ö id Ç¥½Ã
+	// ìœ ë‹› id í‘œì‹œ
 	for (auto & unit : BWAPI::Broodwar->getAllUnits()) {
 		BWAPI::Broodwar->drawTextMap(unit->getPosition().x, unit->getPosition().y, "%d", unit->getID());
 		BWAPI::Broodwar->drawTextMap(unit->getPosition().x, unit->getPosition().y, "%d", unit->getID());
 	}
 
-	// ÇÃ·¹ÀÌ¾î Start Location Ç¥½Ã - InformationManager ÀÇ ¸â¹öº¯¼ö »ç¿ë
+	// í”Œë ˆì´ì–´ Start Location í‘œì‹œ - InformationManager ì˜ ë©¤ë²„ë³€ìˆ˜ ì‚¬ìš©
 	if (InformationManager::Instance()._mainBaseLocations[InformationManager::Instance().selfPlayer]) {
 		BWAPI::Broodwar->drawTextScreen(200, 5, "Start Location: %d, %d",
 			InformationManager::Instance()._mainBaseLocations[InformationManager::Instance().selfPlayer]->getTilePosition().x,
@@ -46,10 +46,10 @@ void GameCommander::onFrame()
 			InformationManager::Instance()._mainBaseLocations[InformationManager::Instance().enemyPlayer]->getTilePosition().y);
 	}
 
-	// ÀÏ²Û À¯´Ö¿¡°Ô ÀÚ¿ø Ã¤Ãë¸¦ ¸í·ÉÇÑ´Ù
+	// ì¼ê¾¼ ìœ ë‹›ì—ê²Œ ìì› ì±„ì·¨ë¥¼ ëª…ë ¹í•œë‹¤
 	WorkerManager::Instance().update();	
 
-	// À¯´Ö ÈÆ·Ã ¹× °Ç¹° °Ç¼³À» ÇÑ´Ù
+	// ìœ ë‹› í›ˆë ¨ ë° ê±´ë¬¼ ê±´ì„¤ì„ í•œë‹¤
 	BuildManager::Instance().update();
 }
 

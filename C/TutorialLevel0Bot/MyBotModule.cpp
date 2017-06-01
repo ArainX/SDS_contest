@@ -11,30 +11,30 @@ MyBotModule::~MyBotModule(){
 }
 
 void MyBotModule::onStart(){
-	// ¸®ÇÃ·¹ÀÌ Àç»ıÀÏ °æ¿ì ¾Æ¹«°Íµµ ÇÏÁö ¾ÊÀ½
+	// ë¦¬í”Œë ˆì´ ì¬ìƒì¼ ê²½ìš° ì•„ë¬´ê²ƒë„ í•˜ì§€ ì•ŠìŒ
 	if (BWAPI::Broodwar->isReplay()) {
 		return;
 	}
 
-	// ·£´ı ½Ãµå°ª ¼³Á¤
+	// ëœë¤ ì‹œë“œê°’ ì„¤ì •
 	time_t t;
 	srand((unsigned int)(time(&t)));
 
-	// ÀüÃ¼ Áöµµ ¹× »ó´ëÆí ÀÌº¥Æ®µé ´Ù ÆÄ¾ÇÇÏ´Â ¸ğµå
+	// ì „ì²´ ì§€ë„ ë° ìƒëŒ€í¸ ì´ë²¤íŠ¸ë“¤ ë‹¤ íŒŒì•…í•˜ëŠ” ëª¨ë“œ
 	//BWAPI::Broodwar->enableFlag(BWAPI::Flag::CompleteMapInformation);
-	// Å°º¸µå/¸¶¿ì½º·Î °ÔÀÓ ÇÃ·¹ÀÌ¸¦ ÁøÇàÇÒ ¼ö ÀÖ´Â ¸ğµå
+	// í‚¤ë³´ë“œ/ë§ˆìš°ìŠ¤ë¡œ ê²Œì„ í”Œë ˆì´ë¥¼ ì§„í–‰í•  ìˆ˜ ìˆëŠ” ëª¨ë“œ
 	BWAPI::Broodwar->enableFlag(BWAPI::Flag::UserInput);
 	
-	// µ¿ÀÏÇÑ °ÔÀÓ ¸í·ÉÀº ÇÏ³ª·Î Ã³¸®ÇØ¼­ CPU ºÎ´ãÀ» ÁÙ¿©ÁÜ
+	// ë™ì¼í•œ ê²Œì„ ëª…ë ¹ì€ í•˜ë‚˜ë¡œ ì²˜ë¦¬í•´ì„œ CPU ë¶€ë‹´ì„ ì¤„ì—¬ì¤Œ
 	Broodwar->setCommandOptimizationLevel(1);
 
 	// Sets the number of milliseconds bwapi spends in each frame
-	// Fastest: 42 ms/frame.  1ÃÊ¿¡ ¾à 24 frame (Á¤È®È÷´Â 23.80952380952381 frame). °¡Àå ÀÏ¹İÀûÀÎ °ÔÀÓ ¼Óµµ
-	// Normal: 67 ms/frame. 1ÃÊ¿¡ ¾à 15 frame
-	// As fast as possible : 0 ms/frame. CPU°¡ ÇÒ¼öÀÖ´Â °¡Àå ºü¸¥ ¼Óµµ. 
-	// °³¹ß ½Ã¿¡´Â 1ÃÊ¿¡ 15 frame À» °ÔÀÓ¼Óµµ·Î ÇÑ´Ù
+	// Fastest: 42 ms/frame.  1ì´ˆì— ì•½ 24 frame (ì •í™•íˆëŠ” 23.80952380952381 frame). ê°€ì¥ ì¼ë°˜ì ì¸ ê²Œì„ ì†ë„
+	// Normal: 67 ms/frame. 1ì´ˆì— ì•½ 15 frame
+	// As fast as possible : 0 ms/frame. CPUê°€ í• ìˆ˜ìˆëŠ” ê°€ì¥ ë¹ ë¥¸ ì†ë„. 
+	// ê°œë°œ ì‹œì—ëŠ” 1ì´ˆì— 15 frame ì„ ê²Œì„ì†ë„ë¡œ í•œë‹¤
 	BWAPI::Broodwar->setLocalSpeed(20);
-	// frameskipÀ» ´Ã¸®¸é È­¸é Ç¥½Ãµµ ¾÷µ¥ÀÌÆ® ¾ÈÇÏ¹Ç·Î ÈÎ¾À ºü¸£´Ù
+	// frameskipì„ ëŠ˜ë¦¬ë©´ í™”ë©´ í‘œì‹œë„ ì—…ë°ì´íŠ¸ ì•ˆí•˜ë¯€ë¡œ í›¨ì”¬ ë¹ ë¥´ë‹¤
 	BWAPI::Broodwar->setFrameSkip(0);
 	
 	std::cout << "Map analyzing started" << std::endl;
@@ -53,13 +53,13 @@ void MyBotModule::onEnd(bool isWinner){
 
 void MyBotModule::onFrame(){
 
-	// ´ë°á ½ÃÀÛÇÑÁö 500 frame ÀÌ µÇ¾úÀ» ¶§ 1¹ø¸¸ Ç¥½Ã
+	// ëŒ€ê²° ì‹œì‘í•œì§€ 500 frame ì´ ë˜ì—ˆì„ ë•Œ 1ë²ˆë§Œ í‘œì‹œ
 	if (BWAPI::Broodwar->getFrameCount() == 500) {
 
-		// ¸í·É ÇÁ·ÒÇÁÆ®¿¡ Ç¥½Ã
+		// ëª…ë ¹ í”„ë¡¬í”„íŠ¸ì— í‘œì‹œ
 		std::cout << "Hello Starcraft command prompt" << std::endl;
 
-		// °ÔÀÓ È­¸é¿¡ Ç¥½Ã
+		// ê²Œì„ í™”ë©´ì— í‘œì‹œ
 		BWAPI::Broodwar << "Hello Starcraft game screen" << std::endl;
 	}
 }

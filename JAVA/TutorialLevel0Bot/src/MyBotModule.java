@@ -26,21 +26,21 @@ public class MyBotModule extends DefaultBWListener {
 			return;
 		}
 
-		// ÀüÃ¼ Áöµµ ¹× »ó´ëÆí ÀÌº¥Æ®µé ´Ù ÆÄ¾ÇÇÏ´Â ¸ğµå
+		// ì „ì²´ ì§€ë„ ë° ìƒëŒ€í¸ ì´ë²¤íŠ¸ë“¤ ë‹¤ íŒŒì•…í•˜ëŠ” ëª¨ë“œ
 		//game.enableFlag(Enum.CompleteMapInformation.getValue());
 
-		// Å°º¸µå/¸¶¿ì½º·Î °ÔÀÓ ÇÃ·¹ÀÌ¸¦ ÁøÇàÇÒ ¼ö ÀÖ´Â ¸ğµå
+		// í‚¤ë³´ë“œ/ë§ˆìš°ìŠ¤ë¡œ ê²Œì„ í”Œë ˆì´ë¥¼ ì§„í–‰í•  ìˆ˜ ìˆëŠ” ëª¨ë“œ
 		Broodwar.enableFlag(Enum.UserInput.getValue());
 
-		// µ¿ÀÏÇÑ °ÔÀÓ ¸í·ÉÀº ÇÏ³ª·Î Ã³¸®ÇØ¼­ CPU ºÎ´ãÀ» ÁÙ¿©ÁÜ
+		// ë™ì¼í•œ ê²Œì„ ëª…ë ¹ì€ í•˜ë‚˜ë¡œ ì²˜ë¦¬í•´ì„œ CPU ë¶€ë‹´ì„ ì¤„ì—¬ì¤Œ
 		Broodwar.setCommandOptimizationLevel(1);
 
 		// Speedups for automated play, sets the number of milliseconds bwapi spends in each frame
-		// Fastest: 42 ms/frame.  1ÃÊ¿¡ 24 frame. ÀÏ¹İÀûÀ¸·Î 1ÃÊ¿¡ 24frameÀ» ±âÁØ °ÔÀÓ¼Óµµ·Î ÇÑ´Ù
-		// Normal: 67 ms/frame. 1ÃÊ¿¡ 15 frame
-		// As fast as possible : 0 ms/frame. CPU°¡ ÇÒ¼öÀÖ´Â °¡Àå ºü¸¥ ¼Óµµ. 
+		// Fastest: 42 ms/frame.  1ì´ˆì— 24 frame. ì¼ë°˜ì ìœ¼ë¡œ 1ì´ˆì— 24frameì„ ê¸°ì¤€ ê²Œì„ì†ë„ë¡œ í•œë‹¤
+		// Normal: 67 ms/frame. 1ì´ˆì— 15 frame
+		// As fast as possible : 0 ms/frame. CPUê°€ í• ìˆ˜ìˆëŠ” ê°€ì¥ ë¹ ë¥¸ ì†ë„. 
 		Broodwar.setLocalSpeed(20);
-		// frameskipÀ» ´Ã¸®¸é È­¸é Ç¥½Ãµµ ¾÷µ¥ÀÌÆ® ¾ÈÇÏ¹Ç·Î ÈÎ¾À ºü¸£´Ù
+		// frameskipì„ ëŠ˜ë¦¬ë©´ í™”ë©´ í‘œì‹œë„ ì—…ë°ì´íŠ¸ ì•ˆí•˜ë¯€ë¡œ í›¨ì”¬ ë¹ ë¥´ë‹¤
 		Broodwar.setFrameSkip(0);
 
 		System.out.println("Map analyzing started");
@@ -65,13 +65,13 @@ public class MyBotModule extends DefaultBWListener {
 	@Override
 	public void onFrame() {
 		
-		// ´ë°á ½ÃÀÛÇÑÁö 500 frame ÀÌ µÇ¾úÀ» ¶§ 1¹ø¸¸ Ç¥½Ã
+		// ëŒ€ê²° ì‹œì‘í•œì§€ 500 frame ì´ ë˜ì—ˆì„ ë•Œ 1ë²ˆë§Œ í‘œì‹œ
 		if (Broodwar.getFrameCount() == 500) {
 
-			// ¸í·É ÇÁ·ÒÇÁÆ®¿¡ Ç¥½Ã
+			// ëª…ë ¹ í”„ë¡¬í”„íŠ¸ì— í‘œì‹œ
 			System.out.println("Hello Starcraft command prompt");
 
-			// °ÔÀÓ È­¸é¿¡ Ç¥½Ã
+			// ê²Œì„ í™”ë©´ì— í‘œì‹œ
 			Broodwar.printf("Hello Starcraft game screen");
 		}
 

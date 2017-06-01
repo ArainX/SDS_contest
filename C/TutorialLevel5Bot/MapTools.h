@@ -6,9 +6,26 @@ namespace MyBot
 {
 	class DistanceMap
 	{
-		int rows, cols, startRow, startCol;
+		/// mapHeight
+		int rows;
+		/// mapWidth
+		int cols;
+
+		/// ì‹œì‘ì ì˜ X ì¢Œí‘œ. ì§€ë„ ìƒ ê° ì ê¹Œì§€ì˜ ê±°ë¦¬ë¥¼ ê³„ì‚°í•˜ê¸° ìœ„í•œ ì‹œì‘ì 
+		/// ì²˜ìŒì—ëŠ” -1
+		int startRow;
+		/// ì‹œì‘ì ì˜ Y ì¢Œí‘œ. ì§€ë„ ìƒ ê° ì ê¹Œì§€ì˜ ê±°ë¦¬ë¥¼ ê³„ì‚°í•˜ê¸° ìœ„í•œ ì‹œì‘ì 
+		/// ì²˜ìŒì—ëŠ” -1
+		int startCol;
+		
+		/// ë§µ width * height 2ì°¨ì› ë°°ì—´ì˜ 1ì°¨ì› í˜•íƒœë¡œ ë°”ê¾¼ ê²ƒ. getIndex ë¥¼ ì‚¬ìš©í•´ì„œ ì „í™˜
+		/// ì²˜ìŒì—ëŠ” ì „ë¶€ -1 (ê±°ë¦¬ê°ˆ ìˆ˜ ì—†ëŠ” ê³³) ë¡œ ì´ˆê¸°í™”
 		std::vector<int> dist;
+		
+		/// ì²˜ìŒì—ëŠ” ì „ë¶€ 'X' ë¡œ ì´ˆê¸°í™”
 		std::vector<char> moveTo;
+
+		/// ê±°ë¦¬ ìˆœìœ¼ë¡œ ì •ë ¬ëœ ë²¡í„°
 		std::vector<BWAPI::TilePosition> sorted;
 
 		int getIndex(const int row, const int col) const
@@ -64,6 +81,7 @@ namespace MyBot
 			startCol = -1;
 		}
 
+		/// ì‹œì‘ì ìœ¼ë¡œë¶€í„° pê¹Œì§€ì˜ ê±°ë¦¬ê°€ -1 ì´ ì•„ë‹ˆë©´ true
 		bool isConnected(const BWAPI::Position p) const
 		{
 			return dist[getIndex(p)] != -1;
@@ -111,12 +129,12 @@ namespace MyBot
 		}
 	};
 
-	/// Áöµµ¸¦ ¹ÙµÏÆÇÃ³·³ Cell µé·Î ³ª´©±â À§ÇØ¼­ Á¤ÀÇÇÑ ÇÏ³ªÀÇ Cell
+	/// ì§€ë„ë¥¼ ë°”ë‘‘íŒì²˜ëŸ¼ Cell ë“¤ë¡œ ë‚˜ëˆ„ê¸° ìœ„í•´ì„œ ì •ì˜í•œ í•˜ë‚˜ì˜ Cell
 	class GridCell
 	{
 	public:		
-		int             timeLastVisited;			///< °¡Àå ¸¶Áö¸·¿¡ ¹æ¹®Çß´ø ½Ã°¢ÀÌ ¾ğÁ¦ÀÎÁö -> Scout ¿¡ È°¿ë		
-		int             timeLastOpponentSeen;		///< °¡Àå ¸¶Áö¸·¿¡ ÀûÀ» ¹ß°ßÇß´ø ½Ã°¢ÀÌ ¾ğÁ¦ÀÎÁö -> Àû ÀÇµµ ÆÄ¾Ç, Àû ºÎ´ë ÆÄ¾Ç, Àü·« ¼ö¸³¿¡ È°¿ë
+		int             timeLastVisited;			///< ê°€ì¥ ë§ˆì§€ë§‰ì— ë°©ë¬¸í–ˆë˜ ì‹œê°ì´ ì–¸ì œì¸ì§€ -> Scout ì— í™œìš©		
+		int             timeLastOpponentSeen;		///< ê°€ì¥ ë§ˆì§€ë§‰ì— ì ì„ ë°œê²¬í–ˆë˜ ì‹œê°ì´ ì–¸ì œì¸ì§€ -> ì  ì˜ë„ íŒŒì•…, ì  ë¶€ëŒ€ íŒŒì•…, ì „ëµ ìˆ˜ë¦½ì— í™œìš©
 		BWAPI::Unitset  ourUnits;
 		BWAPI::Unitset  oppUnits;
 		BWAPI::Position center;
@@ -128,7 +146,7 @@ namespace MyBot
 		}
 	};
 
-	/// Áöµµ¸¦ ¹ÙµÏÆÇÃ³·³ Cell µé·Î ³ª´©°í, ¸Å frame ¸¶´Ù °¢ Cell ÀÇ timeLastVisited ½Ã°£Á¤º¸, timeLastOpponentSeen ½Ã°£Á¤º¸, ourUnits ¿Í oppUnits ¸ñ·ÏÀ» ¾÷µ¥ÀÌÆ® ÇÕ´Ï´Ù
+	/// ì§€ë„ë¥¼ ë°”ë‘‘íŒì²˜ëŸ¼ Cell ë“¤ë¡œ ë‚˜ëˆ„ê³ , ë§¤ frame ë§ˆë‹¤ ê° Cell ì˜ timeLastVisited ì‹œê°„ì •ë³´, timeLastOpponentSeen ì‹œê°„ì •ë³´, ourUnits ì™€ oppUnits ëª©ë¡ì„ ì—…ë°ì´íŠ¸ í•©ë‹ˆë‹¤
 	class MapGrid
 	{
 		MapGrid();
@@ -147,14 +165,14 @@ namespace MyBot
 		BWAPI::Position				getCellCenter(int x, int y);
 
 	public:
-		/// static singleton °´Ã¼¸¦ ¸®ÅÏÇÕ´Ï´Ù
+		/// static singleton ê°ì²´ë¥¼ ë¦¬í„´í•©ë‹ˆë‹¤
 		static MapGrid &	Instance();
 
-		/// °¢ Cell ÀÇ timeLastVisited ½Ã°£Á¤º¸, timeLastOpponentSeen ½Ã°£Á¤º¸, ourUnits ¿Í oppUnits ¸ñ·Ï µîÀ» ¾÷µ¥ÀÌÆ® ÇÕ´Ï´Ù
+		/// ê° Cell ì˜ timeLastVisited ì‹œê°„ì •ë³´, timeLastOpponentSeen ì‹œê°„ì •ë³´, ourUnits ì™€ oppUnits ëª©ë¡ ë“±ì„ ì—…ë°ì´íŠ¸ í•©ë‹ˆë‹¤
 		void				update();
 
-		/// ÇØ´ç position ±ÙÃ³¿¡ ÀÖ´Â ¾Æ±º È¤Àº Àû±º À¯´ÖµéÀÇ ¸ñ·ÏÀ» UnitSet ¿¡ ÀúÀåÇÕ´Ï´Ù
-		/// BWAPI::Broodwar->self()->getUnitsOnTile, getUnitsInRectangle, getUnitsInRadius, getClosestUnit ÇÔ¼ö¿Í À¯»çÇÏÁö¸¸ ¾²ÀÓ»õ°¡ ´Ù¸¨´Ï´Ù
+		/// í•´ë‹¹ position ê·¼ì²˜ì— ìˆëŠ” ì•„êµ° í˜¹ì€ ì êµ° ìœ ë‹›ë“¤ì˜ ëª©ë¡ì„ UnitSet ì— ì €ì¥í•©ë‹ˆë‹¤
+		/// BWAPI::Broodwar->self()->getUnitsOnTile, getUnitsInRectangle, getUnitsInRadius, getClosestUnit í•¨ìˆ˜ì™€ ìœ ì‚¬í•˜ì§€ë§Œ ì“°ì„ìƒˆê°€ ë‹¤ë¦…ë‹ˆë‹¤
 		void				getUnitsNear(BWAPI::Unitset & units, BWAPI::Position center, int radius, bool ourUnits, bool oppUnits);
 
 		BWAPI::Position		getLeastExplored();
@@ -191,22 +209,31 @@ namespace MyBot
 		void                    reset();							///< resets the distance and fringe vectors, call before each search    
 		void                    setBWAPIMapData();					///< reads in the map data from bwapi and stores it in our map format
 		void                    resetFringe();
-		void                    computeDistance(DistanceMap & dmap,const BWAPI::Position p); ///< computes walk distance from Position P to all other points on the map
 		BWAPI::TilePosition     getTilePosition(int index);		
-		int                     getGroundDistance(BWAPI::Position from, BWAPI::Position to); ///< from ¿¡¼­ to ±îÁö Áö»óÀ¯´ÖÀÌ ÀÌµ¿ÇÒ °æ¿ìÀÇ °Å¸® (walk distance)
 
+		/// from ì—ì„œ to ê¹Œì§€ ì§€ìƒìœ ë‹›ì´ ì´ë™í•  ê²½ìš°ì˜ ê±°ë¦¬ (walk distance). ëª»ê°€ëŠ” ê³³ì´ë©´ -1.  
+		/// computeDistance ë¥¼ ìˆ˜í–‰í•´ì„œ _allMaps ì— ì €ì¥í•œë‹¤
+		/// ë°˜í™˜ê°’ ìì²´ëŠ” ë¶€ì •í™•í•˜ë‹¤. ì§€ìƒìœ ë‹›ì´ ëª»ê°€ëŠ” ê³³ì¸ë°ë„ ê±°ë¦¬ê°€ ì‚°ì¶œëœë‹¤.
+		/// getClosestTilesTo ë¥¼ ê³„ì‚°í•˜ëŠ” ê³¼ì •ì—ì„œ í•œë²ˆ í˜¸ì¶œëœë‹¤. 
+		/// ì†ë„ê°€ ëŠë¦¬ë‹¤
+		int                     getGroundDistance(BWAPI::Position from, BWAPI::Position to);
 
+		void                    computeDistance(DistanceMap & dmap, const BWAPI::Position p); ///< computes walk distance from Position P to all other points on the map
+
+		void                    search(DistanceMap & dmap, const int sR, const int sC);
+
+		/// ì§€ë„ë¥¼ Parsing í•´ì„œ íŒŒì¼ë¡œ ì €ì¥í•´ë‘”ë‹¤
+		/// ì‚¬ìš©í•˜ì§€ ì•ŠëŠ” API
+		void                    parseMap();
+
+		/// ì‚¬ìš©í•˜ì§€ ì•ŠëŠ” API
+		void                    fill(const int index, const int region);
 	public:
-		/// static singleton °´Ã¼¸¦ ¸®ÅÏÇÕ´Ï´Ù
+		/// static singleton ê°ì²´ë¥¼ ë¦¬í„´í•©ë‹ˆë‹¤
 		static MapTools &       Instance();
 
-		/// Áöµµ¸¦ Parsing ÇØ¼­ ÆÄÀÏ·Î ÀúÀåÇØµĞ´Ù
-		/// »ç¿ëÇÏÁö ¾Ê´Â API
-		void                    parseMap();
-		void                    search(DistanceMap & dmap,const int sR,const int sC);
-		void                    fill(const int index,const int region);
-
-		/// Position ¿¡¼­ °¡±î¿î ¼ø¼­´ë·Î Å¸ÀÏÀÇ ¸ñ·ÏÀ» ¹İÈ¯ÇÑ´Ù
+		/// pos ì—ì„œ ê°€ê¹Œìš´ ìˆœì„œëŒ€ë¡œ ì •ë ¬ëœ íƒ€ì¼ì˜ ëª©ë¡ì„ ë°˜í™˜í•œë‹¤
+		/// pos ì—ì„œ ì§€ìƒìœ ë‹›ì´ ê°ˆ ìˆ˜ ìˆëŠ” íƒ€ì¼ë§Œ ë°˜í™˜í•œë‹¤
 		const std::vector<BWAPI::TilePosition> & getClosestTilesTo(BWAPI::Position pos);
 	};
 

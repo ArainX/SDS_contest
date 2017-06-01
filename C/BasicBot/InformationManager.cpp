@@ -37,7 +37,7 @@ void InformationManager::update()
 {
 	updateUnitsInfo();
 
-	// occupiedBaseLocation ÀÌ³ª occupiedRegion Àº °ÅÀÇ ¾È¹Ù²î¹Ç·Î ÀÚÁÖ ¾ÈÇØµµ µÈ´Ù
+	// occupiedBaseLocation ì´ë‚˜ occupiedRegion ì€ ê±°ì˜ ì•ˆë°”ë€Œë¯€ë¡œ ìì£¼ ì•ˆí•´ë„ ëœë‹¤
 	if (BWAPI::Broodwar->getFrameCount() % 120 == 0) {
 		updateBaseLocationInfo();
 	}
@@ -61,7 +61,7 @@ void InformationManager::updateUnitsInfo()
 	_unitData[selfPlayer].removeBadUnits();
 }
 
-// ÇØ´ç unit ÀÇ Á¤º¸¸¦ ¾÷µ¥ÀÌÆ® ÇÑ´Ù (UnitType, lastPosition, HitPoint µî)
+// í•´ë‹¹ unit ì˜ ì •ë³´ë¥¼ ì—…ë°ì´íŠ¸ í•œë‹¤ (UnitType, lastPosition, HitPoint ë“±)
 void InformationManager::updateUnitInfo(BWAPI::Unit unit)
 {
     if (unit->getPlayer() != selfPlayer && unit->getPlayer() != enemyPlayer) {
@@ -75,7 +75,7 @@ void InformationManager::updateUnitInfo(BWAPI::Unit unit)
     _unitData[unit->getPlayer()].updateUnitInfo(unit);
 }
 
-// À¯´ÖÀÌ ÆÄ±«/»ç¸ÁÇÑ °æ¿ì, ÇØ´ç À¯´Ö Á¤º¸¸¦ »èÁ¦ÇÑ´Ù
+// ìœ ë‹›ì´ íŒŒê´´/ì‚¬ë§í•œ ê²½ìš°, í•´ë‹¹ ìœ ë‹› ì •ë³´ë¥¼ ì‚­ì œí•œë‹¤
 void InformationManager::onUnitDestroy(BWAPI::Unit unit)
 { 
     if (unit->getType().isNeutral())
@@ -165,7 +165,7 @@ void InformationManager::updateBaseLocationInfo()
 	_occupiedBaseLocations[selfPlayer].clear();
 	_occupiedBaseLocations[enemyPlayer].clear();
 
-	// enemy ÀÇ startLocationÀ» ¾ÆÁ÷ ¸ğ¸£´Â °æ¿ì
+	// enemy ì˜ startLocationì„ ì•„ì§ ëª¨ë¥´ëŠ” ê²½ìš°
 	if (_mainBaseLocations[enemyPlayer] == nullptr) {
 
 		// how many start locations have we explored
@@ -210,7 +210,7 @@ void InformationManager::updateBaseLocationInfo()
 	}
 
 	// update occupied base location
-	// ¾î¶² Base Location ¿¡´Â ¾Æ±º °Ç¹°, Àû±º °Ç¹° ¸ğµÎ È¥ÀçÇØÀÖ¾î¼­ µ¿½Ã¿¡ ¿©·¯ Player °¡ Occupy ÇÏ°í ÀÖ´Â °ÍÀ¸·Î ÆÇÁ¤µÉ ¼ö ÀÖ´Ù
+	// ì–´ë–¤ Base Location ì—ëŠ” ì•„êµ° ê±´ë¬¼, ì êµ° ê±´ë¬¼ ëª¨ë‘ í˜¼ì¬í•´ìˆì–´ì„œ ë™ì‹œì— ì—¬ëŸ¬ Player ê°€ Occupy í•˜ê³  ìˆëŠ” ê²ƒìœ¼ë¡œ íŒì •ë  ìˆ˜ ìˆë‹¤
 	for (BWTA::BaseLocation * baseLocation : BWTA::getBaseLocations())
 	{
 		if (hasBuildingAroundBaseLocation(baseLocation, enemyPlayer))
@@ -224,7 +224,7 @@ void InformationManager::updateBaseLocationInfo()
 		}
 	}
 
-	// enemyÀÇ mainBaseLocationsÀ» ¹ß°ßÇÑ ÈÄ, ±×°÷¿¡ ÀÖ´Â °Ç¹°À» ¸ğµÎ ÆÄ±«ÇÑ °æ¿ì _occupiedBaseLocations Áß¿¡¼­ _mainBaseLocations ¸¦ ¼±Á¤ÇÑ´Ù
+	// enemyì˜ mainBaseLocationsì„ ë°œê²¬í•œ í›„, ê·¸ê³³ì— ìˆëŠ” ê±´ë¬¼ì„ ëª¨ë‘ íŒŒê´´í•œ ê²½ìš° _occupiedBaseLocations ì¤‘ì—ì„œ _mainBaseLocations ë¥¼ ì„ ì •í•œë‹¤
 	if (_mainBaseLocations[enemyPlayer] != nullptr) {
 		if (existsPlayerBuildingInRegion(BWTA::getRegion(_mainBaseLocations[enemyPlayer]->getTilePosition()), enemyPlayer) == false)
 		{
@@ -238,7 +238,7 @@ void InformationManager::updateBaseLocationInfo()
 		}
 	}
 
-	// selfÀÇ mainBaseLocations¿¡ ´ëÇØ, ±×°÷¿¡ ÀÖ´Â °Ç¹°ÀÌ ¸ğµÎ ÆÄ±«µÈ °æ¿ì _occupiedBaseLocations Áß¿¡¼­ _mainBaseLocations ¸¦ ¼±Á¤ÇÑ´Ù
+	// selfì˜ mainBaseLocationsì— ëŒ€í•´, ê·¸ê³³ì— ìˆëŠ” ê±´ë¬¼ì´ ëª¨ë‘ íŒŒê´´ëœ ê²½ìš° _occupiedBaseLocations ì¤‘ì—ì„œ _mainBaseLocations ë¥¼ ì„ ì •í•œë‹¤
 	if (_mainBaseLocations[selfPlayer] != nullptr) {
 		if (existsPlayerBuildingInRegion(BWTA::getRegion(_mainBaseLocations[selfPlayer]->getTilePosition()), selfPlayer) == false)
 		{
@@ -359,7 +359,7 @@ void InformationManager::updateOccupiedRegions(BWTA::Region * region, BWAPI::Pla
 	}
 }
 
-// BaseLocation ÁÖÀ§ ¿ø ¾È¿¡ playerÀÇ °Ç¹°ÀÌ ÀÖÀ¸¸é true ¸¦ ¹İÈ¯ÇÑ´Ù
+// BaseLocation ì£¼ìœ„ ì› ì•ˆì— playerì˜ ê±´ë¬¼ì´ ìˆìœ¼ë©´ true ë¥¼ ë°˜í™˜í•œë‹¤
 bool InformationManager::hasBuildingAroundBaseLocation(BWTA::BaseLocation * baseLocation, BWAPI::Player player, int radius)
 {
 	// invalid regions aren't considered the same, but they will both be null
@@ -408,7 +408,7 @@ bool InformationManager::existsPlayerBuildingInRegion(BWTA::Region * region, BWA
 	return false;
 }
 
-// ÇØ´ç Player ÀÇ UnitAndUnitInfoMap À» °®°í¿Â´Ù
+// í•´ë‹¹ Player ì˜ UnitAndUnitInfoMap ì„ ê°–ê³ ì˜¨ë‹¤
 const UnitAndUnitInfoMap & InformationManager::getUnitAndUnitInfoMap(BWAPI::Player player) const
 {
 	return getUnitData(player).getUnitAndUnitInfoMap();

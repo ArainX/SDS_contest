@@ -8,7 +8,7 @@ import java.io.IOException;
 
 public class Common {
 
-	/// ·Î±× À¯Æ¿
+	/// ë¡œê·¸ ìœ í‹¸
 	public void appendTextToFile(final String logFile, final String msg)
 	{
 		try {
@@ -23,7 +23,7 @@ public class Common {
 		}
 	}
 
-	/// ·Î±× À¯Æ¿
+	/// ë¡œê·¸ ìœ í‹¸
 	public void overwriteToFile(final String logFile, final String msg)
 	{
 		try {
@@ -38,7 +38,7 @@ public class Common {
 		}
 	}
 
-	/// ÆÄÀÏ À¯Æ¿ - ÅØ½ºÆ® ÆÄÀÏÀ» ÀĞ¾îµéÀÎ´Ù
+	/// íŒŒì¼ ìœ í‹¸ - í…ìŠ¤íŠ¸ íŒŒì¼ì„ ì½ì–´ë“¤ì¸ë‹¤
 	public String readFile(final String filename)
 	{
 		BufferedInputStream bis;
@@ -59,7 +59,7 @@ public class Common {
 		return sb.toString();
 	}
 
-	/// ÆÄÀÏ À¯Æ¿ - °æ±â °á°ú¸¦ ÅØ½ºÆ® ÆÄÀÏ·ÎºÎÅÍ ÀĞ¾îµéÀÎ´Ù
+	/// íŒŒì¼ ìœ í‹¸ - ê²½ê¸° ê²°ê³¼ë¥¼ í…ìŠ¤íŠ¸ íŒŒì¼ë¡œë¶€í„° ì½ì–´ë“¤ì¸ë‹¤
 	public void readResults()
 	{
 		String enemyName = MyBotModule.Broodwar.enemy().getName();
@@ -91,7 +91,7 @@ public class Common {
 //		}
 	}
 
-	/// ÆÄÀÏ À¯Æ¿ - °æ±â °á°ú¸¦ ÅØ½ºÆ® ÆÄÀÏ¿¡ ÀúÀåÇÑ´Ù
+	/// íŒŒì¼ ìœ í‹¸ - ê²½ê¸° ê²°ê³¼ë¥¼ í…ìŠ¤íŠ¸ íŒŒì¼ì— ì €ì¥í•œë‹¤
 	public void writeResults()
 	{
 		String enemyName = MyBotModule.Broodwar.enemy().getName();

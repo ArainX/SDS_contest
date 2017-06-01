@@ -29,7 +29,7 @@ void ConstructionManager::addConstructionTask(BWAPI::UnitType type, BWAPI::TileP
 	constructionQueue.push_back(b);
 }
 
-// ConstructionTask ÇÏ³ª¸¦ »èÁ¦ÇÑ´Ù
+// ConstructionTask í•˜ë‚˜ë¥¼ ì‚­ì œí•œë‹¤
 void ConstructionManager::cancelConstructionTask(BWAPI::UnitType type, BWAPI::TilePosition desiredPosition)
 {
 	reservedMinerals -= type.mineralPrice();
@@ -51,8 +51,8 @@ void ConstructionManager::cancelConstructionTask(BWAPI::UnitType type, BWAPI::Ti
     }
 }
 
-// ConstructionTask ¿©·¯°³¸¦ »èÁ¦ÇÑ´Ù
-// °Ç¼³À» ½ÃÀÛÇß¾ú´ø ConstructionTask ÀÌ±â ¶§¹®¿¡ reservedMinerals, reservedGas ´Â °Çµå¸®Áö ¾Ê´Â´Ù
+// ConstructionTask ì—¬ëŸ¬ê°œë¥¼ ì‚­ì œí•œë‹¤
+// ê±´ì„¤ì„ ì‹œì‘í–ˆì—ˆë˜ ConstructionTask ì´ê¸° ë•Œë¬¸ì— reservedMinerals, reservedGas ëŠ” ê±´ë“œë¦¬ì§€ ì•ŠëŠ”ë‹¤
 void ConstructionManager::removeCompletedConstructionTasks(const std::vector<ConstructionTask> & toRemove)
 {
 	for (auto & b : toRemove)
@@ -70,11 +70,11 @@ void ConstructionManager::removeCompletedConstructionTasks(const std::vector<Con
 // gets called every frame from GameCommander
 void ConstructionManager::update()
 {
-	// 1ÃÊ¿¡ 1¹ø¸¸ ½ÇÇàÇÑ´Ù
+	// 1ì´ˆì— 1ë²ˆë§Œ ì‹¤í–‰í•œë‹¤
 	//if (BWAPI::Broodwar->getFrameCount() % 24 != 0) return;
 
-	// constructionQueue ¿¡ µé¾îÀÖ´Â ConstructionTask µéÀº 
-	// Unassigned -> Assigned (buildCommandGiven=false) -> Assigned (buildCommandGiven=true) -> UnderConstruction -> (Finished) ·Î »óÅÂ º¯È­µÈ´Ù
+	// constructionQueue ì— ë“¤ì–´ìˆëŠ” ConstructionTask ë“¤ì€ 
+	// Unassigned -> Assigned (buildCommandGiven=false) -> Assigned (buildCommandGiven=true) -> UnderConstruction -> (Finished) ë¡œ ìƒíƒœ ë³€í™”ëœë‹¤
 
 	validateWorkersAndBuildings();
 	assignWorkersToUnassignedBuildings();
@@ -94,8 +94,8 @@ void ConstructionManager::validateWorkersAndBuildings()
     {
 		if (b.status == ConstructionStatus::UnderConstruction)
 		{
-			// °Ç¼³ ÁøÇà µµÁß (°ø°İÀ» ¹Ş¾Æ¼­) °Ç¼³ÇÏ·Á´ø °Ç¹°ÀÌ ÆÄ±«µÈ °æ¿ì, constructionQueue ¿¡¼­ »èÁ¦ÇÑ´Ù
-			// ±×·¸Áö ¾ÊÀ¸¸é (¾Æ¸¶µµ ÀüÅõ°¡ ¹ú¾îÁö°íÀÖ´Â) ±âÁ¸ À§Ä¡¿¡ ´Ù½Ã °Ç¹°À» ÁöÀ¸·Á ÇÒ °ÍÀÌ±â ¶§¹®.
+			// ê±´ì„¤ ì§„í–‰ ë„ì¤‘ (ê³µê²©ì„ ë°›ì•„ì„œ) ê±´ì„¤í•˜ë ¤ë˜ ê±´ë¬¼ì´ íŒŒê´´ëœ ê²½ìš°, constructionQueue ì—ì„œ ì‚­ì œí•œë‹¤
+			// ê·¸ë ‡ì§€ ì•Šìœ¼ë©´ (ì•„ë§ˆë„ ì „íˆ¬ê°€ ë²Œì–´ì§€ê³ ìˆëŠ”) ê¸°ì¡´ ìœ„ì¹˜ì— ë‹¤ì‹œ ê±´ë¬¼ì„ ì§€ìœ¼ë ¤ í•  ê²ƒì´ê¸° ë•Œë¬¸.
 			if (b.buildingUnit == nullptr || !b.buildingUnit->getType().isBuilding() || b.buildingUnit->getHitPoints() <= 0 || !b.buildingUnit->exists())
 			{
 				std::cout << "Construction Failed case -> remove ConstructionTask " << b.type.getName() << std::endl;
@@ -126,21 +126,21 @@ void ConstructionManager::assignWorkersToUnassignedBuildings()
 
 		//std::cout << "find build place near desiredPosition " << b.desiredPosition.x << "," << b.desiredPosition.y << std::endl;
 
-		// °Ç¼³ ÀÏ²ÛÀÌ Unassigned ÀÎ »óÅÂ¿¡¼­ getBuildLocationNear ·Î °Ç¼³ÇÒ À§Ä¡¸¦ ´Ù½Ã Á¤ÇÑ´Ù. -> Assigned 
+		// ê±´ì„¤ ì¼ê¾¼ì´ Unassigned ì¸ ìƒíƒœì—ì„œ getBuildLocationNear ë¡œ ê±´ì„¤í•  ìœ„ì¹˜ë¥¼ ë‹¤ì‹œ ì •í•œë‹¤. -> Assigned 
 		BWAPI::TilePosition testLocation = ConstructionPlaceFinder::Instance().getBuildLocationNear(b.type, b.desiredPosition);
 
 		// std::cout << "ConstructionPlaceFinder Selected Location : " << testLocation.x << "," << testLocation.y << std::endl;
 
 		if (testLocation == BWAPI::TilePositions::None || testLocation == BWAPI::TilePositions::Invalid || testLocation.isValid() == false) {
 						
-			// Áö±İ °Ç¹° ÁöÀ» Àå¼Ò¸¦ ÀüÇô Ã£À» ¼ö ¾ø°Ô µÈ °æ¿ì´Â, 
-			// desiredPosition ÁÖÀ§¿¡ ´Ù¸¥ °Ç¹°/À¯´ÖµéÀÌ ÀÖ°Ô µÇ¾ú°Å³ª, Pylon ÀÌ ÆÄ±«µÇ¾ú°Å³ª, Creep ÀÌ ¾ø¾îÁø °æ¿ìÀÌ°í,
-			// ´ëºÎºĞ ´Ù¸¥ °Ç¹°/À¯´ÖµéÀÌ ÀÖ°ÔµÈ °æ¿ìÀÌ¹Ç·Î ´ÙÀ½ frame ¿¡¼­ ´Ù½Ã ÁöÀ» °÷À» Å½»öÇÑ´Ù
+			// ì§€ê¸ˆ ê±´ë¬¼ ì§€ì„ ì¥ì†Œë¥¼ ì „í˜€ ì°¾ì„ ìˆ˜ ì—†ê²Œ ëœ ê²½ìš°ëŠ”, 
+			// desiredPosition ì£¼ìœ„ì— ë‹¤ë¥¸ ê±´ë¬¼/ìœ ë‹›ë“¤ì´ ìˆê²Œ ë˜ì—ˆê±°ë‚˜, Pylon ì´ íŒŒê´´ë˜ì—ˆê±°ë‚˜, Creep ì´ ì—†ì–´ì§„ ê²½ìš°ì´ê³ ,
+			// ëŒ€ë¶€ë¶„ ë‹¤ë¥¸ ê±´ë¬¼/ìœ ë‹›ë“¤ì´ ìˆê²Œëœ ê²½ìš°ì´ë¯€ë¡œ ë‹¤ìŒ frame ì—ì„œ ë‹¤ì‹œ ì§€ì„ ê³³ì„ íƒìƒ‰í•œë‹¤
 			continue;
 		}
 
         // grab a worker unit from WorkerManager which is closest to this final position
-		// °Ç¼³À» ¸øÇÏ´Â worker °¡ °è¼Ó construction worker ·Î ¼±Á¤µÉ ¼ö ÀÖ´Ù. Á÷Àü¿¡ ¼±Á¤µÇ¾ú¾ú´ø worker ´Â ´Ù½Ã ¼±Á¤¾ÈÇÏµµ·Ï ÇÑ´Ù
+		// ê±´ì„¤ì„ ëª»í•˜ëŠ” worker ê°€ ê³„ì† construction worker ë¡œ ì„ ì •ë  ìˆ˜ ìˆë‹¤. ì§ì „ì— ì„ ì •ë˜ì—ˆì—ˆë˜ worker ëŠ” ë‹¤ì‹œ ì„ ì •ì•ˆí•˜ë„ë¡ í•œë‹¤
 		BWAPI::Unit workerToAssign = WorkerManager::Instance().chooseConstuctionWorkerClosestTo(b.type, testLocation, true, b.lastConstructionWorkerID);
 		
 		//std::cout << "assignWorkersToUnassignedBuildings - chooseConstuctionWorkerClosest for " << b.type.getName().c_str() << " to worker near " << testLocation.x << "," << testLocation.y << std::endl;
@@ -187,26 +187,26 @@ void ConstructionManager::constructAssignedBuildings()
 		}
 		*/
 
-		// ÀÏ²Û¿¡°Ô build ¸í·ÉÀ» ³»¸®±â Àü¿¡´Â isConstructing = false ÀÌ´Ù
-		// ¾ÆÁ÷ Å½»öÇÏÁö ¾ÊÀº °÷¿¡ ´ëÇØ¼­´Â build ¸í·ÉÀ» ³»¸± ¼ö ¾ø´Ù
-		// ÀÏ²Û¿¡°Ô build ¸í·ÉÀ» ³»¸®¸é, isConstructing = true »óÅÂ°¡ µÇ¾î ÀÌµ¿À» ÇÏ´Ù°¡
-		// build ¸¦ ½ÇÇàÇÒ ¼ö ¾ø´Â »óÈ²ÀÌ¶ó°í ÆÇ´ÜµÇ¸é isConstructing = false »óÅÂ°¡ µÈ´Ù
-		// build ¸¦ ½ÇÇàÇÒ ¼ö ÀÖÀ¸¸é, ÇÁ·ÎÅä½º / Å×¶õ Á¾Á·ÀÇ °æ¿ì ÀÏ²ÛÀÌ build ¸¦ ½ÇÇàÇÏ°í
-		// Àú±× Á¾Á· °Ç¹° Áß Extractor °Ç¹°ÀÌ ¾Æ´Ñ ´Ù¸¥ °Ç¹°ÀÇ °æ¿ì ÀÏ²ÛÀÌ exists = true, isConstructing = true, isMorphing = true °¡ µÇ°í, ÀÏ²Û ID °¡ °Ç¹° ID°¡ µÈ´Ù
-		// Àú±× Á¾Á· °Ç¹° Áß Extractor °Ç¹°ÀÇ °æ¿ì ÀÏ²ÛÀÌ exists = false, isConstructing = true, isMorphing = true °¡ µÈ ÈÄ, ÀÏ²Û ID °¡ °Ç¹° ID°¡ µÈ´Ù. 
-		//                  Extractor °Ç¹° ºôµå¸¦ µµÁß¿¡ Ãë¼ÒÇÏ¸é, »õ·Î¿î ID ¸¦ °¡Áø ÀÏ²ÛÀÌ µÈ´Ù
+		// ì¼ê¾¼ì—ê²Œ build ëª…ë ¹ì„ ë‚´ë¦¬ê¸° ì „ì—ëŠ” isConstructing = false ì´ë‹¤
+		// ì•„ì§ íƒìƒ‰í•˜ì§€ ì•Šì€ ê³³ì— ëŒ€í•´ì„œëŠ” build ëª…ë ¹ì„ ë‚´ë¦´ ìˆ˜ ì—†ë‹¤
+		// ì¼ê¾¼ì—ê²Œ build ëª…ë ¹ì„ ë‚´ë¦¬ë©´, isConstructing = true ìƒíƒœê°€ ë˜ì–´ ì´ë™ì„ í•˜ë‹¤ê°€
+		// build ë¥¼ ì‹¤í–‰í•  ìˆ˜ ì—†ëŠ” ìƒí™©ì´ë¼ê³  íŒë‹¨ë˜ë©´ isConstructing = false ìƒíƒœê°€ ëœë‹¤
+		// build ë¥¼ ì‹¤í–‰í•  ìˆ˜ ìˆìœ¼ë©´, í”„ë¡œí† ìŠ¤ / í…Œë€ ì¢…ì¡±ì˜ ê²½ìš° ì¼ê¾¼ì´ build ë¥¼ ì‹¤í–‰í•˜ê³ 
+		// ì €ê·¸ ì¢…ì¡± ê±´ë¬¼ ì¤‘ Extractor ê±´ë¬¼ì´ ì•„ë‹Œ ë‹¤ë¥¸ ê±´ë¬¼ì˜ ê²½ìš° ì¼ê¾¼ì´ exists = true, isConstructing = true, isMorphing = true ê°€ ë˜ê³ , ì¼ê¾¼ ID ê°€ ê±´ë¬¼ IDê°€ ëœë‹¤
+		// ì €ê·¸ ì¢…ì¡± ê±´ë¬¼ ì¤‘ Extractor ê±´ë¬¼ì˜ ê²½ìš° ì¼ê¾¼ì´ exists = false, isConstructing = true, isMorphing = true ê°€ ëœ í›„, ì¼ê¾¼ ID ê°€ ê±´ë¬¼ IDê°€ ëœë‹¤. 
+		//                  Extractor ê±´ë¬¼ ë¹Œë“œë¥¼ ë„ì¤‘ì— ì·¨ì†Œí•˜ë©´, ìƒˆë¡œìš´ ID ë¥¼ ê°€ì§„ ì¼ê¾¼ì´ ëœë‹¤
 
-		// ÀÏ²ÛÀÌ Assigned µÈ ÈÄ, UnderConstruction »óÅÂ·Î µÇ±â Àü, Áï ÀÏ²ÛÀÌ ÀÌµ¿ Áß¿¡ ÀÏ²ÛÀÌ Á×Àº °æ¿ì, °Ç¹°À» Unassigned »óÅÂ·Î µÇµ¹·Á ÀÏ²ÛÀ» ´Ù½Ã Assign ÇÏµµ·Ï ÇÑ´Ù		
+		// ì¼ê¾¼ì´ Assigned ëœ í›„, UnderConstruction ìƒíƒœë¡œ ë˜ê¸° ì „, ì¦‰ ì¼ê¾¼ì´ ì´ë™ ì¤‘ì— ì¼ê¾¼ì´ ì£½ì€ ê²½ìš°, ê±´ë¬¼ì„ Unassigned ìƒíƒœë¡œ ë˜ëŒë ¤ ì¼ê¾¼ì„ ë‹¤ì‹œ Assign í•˜ë„ë¡ í•œë‹¤		
 		if (b.constructionWorker == nullptr || b.constructionWorker->exists() == false || b.constructionWorker->getHitPoints() <= 0)
 		{
-			// Àú±× Á¾Á· °Ç¹° Áß Extractor °Ç¹°ÀÇ °æ¿ì ÀÏ²ÛÀÌ exists = false ÀÌÁö¸¸ isConstructing = true °¡ µÇ¹Ç·Î, ÀÏ²ÛÀÌ Á×Àº °æ¿ì°¡ ¾Æ´Ï´Ù
+			// ì €ê·¸ ì¢…ì¡± ê±´ë¬¼ ì¤‘ Extractor ê±´ë¬¼ì˜ ê²½ìš° ì¼ê¾¼ì´ exists = false ì´ì§€ë§Œ isConstructing = true ê°€ ë˜ë¯€ë¡œ, ì¼ê¾¼ì´ ì£½ì€ ê²½ìš°ê°€ ì•„ë‹ˆë‹¤
 			if (b.type == BWAPI::UnitTypes::Zerg_Extractor && b.constructionWorker != nullptr && b.constructionWorker->isConstructing() == true) {
 				continue;
 			}
 
 			//std::cout << "unassign " << b.type.getName().c_str() << " worker " << b.constructionWorker->getID() << ", because it is not exists" << std::endl;
 
-			// Unassigned µÈ »óÅÂ·Î µÇµ¹¸°´Ù
+			// Unassigned ëœ ìƒíƒœë¡œ ë˜ëŒë¦°ë‹¤
 			WorkerManager::Instance().setIdleWorker(b.constructionWorker);
 
 			// free the previous location in reserved
@@ -221,12 +221,12 @@ void ConstructionManager::constructAssignedBuildings()
 			b.status = ConstructionStatus::Unassigned;
 		}
 		// if that worker is not currently constructing
-		// ÀÏ²ÛÀÌ build command ¸¦ ¹ŞÀ¸¸é isConstructing = true °¡ µÇ°í °Ç¼³À» ÇÏ±âÀ§ÇØ ÀÌµ¿ÇÏ´Âµ¥,
-		// isConstructing = false °¡ µÇ¾ú´Ù´Â °ÍÀº, build command ¸¦ ¼öÇàÇÒ ¼ö ¾ø¾î °ÔÀÓ¿¡¼­ ÇØ´ç ÀÓ¹«°¡ Ãë¼ÒµÇ¾ú´Ù´Â °ÍÀÌ´Ù
+		// ì¼ê¾¼ì´ build command ë¥¼ ë°›ìœ¼ë©´ isConstructing = true ê°€ ë˜ê³  ê±´ì„¤ì„ í•˜ê¸°ìœ„í•´ ì´ë™í•˜ëŠ”ë°,
+		// isConstructing = false ê°€ ë˜ì—ˆë‹¤ëŠ” ê²ƒì€, build command ë¥¼ ìˆ˜í–‰í•  ìˆ˜ ì—†ì–´ ê²Œì„ì—ì„œ í•´ë‹¹ ì„ë¬´ê°€ ì·¨ì†Œë˜ì—ˆë‹¤ëŠ” ê²ƒì´ë‹¤
 		else if (b.constructionWorker->isConstructing() == false)        
         {
             // if we haven't explored the build position, first we mush go there
-			// ÇÑ¹øµµ ¾È°¡º» °÷¿¡´Â build Ä¿¸Çµå ÀÚÃ¼¸¦ Áö½ÃÇÒ ¼ö ¾øÀ¸¹Ç·Î, ÀÏ´Ü ±×°÷À¸·Î ÀÌµ¿ÇÏ°Ô ÇÑ´Ù
+			// í•œë²ˆë„ ì•ˆê°€ë³¸ ê³³ì—ëŠ” build ì»¤ë§¨ë“œ ìì²´ë¥¼ ì§€ì‹œí•  ìˆ˜ ì—†ìœ¼ë¯€ë¡œ, ì¼ë‹¨ ê·¸ê³³ìœ¼ë¡œ ì´ë™í•˜ê²Œ í•œë‹¤
             if (!isBuildingPositionExplored(b))
             {
                 CommandUtil::move(b.constructionWorker,BWAPI::Position(b.finalPosition));
@@ -248,8 +248,8 @@ void ConstructionManager::constructAssignedBuildings()
 				b.lastConstructionWorkerID = b.constructionWorker->getID();
             }
 			// if this is not the first time we've sent this guy to build this
-			// ÀÏ²Û¿¡°Ô build command ¸¦ ÁÖ¾úÁö¸¸, °Ç¼³½ÃÀÛÇÏ±âÀü¿¡ µµÁß¿¡ ÀÚ¿øÀÌ ¹Ì´ŞÇÏ°Ô µÇ¾ú°Å³ª, ÇØ´ç Àå¼Ò¿¡ ´Ù¸¥ À¯´ÖµéÀÌ ÀÖ¾î¼­ °Ç¼³À» ½ÃÀÛ ¸øÇÏ°Ô µÇ°Å³ª, Pylon ÀÌ³ª Creep ÀÌ ¾ø¾îÁø °æ¿ì µîÀÌ ¹ß»ıÇÒ ¼ö ÀÖ´Ù
-			// ÀÌ °æ¿ì, ÇØ´ç ÀÏ²ÛÀÇ build command ¸¦ ÇØÁ¦ÇÏ°í, °Ç¹° »óÅÂ¸¦ Unassigned ·Î ¹Ù²ã¼­, ´Ù½Ã °Ç¹° À§Ä¡¸¦ Á¤ÇÏ°í, ´Ù¸¥ ÀÏ²ÛÀ» ÁöÁ¤ÇÏ´Â ½ÄÀ¸·Î Ã³¸®ÇÑ´Ù
+			// ì¼ê¾¼ì—ê²Œ build command ë¥¼ ì£¼ì—ˆì§€ë§Œ, ê±´ì„¤ì‹œì‘í•˜ê¸°ì „ì— ë„ì¤‘ì— ìì›ì´ ë¯¸ë‹¬í•˜ê²Œ ë˜ì—ˆê±°ë‚˜, í•´ë‹¹ ì¥ì†Œì— ë‹¤ë¥¸ ìœ ë‹›ë“¤ì´ ìˆì–´ì„œ ê±´ì„¤ì„ ì‹œì‘ ëª»í•˜ê²Œ ë˜ê±°ë‚˜, Pylon ì´ë‚˜ Creep ì´ ì—†ì–´ì§„ ê²½ìš° ë“±ì´ ë°œìƒí•  ìˆ˜ ìˆë‹¤
+			// ì´ ê²½ìš°, í•´ë‹¹ ì¼ê¾¼ì˜ build command ë¥¼ í•´ì œí•˜ê³ , ê±´ë¬¼ ìƒíƒœë¥¼ Unassigned ë¡œ ë°”ê¿”ì„œ, ë‹¤ì‹œ ê±´ë¬¼ ìœ„ì¹˜ë¥¼ ì •í•˜ê³ , ë‹¤ë¥¸ ì¼ê¾¼ì„ ì§€ì •í•˜ëŠ” ì‹ìœ¼ë¡œ ì²˜ë¦¬í•œë‹¤
 			else
             {
 				if (BWAPI::Broodwar->getFrameCount() - b.lastBuildCommandGivenFrame > 24) {
@@ -327,7 +327,7 @@ void ConstructionManager::checkForStartedConstruction()
                 b.buildingUnit = buildingThatStartedConstruction;
 
                 // if we are zerg, make the buildingUnit nullptr since it's morphed or destroyed
-				// Extractor ÀÇ °æ¿ì destroyed µÇ°í, ±×¿Ü °Ç¹°ÀÇ °æ¿ì morphed µÈ´Ù
+				// Extractor ì˜ ê²½ìš° destroyed ë˜ê³ , ê·¸ì™¸ ê±´ë¬¼ì˜ ê²½ìš° morphed ëœë‹¤
                 if (BWAPI::Broodwar->self()->getRace() == BWAPI::Races::Zerg)
                 {
                     b.constructionWorker = nullptr;
@@ -354,8 +354,8 @@ void ConstructionManager::checkForStartedConstruction()
 }
 
 // STEP 5: IF WE ARE TERRAN, THIS MATTERS
-// Å×¶õÀº °Ç¼³À» ½ÃÀÛÇÑ ÈÄ, °Ç¼³ µµÁß¿¡ ÀÏ²ÛÀÌ Á×À» ¼ö ÀÖ´Ù. ÀÌ °æ¿ì, °Ç¹°¿¡ ´ëÇØ ´Ù½Ã ´Ù¸¥ SCV¸¦ ÇÒ´çÇÑ´Ù
-// Âü°í·Î, ÇÁ·ÎÅä½º / Àú±×´Â °Ç¼³À» ½ÃÀÛÇÏ¸é ÀÏ²Û Æ÷ÀÎÅÍ¸¦ nullptr ·Î ¸¸µé±â ¶§¹®¿¡ (constructionWorker = nullptr) °Ç¼³ µµÁß¿¡ Á×Àº ÀÏ²ÛÀ» ½Å°æ¾µ ÇÊ¿ä ¾ø´Ù 
+// í…Œë€ì€ ê±´ì„¤ì„ ì‹œì‘í•œ í›„, ê±´ì„¤ ë„ì¤‘ì— ì¼ê¾¼ì´ ì£½ì„ ìˆ˜ ìˆë‹¤. ì´ ê²½ìš°, ê±´ë¬¼ì— ëŒ€í•´ ë‹¤ì‹œ ë‹¤ë¥¸ SCVë¥¼ í• ë‹¹í•œë‹¤
+// ì°¸ê³ ë¡œ, í”„ë¡œí† ìŠ¤ / ì €ê·¸ëŠ” ê±´ì„¤ì„ ì‹œì‘í•˜ë©´ ì¼ê¾¼ í¬ì¸í„°ë¥¼ nullptr ë¡œ ë§Œë“¤ê¸° ë•Œë¬¸ì— (constructionWorker = nullptr) ê±´ì„¤ ë„ì¤‘ì— ì£½ì€ ì¼ê¾¼ì„ ì‹ ê²½ì“¸ í•„ìš” ì—†ë‹¤ 
 void ConstructionManager::checkForDeadTerranBuilders()
 {
 	if (BWAPI::Broodwar->self()->getRace() == BWAPI::Races::Terran) {
@@ -384,7 +384,7 @@ void ConstructionManager::checkForDeadTerranBuilders()
 
 						b.constructionWorker = workerToAssign;
 
-						//b.status ´Â °è¼Ó UnderConstruction ·Î µĞ´Ù. Assigned ·Î ¹Ù²Ù¸é, °á±¹ Unassigned °¡ µÇ¾î¼­ »õ·Î Áş°Ô µÇ±â ¶§¹®ÀÌ´Ù
+						//b.status ëŠ” ê³„ì† UnderConstruction ë¡œ ë‘”ë‹¤. Assigned ë¡œ ë°”ê¾¸ë©´, ê²°êµ­ Unassigned ê°€ ë˜ì–´ì„œ ìƒˆë¡œ ì§“ê²Œ ë˜ê¸° ë•Œë¬¸ì´ë‹¤
 						//b.status = ConstructionStatus::Assigned;
 
 						CommandUtil::rightClick(b.constructionWorker, b.buildingUnit);
@@ -442,10 +442,10 @@ void ConstructionManager::checkForDeadlockConstruction()
 	{
 		if (b.status != ConstructionStatus::UnderConstruction)
 		{
-			// BuildManager°¡ ÆÇ´ÜÇßÀ»¶§ Construction °¡´ÉÁ¶°ÇÀÌ °®ÃçÁ®¼­ ConstructionManagerÀÇ ConstructionQueue ¿¡ µé¾î°¬´Âµ¥, 
-			// ¼±Çà °Ç¹°ÀÌ ÆÄ±«µÇ¼­ ConstructionÀ» ¼öÇàÇÒ ¼ö ¾ø°Ô µÇ¾ú°Å³ª,
-			// ÀÏ²ÛÀÌ ´Ù »ç¸ÁÇÏ´Â µî °ÔÀÓ»óÈ²ÀÌ ¹Ù²î¾î¼­, °è¼Ó ConstructionQueue ¿¡ ³²¾ÆÀÖ°Ô µÇ´Â dead lock »óÈ²ÀÌ µÈ´Ù 
-			// ¼±Çà °Ç¹°À» BuildQueue¿¡ Ãß°¡ÇØ³ÖÀ»Áö, ÇØ´ç ConstructionQueueItem À» »èÁ¦ÇÒÁö Àü·«ÀûÀ¸·Î ÆÇ´ÜÇØ¾ß ÇÑ´Ù
+			// BuildManagerê°€ íŒë‹¨í–ˆì„ë•Œ Construction ê°€ëŠ¥ì¡°ê±´ì´ ê°–ì¶°ì ¸ì„œ ConstructionManagerì˜ ConstructionQueue ì— ë“¤ì–´ê°”ëŠ”ë°, 
+			// ì„ í–‰ ê±´ë¬¼ì´ íŒŒê´´ë˜ì„œ Constructionì„ ìˆ˜í–‰í•  ìˆ˜ ì—†ê²Œ ë˜ì—ˆê±°ë‚˜,
+			// ì¼ê¾¼ì´ ë‹¤ ì‚¬ë§í•˜ëŠ” ë“± ê²Œì„ìƒí™©ì´ ë°”ë€Œì–´ì„œ, ê³„ì† ConstructionQueue ì— ë‚¨ì•„ìˆê²Œ ë˜ëŠ” dead lock ìƒí™©ì´ ëœë‹¤ 
+			// ì„ í–‰ ê±´ë¬¼ì„ BuildQueueì— ì¶”ê°€í•´ë„£ì„ì§€, í•´ë‹¹ ConstructionQueueItem ì„ ì‚­ì œí• ì§€ ì „ëµì ìœ¼ë¡œ íŒë‹¨í•´ì•¼ í•œë‹¤
 			BWAPI::UnitType unitType = b.type;
 			BWAPI::UnitType producerType = b.type.whatBuilds().first;
 			const std::map< BWAPI::UnitType, int >& requiredUnits = unitType.requiredUnits();
@@ -453,12 +453,12 @@ void ConstructionManager::checkForDeadlockConstruction()
 
 			bool isDeadlockCase = false;
 
-			// °Ç¹°À» »ı»êÇÏ´Â À¯´ÖÀÌ³ª, À¯´ÖÀ» »ı»êÇÏ´Â °Ç¹°ÀÌ Á¸ÀçÇÏÁö ¾Ê°í, °Ç¼³ ¿¹Á¤ÀÌÁöµµ ¾ÊÀ¸¸é dead lock
+			// ê±´ë¬¼ì„ ìƒì‚°í•˜ëŠ” ìœ ë‹›ì´ë‚˜, ìœ ë‹›ì„ ìƒì‚°í•˜ëŠ” ê±´ë¬¼ì´ ì¡´ì¬í•˜ì§€ ì•Šê³ , ê±´ì„¤ ì˜ˆì •ì´ì§€ë„ ì•Šìœ¼ë©´ dead lock
 			if (BuildManager::Instance().isProducerWillExist(producerType) == false) {
 				isDeadlockCase = true;
 			}
 
-			// Refinery °Ç¹°ÀÇ °æ¿ì, °Ç¹° ÁöÀ» Àå¼Ò¸¦ Ã£À» ¼ö ¾ø°Ô µÇ¾ú°Å³ª, °Ç¹° ÁöÀ» ¼ö ÀÖÀ»°Å¶ó°í ÆÇ´ÜÇß´Âµ¥ ÀÌ¹Ì Refinery °¡ Áö¾îÁ®ÀÖ´Â °æ¿ì, dead lock 
+			// Refinery ê±´ë¬¼ì˜ ê²½ìš°, ê±´ë¬¼ ì§€ì„ ì¥ì†Œë¥¼ ì°¾ì„ ìˆ˜ ì—†ê²Œ ë˜ì—ˆê±°ë‚˜, ê±´ë¬¼ ì§€ì„ ìˆ˜ ìˆì„ê±°ë¼ê³  íŒë‹¨í–ˆëŠ”ë° ì´ë¯¸ Refinery ê°€ ì§€ì–´ì ¸ìˆëŠ” ê²½ìš°, dead lock 
 			if (!isDeadlockCase && unitType == InformationManager::Instance().getRefineryBuildingType())
 			{
 				bool hasAvailableGeyser = true;
@@ -471,13 +471,13 @@ void ConstructionManager::checkForDeadlockConstruction()
 					testLocation = ConstructionPlaceFinder::Instance().getBuildLocationNear(b.type, b.desiredPosition);
 				}
 
-				// Refinery ¸¦ ÁöÀ¸·Á´Â Àå¼Ò¸¦ Ã£À» ¼ö ¾øÀ¸¸é dead lock
+				// Refinery ë¥¼ ì§€ìœ¼ë ¤ëŠ” ì¥ì†Œë¥¼ ì°¾ì„ ìˆ˜ ì—†ìœ¼ë©´ dead lock
 				if (testLocation == BWAPI::TilePositions::None || testLocation == BWAPI::TilePositions::Invalid || testLocation.isValid() == false) {
 					std::cout << "Construction Dead lock case -> Cann't find place to construct " << b.type.getName() << std::endl;
 					hasAvailableGeyser = false;
 				}
 				else {
-					// Refinery ¸¦ ÁöÀ¸·Á´Â Àå¼Ò¿¡ Refinery °¡ ÀÌ¹Ì °Ç¼³µÇ¾î ÀÖ´Ù¸é dead lock 
+					// Refinery ë¥¼ ì§€ìœ¼ë ¤ëŠ” ì¥ì†Œì— Refinery ê°€ ì´ë¯¸ ê±´ì„¤ë˜ì–´ ìˆë‹¤ë©´ dead lock 
 					BWAPI::Unitset uot = BWAPI::Broodwar->getUnitsOnTile(testLocation);
 					for (auto & u : uot) {
 						if (u->getType().isRefinery() && u->exists() ) {
@@ -495,8 +495,8 @@ void ConstructionManager::checkForDeadlockConstruction()
 				}
 			}
 
-			// Á¤Âû°á°ú È¤Àº ÀüÅõ°á°ú, °Ç¼³ Àå¼Ò°¡ ¾Æ±º Á¡·É Region ÀÌ ¾Æ´Ï°í, Àû±ºÀÌ Á¡·ÉÇÑ Region ÀÌ µÇ¾úÀ¸¸é ÀÏ¹İÀûÀ¸·Î´Â Çö½ÇÀûÀ¸·Î dead lock ÀÌ µÈ´Ù 
-			// (Æ÷ÅæÄ³³í ·¯½ÃÀÌ°Å³ª, Àû±º Á¡·É Region ±ÙÃ³¿¡¼­ Å×¶õ °Ç¹° °Ç¼³ÇÏ´Â °æ¿ì¿¡´Â ¿¹¿ÜÀÏÅ×Áö¸¸..)
+			// ì •ì°°ê²°ê³¼ í˜¹ì€ ì „íˆ¬ê²°ê³¼, ê±´ì„¤ ì¥ì†Œê°€ ì•„êµ° ì ë ¹ Region ì´ ì•„ë‹ˆê³ , ì êµ°ì´ ì ë ¹í•œ Region ì´ ë˜ì—ˆìœ¼ë©´ ì¼ë°˜ì ìœ¼ë¡œëŠ” í˜„ì‹¤ì ìœ¼ë¡œ dead lock ì´ ëœë‹¤ 
+			// (í¬í†¤ìºë…¼ ëŸ¬ì‹œì´ê±°ë‚˜, ì êµ° ì ë ¹ Region ê·¼ì²˜ì—ì„œ í…Œë€ ê±´ë¬¼ ê±´ì„¤í•˜ëŠ” ê²½ìš°ì—ëŠ” ì˜ˆì™¸ì¼í…Œì§€ë§Œ..)
 			if (!isDeadlockCase
 				&& InformationManager::Instance().getOccupiedRegions(InformationManager::Instance().selfPlayer).find(desiredPositionRegion) == InformationManager::Instance().getOccupiedRegions(InformationManager::Instance().selfPlayer).end()
 				&& InformationManager::Instance().getOccupiedRegions(InformationManager::Instance().enemyPlayer).find(desiredPositionRegion) != InformationManager::Instance().getOccupiedRegions(InformationManager::Instance().enemyPlayer).end())
@@ -504,7 +504,7 @@ void ConstructionManager::checkForDeadlockConstruction()
 				isDeadlockCase = true;
 			}
 
-			// ¼±Çà °Ç¹°/À¯´ÖÀÌ ÀÖ´Âµ¥ 
+			// ì„ í–‰ ê±´ë¬¼/ìœ ë‹›ì´ ìˆëŠ”ë° 
 			if (!isDeadlockCase && requiredUnits.size() > 0)
 			{
 				for (auto & u : requiredUnits)
@@ -513,11 +513,11 @@ void ConstructionManager::checkForDeadlockConstruction()
 
 					if (requiredUnitType != BWAPI::UnitTypes::None) {
 
-						// ¼±Çà °Ç¹° / À¯´ÖÀÌ Á¸ÀçÇÏÁö ¾Ê°í, »ı»ê ÁßÀÌÁöµµ ¾Ê°í
+						// ì„ í–‰ ê±´ë¬¼ / ìœ ë‹›ì´ ì¡´ì¬í•˜ì§€ ì•Šê³ , ìƒì‚° ì¤‘ì´ì§€ë„ ì•Šê³ 
 						if (BWAPI::Broodwar->self()->completedUnitCount(requiredUnitType) == 0
 							&& BWAPI::Broodwar->self()->incompleteUnitCount(requiredUnitType) == 0)
 						{
-							// ¼±Çà °Ç¹°ÀÌ °Ç¼³ ¿¹Á¤ÀÌÁöµµ ¾ÊÀ¸¸é dead lock
+							// ì„ í–‰ ê±´ë¬¼ì´ ê±´ì„¤ ì˜ˆì •ì´ì§€ë„ ì•Šìœ¼ë©´ dead lock
 							if (requiredUnitType.isBuilding())
 							{
 								if (ConstructionManager::Instance().getConstructionQueueItemCount(requiredUnitType) == 0) {
@@ -607,10 +607,10 @@ std::vector<BWAPI::UnitType> ConstructionManager::buildingsQueued()
     return buildingsQueued;
 }
 
-// constructionQueue¿¡ ÇØ´ç type ÀÇ Item ÀÌ Á¸ÀçÇÏ´ÂÁö Ä«¿îÆ®ÇÑ´Ù. queryTilePosition À» ÀÔ·ÂÇÑ °æ¿ì, À§Ä¡°£ °Å¸®±îÁöµµ °í·ÁÇÑ´Ù
+// constructionQueueì— í•´ë‹¹ type ì˜ Item ì´ ì¡´ì¬í•˜ëŠ”ì§€ ì¹´ìš´íŠ¸í•œë‹¤. queryTilePosition ì„ ì…ë ¥í•œ ê²½ìš°, ìœ„ì¹˜ê°„ ê±°ë¦¬ê¹Œì§€ë„ ê³ ë ¤í•œë‹¤
 int ConstructionManager::getConstructionQueueItemCount(BWAPI::UnitType queryType, BWAPI::TilePosition queryTilePosition)
 {
-	// queryTilePosition À» ÀÔ·ÂÇÑ °æ¿ì, °Å¸®ÀÇ maxRange. Å¸ÀÏ´ÜÀ§
+	// queryTilePosition ì„ ì…ë ¥í•œ ê²½ìš°, ê±°ë¦¬ì˜ maxRange. íƒ€ì¼ë‹¨ìœ„
 	int maxRange = 16;
 
 	const BWAPI::Point<int, 32> queryTilePositionPoint(queryTilePosition.x, queryTilePosition.y);

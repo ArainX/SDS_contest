@@ -13,10 +13,10 @@
 
 namespace MyBot
 {
-	/// »óÈ²À» ÆÇ´ÜÇÏ¿©, Á¤Âû, ºôµå, °ø°Ý, ¹æ¾î µîÀ» ¼öÇàÇÏµµ·Ï ÃÑ°ý ÁöÈÖ¸¦ ÇÏ´Â class
-	/// InformationManager ¿¡ ÀÖ´Â Á¤º¸µé·ÎºÎÅÍ »óÈ²À» ÆÇ´ÜÇÏ°í, 
-	/// BuildManager ÀÇ buildQueue¿¡ ºôµå (°Ç¹° °Ç¼³ / À¯´Ö ÈÆ·Ã / Å×Å© ¸®¼­Ä¡ / ¾÷±×·¹ÀÌµå) ¸í·ÉÀ» ÀÔ·ÂÇÕ´Ï´Ù.
-	/// Á¤Âû, ºôµå, °ø°Ý, ¹æ¾î µîÀ» ¼öÇàÇÏ´Â ÄÚµå°¡ µé¾î°¡´Â class
+	/// ìƒí™©ì„ íŒë‹¨í•˜ì—¬, ì •ì°°, ë¹Œë“œ, ê³µê²©, ë°©ì–´ ë“±ì„ ìˆ˜í–‰í•˜ë„ë¡ ì´ê´„ ì§€íœ˜ë¥¼ í•˜ëŠ” class
+	/// InformationManager ì— ìžˆëŠ” ì •ë³´ë“¤ë¡œë¶€í„° ìƒí™©ì„ íŒë‹¨í•˜ê³ , 
+	/// BuildManager ì˜ buildQueueì— ë¹Œë“œ (ê±´ë¬¼ ê±´ì„¤ / ìœ ë‹› í›ˆë ¨ / í…Œí¬ ë¦¬ì„œì¹˜ / ì—…ê·¸ë ˆì´ë“œ) ëª…ë ¹ì„ ìž…ë ¥í•©ë‹ˆë‹¤.
+	/// ì •ì°°, ë¹Œë“œ, ê³µê²©, ë°©ì–´ ë“±ì„ ìˆ˜í–‰í•˜ëŠ” ì½”ë“œê°€ ë“¤ì–´ê°€ëŠ” class
 	class StrategyManager
 	{
 		StrategyManager();
@@ -32,16 +32,16 @@ namespace MyBot
 		void executeCombat();
 
 	public:
-		/// static singleton °´Ã¼¸¦ ¸®ÅÏÇÕ´Ï´Ù
+		/// static singleton ê°ì²´ë¥¼ ë¦¬í„´í•©ë‹ˆë‹¤
 		static StrategyManager &	Instance();
 
-		/// °æ±â°¡ ½ÃÀÛµÉ ¶§ ÀÏÈ¸ÀûÀ¸·Î Àü·« ÃÊ±â ¼¼ÆÃ °ü·Ã ·ÎÁ÷À» ½ÇÇàÇÕ´Ï´Ù
+		/// ê²½ê¸°ê°€ ì‹œìž‘ë  ë•Œ ì¼íšŒì ìœ¼ë¡œ ì „ëžµ ì´ˆê¸° ì„¸íŒ… ê´€ë ¨ ë¡œì§ì„ ì‹¤í–‰í•©ë‹ˆë‹¤
 		void onStart();
 
-		///  °æ±â°¡ Á¾·áµÉ ¶§ ÀÏÈ¸ÀûÀ¸·Î Àü·« °á°ú Á¤¸® °ü·Ã ·ÎÁ÷À» ½ÇÇàÇÕ´Ï´Ù
+		///  ê²½ê¸°ê°€ ì¢…ë£Œë  ë•Œ ì¼íšŒì ìœ¼ë¡œ ì „ëžµ ê²°ê³¼ ì •ë¦¬ ê´€ë ¨ ë¡œì§ì„ ì‹¤í–‰í•©ë‹ˆë‹¤
 		void onEnd(bool isWinner);
 
-		/// °æ±â ÁøÇà Áß ¸Å ÇÁ·¹ÀÓ¸¶´Ù °æ±â Àü·« °ü·Ã ·ÎÁ÷À» ½ÇÇàÇÕ´Ï´Ù
+		/// ê²½ê¸° ì§„í–‰ ì¤‘ ë§¤ í”„ë ˆìž„ë§ˆë‹¤ ê²½ê¸° ì „ëžµ ê´€ë ¨ ë¡œì§ì„ ì‹¤í–‰í•©ë‹ˆë‹¤
 		void update();
 	};
 }

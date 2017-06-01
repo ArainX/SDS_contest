@@ -20,45 +20,45 @@ import bwta.BaseLocation;
 import bwta.Chokepoint;
 import bwta.Region;
 
-/// °ÔÀÓ »óÈ²Á¤º¸ Áß ÀÏºÎ¸¦ ÀÚÃ¼ ÀÚ·á±¸Á¶ ¹× º¯¼öµé¿¡ ÀúÀåÇÏ°í ¾÷µ¥ÀÌÆ®ÇÏ´Â class
-/// ÇöÀç °ÔÀÓ »óÈ²Á¤º¸´Â BWAPI::Broodwar ¸¦ Á¶È¸ÇÏ¿© ÆÄ¾ÇÇÒ ¼ö ÀÖÁö¸¸, °ú°Å °ÔÀÓ »óÈ²Á¤º¸´Â BWAPI::Broodwar ¸¦ ÅëÇØ Á¶È¸°¡ ºÒ°¡´ÉÇÏ±â ¶§¹®¿¡ InformationManager¿¡¼­ º°µµ °ü¸®ÇÏµµ·Ï ÇÕ´Ï´Ù
-/// ¶ÇÇÑ, BWAPI::Broodwar ³ª BWTA µîÀ» ÅëÇØ Á¶È¸ÇÒ ¼ö ÀÖ´Â Á¤º¸ÀÌÁö¸¸ ÀüÃ³¸® / º°µµ °ü¸®ÇÏ´Â °ÍÀÌ À¯¿ëÇÑ °Íµµ InformationManager¿¡¼­ º°µµ °ü¸®ÇÏµµ·Ï ÇÕ´Ï´Ù
+/// ê²Œì„ ìƒí™©ì •ë³´ ì¤‘ ì¼ë¶€ë¥¼ ìì²´ ìë£Œêµ¬ì¡° ë° ë³€ìˆ˜ë“¤ì— ì €ì¥í•˜ê³  ì—…ë°ì´íŠ¸í•˜ëŠ” class
+/// í˜„ì¬ ê²Œì„ ìƒí™©ì •ë³´ëŠ” BWAPI::Broodwar ë¥¼ ì¡°íšŒí•˜ì—¬ íŒŒì•…í•  ìˆ˜ ìˆì§€ë§Œ, ê³¼ê±° ê²Œì„ ìƒí™©ì •ë³´ëŠ” BWAPI::Broodwar ë¥¼ í†µí•´ ì¡°íšŒê°€ ë¶ˆê°€ëŠ¥í•˜ê¸° ë•Œë¬¸ì— InformationManagerì—ì„œ ë³„ë„ ê´€ë¦¬í•˜ë„ë¡ í•©ë‹ˆë‹¤
+/// ë˜í•œ, BWAPI::Broodwar ë‚˜ BWTA ë“±ì„ í†µí•´ ì¡°íšŒí•  ìˆ˜ ìˆëŠ” ì •ë³´ì´ì§€ë§Œ ì „ì²˜ë¦¬ / ë³„ë„ ê´€ë¦¬í•˜ëŠ” ê²ƒì´ ìœ ìš©í•œ ê²ƒë„ InformationManagerì—ì„œ ë³„ë„ ê´€ë¦¬í•˜ë„ë¡ í•©ë‹ˆë‹¤
 public class InformationManager {
 	private static InformationManager instance = new InformationManager();
 
-	public Player selfPlayer;		///< ¾Æ±º Player		
-	public Player enemyPlayer;		///< ¾Æ±º PlayerÀÇ Á¾Á·		
-	public Race selfRace;			///< Àû±º Player		
-	public Race enemyRace;			///< Àû±º PlayerÀÇ Á¾Á·  
+	public Player selfPlayer;		///< ì•„êµ° Player		
+	public Player enemyPlayer;		///< ì•„êµ° Playerì˜ ì¢…ì¡±		
+	public Race selfRace;			///< ì êµ° Player		
+	public Race enemyRace;			///< ì êµ° Playerì˜ ì¢…ì¡±  
 
-	/// ÇØ´ç PlayerÀÇ ÁÖ¿ä °Ç¹°µéÀÌ ÀÖ´Â BaseLocation. 
-	/// Ã³À½¿¡´Â StartLocation À¸·Î ÁöÁ¤. mainBaseLocation ³» ¸ğµç °Ç¹°ÀÌ ÆÄ±«µÉ °æ¿ì ÀçÁöÁ¤
-	/// °Ç¹° ¿©ºÎ¸¦ ±âÁØÀ¸·Î ÆÄ¾ÇÇÏ±â ¶§¹®¿¡ ºÎÀûÀıÇÏ°Ô ÆÇ´ÜÇÒ¼öµµ ÀÖ½À´Ï´Ù 
+	/// í•´ë‹¹ Playerì˜ ì£¼ìš” ê±´ë¬¼ë“¤ì´ ìˆëŠ” BaseLocation. 
+	/// ì²˜ìŒì—ëŠ” StartLocation ìœ¼ë¡œ ì§€ì •. mainBaseLocation ë‚´ ëª¨ë“  ê±´ë¬¼ì´ íŒŒê´´ë  ê²½ìš° ì¬ì§€ì •
+	/// ê±´ë¬¼ ì—¬ë¶€ë¥¼ ê¸°ì¤€ìœ¼ë¡œ íŒŒì•…í•˜ê¸° ë•Œë¬¸ì— ë¶€ì ì ˆí•˜ê²Œ íŒë‹¨í• ìˆ˜ë„ ìˆìŠµë‹ˆë‹¤ 
 	private Map<Player, BaseLocation> mainBaseLocations = new HashMap<Player, BaseLocation>();
 
-	/// ÇØ´ç PlayerÀÇ mainBaseLocation ÀÌ º¯°æµÇ¾ú´Â°¡ (firstChokePoint, secondChokePoint, firstExpansionLocation ¸¦ ÀçÁöÁ¤ Çß´Â°¡)
+	/// í•´ë‹¹ Playerì˜ mainBaseLocation ì´ ë³€ê²½ë˜ì—ˆëŠ”ê°€ (firstChokePoint, secondChokePoint, firstExpansionLocation ë¥¼ ì¬ì§€ì • í–ˆëŠ”ê°€)
 	private Map<Player, Boolean> mainBaseLocationChanged = new HashMap<Player, Boolean>();
 
-	/// ÇØ´ç Player°¡ Á¡·ÉÇÏ°í ÀÖ´Â Region ÀÌ ÀÖ´Â BaseLocation
-	/// °Ç¹° ¿©ºÎ¸¦ ±âÁØÀ¸·Î ÆÄ¾ÇÇÏ±â ¶§¹®¿¡ ºÎÀûÀıÇÏ°Ô ÆÇ´ÜÇÒ¼öµµ ÀÖ½À´Ï´Ù 
+	/// í•´ë‹¹ Playerê°€ ì ë ¹í•˜ê³  ìˆëŠ” Region ì´ ìˆëŠ” BaseLocation
+	/// ê±´ë¬¼ ì—¬ë¶€ë¥¼ ê¸°ì¤€ìœ¼ë¡œ íŒŒì•…í•˜ê¸° ë•Œë¬¸ì— ë¶€ì ì ˆí•˜ê²Œ íŒë‹¨í• ìˆ˜ë„ ìˆìŠµë‹ˆë‹¤ 
 	private Map<Player, List<BaseLocation>> occupiedBaseLocations = new HashMap<Player, List<BaseLocation>>();
 
-	/// ÇØ´ç Player°¡ Á¡·ÉÇÏ°í ÀÖ´Â Region
-	/// °Ç¹° ¿©ºÎ¸¦ ±âÁØÀ¸·Î ÆÄ¾ÇÇÏ±â ¶§¹®¿¡ ºÎÀûÀıÇÏ°Ô ÆÇ´ÜÇÒ¼öµµ ÀÖ½À´Ï´Ù 
+	/// í•´ë‹¹ Playerê°€ ì ë ¹í•˜ê³  ìˆëŠ” Region
+	/// ê±´ë¬¼ ì—¬ë¶€ë¥¼ ê¸°ì¤€ìœ¼ë¡œ íŒŒì•…í•˜ê¸° ë•Œë¬¸ì— ë¶€ì ì ˆí•˜ê²Œ íŒë‹¨í• ìˆ˜ë„ ìˆìŠµë‹ˆë‹¤ 
 	private Map<Player, Set<Region>> occupiedRegions = new HashMap<Player, Set<Region>>();
 
-	/// ÇØ´ç PlayerÀÇ mainBaseLocation ¿¡¼­ °¡Àå °¡±î¿î ChokePoint
+	/// í•´ë‹¹ Playerì˜ mainBaseLocation ì—ì„œ ê°€ì¥ ê°€ê¹Œìš´ ChokePoint
 	private Map<Player, Chokepoint> firstChokePoint = new HashMap<Player, Chokepoint>();
-	/// ÇØ´ç PlayerÀÇ mainBaseLocation ¿¡¼­ °¡Àå °¡±î¿î BaseLocation
+	/// í•´ë‹¹ Playerì˜ mainBaseLocation ì—ì„œ ê°€ì¥ ê°€ê¹Œìš´ BaseLocation
 	private Map<Player, BaseLocation> firstExpansionLocation = new HashMap<Player, BaseLocation>();
-	/// ÇØ´ç PlayerÀÇ mainBaseLocation ¿¡¼­ µÎ¹øÂ°·Î °¡±î¿î (firstChokePoint°¡ ¾Æ´Ñ) ChokePoint
-	/// °ÔÀÓ ¸Ê¿¡ µû¶ó¼­, secondChokePoint ´Â ÀÏ¹İ »ó½Ä°ú ´Ù¸¥ ÁöÁ¡ÀÌ µÉ ¼öµµ ÀÖ½À´Ï´Ù
+	/// í•´ë‹¹ Playerì˜ mainBaseLocation ì—ì„œ ë‘ë²ˆì§¸ë¡œ ê°€ê¹Œìš´ (firstChokePointê°€ ì•„ë‹Œ) ChokePoint
+	/// ê²Œì„ ë§µì— ë”°ë¼ì„œ, secondChokePoint ëŠ” ì¼ë°˜ ìƒì‹ê³¼ ë‹¤ë¥¸ ì§€ì ì´ ë  ìˆ˜ë„ ìˆìŠµë‹ˆë‹¤
 	private Map<Player, Chokepoint> secondChokePoint = new HashMap<Player, Chokepoint>();
 
-	/// Player - UnitData(°¢ Unit °ú ±× UnitÀÇ UnitInfo ¸¦ Map ÇüÅÂ·Î ÀúÀåÇÏ´Â ÀÚ·á±¸Á¶) ¸¦ ÀúÀåÇÏ´Â ÀÚ·á±¸Á¶ °´Ã¼
+	/// Player - UnitData(ê° Unit ê³¼ ê·¸ Unitì˜ UnitInfo ë¥¼ Map í˜•íƒœë¡œ ì €ì¥í•˜ëŠ” ìë£Œêµ¬ì¡°) ë¥¼ ì €ì¥í•˜ëŠ” ìë£Œêµ¬ì¡° ê°ì²´
 	private Map<Player, UnitData> unitData = new HashMap<Player, UnitData>();
 
-	/// static singleton °´Ã¼¸¦ ¸®ÅÏÇÕ´Ï´Ù
+	/// static singleton ê°ì²´ë¥¼ ë¦¬í„´í•©ë‹ˆë‹¤
 	public static InformationManager Instance() {
 		return instance;
 	}
@@ -98,16 +98,16 @@ public class InformationManager {
 		
 	}
 
-	/// Unit ¹× BaseLocation, ChokePoint µî¿¡ ´ëÇÑ Á¤º¸¸¦ ¾÷µ¥ÀÌÆ®ÇÕ´Ï´Ù
+	/// Unit ë° BaseLocation, ChokePoint ë“±ì— ëŒ€í•œ ì •ë³´ë¥¼ ì—…ë°ì´íŠ¸í•©ë‹ˆë‹¤
 	public void update() {
 		updateUnitsInfo();
-		// occupiedBaseLocation ÀÌ³ª occupiedRegion Àº °ÅÀÇ ¾È¹Ù²î¹Ç·Î ÀÚÁÖ ¾ÈÇØµµ µÈ´Ù
+		// occupiedBaseLocation ì´ë‚˜ occupiedRegion ì€ ê±°ì˜ ì•ˆë°”ë€Œë¯€ë¡œ ìì£¼ ì•ˆí•´ë„ ëœë‹¤
 		if (MyBotModule.Broodwar.getFrameCount() % 120 == 0) {
 			updateBaseLocationInfo();
 		}
 	}
 
-	/// ÀüÃ¼ unit ÀÇ Á¤º¸¸¦ ¾÷µ¥ÀÌÆ® ÇÕ´Ï´Ù (UnitType, lastPosition, HitPoint µî)
+	/// ì „ì²´ unit ì˜ ì •ë³´ë¥¼ ì—…ë°ì´íŠ¸ í•©ë‹ˆë‹¤ (UnitType, lastPosition, HitPoint ë“±)
 	public void updateUnitsInfo() {
 		// update our units info
 		for (Unit unit : MyBotModule.Broodwar.enemy().getUnits()) {
@@ -126,7 +126,7 @@ public class InformationManager {
 		}
 	}
 
-	/// ÇØ´ç unit ÀÇ Á¤º¸¸¦ ¾÷µ¥ÀÌÆ® ÇÕ´Ï´Ù (UnitType, lastPosition, HitPoint µî)
+	/// í•´ë‹¹ unit ì˜ ì •ë³´ë¥¼ ì—…ë°ì´íŠ¸ í•©ë‹ˆë‹¤ (UnitType, lastPosition, HitPoint ë“±)
 	public void updateUnitInfo(Unit unit) {
 		try {
 			if (!(unit.getPlayer() == selfPlayer || unit.getPlayer() == enemyPlayer)) {
@@ -142,33 +142,33 @@ public class InformationManager {
 		}
 	}
 
-	/// Unit ¿¡ ´ëÇÑ Á¤º¸¸¦ ¾÷µ¥ÀÌÆ®ÇÕ´Ï´Ù
+	/// Unit ì— ëŒ€í•œ ì •ë³´ë¥¼ ì—…ë°ì´íŠ¸í•©ë‹ˆë‹¤
 	public void onUnitShow(Unit unit) { 
 		updateUnitInfo(unit); 
 	}
-	/// Unit ¿¡ ´ëÇÑ Á¤º¸¸¦ ¾÷µ¥ÀÌÆ®ÇÕ´Ï´Ù
+	/// Unit ì— ëŒ€í•œ ì •ë³´ë¥¼ ì—…ë°ì´íŠ¸í•©ë‹ˆë‹¤
 	public void onUnitHide(Unit unit) { 
 		updateUnitInfo(unit); 
 	}
-	/// Unit ¿¡ ´ëÇÑ Á¤º¸¸¦ ¾÷µ¥ÀÌÆ®ÇÕ´Ï´Ù
+	/// Unit ì— ëŒ€í•œ ì •ë³´ë¥¼ ì—…ë°ì´íŠ¸í•©ë‹ˆë‹¤
 	public void onUnitCreate(Unit unit) { 
 		updateUnitInfo(unit); 
 	}
-	/// Unit ¿¡ ´ëÇÑ Á¤º¸¸¦ ¾÷µ¥ÀÌÆ®ÇÕ´Ï´Ù
+	/// Unit ì— ëŒ€í•œ ì •ë³´ë¥¼ ì—…ë°ì´íŠ¸í•©ë‹ˆë‹¤
 	public void onUnitComplete(Unit unit) { 
 		updateUnitInfo(unit); 
 	}
-	/// Unit ¿¡ ´ëÇÑ Á¤º¸¸¦ ¾÷µ¥ÀÌÆ®ÇÕ´Ï´Ù
+	/// Unit ì— ëŒ€í•œ ì •ë³´ë¥¼ ì—…ë°ì´íŠ¸í•©ë‹ˆë‹¤
 	public void onUnitMorph(Unit unit) { 
 		updateUnitInfo(unit); 
 	}
-	/// Unit ¿¡ ´ëÇÑ Á¤º¸¸¦ ¾÷µ¥ÀÌÆ®ÇÕ´Ï´Ù
+	/// Unit ì— ëŒ€í•œ ì •ë³´ë¥¼ ì—…ë°ì´íŠ¸í•©ë‹ˆë‹¤
 	public void onUnitRenegade(Unit unit) { 
 		updateUnitInfo(unit); 
 	}
 	
-	/// Unit ¿¡ ´ëÇÑ Á¤º¸¸¦ ¾÷µ¥ÀÌÆ®ÇÕ´Ï´Ù 
-	/// À¯´ÖÀÌ ÆÄ±«/»ç¸ÁÇÑ °æ¿ì, ÇØ´ç À¯´Ö Á¤º¸¸¦ »èÁ¦ÇÕ´Ï´Ù
+	/// Unit ì— ëŒ€í•œ ì •ë³´ë¥¼ ì—…ë°ì´íŠ¸í•©ë‹ˆë‹¤ 
+	/// ìœ ë‹›ì´ íŒŒê´´/ì‚¬ë§í•œ ê²½ìš°, í•´ë‹¹ ìœ ë‹› ì •ë³´ë¥¼ ì‚­ì œí•©ë‹ˆë‹¤
 	public void onUnitDestroy(Unit unit) {
 		if (unit.getType().isNeutral()) {
 			return;
@@ -178,7 +178,7 @@ public class InformationManager {
 	}
 
 
-	/// ÇØ´ç Player (¾Æ±º or Àû±º) ÀÇ position ÁÖÀ§ÀÇ À¯´Ö ¸ñ·ÏÀ» unitInfo ¿¡ ÀúÀåÇÕ´Ï´Ù		 
+	/// í•´ë‹¹ Player (ì•„êµ° or ì êµ°) ì˜ position ì£¼ìœ„ì˜ ìœ ë‹› ëª©ë¡ì„ unitInfo ì— ì €ì¥í•©ë‹ˆë‹¤		 
 	public void getNearbyForce(Vector<UnitInfo> unitInfo, Position p, Player player, int radius) {
 		Iterator<Integer> it = getUnitData(player).getUnitAndUnitInfoMap().keySet().iterator();
 
@@ -211,12 +211,12 @@ public class InformationManager {
 		}
 	}
 
-	/// ÇØ´ç Player (¾Æ±º or Àû±º) ÀÇ ÇØ´ç UnitType À¯´Ö ¼ıÀÚ¸¦ ¸®ÅÏÇÕ´Ï´Ù (ÈÆ·Ã/°Ç¼³ ÁßÀÎ À¯´Ö ¼ıÀÚ±îÁö Æ÷ÇÔ)
+	/// í•´ë‹¹ Player (ì•„êµ° or ì êµ°) ì˜ í•´ë‹¹ UnitType ìœ ë‹› ìˆ«ìë¥¼ ë¦¬í„´í•©ë‹ˆë‹¤ (í›ˆë ¨/ê±´ì„¤ ì¤‘ì¸ ìœ ë‹› ìˆ«ìê¹Œì§€ í¬í•¨)
 	public int getNumUnits(UnitType t, Player player) {
 		return getUnitData(player).getNumUnits(t.toString());
 	}
 
-	/// ÇØ´ç Player (¾Æ±º or Àû±º) ÀÇ ¸ğµç À¯´Ö Åë°è UnitData À» ¸®ÅÏÇÕ´Ï´Ù		 
+	/// í•´ë‹¹ Player (ì•„êµ° or ì êµ°) ì˜ ëª¨ë“  ìœ ë‹› í†µê³„ UnitData ì„ ë¦¬í„´í•©ë‹ˆë‹¤		 
 	public final UnitData getUnitData(Player player) {
 		return unitData.get(player);
 	}
@@ -235,7 +235,7 @@ public class InformationManager {
 			occupiedBaseLocations.get(enemyPlayer).clear();
 		}
 
-		// enemy ÀÇ startLocationÀ» ¾ÆÁ÷ ¸ğ¸£´Â °æ¿ì
+		// enemy ì˜ startLocationì„ ì•„ì§ ëª¨ë¥´ëŠ” ê²½ìš°
 		if (mainBaseLocations.get(enemyPlayer) == null) {
 			// how many start locations have we explored
 			int exploredStartLocations = 0;
@@ -277,8 +277,8 @@ public class InformationManager {
 		}
 
 		// update occupied base location
-		// ¾î¶² Base Location ¿¡´Â ¾Æ±º °Ç¹°, Àû±º °Ç¹° ¸ğµÎ È¥ÀçÇØÀÖ¾î¼­ µ¿½Ã¿¡ ¿©·¯ Player °¡ Occupy ÇÏ°í
-		// ÀÖ´Â °ÍÀ¸·Î ÆÇÁ¤µÉ ¼ö ÀÖ´Ù
+		// ì–´ë–¤ Base Location ì—ëŠ” ì•„êµ° ê±´ë¬¼, ì êµ° ê±´ë¬¼ ëª¨ë‘ í˜¼ì¬í•´ìˆì–´ì„œ ë™ì‹œì— ì—¬ëŸ¬ Player ê°€ Occupy í•˜ê³ 
+		// ìˆëŠ” ê²ƒìœ¼ë¡œ íŒì •ë  ìˆ˜ ìˆë‹¤
 		for (BaseLocation baseLocation : BWTA.getBaseLocations()) {
 			if (hasBuildingAroundBaseLocation(baseLocation, enemyPlayer)) {
 				// C++ : _occupiedBaseLocations[_enemy].push_back(baseLocation);
@@ -291,8 +291,8 @@ public class InformationManager {
 			}
 		}
 
-		// enemyÀÇ mainBaseLocationsÀ» ¹ß°ßÇÑ ÈÄ, ±×°÷¿¡ ÀÖ´Â °Ç¹°À» ¸ğµÎ ÆÄ±«ÇÑ °æ¿ì
-		// _occupiedBaseLocations Áß¿¡¼­ _mainBaseLocations ¸¦ ¼±Á¤ÇÑ´Ù
+		// enemyì˜ mainBaseLocationsì„ ë°œê²¬í•œ í›„, ê·¸ê³³ì— ìˆëŠ” ê±´ë¬¼ì„ ëª¨ë‘ íŒŒê´´í•œ ê²½ìš°
+		// _occupiedBaseLocations ì¤‘ì—ì„œ _mainBaseLocations ë¥¼ ì„ ì •í•œë‹¤
 		if (mainBaseLocations.get(enemyPlayer) != null) {
 			if (existsPlayerBuildingInRegion(BWTA.getRegion(mainBaseLocations.get(enemyPlayer).getTilePosition()), enemyPlayer) == false) {
 				for (BaseLocation loaction : occupiedBaseLocations.get(enemyPlayer)) {
@@ -305,8 +305,8 @@ public class InformationManager {
 			}
 		}
 
-		// selfÀÇ mainBaseLocations¿¡ ´ëÇØ, ±×°÷¿¡ ÀÖ´Â °Ç¹°ÀÌ ¸ğµÎ ÆÄ±«µÈ °æ¿ì
-		// _occupiedBaseLocations Áß¿¡¼­ _mainBaseLocations ¸¦ ¼±Á¤ÇÑ´Ù
+		// selfì˜ mainBaseLocationsì— ëŒ€í•´, ê·¸ê³³ì— ìˆëŠ” ê±´ë¬¼ì´ ëª¨ë‘ íŒŒê´´ëœ ê²½ìš°
+		// _occupiedBaseLocations ì¤‘ì—ì„œ _mainBaseLocations ë¥¼ ì„ ì •í•œë‹¤
 		if (mainBaseLocations.get(selfPlayer) != null) {
 			if (existsPlayerBuildingInRegion(BWTA.getRegion(mainBaseLocations.get(selfPlayer).getTilePosition()), selfPlayer) == false) {
 				for (BaseLocation loaction : occupiedBaseLocations.get(selfPlayer)) {
@@ -433,10 +433,10 @@ public class InformationManager {
 		}
 	}
 
-	/// ÇØ´ç BaseLocation ¿¡ playerÀÇ °Ç¹°ÀÌ Á¸ÀçÇÏ´ÂÁö ¸®ÅÏÇÕ´Ï´Ù
-	/// @param baseLocation ´ë»ó BaseLocation
-	/// @param player ¾Æ±º / Àû±º
-	/// @param radius TilePosition ´ÜÀ§
+	/// í•´ë‹¹ BaseLocation ì— playerì˜ ê±´ë¬¼ì´ ì¡´ì¬í•˜ëŠ”ì§€ ë¦¬í„´í•©ë‹ˆë‹¤
+	/// @param baseLocation ëŒ€ìƒ BaseLocation
+	/// @param player ì•„êµ° / ì êµ°
+	/// @param radius TilePosition ë‹¨ìœ„
 	public boolean hasBuildingAroundBaseLocation(BaseLocation baseLocation, Player player, int radius) {
 
 		// invalid regions aren't considered the same, but they will both be null
@@ -444,7 +444,7 @@ public class InformationManager {
 			return false;
 		}
 
-		// ¹İÁö¸§ 10 (TilePosition ´ÜÀ§) ÀÌ¸é °ÅÀÇ È­¸é °¡µæÀÌ´Ù
+		// ë°˜ì§€ë¦„ 10 (TilePosition ë‹¨ìœ„) ì´ë©´ ê±°ì˜ í™”ë©´ ê°€ë“ì´ë‹¤
 		int maxRadius = 10;
 
 		if (unitData.get(player) != null) {
@@ -468,14 +468,14 @@ public class InformationManager {
 		return false;
 	}
 	
-	/// ÇØ´ç BaseLocation ÁÖÀ§ 10Å¸ÀÏ ¹İ°æ ³»¿¡ playerÀÇ °Ç¹°ÀÌ Á¸ÀçÇÏ´ÂÁö ¸®ÅÏÇÕ´Ï´Ù
-	/// @param baseLocation ´ë»ó BaseLocation
-	/// @param player ¾Æ±º / Àû±º
+	/// í•´ë‹¹ BaseLocation ì£¼ìœ„ 10íƒ€ì¼ ë°˜ê²½ ë‚´ì— playerì˜ ê±´ë¬¼ì´ ì¡´ì¬í•˜ëŠ”ì§€ ë¦¬í„´í•©ë‹ˆë‹¤
+	/// @param baseLocation ëŒ€ìƒ BaseLocation
+	/// @param player ì•„êµ° / ì êµ°
 	public boolean hasBuildingAroundBaseLocation(BaseLocation baseLocation, Player player) {
 		return hasBuildingAroundBaseLocation(baseLocation, player, 10);
 	}
 
-	/// ÇØ´ç Region ¿¡ ÇØ´ç PlayerÀÇ °Ç¹°ÀÌ Á¸ÀçÇÏ´ÂÁö ¸®ÅÏÇÕ´Ï´Ù
+	/// í•´ë‹¹ Region ì— í•´ë‹¹ Playerì˜ ê±´ë¬¼ì´ ì¡´ì¬í•˜ëŠ”ì§€ ë¦¬í„´í•©ë‹ˆë‹¤
 	public boolean existsPlayerBuildingInRegion(Region region, Player player) {
 		// invalid regions aren't considered the same, but they will both be null
 		if (region == null || player == null) {
@@ -489,7 +489,7 @@ public class InformationManager {
 			final UnitInfo ui = unitData.get(player).getUnitAndUnitInfoMap().get(it.next());
 			if (ui.getType().isBuilding() ) {
 				
-				// Terran Á¾Á·ÀÇ Lifted °Ç¹°ÀÇ °æ¿ì, BWTA.getRegion °á°ú°¡ null ÀÌ´Ù
+				// Terran ì¢…ì¡±ì˜ Lifted ê±´ë¬¼ì˜ ê²½ìš°, BWTA.getRegion ê²°ê³¼ê°€ null ì´ë‹¤
 				if (BWTA.getRegion(ui.getLastPosition()) == null) continue;
 
 				if (BWTA.getRegion(ui.getLastPosition()) == region) {
@@ -500,44 +500,44 @@ public class InformationManager {
 		return false;
 	}
 
-	/// ÇØ´ç Player (¾Æ±º or Àû±º) ÀÇ ¸ğµç À¯´Ö ¸ñ·Ï (°¡Àå ÃÖ±Ù°ª) UnitAndUnitInfoMap À» ¸®ÅÏÇÕ´Ï´Ù		 
-	/// ÆÄ¾ÇµÈ Á¤º¸¸¸À» ¸®ÅÏÇÏ±â ¶§¹®¿¡ Àû±ºÀÇ Á¤º¸´Â Æ²¸° °ªÀÏ ¼ö ÀÖ½À´Ï´Ù
+	/// í•´ë‹¹ Player (ì•„êµ° or ì êµ°) ì˜ ëª¨ë“  ìœ ë‹› ëª©ë¡ (ê°€ì¥ ìµœê·¼ê°’) UnitAndUnitInfoMap ì„ ë¦¬í„´í•©ë‹ˆë‹¤		 
+	/// íŒŒì•…ëœ ì •ë³´ë§Œì„ ë¦¬í„´í•˜ê¸° ë•Œë¬¸ì— ì êµ°ì˜ ì •ë³´ëŠ” í‹€ë¦° ê°’ì¼ ìˆ˜ ìˆìŠµë‹ˆë‹¤
 	public final Map<Integer, UnitInfo> getUnitAndUnitInfoMap(Player player) {
 		return getUnitData(player).getUnitAndUnitInfoMap();
 	}
 
-	/// ÇØ´ç Player (¾Æ±º or Àû±º) °¡ °Ç¹°À» °Ç¼³ÇØ¼­ Á¡·ÉÇÑ Region ¸ñ·ÏÀ» ¸®ÅÏÇÕ´Ï´Ù
+	/// í•´ë‹¹ Player (ì•„êµ° or ì êµ°) ê°€ ê±´ë¬¼ì„ ê±´ì„¤í•´ì„œ ì ë ¹í•œ Region ëª©ë¡ì„ ë¦¬í„´í•©ë‹ˆë‹¤
 	public Set<Region> getOccupiedRegions(Player player) {
 		return occupiedRegions.get(player);
 	}
 
-	/// ÇØ´ç Player (¾Æ±º or Àû±º) ÀÇ °Ç¹°À» °Ç¼³ÇØ¼­ Á¡·ÉÇÑ BaseLocation ¸ñ·ÏÀ» ¸®ÅÏÇÕ´Ï´Ù		 
+	/// í•´ë‹¹ Player (ì•„êµ° or ì êµ°) ì˜ ê±´ë¬¼ì„ ê±´ì„¤í•´ì„œ ì ë ¹í•œ BaseLocation ëª©ë¡ì„ ë¦¬í„´í•©ë‹ˆë‹¤		 
 	public List<BaseLocation> getOccupiedBaseLocations(Player player) {
 		return occupiedBaseLocations.get(player);
 	}
 
-	/// ÇØ´ç Player (¾Æ±º or Àû±º) ÀÇ Main BaseLocation À» ¸®ÅÏÇÕ´Ï´Ù		 
+	/// í•´ë‹¹ Player (ì•„êµ° or ì êµ°) ì˜ Main BaseLocation ì„ ë¦¬í„´í•©ë‹ˆë‹¤		 
 	public BaseLocation getMainBaseLocation(Player player) {
 		return mainBaseLocations.get(player);
 	}
 
-	/// ÇØ´ç Player (¾Æ±º or Àû±º) ÀÇ Main BaseLocation ¿¡¼­ °¡Àå °¡±î¿î ChokePoint ¸¦ ¸®ÅÏÇÕ´Ï´Ù		 
+	/// í•´ë‹¹ Player (ì•„êµ° or ì êµ°) ì˜ Main BaseLocation ì—ì„œ ê°€ì¥ ê°€ê¹Œìš´ ChokePoint ë¥¼ ë¦¬í„´í•©ë‹ˆë‹¤		 
 	public Chokepoint getFirstChokePoint(Player player) {
 		return firstChokePoint.get(player);
 	}
 
-	/// ÇØ´ç Player (¾Æ±º or Àû±º) ÀÇ Main BaseLocation ¿¡¼­ °¡Àå °¡±î¿î Expansion BaseLocation ¸¦ ¸®ÅÏÇÕ´Ï´Ù		 
+	/// í•´ë‹¹ Player (ì•„êµ° or ì êµ°) ì˜ Main BaseLocation ì—ì„œ ê°€ì¥ ê°€ê¹Œìš´ Expansion BaseLocation ë¥¼ ë¦¬í„´í•©ë‹ˆë‹¤		 
 	public BaseLocation getFirstExpansionLocation(Player player) {
 		return firstExpansionLocation.get(player);
 	}
 
-	/// ÇØ´ç Player (¾Æ±º or Àû±º) ÀÇ Main BaseLocation ¿¡¼­ µÎ¹øÂ°·Î °¡±î¿î ChokePoint ¸¦ ¸®ÅÏÇÕ´Ï´Ù		 
-	/// °ÔÀÓ ¸Ê¿¡ µû¶ó¼­, secondChokePoint ´Â ÀÏ¹İ »ó½Ä°ú ´Ù¸¥ ÁöÁ¡ÀÌ µÉ ¼öµµ ÀÖ½À´Ï´Ù
+	/// í•´ë‹¹ Player (ì•„êµ° or ì êµ°) ì˜ Main BaseLocation ì—ì„œ ë‘ë²ˆì§¸ë¡œ ê°€ê¹Œìš´ ChokePoint ë¥¼ ë¦¬í„´í•©ë‹ˆë‹¤		 
+	/// ê²Œì„ ë§µì— ë”°ë¼ì„œ, secondChokePoint ëŠ” ì¼ë°˜ ìƒì‹ê³¼ ë‹¤ë¥¸ ì§€ì ì´ ë  ìˆ˜ë„ ìˆìŠµë‹ˆë‹¤
 	public Chokepoint getSecondChokePoint(Player player) {
 		return secondChokePoint.get(player);
 	}
 
-	/// ÇØ´ç UnitType ÀÌ ÀüÅõ À¯´ÖÀÎÁö ¸®ÅÏÇÕ´Ï´Ù
+	/// í•´ë‹¹ UnitType ì´ ì „íˆ¬ ìœ ë‹›ì¸ì§€ ë¦¬í„´í•©ë‹ˆë‹¤
 	public final boolean isCombatUnitType(UnitType type) {
 		if (type == UnitType.Zerg_Lurker /* || type == UnitType.Protoss_Dark_Templar*/) {
 			return false;
@@ -552,12 +552,12 @@ public class InformationManager {
 		return false;
 	}
 	
-	// ÇØ´ç Á¾Á·ÀÇ UnitType Áß Basic Combat Unit ¿¡ ÇØ´çÇÏ´Â UnitTypeÀ» ¸®ÅÏÇÕ´Ï´Ù
+	// í•´ë‹¹ ì¢…ì¡±ì˜ UnitType ì¤‘ Basic Combat Unit ì— í•´ë‹¹í•˜ëŠ” UnitTypeì„ ë¦¬í„´í•©ë‹ˆë‹¤
 	public UnitType getBasicCombatUnitType() {
 		return getBasicCombatUnitType(MyBotModule.Broodwar.self().getRace());
 	}
 
-	// ÇØ´ç Á¾Á·ÀÇ UnitType Áß Basic Combat Unit ¿¡ ÇØ´çÇÏ´Â UnitTypeÀ» ¸®ÅÏÇÕ´Ï´Ù
+	// í•´ë‹¹ ì¢…ì¡±ì˜ UnitType ì¤‘ Basic Combat Unit ì— í•´ë‹¹í•˜ëŠ” UnitTypeì„ ë¦¬í„´í•©ë‹ˆë‹¤
 	public UnitType getBasicCombatUnitType(Race race) {
 		if (race == Race.Protoss) {
 			return UnitType.Protoss_Zealot;
@@ -570,12 +570,12 @@ public class InformationManager {
 		}
 	}
 
-	// ÇØ´ç Á¾Á·ÀÇ UnitType Áß Advanced Combat Unit ¿¡ ÇØ´çÇÏ´Â UnitTypeÀ» ¸®ÅÏÇÕ´Ï´Ù
+	// í•´ë‹¹ ì¢…ì¡±ì˜ UnitType ì¤‘ Advanced Combat Unit ì— í•´ë‹¹í•˜ëŠ” UnitTypeì„ ë¦¬í„´í•©ë‹ˆë‹¤
 	public UnitType getAdvancedCombatUnitType() {
 		return getAdvancedCombatUnitType(MyBotModule.Broodwar.self().getRace());
 	}
 
-	// ÇØ´ç Á¾Á·ÀÇ UnitType Áß Advanced Combat Unit ¿¡ ÇØ´çÇÏ´Â UnitTypeÀ» ¸®ÅÏÇÕ´Ï´Ù
+	// í•´ë‹¹ ì¢…ì¡±ì˜ UnitType ì¤‘ Advanced Combat Unit ì— í•´ë‹¹í•˜ëŠ” UnitTypeì„ ë¦¬í„´í•©ë‹ˆë‹¤
 	public UnitType getAdvancedCombatUnitType(Race race) {
 		if (race == Race.Protoss) {
 			return UnitType.Protoss_Dragoon;
@@ -588,12 +588,12 @@ public class InformationManager {
 		}
 	}
 
-	// ÇØ´ç Á¾Á·ÀÇ UnitType Áß Basic Combat Unit À» »ı»êÇÏ±â À§ÇØ °Ç¼³ÇØ¾ßÇÏ´Â UnitTypeÀ» ¸®ÅÏÇÕ´Ï´Ù
+	// í•´ë‹¹ ì¢…ì¡±ì˜ UnitType ì¤‘ Basic Combat Unit ì„ ìƒì‚°í•˜ê¸° ìœ„í•´ ê±´ì„¤í•´ì•¼í•˜ëŠ” UnitTypeì„ ë¦¬í„´í•©ë‹ˆë‹¤
 	public UnitType getBasicCombatBuildingType() {
 		return getBasicCombatBuildingType(MyBotModule.Broodwar.self().getRace());
 	}
 
-	// ÇØ´ç Á¾Á·ÀÇ UnitType Áß Basic Combat Unit À» »ı»êÇÏ±â À§ÇØ °Ç¼³ÇØ¾ßÇÏ´Â UnitTypeÀ» ¸®ÅÏÇÕ´Ï´Ù
+	// í•´ë‹¹ ì¢…ì¡±ì˜ UnitType ì¤‘ Basic Combat Unit ì„ ìƒì‚°í•˜ê¸° ìœ„í•´ ê±´ì„¤í•´ì•¼í•˜ëŠ” UnitTypeì„ ë¦¬í„´í•©ë‹ˆë‹¤
 	public UnitType getBasicCombatBuildingType(Race race) {
 		if (race == Race.Protoss) {
 			return UnitType.Protoss_Gateway;
@@ -606,12 +606,12 @@ public class InformationManager {
 		}
 	}
 
-	// ÇØ´ç Á¾Á·ÀÇ UnitType Áß Observer ¿¡ ÇØ´çÇÏ´Â UnitTypeÀ» ¸®ÅÏÇÕ´Ï´Ù
+	// í•´ë‹¹ ì¢…ì¡±ì˜ UnitType ì¤‘ Observer ì— í•´ë‹¹í•˜ëŠ” UnitTypeì„ ë¦¬í„´í•©ë‹ˆë‹¤
 	public UnitType getObserverUnitType() {
 		return getObserverUnitType(MyBotModule.Broodwar.self().getRace());
 	}
 
-	// ÇØ´ç Á¾Á·ÀÇ UnitType Áß Observer ¿¡ ÇØ´çÇÏ´Â UnitTypeÀ» ¸®ÅÏÇÕ´Ï´Ù
+	// í•´ë‹¹ ì¢…ì¡±ì˜ UnitType ì¤‘ Observer ì— í•´ë‹¹í•˜ëŠ” UnitTypeì„ ë¦¬í„´í•©ë‹ˆë‹¤
 	public UnitType getObserverUnitType(Race race) {
 		if (race == Race.Protoss) {
 			return UnitType.Protoss_Observer;
@@ -624,12 +624,12 @@ public class InformationManager {
 		}
 	}
 
-	// ÇØ´ç Á¾Á·ÀÇ UnitType Áß ResourceDepot ±â´ÉÀ» ÇÏ´Â UnitTypeÀ» ¸®ÅÏÇÕ´Ï´Ù
+	// í•´ë‹¹ ì¢…ì¡±ì˜ UnitType ì¤‘ ResourceDepot ê¸°ëŠ¥ì„ í•˜ëŠ” UnitTypeì„ ë¦¬í„´í•©ë‹ˆë‹¤
 	public UnitType getBasicResourceDepotBuildingType() {
 		return getBasicResourceDepotBuildingType(MyBotModule.Broodwar.self().getRace());
 	}
 
-	// ÇØ´ç Á¾Á·ÀÇ UnitType Áß ResourceDepot ±â´ÉÀ» ÇÏ´Â UnitTypeÀ» ¸®ÅÏÇÕ´Ï´Ù
+	// í•´ë‹¹ ì¢…ì¡±ì˜ UnitType ì¤‘ ResourceDepot ê¸°ëŠ¥ì„ í•˜ëŠ” UnitTypeì„ ë¦¬í„´í•©ë‹ˆë‹¤
 	public UnitType getBasicResourceDepotBuildingType(Race race) {
 		if (race == Race.Protoss) {
 			return UnitType.Protoss_Nexus;
@@ -642,12 +642,12 @@ public class InformationManager {
 		}
 	}
 
-	// ÇØ´ç Á¾Á·ÀÇ UnitType Áß Refinery ±â´ÉÀ» ÇÏ´Â UnitTypeÀ» ¸®ÅÏÇÕ´Ï´Ù
+	// í•´ë‹¹ ì¢…ì¡±ì˜ UnitType ì¤‘ Refinery ê¸°ëŠ¥ì„ í•˜ëŠ” UnitTypeì„ ë¦¬í„´í•©ë‹ˆë‹¤
 	public UnitType getRefineryBuildingType() {
 		return getRefineryBuildingType(MyBotModule.Broodwar.self().getRace());
 	}
 
-	// ÇØ´ç Á¾Á·ÀÇ UnitType Áß Refinery ±â´ÉÀ» ÇÏ´Â UnitTypeÀ» ¸®ÅÏÇÕ´Ï´Ù
+	// í•´ë‹¹ ì¢…ì¡±ì˜ UnitType ì¤‘ Refinery ê¸°ëŠ¥ì„ í•˜ëŠ” UnitTypeì„ ë¦¬í„´í•©ë‹ˆë‹¤
 	public UnitType getRefineryBuildingType(Race race) {
 		if (race == Race.Protoss) {
 			return UnitType.Protoss_Assimilator;
@@ -660,12 +660,12 @@ public class InformationManager {
 		}
 	}
 
-	// ÇØ´ç Á¾Á·ÀÇ UnitType Áß Worker ¿¡ ÇØ´çÇÏ´Â UnitTypeÀ» ¸®ÅÏÇÕ´Ï´Ù
+	// í•´ë‹¹ ì¢…ì¡±ì˜ UnitType ì¤‘ Worker ì— í•´ë‹¹í•˜ëŠ” UnitTypeì„ ë¦¬í„´í•©ë‹ˆë‹¤
 	public UnitType getWorkerType() {
 		return getWorkerType(MyBotModule.Broodwar.self().getRace());
 	}
 
-	// ÇØ´ç Á¾Á·ÀÇ UnitType Áß Worker ¿¡ ÇØ´çÇÏ´Â UnitTypeÀ» ¸®ÅÏÇÕ´Ï´Ù
+	// í•´ë‹¹ ì¢…ì¡±ì˜ UnitType ì¤‘ Worker ì— í•´ë‹¹í•˜ëŠ” UnitTypeì„ ë¦¬í„´í•©ë‹ˆë‹¤
 	public UnitType getWorkerType(Race race) {
 		if (race == Race.Protoss) {
 			return UnitType.Protoss_Probe;
@@ -678,12 +678,12 @@ public class InformationManager {
 		}
 	}
 
-	// ÇØ´ç Á¾Á·ÀÇ UnitType Áß SupplyProvider ±â´ÉÀ» ÇÏ´Â UnitTypeÀ» ¸®ÅÏÇÕ´Ï´Ù
+	// í•´ë‹¹ ì¢…ì¡±ì˜ UnitType ì¤‘ SupplyProvider ê¸°ëŠ¥ì„ í•˜ëŠ” UnitTypeì„ ë¦¬í„´í•©ë‹ˆë‹¤
 	public UnitType getBasicSupplyProviderUnitType() {
 		return getBasicSupplyProviderUnitType(MyBotModule.Broodwar.self().getRace());
 	}
 
-	// ÇØ´ç Á¾Á·ÀÇ UnitType Áß SupplyProvider ±â´ÉÀ» ÇÏ´Â UnitTypeÀ» ¸®ÅÏÇÕ´Ï´Ù
+	// í•´ë‹¹ ì¢…ì¡±ì˜ UnitType ì¤‘ SupplyProvider ê¸°ëŠ¥ì„ í•˜ëŠ” UnitTypeì„ ë¦¬í„´í•©ë‹ˆë‹¤
 	public UnitType getBasicSupplyProviderUnitType(Race race) {
 		if (race == Race.Protoss) {
 			return UnitType.Protoss_Pylon;
@@ -696,12 +696,12 @@ public class InformationManager {
 		}
 	}
 
-	// ÇØ´ç Á¾Á·ÀÇ UnitType Áß Basic Depense ±â´ÉÀ» ÇÏ´Â UnitTypeÀ» ¸®ÅÏÇÕ´Ï´Ù
+	// í•´ë‹¹ ì¢…ì¡±ì˜ UnitType ì¤‘ Basic Depense ê¸°ëŠ¥ì„ í•˜ëŠ” UnitTypeì„ ë¦¬í„´í•©ë‹ˆë‹¤
 	public UnitType getBasicDefenseBuildingType() {
 		return getBasicDefenseBuildingType(MyBotModule.Broodwar.self().getRace());
 	}
 
-	// ÇØ´ç Á¾Á·ÀÇ UnitType Áß Basic Depense ±â´ÉÀ» ÇÏ´Â UnitTypeÀ» ¸®ÅÏÇÕ´Ï´Ù
+	// í•´ë‹¹ ì¢…ì¡±ì˜ UnitType ì¤‘ Basic Depense ê¸°ëŠ¥ì„ í•˜ëŠ” UnitTypeì„ ë¦¬í„´í•©ë‹ˆë‹¤
 	public UnitType getBasicDefenseBuildingType(Race race) {
 		if (race == Race.Protoss) {
 			return UnitType.Protoss_Pylon;
@@ -714,12 +714,12 @@ public class InformationManager {
 		}
 	}
 
-	// ÇØ´ç Á¾Á·ÀÇ UnitType Áß Advanced Depense ±â´ÉÀ» ÇÏ´Â UnitTypeÀ» ¸®ÅÏÇÕ´Ï´Ù
+	// í•´ë‹¹ ì¢…ì¡±ì˜ UnitType ì¤‘ Advanced Depense ê¸°ëŠ¥ì„ í•˜ëŠ” UnitTypeì„ ë¦¬í„´í•©ë‹ˆë‹¤
 	public UnitType getAdvancedDefenseBuildingType() {
 		return getAdvancedDefenseBuildingType(MyBotModule.Broodwar.self().getRace());
 	}
 
-	// ÇØ´ç Á¾Á·ÀÇ UnitType Áß Advanced Depense ±â´ÉÀ» ÇÏ´Â UnitTypeÀ» ¸®ÅÏÇÕ´Ï´Ù
+	// í•´ë‹¹ ì¢…ì¡±ì˜ UnitType ì¤‘ Advanced Depense ê¸°ëŠ¥ì„ í•˜ëŠ” UnitTypeì„ ë¦¬í„´í•©ë‹ˆë‹¤
 	public UnitType getAdvancedDefenseBuildingType(Race race) {
 		if (race == Race.Protoss) {
 			return UnitType.Protoss_Photon_Cannon;

@@ -4,7 +4,7 @@
 using namespace BWAPI;
 using namespace MyBot;
 
-// BWAPIClient ¿Í connect ¼º°øÇÒ ¶§±îÁö °è¼Ó connect ¸¦ ½ÃµµÇÏ´Â ÇÔ¼ö
+// BWAPIClient ì™€ connect ì„±ê³µí•  ë•Œê¹Œì§€ ê³„ì† connect ë¥¼ ì‹œë„í•˜ëŠ” í•¨ìˆ˜
 void reconnect()
 {
 	while (!BWAPIClient.connect())
@@ -15,7 +15,7 @@ void reconnect()
 
 int main(int argc, const char* argv[])
 {
-	// µğ¹ö±×´Â std::cout À» ÀÌ¿ëÇØ¼­ ÇÑ´Ù
+	// ë””ë²„ê·¸ëŠ” std::cout ì„ ì´ìš©í•´ì„œ í•œë‹¤
 	std::cout << "Connecting..." << std::endl;;
 	reconnect();
 

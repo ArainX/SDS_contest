@@ -1,12 +1,18 @@
 public class Main {
 
-	/// º¿ ÇÁ·Î±×·¥À» ½ÇÇàÇÕ´Ï´Ù
+	/// ë´‡ í”„ë¡œê·¸ë¨ì„ ì‹¤í–‰í•©ë‹ˆë‹¤
 	///
-	/// Eclipse ¸Ş´º -> Run -> Run Configurations... 
-	/// -> Arguments ÅÇ -> Working Directory ¸¦ Other : Cµå¶óÀÌºêÆÛStarCraft ·Î º¯°æÇÏ¸é
-	/// º¿ ÇÁ·Î±×·¥ÀÌ ±â »ı¼ºµÇ¾îÀÖ´Â ¸Ê ÆÄÀÏ ºĞ¼® Ä³½ÃÆÄÀÏÀ» È°¿ëÇÏ°Ô µÇ¾î¼­
-	/// º¿ ÇÁ·Î±×·¥ ½ÇÇà ½Ã ¸Ê ÆÄÀÏ ºĞ¼®¿¡ ¼Ò¿äµÇ´Â µô·¹ÀÌ¸¦ ÁÙÀÏ ¼ö ÀÖ½À´Ï´Ù.
+	/// Eclipse ë©”ë‰´ -> Run -> Run Configurations... 
+	/// -> Arguments íƒ­ -> Working Directory ë¥¼ Other : Cë“œë¼ì´ë¸Œí¼StarCraft ë¡œ ë³€ê²½í•˜ë©´
+	/// ë´‡ í”„ë¡œê·¸ë¨ì´ ê¸° ìƒì„±ë˜ì–´ìˆëŠ” ë§µ íŒŒì¼ ë¶„ì„ ìºì‹œíŒŒì¼ì„ í™œìš©í•˜ê²Œ ë˜ì–´ì„œ
+	/// ë´‡ í”„ë¡œê·¸ë¨ ì‹¤í–‰ ì‹œ ë§µ íŒŒì¼ ë¶„ì„ì— ì†Œìš”ë˜ëŠ” ë”œë ˆì´ë¥¼ ì¤„ì¼ ìˆ˜ ìˆìŠµë‹ˆë‹¤.
     public static void main(String[] args) {
-        new MyBotModule().run();
+    	try{
+            new MyBotModule().run();   		
+    	}
+    	catch(Exception e) {
+    		System.out.println(e.toString());
+    		e.printStackTrace();
+    	}
     }
 }

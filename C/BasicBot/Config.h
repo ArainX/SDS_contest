@@ -3,109 +3,109 @@
 #include "BWAPI.h"
 #include <cassert>
 
-/// º¿ ÇÁ·Î±×·¥ ¼³Á¤
+/// ë´‡ í”„ë¡œê·¸ëž¨ ì„¤ì •
 namespace Config
 {
-	/// º¿ ±âº» Á¤º¸
+	/// ë´‡ ê¸°ë³¸ ì •ë³´
 	namespace BotInfo
 	{
-		/// º¿ ÀÌ¸§
+		/// ë´‡ ì´ë¦„
 		extern std::string BotName;
-		/// º¿ °³¹ßÀÚ ÀÌ¸§
+		/// ë´‡ ê°œë°œìž ì´ë¦„
 		extern std::string BotAuthors;
 	}
 
-	/// ÆÄÀÏ °ü·Ã ¼³Á¤
+	/// íŒŒì¼ ê´€ë ¨ ì„¤ì •
 	namespace Files
     {
-		/// ·Î±× ÆÄÀÏ ÀÌ¸§
+		/// ë¡œê·¸ íŒŒì¼ ì´ë¦„
 		extern std::string LogFilename;
-		/// ÀÐ±â ÆÄÀÏ °æ·Î
+		/// ì½ê¸° íŒŒì¼ ê²½ë¡œ
 		extern std::string ReadDirectory;
-		/// ¾²±â ÆÄÀÏ °æ·Î
+		/// ì“°ê¸° íŒŒì¼ ê²½ë¡œ
 		extern std::string WriteDirectory;
     }
 	    
-	/// CommonUtil °ü·Ã ¼³Á¤
+	/// CommonUtil ê´€ë ¨ ì„¤ì •
 	namespace Tools
 	{
-		/// MapGrid ¿¡¼­ ÇÑ °³ GridCell ÀÇ size
+		/// MapGrid ì—ì„œ í•œ ê°œ GridCell ì˜ size
 		extern int MAP_GRID_SIZE;
 	}
 	
-	/// BWAPI ¿É¼Ç °ü·Ã ¼³Á¤
+	/// BWAPI ì˜µì…˜ ê´€ë ¨ ì„¤ì •
 	namespace BWAPIOptions
     {
-		/// ·ÎÄÃ¿¡¼­ °ÔÀÓÀ» ½ÇÇàÇÒ ¶§ °ÔÀÓ½ºÇÇµå (ÄÚµå Á¦Ãâ ÈÄ ¼­¹ö¿¡¼­ °ÔÀÓÀ» ½ÇÇàÇÒ ¶§´Â ¼­¹ö ¼³Á¤À» »ç¿ëÇÔ)
+		/// ë¡œì»¬ì—ì„œ ê²Œìž„ì„ ì‹¤í–‰í•  ë•Œ ê²Œìž„ìŠ¤í”¼ë“œ (ì½”ë“œ ì œì¶œ í›„ ì„œë²„ì—ì„œ ê²Œìž„ì„ ì‹¤í–‰í•  ë•ŒëŠ” ì„œë²„ ì„¤ì •ì„ ì‚¬ìš©í•¨)
 		/// Speedups for automated play, sets the number of milliseconds bwapi spends in each frame
-		/// Fastest: 42 ms/frame.  1ÃÊ¿¡ 24 frame. ÀÏ¹ÝÀûÀ¸·Î 1ÃÊ¿¡ 24frameÀ» ±âÁØ °ÔÀÓ¼Óµµ·Î ÇÕ´Ï´Ù
-		/// Normal: 67 ms/frame. 1ÃÊ¿¡ 15 frame
-		/// As fast as possible : 0 ms/frame. CPU°¡ ÇÒ¼öÀÖ´Â °¡Àå ºü¸¥ ¼Óµµ. 
+		/// Fastest: 42 ms/frame.  1ì´ˆì— 24 frame. ì¼ë°˜ì ìœ¼ë¡œ 1ì´ˆì— 24frameì„ ê¸°ì¤€ ê²Œìž„ì†ë„ë¡œ í•©ë‹ˆë‹¤
+		/// Normal: 67 ms/frame. 1ì´ˆì— 15 frame
+		/// As fast as possible : 0 ms/frame. CPUê°€ í• ìˆ˜ìžˆëŠ” ê°€ìž¥ ë¹ ë¥¸ ì†ë„. 
         extern int SetLocalSpeed;
-		/// ·ÎÄÃ¿¡¼­ °ÔÀÓÀ» ½ÇÇàÇÒ ¶§ FrameSkip (ÄÚµå Á¦Ãâ ÈÄ ¼­¹ö¿¡¼­ °ÔÀÓÀ» ½ÇÇàÇÒ ¶§´Â ¼­¹ö ¼³Á¤À» »ç¿ëÇÔ)
-		/// frameskipÀ» ´Ã¸®¸é È­¸é Ç¥½Ãµµ ¾÷µ¥ÀÌÆ® ¾ÈÇÏ¹Ç·Î ÈÎ¾À ºü¸¨´Ï´Ù
+		/// ë¡œì»¬ì—ì„œ ê²Œìž„ì„ ì‹¤í–‰í•  ë•Œ FrameSkip (ì½”ë“œ ì œì¶œ í›„ ì„œë²„ì—ì„œ ê²Œìž„ì„ ì‹¤í–‰í•  ë•ŒëŠ” ì„œë²„ ì„¤ì •ì„ ì‚¬ìš©í•¨)
+		/// frameskipì„ ëŠ˜ë¦¬ë©´ í™”ë©´ í‘œì‹œë„ ì—…ë°ì´íŠ¸ ì•ˆí•˜ë¯€ë¡œ í›¨ì”¬ ë¹ ë¦…ë‹ˆë‹¤
         extern int SetFrameSkip;
-		/// ·ÎÄÃ¿¡¼­ °ÔÀÓÀ» ½ÇÇàÇÒ ¶§ »ç¿ëÀÚ Å°º¸µå/¸¶¿ì½º ÀÔ·Â Çã¿ë ¿©ºÎ (ÄÚµå Á¦Ãâ ÈÄ ¼­¹ö¿¡¼­ °ÔÀÓÀ» ½ÇÇàÇÒ ¶§´Â ¼­¹ö ¼³Á¤À» »ç¿ëÇÔ)
+		/// ë¡œì»¬ì—ì„œ ê²Œìž„ì„ ì‹¤í–‰í•  ë•Œ ì‚¬ìš©ìž í‚¤ë³´ë“œ/ë§ˆìš°ìŠ¤ ìž…ë ¥ í—ˆìš© ì—¬ë¶€ (ì½”ë“œ ì œì¶œ í›„ ì„œë²„ì—ì„œ ê²Œìž„ì„ ì‹¤í–‰í•  ë•ŒëŠ” ì„œë²„ ì„¤ì •ì„ ì‚¬ìš©í•¨)
 		extern bool EnableUserInput;
-		/// ·ÎÄÃ¿¡¼­ °ÔÀÓÀ» ½ÇÇàÇÒ ¶§ ÀüÃ¼ Áöµµ¸¦ ´Ù º¸ÀÌ°Ô ÇÒ °ÍÀÎÁö ¿©ºÎ (ÄÚµå Á¦Ãâ ÈÄ ¼­¹ö¿¡¼­ °ÔÀÓÀ» ½ÇÇàÇÒ ¶§´Â ¼­¹ö ¼³Á¤À» »ç¿ëÇÔ)
+		/// ë¡œì»¬ì—ì„œ ê²Œìž„ì„ ì‹¤í–‰í•  ë•Œ ì „ì²´ ì§€ë„ë¥¼ ë‹¤ ë³´ì´ê²Œ í•  ê²ƒì¸ì§€ ì—¬ë¶€ (ì½”ë“œ ì œì¶œ í›„ ì„œë²„ì—ì„œ ê²Œìž„ì„ ì‹¤í–‰í•  ë•ŒëŠ” ì„œë²„ ì„¤ì •ì„ ì‚¬ìš©í•¨)
         extern bool EnableCompleteMapInformation;
     }
 	
-	/// µð¹ö±× °ü·Ã ¼³Á¤
+	/// ë””ë²„ê·¸ ê´€ë ¨ ì„¤ì •
 	namespace Debug
 	{
-		/// È­¸é Ç¥½Ã ¿©ºÎ - °ÔÀÓ Á¤º¸
+		/// í™”ë©´ í‘œì‹œ ì—¬ë¶€ - ê²Œìž„ ì •ë³´
 		extern bool DrawGameInfo;
 
-		/// È­¸é Ç¥½Ã ¿©ºÎ - ¹Ì³×¶ö, °¡½º
+		/// í™”ë©´ í‘œì‹œ ì—¬ë¶€ - ë¯¸ë„¤ëž„, ê°€ìŠ¤
 		extern bool DrawResourceInfo;
-		/// È­¸é Ç¥½Ã ¿©ºÎ - Áöµµ
+		/// í™”ë©´ í‘œì‹œ ì—¬ë¶€ - ì§€ë„
 		extern bool DrawBWTAInfo;
-		/// È­¸é Ç¥½Ã ¿©ºÎ - ¹ÙµÏÆÇ
+		/// í™”ë©´ í‘œì‹œ ì—¬ë¶€ - ë°”ë‘‘íŒ
 		extern bool DrawMapGrid;
 
-		/// È­¸é Ç¥½Ã ¿©ºÎ - À¯´Ö HitPoint
+		/// í™”ë©´ í‘œì‹œ ì—¬ë¶€ - ìœ ë‹› HitPoint
 		extern bool DrawUnitHealthBars;
-		/// È­¸é Ç¥½Ã ¿©ºÎ - À¯´Ö Åë°è
+		/// í™”ë©´ í‘œì‹œ ì—¬ë¶€ - ìœ ë‹› í†µê³„
 		extern bool DrawEnemyUnitInfo;
-		/// È­¸é Ç¥½Ã ¿©ºÎ - À¯´Ö ~ Target °£ Á÷¼±
+		/// í™”ë©´ í‘œì‹œ ì—¬ë¶€ - ìœ ë‹› ~ Target ê°„ ì§ì„ 
 		extern bool DrawUnitTargetInfo;
 
-		/// È­¸é Ç¥½Ã ¿©ºÎ - ºôµå Å¥
+		/// í™”ë©´ í‘œì‹œ ì—¬ë¶€ - ë¹Œë“œ í
 		extern bool DrawProductionInfo;
 
-		/// È­¸é Ç¥½Ã ¿©ºÎ - °Ç¹° Construction »óÈ²
+		/// í™”ë©´ í‘œì‹œ ì—¬ë¶€ - ê±´ë¬¼ Construction ìƒí™©
 		extern bool DrawBuildingInfo;
 
-		/// È­¸é Ç¥½Ã ¿©ºÎ - °Ç¹° ConstructionPlace ¿¹¾à »óÈ²
+		/// í™”ë©´ í‘œì‹œ ì—¬ë¶€ - ê±´ë¬¼ ConstructionPlace ì˜ˆì•½ ìƒí™©
 		extern bool DrawReservedBuildingTiles;
 
-		/// È­¸é Ç¥½Ã ¿©ºÎ - Á¤Âû »óÅÂ
+		/// í™”ë©´ í‘œì‹œ ì—¬ë¶€ - ì •ì°° ìƒíƒœ
 		extern bool DrawScoutInfo;
-		/// È­¸é Ç¥½Ã ¿©ºÎ - ÀÏ²Û ¸ñ·Ï
+		/// í™”ë©´ í‘œì‹œ ì—¬ë¶€ - ì¼ê¾¼ ëª©ë¡
 		extern bool DrawWorkerInfo;
 
-		/// È­¸é Ç¥½Ã ¿©ºÎ - ¸¶¿ì½º Ä¿¼­
+		/// í™”ë©´ í‘œì‹œ ì—¬ë¶€ - ë§ˆìš°ìŠ¤ ì»¤ì„œ
 		extern bool DrawMouseCursorInfo;
 	}
 
-	/// °ÔÀÓ·ÎÁ÷ °ü·Ã ÆÄ¶ó¸ÞÅÍ
+	/// ê²Œìž„ë¡œì§ ê´€ë ¨ íŒŒë¼ë©”í„°
 	namespace Macro
 	{
-		/// °¢°¢ÀÇ Refinery ¸¶´Ù ÅõÀÔÇÒ ÀÏ²Û ÃÖ´ë ¼ýÀÚ
+		/// ê°ê°ì˜ Refinery ë§ˆë‹¤ íˆ¬ìž…í•  ì¼ê¾¼ ìµœëŒ€ ìˆ«ìž
 		extern int WorkersPerRefinery;
 
-		/// °Ç¹°°ú °Ç¹°°£ ¶ç¿ï ÃÖ¼ÒÇÑÀÇ °£°Ý - ÀÏ¹ÝÀûÀÎ °Ç¹°ÀÇ °æ¿ì
+		/// ê±´ë¬¼ê³¼ ê±´ë¬¼ê°„ ë„ìš¸ ìµœì†Œí•œì˜ ê°„ê²© - ì¼ë°˜ì ì¸ ê±´ë¬¼ì˜ ê²½ìš°
 		extern int BuildingSpacing;
-		/// °Ç¹°°ú °Ç¹°°£ ¶ç¿ï ÃÖ¼ÒÇÑÀÇ °£°Ý - ResourceDepot °Ç¹°ÀÇ °æ¿ì (Nexus, Hatchery, Command Center)
+		/// ê±´ë¬¼ê³¼ ê±´ë¬¼ê°„ ë„ìš¸ ìµœì†Œí•œì˜ ê°„ê²© - ResourceDepot ê±´ë¬¼ì˜ ê²½ìš° (Nexus, Hatchery, Command Center)
 		extern int BuildingResourceDepotSpacing; 
-		/// °Ç¹°°ú °Ç¹°°£ ¶ç¿ï ÃÖ¼ÒÇÑÀÇ °£°Ý - Protoss_Pylon °Ç¹°ÀÇ °æ¿ì - °ÔÀÓ ÃÊ±â¿¡
+		/// ê±´ë¬¼ê³¼ ê±´ë¬¼ê°„ ë„ìš¸ ìµœì†Œí•œì˜ ê°„ê²© - Protoss_Pylon ê±´ë¬¼ì˜ ê²½ìš° - ê²Œìž„ ì´ˆê¸°ì—
 		extern int BuildingPylonEarlyStageSpacing;
-		/// °Ç¹°°ú °Ç¹°°£ ¶ç¿ï ÃÖ¼ÒÇÑÀÇ °£°Ý - Protoss_Pylon °Ç¹°ÀÇ °æ¿ì - °ÔÀÓ ÃÊ±â ÀÌÈÄ¿¡
+		/// ê±´ë¬¼ê³¼ ê±´ë¬¼ê°„ ë„ìš¸ ìµœì†Œí•œì˜ ê°„ê²© - Protoss_Pylon ê±´ë¬¼ì˜ ê²½ìš° - ê²Œìž„ ì´ˆê¸° ì´í›„ì—
 		extern int BuildingPylonSpacing;
-		/// °Ç¹°°ú °Ç¹°°£ ¶ç¿ï ÃÖ¼ÒÇÑÀÇ °£°Ý - Terran_Supply_Depot °Ç¹°ÀÇ °æ¿ì
+		/// ê±´ë¬¼ê³¼ ê±´ë¬¼ê°„ ë„ìš¸ ìµœì†Œí•œì˜ ê°„ê²© - Terran_Supply_Depot ê±´ë¬¼ì˜ ê²½ìš°
 		extern int BuildingSupplyDepotSpacing;
-		/// °Ç¹°°ú °Ç¹°°£ ¶ç¿ï ÃÖ¼ÒÇÑÀÇ °£°Ý - ¹æ¾î °Ç¹°ÀÇ °æ¿ì (Æ÷ÅæÄ³³í. ¼ºÅ«ÄÝ·Î´Ï. ½ºÆ÷¾îÄÝ·Î´Ï. ÅÍ·¿. º¡Ä¿)
+		/// ê±´ë¬¼ê³¼ ê±´ë¬¼ê°„ ë„ìš¸ ìµœì†Œí•œì˜ ê°„ê²© - ë°©ì–´ ê±´ë¬¼ì˜ ê²½ìš° (í¬í†¤ìºë…¼. ì„±í°ì½œë¡œë‹ˆ. ìŠ¤í¬ì–´ì½œë¡œë‹ˆ. í„°ë ›. ë²™ì»¤)
 		extern int BuildingDefenseTowerSpacing; 
 	}
 }

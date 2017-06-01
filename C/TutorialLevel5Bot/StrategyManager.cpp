@@ -46,46 +46,46 @@ void StrategyManager::setInitialBuildOrder()
 		BuildManager::Instance().buildQueue.queueAsLowestPriority(InformationManager::Instance().getWorkerType());
 		BuildManager::Instance().buildQueue.queueAsLowestPriority(InformationManager::Instance().getWorkerType());
 
-		// SupplyUsed°¡ 7 ÀÏ¶§ ÆÄÀÏ·± ºôµå
+		// SupplyUsedê°€ 7 ì¼ë•Œ íŒŒì¼ëŸ° ë¹Œë“œ
 		BuildManager::Instance().buildQueue.queueAsLowestPriority(InformationManager::Instance().getBasicSupplyProviderUnitType(), BuildOrderItem::SeedPositionStrategy::MainBaseLocation);
 
 		BuildManager::Instance().buildQueue.queueAsLowestPriority(InformationManager::Instance().getWorkerType());
 
-		// SupplyUsed°¡ 8 ÀÏ¶§ 1¹øÂ° °ÔÀÌÆ®¿şÀÌ ºôµå
+		// SupplyUsedê°€ 8 ì¼ë•Œ 1ë²ˆì§¸ ê²Œì´íŠ¸ì›¨ì´ ë¹Œë“œ
 		BuildManager::Instance().buildQueue.queueAsLowestPriority(BWAPI::UnitTypes::Protoss_Gateway, BuildOrderItem::SeedPositionStrategy::MainBaseLocation);
 
 		BuildManager::Instance().buildQueue.queueAsLowestPriority(InformationManager::Instance().getWorkerType());
 
-		// SupplyUsed°¡ 9 ÀÏ¶§ °¡½º ¸®ÆÄÀÌ³Ê¸® ºôµå
+		// SupplyUsedê°€ 9 ì¼ë•Œ ê°€ìŠ¤ ë¦¬íŒŒì´ë„ˆë¦¬ ë¹Œë“œ
 		BuildManager::Instance().buildQueue.queueAsLowestPriority(InformationManager::Instance().getRefineryBuildingType());
 
 		BuildManager::Instance().buildQueue.queueAsLowestPriority(InformationManager::Instance().getWorkerType());
 
-		// SupplyUsed°¡ 10 ÀÏ¶§ »çÀÌ¹ö³×Æ½½º ÄÚ¾î ºôµå
+		// SupplyUsedê°€ 10 ì¼ë•Œ ì‚¬ì´ë²„ë„¤í‹±ìŠ¤ ì½”ì–´ ë¹Œë“œ
 		BuildManager::Instance().buildQueue.queueAsLowestPriority(BWAPI::UnitTypes::Protoss_Cybernetics_Core, BuildOrderItem::SeedPositionStrategy::MainBaseLocation);
 
-		// 1¹øÂ° Áú·µ ºôµå
+		// 1ë²ˆì§¸ ì§ˆëŸ¿ ë¹Œë“œ
 		BuildManager::Instance().buildQueue.queueAsLowestPriority(BWAPI::UnitTypes::Protoss_Zealot);
 
-		// SupplyUsed°¡ 12 ÀÏ¶§ ½ÃÅ¸µ¨ ¿Àºê ¾ÆµĞ ºôµå
+		// SupplyUsedê°€ 12 ì¼ë•Œ ì‹œíƒ€ë¸ ì˜¤ë¸Œ ì•„ë‘” ë¹Œë“œ
 		BuildManager::Instance().buildQueue.queueAsLowestPriority(BWAPI::UnitTypes::Protoss_Citadel_of_Adun);
 
 		BuildManager::Instance().buildQueue.queueAsLowestPriority(InformationManager::Instance().getWorkerType());
 		BuildManager::Instance().buildQueue.queueAsLowestPriority(InformationManager::Instance().getWorkerType());
 
-		// SupplyUsed°¡ 14 ÀÏ¶§ ÅÛÇÃ·¯ ¾ÆÄ«ÀÌºê, 2¹øÂ° °ÔÀÌÆ®¿şÀÌ ºôµå
+		// SupplyUsedê°€ 14 ì¼ë•Œ í…œí”ŒëŸ¬ ì•„ì¹´ì´ë¸Œ, 2ë²ˆì§¸ ê²Œì´íŠ¸ì›¨ì´ ë¹Œë“œ
 		BuildManager::Instance().buildQueue.queueAsLowestPriority(BWAPI::UnitTypes::Protoss_Templar_Archives);
 		BuildManager::Instance().buildQueue.queueAsLowestPriority(BWAPI::UnitTypes::Protoss_Gateway, BuildOrderItem::SeedPositionStrategy::MainBaseLocation);
 
-		// 2¹øÂ° Áú·µ ºôµå
+		// 2ë²ˆì§¸ ì§ˆëŸ¿ ë¹Œë“œ
 		BuildManager::Instance().buildQueue.queueAsLowestPriority(BWAPI::UnitTypes::Protoss_Zealot);
 
-		// SupplyUsed°¡ 16 ÀÏ¶§ ÆÄÀÏ·± ºôµå
+		// SupplyUsedê°€ 16 ì¼ë•Œ íŒŒì¼ëŸ° ë¹Œë“œ
 		BuildManager::Instance().buildQueue.queueAsLowestPriority(InformationManager::Instance().getBasicSupplyProviderUnitType(), BuildOrderItem::SeedPositionStrategy::MainBaseLocation);
 
 		BuildManager::Instance().buildQueue.queueAsLowestPriority(InformationManager::Instance().getWorkerType());
 
-		// 4¸¶¸® ´ÙÅ© ÅÛÇÃ·¯ ºôµå ÈÄ ÆÄÀÏ·± ºôµå
+		// 4ë§ˆë¦¬ ë‹¤í¬ í…œí”ŒëŸ¬ ë¹Œë“œ í›„ íŒŒì¼ëŸ° ë¹Œë“œ
 		BuildManager::Instance().buildQueue.queueAsLowestPriority(BWAPI::UnitTypes::Protoss_Dark_Templar);
 		BuildManager::Instance().buildQueue.queueAsLowestPriority(BWAPI::UnitTypes::Protoss_Dark_Templar);
 		BuildManager::Instance().buildQueue.queueAsLowestPriority(BWAPI::UnitTypes::Protoss_Dark_Templar);
@@ -95,16 +95,16 @@ void StrategyManager::setInitialBuildOrder()
 	}
 }
 
-// ÀÏ²Û °è¼Ó Ãß°¡ »ı»ê
+// ì¼ê¾¼ ê³„ì† ì¶”ê°€ ìƒì‚°
 void StrategyManager::executeWorkerTraining()
 {
-	// InitialBuildOrder ÁøÇàÁß¿¡´Â ¾Æ¹«°Íµµ ÇÏÁö ¾Ê½À´Ï´Ù
+	// InitialBuildOrder ì§„í–‰ì¤‘ì—ëŠ” ì•„ë¬´ê²ƒë„ í•˜ì§€ ì•ŠìŠµë‹ˆë‹¤
 	if (isInitialBuildOrderFinished == false) {
 		return;
 	}
 
 	if (BWAPI::Broodwar->self()->minerals() >= 50) {
-		// workerCount = ÇöÀç ÀÏ²Û ¼ö + »ı»êÁßÀÎ ÀÏ²Û ¼ö
+		// workerCount = í˜„ì¬ ì¼ê¾¼ ìˆ˜ + ìƒì‚°ì¤‘ì¸ ì¼ê¾¼ ìˆ˜
 		int workerCount = BWAPI::Broodwar->self()->allUnitCount(InformationManager::Instance().getWorkerType());
 
 		if (BWAPI::Broodwar->self()->getRace() == BWAPI::Races::Zerg) {
@@ -112,8 +112,8 @@ void StrategyManager::executeWorkerTraining()
 			for (auto & unit : BWAPI::Broodwar->self()->getUnits())
 			{
 				if (unit->getType() == BWAPI::UnitTypes::Zerg_Egg) {
-					// Zerg_Egg ¿¡°Ô morph ¸í·ÉÀ» ³»¸®¸é isMorphing = true, isBeingConstructed = true, isConstructing = true °¡ µÈ´Ù
-					// Zerg_Egg °¡ ´Ù¸¥ À¯´ÖÀ¸·Î ¹Ù²î¸é¼­ »õ·Î ¸¸µé¾îÁø À¯´ÖÀº Àá½Ã isBeingConstructed = true, isConstructing = true °¡ µÇ¾ú´Ù°¡, 
+					// Zerg_Egg ì—ê²Œ morph ëª…ë ¹ì„ ë‚´ë¦¬ë©´ isMorphing = true, isBeingConstructed = true, isConstructing = true ê°€ ëœë‹¤
+					// Zerg_Egg ê°€ ë‹¤ë¥¸ ìœ ë‹›ìœ¼ë¡œ ë°”ë€Œë©´ì„œ ìƒˆë¡œ ë§Œë“¤ì–´ì§„ ìœ ë‹›ì€ ì ì‹œ isBeingConstructed = true, isConstructing = true ê°€ ë˜ì—ˆë‹¤ê°€, 
 					if (unit->isMorphing() && unit->getBuildType() == BWAPI::UnitTypes::Zerg_Drone) {
 						workerCount++;
 					}
@@ -139,7 +139,7 @@ void StrategyManager::executeWorkerTraining()
 				{
 					if (unit->isTraining() == false || unit->getLarva().size() > 0) {
 
-						// ºôµåÅ¥¿¡ ÀÏ²Û »ı»êÀÌ 1°³´Â ÀÖµµ·Ï ÇÑ´Ù
+						// ë¹Œë“œíì— ì¼ê¾¼ ìƒì‚°ì´ 1ê°œëŠ” ìˆë„ë¡ í•œë‹¤
 						if (BuildManager::Instance().buildQueue.getItemCount(InformationManager::Instance().getWorkerType()) == 0) {
 							//std::cout << "worker enqueue" << std::endl;
 							BuildManager::Instance().buildQueue.queueAsLowestPriority(MetaType(InformationManager::Instance().getWorkerType()), false);
@@ -151,49 +151,49 @@ void StrategyManager::executeWorkerTraining()
 	}
 }
 
-// Supply DeadLock ¿¹¹æ ¹× SupplyProvider °¡ ºÎÁ·ÇØÁú »óÈ² ¿¡ ´ëÇÑ ¼±Á¦Àû ´ëÀÀÀ¸·Î¼­ SupplyProvider¸¦ Ãß°¡ °Ç¼³/»ı»êÇÑ´Ù
+// Supply DeadLock ì˜ˆë°© ë° SupplyProvider ê°€ ë¶€ì¡±í•´ì§ˆ ìƒí™© ì— ëŒ€í•œ ì„ ì œì  ëŒ€ì‘ìœ¼ë¡œì„œ SupplyProviderë¥¼ ì¶”ê°€ ê±´ì„¤/ìƒì‚°í•œë‹¤
 void StrategyManager::executeSupplyManagement()
 {
-	// InitialBuildOrder ÁøÇàÁß¿¡´Â ¾Æ¹«°Íµµ ÇÏÁö ¾Ê½À´Ï´Ù
+	// InitialBuildOrder ì§„í–‰ì¤‘ì—ëŠ” ì•„ë¬´ê²ƒë„ í•˜ì§€ ì•ŠìŠµë‹ˆë‹¤
 	if (isInitialBuildOrderFinished == false) {
 		return;
 	}
 
-	// 1ÃÊ¿¡ ÇÑ¹ø¸¸ ½ÇÇà
+	// 1ì´ˆì— í•œë²ˆë§Œ ì‹¤í–‰
 	if (BWAPI::Broodwar->getFrameCount() % 24 != 0) {
 		return;
 	}
 
-	// °ÔÀÓ¿¡¼­´Â ¼­ÇÃ¶óÀÌ °ªÀÌ 200±îÁö ÀÖÁö¸¸, BWAPI ¿¡¼­´Â ¼­ÇÃ¶óÀÌ °ªÀÌ 400±îÁö ÀÖ´Ù
-	// Àú±Û¸µ 1¸¶¸®°¡ °ÔÀÓ¿¡¼­´Â ¼­ÇÃ¶óÀÌ¸¦ 0.5 Â÷ÁöÇÏÁö¸¸, BWAPI ¿¡¼­´Â ¼­ÇÃ¶óÀÌ¸¦ 1 Â÷ÁöÇÑ´Ù
+	// ê²Œì„ì—ì„œëŠ” ì„œí”Œë¼ì´ ê°’ì´ 200ê¹Œì§€ ìˆì§€ë§Œ, BWAPI ì—ì„œëŠ” ì„œí”Œë¼ì´ ê°’ì´ 400ê¹Œì§€ ìˆë‹¤
+	// ì €ê¸€ë§ 1ë§ˆë¦¬ê°€ ê²Œì„ì—ì„œëŠ” ì„œí”Œë¼ì´ë¥¼ 0.5 ì°¨ì§€í•˜ì§€ë§Œ, BWAPI ì—ì„œëŠ” ì„œí”Œë¼ì´ë¥¼ 1 ì°¨ì§€í•œë‹¤
 	if (BWAPI::Broodwar->self()->supplyTotal() <= 400)
 	{
-		// ¼­ÇÃ¶óÀÌ°¡ ´Ù ²ËÃ¡À»¶§ »õ ¼­ÇÃ¶óÀÌ¸¦ ÁöÀ¸¸é Áö¿¬ÀÌ ¸¹ÀÌ ÀÏ¾î³ª¹Ç·Î, supplyMargin (°ÔÀÓ¿¡¼­ÀÇ ¼­ÇÃ¶óÀÌ ¸¶Áø °ªÀÇ 2¹è)¸¸Å­ ºÎÁ·ÇØÁö¸é »õ ¼­ÇÃ¶óÀÌ¸¦ Áşµµ·Ï ÇÑ´Ù
-		// ÀÌ·¸°Ô °ªÀ» Á¤ÇØ³õÀ¸¸é, °ÔÀÓ ÃÊ¹İºÎ¿¡´Â ¼­ÇÃ¶óÀÌ¸¦ ³Ê¹« ÀÏÂï Áş°í, °ÔÀÓ ÈÄ¹İºÎ¿¡´Â ¼­ÇÃ¶óÀÌ¸¦ ³Ê¹« ´Ê°Ô Áş°Ô µÈ´Ù
+		// ì„œí”Œë¼ì´ê°€ ë‹¤ ê½‰ì°¼ì„ë•Œ ìƒˆ ì„œí”Œë¼ì´ë¥¼ ì§€ìœ¼ë©´ ì§€ì—°ì´ ë§ì´ ì¼ì–´ë‚˜ë¯€ë¡œ, supplyMargin (ê²Œì„ì—ì„œì˜ ì„œí”Œë¼ì´ ë§ˆì§„ ê°’ì˜ 2ë°°)ë§Œí¼ ë¶€ì¡±í•´ì§€ë©´ ìƒˆ ì„œí”Œë¼ì´ë¥¼ ì§“ë„ë¡ í•œë‹¤
+		// ì´ë ‡ê²Œ ê°’ì„ ì •í•´ë†“ìœ¼ë©´, ê²Œì„ ì´ˆë°˜ë¶€ì—ëŠ” ì„œí”Œë¼ì´ë¥¼ ë„ˆë¬´ ì¼ì° ì§“ê³ , ê²Œì„ í›„ë°˜ë¶€ì—ëŠ” ì„œí”Œë¼ì´ë¥¼ ë„ˆë¬´ ëŠ¦ê²Œ ì§“ê²Œ ëœë‹¤
 		int supplyMargin = 12;
 
-		// currentSupplyShortage ¸¦ °è»êÇÑ´Ù
+		// currentSupplyShortage ë¥¼ ê³„ì‚°í•œë‹¤
 		int currentSupplyShortage = BWAPI::Broodwar->self()->supplyUsed() + supplyMargin - BWAPI::Broodwar->self()->supplyTotal();
 
 		if (currentSupplyShortage > 0) {
 
-			// »ı»ê/°Ç¼³ ÁßÀÎ Supply¸¦ ¼¾´Ù
+			// ìƒì‚°/ê±´ì„¤ ì¤‘ì¸ Supplyë¥¼ ì„¼ë‹¤
 			int onBuildingSupplyCount = 0;
 
-			// Àú±× Á¾Á·ÀÎ °æ¿ì, »ı»êÁßÀÎ Zerg_Overlord (Zerg_Egg) ¸¦ ¼¾´Ù. Hatchery µî °Ç¹°Àº ¼¼Áö ¾Ê´Â´Ù
+			// ì €ê·¸ ì¢…ì¡±ì¸ ê²½ìš°, ìƒì‚°ì¤‘ì¸ Zerg_Overlord (Zerg_Egg) ë¥¼ ì„¼ë‹¤. Hatchery ë“± ê±´ë¬¼ì€ ì„¸ì§€ ì•ŠëŠ”ë‹¤
 			if (BWAPI::Broodwar->self()->getRace() == BWAPI::Races::Zerg) {
 				for (auto & unit : BWAPI::Broodwar->self()->getUnits())
 				{
 					if (unit->getType() == BWAPI::UnitTypes::Zerg_Egg && unit->getBuildType() == BWAPI::UnitTypes::Zerg_Overlord) {
 						onBuildingSupplyCount += BWAPI::UnitTypes::Zerg_Overlord.supplyProvided();
 					}
-					// °«ÅÂ¾î³­ Overlord ´Â ¾ÆÁ÷ SupplyTotal ¿¡ ¹İ¿µ¾ÈµÇ¾î¼­, Ãß°¡ Ä«¿îÆ®¸¦ ÇØÁà¾ßÇÔ 
+					// ê°“íƒœì–´ë‚œ Overlord ëŠ” ì•„ì§ SupplyTotal ì— ë°˜ì˜ì•ˆë˜ì–´ì„œ, ì¶”ê°€ ì¹´ìš´íŠ¸ë¥¼ í•´ì¤˜ì•¼í•¨ 
 					if (unit->getType() == BWAPI::UnitTypes::Zerg_Overlord && unit->isConstructing()) {
 						onBuildingSupplyCount += BWAPI::UnitTypes::Zerg_Overlord.supplyProvided();
 					}
 				}
 			}
-			// Àú±× Á¾Á·ÀÌ ¾Æ´Ñ °æ¿ì, °Ç¼³ÁßÀÎ Protoss_Pylon, Terran_Supply_Depot ¸¦ ¼¾´Ù. Nexus, Command Center µî °Ç¹°Àº ¼¼Áö ¾Ê´Â´Ù
+			// ì €ê·¸ ì¢…ì¡±ì´ ì•„ë‹Œ ê²½ìš°, ê±´ì„¤ì¤‘ì¸ Protoss_Pylon, Terran_Supply_Depot ë¥¼ ì„¼ë‹¤. Nexus, Command Center ë“± ê±´ë¬¼ì€ ì„¸ì§€ ì•ŠëŠ”ë‹¤
 			else {
 				onBuildingSupplyCount += ConstructionManager::Instance().getConstructionQueueItemCount(InformationManager::Instance().getBasicSupplyProviderUnitType()) * InformationManager::Instance().getBasicSupplyProviderUnitType().supplyProvided();
 			}
@@ -202,7 +202,7 @@ void StrategyManager::executeSupplyManagement()
 
 			if (currentSupplyShortage > onBuildingSupplyCount) {
 
-				// BuildQueue ÃÖ»ó´Ü¿¡ SupplyProvider °¡ ÀÖÁö ¾ÊÀ¸¸é enqueue ÇÑ´Ù
+				// BuildQueue ìµœìƒë‹¨ì— SupplyProvider ê°€ ìˆì§€ ì•Šìœ¼ë©´ enqueue í•œë‹¤
 				bool isToEnqueue = true;
 				if (!BuildManager::Instance().buildQueue.isEmpty()) {
 					BuildOrderItem currentItem = BuildManager::Instance().buildQueue.getHighestPriorityItem();
@@ -222,12 +222,12 @@ void StrategyManager::executeSupplyManagement()
 
 void StrategyManager::executeBasicCombatUnitTraining()
 {
-	// InitialBuildOrder ÁøÇàÁß¿¡´Â ¾Æ¹«°Íµµ ÇÏÁö ¾Ê½À´Ï´Ù
+	// InitialBuildOrder ì§„í–‰ì¤‘ì—ëŠ” ì•„ë¬´ê²ƒë„ í•˜ì§€ ì•ŠìŠµë‹ˆë‹¤
 	if (isInitialBuildOrderFinished == false) {
 		return;
 	}
 
-	// ±âº» º´·Â Ãß°¡ ÈÆ·Ã
+	// ê¸°ë³¸ ë³‘ë ¥ ì¶”ê°€ í›ˆë ¨
 	if (BWAPI::Broodwar->self()->minerals() >= 200 && BWAPI::Broodwar->self()->supplyUsed() < 390) {
 		{
 			for (auto & unit : BWAPI::Broodwar->self()->getUnits())
@@ -247,7 +247,7 @@ void StrategyManager::executeBasicCombatUnitTraining()
 
 void StrategyManager::executeCombat()
 {
-	// °ø°İ ¸ğµå°¡ ¾Æ´Ò ¶§¿¡´Â ÀüÅõÀ¯´ÖµéÀ» ¾Æ±º Áø¿µ ±æ¸ñ¿¡ Áı°á½ÃÄÑ¼­ ¹æ¾î
+	// ê³µê²© ëª¨ë“œê°€ ì•„ë‹ ë•Œì—ëŠ” ì „íˆ¬ìœ ë‹›ë“¤ì„ ì•„êµ° ì§„ì˜ ê¸¸ëª©ì— ì§‘ê²°ì‹œì¼œì„œ ë°©ì–´
 	if (isFullScaleAttackStarted == false)		
 	{
 		BWTA::Chokepoint* firstChokePoint = BWTA::getNearestChokepoint(InformationManager::Instance().getMainBaseLocation(InformationManager::Instance().selfPlayer)->getTilePosition());
@@ -259,7 +259,7 @@ void StrategyManager::executeCombat()
 			}
 		}
 
-		// Protoss_Dark_Templar À¯´ÖÀÌ 2°³ ÀÌ»ó »ı»êµÇ¾ú°í, Àû±º À§Ä¡°¡ ÆÄ¾ÇµÇ¾úÀ¸¸é ÃÑ°ø°İ ¸ğµå·Î ÀüÈ¯
+		// Protoss_Dark_Templar ìœ ë‹›ì´ 2ê°œ ì´ìƒ ìƒì‚°ë˜ì—ˆê³ , ì êµ° ìœ„ì¹˜ê°€ íŒŒì•…ë˜ì—ˆìœ¼ë©´ ì´ê³µê²© ëª¨ë“œë¡œ ì „í™˜
 		if (BWAPI::Broodwar->self()->completedUnitCount(BWAPI::UnitTypes::Protoss_Dark_Templar) >= 2) {
 
 			if (InformationManager::Instance().enemyPlayer != nullptr
@@ -271,7 +271,7 @@ void StrategyManager::executeCombat()
 		}
 
 	}
-	// °ø°İ ¸ğµå°¡ µÇ¸é, ¸ğµç ÀüÅõÀ¯´ÖµéÀ» Àû±º Main BaseLocation ·Î °ø°İ °¡µµ·Ï ÇÕ´Ï´Ù
+	// ê³µê²© ëª¨ë“œê°€ ë˜ë©´, ëª¨ë“  ì „íˆ¬ìœ ë‹›ë“¤ì„ ì êµ° Main BaseLocation ë¡œ ê³µê²© ê°€ë„ë¡ í•©ë‹ˆë‹¤
 	else {
 		//std::cout << "enemy OccupiedBaseLocations : " << InformationManager::Instance().getOccupiedBaseLocations(InformationManager::Instance().enemyPlayer).size() << std::endl;
 		
@@ -279,7 +279,7 @@ void StrategyManager::executeCombat()
 			&& InformationManager::Instance().enemyRace != BWAPI::Races::Unknown
 			&& InformationManager::Instance().getOccupiedBaseLocations(InformationManager::Instance().enemyPlayer).size() > 0)
 		{
-			// °ø°İ ´ë»ó Áö¿ª °áÁ¤
+			// ê³µê²© ëŒ€ìƒ ì§€ì—­ ê²°ì •
 			BWTA::BaseLocation * targetBaseLocation = nullptr;
 			double closestDistance = 100000000;
 
@@ -299,12 +299,12 @@ void StrategyManager::executeCombat()
 
 				for (auto & unit : BWAPI::Broodwar->self()->getUnits())
 				{
-					// °Ç¹°Àº Á¦¿Ü
+					// ê±´ë¬¼ì€ ì œì™¸
 					if (unit->getType().isBuilding()) continue;
-					// ¸ğµç ÀÏ²ÛÀº Á¦¿Ü
+					// ëª¨ë“  ì¼ê¾¼ì€ ì œì™¸
 					if (unit->getType().isWorker()) continue;
 
-					// canAttack À¯´ÖÀº attackMove Command ·Î °ø°İÀ» º¸³À´Ï´Ù
+					// canAttack ìœ ë‹›ì€ attackMove Command ë¡œ ê³µê²©ì„ ë³´ëƒ…ë‹ˆë‹¤
 					if (unit->canAttack()) {
 
 						if (unit->isIdle()) {

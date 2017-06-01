@@ -295,7 +295,6 @@ void MapTools::resetFringe()
     std::fill(_fringe.begin(),_fringe.end(),0);
 }
 
-// 지상 경로로 걸어갈 때의 거리를 반환한다
 int MapTools::getGroundDistance(BWAPI::Position origin,BWAPI::Position destination)
 {
     // if we have too many maps, reset our stored maps in case we run out of memory
@@ -309,20 +308,29 @@ int MapTools::getGroundDistance(BWAPI::Position origin,BWAPI::Position destinati
     // if we haven't yet computed the distance map to the destination
     if (_allMaps.find(destination) == _allMaps.end())
     {
-        // if we have computed the opposite direction, we can use that too
+		std::cout << "we haven't yet" << std::endl;
+		
+		// if we have computed the opposite direction, we can use that too
         if (_allMaps.find(origin) != _allMaps.end())
         {
-            return _allMaps[origin][destination];
+			std::cout << "we have opposite" << std::endl;
+			
+			return _allMaps[origin][destination];
         }
+
+		std::cout << "compute it" << std::endl;
 
         // add the map and compute it
         _allMaps.insert(std::pair<BWAPI::Position,DistanceMap>(destination,DistanceMap()));
         computeDistance(_allMaps[destination],destination);
     }
 
+	std::cout << "get it" << std::endl;
+
     // get the distance from the map
     return _allMaps[destination][origin];
 }
+
 
 // computes walk distance from Position P to all other points on the map
 void MapTools::computeDistance(DistanceMap & dmap,const BWAPI::Position p)

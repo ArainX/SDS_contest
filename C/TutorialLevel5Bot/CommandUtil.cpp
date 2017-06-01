@@ -295,7 +295,7 @@ size_t UnitUtil::GetAllUnitCount(BWAPI::UnitType type)
 	return count;
 }
 
-// ÀüÃ¼ ¼øÂ÷Å½»öÀ» ÇÏ±â ¶§¹®¿¡ ´À¸®´Ù
+// ì „ì²´ ìˆœì°¨íƒìƒ‰ì„ í•˜ê¸° ë•Œë¬¸ì— ëŠë¦¬ë‹¤
 BWAPI::Unit UnitUtil::GetClosestUnitTypeToTarget(BWAPI::UnitType type, BWAPI::Position target)
 {
 	BWAPI::Unit closestUnit = nullptr;

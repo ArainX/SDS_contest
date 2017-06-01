@@ -22,7 +22,7 @@ InformationManager::InformationManager()
 
 void InformationManager::update() 
 {
-	// enemy ÀÇ Á¾Á·À» ¾ÆÁ÷ ¸ğ¸£´Â °æ¿ì
+	// enemy ì˜ ì¢…ì¡±ì„ ì•„ì§ ëª¨ë¥´ëŠ” ê²½ìš°
 	if (enemyRace == BWAPI::Races::Unknown) {
 		for (auto & unit : BWAPI::Broodwar->enemy()->getUnits())
 		{
@@ -31,7 +31,7 @@ void InformationManager::update()
 		}
 	}
 
-	// enemy ÀÇ startLocationÀ» ¾ÆÁ÷ ¸ğ¸£´Â °æ¿ì
+	// enemy ì˜ startLocationì„ ì•„ì§ ëª¨ë¥´ëŠ” ê²½ìš°
 	if (_mainBaseLocations[enemyPlayer] == nullptr) {
 
 		for (BWTA::BaseLocation * startLocation : BWTA::getStartLocations())

@@ -37,7 +37,7 @@ public class InformationManager {
 	}
 
 	public void update() {
-		// enemy ÀÇ Á¾Á·À» ¾ÆÁ÷ ¸ğ¸£´Â °æ¿ì
+		// enemy ì˜ ì¢…ì¡±ì„ ì•„ì§ ëª¨ë¥´ëŠ” ê²½ìš°
 		if (enemyRace == Race.Unknown) {
 			for (Unit unit : MyBotModule.Broodwar.enemy().getUnits())
 			{
@@ -46,7 +46,7 @@ public class InformationManager {
 			}
 		}
 
-		// enemy ÀÇ startLocationÀ» ¾ÆÁ÷ ¸ğ¸£´Â °æ¿ì
+		// enemy ì˜ startLocationì„ ì•„ì§ ëª¨ë¥´ëŠ” ê²½ìš°
 		if (mainBaseLocations.get(enemyPlayer) == null) {
 
 			for (BaseLocation startLocation : BWTA.getStartLocations()) {

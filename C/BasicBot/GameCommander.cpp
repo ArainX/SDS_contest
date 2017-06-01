@@ -33,38 +33,40 @@ void GameCommander::onFrame()
 
 	if (isToFindError) std::cout << "(a";
 
-	// ¾Æ±º º£ÀÌ½º À§Ä¡. Àû±º º£ÀÌ½º À§Ä¡. °¢ À¯´ÖµéÀÇ »óÅÂÁ¤º¸ µîÀ» Map ÀÚ·á±¸Á¶¿¡ ÀúÀå/¾÷µ¥ÀÌÆ®
+	// ì•„êµ° ë² ì´ìŠ¤ ìœ„ì¹˜. ì êµ° ë² ì´ìŠ¤ ìœ„ì¹˜. ê° ìœ ë‹›ë“¤ì˜ ìƒíƒœì •ë³´ ë“±ì„ Map ìë£Œêµ¬ì¡°ì— ì €ì¥/ì—…ë°ì´íŠ¸
 	InformationManager::Instance().update();
 
 	if (isToFindError) std::cout << "b";
 
-	// °¢ À¯´ÖÀÇ À§Ä¡¸¦ ÀÚÃ¼ MapGrid ÀÚ·á±¸Á¶¿¡ ÀúÀå
+	// ê° ìœ ë‹›ì˜ ìœ„ì¹˜ë¥¼ ìì²´ MapGrid ìë£Œêµ¬ì¡°ì— ì €ì¥
 	MapGrid::Instance().update();
+
+	MapTools::Instance().draw();
 
 	if (isToFindError) std::cout << "c";
 
 	// economy and base managers
-	// ÀÏ²Û À¯´Ö¿¡ ´ëÇÑ ¸í·É (ÀÚ¿ø Ã¤Ãë, ÀÌµ¿ Á¤µµ) Áö½Ã ¹× Á¤¸®
+	// ì¼ê¾¼ ìœ ë‹›ì— ëŒ€í•œ ëª…ë ¹ (ìì› ì±„ì·¨, ì´ë™ ì •ë„) ì§€ì‹œ ë° ì •ë¦¬
 	WorkerManager::Instance().update();
 
 	if (isToFindError) std::cout << "d";
 
-	// ºôµå¿À´õÅ¥¸¦ °ü¸®ÇÏ¸ç, ºôµå¿À´õ¿¡ µû¶ó ½ÇÁ¦ ½ÇÇà(À¯´Ö ÈÆ·Ã, Å×Å© ¾÷±×·¹ÀÌµå µî)À» Áö½ÃÇÑ´Ù.
+	// ë¹Œë“œì˜¤ë”íë¥¼ ê´€ë¦¬í•˜ë©°, ë¹Œë“œì˜¤ë”ì— ë”°ë¼ ì‹¤ì œ ì‹¤í–‰(ìœ ë‹› í›ˆë ¨, í…Œí¬ ì—…ê·¸ë ˆì´ë“œ ë“±)ì„ ì§€ì‹œí•œë‹¤.
 	BuildManager::Instance().update();
 
 	if (isToFindError) std::cout << "e";
 
-	// ºôµå¿À´õ Áß °Ç¹° ºôµå¿¡ ´ëÇØ¼­´Â, ÀÏ²ÛÀ¯´Ö ¼±Á¤, À§Ä¡¼±Á¤, °Ç¼³ ½Ç½Ã, Áß´ÜµÈ °Ç¹° ºôµå Àç°³¸¦ Áö½ÃÇÑ´Ù
+	// ë¹Œë“œì˜¤ë” ì¤‘ ê±´ë¬¼ ë¹Œë“œì— ëŒ€í•´ì„œëŠ”, ì¼ê¾¼ìœ ë‹› ì„ ì •, ìœ„ì¹˜ì„ ì •, ê±´ì„¤ ì‹¤ì‹œ, ì¤‘ë‹¨ëœ ê±´ë¬¼ ë¹Œë“œ ì¬ê°œë¥¼ ì§€ì‹œí•œë‹¤
 	ConstructionManager::Instance().update();
 
 	if (isToFindError) std::cout << "f";
 
-	// °ÔÀÓ ÃÊ±â Á¤Âû À¯´Ö ÁöÁ¤ ¹× Á¤Âû À¯´Ö ÄÁÆ®·ÑÀ» ½ÇÇàÇÑ´Ù
+	// ê²Œì„ ì´ˆê¸° ì •ì°° ìœ ë‹› ì§€ì • ë° ì •ì°° ìœ ë‹› ì»¨íŠ¸ë¡¤ì„ ì‹¤í–‰í•œë‹¤
 	ScoutManager::Instance().update();
 
 	if (isToFindError) std::cout << "g";
 
-	// Àü·«Àû ÆÇ´Ü ¹× À¯´Ö ÄÁÆ®·Ñ
+	// ì „ëµì  íŒë‹¨ ë° ìœ ë‹› ì»¨íŠ¸ë¡¤
 	StrategyManager::Instance().update();
 
 	if (isToFindError) std::cout << "h)";
@@ -74,7 +76,7 @@ void GameCommander::onUnitShow(BWAPI::Unit unit)
 { 
 	InformationManager::Instance().onUnitShow(unit); 
 
-	// ResourceDepot ¹× Worker ¿¡ ´ëÇÑ Ã³¸®
+	// ResourceDepot ë° Worker ì— ëŒ€í•œ ì²˜ë¦¬
 	WorkerManager::Instance().onUnitShow(unit);
 }
 
@@ -95,7 +97,7 @@ void GameCommander::onUnitComplete(BWAPI::Unit unit)
 
 void GameCommander::onUnitDestroy(BWAPI::Unit unit)		
 {
-	// ResourceDepot ¹× Worker ¿¡ ´ëÇÑ Ã³¸®
+	// ResourceDepot ë° Worker ì— ëŒ€í•œ ì²˜ë¦¬
 	WorkerManager::Instance().onUnitDestroy(unit);
 
 	InformationManager::Instance().onUnitDestroy(unit); 
@@ -103,7 +105,7 @@ void GameCommander::onUnitDestroy(BWAPI::Unit unit)
 
 void GameCommander::onUnitRenegade(BWAPI::Unit unit)
 {
-	// Vespene_Geyser (°¡½º ±¤»ê) ¿¡ ´©±º°¡°¡ °Ç¼³À» ÇßÀ» °æ¿ì
+	// Vespene_Geyser (ê°€ìŠ¤ ê´‘ì‚°) ì— ëˆ„êµ°ê°€ê°€ ê±´ì„¤ì„ í–ˆì„ ê²½ìš°
 	//BWAPI::Broodwar->sendText("A %s [%p] has renegaded. It is now owned by %s", unit->getType().c_str(), unit, unit->getPlayer()->getName().c_str());
 
 	InformationManager::Instance().onUnitRenegade(unit);
@@ -113,7 +115,7 @@ void GameCommander::onUnitMorph(BWAPI::Unit unit)
 { 
 	InformationManager::Instance().onUnitMorph(unit);
 
-	// Zerg Á¾Á· Worker ÀÇ Morph ¿¡ ´ëÇÑ Ã³¸®
+	// Zerg ì¢…ì¡± Worker ì˜ Morph ì— ëŒ€í•œ ì²˜ë¦¬
 	WorkerManager::Instance().onUnitMorph(unit);
 }
 

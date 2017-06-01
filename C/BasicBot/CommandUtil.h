@@ -11,26 +11,26 @@ namespace MyBot
 		int height, width;
 	};
 
-	/// ÀÌµ¿ (move), °ø°İ (attack), ¼ö¸® (repair), ¿ìÅ¬¸¯ (rightClick)  µî À¯´Ö ÄÁÆ®·Ñ ¸í·ÉÀ» ³»¸± ¶§ °¢Á¾ Ã¼Å©ÇØ¾ßÇÒ »çÇ×µéÀ» Ã¼Å©ÇÑ ÈÄ ¸í·É ³»¸®µµ·Ï ÇÏ´Â ÇïÆÛ ÇÔ¼öµé
+	/// ì´ë™ (move), ê³µê²© (attack), ìˆ˜ë¦¬ (repair), ìš°í´ë¦­ (rightClick)  ë“± ìœ ë‹› ì»¨íŠ¸ë¡¤ ëª…ë ¹ì„ ë‚´ë¦´ ë•Œ ê°ì¢… ì²´í¬í•´ì•¼í•  ì‚¬í•­ë“¤ì„ ì²´í¬í•œ í›„ ëª…ë ¹ ë‚´ë¦¬ë„ë¡ í•˜ëŠ” í—¬í¼ í•¨ìˆ˜ë“¤
 	namespace CommandUtil
 	{
-		/// attacker °¡ target À» °ø°İÇÏµµ·Ï ¸í·É ÇÕ´Ï´Ù
+		/// attacker ê°€ target ì„ ê³µê²©í•˜ë„ë¡ ëª…ë ¹ í•©ë‹ˆë‹¤
 		void attackUnit(BWAPI::Unit attacker, BWAPI::Unit target);
 		
-		/// attacker °¡ targetPosition À» ÇâÇØ °ø°İ °¡µµ·Ï ¸í·É ÇÕ´Ï´Ù
+		/// attacker ê°€ targetPosition ì„ í–¥í•´ ê³µê²© ê°€ë„ë¡ ëª…ë ¹ í•©ë‹ˆë‹¤
 		void attackMove(BWAPI::Unit attacker, const BWAPI::Position & targetPosition);
 
-		/// attacker °¡ targetPosition À» ÇâÇØ ÀÌµ¿ °¡µµ·Ï ¸í·É ÇÕ´Ï´Ù
+		/// attacker ê°€ targetPosition ì„ í–¥í•´ ì´ë™ ê°€ë„ë¡ ëª…ë ¹ í•©ë‹ˆë‹¤
 		void move(BWAPI::Unit attacker, const BWAPI::Position & targetPosition);
 
-		/// unit ÀÌ target ¿¡ ´ëÇØ ¾î¶² ÇàÀ§¸¦ ÇÏµµ·Ï ¸í·É ÇÕ´Ï´Ù
-		/// ÀÏ²Û À¯´ÖÀÌ Mineral Field ¿¡°Ô : Mineral ÀÚ¿ø Ã¤Ãë
-		/// ÀÏ²Û À¯´ÖÀÌ Refinery °Ç¹°¿¡°Ô : Gas ÀÚ¿ø Ã¤Ãë
-		/// ÀüÅõ À¯´ÖÀÌ ´Ù¸¥ ¾Æ±º À¯´Ö¿¡°Ô : Move ¸í·É
-		/// ÀüÅõ À¯´ÖÀÌ ´Ù¸¥ Àû±º À¯´Ö¿¡°Ô : Attack ¸í·É
+		/// unit ì´ target ì— ëŒ€í•´ ì–´ë–¤ í–‰ìœ„ë¥¼ í•˜ë„ë¡ ëª…ë ¹ í•©ë‹ˆë‹¤
+		/// ì¼ê¾¼ ìœ ë‹›ì´ Mineral Field ì—ê²Œ : Mineral ìì› ì±„ì·¨
+		/// ì¼ê¾¼ ìœ ë‹›ì´ Refinery ê±´ë¬¼ì—ê²Œ : Gas ìì› ì±„ì·¨
+		/// ì „íˆ¬ ìœ ë‹›ì´ ë‹¤ë¥¸ ì•„êµ° ìœ ë‹›ì—ê²Œ : Move ëª…ë ¹
+		/// ì „íˆ¬ ìœ ë‹›ì´ ë‹¤ë¥¸ ì êµ° ìœ ë‹›ì—ê²Œ : Attack ëª…ë ¹
 		void rightClick(BWAPI::Unit unit, BWAPI::Unit target);
 
-		/// unit ÀÌ target ¿¡ ´ëÇØ ¼ö¸® ÇÏµµ·Ï ¸í·É ÇÕ´Ï´Ù 
+		/// unit ì´ target ì— ëŒ€í•´ ìˆ˜ë¦¬ í•˜ë„ë¡ ëª…ë ¹ í•©ë‹ˆë‹¤ 
 		void repair(BWAPI::Unit unit, BWAPI::Unit target);
 	};
 

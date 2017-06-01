@@ -12,24 +12,24 @@ public class GameCommander {
 
 	public void onFrame()
 	{
-		// ¾Æ±º º£ÀÌ½º À§Ä¡. Àû±º º£ÀÌ½º À§Ä¡ Á¤º¸¸¦ ÀúÀå/¾÷µ¥ÀÌÆ®ÇÑ´Ù
+		// ì•„êµ° ë² ì´ìŠ¤ ìœ„ì¹˜. ì êµ° ë² ì´ìŠ¤ ìœ„ì¹˜ ì •ë³´ë¥¼ ì €ì¥/ì—…ë°ì´íŠ¸í•œë‹¤
 		InformationManager.Instance().update();
 
-		// ÇÃ·¹ÀÌ¾î Á¤º¸ Ç¥½Ã - InformationManager ÀÇ ¸â¹öº¯¼ö »ç¿ë
+		// í”Œë ˆì´ì–´ ì •ë³´ í‘œì‹œ - InformationManager ì˜ ë©¤ë²„ë³€ìˆ˜ ì‚¬ìš©
 		MyBotModule.Broodwar.drawTextScreen(5, 5, "My Player: "+MyBotModule.Broodwar.self().getTextColor()+MyBotModule.Broodwar.self().getName()
 				+" ("+InformationManager.Instance().selfRace+")");
 		MyBotModule.Broodwar.drawTextScreen(5, 15, "Enemy Player: "+MyBotModule.Broodwar.enemy().getTextColor()
 				+MyBotModule.Broodwar.enemy().getName()+" ("+InformationManager.Instance().enemyRace+")");
 		
-		// ÇöÀç FrameCount Ç¥½Ã
+		// í˜„ì¬ FrameCount í‘œì‹œ
 		MyBotModule.Broodwar.drawTextScreen(300, 100, "FrameCount: "+MyBotModule.Broodwar.getFrameCount());
 
-		// À¯´Ö id Ç¥½Ã
+		// ìœ ë‹› id í‘œì‹œ
 		for (Unit unit : MyBotModule.Broodwar.getAllUnits()) {
 			MyBotModule.Broodwar.drawTextMap(unit.getPosition().getX(), unit.getPosition().getY(), ""+unit.getID());
 		}		
 		
-		// ÇÃ·¹ÀÌ¾î Start Location Ç¥½Ã - InformationManager ÀÇ ¸â¹öº¯¼ö »ç¿ë
+		// í”Œë ˆì´ì–´ Start Location í‘œì‹œ - InformationManager ì˜ ë©¤ë²„ë³€ìˆ˜ ì‚¬ìš©
 		if (InformationManager.Instance().mainBaseLocations.get(MyBotModule.Broodwar.self()) != null) {
 			MyBotModule.Broodwar.drawTextScreen(200, 5, "Start Location: "
 				+InformationManager.Instance().mainBaseLocations.get(MyBotModule.Broodwar.self()).getTilePosition().getX()+","
@@ -41,7 +41,7 @@ public class GameCommander {
 				+InformationManager.Instance().mainBaseLocations.get(MyBotModule.Broodwar.enemy()).getTilePosition().getY());
 		}
 		
-		// ÀÏ²Û À¯´Ö¿¡°Ô ÀÚ¿ø Ã¤Ãë¸¦ ¸í·ÉÇÑ´Ù
+		// ì¼ê¾¼ ìœ ë‹›ì—ê²Œ ìì› ì±„ì·¨ë¥¼ ëª…ë ¹í•œë‹¤
 		WorkerManager.Instance().update();	
 	}
 

@@ -21,10 +21,10 @@ void reconnect()
 	}
 }
 
-/// º¿ ÇÁ·Î±×·¥À» EXE ÇüÅÂ·Î ½ÇÇàÇÕ´Ï´Ù
+/// ë´‡ í”„ë¡œê·¸ë¨ì„ EXE í˜•íƒœë¡œ ì‹¤í–‰í•©ë‹ˆë‹¤
 int main(int argc, const char* argv[])
 {
-	// µğ¹ö±×´Â std::cout À» ÀÌ¿ëÇØ¼­ ÇÕ´Ï´Ù
+	// ë””ë²„ê·¸ëŠ” std::cout ì„ ì´ìš©í•´ì„œ í•©ë‹ˆë‹¤
 	std::cout << "Connecting..." << std::endl;;
 	reconnect();
 

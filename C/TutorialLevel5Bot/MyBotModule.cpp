@@ -44,8 +44,8 @@ void MyBotModule::onStart(){
 	time_t t;
 	srand((unsigned int)(time(&t)));
 
-	// Config ÆÄÀÏ °ü¸®°¡ ¹ø°Å·Ó°í, ¹èÆ÷ ¹× »ç¿ë½Ã Config ÆÄÀÏ À§Ä¡¸¦ ÁöÁ¤ÇØÁÖ´Â °ÍÀÌ ¹ø°Å·Ó±â ¶§¹®¿¡, 
-	// Config ¸¦ ÆÄÀÏ·ÎºÎÅÍ ÀĞ¾îµéÀÌÁö ¾Ê°í, Config Å¬·¡½ºÀÇ °ªÀ» »ç¿ëÇÏµµ·Ï ÇÕ´Ï´Ù.
+	// Config íŒŒì¼ ê´€ë¦¬ê°€ ë²ˆê±°ë¡­ê³ , ë°°í¬ ë° ì‚¬ìš©ì‹œ Config íŒŒì¼ ìœ„ì¹˜ë¥¼ ì§€ì •í•´ì£¼ëŠ” ê²ƒì´ ë²ˆê±°ë¡­ê¸° ë•Œë¬¸ì—, 
+	// Config ë¥¼ íŒŒì¼ë¡œë¶€í„° ì½ì–´ë“¤ì´ì§€ ì•Šê³ , Config í´ë˜ìŠ¤ì˜ ê°’ì„ ì‚¬ìš©í•˜ë„ë¡ í•©ë‹ˆë‹¤.
 	if (Config::BWAPIOptions::EnableCompleteMapInformation)
 	{
 		BWAPI::Broodwar->enableFlag(BWAPI::Flag::CompleteMapInformation);
@@ -60,11 +60,11 @@ void MyBotModule::onStart(){
 
 
 	// Speedups for automated play, sets the number of milliseconds bwapi spends in each frame
-	// Fastest: 42 ms/frame.  1ÃÊ¿¡ 24 frame. ÀÏ¹İÀûÀ¸·Î 1ÃÊ¿¡ 24frameÀ» ±âÁØ °ÔÀÓ¼Óµµ·Î ÇÕ´Ï´Ù
-	// Normal: 67 ms/frame. 1ÃÊ¿¡ 15 frame
-	// As fast as possible : 0 ms/frame. CPU°¡ ÇÒ¼öÀÖ´Â °¡Àå ºü¸¥ ¼Óµµ. 
+	// Fastest: 42 ms/frame.  1ì´ˆì— 24 frame. ì¼ë°˜ì ìœ¼ë¡œ 1ì´ˆì— 24frameì„ ê¸°ì¤€ ê²Œì„ì†ë„ë¡œ í•©ë‹ˆë‹¤
+	// Normal: 67 ms/frame. 1ì´ˆì— 15 frame
+	// As fast as possible : 0 ms/frame. CPUê°€ í• ìˆ˜ìˆëŠ” ê°€ì¥ ë¹ ë¥¸ ì†ë„. 
 	BWAPI::Broodwar->setLocalSpeed(Config::BWAPIOptions::SetLocalSpeed);
-	// frameskipÀ» ´Ã¸®¸é È­¸é Ç¥½Ãµµ ¾÷µ¥ÀÌÆ® ¾ÈÇÏ¹Ç·Î ÈÎ¾À ºü¸¨´Ï´Ù
+	// frameskipì„ ëŠ˜ë¦¬ë©´ í™”ë©´ í‘œì‹œë„ ì—…ë°ì´íŠ¸ ì•ˆí•˜ë¯€ë¡œ í›¨ì”¬ ë¹ ë¦…ë‹ˆë‹¤
 	BWAPI::Broodwar->setFrameSkip(Config::BWAPIOptions::SetFrameSkip);
 	
 	std::cout << "Map analyzing started" << std::endl;
@@ -92,7 +92,7 @@ void MyBotModule::onFrame(){
 
 	gameCommander.onFrame();
 
-	// È­¸é Ãâ·Â ¹× »ç¿ëÀÚ ÀÔ·Â Ã³¸®
+	// í™”ë©´ ì¶œë ¥ ë° ì‚¬ìš©ì ì…ë ¥ ì²˜ë¦¬
 	UXManager::Instance().update();
 }
 
@@ -165,7 +165,7 @@ void MyBotModule::onUnitMorph(BWAPI::Unit unit){
 void MyBotModule::onUnitDestroy(BWAPI::Unit unit){
 	if (!BWAPI::Broodwar->isReplay()){
 
-		// ÆĞ¹è ¿©ºÎ Ã¼Å© ÈÄ GG
+		// íŒ¨ë°° ì—¬ë¶€ ì²´í¬ í›„ GG
 		int buildingCount = 0;
 		int workerCount = 0;
 

@@ -46,7 +46,7 @@ void UXManager::update()
 
 	//std::cout << 5;
 
-	// ºôµå¿À´õÅ¥ : ºôµå ½ÇÇà Àü
+	// ë¹Œë“œì˜¤ë”í : ë¹Œë“œ ì‹¤í–‰ ì „
 	if (Config::Debug::DrawProductionInfo)
 	{
 		drawBuildOrderQueueOnScreen(80, 60);
@@ -54,7 +54,7 @@ void UXManager::update()
 
 	//std::cout << 6;
 
-	// ºôµå ½ÇÇà »óÈ² : °Ç¹° °Ç¼³, À¯´Ö »ı»ê, ¾÷±×·¹ÀÌµå, ¸®¼­Ä¡
+	// ë¹Œë“œ ì‹¤í–‰ ìƒí™© : ê±´ë¬¼ ê±´ì„¤, ìœ ë‹› ìƒì‚°, ì—…ê·¸ë ˆì´ë“œ, ë¦¬ì„œì¹˜
 	if (Config::Debug::DrawProductionInfo)
 	{
 		drawBuildStatusOnScreen(200, 60);
@@ -62,7 +62,7 @@ void UXManager::update()
 
 	//std::cout << 7;
 
-	// °Ç¹° °Ç¼³ Å¥. °Ç¹° °Ç¼³ »óÈ²
+	// ê±´ë¬¼ ê±´ì„¤ í. ê±´ë¬¼ ê±´ì„¤ ìƒí™©
 	if (Config::Debug::DrawBuildingInfo)
 	{
 		drawConstructionQueueOnScreenAndMap(200, 150);
@@ -70,12 +70,12 @@ void UXManager::update()
 
 	//std::cout << 8;
 
-	// °Ç¹°ÀÌ °Ç¼³µÉ À§Ä¡
+	// ê±´ë¬¼ì´ ê±´ì„¤ë  ìœ„ì¹˜
 	if (Config::Debug::DrawReservedBuildingTiles)
 	{
-		// °Ç¹° °Ç¼³ Àå¼Ò ¿¹¾à ÁöÁ¡
+		// ê±´ë¬¼ ê±´ì„¤ ì¥ì†Œ ì˜ˆì•½ ì§€ì 
 		drawReservedBuildingTilesOnMap();
-		// °Ç¹° °Ç¼³ ºÒ°¡ ±¸¿ª (¹Ì³×¶ö/°¡½º/º£ÀÌ½º »çÀÌ)
+		// ê±´ë¬¼ ê±´ì„¤ ë¶ˆê°€ êµ¬ì—­ (ë¯¸ë„¤ë„/ê°€ìŠ¤/ë² ì´ìŠ¤ ì‚¬ì´)
 		drawTilesToAvoidOnMap();
 	}
 
@@ -91,16 +91,16 @@ void UXManager::update()
 
 	if (Config::Debug::DrawWorkerInfo)
 	{
-		// °¢ ÀÏ²ÛµéÀÇ ÀÓ¹« »óÈ²
+		// ê° ì¼ê¾¼ë“¤ì˜ ì„ë¬´ ìƒí™©
 		drawWorkerStateOnScreen(5, 60);
 
-		// º£ÀÌ½ºÄ·ÇÁ´ç ÀÏ²Û ¼ö
+		// ë² ì´ìŠ¤ìº í”„ë‹¹ ì¼ê¾¼ ìˆ˜
 		drawWorkerCountOnMap();
 	}
 
 	//std::cout << 11;
 
-	// ÀÏ²Û ÀÚ¿øÃ¤Ãë ÀÓ¹« »óÈ²
+	// ì¼ê¾¼ ìì›ì±„ì·¨ ì„ë¬´ ìƒí™©
 	if (Config::Debug::DrawResourceInfo)
 	{
 		drawWorkerMiningStatusOnMap();
@@ -108,7 +108,7 @@ void UXManager::update()
 
 	//std::cout << 12;
 
-	// Á¤Âû
+	// ì •ì°°
 	if (Config::Debug::DrawScoutInfo)
 	{
 		drawScoutInformation(220,330);
@@ -116,12 +116,12 @@ void UXManager::update()
 
 	//std::cout << 13;
 
-	// °ø°İ
+	// ê³µê²©
 	if (Config::Debug::DrawUnitTargetInfo)
 	{
 		drawUnitTargetOnMap();
 
-		// ¹Ì»çÀÏ, ·²Ä¿ÀÇ º¸ÀÌÁö¾Ê´Â °ø°İµîÀ» Ç¥½Ã
+		// ë¯¸ì‚¬ì¼, ëŸ´ì»¤ì˜ ë³´ì´ì§€ì•ŠëŠ” ê³µê²©ë“±ì„ í‘œì‹œ
 		drawBulletsOnMap();
 	}
 	
@@ -199,14 +199,14 @@ void UXManager::drawUnitExtendedInformationOnMap()
 		int top = pos.y - type.dimensionUp();
 		int bottom = pos.y + type.dimensionDown();
 
-		// Àû À¯´ÖÀÌ¸é ÁÖÀ§¿¡ ¹Ú½º Ç¥½Ã
+		// ì  ìœ ë‹›ì´ë©´ ì£¼ìœ„ì— ë°•ìŠ¤ í‘œì‹œ
 		if (!BWAPI::Broodwar->isVisible(BWAPI::TilePosition(ui.lastPosition)))
 		{
 			BWAPI::Broodwar->drawBoxMap(BWAPI::Position(left, top), BWAPI::Position(right, bottom), BWAPI::Colors::Grey, false);
 			BWAPI::Broodwar->drawTextMap(BWAPI::Position(left + 3, top + 4), "%s", ui.type.getName().c_str());
 		}
 
-		// À¯´ÖÀÇ HitPoint ³²¾ÆÀÖ´Â ºñÀ² Ç¥½Ã
+		// ìœ ë‹›ì˜ HitPoint ë‚¨ì•„ìˆëŠ” ë¹„ìœ¨ í‘œì‹œ
 		if (!type.isResourceContainer() && type.maxHitPoints() > 0)
 		{
 			double hpRatio = (double)hitPoints / (double)type.maxHitPoints();
@@ -231,7 +231,7 @@ void UXManager::drawUnitExtendedInformationOnMap()
 			}
 		}
 
-		// À¯´ÖÀÇ Shield ³²¾ÆÀÖ´Â ºñÀ² Ç¥½Ã
+		// ìœ ë‹›ì˜ Shield ë‚¨ì•„ìˆëŠ” ë¹„ìœ¨ í‘œì‹œ
 		if (!type.isResourceContainer() && type.maxShields() > 0)
 		{
 			double shieldRatio = (double)shields / (double)type.maxShields();
@@ -271,7 +271,7 @@ void UXManager::drawUnitExtendedInformationOnMap()
 
 		//BWAPI::Broodwar->drawBoxMap(BWAPI::Position(left, top), BWAPI::Position(right, bottom), BWAPI::Colors::Grey, false);
 
-		// À¯´ÖÀÇ HitPoint ³²¾ÆÀÖ´Â ºñÀ² Ç¥½Ã
+		// ìœ ë‹›ì˜ HitPoint ë‚¨ì•„ìˆëŠ” ë¹„ìœ¨ í‘œì‹œ
 		if (!unit->getType().isResourceContainer() && unit->getType().maxHitPoints() > 0)
 		{
 			double hpRatio = (double)unit->getHitPoints() / (double)unit->getType().maxHitPoints();
@@ -296,7 +296,7 @@ void UXManager::drawUnitExtendedInformationOnMap()
 			}
 		}
 
-		// À¯´ÖÀÇ Shield ³²¾ÆÀÖ´Â ºñÀ² Ç¥½Ã
+		// ìœ ë‹›ì˜ Shield ë‚¨ì•„ìˆëŠ” ë¹„ìœ¨ í‘œì‹œ
 		if (!unit->getType().isResourceContainer() && unit->getType().maxShields() > 0)
 		{
 			double shieldRatio = (double)unit->getShields() / (double)unit->getType().maxShields();
@@ -317,7 +317,7 @@ void UXManager::drawUnitExtendedInformationOnMap()
 			}
 		}
 
-		// Mineral / Gas °¡ ¾ó¸¶³ª ³²¾ÆÀÖ´Â°¡
+		// Mineral / Gas ê°€ ì–¼ë§ˆë‚˜ ë‚¨ì•„ìˆëŠ”ê°€
 		if (unit->getType().isResourceContainer() && unit->getInitialResources() > 0)
 		{
 
@@ -341,34 +341,34 @@ void UXManager::drawUnitExtendedInformationOnMap()
 	}
 }
 
-// ¾Æ±ºÀÌ ÀÔÀº ÇÇÇØ ´©Àû°ª, Àû±ºÀÌ ÀÔÀº ÇÇÇØ ´©Àû°ª, Àû±ºÀÇ UnitType º° ÆÄ¾ÇµÈ Unit ¼ıÀÚ¸¦ Ç¥½Ã
+// ì•„êµ°ì´ ì…ì€ í”¼í•´ ëˆ„ì ê°’, ì êµ°ì´ ì…ì€ í”¼í•´ ëˆ„ì ê°’, ì êµ°ì˜ UnitType ë³„ íŒŒì•…ëœ Unit ìˆ«ìë¥¼ í‘œì‹œ
 void UXManager::drawUnitStatisticsOnScreen(int x, int y)
 {
 	int currentY = y;
 
-	// ¾Æ±ºÀÌ ÀÔÀº ÇÇÇØ ´©Àû°ª
+	// ì•„êµ°ì´ ì…ì€ í”¼í•´ ëˆ„ì ê°’
 	BWAPI::Broodwar->drawTextScreen(x, currentY, "\x03 Self Loss:\x04 Minerals: \x1f%d \x04Gas: \x07%d",
 		InformationManager::Instance().getUnitData(BWAPI::Broodwar->self()).getMineralsLost(), 
 		InformationManager::Instance().getUnitData(BWAPI::Broodwar->self()).getGasLost());
 	currentY += 10;
 
-	// ¾Æ±º ¸ğµç À¯´Ö ¼ıÀÚ ÇÕ°è
+	// ì•„êµ° ëª¨ë“  ìœ ë‹› ìˆ«ì í•©ê³„
 	//BWAPI::Broodwar->drawTextScreen(x, currentY, "\x03 allUnitCount: %d", BWAPI::Broodwar->self()->allUnitCount(BWAPI::UnitTypes::AllUnits));
 	//currentY += 10;
 
-	// ¾Æ±º °Ç¼³/ÈÆ·Ã ¿Ï·áÇÑ À¯´Ö ¼ıÀÚ ÇÕ°è
+	// ì•„êµ° ê±´ì„¤/í›ˆë ¨ ì™„ë£Œí•œ ìœ ë‹› ìˆ«ì í•©ê³„
 	//BWAPI::Broodwar->drawTextScreen(x, currentY, "\x03 completedUnitCount: %d", BWAPI::Broodwar->self()->completedUnitCount(BWAPI::UnitTypes::AllUnits));
 	//currentY += 10;
 
-	// ¾Æ±º °Ç¼³/ÈÆ·ÃÁßÀÎ À¯´Ö ¼ıÀÚ ÇÕ°è
+	// ì•„êµ° ê±´ì„¤/í›ˆë ¨ì¤‘ì¸ ìœ ë‹› ìˆ«ì í•©ê³„
 	//BWAPI::Broodwar->drawTextScreen(x, currentY, "\x03 incompleteUnitCount: %d", BWAPI::Broodwar->self()->incompleteUnitCount(BWAPI::UnitTypes::AllUnits));
 	//currentY += 10;
 
-	// ¾Æ±º À¯´Ö ÆÄ±«/»ç¸Á ¼ıÀÚ ´©Àû°ª
+	// ì•„êµ° ìœ ë‹› íŒŒê´´/ì‚¬ë§ ìˆ«ì ëˆ„ì ê°’
 	//BWAPI::Broodwar->drawTextScreen(x, currentY, "\x03 deadUnitCount: %d", BWAPI::Broodwar->self()->deadUnitCount(BWAPI::UnitTypes::AllUnits));
 	//currentY += 10;
 
-	// »ó´ë¹æ À¯´ÖÀ» ÆÄ±«/»ç¸Á ½ÃÅ² ¼ıÀÚ ´©Àû°ª
+	// ìƒëŒ€ë°© ìœ ë‹›ì„ íŒŒê´´/ì‚¬ë§ ì‹œí‚¨ ìˆ«ì ëˆ„ì ê°’
 	//BWAPI::Broodwar->drawTextScreen(x, currentY, "\x03 killedUnitCount: %d", BWAPI::Broodwar->self()->killedUnitCount(BWAPI::UnitTypes::AllUnits));
 	//currentY += 10;
 
@@ -377,12 +377,12 @@ void UXManager::drawUnitStatisticsOnScreen(int x, int y)
 	//BWAPI::Broodwar->drawTextScreen(x, currentY, "\x03 BuildingScore: %d", BWAPI::Broodwar->self()->getBuildingScore());
 	//BWAPI::Broodwar->drawTextScreen(x, currentY, "\x03 KillScore: %d", BWAPI::Broodwar->self()->getKillScore());
 
-	// Àû±ºÀÌ ÀÔÀº ÇÇÇØ ´©Àû°ª
+	// ì êµ°ì´ ì…ì€ í”¼í•´ ëˆ„ì ê°’
 	BWAPI::Broodwar->drawTextScreen(x, currentY, "\x03 Enemy Loss:\x04 Minerals: \x1f%d \x04Gas: \x07%d",
 		InformationManager::Instance().getUnitData(BWAPI::Broodwar->enemy()).getMineralsLost(),
 		InformationManager::Instance().getUnitData(BWAPI::Broodwar->enemy()).getGasLost());
 
-	// Àû±ºÀÇ UnitType º° ÆÄ¾ÇµÈ Unit ¼ıÀÚ¸¦ Ç¥½Ã
+	// ì êµ°ì˜ UnitType ë³„ íŒŒì•…ëœ Unit ìˆ«ìë¥¼ í‘œì‹œ
 	BWAPI::Broodwar->drawTextScreen(x,		 currentY + 20, "\x04 UNIT NAME");
 	BWAPI::Broodwar->drawTextScreen(x + 110, currentY + 20, "\x04 Created");
 	BWAPI::Broodwar->drawTextScreen(x + 150, currentY + 20, "\x04 Dead");
@@ -546,7 +546,7 @@ void UXManager::drawBuildOrderQueueOnScreen(int x, int y)
 
 void UXManager::drawBuildStatusOnScreen(int x, int y)
 {
-	// °Ç¼³ / ÈÆ·Ã ÁßÀÎ À¯´Ö ÁøÇà»óÈ² Ç¥½Ã
+	// ê±´ì„¤ / í›ˆë ¨ ì¤‘ì¸ ìœ ë‹› ì§„í–‰ìƒí™© í‘œì‹œ
 	std::vector<BWAPI::Unit> unitsUnderConstruction;
 	for (auto & unit : BWAPI::Broodwar->self()->getUnits())
 	{
@@ -576,9 +576,9 @@ void UXManager::drawBuildStatusOnScreen(int x, int y)
 		BWAPI::Broodwar->drawTextScreen(x, y, " %s%s (%d)", prefix.c_str(), t.getName().c_str(), unit->getRemainingBuildTime());
 	}
 
-	// Tech Research Ç¥½Ã
+	// Tech Research í‘œì‹œ
 
-	// Upgrade Ç¥½Ã
+	// Upgrade í‘œì‹œ
 
 }
 
@@ -682,7 +682,7 @@ void UXManager::drawWorkerStateOnScreen(int x, int y)
 	{
 		if (!unit) continue;
 
-		// Mineral / Gas / Idle Worker ´Â Ç¥½Ã ¾ÈÇÑ´Ù
+		// Mineral / Gas / Idle Worker ëŠ” í‘œì‹œ ì•ˆí•œë‹¤
 		if (workerData.getJobCode(unit) == 'M' || workerData.getJobCode(unit) == 'I' || workerData.getJobCode(unit) == 'G') {
 			continue;
 		}
@@ -729,7 +729,7 @@ void UXManager::drawWorkerMiningStatusOnMap()
 		BWAPI::Broodwar->drawLineMap(worker->getPosition().x, worker->getPosition().y, pos.x, pos.y, BWAPI::Colors::Cyan);
 
 		/*
-		// ResourceDepot ~ Worker »çÀÌ¿¡ Á÷¼± Ç¥½Ã
+		// ResourceDepot ~ Worker ì‚¬ì´ì— ì§ì„  í‘œì‹œ
 		BWAPI::Unit depot = workerData.getWorkerDepot(worker);
 		if (depot) {
 			BWAPI::Broodwar->drawLineMap(worker->getPosition().x, worker->getPosition().y, depot->getPosition().x, depot->getPosition().y, BWAPI::Colors::Orange);
@@ -835,7 +835,7 @@ void UXManager::drawUnitTargetOnMap()
 	}
 }
 
-// Bullet À» Line °ú Text ·Î Ç¥½ÃÇÑ´Ù. Cloaking Unit ÀÇ Bullet Ç¥½Ã¿¡ ¾²ÀÎ´Ù
+// Bullet ì„ Line ê³¼ Text ë¡œ í‘œì‹œí•œë‹¤. Cloaking Unit ì˜ Bullet í‘œì‹œì— ì“°ì¸ë‹¤
 void UXManager::drawBulletsOnMap()
 {
 	for (auto &b : BWAPI::Broodwar->getBullets())
@@ -844,7 +844,7 @@ void UXManager::drawBulletsOnMap()
 		double velocityX = b->getVelocityX();
 		double velocityY = b->getVelocityY();
 
-		// ¾Æ±º °ÍÀÌ¸é ³ì»ö, Àû±º °ÍÀÌ¸é »¡°£»ö
+		// ì•„êµ° ê²ƒì´ë©´ ë…¹ìƒ‰, ì êµ° ê²ƒì´ë©´ ë¹¨ê°„ìƒ‰
 		BWAPI::Broodwar->drawLineMap(p, p + BWAPI::Position((int)velocityX, (int)velocityY), b->getPlayer() == BWAPI::Broodwar->self() ? BWAPI::Colors::Green : BWAPI::Colors::Red);
 
 		BWAPI::Broodwar->drawTextMap(p, "%c%s", b->getPlayer() == BWAPI::Broodwar->self() ? BWAPI::Text::Green : BWAPI::Text::Red, b->getType().c_str());

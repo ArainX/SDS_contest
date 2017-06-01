@@ -2,14 +2,14 @@ import bwapi.Player;
 import bwapi.TilePosition;
 import bwapi.Unit;
 
-/// ½ÇÁ¦ º¿ÇÁ·Î±×·¥ÀÇ º»Ã¼°¡ µÇ´Â class
-/// ½ºÅ¸Å©·¡ÇÁÆ® °æ±â µµÁß ¹ß»ıÇÏ´Â ÀÌº¥Æ®µéÀÌ ÀûÀıÇÏ°Ô Ã³¸®µÇµµ·Ï ÇØ´ç Manager °´Ã¼¿¡°Ô ÀÌº¥Æ®¸¦ Àü´ŞÇÏ´Â °ü¸®ÀÚ Controller ¿ªÇÒÀ» ÇÕ´Ï´Ù
+/// ì‹¤ì œ ë´‡í”„ë¡œê·¸ë¨ì˜ ë³¸ì²´ê°€ ë˜ëŠ” class
+/// ìŠ¤íƒ€í¬ë˜í”„íŠ¸ ê²½ê¸° ë„ì¤‘ ë°œìƒí•˜ëŠ” ì´ë²¤íŠ¸ë“¤ì´ ì ì ˆí•˜ê²Œ ì²˜ë¦¬ë˜ë„ë¡ í•´ë‹¹ Manager ê°ì²´ì—ê²Œ ì´ë²¤íŠ¸ë¥¼ ì „ë‹¬í•˜ëŠ” ê´€ë¦¬ì Controller ì—­í• ì„ í•©ë‹ˆë‹¤
 public class GameCommander {
 
-	/// µğ¹ö±ë¿ë ÇÃ·¡±× : ¾î´À Manager °¡ ¿¡·¯¸¦ ÀÏÀ¸Å°´ÂÁö ¾Ë±âÀ§ÇÑ ÇÃ·¡±×
+	/// ë””ë²„ê¹…ìš© í”Œë˜ê·¸ : ì–´ëŠ Manager ê°€ ì—ëŸ¬ë¥¼ ì¼ìœ¼í‚¤ëŠ”ì§€ ì•Œê¸°ìœ„í•œ í”Œë˜ê·¸
 	private boolean isToFindError = false;
 	
-	/// °æ±â°¡ ½ÃÀÛµÉ ¶§ ÀÏÈ¸ÀûÀ¸·Î ¹ß»ıÇÏ´Â ÀÌº¥Æ®¸¦ Ã³¸®ÇÕ´Ï´Ù
+	/// ê²½ê¸°ê°€ ì‹œì‘ë  ë•Œ ì¼íšŒì ìœ¼ë¡œ ë°œìƒí•˜ëŠ” ì´ë²¤íŠ¸ë¥¼ ì²˜ë¦¬í•©ë‹ˆë‹¤
 	public void onStart() 
 	{
 		TilePosition startLocation = MyBotModule.Broodwar.self().getStartLocation();
@@ -19,13 +19,13 @@ public class GameCommander {
 		StrategyManager.Instance().onStart();
 	}
 
-	/// °æ±â°¡ Á¾·áµÉ ¶§ ÀÏÈ¸ÀûÀ¸·Î ¹ß»ıÇÏ´Â ÀÌº¥Æ®¸¦ Ã³¸®ÇÕ´Ï´Ù
+	/// ê²½ê¸°ê°€ ì¢…ë£Œë  ë•Œ ì¼íšŒì ìœ¼ë¡œ ë°œìƒí•˜ëŠ” ì´ë²¤íŠ¸ë¥¼ ì²˜ë¦¬í•©ë‹ˆë‹¤
 	public void onEnd(boolean isWinner)
 	{
 		StrategyManager.Instance().onEnd(isWinner);
 	}
 
-	/// °æ±â ÁøÇà Áß ¸Å ÇÁ·¹ÀÓ¸¶´Ù ¹ß»ıÇÏ´Â ÀÌº¥Æ®¸¦ Ã³¸®ÇÕ´Ï´Ù
+	/// ê²½ê¸° ì§„í–‰ ì¤‘ ë§¤ í”„ë ˆì„ë§ˆë‹¤ ë°œìƒí•˜ëŠ” ì´ë²¤íŠ¸ë¥¼ ì²˜ë¦¬í•©ë‹ˆë‹¤
 	public void onFrame()
 	{
 		if (MyBotModule.Broodwar.isPaused()
@@ -38,38 +38,38 @@ public class GameCommander {
 		try {
 			if ( isToFindError) System.out.print("(a");
 
-			// ¾Æ±º º£ÀÌ½º À§Ä¡. Àû±º º£ÀÌ½º À§Ä¡. °¢ À¯´ÖµéÀÇ »óÅÂÁ¤º¸ µîÀ» Map ÀÚ·á±¸Á¶¿¡ ÀúÀå/¾÷µ¥ÀÌÆ®
+			// ì•„êµ° ë² ì´ìŠ¤ ìœ„ì¹˜. ì êµ° ë² ì´ìŠ¤ ìœ„ì¹˜. ê° ìœ ë‹›ë“¤ì˜ ìƒíƒœì •ë³´ ë“±ì„ Map ìë£Œêµ¬ì¡°ì— ì €ì¥/ì—…ë°ì´íŠ¸
 			InformationManager.Instance().update();
 
 			if ( isToFindError) System.out.print("b");
 		
-			// °¢ À¯´ÖÀÇ À§Ä¡¸¦ ÀÚÃ¼ MapGrid ÀÚ·á±¸Á¶¿¡ ÀúÀå
+			// ê° ìœ ë‹›ì˜ ìœ„ì¹˜ë¥¼ ìì²´ MapGrid ìë£Œêµ¬ì¡°ì— ì €ì¥
 			MapGrid.Instance().update();
 
 			if ( isToFindError) System.out.print("c");
 
 			// economy and base managers
-			// ÀÏ²Û À¯´Ö¿¡ ´ëÇÑ ¸í·É (ÀÚ¿ø Ã¤Ãë, ÀÌµ¿ Á¤µµ) Áö½Ã ¹× Á¤¸®
+			// ì¼ê¾¼ ìœ ë‹›ì— ëŒ€í•œ ëª…ë ¹ (ìì› ì±„ì·¨, ì´ë™ ì •ë„) ì§€ì‹œ ë° ì •ë¦¬
 			WorkerManager.Instance().update();
 
 			if ( isToFindError) System.out.print("d");
 
-			// ºôµå¿À´õÅ¥¸¦ °ü¸®ÇÏ¸ç, ºôµå¿À´õ¿¡ µû¶ó ½ÇÁ¦ ½ÇÇà(À¯´Ö ÈÆ·Ã, Å×Å© ¾÷±×·¹ÀÌµå µî)À» Áö½ÃÇÑ´Ù.
+			// ë¹Œë“œì˜¤ë”íë¥¼ ê´€ë¦¬í•˜ë©°, ë¹Œë“œì˜¤ë”ì— ë”°ë¼ ì‹¤ì œ ì‹¤í–‰(ìœ ë‹› í›ˆë ¨, í…Œí¬ ì—…ê·¸ë ˆì´ë“œ ë“±)ì„ ì§€ì‹œí•œë‹¤.
 			BuildManager.Instance().update();
 
 			if ( isToFindError) System.out.print("e");
 
-			// ºôµå¿À´õ Áß °Ç¹° ºôµå¿¡ ´ëÇØ¼­´Â, ÀÏ²ÛÀ¯´Ö ¼±Á¤, À§Ä¡¼±Á¤, °Ç¼³ ½Ç½Ã, Áß´ÜµÈ °Ç¹° ºôµå Àç°³¸¦ Áö½ÃÇÑ´Ù
+			// ë¹Œë“œì˜¤ë” ì¤‘ ê±´ë¬¼ ë¹Œë“œì— ëŒ€í•´ì„œëŠ”, ì¼ê¾¼ìœ ë‹› ì„ ì •, ìœ„ì¹˜ì„ ì •, ê±´ì„¤ ì‹¤ì‹œ, ì¤‘ë‹¨ëœ ê±´ë¬¼ ë¹Œë“œ ì¬ê°œë¥¼ ì§€ì‹œí•œë‹¤
 			ConstructionManager.Instance().update();
 
 			if ( isToFindError) System.out.print("f");
 
-			// °ÔÀÓ ÃÊ±â Á¤Âû À¯´Ö ÁöÁ¤ ¹× Á¤Âû À¯´Ö ÄÁÆ®·ÑÀ» ½ÇÇàÇÑ´Ù
+			// ê²Œì„ ì´ˆê¸° ì •ì°° ìœ ë‹› ì§€ì • ë° ì •ì°° ìœ ë‹› ì»¨íŠ¸ë¡¤ì„ ì‹¤í–‰í•œë‹¤
 			ScoutManager.Instance().update();
 
 			if ( isToFindError) System.out.print("g");
 
-			// Àü·«Àû ÆÇ´Ü ¹× À¯´Ö ÄÁÆ®·Ñ
+			// ì „ëµì  íŒë‹¨ ë° ìœ ë‹› ì»¨íŠ¸ë¡¤
 			StrategyManager.Instance().update();
 
 			if ( isToFindError) System.out.print("h)");
@@ -80,73 +80,73 @@ public class GameCommander {
 	}
 
 
-	/// À¯´Ö(°Ç¹°/Áö»óÀ¯´Ö/°øÁßÀ¯´Ö)ÀÌ Create µÉ ¶§ ¹ß»ıÇÏ´Â ÀÌº¥Æ®¸¦ Ã³¸®ÇÕ´Ï´Ù
+	/// ìœ ë‹›(ê±´ë¬¼/ì§€ìƒìœ ë‹›/ê³µì¤‘ìœ ë‹›)ì´ Create ë  ë•Œ ë°œìƒí•˜ëŠ” ì´ë²¤íŠ¸ë¥¼ ì²˜ë¦¬í•©ë‹ˆë‹¤
 	public void onUnitCreate(Unit unit) { 
 		InformationManager.Instance().onUnitCreate(unit);
 	}
 
-	///  À¯´Ö(°Ç¹°/Áö»óÀ¯´Ö/°øÁßÀ¯´Ö)ÀÌ Destroy µÉ ¶§ ¹ß»ıÇÏ´Â ÀÌº¥Æ®¸¦ Ã³¸®ÇÕ´Ï´Ù
+	///  ìœ ë‹›(ê±´ë¬¼/ì§€ìƒìœ ë‹›/ê³µì¤‘ìœ ë‹›)ì´ Destroy ë  ë•Œ ë°œìƒí•˜ëŠ” ì´ë²¤íŠ¸ë¥¼ ì²˜ë¦¬í•©ë‹ˆë‹¤
 	public void onUnitDestroy(Unit unit) {
-		// ResourceDepot ¹× Worker ¿¡ ´ëÇÑ Ã³¸®
+		// ResourceDepot ë° Worker ì— ëŒ€í•œ ì²˜ë¦¬
 		WorkerManager.Instance().onUnitDestroy(unit);
 
 		InformationManager.Instance().onUnitDestroy(unit); 
 	}
 	
-	/// À¯´Ö(°Ç¹°/Áö»óÀ¯´Ö/°øÁßÀ¯´Ö)ÀÌ Morph µÉ ¶§ ¹ß»ıÇÏ´Â ÀÌº¥Æ®¸¦ Ã³¸®ÇÕ´Ï´Ù
-	/// Zerg Á¾Á·ÀÇ À¯´ÖÀº °Ç¹° °Ç¼³ÀÌ³ª Áö»óÀ¯´Ö/°øÁßÀ¯´Ö »ı»ê¿¡¼­ °ÅÀÇ ´ëºÎºĞ Morph ÇüÅÂ·Î ÁøÇàµË´Ï´Ù
+	/// ìœ ë‹›(ê±´ë¬¼/ì§€ìƒìœ ë‹›/ê³µì¤‘ìœ ë‹›)ì´ Morph ë  ë•Œ ë°œìƒí•˜ëŠ” ì´ë²¤íŠ¸ë¥¼ ì²˜ë¦¬í•©ë‹ˆë‹¤
+	/// Zerg ì¢…ì¡±ì˜ ìœ ë‹›ì€ ê±´ë¬¼ ê±´ì„¤ì´ë‚˜ ì§€ìƒìœ ë‹›/ê³µì¤‘ìœ ë‹› ìƒì‚°ì—ì„œ ê±°ì˜ ëŒ€ë¶€ë¶„ Morph í˜•íƒœë¡œ ì§„í–‰ë©ë‹ˆë‹¤
 	public void onUnitMorph(Unit unit) { 
 		InformationManager.Instance().onUnitMorph(unit);
 
-		// Zerg Á¾Á· Worker ÀÇ Morph ¿¡ ´ëÇÑ Ã³¸®
+		// Zerg ì¢…ì¡± Worker ì˜ Morph ì— ëŒ€í•œ ì²˜ë¦¬
 		WorkerManager.Instance().onUnitMorph(unit);
 	}
 
-	/// À¯´Ö(°Ç¹°/Áö»óÀ¯´Ö/°øÁßÀ¯´Ö)ÀÇ ¼Ò¼Ó ÇÃ·¹ÀÌ¾î°¡ ¹Ù²ğ ¶§ ¹ß»ıÇÏ´Â ÀÌº¥Æ®¸¦ Ã³¸®ÇÕ´Ï´Ù
-	/// Gas Geyser¿¡ ¾î¶² ÇÃ·¹ÀÌ¾î°¡ Refinery °Ç¹°À» °Ç¼³ÇßÀ» ¶§, Refinery °Ç¹°ÀÌ ÆÄ±«µÇ¾úÀ» ¶§, Protoss Á¾Á· Dark Archon ÀÇ Mind Control ¿¡ ÀÇÇØ ¼Ò¼Ó ÇÃ·¹ÀÌ¾î°¡ ¹Ù²ğ ¶§ ¹ß»ıÇÕ´Ï´Ù
+	/// ìœ ë‹›(ê±´ë¬¼/ì§€ìƒìœ ë‹›/ê³µì¤‘ìœ ë‹›)ì˜ ì†Œì† í”Œë ˆì´ì–´ê°€ ë°”ë€” ë•Œ ë°œìƒí•˜ëŠ” ì´ë²¤íŠ¸ë¥¼ ì²˜ë¦¬í•©ë‹ˆë‹¤
+	/// Gas Geyserì— ì–´ë–¤ í”Œë ˆì´ì–´ê°€ Refinery ê±´ë¬¼ì„ ê±´ì„¤í–ˆì„ ë•Œ, Refinery ê±´ë¬¼ì´ íŒŒê´´ë˜ì—ˆì„ ë•Œ, Protoss ì¢…ì¡± Dark Archon ì˜ Mind Control ì— ì˜í•´ ì†Œì† í”Œë ˆì´ì–´ê°€ ë°”ë€” ë•Œ ë°œìƒí•©ë‹ˆë‹¤
 	public void onUnitRenegade(Unit unit) {
-		// Vespene_Geyser (°¡½º ±¤»ê) ¿¡ ´©±º°¡°¡ °Ç¼³À» ÇßÀ» °æ¿ì
+		// Vespene_Geyser (ê°€ìŠ¤ ê´‘ì‚°) ì— ëˆ„êµ°ê°€ê°€ ê±´ì„¤ì„ í–ˆì„ ê²½ìš°
 		//MyBotModule.Broodwar.sendText("A %s [%p] has renegaded. It is now owned by %s", unit.getType().c_str(), unit, unit.getPlayer().getName().c_str());
 
 		InformationManager.Instance().onUnitRenegade(unit);
 	}
 
-	/// À¯´Ö(°Ç¹°/Áö»óÀ¯´Ö/°øÁßÀ¯´Ö)ÀÇ ÇÏ´ø ÀÏ (°Ç¹° °Ç¼³, ¾÷±×·¹ÀÌµå, Áö»óÀ¯´Ö ÈÆ·Ã µî)ÀÌ ³¡³µÀ» ¶§ ¹ß»ıÇÏ´Â ÀÌº¥Æ®¸¦ Ã³¸®ÇÕ´Ï´Ù
+	/// ìœ ë‹›(ê±´ë¬¼/ì§€ìƒìœ ë‹›/ê³µì¤‘ìœ ë‹›)ì˜ í•˜ë˜ ì¼ (ê±´ë¬¼ ê±´ì„¤, ì—…ê·¸ë ˆì´ë“œ, ì§€ìƒìœ ë‹› í›ˆë ¨ ë“±)ì´ ëë‚¬ì„ ë•Œ ë°œìƒí•˜ëŠ” ì´ë²¤íŠ¸ë¥¼ ì²˜ë¦¬í•©ë‹ˆë‹¤
 	public void onUnitComplete(Unit unit)
 	{
 		InformationManager.Instance().onUnitComplete(unit);
 	}
 	
-	/// À¯´Ö(°Ç¹°/Áö»óÀ¯´Ö/°øÁßÀ¯´Ö)ÀÌ Discover µÉ ¶§ ¹ß»ıÇÏ´Â ÀÌº¥Æ®¸¦ Ã³¸®ÇÕ´Ï´Ù
-	/// ¾Æ±º À¯´ÖÀÌ Create µÇ¾úÀ» ¶§ ¶óµç°¡, Àû±º À¯´ÖÀÌ Discover µÇ¾úÀ» ¶§ ¹ß»ıÇÕ´Ï´Ù
+	/// ìœ ë‹›(ê±´ë¬¼/ì§€ìƒìœ ë‹›/ê³µì¤‘ìœ ë‹›)ì´ Discover ë  ë•Œ ë°œìƒí•˜ëŠ” ì´ë²¤íŠ¸ë¥¼ ì²˜ë¦¬í•©ë‹ˆë‹¤
+	/// ì•„êµ° ìœ ë‹›ì´ Create ë˜ì—ˆì„ ë•Œ ë¼ë“ ê°€, ì êµ° ìœ ë‹›ì´ Discover ë˜ì—ˆì„ ë•Œ ë°œìƒí•©ë‹ˆë‹¤
 	public void onUnitDiscover(Unit unit) {
 	}
 
-	/// À¯´Ö(°Ç¹°/Áö»óÀ¯´Ö/°øÁßÀ¯´Ö)ÀÌ Evade µÉ ¶§ ¹ß»ıÇÏ´Â ÀÌº¥Æ®¸¦ Ã³¸®ÇÕ´Ï´Ù
-	/// À¯´ÖÀÌ Destroy µÉ ¶§ ¹ß»ıÇÕ´Ï´Ù
+	/// ìœ ë‹›(ê±´ë¬¼/ì§€ìƒìœ ë‹›/ê³µì¤‘ìœ ë‹›)ì´ Evade ë  ë•Œ ë°œìƒí•˜ëŠ” ì´ë²¤íŠ¸ë¥¼ ì²˜ë¦¬í•©ë‹ˆë‹¤
+	/// ìœ ë‹›ì´ Destroy ë  ë•Œ ë°œìƒí•©ë‹ˆë‹¤
 	public void onUnitEvade(Unit unit) {
 	}	
 
-	/// À¯´Ö(°Ç¹°/Áö»óÀ¯´Ö/°øÁßÀ¯´Ö)ÀÌ Show µÉ ¶§ ¹ß»ıÇÏ´Â ÀÌº¥Æ®¸¦ Ã³¸®ÇÕ´Ï´Ù
-	/// ¾Æ±º À¯´ÖÀÌ Create µÇ¾úÀ» ¶§ ¶óµç°¡, Àû±º À¯´ÖÀÌ Discover µÇ¾úÀ» ¶§ ¹ß»ıÇÕ´Ï´Ù
+	/// ìœ ë‹›(ê±´ë¬¼/ì§€ìƒìœ ë‹›/ê³µì¤‘ìœ ë‹›)ì´ Show ë  ë•Œ ë°œìƒí•˜ëŠ” ì´ë²¤íŠ¸ë¥¼ ì²˜ë¦¬í•©ë‹ˆë‹¤
+	/// ì•„êµ° ìœ ë‹›ì´ Create ë˜ì—ˆì„ ë•Œ ë¼ë“ ê°€, ì êµ° ìœ ë‹›ì´ Discover ë˜ì—ˆì„ ë•Œ ë°œìƒí•©ë‹ˆë‹¤
 	public void onUnitShow(Unit unit) { 
 		InformationManager.Instance().onUnitShow(unit); 
 
-		// ResourceDepot ¹× Worker ¿¡ ´ëÇÑ Ã³¸®
+		// ResourceDepot ë° Worker ì— ëŒ€í•œ ì²˜ë¦¬
 		WorkerManager.Instance().onUnitShow(unit);
 	}
 
-	/// À¯´Ö(°Ç¹°/Áö»óÀ¯´Ö/°øÁßÀ¯´Ö)ÀÌ Hide µÉ ¶§ ¹ß»ıÇÏ´Â ÀÌº¥Æ®¸¦ Ã³¸®ÇÕ´Ï´Ù
-	/// º¸ÀÌ´ø À¯´ÖÀÌ Hide µÉ ¶§ ¹ß»ıÇÕ´Ï´Ù
+	/// ìœ ë‹›(ê±´ë¬¼/ì§€ìƒìœ ë‹›/ê³µì¤‘ìœ ë‹›)ì´ Hide ë  ë•Œ ë°œìƒí•˜ëŠ” ì´ë²¤íŠ¸ë¥¼ ì²˜ë¦¬í•©ë‹ˆë‹¤
+	/// ë³´ì´ë˜ ìœ ë‹›ì´ Hide ë  ë•Œ ë°œìƒí•©ë‹ˆë‹¤
 	public void onUnitHide(Unit unit) {
 		InformationManager.Instance().onUnitHide(unit); 
 	}
 	
-	/// ÅØ½ºÆ®¸¦ ÀÔ·Â ÈÄ ¿£ÅÍ¸¦ ÇÏ¿© ´Ù¸¥ ÇÃ·¹ÀÌ¾îµé¿¡°Ô ÅØ½ºÆ®¸¦ Àü´ŞÇÏ·Á ÇÒ ¶§ ¹ß»ıÇÏ´Â ÀÌº¥Æ®¸¦ Ã³¸®ÇÕ´Ï´Ù
+	/// í…ìŠ¤íŠ¸ë¥¼ ì…ë ¥ í›„ ì—”í„°ë¥¼ í•˜ì—¬ ë‹¤ë¥¸ í”Œë ˆì´ì–´ë“¤ì—ê²Œ í…ìŠ¤íŠ¸ë¥¼ ì „ë‹¬í•˜ë ¤ í•  ë•Œ ë°œìƒí•˜ëŠ” ì´ë²¤íŠ¸ë¥¼ ì²˜ë¦¬í•©ë‹ˆë‹¤
 	public void onSendText(String text){
 	}
 
-	/// ´Ù¸¥ ÇÃ·¹ÀÌ¾î·ÎºÎÅÍ ÅØ½ºÆ®¸¦ Àü´Ş¹Ş¾ÒÀ» ¶§ ¹ß»ıÇÏ´Â ÀÌº¥Æ®¸¦ Ã³¸®ÇÕ´Ï´Ù
+	/// ë‹¤ë¥¸ í”Œë ˆì´ì–´ë¡œë¶€í„° í…ìŠ¤íŠ¸ë¥¼ ì „ë‹¬ë°›ì•˜ì„ ë•Œ ë°œìƒí•˜ëŠ” ì´ë²¤íŠ¸ë¥¼ ì²˜ë¦¬í•©ë‹ˆë‹¤
 	public void onReceiveText(Player player, String text){
 	}
 

@@ -10,17 +10,17 @@ import bwta.BWTA;
 import bwta.BaseLocation;
 import bwta.Region;
 
-/// °ÔÀÓ ÃÊ¹İ¿¡ ÀÏ²Û À¯´Ö Áß¿¡¼­ Á¤Âû À¯´ÖÀ» ÇÏ³ª ÁöÁ¤ÇÏ°í, Á¤Âû À¯´ÖÀ» ÀÌµ¿½ÃÄÑ Á¤ÂûÀ» ¼öÇàÇÏ´Â class
-/// Àû±ºÀÇ BaseLocation À§Ä¡¸¦ ¾Ë¾Æ³»´Â °Í±îÁö¸¸ °³¹ßµÇ¾îÀÖ½À´Ï´Ù
+/// ê²Œì„ ì´ˆë°˜ì— ì¼ê¾¼ ìœ ë‹› ì¤‘ì—ì„œ ì •ì°° ìœ ë‹›ì„ í•˜ë‚˜ ì§€ì •í•˜ê³ , ì •ì°° ìœ ë‹›ì„ ì´ë™ì‹œì¼œ ì •ì°°ì„ ìˆ˜í–‰í•˜ëŠ” class
+/// ì êµ°ì˜ BaseLocation ìœ„ì¹˜ë¥¼ ì•Œì•„ë‚´ëŠ” ê²ƒê¹Œì§€ë§Œ ê°œë°œë˜ì–´ìˆìŠµë‹ˆë‹¤
 public class ScoutManager {
 
 	private Unit currentScoutUnit;
 	private int currentScoutStatus;
 	
 	public enum ScoutStatus {
-		NoScout,						///< Á¤Âû À¯´ÖÀ» ¹ÌÁöÁ¤ÇÑ »óÅÂ
-		MovingToAnotherBaseLocation,	///< Àû±ºÀÇ BaseLocation ÀÌ ¹Ì¹ß°ßµÈ »óÅÂ¿¡¼­ Á¤Âû À¯´ÖÀ» ÀÌµ¿½ÃÅ°°í ÀÖ´Â »óÅÂ
-		MoveAroundEnemyBaseLocation   	///< Àû±ºÀÇ BaseLocation ÀÌ ¹ß°ßµÈ »óÅÂ¿¡¼­ Á¤Âû À¯´ÖÀ» ÀÌµ¿½ÃÅ°°í ÀÖ´Â »óÅÂ
+		NoScout,						///< ì •ì°° ìœ ë‹›ì„ ë¯¸ì§€ì •í•œ ìƒíƒœ
+		MovingToAnotherBaseLocation,	///< ì êµ°ì˜ BaseLocation ì´ ë¯¸ë°œê²¬ëœ ìƒíƒœì—ì„œ ì •ì°° ìœ ë‹›ì„ ì´ë™ì‹œí‚¤ê³  ìˆëŠ” ìƒíƒœ
+		MoveAroundEnemyBaseLocation   	///< ì êµ°ì˜ BaseLocation ì´ ë°œê²¬ëœ ìƒíƒœì—ì„œ ì •ì°° ìœ ë‹›ì„ ì´ë™ì‹œí‚¤ê³  ìˆëŠ” ìƒíƒœ
 	};
 	
 	private BaseLocation currentScoutTargetBaseLocation = null;
@@ -32,26 +32,26 @@ public class ScoutManager {
 	
 	private static ScoutManager instance = new ScoutManager();
 	
-	/// static singleton °´Ã¼¸¦ ¸®ÅÏÇÕ´Ï´Ù
+	/// static singleton ê°ì²´ë¥¼ ë¦¬í„´í•©ë‹ˆë‹¤
 	public static ScoutManager Instance() {
 		return instance;
 	} 
 
-	/// Á¤Âû À¯´ÖÀ» ÁöÁ¤ÇÏ°í, Á¤Âû »óÅÂ¸¦ ¾÷µ¥ÀÌÆ®ÇÏ°í, Á¤Âû À¯´ÖÀ» ÀÌµ¿½ÃÅµ´Ï´Ù
+	/// ì •ì°° ìœ ë‹›ì„ ì§€ì •í•˜ê³ , ì •ì°° ìƒíƒœë¥¼ ì—…ë°ì´íŠ¸í•˜ê³ , ì •ì°° ìœ ë‹›ì„ ì´ë™ì‹œí‚µë‹ˆë‹¤
 	public void update()
 	{
-		// 1ÃÊ¿¡ 4¹ø¸¸ ½ÇÇàÇÕ´Ï´Ù
+		// 1ì´ˆì— 4ë²ˆë§Œ ì‹¤í–‰í•©ë‹ˆë‹¤
 		if (MyBotModule.Broodwar.getFrameCount() % 6 != 0) return;
 		
-		// scoutUnit À» ÁöÁ¤ÇÏ°í, scoutUnit ÀÇ ÀÌµ¿À» ÄÁÆ®·ÑÇÔ. 
-		// TODO °úÁ¦ : ¿©·¯ scoutUnit À» µ¿½Ã¿¡ ¿î¿ëÇÏ°Å³ª, scoutUnit ÀÌ ±æ¸ñ¿¡¼­ Àû±º¿¡ ÀÇÇØ »ç¸ÁÇÏ¿© Á¤ÂûÀÌ °è¼Ó ½ÇÆĞÇÏ´Â °æ¿ì, ÁßÈÄ¹İ Á¤Âû¿¡ ´ëÇÑ Ã³¸® µîÀº »ı°¢ÇØº¼ °úÁ¦ÀÌ´Ù  
+		// scoutUnit ì„ ì§€ì •í•˜ê³ , scoutUnit ì˜ ì´ë™ì„ ì»¨íŠ¸ë¡¤í•¨. 
+		// TODO ê³¼ì œ : ì—¬ëŸ¬ scoutUnit ì„ ë™ì‹œì— ìš´ìš©í•˜ê±°ë‚˜, scoutUnit ì´ ê¸¸ëª©ì—ì„œ ì êµ°ì— ì˜í•´ ì‚¬ë§í•˜ì—¬ ì •ì°°ì´ ê³„ì† ì‹¤íŒ¨í•˜ëŠ” ê²½ìš°, ì¤‘í›„ë°˜ ì •ì°°ì— ëŒ€í•œ ì²˜ë¦¬ ë“±ì€ ìƒê°í•´ë³¼ ê³¼ì œì´ë‹¤  
 		assignScoutIfNeeded();
 		moveScoutUnit();
 
-		// Âü°í·Î, scoutUnit ÀÇ ÀÌµ¿¿¡ ÀÇÇØ ¹ß°ßµÈ Á¤º¸¸¦ Ã³¸®ÇÏ´Â °ÍÀº InformationManager.update() ¿¡¼­ ¼öÇàÇÔ
+		// ì°¸ê³ ë¡œ, scoutUnit ì˜ ì´ë™ì— ì˜í•´ ë°œê²¬ëœ ì •ë³´ë¥¼ ì²˜ë¦¬í•˜ëŠ” ê²ƒì€ InformationManager.update() ì—ì„œ ìˆ˜í–‰í•¨
 	}
 
-	/// Á¤Âû À¯´ÖÀ» ÇÊ¿äÇÏ¸é »õ·Î ÁöÁ¤ÇÕ´Ï´Ù
+	/// ì •ì°° ìœ ë‹›ì„ í•„ìš”í•˜ë©´ ìƒˆë¡œ ì§€ì •í•©ë‹ˆë‹¤
 	public void assignScoutIfNeeded()
 	{
 		BaseLocation enemyBaseLocation = InformationManager.Instance().getMainBaseLocation(MyBotModule.Broodwar.enemy());
@@ -63,7 +63,7 @@ public class ScoutManager {
 				currentScoutUnit = null;
 				currentScoutStatus = ScoutStatus.NoScout.ordinal();
 
-				// first building (Pylon / Supply Depot / Spawning Pool) À» °Ç¼³ ½ÃÀÛÇÑ ÈÄ, °¡Àå °¡±îÀÌ¿¡ ÀÖ´Â Worker ¸¦ Á¤ÂûÀ¯´ÖÀ¸·Î ÁöÁ¤ÇÑ´Ù
+				// first building (Pylon / Supply Depot / Spawning Pool) ì„ ê±´ì„¤ ì‹œì‘í•œ í›„, ê°€ì¥ ê°€ê¹Œì´ì— ìˆëŠ” Worker ë¥¼ ì •ì°°ìœ ë‹›ìœ¼ë¡œ ì§€ì •í•œë‹¤
 				Unit firstBuilding = null;
 
 				for (Unit unit : MyBotModule.Broodwar.self().getUnits())
@@ -81,14 +81,14 @@ public class ScoutManager {
 					Unit unit = WorkerManager.Instance().getClosestMineralWorkerTo(firstBuilding.getPosition());
 
 					// if we find a worker (which we should) add it to the scout units
-					// Á¤Âû ³ª°¥ ÀÏ²ÛÀÌ ¾øÀ¸¸é, ¾Æ¹«°Íµµ ÇÏÁö ¾Ê´Â´Ù
+					// ì •ì°° ë‚˜ê°ˆ ì¼ê¾¼ì´ ì—†ìœ¼ë©´, ì•„ë¬´ê²ƒë„ í•˜ì§€ ì•ŠëŠ”ë‹¤
 					if (unit != null)
 					{
 						// set unit as scout unit
 						currentScoutUnit = unit;
 						WorkerManager.Instance().setScoutWorker(currentScoutUnit);
 
-						// Âü°í·Î, ÀÏ²ÛÀÇ Á¤Âû ÀÓ¹«¸¦ ÇØÁ¦ÇÏ·Á¸é, ´ÙÀ½°ú °°ÀÌ ÇÏ¸é µÈ´Ù
+						// ì°¸ê³ ë¡œ, ì¼ê¾¼ì˜ ì •ì°° ì„ë¬´ë¥¼ í•´ì œí•˜ë ¤ë©´, ë‹¤ìŒê³¼ ê°™ì´ í•˜ë©´ ëœë‹¤
 						//WorkerManager::Instance().setIdleWorker(currentScoutUnit);
 					}
 				}
@@ -97,9 +97,9 @@ public class ScoutManager {
 	}
 
 
-	/// Á¤Âû À¯´ÖÀ» ÀÌµ¿½ÃÅµ´Ï´Ù
-	// »ó´ë¹æ MainBaseLocation À§Ä¡¸¦ ¸ğ¸£´Â »óÈ²ÀÌ¸é, StartLocation µé¿¡ ´ëÇØ ¾Æ±ºÀÇ MainBaseLocation¿¡¼­ °¡±î¿î °ÍºÎÅÍ ¼ø¼­´ë·Î Á¤Âû
-	// »ó´ë¹æ MainBaseLocation À§Ä¡¸¦ ¾Æ´Â »óÈ²ÀÌ¸é, ÇØ´ç BaseLocation ÀÌ ÀÖ´Â RegionÀÇ °¡ÀåÀÚ¸®¸¦ µû¶ó °è¼Ó ÀÌµ¿ÇÔ (Á¤Âû À¯´ÖÀÌ Á×À»¶§±îÁö) 
+	/// ì •ì°° ìœ ë‹›ì„ ì´ë™ì‹œí‚µë‹ˆë‹¤
+	// ìƒëŒ€ë°© MainBaseLocation ìœ„ì¹˜ë¥¼ ëª¨ë¥´ëŠ” ìƒí™©ì´ë©´, StartLocation ë“¤ì— ëŒ€í•´ ì•„êµ°ì˜ MainBaseLocationì—ì„œ ê°€ê¹Œìš´ ê²ƒë¶€í„° ìˆœì„œëŒ€ë¡œ ì •ì°°
+	// ìƒëŒ€ë°© MainBaseLocation ìœ„ì¹˜ë¥¼ ì•„ëŠ” ìƒí™©ì´ë©´, í•´ë‹¹ BaseLocation ì´ ìˆëŠ” Regionì˜ ê°€ì¥ìë¦¬ë¥¼ ë”°ë¼ ê³„ì† ì´ë™í•¨ (ì •ì°° ìœ ë‹›ì´ ì£½ì„ë•Œê¹Œì§€) 
 	public void moveScoutUnit()
 	{
 		if (currentScoutUnit == null || currentScoutUnit.exists() == false || currentScoutUnit.getHitPoints() <= 0 )
@@ -114,8 +114,8 @@ public class ScoutManager {
 
 		if (enemyBaseLocation == null)
 		{
-			// currentScoutTargetBaseLocation °¡ null ÀÌ°Å³ª Á¤Âû À¯´ÖÀÌ currentScoutTargetBaseLocation ¿¡ µµÂøÇßÀ¸¸é 
-			// ¾Æ±º MainBaseLocation À¸·ÎºÎÅÍ °¡Àå °¡±î¿î ¹ÌÁ¤Âû BaseLocation À» »õ·Î¿î Á¤Âû ´ë»ó currentScoutTargetBaseLocation À¸·Î Àâ¾Æ¼­ ÀÌµ¿
+			// currentScoutTargetBaseLocation ê°€ null ì´ê±°ë‚˜ ì •ì°° ìœ ë‹›ì´ currentScoutTargetBaseLocation ì— ë„ì°©í–ˆìœ¼ë©´ 
+			// ì•„êµ° MainBaseLocation ìœ¼ë¡œë¶€í„° ê°€ì¥ ê°€ê¹Œìš´ ë¯¸ì •ì°° BaseLocation ì„ ìƒˆë¡œìš´ ì •ì°° ëŒ€ìƒ currentScoutTargetBaseLocation ìœ¼ë¡œ ì¡ì•„ì„œ ì´ë™
 			if (currentScoutTargetBaseLocation == null || currentScoutUnit.getDistance(currentScoutTargetBaseLocation.getPosition()) < 5 * Config.TILE_SIZE) 
 			{
 				currentScoutStatus = ScoutStatus.MovingToAnotherBaseLocation.ordinal();
@@ -125,10 +125,10 @@ public class ScoutManager {
 				BaseLocation closestBaseLocation = null;
 				for (BaseLocation startLocation : BWTA.getStartLocations())
 				{
-					// if we haven't explored it yet (¹æ¹®Çß¾ú´ø °÷Àº ´Ù½Ã °¡º¼ ÇÊ¿ä ¾øÀ½)
+					// if we haven't explored it yet (ë°©ë¬¸í–ˆì—ˆë˜ ê³³ì€ ë‹¤ì‹œ ê°€ë³¼ í•„ìš” ì—†ìŒ)
 					if (MyBotModule.Broodwar.isExplored(startLocation.getTilePosition()) == false)
 					{
-						// GroundDistance ¸¦ ±âÁØÀ¸·Î °¡Àå °¡±î¿î °÷À¸·Î ¼±Á¤
+						// GroundDistance ë¥¼ ê¸°ì¤€ìœ¼ë¡œ ê°€ì¥ ê°€ê¹Œìš´ ê³³ìœ¼ë¡œ ì„ ì •
 						tempDistance = (double)(InformationManager.Instance().getMainBaseLocation(MyBotModule.Broodwar.self()).getGroundDistance(startLocation) + 0.5);
 
 						if (tempDistance > 0 && tempDistance < closestDistance) {
@@ -217,8 +217,8 @@ public class ScoutManager {
 		}
 	}
 
-	// Enemy MainBaseLocation ÀÌ ÀÖ´Â Region ÀÇ °¡ÀåÀÚ¸®¸¦  enemyBaseRegionVertices ¿¡ ÀúÀåÇÑ´Ù
-	// Region ³» ¸ğµç °Ç¹°À» Eliminate ½ÃÅ°±â À§ÇÑ Áöµµ Å½»ö ·ÎÁ÷ ÀÛ¼º½Ã Âü°íÇÒ ¼ö ÀÖ´Ù
+	// Enemy MainBaseLocation ì´ ìˆëŠ” Region ì˜ ê°€ì¥ìë¦¬ë¥¼  enemyBaseRegionVertices ì— ì €ì¥í•œë‹¤
+	// Region ë‚´ ëª¨ë“  ê±´ë¬¼ì„ Eliminate ì‹œí‚¤ê¸° ìœ„í•œ ì§€ë„ íƒìƒ‰ ë¡œì§ ì‘ì„±ì‹œ ì°¸ê³ í•  ìˆ˜ ìˆë‹¤
 	public void calculateEnemyRegionVertices()
 	{
 		BaseLocation enemyBaseLocation = InformationManager.Instance().getMainBaseLocation(MyBotModule.Broodwar.enemy());
@@ -257,7 +257,7 @@ public class ScoutManager {
 			}
 
 			// push the tiles that aren't surrounded 
-			// RegionÀÇ °¡ÀåÀÚ¸® Å¸ÀÏµé¸¸ Ãß°¡ÇÑ´Ù
+			// Regionì˜ ê°€ì¥ìë¦¬ íƒ€ì¼ë“¤ë§Œ ì¶”ê°€í•œë‹¤
 			if (!surrounded && MyBotModule.Broodwar.isBuildable(tp))
 			{
 				if (Config.DrawScoutInfo)
@@ -377,25 +377,25 @@ public class ScoutManager {
 		return closestIndex;
 	}
 	
-	/// Á¤Âû À¯´ÖÀ» ¸®ÅÏÇÕ´Ï´Ù
+	/// ì •ì°° ìœ ë‹›ì„ ë¦¬í„´í•©ë‹ˆë‹¤
 	public Unit getScoutUnit()
 	{
 		return currentScoutUnit;
 	}
 
-	// Á¤Âû »óÅÂ¸¦ ¸®ÅÏÇÕ´Ï´Ù
+	// ì •ì°° ìƒíƒœë¥¼ ë¦¬í„´í•©ë‹ˆë‹¤
 	public int getScoutStatus()
 	{
 		return currentScoutStatus;
 	}
 
-	/// Á¤Âû À¯´ÖÀÇ ÀÌµ¿ ¸ñÇ¥ BaseLocation À» ¸®ÅÏÇÕ´Ï´Ù
+	/// ì •ì°° ìœ ë‹›ì˜ ì´ë™ ëª©í‘œ BaseLocation ì„ ë¦¬í„´í•©ë‹ˆë‹¤
 	public BaseLocation getScoutTargetBaseLocation()
 	{
 		return currentScoutTargetBaseLocation;
 	}
 
-	/// Àû±ºÀÇ Main Base Location ÀÌ ÀÖ´Â Region ÀÇ °æ°è¼±¿¡ ÇØ´çÇÏ´Â Vertex µéÀÇ ¸ñ·ÏÀ» ¸®ÅÏÇÕ´Ï´Ù
+	/// ì êµ°ì˜ Main Base Location ì´ ìˆëŠ” Region ì˜ ê²½ê³„ì„ ì— í•´ë‹¹í•˜ëŠ” Vertex ë“¤ì˜ ëª©ë¡ì„ ë¦¬í„´í•©ë‹ˆë‹¤
 	public Vector<Position> getEnemyRegionVertices()
 	{
 		return enemyBaseRegionVertices;

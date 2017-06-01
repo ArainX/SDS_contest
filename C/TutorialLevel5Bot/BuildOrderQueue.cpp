@@ -38,10 +38,10 @@ BuildOrderItem BuildOrderQueue::getNextItem()
 	return queue[queue.size() - 1 - numSkippedItems];
 }
 
-// BuildOrderQueue¿¡ ÇØ´ç type ÀÇ Item ÀÌ Á¸ÀçÇÏ´ÂÁö Ä«¿îÆ®ÇÑ´Ù. queryTilePosition À» ÀÔ·ÂÇÑ °æ¿ì, °Ç¹°¿¡ ´ëÇØ¼­ Ãß°¡ Å½»öÇÑ´Ù
+// BuildOrderQueueì— í•´ë‹¹ type ì˜ Item ì´ ì¡´ì¬í•˜ëŠ”ì§€ ì¹´ìš´íŠ¸í•œë‹¤. queryTilePosition ì„ ì…ë ¥í•œ ê²½ìš°, ê±´ë¬¼ì— ëŒ€í•´ì„œ ì¶”ê°€ íƒìƒ‰í•œë‹¤
 int BuildOrderQueue::getItemCount(MetaType queryType, BWAPI::TilePosition queryTilePosition)
 {
-	// queryTilePosition À» ÀÔ·ÂÇÑ °æ¿ì, °Å¸®ÀÇ maxRange. Å¸ÀÏ´ÜÀ§
+	// queryTilePosition ì„ ì…ë ¥í•œ ê²½ìš°, ê±°ë¦¬ì˜ maxRange. íƒ€ì¼ë‹¨ìœ„
 	int maxRange = 16;
 	
 	int itemCount = 0;
@@ -169,24 +169,24 @@ void BuildOrderQueue::queueAsHighestPriority(MetaType                _metaType, 
 }
 
 
-// buildQueue ¿¡ ³Ö´Â´Ù. ±âº»ÀûÀ¸·Î blocking ¸ğµå (´Ù¸¥ °ÍÀ» »ı»êÇÏÁö ¾Ê°í, ÀÌ°ÍÀ» »ı»ê °¡´ÉÇÏ°Ô µÉ ¶§±îÁö ±â´Ù¸®´Â ¸ğµå) 
-// SeedPositionStrategy ¸¦ °®°í °áÁ¤
+// buildQueue ì— ë„£ëŠ”ë‹¤. ê¸°ë³¸ì ìœ¼ë¡œ blocking ëª¨ë“œ (ë‹¤ë¥¸ ê²ƒì„ ìƒì‚°í•˜ì§€ ì•Šê³ , ì´ê²ƒì„ ìƒì‚° ê°€ëŠ¥í•˜ê²Œ ë  ë•Œê¹Œì§€ ê¸°ë‹¤ë¦¬ëŠ” ëª¨ë“œ) 
+// SeedPositionStrategy ë¥¼ ê°–ê³  ê²°ì •
 void BuildOrderQueue::queueAsHighestPriority(MetaType                _metaType, BuildOrderItem::SeedPositionStrategy _seedPositionStrategy, bool _blocking){
 	int newPriority = highestPriority + defaultPrioritySpacing;
 	queueItem(BuildOrderItem(_metaType, _seedPositionStrategy, newPriority, _blocking));
 }
-// SeedPositionStrategy ¸¦ °®°í °áÁ¤
+// SeedPositionStrategy ë¥¼ ê°–ê³  ê²°ì •
 void BuildOrderQueue::queueAsHighestPriority(BWAPI::UnitType         _unitType, BuildOrderItem::SeedPositionStrategy _seedPositionStrategy, bool _blocking){
 	int newPriority = highestPriority + defaultPrioritySpacing;
 	queueItem(BuildOrderItem(MetaType(_unitType), _seedPositionStrategy, newPriority, _blocking));
 }
-// SeedPosition À» °®°í °áÁ¤
+// SeedPosition ì„ ê°–ê³  ê²°ì •
 void BuildOrderQueue::queueAsHighestPriority(MetaType                _metaType, BWAPI::TilePosition _seedPosition, bool _blocking)
 {
 	int newPriority = highestPriority + defaultPrioritySpacing;
 	queueItem(BuildOrderItem(_metaType, _seedPosition, newPriority, _blocking));
 }
-// SeedPosition À» °®°í °áÁ¤
+// SeedPosition ì„ ê°–ê³  ê²°ì •
 void BuildOrderQueue::queueAsHighestPriority(BWAPI::UnitType         _unitType, BWAPI::TilePosition _seedPosition, bool _blocking)
 {
 	int newPriority = highestPriority + defaultPrioritySpacing;
@@ -214,22 +214,22 @@ void BuildOrderQueue::queueAsLowestPriority(MetaType                _metaType, b
 	queueItem(BuildOrderItem(_metaType, newPriority, blocking, _producerID));
 }
 
-// buildQueue ¿¡ ³Ö´Â´Ù. ±âº»ÀûÀ¸·Î blocking ¸ğµå (´Ù¸¥ °ÍÀ» »ı»êÇÏÁö ¾Ê°í, ÀÌ°ÍÀ» »ı»ê °¡´ÉÇÏ°Ô µÉ ¶§±îÁö ±â´Ù¸®´Â ¸ğµå) 
-// SeedPositionStrategy ¸¦ °®°í °áÁ¤
+// buildQueue ì— ë„£ëŠ”ë‹¤. ê¸°ë³¸ì ìœ¼ë¡œ blocking ëª¨ë“œ (ë‹¤ë¥¸ ê²ƒì„ ìƒì‚°í•˜ì§€ ì•Šê³ , ì´ê²ƒì„ ìƒì‚° ê°€ëŠ¥í•˜ê²Œ ë  ë•Œê¹Œì§€ ê¸°ë‹¤ë¦¬ëŠ” ëª¨ë“œ) 
+// SeedPositionStrategy ë¥¼ ê°–ê³  ê²°ì •
 void BuildOrderQueue::queueAsLowestPriority(MetaType                _metaType, BuildOrderItem::SeedPositionStrategy _seedPositionStrategy, bool _blocking){
 	queueItem(BuildOrderItem(_metaType, _seedPositionStrategy, 0, _blocking));
 }
-// SeedPositionStrategy ¸¦ °®°í °áÁ¤
+// SeedPositionStrategy ë¥¼ ê°–ê³  ê²°ì •
 void BuildOrderQueue::queueAsLowestPriority(BWAPI::UnitType         _unitType, BuildOrderItem::SeedPositionStrategy _seedPositionStrategy, bool _blocking){
 	queueItem(BuildOrderItem(MetaType(_unitType), _seedPositionStrategy, 0, _blocking));
 }
-// SeedPosition À» °®°í °áÁ¤
+// SeedPosition ì„ ê°–ê³  ê²°ì •
 void BuildOrderQueue::queueAsLowestPriority(MetaType                _metaType, BWAPI::TilePosition _seedPosition, bool _blocking)
 {
 	queueItem(BuildOrderItem(_metaType, _seedPosition, 0, _blocking));
 }
 
-// SeedPosition À» °®°í °áÁ¤
+// SeedPosition ì„ ê°–ê³  ê²°ì •
 void BuildOrderQueue::queueAsLowestPriority(BWAPI::UnitType         _unitType, BWAPI::TilePosition _seedPosition, bool _blocking)
 {
 	queueItem(BuildOrderItem(MetaType(_unitType), _seedPosition, 0, _blocking));

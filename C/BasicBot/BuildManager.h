@@ -6,21 +6,21 @@
 
 namespace MyBot
 {
-	/// ºôµå(°Ç¹° °Ç¼³ / À¯´Ö ÈÆ·Ã / Å×Å© ¸®¼­Ä¡ / ¾÷±×·¹ÀÌµå) ¸í·ÉÀ» ¼øÂ÷ÀûÀ¸·Î ½ÇÇàÇÏ±â À§ÇØ ºôµå Å¥¸¦ °ü¸®ÇÏ°í, ºôµå Å¥¿¡ ÀÖ´Â ¸í·ÉÀ» ÇÏ³ª¾¿ ½ÇÇàÇÏ´Â class
-	/// ºôµå ¸í·É Áß °Ç¹° °Ç¼³ ¸í·ÉÀº ConstructionManager·Î Àü´ŞÇÕ´Ï´Ù
+	/// ë¹Œë“œ(ê±´ë¬¼ ê±´ì„¤ / ìœ ë‹› í›ˆë ¨ / í…Œí¬ ë¦¬ì„œì¹˜ / ì—…ê·¸ë ˆì´ë“œ) ëª…ë ¹ì„ ìˆœì°¨ì ìœ¼ë¡œ ì‹¤í–‰í•˜ê¸° ìœ„í•´ ë¹Œë“œ íë¥¼ ê´€ë¦¬í•˜ê³ , ë¹Œë“œ íì— ìˆëŠ” ëª…ë ¹ì„ í•˜ë‚˜ì”© ì‹¤í–‰í•˜ëŠ” class
+	/// ë¹Œë“œ ëª…ë ¹ ì¤‘ ê±´ë¬¼ ê±´ì„¤ ëª…ë ¹ì€ ConstructionManagerë¡œ ì „ë‹¬í•©ë‹ˆë‹¤
 	/// @see ConstructionManager
 	class BuildManager
 	{
 		BuildManager();
 
-		/// ÇØ´ç MetaType À» build ÇÒ ¼ö ÀÖ´Â producer ¸¦ Ã£¾Æ ¹İÈ¯ÇÕ´Ï´Ù
-		/// @param t ºôµåÇÏ·Á´Â ´ë»óÀÇ Å¸ÀÔ
-		/// @param closestTo ÆÄ¶ó¸ŞÅ¸ ÀÔ·Â ½Ã producer ÈÄº¸µé Áß ÇØ´ç position ¿¡¼­ °¡Àå °¡±î¿î producer ¸¦ ¸®ÅÏÇÕ´Ï´Ù
-		/// @param producerID ÆÄ¶ó¸ŞÅ¸ ÀÔ·Â ½Ã ÇØ´ç IDÀÇ unit ¸¸ producer ÈÄº¸°¡ µÉ ¼ö ÀÖ½À´Ï´Ù
+		/// í•´ë‹¹ MetaType ì„ build í•  ìˆ˜ ìˆëŠ” producer ë¥¼ ì°¾ì•„ ë°˜í™˜í•©ë‹ˆë‹¤
+		/// @param t ë¹Œë“œí•˜ë ¤ëŠ” ëŒ€ìƒì˜ íƒ€ì…
+		/// @param closestTo íŒŒë¼ë©”íƒ€ ì…ë ¥ ì‹œ producer í›„ë³´ë“¤ ì¤‘ í•´ë‹¹ position ì—ì„œ ê°€ì¥ ê°€ê¹Œìš´ producer ë¥¼ ë¦¬í„´í•©ë‹ˆë‹¤
+		/// @param producerID íŒŒë¼ë©”íƒ€ ì…ë ¥ ì‹œ í•´ë‹¹ IDì˜ unit ë§Œ producer í›„ë³´ê°€ ë  ìˆ˜ ìˆìŠµë‹ˆë‹¤
 		BWAPI::Unit			getProducer(MetaType t, BWAPI::Position closestTo = BWAPI::Positions::None, int producerID = -1);
 
-		/// ÇØ´ç MetaType À» build ÇÒ ¼ö ÀÖ´Â, getProducer ¸®ÅÏ°ª°ú ´Ù¸¥ producer ¸¦ Ã£¾Æ ¹İÈ¯ÇÕ´Ï´Ù
-		/// ÇÁ·ÎÅä½º Á¾Á· À¯´Ö Áß Protoss_Archon / Protoss_Dark_Archon À» ºôµåÇÒ ¶§ »ç¿ëÇÕ´Ï´Ù
+		/// í•´ë‹¹ MetaType ì„ build í•  ìˆ˜ ìˆëŠ”, getProducer ë¦¬í„´ê°’ê³¼ ë‹¤ë¥¸ producer ë¥¼ ì°¾ì•„ ë°˜í™˜í•©ë‹ˆë‹¤
+		/// í”„ë¡œí† ìŠ¤ ì¢…ì¡± ìœ ë‹› ì¤‘ Protoss_Archon / Protoss_Dark_Archon ì„ ë¹Œë“œí•  ë•Œ ì‚¬ìš©í•©ë‹ˆë‹¤
 		BWAPI::Unit			getAnotherProducer(BWAPI::Unit producer, BWAPI::Position closestTo = BWAPI::Positions::None);
 
 		BWAPI::Unit         getClosestUnitToPosition(const BWAPI::Unitset & units, BWAPI::Position closestTo);
@@ -39,19 +39,19 @@ namespace MyBot
 		void				checkBuildOrderQueueDeadlockAndAndFixIt();
 
 	public:
-		/// static singleton °´Ã¼¸¦ ¸®ÅÏÇÕ´Ï´Ù
+		/// static singleton ê°ì²´ë¥¼ ë¦¬í„´í•©ë‹ˆë‹¤
 		static BuildManager &	Instance();
 
-		/// buildQueue ¿¡ ´ëÇØ Dead lock ÀÌ ÀÖÀ¸¸é Á¦°ÅÇÏ°í, °¡Àå ¿ì¼±¼øÀ§°¡ ³ôÀº BuildOrderItem ¸¦ ½ÇÇàµÇµµ·Ï ½ÃµµÇÕ´Ï´Ù
+		/// buildQueue ì— ëŒ€í•´ Dead lock ì´ ìˆìœ¼ë©´ ì œê±°í•˜ê³ , ê°€ì¥ ìš°ì„ ìˆœìœ„ê°€ ë†’ì€ BuildOrderItem ë¥¼ ì‹¤í–‰ë˜ë„ë¡ ì‹œë„í•©ë‹ˆë‹¤
 		void				update();
 
-		/// BuildOrderItem µéÀÇ ¸ñ·ÏÀ» ÀúÀåÇÏ´Â buildQueue 
+		/// BuildOrderItem ë“¤ì˜ ëª©ë¡ì„ ì €ì¥í•˜ëŠ” buildQueue 
 		BuildOrderQueue     buildQueue;
 
-		/// BuildOrderItem µéÀÇ ¸ñ·ÏÀ» ÀúÀåÇÏ´Â buildQueue ¸¦ ¸®ÅÏÇÕ´Ï´Ù
+		/// BuildOrderItem ë“¤ì˜ ëª©ë¡ì„ ì €ì¥í•˜ëŠ” buildQueue ë¥¼ ë¦¬í„´í•©ë‹ˆë‹¤
 		BuildOrderQueue *	getBuildQueue();
 
-		/// buildQueue ÀÇ Dead lock ¿©ºÎ¸¦ ÆÇ´ÜÇÏ±â À§ÇØ, °¡Àå ¿ì¼±¼øÀ§°¡ ³ôÀº BuildOrderItem ÀÇ producer °¡ Á¸ÀçÇÏ°ÔµÉ °ÍÀÎÁö ¿©ºÎ¸¦ ¸®ÅÏÇÕ´Ï´Ù
+		/// buildQueue ì˜ Dead lock ì—¬ë¶€ë¥¼ íŒë‹¨í•˜ê¸° ìœ„í•´, ê°€ì¥ ìš°ì„ ìˆœìœ„ê°€ ë†’ì€ BuildOrderItem ì˜ producer ê°€ ì¡´ì¬í•˜ê²Œë  ê²ƒì¸ì§€ ì—¬ë¶€ë¥¼ ë¦¬í„´í•©ë‹ˆë‹¤
 		bool				isProducerWillExist(BWAPI::UnitType producerType);
 
 	};

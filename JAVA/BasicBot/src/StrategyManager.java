@@ -9,10 +9,10 @@ import bwta.BWTA;
 import bwta.BaseLocation;
 import bwta.Chokepoint;
 
-/// »óÈ²À» ÆÇ´ÜÇÏ¿©, Á¤Âû, ºôµå, °ø°İ, ¹æ¾î µîÀ» ¼öÇàÇÏµµ·Ï ÃÑ°ı ÁöÈÖ¸¦ ÇÏ´Â class
-/// InformationManager ¿¡ ÀÖ´Â Á¤º¸µé·ÎºÎÅÍ »óÈ²À» ÆÇ´ÜÇÏ°í, 
-/// BuildManager ÀÇ buildQueue¿¡ ºôµå (°Ç¹° °Ç¼³ / À¯´Ö ÈÆ·Ã / Å×Å© ¸®¼­Ä¡ / ¾÷±×·¹ÀÌµå) ¸í·ÉÀ» ÀÔ·ÂÇÕ´Ï´Ù.
-/// Á¤Âû, ºôµå, °ø°İ, ¹æ¾î µîÀ» ¼öÇàÇÏ´Â ÄÚµå°¡ µé¾î°¡´Â class
+/// ìƒí™©ì„ íŒë‹¨í•˜ì—¬, ì •ì°°, ë¹Œë“œ, ê³µê²©, ë°©ì–´ ë“±ì„ ìˆ˜í–‰í•˜ë„ë¡ ì´ê´„ ì§€íœ˜ë¥¼ í•˜ëŠ” class
+/// InformationManager ì— ìˆëŠ” ì •ë³´ë“¤ë¡œë¶€í„° ìƒí™©ì„ íŒë‹¨í•˜ê³ , 
+/// BuildManager ì˜ buildQueueì— ë¹Œë“œ (ê±´ë¬¼ ê±´ì„¤ / ìœ ë‹› í›ˆë ¨ / í…Œí¬ ë¦¬ì„œì¹˜ / ì—…ê·¸ë ˆì´ë“œ) ëª…ë ¹ì„ ì…ë ¥í•©ë‹ˆë‹¤.
+/// ì •ì°°, ë¹Œë“œ, ê³µê²©, ë°©ì–´ ë“±ì„ ìˆ˜í–‰í•˜ëŠ” ì½”ë“œê°€ ë“¤ì–´ê°€ëŠ” class
 public class StrategyManager {
 
 	private static StrategyManager instance = new StrategyManager();
@@ -22,7 +22,7 @@ public class StrategyManager {
 	private boolean isFullScaleAttackStarted;
 	private boolean isInitialBuildOrderFinished;
 
-	/// static singleton °´Ã¼¸¦ ¸®ÅÏÇÕ´Ï´Ù
+	/// static singleton ê°ì²´ë¥¼ ë¦¬í„´í•©ë‹ˆë‹¤
 	public static StrategyManager Instance() {
 		return instance;
 	}
@@ -32,17 +32,17 @@ public class StrategyManager {
 		isInitialBuildOrderFinished = false;
 	}
 
-	/// °æ±â°¡ ½ÃÀÛµÉ ¶§ ÀÏÈ¸ÀûÀ¸·Î Àü·« ÃÊ±â ¼¼ÆÃ °ü·Ã ·ÎÁ÷À» ½ÇÇàÇÕ´Ï´Ù
+	/// ê²½ê¸°ê°€ ì‹œì‘ë  ë•Œ ì¼íšŒì ìœ¼ë¡œ ì „ëµ ì´ˆê¸° ì„¸íŒ… ê´€ë ¨ ë¡œì§ì„ ì‹¤í–‰í•©ë‹ˆë‹¤
 	public void onStart() {
 		setInitialBuildOrder();		
 	}
 
-	///  °æ±â°¡ Á¾·áµÉ ¶§ ÀÏÈ¸ÀûÀ¸·Î Àü·« °á°ú Á¤¸® °ü·Ã ·ÎÁ÷À» ½ÇÇàÇÕ´Ï´Ù
+	///  ê²½ê¸°ê°€ ì¢…ë£Œë  ë•Œ ì¼íšŒì ìœ¼ë¡œ ì „ëµ ê²°ê³¼ ì •ë¦¬ ê´€ë ¨ ë¡œì§ì„ ì‹¤í–‰í•©ë‹ˆë‹¤
 	public void onEnd(boolean isWinner) {
 
 	}
 
-	/// °æ±â ÁøÇà Áß ¸Å ÇÁ·¹ÀÓ¸¶´Ù °æ±â Àü·« °ü·Ã ·ÎÁ÷À» ½ÇÇàÇÕ´Ï´Ù
+	/// ê²½ê¸° ì§„í–‰ ì¤‘ ë§¤ í”„ë ˆì„ë§ˆë‹¤ ê²½ê¸° ì „ëµ ê´€ë ¨ ë¡œì§ì„ ì‹¤í–‰í•©ë‹ˆë‹¤
 	public void update() {
 		if (BuildManager.Instance().buildQueue.isEmpty()) {
 			isInitialBuildOrderFinished = true;
@@ -93,17 +93,17 @@ public class StrategyManager {
 			BuildManager.Instance().buildQueue.queueAsLowestPriority(UnitType.Protoss_Cybernetics_Core,
 					BuildOrderItem.SeedPositionStrategy.MainBaseLocation);
 			BuildManager.Instance().buildQueue.queueAsLowestPriority(UnitType.Protoss_Dragoon);
-			// µå¶ó±º »çÁ¤°Å¸® ¾÷±×·¹ÀÌµå
+			// ë“œë¼êµ° ì‚¬ì •ê±°ë¦¬ ì—…ê·¸ë ˆì´ë“œ
 			BuildManager.Instance().buildQueue.queueAsLowestPriority(UpgradeType.Singularity_Charge);
 
 			BuildManager.Instance().buildQueue.queueAsLowestPriority(UnitType.Protoss_Citadel_of_Adun);
-			// Áú·µ ¼Óµµ ¾÷±×·¹ÀÌµå
+			// ì§ˆëŸ¿ ì†ë„ ì—…ê·¸ë ˆì´ë“œ
 			BuildManager.Instance().buildQueue.queueAsLowestPriority(UpgradeType.Leg_Enhancements);
 
 			BuildManager.Instance().buildQueue.queueAsLowestPriority(UnitType.Protoss_Shield_Battery);
 
 			BuildManager.Instance().buildQueue.queueAsLowestPriority(UnitType.Protoss_Templar_Archives);
-			// ÇÏÀÌÅÛÇÃ·¯
+			// í•˜ì´í…œí”ŒëŸ¬
 			BuildManager.Instance().buildQueue.queueAsLowestPriority(UnitType.Protoss_High_Templar);
 			BuildManager.Instance().buildQueue.queueAsLowestPriority(UnitType.Protoss_High_Templar);
 			BuildManager.Instance().buildQueue.queueAsLowestPriority(TechType.Psionic_Storm);
@@ -111,7 +111,7 @@ public class StrategyManager {
 			BuildManager.Instance().buildQueue.queueAsLowestPriority(UpgradeType.Khaydarin_Amulet);
 			BuildManager.Instance().buildQueue.queueAsLowestPriority(UnitType.Protoss_Archon);
 
-			// ´ÙÅ©¾ÆÄ­
+			// ë‹¤í¬ì•„ì¹¸
 			BuildManager.Instance().buildQueue.queueAsLowestPriority(UnitType.Protoss_Dark_Templar);
 			BuildManager.Instance().buildQueue.queueAsLowestPriority(UnitType.Protoss_Dark_Templar);
 			BuildManager.Instance().buildQueue.queueAsLowestPriority(TechType.Maelstrom);
@@ -121,38 +121,38 @@ public class StrategyManager {
 
 			BuildManager.Instance().buildQueue.queueAsLowestPriority(UnitType.Protoss_Robotics_Facility);
 
-			// ¼ÅÆ²
+			// ì…”í‹€
 			BuildManager.Instance().buildQueue.queueAsLowestPriority(UnitType.Protoss_Shuttle);
 			BuildManager.Instance().buildQueue.queueAsLowestPriority(UnitType.Protoss_Robotics_Support_Bay);
 			BuildManager.Instance().buildQueue.queueAsLowestPriority(UpgradeType.Gravitic_Drive);
 
-			// ¸®¹ö
+			// ë¦¬ë²„
 			BuildManager.Instance().buildQueue.queueAsLowestPriority(UnitType.Protoss_Reaver);
 			BuildManager.Instance().buildQueue.queueAsLowestPriority(UpgradeType.Scarab_Damage);
 			BuildManager.Instance().buildQueue.queueAsLowestPriority(UpgradeType.Reaver_Capacity);
 			BuildManager.Instance().buildQueue.queueAsLowestPriority(UnitType.Protoss_Scarab);
 
 			BuildManager.Instance().buildQueue.queueAsLowestPriority(UnitType.Protoss_Observatory);
-			// ¿ÉÀú¹ö
+			// ì˜µì €ë²„
 			BuildManager.Instance().buildQueue.queueAsLowestPriority(UnitType.Protoss_Observer);
 			BuildManager.Instance().buildQueue.queueAsLowestPriority(UpgradeType.Gravitic_Boosters);
 			BuildManager.Instance().buildQueue.queueAsLowestPriority(UpgradeType.Sensor_Array);
 
-			// °øÁßÀ¯´Ö
+			// ê³µì¤‘ìœ ë‹›
 			BuildManager.Instance().buildQueue.queueAsLowestPriority(UnitType.Protoss_Stargate);
 			BuildManager.Instance().buildQueue.queueAsLowestPriority(UnitType.Protoss_Fleet_Beacon);
 
-			// ½ºÄ«¿ìÆ®
+			// ìŠ¤ì¹´ìš°íŠ¸
 			BuildManager.Instance().buildQueue.queueAsLowestPriority(UnitType.Protoss_Scout);
 			BuildManager.Instance().buildQueue.queueAsLowestPriority(UpgradeType.Apial_Sensors);
 			BuildManager.Instance().buildQueue.queueAsLowestPriority(UpgradeType.Gravitic_Thrusters);
 
-			// Ä¿¼¼¾î
+			// ì»¤ì„¸ì–´
 			BuildManager.Instance().buildQueue.queueAsLowestPriority(UnitType.Protoss_Corsair);
 			BuildManager.Instance().buildQueue.queueAsLowestPriority(TechType.Disruption_Web);
 			BuildManager.Instance().buildQueue.queueAsLowestPriority(UpgradeType.Argus_Jewel);
 
-			// Ä³¸®¾î
+			// ìºë¦¬ì–´
 			BuildManager.Instance().buildQueue.queueAsLowestPriority(UnitType.Protoss_Carrier);
 			BuildManager.Instance().buildQueue.queueAsLowestPriority(UpgradeType.Carrier_Capacity);
 			BuildManager.Instance().buildQueue.queueAsLowestPriority(UnitType.Protoss_Interceptor);
@@ -164,19 +164,19 @@ public class StrategyManager {
 			BuildManager.Instance().buildQueue.queueAsLowestPriority(UnitType.Protoss_Interceptor);
 			BuildManager.Instance().buildQueue.queueAsLowestPriority(UnitType.Protoss_Interceptor);
 
-			// ¾ÆºñÅÍ
+			// ì•„ë¹„í„°
 			BuildManager.Instance().buildQueue.queueAsLowestPriority(UnitType.Protoss_Arbiter_Tribunal);
 			BuildManager.Instance().buildQueue.queueAsLowestPriority(UnitType.Protoss_Arbiter);
 			BuildManager.Instance().buildQueue.queueAsLowestPriority(TechType.Recall);
 			BuildManager.Instance().buildQueue.queueAsLowestPriority(TechType.Stasis_Field);
 			BuildManager.Instance().buildQueue.queueAsLowestPriority(UpgradeType.Khaydarin_Core);
 
-			// Æ÷Áö - Áö»ó À¯´Ö ¾÷±×·¹ÀÌµå
+			// í¬ì§€ - ì§€ìƒ ìœ ë‹› ì—…ê·¸ë ˆì´ë“œ
 			BuildManager.Instance().buildQueue.queueAsLowestPriority(UpgradeType.Protoss_Ground_Weapons);
 			BuildManager.Instance().buildQueue.queueAsLowestPriority(UpgradeType.Protoss_Plasma_Shields);
 			BuildManager.Instance().buildQueue.queueAsLowestPriority(UpgradeType.Protoss_Ground_Armor);
 
-			// »çÀÌ¹ö³×Æ½½ºÄÚ¾î - °øÁß À¯´Ö ¾÷±×·¹ÀÌµå
+			// ì‚¬ì´ë²„ë„¤í‹±ìŠ¤ì½”ì–´ - ê³µì¤‘ ìœ ë‹› ì—…ê·¸ë ˆì´ë“œ
 			BuildManager.Instance().buildQueue.queueAsLowestPriority(UpgradeType.Protoss_Air_Weapons);
 			BuildManager.Instance().buildQueue.queueAsLowestPriority(UpgradeType.Protoss_Air_Armor);
 
@@ -202,7 +202,7 @@ public class StrategyManager {
 					BuildOrderItem.SeedPositionStrategy.MainBaseLocation, true);
 
 			/*
-			// °¡½º ¸®ÆÄÀÌ³Ê¸®
+			// ê°€ìŠ¤ ë¦¬íŒŒì´ë„ˆë¦¬
 			BuildManager.Instance().buildQueue.queueAsLowestPriority(InformationManager.Instance().getRefineryBuildingType());
 
 			BuildManager.Instance().buildQueue.queueAsLowestPriority(UnitType.Terran_Barracks,
@@ -217,102 +217,102 @@ public class StrategyManager {
 			BuildManager.Instance().buildQueue.queueAsLowestPriority(UnitType.Terran_Medic);
 			BuildManager.Instance().buildQueue.queueAsLowestPriority(UnitType.Terran_Firebat);
 
-			// Áö»óÀ¯´Ö ¾÷±×·¹ÀÌµå
+			// ì§€ìƒìœ ë‹› ì—…ê·¸ë ˆì´ë“œ
 			BuildManager.Instance().buildQueue.queueAsLowestPriority(UnitType.Terran_Engineering_Bay);
 			BuildManager.Instance().buildQueue.queueAsLowestPriority(UpgradeType.Terran_Infantry_Weapons, false);
 			BuildManager.Instance().buildQueue.queueAsLowestPriority(UpgradeType.Terran_Infantry_Armor, false);
 
 			BuildManager.Instance().buildQueue.queueAsLowestPriority(UnitType.Terran_Missile_Turret);
 
-			// ¸¶¸° ½ºÆÀÆÑ
+			// ë§ˆë¦° ìŠ¤íŒ€íŒ©
 			BuildManager.Instance().buildQueue.queueAsLowestPriority(TechType.Stim_Packs, false);
-			// ¸¶¸° »çÁ¤°Å¸® ¾÷
+			// ë§ˆë¦° ì‚¬ì •ê±°ë¦¬ ì—…
 			BuildManager.Instance().buildQueue.queueAsLowestPriority(UpgradeType.U_238_Shells, false);
 
-			// ¸Şµñ
+			// ë©”ë”•
 			BuildManager.Instance().buildQueue.queueAsLowestPriority(TechType.Optical_Flare, false);
 			BuildManager.Instance().buildQueue.queueAsLowestPriority(TechType.Restoration, false);
-			// ¸Şµñ ¿¡³ÊÁö ¾÷
+			// ë©”ë”• ì—ë„ˆì§€ ì—…
 			BuildManager.Instance().buildQueue.queueAsLowestPriority(UpgradeType.Caduceus_Reactor, false);
 
-			// ÆÑÅä¸®
+			// íŒ©í† ë¦¬
 			BuildManager.Instance().buildQueue.queueAsLowestPriority(UnitType.Terran_Factory);
 			BuildManager.Instance().buildQueue.queueAsLowestPriority(UnitType.Terran_Machine_Shop);
-			// ¹úÃÄ ½ºÆÄÀÌ´õ ¸¶ÀÎ
+			// ë²Œì³ ìŠ¤íŒŒì´ë” ë§ˆì¸
 			BuildManager.Instance().buildQueue.queueAsLowestPriority(TechType.Spider_Mines, false);
-			// ¹úÃÄ ÀÌµ¿¼Óµµ ¾÷
+			// ë²Œì³ ì´ë™ì†ë„ ì—…
 			BuildManager.Instance().buildQueue.queueAsLowestPriority(UpgradeType.Ion_Thrusters, false);
-			// ½ÃÁîÅÊÅ© ½ÃÁî¸ğµå
+			// ì‹œì¦ˆíƒ±í¬ ì‹œì¦ˆëª¨ë“œ
 			BuildManager.Instance().buildQueue.queueAsLowestPriority(UnitType.Terran_Siege_Tank_Tank_Mode);
 
-			// ¹úÃÄ
+			// ë²Œì³
 			BuildManager.Instance().buildQueue.queueAsLowestPriority(UnitType.Terran_Vulture);
 
-			// ½ÃÁîÅÊÅ©
+			// ì‹œì¦ˆíƒ±í¬
 			BuildManager.Instance().buildQueue.queueAsLowestPriority(TechType.Tank_Siege_Mode, false);
 
-			// ¾Æ¸Ó´Ï
+			// ì•„ë¨¸ë‹ˆ
 			BuildManager.Instance().buildQueue.queueAsLowestPriority(UnitType.Terran_Armory);
-			// Áö»ó ¸ŞÄ«´Ğ À¯´Ö ¾÷±×·¹ÀÌµå
+			// ì§€ìƒ ë©”ì¹´ë‹‰ ìœ ë‹› ì—…ê·¸ë ˆì´ë“œ
 			BuildManager.Instance().buildQueue.queueAsLowestPriority(UpgradeType.Terran_Vehicle_Plating, false);
 			BuildManager.Instance().buildQueue.queueAsLowestPriority(UpgradeType.Terran_Vehicle_Weapons, false);
-			// °øÁß À¯´Ö ¾÷±×·¹ÀÌµå
+			// ê³µì¤‘ ìœ ë‹› ì—…ê·¸ë ˆì´ë“œ
 			BuildManager.Instance().buildQueue.queueAsLowestPriority(UpgradeType.Terran_Ship_Plating, false);
 			BuildManager.Instance().buildQueue.queueAsLowestPriority(UpgradeType.Terran_Ship_Weapons, false);
-			// °ñ¸®¾Ñ »çÁ¤°Å¸® ¾÷
+			// ê³¨ë¦¬ì•— ì‚¬ì •ê±°ë¦¬ ì—…
 			BuildManager.Instance().buildQueue.queueAsLowestPriority(UpgradeType.Charon_Boosters, false);
 
-			// °ñ¸®¾Ñ
+			// ê³¨ë¦¬ì•—
 			BuildManager.Instance().buildQueue.queueAsLowestPriority(UnitType.Terran_Goliath);
 
-			// ½ºÅ¸Æ÷Æ®
+			// ìŠ¤íƒ€í¬íŠ¸
 			BuildManager.Instance().buildQueue.queueAsLowestPriority(UnitType.Terran_Starport);
 			BuildManager.Instance().buildQueue.queueAsLowestPriority(UnitType.Terran_Control_Tower);
-			// ·¹ÀÌ¾² Å¬·¯Å·
+			// ë ˆì´ì“° í´ëŸ¬í‚¹
 			BuildManager.Instance().buildQueue.queueAsLowestPriority(TechType.Cloaking_Field, false);
-			// ·¹ÀÌ¾² ¿¡³ÊÁö ¾÷
+			// ë ˆì´ì“° ì—ë„ˆì§€ ì—…
 			BuildManager.Instance().buildQueue.queueAsLowestPriority(UpgradeType.Apollo_Reactor, false);
 
-			// ·¹ÀÌ¾²
+			// ë ˆì´ì“°
 			BuildManager.Instance().buildQueue.queueAsLowestPriority(UnitType.Terran_Wraith);
 
-			// ¹ßÅ°¸®
+			// ë°œí‚¤ë¦¬
 			BuildManager.Instance().buildQueue.queueAsLowestPriority(UnitType.Terran_Valkyrie);
 
 			BuildManager.Instance().buildQueue.queueAsLowestPriority(UnitType.Terran_Command_Center);
 
-			// »çÀÌ¾ğ½º ÆÛ½Ç¸®Æ¼
+			// ì‚¬ì´ì–¸ìŠ¤ í¼ì‹¤ë¦¬í‹°
 			BuildManager.Instance().buildQueue.queueAsLowestPriority(UnitType.Terran_Science_Facility);
-			// »çÀÌ¾ğ½º º£½½ - ±â¼ú
+			// ì‚¬ì´ì–¸ìŠ¤ ë² ìŠ¬ - ê¸°ìˆ 
 			BuildManager.Instance().buildQueue.queueAsLowestPriority(TechType.Irradiate, false);
 			BuildManager.Instance().buildQueue.queueAsLowestPriority(TechType.EMP_Shockwave, false);
-			// »çÀÌ¾ğ½º º£½½ ¿¡³ÊÁö ¾÷
+			// ì‚¬ì´ì–¸ìŠ¤ ë² ìŠ¬ ì—ë„ˆì§€ ì—…
 			BuildManager.Instance().buildQueue.queueAsLowestPriority(UpgradeType.Titan_Reactor, false);
 
-			// »çÀÌ¾ğ½º º£½½
+			// ì‚¬ì´ì–¸ìŠ¤ ë² ìŠ¬
 			BuildManager.Instance().buildQueue.queueAsLowestPriority(UnitType.Terran_Science_Vessel);
-			// »çÀÌ¾ğ½º ÆÛ½Ç¸®Æ¼ - ¹èÆ²Å©·çÀú »ı»ê °¡´É
+			// ì‚¬ì´ì–¸ìŠ¤ í¼ì‹¤ë¦¬í‹° - ë°°í‹€í¬ë£¨ì € ìƒì‚° ê°€ëŠ¥
 			BuildManager.Instance().buildQueue.queueAsLowestPriority(UnitType.Terran_Physics_Lab);
 			BuildManager.Instance().buildQueue.queueAsLowestPriority(TechType.Yamato_Gun, false);
-			// ¹èÆ²Å©·çÀú ¿¡³ÊÁö ¾÷
+			// ë°°í‹€í¬ë£¨ì € ì—ë„ˆì§€ ì—…
 			BuildManager.Instance().buildQueue.queueAsLowestPriority(UpgradeType.Colossus_Reactor, false);
-			// ¹èÆ²Å©·çÀú
+			// ë°°í‹€í¬ë£¨ì €
 			BuildManager.Instance().buildQueue.queueAsLowestPriority(UnitType.Terran_Battlecruiser);
 
-			// »çÀÌ¾ğ½º ÆÛ½Ç¸®Æ¼ - °í½ºÆ® »ı»ê °¡´É
+			// ì‚¬ì´ì–¸ìŠ¤ í¼ì‹¤ë¦¬í‹° - ê³ ìŠ¤íŠ¸ ìƒì‚° ê°€ëŠ¥
 			BuildManager.Instance().buildQueue.queueAsLowestPriority(UnitType.Terran_Science_Facility);
 			BuildManager.Instance().buildQueue.queueAsLowestPriority(UnitType.Terran_Covert_Ops);
 			BuildManager.Instance().buildQueue.queueAsLowestPriority(TechType.Lockdown, false);
 			BuildManager.Instance().buildQueue.queueAsLowestPriority(TechType.Personnel_Cloaking, false);
-			// °í½ºÆ® °¡½Ã°Å¸® ¾÷
+			// ê³ ìŠ¤íŠ¸ ê°€ì‹œê±°ë¦¬ ì—…
 			BuildManager.Instance().buildQueue.queueAsLowestPriority(UpgradeType.Ocular_Implants, false);
-			// °í½ºÆ® ¿¡³ÊÁö ¾÷
+			// ê³ ìŠ¤íŠ¸ ì—ë„ˆì§€ ì—…
 			BuildManager.Instance().buildQueue.queueAsLowestPriority(UpgradeType.Moebius_Reactor, false);
 
-			// °í½ºÆ®
+			// ê³ ìŠ¤íŠ¸
 			BuildManager.Instance().buildQueue.queueAsLowestPriority(UnitType.Terran_Ghost);
 
-			// ÇÙÆøÅº
+			// í•µí­íƒ„
 			BuildManager.Instance().buildQueue.queueAsLowestPriority(UnitType.Terran_Command_Center);
 			BuildManager.Instance().buildQueue.queueAsLowestPriority(UnitType.Terran_Nuclear_Silo);
 			BuildManager.Instance().buildQueue.queueAsLowestPriority(UnitType.Terran_Nuclear_Missile);
@@ -365,11 +365,11 @@ public class StrategyManager {
 			BuildManager.Instance().buildQueue.queueAsLowestPriority(InformationManager.Instance().getWorkerType(),
 					BuildOrderItem.SeedPositionStrategy.MainBaseLocation, true);
 
-			// °¡½º ÀÍ½ºÆ®·¢ÅÍ
+			// ê°€ìŠ¤ ìµìŠ¤íŠ¸ë™í„°
 			BuildManager.Instance().buildQueue.queueAsLowestPriority(UnitType.Zerg_Extractor,
 					BuildOrderItem.SeedPositionStrategy.MainBaseLocation);
 
-			// ¼ºÅ« Äİ·Î´Ï
+			// ì„±í° ì½œë¡œë‹ˆ
 			BuildManager.Instance().buildQueue.queueAsLowestPriority(UnitType.Zerg_Creep_Colony,
 					BuildOrderItem.SeedPositionStrategy.MainBaseLocation);
 			BuildManager.Instance().buildQueue.queueAsLowestPriority(UnitType.Zerg_Sunken_Colony,
@@ -378,12 +378,12 @@ public class StrategyManager {
 			BuildManager.Instance().buildQueue
 					.queueAsLowestPriority(InformationManager.Instance().getRefineryBuildingType());
 
-			// Àú±Û¸µ ÀÌµ¿¼Óµµ ¾÷
+			// ì €ê¸€ë§ ì´ë™ì†ë„ ì—…
 			BuildManager.Instance().buildQueue.queueAsLowestPriority(UpgradeType.Metabolic_Boost);
 
-			// ¿¡º¼·ç¼Ç Ã¨¹ö
+			// ì—ë³¼ë£¨ì…˜ ì±”ë²„
 			BuildManager.Instance().buildQueue.queueAsLowestPriority(UnitType.Zerg_Evolution_Chamber);
-			// ¿¡º¼·ç¼Ç Ã¨¹ö . Áö»óÀ¯´Ö ¾÷±×·¹ÀÌµå
+			// ì—ë³¼ë£¨ì…˜ ì±”ë²„ . ì§€ìƒìœ ë‹› ì—…ê·¸ë ˆì´ë“œ
 			BuildManager.Instance().buildQueue.queueAsLowestPriority(UpgradeType.Zerg_Melee_Attacks, false);
 			BuildManager.Instance().buildQueue.queueAsLowestPriority(UpgradeType.Zerg_Missile_Attacks, false);
 			BuildManager.Instance().buildQueue.queueAsLowestPriority(UpgradeType.Zerg_Carapace, false);
@@ -398,119 +398,119 @@ public class StrategyManager {
 			BuildManager.Instance().buildQueue.queueAsLowestPriority(InformationManager.Instance().getWorkerType());
 			BuildManager.Instance().buildQueue.queueAsLowestPriority(InformationManager.Instance().getWorkerType());
 			
-			// ½ºÆ÷¾î ÄÚ·Î´Ï
+			// ìŠ¤í¬ì–´ ì½”ë¡œë‹ˆ
 			BuildManager.Instance().buildQueue.queueAsLowestPriority(UnitType.Zerg_Creep_Colony,
 					BuildOrderItem.SeedPositionStrategy.MainBaseLocation);
 			BuildManager.Instance().buildQueue.queueAsLowestPriority(UnitType.Zerg_Spore_Colony,
 					BuildOrderItem.SeedPositionStrategy.MainBaseLocation);
 
-			// È÷µå¶ó
+			// íˆë“œë¼
 			BuildManager.Instance().buildQueue.queueAsLowestPriority(UnitType.Zerg_Hydralisk_Den);
 			BuildManager.Instance().buildQueue.queueAsLowestPriority(UnitType.Zerg_Hydralisk);
 
-			// ·¹¾î
+			// ë ˆì–´
 			BuildManager.Instance().buildQueue.queueAsLowestPriority(UnitType.Zerg_Lair);
 
-			// ¿À¹ö·Îµå ¿î¹İ°¡´É
+			// ì˜¤ë²„ë¡œë“œ ìš´ë°˜ê°€ëŠ¥
 			BuildManager.Instance().buildQueue.queueAsLowestPriority(UpgradeType.Ventral_Sacs);
-			// ¿À¹ö·Îµå ½Ã¾ß Áõ°¡
+			// ì˜¤ë²„ë¡œë“œ ì‹œì•¼ ì¦ê°€
 			BuildManager.Instance().buildQueue.queueAsLowestPriority(UpgradeType.Antennae);
-			// ¿À¹ö·Îµå ¼Óµµ Áõ°¡
+			// ì˜¤ë²„ë¡œë“œ ì†ë„ ì¦ê°€
 			BuildManager.Instance().buildQueue.queueAsLowestPriority(UpgradeType.Pneumatized_Carapace);
 
-			// È÷µå¶ó ÀÌµ¿¼Óµµ ¾÷
+			// íˆë“œë¼ ì´ë™ì†ë„ ì—…
 			BuildManager.Instance().buildQueue.queueAsLowestPriority(UpgradeType.Muscular_Augments, false);
-			// È÷µå¶ó °ø°İ »çÁ¤°Å¸® ¾÷
+			// íˆë“œë¼ ê³µê²© ì‚¬ì •ê±°ë¦¬ ì—…
 			BuildManager.Instance().buildQueue.queueAsLowestPriority(UpgradeType.Grooved_Spines, false);
 
-			// ·²Ä¿
+			// ëŸ´ì»¤
 			BuildManager.Instance().buildQueue.queueAsLowestPriority(TechType.Lurker_Aspect);
 			BuildManager.Instance().buildQueue.queueAsLowestPriority(UnitType.Zerg_Hydralisk);
 			BuildManager.Instance().buildQueue.queueAsLowestPriority(UnitType.Zerg_Lurker);
 
-			// ½ºÆÄÀÌ¾î
+			// ìŠ¤íŒŒì´ì–´
 			BuildManager.Instance().buildQueue.queueAsLowestPriority(UnitType.Zerg_Spire, true);
 			BuildManager.Instance().buildQueue.queueAsLowestPriority(UnitType.Zerg_Mutalisk, true);
 			BuildManager.Instance().buildQueue.queueAsLowestPriority(UnitType.Zerg_Scourge, true);
 
-			// ½ºÆÄÀÌ¾î . °øÁßÀ¯´Ö ¾÷±×·¹ÀÌµå
+			// ìŠ¤íŒŒì´ì–´ . ê³µì¤‘ìœ ë‹› ì—…ê·¸ë ˆì´ë“œ
 			BuildManager.Instance().buildQueue.queueAsLowestPriority(UpgradeType.Zerg_Flyer_Attacks, false);
 			BuildManager.Instance().buildQueue.queueAsLowestPriority(UpgradeType.Zerg_Flyer_Carapace, false);
 
-			// Äı
+			// í€¸
 			BuildManager.Instance().buildQueue.queueAsLowestPriority(UnitType.Zerg_Queens_Nest);
 			BuildManager.Instance().buildQueue.queueAsLowestPriority(UnitType.Zerg_Queen);
 			BuildManager.Instance().buildQueue.queueAsLowestPriority(TechType.Spawn_Broodlings, false);
 			BuildManager.Instance().buildQueue.queueAsLowestPriority(TechType.Ensnare, false);
 			BuildManager.Instance().buildQueue.queueAsLowestPriority(UpgradeType.Gamete_Meiosis, false);
 
-			// ÇÏÀÌºê
+			// í•˜ì´ë¸Œ
 			BuildManager.Instance().buildQueue.queueAsLowestPriority(UnitType.Zerg_Hive);
-			// Àú±Û¸µ °ø°İ ¼Óµµ ¾÷
+			// ì €ê¸€ë§ ê³µê²© ì†ë„ ì—…
 			BuildManager.Instance().buildQueue.queueAsLowestPriority(UpgradeType.Adrenal_Glands, false);
 
-			// ½ºÆÄÀÌ¾î . ±×·¹ÀÌÆ® ½ºÆÄÀÌ¾î
+			// ìŠ¤íŒŒì´ì–´ . ê·¸ë ˆì´íŠ¸ ìŠ¤íŒŒì´ì–´
 			BuildManager.Instance().buildQueue.queueAsLowestPriority(UnitType.Zerg_Greater_Spire, true);
 			BuildManager.Instance().buildQueue.queueAsLowestPriority(UnitType.Zerg_Mutalisk, true);
 			BuildManager.Instance().buildQueue.queueAsLowestPriority(UnitType.Zerg_Guardian, true);
 			BuildManager.Instance().buildQueue.queueAsLowestPriority(UnitType.Zerg_Mutalisk, true);
 			BuildManager.Instance().buildQueue.queueAsLowestPriority(UnitType.Zerg_Devourer, true);
 
-			// ¿ïÆ®¶ó¸®½ºÅ©
+			// ìš¸íŠ¸ë¼ë¦¬ìŠ¤í¬
 			BuildManager.Instance().buildQueue.queueAsLowestPriority(UnitType.Zerg_Ultralisk_Cavern);
 			BuildManager.Instance().buildQueue.queueAsLowestPriority(UnitType.Zerg_Ultralisk);
-			// ¿ïÆ®¶ó¸®½ºÅ© ÀÌµ¿¼Óµµ ¾÷
+			// ìš¸íŠ¸ë¼ë¦¬ìŠ¤í¬ ì´ë™ì†ë„ ì—…
 			BuildManager.Instance().buildQueue.queueAsLowestPriority(UpgradeType.Anabolic_Synthesis, false);
-			// ¿ïÆ®¶ó¸®½ºÅ© ¹æ¾î·Â ¾÷
+			// ìš¸íŠ¸ë¼ë¦¬ìŠ¤í¬ ë°©ì–´ë ¥ ì—…
 			BuildManager.Instance().buildQueue.queueAsLowestPriority(UpgradeType.Chitinous_Plating, false);
 
-			// µğÆÄÀÏ·¯
+			// ë””íŒŒì¼ëŸ¬
 			BuildManager.Instance().buildQueue.queueAsLowestPriority(UnitType.Zerg_Defiler_Mound);
 			BuildManager.Instance().buildQueue.queueAsLowestPriority(UnitType.Zerg_Defiler);
 			BuildManager.Instance().buildQueue.queueAsLowestPriority(TechType.Consume, false);
 			BuildManager.Instance().buildQueue.queueAsLowestPriority(TechType.Plague, false);
-			// µğÆÄÀÏ·¯ ¿¡³ÊÁö ¾÷
+			// ë””íŒŒì¼ëŸ¬ ì—ë„ˆì§€ ì—…
 			BuildManager.Instance().buildQueue.queueAsLowestPriority(UpgradeType.Metasynaptic_Node, false);
 
-			// ³ªÀÌ´õ½º Ä³³Î
+			// ë‚˜ì´ë”ìŠ¤ ìºë„
 			BuildManager.Instance().buildQueue.queueAsLowestPriority(UnitType.Zerg_Nydus_Canal);
 
-			// Âü°í·Î, Zerg_Nydus_Canal °Ç¹°·ÎºÎÅÍ Nydus Canal Exit¸¦ ¸¸µå´Â ¹æ¹ıÀº ´ÙÀ½°ú °°½À´Ï´Ù
+			// ì°¸ê³ ë¡œ, Zerg_Nydus_Canal ê±´ë¬¼ë¡œë¶€í„° Nydus Canal Exitë¥¼ ë§Œë“œëŠ” ë°©ë²•ì€ ë‹¤ìŒê³¼ ê°™ìŠµë‹ˆë‹¤
 			//if (MyBotModule.Broodwar.self().completedUnitCount(UnitType.Zerg_Nydus_Canal) > 0) {
 			//	for (Unit unit : MyBotModule.Broodwar.self().getUnits()) {
 			//		if (unit.getType() == UnitType.Zerg_Nydus_Canal) {
-			//			TilePosition targetTilePosition = new TilePosition(unit.getTilePosition().getX() + 6, unit.getTilePosition().getY()); // Creep ÀÌ ÀÖ´Â °÷ÀÌ¾î¾ß ÇÑ´Ù
+			//			TilePosition targetTilePosition = new TilePosition(unit.getTilePosition().getX() + 6, unit.getTilePosition().getY()); // Creep ì´ ìˆëŠ” ê³³ì´ì–´ì•¼ í•œë‹¤
 			//			unit.build(UnitType.Zerg_Nydus_Canal, targetTilePosition);
 			//		}
 			//	}
 			//}
 
-			// Äı - ÀÎÆä½ºÆ¼µå Å×¶õ : Å×¶õ Terran_Command_Center °Ç¹°ÀÇ HitPoint°¡ ³·À» ¶§, ÄıÀ» µé¿©º¸³»¼­ Zerg_Infested_Command_Center ·Î ¹Ù²Ù¸é, ±× °Ç¹°¿¡¼­ ½ÇÇà µÊ
+			// í€¸ - ì¸í˜ìŠ¤í‹°ë“œ í…Œë€ : í…Œë€ Terran_Command_Center ê±´ë¬¼ì˜ HitPointê°€ ë‚®ì„ ë•Œ, í€¸ì„ ë“¤ì—¬ë³´ë‚´ì„œ Zerg_Infested_Command_Center ë¡œ ë°”ê¾¸ë©´, ê·¸ ê±´ë¬¼ì—ì„œ ì‹¤í–‰ ë¨
 			BuildManager.Instance().buildQueue.queueAsLowestPriority(UnitType.Zerg_Infested_Terran);
 			*/
 		}
 	}
 
-	// ÀÏ²Û °è¼Ó Ãß°¡ »ı»ê
+	// ì¼ê¾¼ ê³„ì† ì¶”ê°€ ìƒì‚°
 	public void executeWorkerTraining() {
 
-		// InitialBuildOrder ÁøÇàÁß¿¡´Â ¾Æ¹«°Íµµ ÇÏÁö ¾Ê½À´Ï´Ù
+		// InitialBuildOrder ì§„í–‰ì¤‘ì—ëŠ” ì•„ë¬´ê²ƒë„ í•˜ì§€ ì•ŠìŠµë‹ˆë‹¤
 		if (isInitialBuildOrderFinished == false) {
 			return;
 		}
 
 		if (MyBotModule.Broodwar.self().minerals() >= 50) {
-			// workerCount = ÇöÀç ÀÏ²Û ¼ö + »ı»êÁßÀÎ ÀÏ²Û ¼ö
+			// workerCount = í˜„ì¬ ì¼ê¾¼ ìˆ˜ + ìƒì‚°ì¤‘ì¸ ì¼ê¾¼ ìˆ˜
 			int workerCount = MyBotModule.Broodwar.self().allUnitCount(InformationManager.Instance().getWorkerType());
 
 			if (MyBotModule.Broodwar.self().getRace() == Race.Zerg) {
 				for (Unit unit : MyBotModule.Broodwar.self().getUnits()) {
 					if (unit.getType() == UnitType.Zerg_Egg) {
-						// Zerg_Egg ¿¡°Ô morph ¸í·ÉÀ» ³»¸®¸é isMorphing = true,
-						// isBeingConstructed = true, isConstructing = true °¡ µÈ´Ù
-						// Zerg_Egg °¡ ´Ù¸¥ À¯´ÖÀ¸·Î ¹Ù²î¸é¼­ »õ·Î ¸¸µé¾îÁø À¯´ÖÀº Àá½Ã
-						// isBeingConstructed = true, isConstructing = true °¡
-						// µÇ¾ú´Ù°¡,
+						// Zerg_Egg ì—ê²Œ morph ëª…ë ¹ì„ ë‚´ë¦¬ë©´ isMorphing = true,
+						// isBeingConstructed = true, isConstructing = true ê°€ ëœë‹¤
+						// Zerg_Egg ê°€ ë‹¤ë¥¸ ìœ ë‹›ìœ¼ë¡œ ë°”ë€Œë©´ì„œ ìƒˆë¡œ ë§Œë“¤ì–´ì§„ ìœ ë‹›ì€ ì ì‹œ
+						// isBeingConstructed = true, isConstructing = true ê°€
+						// ë˜ì—ˆë‹¤ê°€,
 						if (unit.isMorphing() && unit.getBuildType() == UnitType.Zerg_Drone) {
 							workerCount++;
 						}
@@ -530,7 +530,7 @@ public class StrategyManager {
 				for (Unit unit : MyBotModule.Broodwar.self().getUnits()) {
 					if (unit.getType().isResourceDepot()) {
 						if (unit.isTraining() == false || unit.getLarva().size() > 0) {
-							// ºôµåÅ¥¿¡ ÀÏ²Û »ı»êÀÌ 1°³´Â ÀÖµµ·Ï ÇÑ´Ù
+							// ë¹Œë“œíì— ì¼ê¾¼ ìƒì‚°ì´ 1ê°œëŠ” ìˆë„ë¡ í•œë‹¤
 							if (BuildManager.Instance().buildQueue
 									.getItemCount(InformationManager.Instance().getWorkerType(), null) == 0) {
 								// std.cout << "worker enqueue" << std.endl;
@@ -544,49 +544,49 @@ public class StrategyManager {
 		}
 	}
 
-	// Supply DeadLock ¿¹¹æ ¹× SupplyProvider °¡ ºÎÁ·ÇØÁú »óÈ² ¿¡ ´ëÇÑ ¼±Á¦Àû ´ëÀÀÀ¸·Î¼­
-	// SupplyProvider¸¦ Ãß°¡ °Ç¼³/»ı»êÇÑ´Ù
+	// Supply DeadLock ì˜ˆë°© ë° SupplyProvider ê°€ ë¶€ì¡±í•´ì§ˆ ìƒí™© ì— ëŒ€í•œ ì„ ì œì  ëŒ€ì‘ìœ¼ë¡œì„œ
+	// SupplyProviderë¥¼ ì¶”ê°€ ê±´ì„¤/ìƒì‚°í•œë‹¤
 	public void executeSupplyManagement() {
 
-		// InitialBuildOrder ÁøÇàÁß¿¡´Â ¾Æ¹«°Íµµ ÇÏÁö ¾Ê½À´Ï´Ù
+		// InitialBuildOrder ì§„í–‰ì¤‘ì—ëŠ” ì•„ë¬´ê²ƒë„ í•˜ì§€ ì•ŠìŠµë‹ˆë‹¤
 		if (isInitialBuildOrderFinished == false) {
 			return;
 		}
 
-		// 1ÃÊ¿¡ ÇÑ¹ø¸¸ ½ÇÇà
+		// 1ì´ˆì— í•œë²ˆë§Œ ì‹¤í–‰
 		if (MyBotModule.Broodwar.getFrameCount() % 24 != 0) {
 			return;
 		}
 
-		// °ÔÀÓ¿¡¼­´Â ¼­ÇÃ¶óÀÌ °ªÀÌ 200±îÁö ÀÖÁö¸¸, BWAPI ¿¡¼­´Â ¼­ÇÃ¶óÀÌ °ªÀÌ 400±îÁö ÀÖ´Ù
-		// Àú±Û¸µ 1¸¶¸®°¡ °ÔÀÓ¿¡¼­´Â ¼­ÇÃ¶óÀÌ¸¦ 0.5 Â÷ÁöÇÏÁö¸¸, BWAPI ¿¡¼­´Â ¼­ÇÃ¶óÀÌ¸¦ 1 Â÷ÁöÇÑ´Ù
+		// ê²Œì„ì—ì„œëŠ” ì„œí”Œë¼ì´ ê°’ì´ 200ê¹Œì§€ ìˆì§€ë§Œ, BWAPI ì—ì„œëŠ” ì„œí”Œë¼ì´ ê°’ì´ 400ê¹Œì§€ ìˆë‹¤
+		// ì €ê¸€ë§ 1ë§ˆë¦¬ê°€ ê²Œì„ì—ì„œëŠ” ì„œí”Œë¼ì´ë¥¼ 0.5 ì°¨ì§€í•˜ì§€ë§Œ, BWAPI ì—ì„œëŠ” ì„œí”Œë¼ì´ë¥¼ 1 ì°¨ì§€í•œë‹¤
 		if (MyBotModule.Broodwar.self().supplyTotal() <= 400) {
 
-			// ¼­ÇÃ¶óÀÌ°¡ ´Ù ²ËÃ¡À»¶§ »õ ¼­ÇÃ¶óÀÌ¸¦ ÁöÀ¸¸é Áö¿¬ÀÌ ¸¹ÀÌ ÀÏ¾î³ª¹Ç·Î, supplyMargin (°ÔÀÓ¿¡¼­ÀÇ ¼­ÇÃ¶óÀÌ ¸¶Áø °ªÀÇ 2¹è)¸¸Å­ ºÎÁ·ÇØÁö¸é »õ ¼­ÇÃ¶óÀÌ¸¦ Áşµµ·Ï ÇÑ´Ù
-			// ÀÌ·¸°Ô °ªÀ» Á¤ÇØ³õÀ¸¸é, °ÔÀÓ ÃÊ¹İºÎ¿¡´Â ¼­ÇÃ¶óÀÌ¸¦ ³Ê¹« ÀÏÂï Áş°í, °ÔÀÓ ÈÄ¹İºÎ¿¡´Â ¼­ÇÃ¶óÀÌ¸¦ ³Ê¹« ´Ê°Ô Áş°Ô µÈ´Ù
+			// ì„œí”Œë¼ì´ê°€ ë‹¤ ê½‰ì°¼ì„ë•Œ ìƒˆ ì„œí”Œë¼ì´ë¥¼ ì§€ìœ¼ë©´ ì§€ì—°ì´ ë§ì´ ì¼ì–´ë‚˜ë¯€ë¡œ, supplyMargin (ê²Œì„ì—ì„œì˜ ì„œí”Œë¼ì´ ë§ˆì§„ ê°’ì˜ 2ë°°)ë§Œí¼ ë¶€ì¡±í•´ì§€ë©´ ìƒˆ ì„œí”Œë¼ì´ë¥¼ ì§“ë„ë¡ í•œë‹¤
+			// ì´ë ‡ê²Œ ê°’ì„ ì •í•´ë†“ìœ¼ë©´, ê²Œì„ ì´ˆë°˜ë¶€ì—ëŠ” ì„œí”Œë¼ì´ë¥¼ ë„ˆë¬´ ì¼ì° ì§“ê³ , ê²Œì„ í›„ë°˜ë¶€ì—ëŠ” ì„œí”Œë¼ì´ë¥¼ ë„ˆë¬´ ëŠ¦ê²Œ ì§“ê²Œ ëœë‹¤
 			int supplyMargin = 12;
 
-			// currentSupplyShortage ¸¦ °è»êÇÑ´Ù
+			// currentSupplyShortage ë¥¼ ê³„ì‚°í•œë‹¤
 			int currentSupplyShortage = MyBotModule.Broodwar.self().supplyUsed() + supplyMargin - MyBotModule.Broodwar.self().supplyTotal();
 
 			if (currentSupplyShortage > 0) {
 				
-				// »ı»ê/°Ç¼³ ÁßÀÎ Supply¸¦ ¼¾´Ù
+				// ìƒì‚°/ê±´ì„¤ ì¤‘ì¸ Supplyë¥¼ ì„¼ë‹¤
 				int onBuildingSupplyCount = 0;
 
-				// Àú±× Á¾Á·ÀÎ °æ¿ì, »ı»êÁßÀÎ Zerg_Overlord (Zerg_Egg) ¸¦ ¼¾´Ù. Hatchery µî °Ç¹°Àº ¼¼Áö ¾Ê´Â´Ù
+				// ì €ê·¸ ì¢…ì¡±ì¸ ê²½ìš°, ìƒì‚°ì¤‘ì¸ Zerg_Overlord (Zerg_Egg) ë¥¼ ì„¼ë‹¤. Hatchery ë“± ê±´ë¬¼ì€ ì„¸ì§€ ì•ŠëŠ”ë‹¤
 				if (MyBotModule.Broodwar.self().getRace() == Race.Zerg) {
 					for (Unit unit : MyBotModule.Broodwar.self().getUnits()) {
 						if (unit.getType() == UnitType.Zerg_Egg && unit.getBuildType() == UnitType.Zerg_Overlord) {
 							onBuildingSupplyCount += UnitType.Zerg_Overlord.supplyProvided();
 						}
-						// °«ÅÂ¾î³­ Overlord ´Â ¾ÆÁ÷ SupplyTotal ¿¡ ¹İ¿µ¾ÈµÇ¾î¼­, Ãß°¡ Ä«¿îÆ®¸¦ ÇØÁà¾ßÇÔ
+						// ê°“íƒœì–´ë‚œ Overlord ëŠ” ì•„ì§ SupplyTotal ì— ë°˜ì˜ì•ˆë˜ì–´ì„œ, ì¶”ê°€ ì¹´ìš´íŠ¸ë¥¼ í•´ì¤˜ì•¼í•¨
 						if (unit.getType() == UnitType.Zerg_Overlord && unit.isConstructing()) {
 							onBuildingSupplyCount += UnitType.Zerg_Overlord.supplyProvided();
 						}
 					}
 				}
-				// Àú±× Á¾Á·ÀÌ ¾Æ´Ñ °æ¿ì, °Ç¼³ÁßÀÎ Protoss_Pylon, Terran_Supply_Depot ¸¦ ¼¾´Ù. Nexus, Command Center µî °Ç¹°Àº ¼¼Áö ¾Ê´Â´Ù
+				// ì €ê·¸ ì¢…ì¡±ì´ ì•„ë‹Œ ê²½ìš°, ê±´ì„¤ì¤‘ì¸ Protoss_Pylon, Terran_Supply_Depot ë¥¼ ì„¼ë‹¤. Nexus, Command Center ë“± ê±´ë¬¼ì€ ì„¸ì§€ ì•ŠëŠ”ë‹¤
 				else {
 					onBuildingSupplyCount += ConstructionManager.Instance().getConstructionQueueItemCount(
 							InformationManager.Instance().getBasicSupplyProviderUnitType(), null)
@@ -597,7 +597,7 @@ public class StrategyManager {
 
 				if (currentSupplyShortage > onBuildingSupplyCount) {
 					
-					// BuildQueue ÃÖ»ó´Ü¿¡ SupplyProvider °¡ ÀÖÁö ¾ÊÀ¸¸é enqueue ÇÑ´Ù
+					// BuildQueue ìµœìƒë‹¨ì— SupplyProvider ê°€ ìˆì§€ ì•Šìœ¼ë©´ enqueue í•œë‹¤
 					boolean isToEnqueue = true;
 					if (!BuildManager.Instance().buildQueue.isEmpty()) {
 						BuildOrderItem currentItem = BuildManager.Instance().buildQueue.getHighestPriorityItem();
@@ -620,12 +620,12 @@ public class StrategyManager {
 
 	public void executeBasicCombatUnitTraining() {
 
-		// InitialBuildOrder ÁøÇàÁß¿¡´Â ¾Æ¹«°Íµµ ÇÏÁö ¾Ê½À´Ï´Ù
+		// InitialBuildOrder ì§„í–‰ì¤‘ì—ëŠ” ì•„ë¬´ê²ƒë„ í•˜ì§€ ì•ŠìŠµë‹ˆë‹¤
 		if (isInitialBuildOrderFinished == false) {
 			return;
 		}
 
-		// ±âº» º´·Â Ãß°¡ ÈÆ·Ã
+		// ê¸°ë³¸ ë³‘ë ¥ ì¶”ê°€ í›ˆë ¨
 		if (MyBotModule.Broodwar.self().minerals() >= 200 && MyBotModule.Broodwar.self().supplyUsed() < 390) {
 			for (Unit unit : MyBotModule.Broodwar.self().getUnits()) {
 				if (unit.getType() == InformationManager.Instance().getBasicCombatBuildingType()) {
@@ -644,7 +644,7 @@ public class StrategyManager {
 
 	public void executeCombat() {
 
-		// °ø°İ ¸ğµå°¡ ¾Æ´Ò ¶§¿¡´Â ÀüÅõÀ¯´ÖµéÀ» ¾Æ±º Áø¿µ ±æ¸ñ¿¡ Áı°á½ÃÄÑ¼­ ¹æ¾î
+		// ê³µê²© ëª¨ë“œê°€ ì•„ë‹ ë•Œì—ëŠ” ì „íˆ¬ìœ ë‹›ë“¤ì„ ì•„êµ° ì§„ì˜ ê¸¸ëª©ì— ì§‘ê²°ì‹œì¼œì„œ ë°©ì–´
 		if (isFullScaleAttackStarted == false) {
 			Chokepoint firstChokePoint = BWTA.getNearestChokepoint(InformationManager.Instance().getMainBaseLocation(InformationManager.Instance().selfPlayer).getTilePosition());
 
@@ -654,7 +654,7 @@ public class StrategyManager {
 				}
 			}
 
-			// ÀüÅõ À¯´ÖÀÌ 2°³ ÀÌ»ó »ı»êµÇ¾ú°í, Àû±º À§Ä¡°¡ ÆÄ¾ÇµÇ¾úÀ¸¸é ÃÑ°ø°İ ¸ğµå·Î ÀüÈ¯
+			// ì „íˆ¬ ìœ ë‹›ì´ 2ê°œ ì´ìƒ ìƒì‚°ë˜ì—ˆê³ , ì êµ° ìœ„ì¹˜ê°€ íŒŒì•…ë˜ì—ˆìœ¼ë©´ ì´ê³µê²© ëª¨ë“œë¡œ ì „í™˜
 			if (MyBotModule.Broodwar.self().completedUnitCount(InformationManager.Instance().getBasicCombatUnitType()) > 2) {
 				if (InformationManager.Instance().enemyPlayer != null
 					&& InformationManager.Instance().enemyRace != Race.Unknown  
@@ -663,7 +663,7 @@ public class StrategyManager {
 				}
 			}
 		}
-		// °ø°İ ¸ğµå°¡ µÇ¸é, ¸ğµç ÀüÅõÀ¯´ÖµéÀ» Àû±º Main BaseLocation ·Î °ø°İ °¡µµ·Ï ÇÕ´Ï´Ù
+		// ê³µê²© ëª¨ë“œê°€ ë˜ë©´, ëª¨ë“  ì „íˆ¬ìœ ë‹›ë“¤ì„ ì êµ° Main BaseLocation ë¡œ ê³µê²© ê°€ë„ë¡ í•©ë‹ˆë‹¤
 		else {
 			//std.cout << "enemy OccupiedBaseLocations : " << InformationManager.Instance().getOccupiedBaseLocations(InformationManager.Instance()._enemy).size() << std.endl;
 			
@@ -671,7 +671,7 @@ public class StrategyManager {
 					&& InformationManager.Instance().enemyRace != Race.Unknown 
 					&& InformationManager.Instance().getOccupiedBaseLocations(InformationManager.Instance().enemyPlayer).size() > 0) 
 			{					
-				// °ø°İ ´ë»ó Áö¿ª °áÁ¤
+				// ê³µê²© ëŒ€ìƒ ì§€ì—­ ê²°ì •
 				BaseLocation targetBaseLocation = null;
 				double closestDistance = 100000000;
 
@@ -688,16 +688,16 @@ public class StrategyManager {
 
 				if (targetBaseLocation != null) {
 					for (Unit unit : MyBotModule.Broodwar.self().getUnits()) {
-						// °Ç¹°Àº Á¦¿Ü
+						// ê±´ë¬¼ì€ ì œì™¸
 						if (unit.getType().isBuilding()) {
 							continue;
 						}
-						// ¸ğµç ÀÏ²ÛÀº Á¦¿Ü
+						// ëª¨ë“  ì¼ê¾¼ì€ ì œì™¸
 						if (unit.getType().isWorker()) {
 							continue;
 						}
 											
-						// canAttack À¯´ÖÀº attackMove Command ·Î °ø°İÀ» º¸³À´Ï´Ù
+						// canAttack ìœ ë‹›ì€ attackMove Command ë¡œ ê³µê²©ì„ ë³´ëƒ…ë‹ˆë‹¤
 						if (unit.canAttack()) {
 							
 							if (unit.isIdle()) {

@@ -9,32 +9,32 @@ import bwapi.UnitType;
 
 public class UnitData {
 
-	/// Unit °ú UnitInfo ¸¦ Map ÇüÅÂ·Î ÀúÀåÇÏ´Â ÀÚ·á±¸Á¶ 
-	/// C++ ¿¡¼­´Â Unit Æ÷ÀÎÅÍ¸¦ Key ·Î »ç¿ëÇÏÁö¸¸, 
-	/// JAVA ¿¡¼­´Â Unit ÀÚ·á±¸Á¶ÀÇ equals ¸Ş½îµå ¶§¹®¿¡ ¿ÀÀÛµ¿ÇÏ¹Ç·Î Unit.getID() °ªÀ» Key ·Î »ç¿ëÇÔ
+	/// Unit ê³¼ UnitInfo ë¥¼ Map í˜•íƒœë¡œ ì €ì¥í•˜ëŠ” ìë£Œêµ¬ì¡° 
+	/// C++ ì—ì„œëŠ” Unit í¬ì¸í„°ë¥¼ Key ë¡œ ì‚¬ìš©í•˜ì§€ë§Œ, 
+	/// JAVA ì—ì„œëŠ” Unit ìë£Œêµ¬ì¡°ì˜ equals ë©”ì˜ë“œ ë•Œë¬¸ì— ì˜¤ì‘ë™í•˜ë¯€ë¡œ Unit.getID() ê°’ì„ Key ë¡œ ì‚¬ìš©í•¨
 	Map<Integer,UnitInfo> unitAndUnitInfoMap = new HashMap<Integer,UnitInfo>();
 	
-	/// UnitTypeº° ÆÄ±«/»ç¸ÁÇÑ À¯´Ö ¼ıÀÚ ´©Àû°ª
-	/// C++ ¿¡¼­´Â UnitType ÀÇ ¿­°ÅÇü °ªÀ» Key ·Î »ç¿ëÇÏÁö¸¸, 
-	/// JAVA ¿¡¼­´Â UnitType ÀÇ ¿­°ÅÇü °ªÀÌ ºÎÀçÇÏ¹Ç·Î Unit.getType() °ªÀ» Key ·Î »ç¿ëÇÔ
+	/// UnitTypeë³„ íŒŒê´´/ì‚¬ë§í•œ ìœ ë‹› ìˆ«ì ëˆ„ì ê°’
+	/// C++ ì—ì„œëŠ” UnitType ì˜ ì—´ê±°í˜• ê°’ì„ Key ë¡œ ì‚¬ìš©í•˜ì§€ë§Œ, 
+	/// JAVA ì—ì„œëŠ” UnitType ì˜ ì—´ê±°í˜• ê°’ì´ ë¶€ì¬í•˜ë¯€ë¡œ Unit.getType() ê°’ì„ Key ë¡œ ì‚¬ìš©í•¨
 	Map<String,Integer> numDeadUnits = new HashMap<String,Integer>();
 	
-	/// UnitTypeº° °Ç¼³/ÈÆ·ÃÇß´ø À¯´Ö ¼ıÀÚ ´©Àû°ª
-	/// C++ ¿¡¼­´Â UnitType ÀÇ ¿­°ÅÇü °ªÀ» Key ·Î »ç¿ëÇÏÁö¸¸, 
-	/// JAVA ¿¡¼­´Â UnitType ÀÇ ¿­°ÅÇü °ªÀÌ ºÎÀçÇÏ¹Ç·Î Unit.getType() °ªÀ» Key ·Î »ç¿ëÇÔ
+	/// UnitTypeë³„ ê±´ì„¤/í›ˆë ¨í–ˆë˜ ìœ ë‹› ìˆ«ì ëˆ„ì ê°’
+	/// C++ ì—ì„œëŠ” UnitType ì˜ ì—´ê±°í˜• ê°’ì„ Key ë¡œ ì‚¬ìš©í•˜ì§€ë§Œ, 
+	/// JAVA ì—ì„œëŠ” UnitType ì˜ ì—´ê±°í˜• ê°’ì´ ë¶€ì¬í•˜ë¯€ë¡œ Unit.getType() ê°’ì„ Key ë¡œ ì‚¬ìš©í•¨
 	Map<String,Integer> numCreatedUnits = new HashMap<String,Integer>();
 	
-	/// UnitTypeº° Á¸ÀçÇÏ´Â À¯´Ö ¼ıÀÚ Ä«¿îÆ®. Àû±º À¯´ÖÀÇ °æ¿ì ½Äº°µÈ À¯´Ö ¼ıÀÚ Ä«¿îÆ®
-	/// C++ ¿¡¼­´Â UnitType ÀÇ ¿­°ÅÇü °ªÀ» Key ·Î »ç¿ëÇÏÁö¸¸, 
-	/// JAVA ¿¡¼­´Â UnitType ÀÇ ¿­°ÅÇü °ªÀÌ ºÎÀçÇÏ¹Ç·Î Unit.getType() °ªÀ» Key ·Î »ç¿ëÇÔ
+	/// UnitTypeë³„ ì¡´ì¬í•˜ëŠ” ìœ ë‹› ìˆ«ì ì¹´ìš´íŠ¸. ì êµ° ìœ ë‹›ì˜ ê²½ìš° ì‹ë³„ëœ ìœ ë‹› ìˆ«ì ì¹´ìš´íŠ¸
+	/// C++ ì—ì„œëŠ” UnitType ì˜ ì—´ê±°í˜• ê°’ì„ Key ë¡œ ì‚¬ìš©í•˜ì§€ë§Œ, 
+	/// JAVA ì—ì„œëŠ” UnitType ì˜ ì—´ê±°í˜• ê°’ì´ ë¶€ì¬í•˜ë¯€ë¡œ Unit.getType() ê°’ì„ Key ë¡œ ì‚¬ìš©í•¨
 	Map<String,Integer> numUnits = new HashMap<String,Integer>();
 	
-	/// »ç¸ÁÇÑ À¯´ÖÀ» »ı»êÇÏ´Âµ¥ ¼Ò¿äµÇ¾ú´ø Mineral ÀÇ ´©Àû°ª (¾ó¸¶³ª ¼ÕÇØ¸¦ º¸¾Ò´Â°¡ °è»êÇÏ±â À§ÇÔÀÓ)
+	/// ì‚¬ë§í•œ ìœ ë‹›ì„ ìƒì‚°í•˜ëŠ”ë° ì†Œìš”ë˜ì—ˆë˜ Mineral ì˜ ëˆ„ì ê°’ (ì–¼ë§ˆë‚˜ ì†í•´ë¥¼ ë³´ì•˜ëŠ”ê°€ ê³„ì‚°í•˜ê¸° ìœ„í•¨ì„)
 	private int mineralsLost = 0;
-	/// »ç¸ÁÇÑ À¯´ÖÀ» »ı»êÇÏ´Âµ¥ ¼Ò¿äµÇ¾ú´ø Gas ÀÇ ´©Àû°ª (¾ó¸¶³ª ¼ÕÇØ¸¦ º¸¾Ò´Â°¡ °è»êÇÏ±â À§ÇÔÀÓ)
+	/// ì‚¬ë§í•œ ìœ ë‹›ì„ ìƒì‚°í•˜ëŠ”ë° ì†Œìš”ë˜ì—ˆë˜ Gas ì˜ ëˆ„ì ê°’ (ì–¼ë§ˆë‚˜ ì†í•´ë¥¼ ë³´ì•˜ëŠ”ê°€ ê³„ì‚°í•˜ê¸° ìœ„í•¨ì„)
 	private int gasLost = 0;
 
-	/// unitAndUnitInfoMap ¿¡¼­ Á¦°ÅÇØ¾ßÇÒ µ¥ÀÌÅÍµé
+	/// unitAndUnitInfoMap ì—ì„œ ì œê±°í•´ì•¼í•  ë°ì´í„°ë“¤
 	Vector<Integer> badUnitstoRemove = new Vector<Integer>();
 	
 	public UnitData() 
@@ -52,7 +52,7 @@ public class UnitData {
 		 */
 	}
 
-	/// À¯´ÖÀÇ »óÅÂÁ¤º¸¸¦ ¾÷µ¥ÀÌÆ®ÇÕ´Ï´Ù
+	/// ìœ ë‹›ì˜ ìƒíƒœì •ë³´ë¥¼ ì—…ë°ì´íŠ¸í•©ë‹ˆë‹¤
 	public void updateUnitInfo(Unit unit)
 	{
 		if (unit == null) { return; }
@@ -93,7 +93,7 @@ public class UnitData {
 		}
 	}
 
-	/// ÆÄ±«/»ç¸ÁÇÑ À¯´ÖÀ» ÀÚ·á±¸Á¶¿¡¼­ Á¦°ÅÇÕ´Ï´Ù
+	/// íŒŒê´´/ì‚¬ë§í•œ ìœ ë‹›ì„ ìë£Œêµ¬ì¡°ì—ì„œ ì œê±°í•©ë‹ˆë‹¤
 	public void removeUnit(Unit unit)
 	{
 		if (unit == null) { return; }
@@ -116,7 +116,7 @@ public class UnitData {
 		unitAndUnitInfoMap.remove(unit.getID());
 	}
 
-	/// Æ÷ÀÎÅÍ°¡ null ÀÌ µÇ¾ú°Å³ª, ÆÄ±«µÇ¾î Resource_Vespene_Geyser·Î µ¹¾Æ°£ Refinery, ¿¹Àü¿¡´Â °Ç¹°ÀÌ ÀÖ¾ú´ø °É·Î ÀúÀåÇØµÎ¾ú´Âµ¥ Áö±İÀº ÆÄ±«µÇ¾î ¾ø¾îÁø °Ç¹° (Æ¯È÷, Å×¶õÀÇ °æ¿ì ºÒÅ¸¼­ ¼Ò¸êÇÑ °Ç¹°) µ¥ÀÌÅÍ¸¦ Á¦°ÅÇÕ´Ï´Ù
+	/// í¬ì¸í„°ê°€ null ì´ ë˜ì—ˆê±°ë‚˜, íŒŒê´´ë˜ì–´ Resource_Vespene_Geyserë¡œ ëŒì•„ê°„ Refinery, ì˜ˆì „ì—ëŠ” ê±´ë¬¼ì´ ìˆì—ˆë˜ ê±¸ë¡œ ì €ì¥í•´ë‘ì—ˆëŠ”ë° ì§€ê¸ˆì€ íŒŒê´´ë˜ì–´ ì—†ì–´ì§„ ê±´ë¬¼ (íŠ¹íˆ, í…Œë€ì˜ ê²½ìš° ë¶ˆíƒ€ì„œ ì†Œë©¸í•œ ê±´ë¬¼) ë°ì´í„°ë¥¼ ì œê±°í•©ë‹ˆë‹¤
 	public void removeBadUnits()
 	{
 		Iterator<Integer> it = unitAndUnitInfoMap.keySet().iterator();
@@ -166,19 +166,19 @@ public class UnitData {
 		return false;
 	}
 
-	/// »ç¸ÁÇÑ À¯´ÖÀ» »ı»êÇÏ´Âµ¥ ¼Ò¿äµÇ¾ú´ø Gas ÀÇ ´©Àû°ª (¾ó¸¶³ª ¼ÕÇØ¸¦ º¸¾Ò´Â°¡ °è»êÇÏ±â À§ÇÔÀÓ)
+	/// ì‚¬ë§í•œ ìœ ë‹›ì„ ìƒì‚°í•˜ëŠ”ë° ì†Œìš”ë˜ì—ˆë˜ Gas ì˜ ëˆ„ì ê°’ (ì–¼ë§ˆë‚˜ ì†í•´ë¥¼ ë³´ì•˜ëŠ”ê°€ ê³„ì‚°í•˜ê¸° ìœ„í•¨ì„)
 	public final int getGasLost() 
 	{ 
 		return gasLost; 
 	}
 
-	/// »ç¸ÁÇÑ À¯´ÖÀ» »ı»êÇÏ´Âµ¥ ¼Ò¿äµÇ¾ú´ø Mineral ÀÇ ´©Àû°ª (¾ó¸¶³ª ¼ÕÇØ¸¦ º¸¾Ò´Â°¡ °è»êÇÏ±â À§ÇÔÀÓ) À» ¸®ÅÏÇÕ´Ï´Ù
+	/// ì‚¬ë§í•œ ìœ ë‹›ì„ ìƒì‚°í•˜ëŠ”ë° ì†Œìš”ë˜ì—ˆë˜ Mineral ì˜ ëˆ„ì ê°’ (ì–¼ë§ˆë‚˜ ì†í•´ë¥¼ ë³´ì•˜ëŠ”ê°€ ê³„ì‚°í•˜ê¸° ìœ„í•¨ì„) ì„ ë¦¬í„´í•©ë‹ˆë‹¤
 	public final int getMineralsLost()
 	{ 
 		return mineralsLost; 
 	}
 
-	/// ÇØ´ç UnitType ÀÇ ½Äº°µÈ Unit ¼ıÀÚ¸¦ ¸®ÅÏÇÕ´Ï´Ù
+	/// í•´ë‹¹ UnitType ì˜ ì‹ë³„ëœ Unit ìˆ«ìë¥¼ ë¦¬í„´í•©ë‹ˆë‹¤
 	public final int getNumUnits(String t) 
 	{ 
 		if(numUnits.get(t.toString()) != null)
@@ -191,7 +191,7 @@ public class UnitData {
 		}
 	}
 
-	/// ÇØ´ç UnitType ÀÇ ½Äº°µÈ Unit ÆÄ±«/»ç¸Á ´©Àû°ªÀ» ¸®ÅÏÇÕ´Ï´Ù
+	/// í•´ë‹¹ UnitType ì˜ ì‹ë³„ëœ Unit íŒŒê´´/ì‚¬ë§ ëˆ„ì ê°’ì„ ë¦¬í„´í•©ë‹ˆë‹¤
 	public final int getNumDeadUnits(String t)
 	{ 
 		if(numDeadUnits.get(t.toString()) != null)
@@ -204,7 +204,7 @@ public class UnitData {
 		}
 	}
 
-	/// ÇØ´ç UnitType ÀÇ ½Äº°µÈ Unit °Ç¼³/ÈÆ·Ã ´©Àû°ªÀ» ¸®ÅÏÇÕ´Ï´Ù
+	/// í•´ë‹¹ UnitType ì˜ ì‹ë³„ëœ Unit ê±´ì„¤/í›ˆë ¨ ëˆ„ì ê°’ì„ ë¦¬í„´í•©ë‹ˆë‹¤
 	public final int getNumCreatedUnits(String t)
 	{
 		if(numCreatedUnits.get(t.toString()) != null)

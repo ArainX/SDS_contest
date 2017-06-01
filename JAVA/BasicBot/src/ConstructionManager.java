@@ -10,13 +10,13 @@ import bwapi.UnitType;
 import bwta.BWTA;
 import bwta.Region;
 
-/// °Ç¹° °Ç¼³ Construction ¸í·É ¸ñ·ÏÀ» ¸®½ºÆ®·Î °ü¸®ÇÏ°í, °Ç¹° °Ç¼³ ¸í·ÉÀÌ Àß ¼öÇàµÇµµ·Ï ÄÁÆ®·ÑÇÏ´Â class
+/// ê±´ë¬¼ ê±´ì„¤ Construction ëª…ë ¹ ëª©ë¡ì„ ë¦¬ìŠ¤íŠ¸ë¡œ ê´€ë¦¬í•˜ê³ , ê±´ë¬¼ ê±´ì„¤ ëª…ë ¹ì´ ì˜ ìˆ˜í–‰ë˜ë„ë¡ ì»¨íŠ¸ë¡¤í•˜ëŠ” class
 public class ConstructionManager {
 
-	/// °Ç¼³ ÇÊ¿ä ÀÚ¿øÀ» ¹Ì¸® ¿¹¾àÇØ³õ°í, 
-	/// °Ç¼³ ´ë»ó Àå¼Ò°¡ ¹Ì°³Ã´ Àå¼ÒÀÎ °æ¿ì °Ç¼³ ÀÏ²ÛÀ» ÀÌµ¿½ÃÄÑ °á±¹ °Ç¼³ÀÌ ½ÃÀÛµÇ°Ô ÇÏ°í, 
-	/// °Ç¼³ ÀÏ²ÛÀÌ µµÁß¿¡ Á×´Â °æ¿ì ´Ù¸¥ °Ç¼³ ÀÏ²ÛÀ» ÁöÁ¤ÇÏ¿© °Ç¼³À» ¼öÇàÇÏ°Ô ÇÏ±â À§ÇØ
-	/// Construction Task µéÀÇ ¸ñ·ÏÀ» constructionQueue ·Î À¯ÁöÇÕ´Ï´Ù
+	/// ê±´ì„¤ í•„ìš” ìì›ì„ ë¯¸ë¦¬ ì˜ˆì•½í•´ë†“ê³ , 
+	/// ê±´ì„¤ ëŒ€ìƒ ì¥ì†Œê°€ ë¯¸ê°œì²™ ì¥ì†Œì¸ ê²½ìš° ê±´ì„¤ ì¼ê¾¼ì„ ì´ë™ì‹œì¼œ ê²°êµ­ ê±´ì„¤ì´ ì‹œì‘ë˜ê²Œ í•˜ê³ , 
+	/// ê±´ì„¤ ì¼ê¾¼ì´ ë„ì¤‘ì— ì£½ëŠ” ê²½ìš° ë‹¤ë¥¸ ê±´ì„¤ ì¼ê¾¼ì„ ì§€ì •í•˜ì—¬ ê±´ì„¤ì„ ìˆ˜í–‰í•˜ê²Œ í•˜ê¸° ìœ„í•´
+	/// Construction Task ë“¤ì˜ ëª©ë¡ì„ constructionQueue ë¡œ ìœ ì§€í•©ë‹ˆë‹¤
 	private Vector<ConstructionTask> constructionQueue = new Vector<ConstructionTask>();
 	
 	CommandUtil commandUtil = new CommandUtil();
@@ -29,12 +29,12 @@ public class ConstructionManager {
 	
 	private static ConstructionManager instance = new ConstructionManager();
 	
-	/// static singleton °´Ã¼¸¦ ¸®ÅÏÇÕ´Ï´Ù
+	/// static singleton ê°ì²´ë¥¼ ë¦¬í„´í•©ë‹ˆë‹¤
 	public static ConstructionManager Instance() {
 		return instance;
 	}
 	
-	/// constructionQueue ¿¡ ConstructionTask ¸¦ Ãß°¡ÇÕ´Ï´Ù
+	/// constructionQueue ì— ConstructionTask ë¥¼ ì¶”ê°€í•©ë‹ˆë‹¤
 	public void addConstructionTask(UnitType type, TilePosition desiredPosition)
 	{
 		if (type == UnitType.None || type == UnitType.Unknown) {
@@ -54,7 +54,7 @@ public class ConstructionManager {
 		constructionQueue.add(b); // C++ : constructionQueue.push_back(b);
 	}
 
-	/// constructionQueue ¿¡¼­ ConstructionTask ¸¦ Ãë¼ÒÇÕ´Ï´Ù
+	/// constructionQueue ì—ì„œ ConstructionTask ë¥¼ ì·¨ì†Œí•©ë‹ˆë‹¤
 	public void cancelConstructionTask(UnitType type, TilePosition desiredPosition)
 	{
 		reservedMinerals -= type.mineralPrice();
@@ -75,8 +75,8 @@ public class ConstructionManager {
 	    }
 	}
 
-	/// constructionQueue ¿¡¼­ °Ç¼³ »óÅÂ°¡ UnderConstruction ÀÎ ConstructionTask ¿©·¯°³¸¦ »èÁ¦ÇÕ´Ï´Ù
-	/// °Ç¼³À» ½ÃÀÛÇß¾ú´ø ConstructionTask ÀÌ±â ¶§¹®¿¡ _reservedMinerals, _reservedGas ´Â °Çµå¸®Áö ¾Ê´Â´Ù
+	/// constructionQueue ì—ì„œ ê±´ì„¤ ìƒíƒœê°€ UnderConstruction ì¸ ConstructionTask ì—¬ëŸ¬ê°œë¥¼ ì‚­ì œí•©ë‹ˆë‹¤
+	/// ê±´ì„¤ì„ ì‹œì‘í–ˆì—ˆë˜ ConstructionTask ì´ê¸° ë•Œë¬¸ì— _reservedMinerals, _reservedGas ëŠ” ê±´ë“œë¦¬ì§€ ì•ŠëŠ”ë‹¤
 	public void removeCompletedConstructionTasks(final Vector<ConstructionTask> toRemove)
 	{
 		for (ConstructionTask b : toRemove)
@@ -90,11 +90,11 @@ public class ConstructionManager {
 	
 	public void update()
 	{
-		// 1ÃÊ¿¡ 4¹ø¸¸ ½ÇÇàÇÕ´Ï´Ù
+		// 1ì´ˆì— 4ë²ˆë§Œ ì‹¤í–‰í•©ë‹ˆë‹¤
 		if (MyBotModule.Broodwar.getFrameCount() % 6 != 0) return;
 
-		// constructionQueue ¿¡ µé¾îÀÖ´Â ConstructionTask µéÀº 
-		// Unassigned . Assigned (buildCommandGiven=false) . Assigned (buildCommandGiven=true) . UnderConstruction . (Finished) ·Î »óÅÂ º¯È­µÈ´Ù
+		// constructionQueue ì— ë“¤ì–´ìˆëŠ” ConstructionTask ë“¤ì€ 
+		// Unassigned . Assigned (buildCommandGiven=false) . Assigned (buildCommandGiven=true) . UnderConstruction . (Finished) ë¡œ ìƒíƒœ ë³€í™”ëœë‹¤
 
 		/*
 		System.out.println( "\nCurrent ConstructionTasks in constructionQueue");
@@ -127,7 +127,7 @@ public class ConstructionManager {
 		checkForDeadlockConstruction();			
 	}
 
-	/// °Ç¼³ ÁøÇà µµÁß (°ø°İÀ» ¹Ş¾Æ¼­) °Ç¼³ÇÏ·Á´ø °Ç¹°ÀÌ ÆÄ±«µÈ °æ¿ì, constructionQueue ¿¡¼­ »èÁ¦ÇÕ´Ï´Ù
+	/// ê±´ì„¤ ì§„í–‰ ë„ì¤‘ (ê³µê²©ì„ ë°›ì•„ì„œ) ê±´ì„¤í•˜ë ¤ë˜ ê±´ë¬¼ì´ íŒŒê´´ëœ ê²½ìš°, constructionQueue ì—ì„œ ì‚­ì œí•©ë‹ˆë‹¤
 	public void validateWorkersAndBuildings()
 	{
 		Vector<ConstructionTask> toRemove = new Vector<ConstructionTask>();
@@ -136,8 +136,8 @@ public class ConstructionManager {
 	    {
 			if (b.getStatus() == ConstructionTask.ConstructionStatus.UnderConstruction.ordinal())
 			{
-				// °Ç¼³ ÁøÇà µµÁß (°ø°İÀ» ¹Ş¾Æ¼­) °Ç¼³ÇÏ·Á´ø °Ç¹°ÀÌ ÆÄ±«µÈ °æ¿ì, constructionQueue ¿¡¼­ »èÁ¦ÇÕ´Ï´Ù
-				// ±×·¸Áö ¾ÊÀ¸¸é (¾Æ¸¶µµ ÀüÅõ°¡ ¹ú¾îÁö°íÀÖ´Â) ±âÁ¸ À§Ä¡¿¡ ´Ù½Ã °Ç¹°À» ÁöÀ¸·Á ÇÒ °ÍÀÌ±â ¶§¹®.
+				// ê±´ì„¤ ì§„í–‰ ë„ì¤‘ (ê³µê²©ì„ ë°›ì•„ì„œ) ê±´ì„¤í•˜ë ¤ë˜ ê±´ë¬¼ì´ íŒŒê´´ëœ ê²½ìš°, constructionQueue ì—ì„œ ì‚­ì œí•©ë‹ˆë‹¤
+				// ê·¸ë ‡ì§€ ì•Šìœ¼ë©´ (ì•„ë§ˆë„ ì „íˆ¬ê°€ ë²Œì–´ì§€ê³ ìˆëŠ”) ê¸°ì¡´ ìœ„ì¹˜ì— ë‹¤ì‹œ ê±´ë¬¼ì„ ì§€ìœ¼ë ¤ í•  ê²ƒì´ê¸° ë•Œë¬¸.
 				if (b.getBuildingUnit() == null || !b.getBuildingUnit().getType().isBuilding() || b.getBuildingUnit().getHitPoints() <= 0 || !b.getBuildingUnit().exists())
 				{
 					System.out.println("Construction Failed case . remove ConstructionTask " + b.getType());
@@ -153,7 +153,7 @@ public class ConstructionManager {
 		removeCompletedConstructionTasks(toRemove);
 	}
 
-	/// °Ç¼³ ÁøÇà»óÅÂ°¡ Unassigned ÀÎ ConstructionTask ¿¡ ´ëÇØ °Ç¼³ À§Ä¡ ¹× °Ç¼³ ÀÏ²ÛÀ» ÁöÁ¤ÇÏ°í, °Ç¼³ ÁøÇà»óÅÂ¸¦ Assigned ·Î º¯°æÇÕ´Ï´Ù
+	/// ê±´ì„¤ ì§„í–‰ìƒíƒœê°€ Unassigned ì¸ ConstructionTask ì— ëŒ€í•´ ê±´ì„¤ ìœ„ì¹˜ ë° ê±´ì„¤ ì¼ê¾¼ì„ ì§€ì •í•˜ê³ , ê±´ì„¤ ì§„í–‰ìƒíƒœë¥¼ Assigned ë¡œ ë³€ê²½í•©ë‹ˆë‹¤
 	public void assignWorkersToUnassignedBuildings()
 	{
 		// for each building that doesn't have a builder, assign one
@@ -166,22 +166,22 @@ public class ConstructionManager {
 
 			//System.out.println( "find build place near desiredPosition " + b.desiredPosition.x + "," + b.desiredPosition.y );
 
-			// °Ç¼³ ÀÏ²ÛÀÌ Unassigned ÀÎ »óÅÂ¿¡¼­ getBuildLocationNear ·Î °Ç¼³ÇÒ À§Ä¡¸¦ ´Ù½Ã Á¤ÇÕ´Ï´Ù. . Assigned 
+			// ê±´ì„¤ ì¼ê¾¼ì´ Unassigned ì¸ ìƒíƒœì—ì„œ getBuildLocationNear ë¡œ ê±´ì„¤í•  ìœ„ì¹˜ë¥¼ ë‹¤ì‹œ ì •í•©ë‹ˆë‹¤. . Assigned 
 			TilePosition testLocation = ConstructionPlaceFinder.Instance().getBuildLocationNear(b.getType(), b.getDesiredPosition());
 
 			//System.out.println( "ConstructionPlaceFinder Selected Location : " + testLocation.x + "," + testLocation.y );
 
 			if (testLocation == TilePosition.None || testLocation == TilePosition.Invalid || testLocation.isValid() == false) {
-				// Áö±İ °Ç¹° ÁöÀ» Àå¼Ò¸¦ ÀüÇô Ã£À» ¼ö ¾ø°Ô µÈ °æ¿ì´Â, 
-				// desiredPosition ÁÖÀ§¿¡ ´Ù¸¥ °Ç¹°/À¯´ÖµéÀÌ ÀÖ°Ô µÇ¾ú°Å³ª, Pylon ÀÌ ÆÄ±«µÇ¾ú°Å³ª, Creep ÀÌ ¾ø¾îÁø °æ¿ìÀÌ°í,
-				// ´ëºÎºĞ ´Ù¸¥ °Ç¹°/À¯´ÖµéÀÌ ÀÖ°ÔµÈ °æ¿ìÀÌ¹Ç·Î ´ÙÀ½ frame ¿¡¼­ ´Ù½Ã ÁöÀ» °÷À» Å½»öÇÕ´Ï´Ù
+				// ì§€ê¸ˆ ê±´ë¬¼ ì§€ì„ ì¥ì†Œë¥¼ ì „í˜€ ì°¾ì„ ìˆ˜ ì—†ê²Œ ëœ ê²½ìš°ëŠ”, 
+				// desiredPosition ì£¼ìœ„ì— ë‹¤ë¥¸ ê±´ë¬¼/ìœ ë‹›ë“¤ì´ ìˆê²Œ ë˜ì—ˆê±°ë‚˜, Pylon ì´ íŒŒê´´ë˜ì—ˆê±°ë‚˜, Creep ì´ ì—†ì–´ì§„ ê²½ìš°ì´ê³ ,
+				// ëŒ€ë¶€ë¶„ ë‹¤ë¥¸ ê±´ë¬¼/ìœ ë‹›ë“¤ì´ ìˆê²Œëœ ê²½ìš°ì´ë¯€ë¡œ ë‹¤ìŒ frame ì—ì„œ ë‹¤ì‹œ ì§€ì„ ê³³ì„ íƒìƒ‰í•©ë‹ˆë‹¤
 				continue;
 			}
 
 			//System.out.println("assignWorkersToUnassignedBuildings - chooseConstuctionWorkerClosest for " + b.getType() + " to worker near " + testLocation.getX() + "," + testLocation.getY());
 			
 	        // grab a worker unit from WorkerManager which is closest to this final position
-			// °Ç¼³À» ¸øÇÏ´Â worker °¡ °è¼Ó construction worker ·Î ¼±Á¤µÉ ¼ö ÀÖ´Ù. Á÷Àü¿¡ ¼±Á¤µÇ¾ú¾ú´ø worker ´Â ´Ù½Ã ¼±Á¤¾ÈÇÏµµ·Ï ÇÕ´Ï´Ù
+			// ê±´ì„¤ì„ ëª»í•˜ëŠ” worker ê°€ ê³„ì† construction worker ë¡œ ì„ ì •ë  ìˆ˜ ìˆë‹¤. ì§ì „ì— ì„ ì •ë˜ì—ˆì—ˆë˜ worker ëŠ” ë‹¤ì‹œ ì„ ì •ì•ˆí•˜ë„ë¡ í•©ë‹ˆë‹¤
 			Unit workerToAssign = WorkerManager.Instance().chooseConstuctionWorkerClosestTo(b.getType(), testLocation, true, b.getLastConstructionWorkerID());
 			
 	        if (workerToAssign != null)
@@ -199,11 +199,11 @@ public class ConstructionManager {
 	    }
 	}
 
-	/// °Ç¼³ ÁøÇà»óÅÂ°¡ Assigned ÀÎ ConstructionTask ¿¡ ´ëÇØ,
-	/// °Ç¼³ÀÌ ½ÃÀÛµÇ±â Àü¿¡ ÀÏ²ÛÀÌ Á×¾úÀ¸¸é °Ç¼³ ÁøÇà»óÅÂ¸¦ Unassigned ·Î º¯°æÇÏ°í
-	/// °Ç¼³ Àå¼Ò°¡ unexplored ÀÌ¸é °Ç¼³ ÀÏ²ÛÀ» ÇØ´ç Àå¼Ò·Î ÀÌµ¿½ÃÅ°°í
-	/// °Ç¼³ ÀÏ²Û¿¡°Ô build ¸í·ÉÀ» ¾È³»·ÈÀ¸¸é °Ç¼³ ÀÏ²Û¿¡°Ô build ¸í·ÉÀ» ³»¸®°í
-	/// °Ç¼³ ÀÏ²ÛÀÌ °Ç¼³À» ½ÇÇàÇÏÁö ¾Ê´Â »óÅÂ°¡ µÇ¾úÀ¸¸é °Ç¼³ ÀÏ²ÛÀ» ÇØÁ¦ÇÏ°í °Ç¼³ ÁøÇà»óÅÂ¸¦ Unassigned ·Î º¯°æÇÕ´Ï´Ù
+	/// ê±´ì„¤ ì§„í–‰ìƒíƒœê°€ Assigned ì¸ ConstructionTask ì— ëŒ€í•´,
+	/// ê±´ì„¤ì´ ì‹œì‘ë˜ê¸° ì „ì— ì¼ê¾¼ì´ ì£½ì—ˆìœ¼ë©´ ê±´ì„¤ ì§„í–‰ìƒíƒœë¥¼ Unassigned ë¡œ ë³€ê²½í•˜ê³ 
+	/// ê±´ì„¤ ì¥ì†Œê°€ unexplored ì´ë©´ ê±´ì„¤ ì¼ê¾¼ì„ í•´ë‹¹ ì¥ì†Œë¡œ ì´ë™ì‹œí‚¤ê³ 
+	/// ê±´ì„¤ ì¼ê¾¼ì—ê²Œ build ëª…ë ¹ì„ ì•ˆë‚´ë ¸ìœ¼ë©´ ê±´ì„¤ ì¼ê¾¼ì—ê²Œ build ëª…ë ¹ì„ ë‚´ë¦¬ê³ 
+	/// ê±´ì„¤ ì¼ê¾¼ì´ ê±´ì„¤ì„ ì‹¤í–‰í•˜ì§€ ì•ŠëŠ” ìƒíƒœê°€ ë˜ì—ˆìœ¼ë©´ ê±´ì„¤ ì¼ê¾¼ì„ í•´ì œí•˜ê³  ê±´ì„¤ ì§„í–‰ìƒíƒœë¥¼ Unassigned ë¡œ ë³€ê²½í•©ë‹ˆë‹¤
 	public void constructAssignedBuildings()
 	{
 	    for (ConstructionTask b : constructionQueue)
@@ -227,26 +227,26 @@ public class ConstructionManager {
 			}
 			*/
 
-			// ÀÏ²Û¿¡°Ô build ¸í·ÉÀ» ³»¸®±â Àü¿¡´Â isConstructing = false ÀÌ´Ù
-			// ¾ÆÁ÷ Å½»öÇÏÁö ¾ÊÀº °÷¿¡ ´ëÇØ¼­´Â build ¸í·ÉÀ» ³»¸± ¼ö ¾ø´Ù
-			// ÀÏ²Û¿¡°Ô build ¸í·ÉÀ» ³»¸®¸é, isConstructing = true »óÅÂ°¡ µÇ¾î ÀÌµ¿À» ÇÏ´Ù°¡
-			// build ¸¦ ½ÇÇàÇÒ ¼ö ¾ø´Â »óÈ²ÀÌ¶ó°í ÆÇ´ÜµÇ¸é isConstructing = false »óÅÂ°¡ µÈ´Ù
-			// build ¸¦ ½ÇÇàÇÒ ¼ö ÀÖÀ¸¸é, ÇÁ·ÎÅä½º / Å×¶õ Á¾Á·ÀÇ °æ¿ì ÀÏ²ÛÀÌ build ¸¦ ½ÇÇàÇÏ°í
-			// Àú±× Á¾Á· °Ç¹° Áß Extractor °Ç¹°ÀÌ ¾Æ´Ñ ´Ù¸¥ °Ç¹°ÀÇ °æ¿ì ÀÏ²ÛÀÌ exists = true, isConstructing = true, isMorphing = true °¡ µÇ°í, ÀÏ²Û ID °¡ °Ç¹° ID°¡ µÈ´Ù
-			// Àú±× Á¾Á· °Ç¹° Áß Extractor °Ç¹°ÀÇ °æ¿ì ÀÏ²ÛÀÌ exists = false, isConstructing = true, isMorphing = true °¡ µÈ ÈÄ, ÀÏ²Û ID °¡ °Ç¹° ID°¡ µÈ´Ù. 
-			//                  Extractor °Ç¹° ºôµå¸¦ µµÁß¿¡ Ãë¼ÒÇÏ¸é, »õ·Î¿î ID ¸¦ °¡Áø ÀÏ²ÛÀÌ µÈ´Ù
+			// ì¼ê¾¼ì—ê²Œ build ëª…ë ¹ì„ ë‚´ë¦¬ê¸° ì „ì—ëŠ” isConstructing = false ì´ë‹¤
+			// ì•„ì§ íƒìƒ‰í•˜ì§€ ì•Šì€ ê³³ì— ëŒ€í•´ì„œëŠ” build ëª…ë ¹ì„ ë‚´ë¦´ ìˆ˜ ì—†ë‹¤
+			// ì¼ê¾¼ì—ê²Œ build ëª…ë ¹ì„ ë‚´ë¦¬ë©´, isConstructing = true ìƒíƒœê°€ ë˜ì–´ ì´ë™ì„ í•˜ë‹¤ê°€
+			// build ë¥¼ ì‹¤í–‰í•  ìˆ˜ ì—†ëŠ” ìƒí™©ì´ë¼ê³  íŒë‹¨ë˜ë©´ isConstructing = false ìƒíƒœê°€ ëœë‹¤
+			// build ë¥¼ ì‹¤í–‰í•  ìˆ˜ ìˆìœ¼ë©´, í”„ë¡œí† ìŠ¤ / í…Œë€ ì¢…ì¡±ì˜ ê²½ìš° ì¼ê¾¼ì´ build ë¥¼ ì‹¤í–‰í•˜ê³ 
+			// ì €ê·¸ ì¢…ì¡± ê±´ë¬¼ ì¤‘ Extractor ê±´ë¬¼ì´ ì•„ë‹Œ ë‹¤ë¥¸ ê±´ë¬¼ì˜ ê²½ìš° ì¼ê¾¼ì´ exists = true, isConstructing = true, isMorphing = true ê°€ ë˜ê³ , ì¼ê¾¼ ID ê°€ ê±´ë¬¼ IDê°€ ëœë‹¤
+			// ì €ê·¸ ì¢…ì¡± ê±´ë¬¼ ì¤‘ Extractor ê±´ë¬¼ì˜ ê²½ìš° ì¼ê¾¼ì´ exists = false, isConstructing = true, isMorphing = true ê°€ ëœ í›„, ì¼ê¾¼ ID ê°€ ê±´ë¬¼ IDê°€ ëœë‹¤. 
+			//                  Extractor ê±´ë¬¼ ë¹Œë“œë¥¼ ë„ì¤‘ì— ì·¨ì†Œí•˜ë©´, ìƒˆë¡œìš´ ID ë¥¼ ê°€ì§„ ì¼ê¾¼ì´ ëœë‹¤
 
-			// ÀÏ²ÛÀÌ Assigned µÈ ÈÄ, UnderConstruction »óÅÂ·Î µÇ±â Àü, Áï ÀÏ²ÛÀÌ ÀÌµ¿ Áß¿¡ ÀÏ²ÛÀÌ Á×Àº °æ¿ì, °Ç¹°À» Unassigned »óÅÂ·Î µÇµ¹·Á ÀÏ²ÛÀ» ´Ù½Ã Assign ÇÏµµ·Ï ÇÕ´Ï´Ù		
+			// ì¼ê¾¼ì´ Assigned ëœ í›„, UnderConstruction ìƒíƒœë¡œ ë˜ê¸° ì „, ì¦‰ ì¼ê¾¼ì´ ì´ë™ ì¤‘ì— ì¼ê¾¼ì´ ì£½ì€ ê²½ìš°, ê±´ë¬¼ì„ Unassigned ìƒíƒœë¡œ ë˜ëŒë ¤ ì¼ê¾¼ì„ ë‹¤ì‹œ Assign í•˜ë„ë¡ í•©ë‹ˆë‹¤		
 			if (b.getConstructionWorker() == null || b.getConstructionWorker().exists() == false || b.getConstructionWorker().getHitPoints() <= 0)
 			{
-				// Àú±× Á¾Á· °Ç¹° Áß Extractor °Ç¹°ÀÇ °æ¿ì ÀÏ²ÛÀÌ exists = false ÀÌÁö¸¸ isConstructing = true °¡ µÇ¹Ç·Î, ÀÏ²ÛÀÌ Á×Àº °æ¿ì°¡ ¾Æ´Ï´Ù
+				// ì €ê·¸ ì¢…ì¡± ê±´ë¬¼ ì¤‘ Extractor ê±´ë¬¼ì˜ ê²½ìš° ì¼ê¾¼ì´ exists = false ì´ì§€ë§Œ isConstructing = true ê°€ ë˜ë¯€ë¡œ, ì¼ê¾¼ì´ ì£½ì€ ê²½ìš°ê°€ ì•„ë‹ˆë‹¤
 				if (b.getType() == UnitType.Zerg_Extractor && b.getConstructionWorker() != null && b.getConstructionWorker().isConstructing() == true) {
 					continue;
 				}
 
 				//System.out.println( "unassign " + b.type.getName() + " worker " + b.constructionWorker.getID() + ", because it is not exists" );
 
-				// Unassigned µÈ »óÅÂ·Î µÇµ¹¸°´Ù
+				// Unassigned ëœ ìƒíƒœë¡œ ë˜ëŒë¦°ë‹¤
 				WorkerManager.Instance().setIdleWorker(b.getConstructionWorker());
 
 				// free the previous location in reserved
@@ -257,12 +257,12 @@ public class ConstructionManager {
 				b.setStatus(ConstructionTask.ConstructionStatus.Unassigned.ordinal());
 			}
 			// if that worker is not currently constructing
-			// ÀÏ²ÛÀÌ build command ¸¦ ¹ŞÀ¸¸é isConstructing = true °¡ µÇ°í °Ç¼³À» ÇÏ±âÀ§ÇØ ÀÌµ¿ÇÏ´Âµ¥,
-			// isConstructing = false °¡ µÇ¾ú´Ù´Â °ÍÀº, build command ¸¦ ¼öÇàÇÒ ¼ö ¾ø¾î °ÔÀÓ¿¡¼­ ÇØ´ç ÀÓ¹«°¡ Ãë¼ÒµÇ¾ú´Ù´Â °ÍÀÌ´Ù
+			// ì¼ê¾¼ì´ build command ë¥¼ ë°›ìœ¼ë©´ isConstructing = true ê°€ ë˜ê³  ê±´ì„¤ì„ í•˜ê¸°ìœ„í•´ ì´ë™í•˜ëŠ”ë°,
+			// isConstructing = false ê°€ ë˜ì—ˆë‹¤ëŠ” ê²ƒì€, build command ë¥¼ ìˆ˜í–‰í•  ìˆ˜ ì—†ì–´ ê²Œì„ì—ì„œ í•´ë‹¹ ì„ë¬´ê°€ ì·¨ì†Œë˜ì—ˆë‹¤ëŠ” ê²ƒì´ë‹¤
 			else if (b.getConstructionWorker().isConstructing() == false)        
 	        {
 	            // if we haven't explored the build position, first we mush go there
-				// ÇÑ¹øµµ ¾È°¡º» °÷¿¡´Â build Ä¿¸Çµå ÀÚÃ¼¸¦ Áö½ÃÇÒ ¼ö ¾øÀ¸¹Ç·Î, ÀÏ´Ü ±×°÷À¸·Î ÀÌµ¿ÇÏ°Ô ÇÕ´Ï´Ù
+				// í•œë²ˆë„ ì•ˆê°€ë³¸ ê³³ì—ëŠ” build ì»¤ë§¨ë“œ ìì²´ë¥¼ ì§€ì‹œí•  ìˆ˜ ì—†ìœ¼ë¯€ë¡œ, ì¼ë‹¨ ê·¸ê³³ìœ¼ë¡œ ì´ë™í•˜ê²Œ í•©ë‹ˆë‹¤
 	            if (!isBuildingPositionExplored(b))
 	            {
 	            	commandUtil.move(b.getConstructionWorker(),b.getFinalPosition().toPosition());
@@ -282,8 +282,8 @@ public class ConstructionManager {
 					b.setLastConstructionWorkerID(b.getConstructionWorker().getID());
 	            }
 				// if this is not the first time we've sent this guy to build this
-				// ÀÏ²Û¿¡°Ô build command ¸¦ ÁÖ¾úÁö¸¸, µµÁß¿¡ ÀÚ¿øÀÌ ¹Ì´ŞÇÏ°Ô µÇ¾ú°Å³ª, ÇØ´ç Àå¼Ò¿¡ ´Ù¸¥ À¯´ÖµéÀÌ ÀÖ¾î¼­ °Ç¼³À» ½ÃÀÛ ¸øÇÏ°Ô µÇ°Å³ª, Pylon ÀÌ³ª Creep ÀÌ ¾ø¾îÁø °æ¿ì µîÀÌ ¹ß»ıÇÒ ¼ö ÀÖ´Ù
-				// ÀÌ °æ¿ì, ÇØ´ç ÀÏ²ÛÀÇ build command ¸¦ ÇØÁ¦ÇÏ°í, °Ç¹° »óÅÂ¸¦ Unassigned ·Î ¹Ù²ã¼­, ´Ù½Ã °Ç¹° À§Ä¡¸¦ Á¤ÇÏ°í, ´Ù¸¥ ÀÏ²ÛÀ» ÁöÁ¤ÇÏ´Â ½ÄÀ¸·Î Ã³¸®ÇÕ´Ï´Ù
+				// ì¼ê¾¼ì—ê²Œ build command ë¥¼ ì£¼ì—ˆì§€ë§Œ, ë„ì¤‘ì— ìì›ì´ ë¯¸ë‹¬í•˜ê²Œ ë˜ì—ˆê±°ë‚˜, í•´ë‹¹ ì¥ì†Œì— ë‹¤ë¥¸ ìœ ë‹›ë“¤ì´ ìˆì–´ì„œ ê±´ì„¤ì„ ì‹œì‘ ëª»í•˜ê²Œ ë˜ê±°ë‚˜, Pylon ì´ë‚˜ Creep ì´ ì—†ì–´ì§„ ê²½ìš° ë“±ì´ ë°œìƒí•  ìˆ˜ ìˆë‹¤
+				// ì´ ê²½ìš°, í•´ë‹¹ ì¼ê¾¼ì˜ build command ë¥¼ í•´ì œí•˜ê³ , ê±´ë¬¼ ìƒíƒœë¥¼ Unassigned ë¡œ ë°”ê¿”ì„œ, ë‹¤ì‹œ ê±´ë¬¼ ìœ„ì¹˜ë¥¼ ì •í•˜ê³ , ë‹¤ë¥¸ ì¼ê¾¼ì„ ì§€ì •í•˜ëŠ” ì‹ìœ¼ë¡œ ì²˜ë¦¬í•©ë‹ˆë‹¤
 				else
 	            {
 					if (MyBotModule.Broodwar.getFrameCount() - b.getLastBuildCommandGivenFrame() > 24) {
@@ -314,8 +314,8 @@ public class ConstructionManager {
 	    }
 	}
 
-	/// °Ç¼³ÀÌ ½ÃÀÛµÇ¸é, ÇØ´ç ConstructionTask ÀÇ °Ç¼³ ÁøÇà»óÅÂ¸¦ UnderConstruction À¸·Î º¯°æÇÏ°í
-	/// Àú±× ¹× ÇÁ·ÎÅä½º Á¾Á·ÀÇ °æ¿ì °Ç¼³ ÀÏ²ÛÀ» ÇØÁ¦ÇÕ´Ï´Ù
+	/// ê±´ì„¤ì´ ì‹œì‘ë˜ë©´, í•´ë‹¹ ConstructionTask ì˜ ê±´ì„¤ ì§„í–‰ìƒíƒœë¥¼ UnderConstruction ìœ¼ë¡œ ë³€ê²½í•˜ê³ 
+	/// ì €ê·¸ ë° í”„ë¡œí† ìŠ¤ ì¢…ì¡±ì˜ ê²½ìš° ê±´ì„¤ ì¼ê¾¼ì„ í•´ì œí•©ë‹ˆë‹¤
 	public void checkForStartedConstruction()
 	{				
 		// for each building unit which is being constructed
@@ -350,7 +350,7 @@ public class ConstructionManager {
 	                b.setBuildingUnit(buildingThatStartedConstruction);
 
 	                // if we are zerg, make the buildingUnit null since it's morphed or destroyed
-					// Extractor ÀÇ °æ¿ì destroyed µÇ°í, ±×¿Ü °Ç¹°ÀÇ °æ¿ì morphed µÈ´Ù
+					// Extractor ì˜ ê²½ìš° destroyed ë˜ê³ , ê·¸ì™¸ ê±´ë¬¼ì˜ ê²½ìš° morphed ëœë‹¤
 	                if (MyBotModule.Broodwar.self().getRace() == Race.Zerg)
 	                {
 	                	b.setConstructionWorker(null);
@@ -375,9 +375,9 @@ public class ConstructionManager {
 	    }
 	}
 
-	/// Å×¶õÀÇ °æ¿ì °Ç¼³ ÁøÇà»óÅÂ°¡ UnderConstruction ÀÌÁö¸¸ °Ç¼³ ÀÏ²ÛÀÌ Á×Àº °æ¿ì, ´Ù¸¥ °Ç¼³ ÀÏ²ÛÀ» ÁöÁ¤ÇØ¼­ °Ç¼³ÀÌ ¼ÓÇàµÇµµ·Ï ÇÕ´Ï´Ù
-	/// Å×¶õÀº °Ç¼³À» ½ÃÀÛÇÑ ÈÄ, °Ç¼³ µµÁß¿¡ ÀÏ²ÛÀÌ Á×À» ¼ö ÀÖ½À´Ï´Ù. ÀÌ °æ¿ì, °Ç¹°¿¡ ´ëÇØ ´Ù½Ã ´Ù¸¥ SCV¸¦ ÇÒ´çÇÕ´Ï´Ù
-	/// Âü°í·Î, ÇÁ·ÎÅä½º / Àú±×´Â °Ç¼³À» ½ÃÀÛÇÏ¸é ÀÏ²Û Æ÷ÀÎÅÍ¸¦ null ·Î ¸¸µé±â ¶§¹®¿¡ (constructionWorker = null) °Ç¼³ µµÁß¿¡ Á×Àº ÀÏ²ÛÀ» ½Å°æ¾µ ÇÊ¿ä ¾ø½À´Ï´Ù 
+	/// í…Œë€ì˜ ê²½ìš° ê±´ì„¤ ì§„í–‰ìƒíƒœê°€ UnderConstruction ì´ì§€ë§Œ ê±´ì„¤ ì¼ê¾¼ì´ ì£½ì€ ê²½ìš°, ë‹¤ë¥¸ ê±´ì„¤ ì¼ê¾¼ì„ ì§€ì •í•´ì„œ ê±´ì„¤ì´ ì†í–‰ë˜ë„ë¡ í•©ë‹ˆë‹¤
+	/// í…Œë€ì€ ê±´ì„¤ì„ ì‹œì‘í•œ í›„, ê±´ì„¤ ë„ì¤‘ì— ì¼ê¾¼ì´ ì£½ì„ ìˆ˜ ìˆìŠµë‹ˆë‹¤. ì´ ê²½ìš°, ê±´ë¬¼ì— ëŒ€í•´ ë‹¤ì‹œ ë‹¤ë¥¸ SCVë¥¼ í• ë‹¹í•©ë‹ˆë‹¤
+	/// ì°¸ê³ ë¡œ, í”„ë¡œí† ìŠ¤ / ì €ê·¸ëŠ” ê±´ì„¤ì„ ì‹œì‘í•˜ë©´ ì¼ê¾¼ í¬ì¸í„°ë¥¼ null ë¡œ ë§Œë“¤ê¸° ë•Œë¬¸ì— (constructionWorker = null) ê±´ì„¤ ë„ì¤‘ì— ì£½ì€ ì¼ê¾¼ì„ ì‹ ê²½ì“¸ í•„ìš” ì—†ìŠµë‹ˆë‹¤ 
 	public void checkForDeadTerranBuilders()
 	{
 		if (MyBotModule.Broodwar.self().getRace() == Race.Terran) {
@@ -416,8 +416,8 @@ public class ConstructionManager {
 		}
 	}
 
-	/// °Ç¼³ÀÌ ¿Ï·áµÈ ConstructionTask ¸¦ »èÁ¦ÇÏ°í,  
-	/// Å×¶õ Á¾Á·ÀÇ °æ¿ì °Ç¼³ ÀÏ²ÛÀ» ÇØÁ¦ÇÕ´Ï´Ù
+	/// ê±´ì„¤ì´ ì™„ë£Œëœ ConstructionTask ë¥¼ ì‚­ì œí•˜ê³ ,  
+	/// í…Œë€ ì¢…ì¡±ì˜ ê²½ìš° ê±´ì„¤ ì¼ê¾¼ì„ í•´ì œí•©ë‹ˆë‹¤
 	public void checkForCompletedBuildings()
 	{
 	    Vector<ConstructionTask> toRemove = new Vector<ConstructionTask>();
@@ -449,7 +449,7 @@ public class ConstructionManager {
 	    removeCompletedConstructionTasks(toRemove);
 	}
 
-	/// °Ç¼³ µ¥µå¶ôÀ» Ã¼Å©ÇÏ°í, ÇØ°áÇÕ´Ï´Ù
+	/// ê±´ì„¤ ë°ë“œë½ì„ ì²´í¬í•˜ê³ , í•´ê²°í•©ë‹ˆë‹¤
 	public void checkForDeadlockConstruction()
 	{
 		Vector<ConstructionTask> toCancel = new Vector<ConstructionTask>();
@@ -457,10 +457,10 @@ public class ConstructionManager {
 		{
 			if (b.getStatus() != ConstructionTask.ConstructionStatus.UnderConstruction.ordinal())
 			{
-				// BuildManager°¡ ÆÇ´ÜÇßÀ»¶§ Construction °¡´ÉÁ¶°ÇÀÌ °®ÃçÁ®¼­ ConstructionManagerÀÇ ConstructionQueue ¿¡ µé¾î°¬´Âµ¥, 
-				// ¼±Çà °Ç¹°ÀÌ ÆÄ±«µÇ¼­ ConstructionÀ» ¼öÇàÇÒ ¼ö ¾ø°Ô µÇ¾ú°Å³ª,
-				// ÀÏ²ÛÀÌ ´Ù »ç¸ÁÇÏ´Â µî °ÔÀÓ»óÈ²ÀÌ ¹Ù²î¾î¼­, °è¼Ó ConstructionQueue ¿¡ ³²¾ÆÀÖ°Ô µÇ´Â dead lock »óÈ²ÀÌ µË´Ï´Ù 
-				// ¼±Çà °Ç¹°À» BuildQueue¿¡ Ãß°¡ÇØ³ÖÀ»Áö, ÇØ´ç ConstructionQueueItem À» »èÁ¦ÇÒÁö Àü·«ÀûÀ¸·Î ÆÇ´ÜÇØ¾ß ÇÕ´Ï´Ù
+				// BuildManagerê°€ íŒë‹¨í–ˆì„ë•Œ Construction ê°€ëŠ¥ì¡°ê±´ì´ ê°–ì¶°ì ¸ì„œ ConstructionManagerì˜ ConstructionQueue ì— ë“¤ì–´ê°”ëŠ”ë°, 
+				// ì„ í–‰ ê±´ë¬¼ì´ íŒŒê´´ë˜ì„œ Constructionì„ ìˆ˜í–‰í•  ìˆ˜ ì—†ê²Œ ë˜ì—ˆê±°ë‚˜,
+				// ì¼ê¾¼ì´ ë‹¤ ì‚¬ë§í•˜ëŠ” ë“± ê²Œì„ìƒí™©ì´ ë°”ë€Œì–´ì„œ, ê³„ì† ConstructionQueue ì— ë‚¨ì•„ìˆê²Œ ë˜ëŠ” dead lock ìƒí™©ì´ ë©ë‹ˆë‹¤ 
+				// ì„ í–‰ ê±´ë¬¼ì„ BuildQueueì— ì¶”ê°€í•´ë„£ì„ì§€, í•´ë‹¹ ConstructionQueueItem ì„ ì‚­ì œí• ì§€ ì „ëµì ìœ¼ë¡œ íŒë‹¨í•´ì•¼ í•©ë‹ˆë‹¤
 				UnitType unitType = b.getType();
 				UnitType producerType = b.getType().whatBuilds().first;
 				final Map<UnitType,Integer> requiredUnits = unitType.requiredUnits();
@@ -468,12 +468,12 @@ public class ConstructionManager {
 
 				boolean isDeadlockCase = false;
 
-				// °Ç¹°À» »ı»êÇÏ´Â À¯´ÖÀÌ³ª, À¯´ÖÀ» »ı»êÇÏ´Â °Ç¹°ÀÌ Á¸ÀçÇÏÁö ¾Ê°í, °Ç¼³ ¿¹Á¤ÀÌÁöµµ ¾ÊÀ¸¸é dead lock
+				// ê±´ë¬¼ì„ ìƒì‚°í•˜ëŠ” ìœ ë‹›ì´ë‚˜, ìœ ë‹›ì„ ìƒì‚°í•˜ëŠ” ê±´ë¬¼ì´ ì¡´ì¬í•˜ì§€ ì•Šê³ , ê±´ì„¤ ì˜ˆì •ì´ì§€ë„ ì•Šìœ¼ë©´ dead lock
 				if (BuildManager.Instance().isProducerWillExist(producerType) == false) {
 					isDeadlockCase = true;
 				}
 
-				// Refinery °Ç¹°ÀÇ °æ¿ì, °Ç¹° ÁöÀ» Àå¼Ò¸¦ Ã£À» ¼ö ¾ø°Ô µÇ¾ú°Å³ª, °Ç¹° ÁöÀ» ¼ö ÀÖÀ»°Å¶ó°í ÆÇ´ÜÇß´Âµ¥ ÀÌ¹Ì Refinery °¡ Áö¾îÁ®ÀÖ´Â °æ¿ì, dead lock 
+				// Refinery ê±´ë¬¼ì˜ ê²½ìš°, ê±´ë¬¼ ì§€ì„ ì¥ì†Œë¥¼ ì°¾ì„ ìˆ˜ ì—†ê²Œ ë˜ì—ˆê±°ë‚˜, ê±´ë¬¼ ì§€ì„ ìˆ˜ ìˆì„ê±°ë¼ê³  íŒë‹¨í–ˆëŠ”ë° ì´ë¯¸ Refinery ê°€ ì§€ì–´ì ¸ìˆëŠ” ê²½ìš°, dead lock 
 				if (!isDeadlockCase && unitType == InformationManager.Instance().getRefineryBuildingType())
 				{
 					boolean hasAvailableGeyser = true;
@@ -486,13 +486,13 @@ public class ConstructionManager {
 						testLocation = ConstructionPlaceFinder.Instance().getBuildLocationNear(b.getType(), b.getDesiredPosition());
 					}
 
-					// Refinery ¸¦ ÁöÀ¸·Á´Â Àå¼Ò¸¦ Ã£À» ¼ö ¾øÀ¸¸é dead lock
+					// Refinery ë¥¼ ì§€ìœ¼ë ¤ëŠ” ì¥ì†Œë¥¼ ì°¾ì„ ìˆ˜ ì—†ìœ¼ë©´ dead lock
 					if (testLocation == TilePosition.None || testLocation == TilePosition.Invalid || testLocation.isValid() == false) {
 						System.out.println("Construction Dead lock case . Cann't find place to construct " + b.getType());
 						hasAvailableGeyser = false;
 					}
 					else {
-						// Refinery ¸¦ ÁöÀ¸·Á´Â Àå¼Ò¿¡ Refinery °¡ ÀÌ¹Ì °Ç¼³µÇ¾î ÀÖ´Ù¸é dead lock 
+						// Refinery ë¥¼ ì§€ìœ¼ë ¤ëŠ” ì¥ì†Œì— Refinery ê°€ ì´ë¯¸ ê±´ì„¤ë˜ì–´ ìˆë‹¤ë©´ dead lock 
 						for (Unit u : MyBotModule.Broodwar.getUnitsOnTile(testLocation)) {
 							if (u.getType().isRefinery() && u.exists() ) {
 								hasAvailableGeyser = false;
@@ -509,8 +509,8 @@ public class ConstructionManager {
 					}
 				}
 
-				// Á¤Âû°á°ú È¤Àº ÀüÅõ°á°ú, °Ç¼³ Àå¼Ò°¡ ¾Æ±º Á¡·É Region ÀÌ ¾Æ´Ï°í, Àû±ºÀÌ Á¡·ÉÇÑ Region ÀÌ µÇ¾úÀ¸¸é ÀÏ¹İÀûÀ¸·Î´Â Çö½ÇÀûÀ¸·Î dead lock ÀÌ µÈ´Ù 
-				// (Æ÷ÅæÄ³³í ·¯½ÃÀÌ°Å³ª, Àû±º Á¡·É Region ±ÙÃ³¿¡¼­ Å×¶õ °Ç¹° °Ç¼³ÇÏ´Â °æ¿ì¿¡´Â ¿¹¿ÜÀÏÅ×Áö¸¸..)
+				// ì •ì°°ê²°ê³¼ í˜¹ì€ ì „íˆ¬ê²°ê³¼, ê±´ì„¤ ì¥ì†Œê°€ ì•„êµ° ì ë ¹ Region ì´ ì•„ë‹ˆê³ , ì êµ°ì´ ì ë ¹í•œ Region ì´ ë˜ì—ˆìœ¼ë©´ ì¼ë°˜ì ìœ¼ë¡œëŠ” í˜„ì‹¤ì ìœ¼ë¡œ dead lock ì´ ëœë‹¤ 
+				// (í¬í†¤ìºë…¼ ëŸ¬ì‹œì´ê±°ë‚˜, ì êµ° ì ë ¹ Region ê·¼ì²˜ì—ì„œ í…Œë€ ê±´ë¬¼ ê±´ì„¤í•˜ëŠ” ê²½ìš°ì—ëŠ” ì˜ˆì™¸ì¼í…Œì§€ë§Œ..)
 				if (!isDeadlockCase
 					&& !InformationManager.Instance().getOccupiedRegions(InformationManager.Instance().selfPlayer).contains(desiredPositionRegion)
 					&& InformationManager.Instance().getOccupiedRegions(InformationManager.Instance().enemyPlayer).contains(desiredPositionRegion))
@@ -518,7 +518,7 @@ public class ConstructionManager {
 					isDeadlockCase = true;
 				}
 
-				// ¼±Çà °Ç¹°/À¯´ÖÀÌ ÀÖ´Âµ¥ 
+				// ì„ í–‰ ê±´ë¬¼/ìœ ë‹›ì´ ìˆëŠ”ë° 
 				if (!isDeadlockCase && requiredUnits.size() > 0)
 				{
 					Iterator<UnitType> it = requiredUnits.keySet().iterator();
@@ -528,11 +528,11 @@ public class ConstructionManager {
 
 						if (requiredUnitType != UnitType.None) {
 
-							// ¼±Çà °Ç¹° / À¯´ÖÀÌ Á¸ÀçÇÏÁö ¾Ê°í, »ı»ê ÁßÀÌÁöµµ ¾Ê°í
+							// ì„ í–‰ ê±´ë¬¼ / ìœ ë‹›ì´ ì¡´ì¬í•˜ì§€ ì•Šê³ , ìƒì‚° ì¤‘ì´ì§€ë„ ì•Šê³ 
 							if (MyBotModule.Broodwar.self().completedUnitCount(requiredUnitType) == 0
 								&& MyBotModule.Broodwar.self().incompleteUnitCount(requiredUnitType) == 0)
 							{
-								// ¼±Çà °Ç¹°ÀÌ °Ç¼³ ¿¹Á¤ÀÌÁöµµ ¾ÊÀ¸¸é dead lock
+								// ì„ í–‰ ê±´ë¬¼ì´ ê±´ì„¤ ì˜ˆì •ì´ì§€ë„ ì•Šìœ¼ë©´ dead lock
 								if (requiredUnitType.isBuilding())
 								{
 									if (ConstructionManager.Instance().getConstructionQueueItemCount(requiredUnitType, null) == 0) {
@@ -589,19 +589,19 @@ public class ConstructionManager {
 	    return true;
 	}
 
-	/// Construction À» À§ÇØ ¿¹ºñÇØµĞ Mineral ¼ıÀÚ¸¦ ¸®ÅÏÇÕ´Ï´Ù
+	/// Construction ì„ ìœ„í•´ ì˜ˆë¹„í•´ë‘” Mineral ìˆ«ìë¥¼ ë¦¬í„´í•©ë‹ˆë‹¤
 	public int getReservedMinerals() 
 	{
 	    return reservedMinerals;
 	}
 
-	/// Construction À» À§ÇØ ¿¹ºñÇØµĞ Gas ¼ıÀÚ¸¦ ¸®ÅÏÇÕ´Ï´Ù
+	/// Construction ì„ ìœ„í•´ ì˜ˆë¹„í•´ë‘” Gas ìˆ«ìë¥¼ ë¦¬í„´í•©ë‹ˆë‹¤
 	public int getReservedGas() 
 	{
 	    return reservedGas;
 	}
 
-	/// constructionQueue ³» ConstructionTask °¹¼ö¸¦ ¸®ÅÏÇÕ´Ï´Ù
+	/// constructionQueue ë‚´ ConstructionTask ê°¯ìˆ˜ë¥¼ ë¦¬í„´í•©ë‹ˆë‹¤
 	public Vector<UnitType> buildingsQueued()
 	{
 	    Vector<UnitType> buildingsQueued = null;
@@ -617,11 +617,11 @@ public class ConstructionManager {
 	    return buildingsQueued;
 	}
 
-	/// constructionQueue ³» ConstructionTask °¹¼ö¸¦ ¸®ÅÏÇÕ´Ï´Ù
-	/// queryTilePosition À» ÀÔ·ÂÇÑ °æ¿ì, À§Ä¡°£ °Å¸®±îÁöµµ °í·ÁÇÕ´Ï´Ù
+	/// constructionQueue ë‚´ ConstructionTask ê°¯ìˆ˜ë¥¼ ë¦¬í„´í•©ë‹ˆë‹¤
+	/// queryTilePosition ì„ ì…ë ¥í•œ ê²½ìš°, ìœ„ì¹˜ê°„ ê±°ë¦¬ê¹Œì§€ë„ ê³ ë ¤í•©ë‹ˆë‹¤
 	public int getConstructionQueueItemCount(UnitType queryType, TilePosition queryTilePosition)
 	{
-		// queryTilePosition À» ÀÔ·ÂÇÑ °æ¿ì, °Å¸®ÀÇ maxRange. Å¸ÀÏ´ÜÀ§
+		// queryTilePosition ì„ ì…ë ¥í•œ ê²½ìš°, ê±°ë¦¬ì˜ maxRange. íƒ€ì¼ë‹¨ìœ„
 		int maxRange = 16;
 
 		Position queryTilePositionPoint = null;

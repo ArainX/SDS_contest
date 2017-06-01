@@ -10,12 +10,17 @@ InformationManager::InformationManager()
 	selfRace = selfPlayer->getRace();
 	enemyRace = enemyPlayer->getRace();
 
+	_unitData[selfPlayer] = UnitData();
+	_unitData[enemyPlayer] = UnitData();
+
 	_mainBaseLocations[selfPlayer] = BWTA::getStartLocation(BWAPI::Broodwar->self());
+	_mainBaseLocationChanged[selfPlayer] = true;
 	_occupiedBaseLocations[selfPlayer] = std::list<BWTA::BaseLocation *>();
 	_occupiedBaseLocations[selfPlayer].push_back(_mainBaseLocations[selfPlayer]);
 	updateOccupiedRegions(BWTA::getRegion(_mainBaseLocations[selfPlayer]->getTilePosition()), BWAPI::Broodwar->self());
 
 	_mainBaseLocations[enemyPlayer] = nullptr;
+	_mainBaseLocationChanged[enemyPlayer] = false;
 	_occupiedBaseLocations[enemyPlayer] = std::list<BWTA::BaseLocation *>();
 
 	_firstChokePoint[selfPlayer] = nullptr;
@@ -30,19 +35,9 @@ InformationManager::InformationManager()
 
 void InformationManager::update() 
 {
-	// ¿˚±∫¿Ã Eliminate µ«∞≈≥™ Left «ﬂ¿ª ∂ß, enemy ∞™¿∫ ¿⁄µø¿∏∑Œ null ¿Ã µ«¡ˆ æ ¿∏π«∑Œ, null ∑Œ ∏∏µÈæÓ¡‡æﬂ «—¥Ÿ
-	if (BWAPI::Broodwar->enemy() == nullptr) {
-		enemyPlayer = nullptr;
-	}
-	else {
-		if (BWAPI::Broodwar->enemy()->isDefeated() || BWAPI::Broodwar->enemy()->leftGame()) {
-			enemyPlayer = nullptr;
-		}
-	}
-
 	updateUnitsInfo();
 
-	// occupiedBaseLocation ¿Ã≥™ occupiedRegion ¿∫ ∞≈¿« æ»πŸ≤Óπ«∑Œ ¿⁄¡÷ æ»«ÿµµ µ»¥Ÿ
+	// occupiedBaseLocation Ïù¥ÎÇò occupiedRegion ÏùÄ Í±∞Ïùò ÏïàÎ∞îÎÄåÎØÄÎ°ú ÏûêÏ£º ÏïàÌï¥ÎèÑ ÎêúÎã§
 	if (BWAPI::Broodwar->getFrameCount() % 120 == 0) {
 		updateBaseLocationInfo();
 	}
@@ -66,7 +61,7 @@ void InformationManager::updateUnitsInfo()
 	_unitData[selfPlayer].removeBadUnits();
 }
 
-// «ÿ¥Á unit ¿« ¡§∫∏∏¶ æ˜µ•¿Ã∆Æ «—¥Ÿ (UnitType, lastPosition, HitPoint µÓ)
+// Ìï¥Îãπ unit Ïùò Ï†ïÎ≥¥Î•º ÏóÖÎç∞Ïù¥Ìä∏ ÌïúÎã§ (UnitType, lastPosition, HitPoint Îì±)
 void InformationManager::updateUnitInfo(BWAPI::Unit unit)
 {
     if (unit->getPlayer() != selfPlayer && unit->getPlayer() != enemyPlayer) {
@@ -80,7 +75,7 @@ void InformationManager::updateUnitInfo(BWAPI::Unit unit)
     _unitData[unit->getPlayer()].updateUnitInfo(unit);
 }
 
-// ¿Ø¥÷¿Ã ∆ƒ±´/ªÁ∏¡«— ∞ÊøÏ, «ÿ¥Á ¿Ø¥÷ ¡§∫∏∏¶ ªË¡¶«—¥Ÿ
+// Ïú†ÎãõÏù¥ ÌååÍ¥¥/ÏÇ¨ÎßùÌïú Í≤ΩÏö∞, Ìï¥Îãπ Ïú†Îãõ Ï†ïÎ≥¥Î•º ÏÇ≠Ï†úÌïúÎã§
 void InformationManager::onUnitDestroy(BWAPI::Unit unit)
 { 
     if (unit->getType().isNeutral())
@@ -113,7 +108,7 @@ bool InformationManager::isCombatUnitType(BWAPI::UnitType type) const
 void InformationManager::getNearbyForce(std::vector<UnitInfo> & unitInfo, BWAPI::Position p, BWAPI::Player player, int radius) 
 {
 	// for each unit we know about for that player
-	for (const auto & kv : getUnitData(player).getUnits())
+	for (const auto & kv : getUnitData(player).getUnitAndUnitInfoMap())
 	{
 		const UnitInfo & ui(kv.second);
 
@@ -170,7 +165,7 @@ void InformationManager::updateBaseLocationInfo()
 	_occupiedBaseLocations[selfPlayer].clear();
 	_occupiedBaseLocations[enemyPlayer].clear();
 
-	// enemy ¿« startLocation¿ª æ∆¡˜ ∏∏£¥¬ ∞ÊøÏ
+	// enemy Ïùò startLocationÏùÑ ÏïÑÏßÅ Î™®Î•¥Îäî Í≤ΩÏö∞
 	if (_mainBaseLocations[enemyPlayer] == nullptr) {
 
 		// how many start locations have we explored
@@ -182,11 +177,12 @@ void InformationManager::updateBaseLocationInfo()
 
 		for (BWTA::BaseLocation * startLocation : BWTA::getStartLocations())
 		{
-			if (existsEnemyBuildingInRegion(BWTA::getRegion(startLocation->getTilePosition())))
+			if (existsPlayerBuildingInRegion(BWTA::getRegion(startLocation->getTilePosition()), enemyPlayer))
 			{
 				if (enemyStartLocationFound == false) {
 					enemyStartLocationFound = true;
 					_mainBaseLocations[enemyPlayer] = startLocation;
+					_mainBaseLocationChanged[enemyPlayer] = true;
 				}
 			}
 
@@ -208,12 +204,13 @@ void InformationManager::updateBaseLocationInfo()
 		{
 			enemyStartLocationFound = true;
 			_mainBaseLocations[enemyPlayer] = unexplored;
+			_mainBaseLocationChanged[enemyPlayer] = true;
 			_occupiedBaseLocations[enemyPlayer].push_back(unexplored);
 		}
 	}
 
 	// update occupied base location
-	// æÓ∂≤ Base Location ø°¥¬ æ∆±∫ ∞«π∞, ¿˚±∫ ∞«π∞ ∏µŒ »•¿Á«ÿ¿÷æÓº≠ µøΩ√ø° ø©∑Ø Player ∞° Occupy «œ∞Ì ¿÷¥¬ ∞Õ¿∏∑Œ ∆«¡§µ… ºˆ ¿÷¥Ÿ
+	// Ïñ¥Îñ§ Base Location ÏóêÎäî ÏïÑÍµ∞ Í±¥Î¨º, Ï†ÅÍµ∞ Í±¥Î¨º Î™®Îëê ÌòºÏû¨Ìï¥ÏûàÏñ¥ÏÑú ÎèôÏãúÏóê Ïó¨Îü¨ Player Í∞Ä Occupy ÌïòÍ≥† ÏûàÎäî Í≤ÉÏúºÎ°ú ÌåêÏ†ïÎê† Ïàò ÏûàÎã§
 	for (BWTA::BaseLocation * baseLocation : BWTA::getBaseLocations())
 	{
 		if (hasBuildingAroundBaseLocation(baseLocation, enemyPlayer))
@@ -227,26 +224,28 @@ void InformationManager::updateBaseLocationInfo()
 		}
 	}
 
-	// enemy¿« mainBaseLocations¿ª πﬂ∞ﬂ«— »ƒ, ±◊∞˜ø° ¿÷¥¬ ∞«π∞¿ª ∏µŒ ∆ƒ±´«— ∞ÊøÏ _occupiedBaseLocations ¡ﬂø°º≠ _mainBaseLocations ∏¶ º±¡§«—¥Ÿ
+	// enemyÏùò mainBaseLocationsÏùÑ Î∞úÍ≤¨Ìïú ÌõÑ, Í∑∏Í≥≥Ïóê ÏûàÎäî Í±¥Î¨ºÏùÑ Î™®Îëê ÌååÍ¥¥Ìïú Í≤ΩÏö∞ _occupiedBaseLocations Ï§ëÏóêÏÑú _mainBaseLocations Î•º ÏÑ†Ï†ïÌïúÎã§
 	if (_mainBaseLocations[enemyPlayer] != nullptr) {
-		if (existsEnemyBuildingInRegion(BWTA::getRegion(_mainBaseLocations[enemyPlayer]->getTilePosition())) == false)
+		if (existsPlayerBuildingInRegion(BWTA::getRegion(_mainBaseLocations[enemyPlayer]->getTilePosition()), enemyPlayer) == false)
 		{
 			for (std::list<BWTA::BaseLocation*>::const_iterator iterator = _occupiedBaseLocations[enemyPlayer].begin(), end = _occupiedBaseLocations[enemyPlayer].end(); iterator != end; ++iterator) {
-				if (existsEnemyBuildingInRegion(BWTA::getRegion((*iterator)->getTilePosition())) == true) {
+				if (existsPlayerBuildingInRegion(BWTA::getRegion((*iterator)->getTilePosition()), enemyPlayer) == true) {
 					_mainBaseLocations[enemyPlayer] = *iterator;
+					_mainBaseLocationChanged[enemyPlayer] = true;
 					break;
 				}
 			}
 		}
 	}
 
-	// self¿« mainBaseLocationsø° ¥Î«ÿ, ±◊∞˜ø° ¿÷¥¬ ∞«π∞¿Ã ∏µŒ ∆ƒ±´µ» ∞ÊøÏ _occupiedBaseLocations ¡ﬂø°º≠ _mainBaseLocations ∏¶ º±¡§«—¥Ÿ
+	// selfÏùò mainBaseLocationsÏóê ÎåÄÌï¥, Í∑∏Í≥≥Ïóê ÏûàÎäî Í±¥Î¨ºÏù¥ Î™®Îëê ÌååÍ¥¥Îêú Í≤ΩÏö∞ _occupiedBaseLocations Ï§ëÏóêÏÑú _mainBaseLocations Î•º ÏÑ†Ï†ïÌïúÎã§
 	if (_mainBaseLocations[selfPlayer] != nullptr) {
-		if (existsMyBuildingInRegion(BWTA::getRegion(_mainBaseLocations[selfPlayer]->getTilePosition())) == false)
+		if (existsPlayerBuildingInRegion(BWTA::getRegion(_mainBaseLocations[selfPlayer]->getTilePosition()), selfPlayer) == false)
 		{
 			for (std::list<BWTA::BaseLocation*>::const_iterator iterator = _occupiedBaseLocations[selfPlayer].begin(), end = _occupiedBaseLocations[selfPlayer].end(); iterator != end; ++iterator) {
-				if (existsMyBuildingInRegion(BWTA::getRegion((*iterator)->getTilePosition())) == true) {
+				if (existsPlayerBuildingInRegion(BWTA::getRegion((*iterator)->getTilePosition()), selfPlayer) == true) {
 					_mainBaseLocations[selfPlayer] = *iterator;
+					_mainBaseLocationChanged[selfPlayer] = true;
 					break;
 				}
 			}
@@ -254,7 +253,7 @@ void InformationManager::updateBaseLocationInfo()
 	}
 
 	// for each enemy building unit we know about
-	for (const auto & kv : _unitData[enemyPlayer].getUnits())
+	for (const auto & kv : _unitData[enemyPlayer].getUnitAndUnitInfoMap())
 	{
 		const UnitInfo & ui(kv.second);
 		if (ui.type.isBuilding())
@@ -263,7 +262,7 @@ void InformationManager::updateBaseLocationInfo()
 		}
 	}
 	// for each of our building units
-	for (const auto & kv : _unitData[selfPlayer].getUnits())
+	for (const auto & kv : _unitData[selfPlayer].getUnitAndUnitInfoMap())
 	{
 		const UnitInfo & ui(kv.second);
 		if (ui.type.isBuilding())
@@ -277,68 +276,75 @@ void InformationManager::updateBaseLocationInfo()
 
 void InformationManager::updateChokePointAndExpansionLocation()
 {
-	if (_mainBaseLocations[selfPlayer]) {
+	if (_mainBaseLocationChanged[selfPlayer] == true) {
 
-		BWTA::BaseLocation* sourceBaseLocation = _mainBaseLocations[selfPlayer];
+		if (_mainBaseLocations[selfPlayer]) {
 
-		_firstChokePoint[selfPlayer] = BWTA::getNearestChokepoint(sourceBaseLocation->getTilePosition());
+			BWTA::BaseLocation* sourceBaseLocation = _mainBaseLocations[selfPlayer];
 
-		double tempDistance;
-		double closestDistance = 1000000000;
-		for (BWTA::BaseLocation * targetBaseLocation : BWTA::getBaseLocations())
-		{
-			if (targetBaseLocation == _mainBaseLocations[selfPlayer]) continue;
+			_firstChokePoint[selfPlayer] = BWTA::getNearestChokepoint(sourceBaseLocation->getTilePosition());
 
-			tempDistance = BWTA::getGroundDistance(sourceBaseLocation->getTilePosition(), targetBaseLocation->getTilePosition());
-			if (tempDistance < closestDistance && tempDistance > 0 ) {
-				closestDistance = tempDistance;
-				_firstExpansionLocation[selfPlayer] = targetBaseLocation;
+			double tempDistance;
+			double closestDistance = 1000000000;
+			for (BWTA::BaseLocation * targetBaseLocation : BWTA::getBaseLocations())
+			{
+				if (targetBaseLocation == _mainBaseLocations[selfPlayer]) continue;
+
+				tempDistance = BWTA::getGroundDistance(sourceBaseLocation->getTilePosition(), targetBaseLocation->getTilePosition());
+				if (tempDistance < closestDistance && tempDistance > 0) {
+					closestDistance = tempDistance;
+					_firstExpansionLocation[selfPlayer] = targetBaseLocation;
+				}
+			}
+
+			closestDistance = 1000000000;
+			for (BWTA::Chokepoint * chokepoint : BWTA::getChokepoints())
+			{
+				if (chokepoint == _firstChokePoint[selfPlayer]) continue;
+
+				tempDistance = BWTA::getGroundDistance(sourceBaseLocation->getTilePosition(), BWAPI::TilePosition(chokepoint->getCenter()));
+				if (tempDistance < closestDistance && tempDistance > 0) {
+					closestDistance = tempDistance;
+					_secondChokePoint[selfPlayer] = chokepoint;
+				}
 			}
 		}
-		
-		closestDistance = 1000000000;
-		for (BWTA::Chokepoint * chokepoint : BWTA::getChokepoints())
-		{
-			if (chokepoint == _firstChokePoint[selfPlayer]) continue;
-
-			tempDistance = BWTA::getGroundDistance(sourceBaseLocation->getTilePosition(), BWAPI::TilePosition(chokepoint->getCenter()));
-			if (tempDistance < closestDistance && tempDistance > 0) {
-				closestDistance = tempDistance;
-				_secondChokePoint[selfPlayer] = chokepoint;
-			}
-		}
+		_mainBaseLocationChanged[selfPlayer] = false;
 	}
+	
+	if (_mainBaseLocationChanged[enemyPlayer] == true) {
+		if (_mainBaseLocations[enemyPlayer]) {
 
-	if (_mainBaseLocations[enemyPlayer]) {
+			BWTA::BaseLocation* sourceBaseLocation = _mainBaseLocations[enemyPlayer];
 
-		BWTA::BaseLocation* sourceBaseLocation = _mainBaseLocations[enemyPlayer];
+			_firstChokePoint[enemyPlayer] = BWTA::getNearestChokepoint(sourceBaseLocation->getTilePosition());
 
-		_firstChokePoint[enemyPlayer] = BWTA::getNearestChokepoint(sourceBaseLocation->getTilePosition());
+			double tempDistance;
+			double closestDistance = 1000000000;
+			for (BWTA::BaseLocation * targetBaseLocation : BWTA::getBaseLocations())
+			{
+				if (targetBaseLocation == _mainBaseLocations[enemyPlayer]) continue;
 
-		double tempDistance;
-		double closestDistance = 1000000000;
-		for (BWTA::BaseLocation * targetBaseLocation : BWTA::getBaseLocations())
-		{
-			if (targetBaseLocation == _mainBaseLocations[enemyPlayer]) continue;
+				tempDistance = BWTA::getGroundDistance(sourceBaseLocation->getTilePosition(), targetBaseLocation->getTilePosition());
+				if (tempDistance < closestDistance && tempDistance > 0) {
+					closestDistance = tempDistance;
+					_firstExpansionLocation[enemyPlayer] = targetBaseLocation;
+				}
+			}
 
-			tempDistance = BWTA::getGroundDistance(sourceBaseLocation->getTilePosition(), targetBaseLocation->getTilePosition());
-			if (tempDistance < closestDistance && tempDistance > 0) {
-				closestDistance = tempDistance;
-				_firstExpansionLocation[enemyPlayer] = targetBaseLocation;
+			closestDistance = 1000000000;
+			for (BWTA::Chokepoint * chokepoint : BWTA::getChokepoints())
+			{
+				if (chokepoint == _firstChokePoint[enemyPlayer]) continue;
+
+				tempDistance = BWTA::getGroundDistance(sourceBaseLocation->getTilePosition(), BWAPI::TilePosition(chokepoint->getCenter()));
+				if (tempDistance < closestDistance && tempDistance > 0) {
+					closestDistance = tempDistance;
+					_secondChokePoint[enemyPlayer] = chokepoint;
+				}
 			}
 		}
-
-		closestDistance = 1000000000;
-		for (BWTA::Chokepoint * chokepoint : BWTA::getChokepoints())
-		{
-			if (chokepoint == _firstChokePoint[enemyPlayer]) continue;
-
-			tempDistance = BWTA::getGroundDistance(sourceBaseLocation->getTilePosition(), BWAPI::TilePosition(chokepoint->getCenter()));
-			if (tempDistance < closestDistance && tempDistance > 0) {
-				closestDistance = tempDistance;
-				_secondChokePoint[enemyPlayer] = chokepoint;
-			}
-		}
+		_mainBaseLocationChanged[enemyPlayer] = false;
 	}
 }
 
@@ -353,7 +359,7 @@ void InformationManager::updateOccupiedRegions(BWTA::Region * region, BWAPI::Pla
 	}
 }
 
-// BaseLocation ¡÷¿ß ø¯ æ»ø° player¿« ∞«π∞¿Ã ¿÷¿∏∏È true ∏¶ π›»Ø«—¥Ÿ
+// BaseLocation Ï£ºÏúÑ Ïõê ÏïàÏóê playerÏùò Í±¥Î¨ºÏù¥ ÏûàÏúºÎ©¥ true Î•º Î∞òÌôòÌïúÎã§
 bool InformationManager::hasBuildingAroundBaseLocation(BWTA::BaseLocation * baseLocation, BWAPI::Player player, int radius)
 {
 	// invalid regions aren't considered the same, but they will both be null
@@ -362,7 +368,7 @@ bool InformationManager::hasBuildingAroundBaseLocation(BWTA::BaseLocation * base
 		return false;
 	}
 
-	for (const auto & kv : _unitData[player].getUnits())
+	for (const auto & kv : _unitData[player].getUnitAndUnitInfoMap())
 	{
 		const UnitInfo & ui(kv.second);
 		if (ui.type.isBuilding())
@@ -379,16 +385,15 @@ bool InformationManager::hasBuildingAroundBaseLocation(BWTA::BaseLocation * base
 	return false;
 }
 
-
-bool InformationManager::existsEnemyBuildingInRegion(BWTA::Region * region)
+bool InformationManager::existsPlayerBuildingInRegion(BWTA::Region * region, BWAPI::Player player)
 {
 	// invalid regions aren't considered the same, but they will both be null
-	if (!region)
+	if (region == nullptr || player == nullptr)
 	{
 		return false;
 	}
 
-	for (const auto & kv : _unitData[enemyPlayer].getUnits())
+	for (const auto & kv : _unitData[player].getUnitAndUnitInfoMap())
 	{
 		const UnitInfo & ui(kv.second);
 		if (ui.type.isBuilding())
@@ -403,33 +408,10 @@ bool InformationManager::existsEnemyBuildingInRegion(BWTA::Region * region)
 	return false;
 }
 
-bool InformationManager::existsMyBuildingInRegion(BWTA::Region * region)
+// Ìï¥Îãπ Player Ïùò UnitAndUnitInfoMap ÏùÑ Í∞ñÍ≥†Ïò®Îã§
+const UnitAndUnitInfoMap & InformationManager::getUnitAndUnitInfoMap(BWAPI::Player player) const
 {
-	// invalid regions aren't considered the same, but they will both be null
-	if (!region)
-	{
-		return false;
-	}
-
-	for (const auto & kv : _unitData[selfPlayer].getUnits())
-	{
-		const UnitInfo & ui(kv.second);
-		if (ui.type.isBuilding() && ui.completed)
-		{
-			if (BWTA::getRegion(BWAPI::TilePosition(ui.lastPosition)) == region)
-			{
-				return true;
-			}
-		}
-	}
-
-	return false;
-}
-
-// «ÿ¥Á Player ¿« UnitAndUnitInfoMap ¿ª ∞Æ∞Ìø¬¥Ÿ
-const UnitAndUnitInfoMap & InformationManager::getUnitInfo(BWAPI::Player player) const
-{
-	return getUnitData(player).getUnits();
+	return getUnitData(player).getUnitAndUnitInfoMap();
 }
 
 std::set<BWTA::Region *> & InformationManager::getOccupiedRegions(BWAPI::Player player)

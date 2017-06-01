@@ -15,7 +15,7 @@ WorkerManager & WorkerManager::Instance()
 
 void WorkerManager::update() 
 {
-	// 1ÃÊ¿¡ 1¹ø¸¸ ½ÇÇàÇÑ´Ù
+	// 1ì´ˆì— 1ë²ˆë§Œ ì‹¤í–‰í•œë‹¤
 	if (BWAPI::Broodwar->getFrameCount() % 24 != 0) return;
 
 	updateWorkerStatus();
@@ -28,8 +28,8 @@ void WorkerManager::update()
 
 void WorkerManager::updateWorkerStatus() 
 {
-	// Drone Àº °Ç¼³À» À§ÇØ isConstructing = true »óÅÂ·Î °Ç¼³Àå¼Ò±îÁö ÀÌµ¿ÇÑ ÈÄ, 
-	// Àá±ñ getBuildType() == none °¡ µÇ¾ú´Ù°¡, isConstructing = true, isMorphing = true °¡ µÈ ÈÄ, °Ç¼³À» ½ÃÀÛÇÑ´Ù
+	// Drone ì€ ê±´ì„¤ì„ ìœ„í•´ isConstructing = true ìƒíƒœë¡œ ê±´ì„¤ì¥ì†Œê¹Œì§€ ì´ë™í•œ í›„, 
+	// ì ê¹ getBuildType() == none ê°€ ë˜ì—ˆë‹¤ê°€, isConstructing = true, isMorphing = true ê°€ ëœ í›„, ê±´ì„¤ì„ ì‹œì‘í•œë‹¤
 
 	// for each of our Workers
 	for (auto & worker : workerData.getWorkers())
@@ -62,7 +62,7 @@ void WorkerManager::updateWorkerStatus()
 			continue;
 		}
 
-		// °ÔÀÓ»ó¿¡¼­ worker°¡ isIdle »óÅÂ°¡ µÇ¾úÀ¸¸é (»õ·Î Åº»ıÇß°Å³ª, ±×Àü ÀÓ¹«°¡ ³¡³­ °æ¿ì), WorkerData µµ Idle ·Î ¸ÂÃá ÈÄ, handleGasWorkers, handleIdleWorkers µî¿¡¼­ »õ ÀÓ¹«¸¦ ÁöÁ¤ÇÑ´Ù 
+		// ê²Œì„ìƒì—ì„œ workerê°€ isIdle ìƒíƒœê°€ ë˜ì—ˆìœ¼ë©´ (ìƒˆë¡œ íƒ„ìƒí–ˆê±°ë‚˜, ê·¸ì „ ì„ë¬´ê°€ ëë‚œ ê²½ìš°), WorkerData ë„ Idle ë¡œ ë§ì¶˜ í›„, handleGasWorkers, handleIdleWorkers ë“±ì—ì„œ ìƒˆ ì„ë¬´ë¥¼ ì§€ì •í•œë‹¤ 
 		if ( worker->isIdle() )
 		{
 			/*
@@ -82,7 +82,7 @@ void WorkerManager::updateWorkerStatus()
 			}
 			*/
 
-			// workerData ¿¡¼­ Build / Move / Scout ·Î ÀÓ¹«ÁöÁ¤ÇÑ °æ¿ì, worker ´Â Áï ÀÓ¹« ¼öÇà µµÁß (ÀÓ¹« ¿Ï·á Àü) ¿¡ ÀÏ½ÃÀûÀ¸·Î isIdle »óÅÂ°¡ µÉ ¼ö ÀÖ´Ù 
+			// workerData ì—ì„œ Build / Move / Scout ë¡œ ì„ë¬´ì§€ì •í•œ ê²½ìš°, worker ëŠ” ì¦‰ ì„ë¬´ ìˆ˜í–‰ ë„ì¤‘ (ì„ë¬´ ì™„ë£Œ ì „) ì— ì¼ì‹œì ìœ¼ë¡œ isIdle ìƒíƒœê°€ ë  ìˆ˜ ìˆë‹¤ 
 			if ((workerData.getWorkerJob(worker) != WorkerData::Build)
 				&& (workerData.getWorkerJob(worker) != WorkerData::Move)
 				&& (workerData.getWorkerJob(worker) != WorkerData::Scout))  
@@ -96,7 +96,7 @@ void WorkerManager::updateWorkerStatus()
 		{
 			BWAPI::Unit refinery = workerData.getWorkerResource(worker);
 
-			// if the refinery doesn't exist anymore (ÆÄ±«µÇ¾úÀ» °æ¿ì)
+			// if the refinery doesn't exist anymore (íŒŒê´´ë˜ì—ˆì„ ê²½ìš°)
 			if (!refinery || !refinery->exists() ||	refinery->getHitPoints() <= 0)
 			{
 				workerData.setWorkerJob(worker, WorkerData::Idle, nullptr);
@@ -108,7 +108,7 @@ void WorkerManager::updateWorkerStatus()
 		{
 			BWAPI::Unit repairTargetUnit = workerData.getWorkerRepairUnit(worker);
 						
-			// ´ë»óÀÌ ÆÄ±«µÇ¾ú°Å³ª, ¼ö¸®°¡ ´Ù ³¡³­ °æ¿ì
+			// ëŒ€ìƒì´ íŒŒê´´ë˜ì—ˆê±°ë‚˜, ìˆ˜ë¦¬ê°€ ë‹¤ ëë‚œ ê²½ìš°
 			if (!repairTargetUnit || !repairTargetUnit->exists() || repairTargetUnit->getHitPoints() <= 0 || repairTargetUnit->getHitPoints() == repairTargetUnit->getType().maxHitPoints())
 			{
 				workerData.setWorkerJob(worker, WorkerData::Idle, nullptr);
@@ -123,14 +123,14 @@ void WorkerManager::handleGasWorkers()
 	// for each unit we have
 	for (auto & unit : BWAPI::Broodwar->self()->getUnits())
 	{
-		// refinery °¡ °Ç¼³ completed µÇ¾úÀ¸¸é,
+		// refinery ê°€ ê±´ì„¤ completed ë˜ì—ˆìœ¼ë©´,
 		if (unit->getType().isRefinery() && unit->isCompleted() )
 		{
 			// get the number of workers currently assigned to it
 			int numAssigned = workerData.getNumAssignedWorkers(unit);
 
 			// if it's less than we want it to be, fill 'er up
-			// ¹Ì³×¶ö ÀÏ²ÛÀº ÀûÀºµ¥ °¡½º ÀÏ²ÛÀº ¹«Á¶°Ç 3~4¸íÀÎ °æ¿ì -> Config::Macro::WorkersPerRefinery °ªÀ» Á¶Á¤ÇØ¾ßÇÔ
+			// ë¯¸ë„¤ë„ ì¼ê¾¼ì€ ì ì€ë° ê°€ìŠ¤ ì¼ê¾¼ì€ ë¬´ì¡°ê±´ 3~4ëª…ì¸ ê²½ìš° -> Config::Macro::WorkersPerRefinery ê°’ì„ ì¡°ì •í•´ì•¼í•¨
 			for (int i = 0; i<(Config::Macro::WorkersPerRefinery - numAssigned); ++i)
 			{
 				BWAPI::Unit gasWorker = chooseGasWorkerFromMineralWorkers(unit);
@@ -173,7 +173,7 @@ void WorkerManager::handleMoveWorkers()
 		{
 			WorkerMoveData data = workerData.getWorkerMoveData(worker);
 
-			// ¸ñÀûÁö¿¡ µµÂøÇÑ °æ¿ì ÀÌµ¿ ¸í·ÉÀ» ÇØÁ¦ÇÑ´Ù
+			// ëª©ì ì§€ì— ë„ì°©í•œ ê²½ìš° ì´ë™ ëª…ë ¹ì„ í•´ì œí•œë‹¤
 			if (worker->getPosition().getDistance(data.position) < 4) {
 				setIdleWorker(worker);
 			}
@@ -249,17 +249,17 @@ void WorkerManager::handleRepairWorkers()
 
 	for (auto & unit : BWAPI::Broodwar->self()->getUnits())
 	{
-		// °Ç¹°ÀÇ °æ¿ì ¾Æ¹«¸® ¸Ö¾îµµ ¹«Á¶°Ç ¼ö¸®. ÀÏ²Û ÇÑ¸íÀÌ ¼ø¼­´ë·Î ¼ö¸®
+		// ê±´ë¬¼ì˜ ê²½ìš° ì•„ë¬´ë¦¬ ë©€ì–´ë„ ë¬´ì¡°ê±´ ìˆ˜ë¦¬. ì¼ê¾¼ í•œëª…ì´ ìˆœì„œëŒ€ë¡œ ìˆ˜ë¦¬
 		if (unit->getType().isBuilding() && unit->isCompleted() == true && unit->getHitPoints() < unit->getType().maxHitPoints())
 		{
 			BWAPI::Unit repairWorker = chooseRepairWorkerClosestTo(unit->getPosition());
 			setRepairWorker(repairWorker, unit);
 			break;
 		}
-		// ¸ŞÄ«´Ğ À¯´Ö (SCV, ½ÃÁîÅÊÅ©, ·¹ÀÌ¾² µî)ÀÇ °æ¿ì ±ÙÃ³¿¡ SCV°¡ ÀÖ´Â °æ¿ì ¼ö¸®. ÀÏ²Û ÇÑ¸íÀÌ ¼ø¼­´ë·Î ¼ö¸®
+		// ë©”ì¹´ë‹‰ ìœ ë‹› (SCV, ì‹œì¦ˆíƒ±í¬, ë ˆì´ì“° ë“±)ì˜ ê²½ìš° ê·¼ì²˜ì— SCVê°€ ìˆëŠ” ê²½ìš° ìˆ˜ë¦¬. ì¼ê¾¼ í•œëª…ì´ ìˆœì„œëŒ€ë¡œ ìˆ˜ë¦¬
 		else if (unit->getType().isMechanical() && unit->isCompleted() == true && unit->getHitPoints() < unit->getType().maxHitPoints())
 		{
-			// SCV ´Â ¼ö¸® ´ë»ó¿¡¼­ Á¦¿Ü. ÀüÅõ À¯´Ö¸¸ ¼ö¸®ÇÏµµ·Ï ÇÑ´Ù
+			// SCV ëŠ” ìˆ˜ë¦¬ ëŒ€ìƒì—ì„œ ì œì™¸. ì „íˆ¬ ìœ ë‹›ë§Œ ìˆ˜ë¦¬í•˜ë„ë¡ í•œë‹¤
 			if (unit->getType() != BWAPI::UnitTypes::Terran_SCV) {
 				BWAPI::Unit repairWorker = chooseRepairWorkerClosestTo(unit->getPosition(), 10 * TILE_SIZE);
 				setRepairWorker(repairWorker, unit);
@@ -385,19 +385,19 @@ BWAPI::Unit WorkerManager::getClosestResourceDepotFromWorker(BWAPI::Unit worker)
 	{
 		if (!unit) continue;
 		
-		// °¡Àå °¡±î¿î, ÀÏ²Û¼ö°¡ ²Ë Â÷Áö¾ÊÀº, ¿Ï¼ºµÈ ResourceDepot (È¤Àº Lair ³ª Hive·Î º¯ÇüÁßÀÎ °Ç¹°)À» Ã£´Â´Ù
+		// ê°€ì¥ ê°€ê¹Œìš´, ì¼ê¾¼ìˆ˜ê°€ ê½‰ ì°¨ì§€ì•Šì€, ì™„ì„±ëœ ResourceDepot (í˜¹ì€ Lair ë‚˜ Hiveë¡œ ë³€í˜•ì¤‘ì¸ ê±´ë¬¼)ì„ ì°¾ëŠ”ë‹¤
 		if (unit->getType().isResourceDepot()
 			&& (unit->isCompleted() || unit->getType() == BWAPI::UnitTypes::Zerg_Lair || unit->getType() == BWAPI::UnitTypes::Zerg_Hive) )
 		{
 			double distance = unit->getDistance(worker);
 
-			// ÀÏ´Ü ¿©·¯ ResourceDepot Áß ÇÏ³ª´Â ¼±ÅÃµÇµµ·Ï ÇÑ´Ù
+			// ì¼ë‹¨ ì—¬ëŸ¬ ResourceDepot ì¤‘ í•˜ë‚˜ëŠ” ì„ íƒë˜ë„ë¡ í•œë‹¤
 			if (!closestDepot )
 			{
 				closestDepot = unit;
 				closestDistance = distance;
 			}
-			// ´õ °¡±î¿î ResourceDepot ÀÌ ÀÖ°í, ÀÏ²Û ¼ö°¡ ²Ë Â÷Áö ¾Ê¾Ò´Ù¸é °Å±â °¡µµ·Ï ÇÑ´Ù
+			// ë” ê°€ê¹Œìš´ ResourceDepot ì´ ìˆê³ , ì¼ê¾¼ ìˆ˜ê°€ ê½‰ ì°¨ì§€ ì•Šì•˜ë‹¤ë©´ ê±°ê¸° ê°€ë„ë¡ í•œë‹¤
 			else if (distance < closestDistance
 				&& workerData.depotHasEnoughMineralWorkers(unit) == false) 
 			{
@@ -419,7 +419,7 @@ void WorkerManager::setIdleWorker(BWAPI::Unit unit)
 	workerData.setWorkerJob(unit, WorkerData::Idle, nullptr);
 }
 
-// ÇØ´ç refinery ·ÎºÎÅÍ °¡Àå °¡±î¿î, Mineral Ä³°íÀÖ´ø ÀÏ²ÛÀ» ¸®ÅÏÇÑ´Ù
+// í•´ë‹¹ refinery ë¡œë¶€í„° ê°€ì¥ ê°€ê¹Œìš´, Mineral ìºê³ ìˆë˜ ì¼ê¾¼ì„ ë¦¬í„´í•œë‹¤
 BWAPI::Unit WorkerManager::chooseGasWorkerFromMineralWorkers(BWAPI::Unit refinery)
 {
 	if (!refinery) return nullptr;
@@ -465,7 +465,7 @@ BWAPI::Unit WorkerManager::chooseConstuctionWorkerClosestTo(BWAPI::UnitType buil
 	{
 		if (!unit) continue;
 
-		// worker °¡ 2°³ ÀÌ»óÀÌ¸é, avoidWorkerID ´Â ÇÇÇÑ´Ù
+		// worker ê°€ 2ê°œ ì´ìƒì´ë©´, avoidWorkerID ëŠ” í”¼í•œë‹¤
 		if (workerData.getWorkers().size() >= 2 && avoidWorkerID != 0 && unit->getID() == avoidWorkerID) continue;
 
 		// Move / Idle Worker
@@ -482,7 +482,7 @@ BWAPI::Unit WorkerManager::chooseConstuctionWorkerClosestTo(BWAPI::UnitType buil
 			}
 		}
 
-		// Move / Idle Worker °¡ ¾øÀ»¶§, ´Ù¸¥ Worker Áß¿¡¼­ Â÷ÃâÇÑ´Ù 
+		// Move / Idle Worker ê°€ ì—†ì„ë•Œ, ë‹¤ë¥¸ Worker ì¤‘ì—ì„œ ì°¨ì¶œí•œë‹¤ 
 		if (unit->isCompleted() && workerData.getWorkerJob(unit) != WorkerData::Move && workerData.getWorkerJob(unit) != WorkerData::Idle && workerData.getWorkerJob(unit) != WorkerData::Build)
 		{
 			// if it is a new closest distance, set the pointer
@@ -618,7 +618,7 @@ void WorkerManager::onUnitMorph(BWAPI::Unit unit)
 	// if something morphs into a building, it was a worker (Zerg Drone)
 	if (unit->getType().isBuilding() && unit->getPlayer() == BWAPI::Broodwar->self() && unit->getPlayer()->getRace() == BWAPI::Races::Zerg)
 	{
-		// ÇØ´ç worker ¸¦ workerData ¿¡¼­ »èÁ¦ÇÑ´Ù
+		// í•´ë‹¹ worker ë¥¼ workerData ì—ì„œ ì‚­ì œí•œë‹¤
 		workerData.workerDestroyed(unit);
 	}
 }
@@ -646,8 +646,8 @@ void WorkerManager::onUnitShow(BWAPI::Unit unit)
 
 }
 
-// ÀÏÇÏ°íÀÖ´Â resource depot ¿¡ ÃæºĞÇÑ ¼öÀÇ mineral worker µéÀÌ ÁöÁ¤µÇ¾î ÀÖ´Ù¸é, idle »óÅÂ·Î ¸¸µç´Ù
-// idle worker ¿¡°Ô mineral job À» ºÎ¿©ÇÒ ¶§, mineral worker °¡ ºÎÁ·ÇÑ resource depot À¸·Î ÀÌµ¿ÇÏ°Ô µÈ´Ù  
+// ì¼í•˜ê³ ìˆëŠ” resource depot ì— ì¶©ë¶„í•œ ìˆ˜ì˜ mineral worker ë“¤ì´ ì§€ì •ë˜ì–´ ìˆë‹¤ë©´, idle ìƒíƒœë¡œ ë§Œë“ ë‹¤
+// idle worker ì—ê²Œ mineral job ì„ ë¶€ì—¬í•  ë•Œ, mineral worker ê°€ ë¶€ì¡±í•œ resource depot ìœ¼ë¡œ ì´ë™í•˜ê²Œ ëœë‹¤  
 void WorkerManager::rebalanceWorkers()
 {
 	for (auto & worker : workerData.getWorkers())

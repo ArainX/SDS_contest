@@ -21,19 +21,19 @@ ScoutManager & ScoutManager::Instance()
 
 void ScoutManager::update()
 {
-	// 1ÃÊ¿¡ 4¹ø¸¸ ½ÇÇàÇÕ´Ï´Ù
+	// 1ì´ˆì— 4ë²ˆë§Œ ì‹¤í–‰í•©ë‹ˆë‹¤
 	if (BWAPI::Broodwar->getFrameCount() % 6 != 0) return;
 
-	// scoutUnit À» ÁöÁ¤ÇÏ°í, scoutUnit ÀÇ ÀÌµ¿À» ÄÁÆ®·ÑÇÔ. 
-	// TODO °úÁ¦ : ¿©·¯ scoutUnit À» µ¿½Ã¿¡ ¿î¿ëÇÏ°Å³ª, scoutUnit ÀÌ ±æ¸ñ¿¡¼­ Àû±º¿¡ ÀÇÇØ »ç¸ÁÇÏ¿© Á¤ÂûÀÌ °è¼Ó ½ÇÆÐÇÏ´Â °æ¿ì, ÁßÈÄ¹Ý Á¤Âû¿¡ ´ëÇÑ Ã³¸® µîÀº »ý°¢ÇØº¼ °úÁ¦ÀÌ´Ù  
+	// scoutUnit ì„ ì§€ì •í•˜ê³ , scoutUnit ì˜ ì´ë™ì„ ì»¨íŠ¸ë¡¤í•¨. 
+	// TODO ê³¼ì œ : ì—¬ëŸ¬ scoutUnit ì„ ë™ì‹œì— ìš´ìš©í•˜ê±°ë‚˜, scoutUnit ì´ ê¸¸ëª©ì—ì„œ ì êµ°ì— ì˜í•´ ì‚¬ë§í•˜ì—¬ ì •ì°°ì´ ê³„ì† ì‹¤íŒ¨í•˜ëŠ” ê²½ìš°, ì¤‘í›„ë°˜ ì •ì°°ì— ëŒ€í•œ ì²˜ë¦¬ ë“±ì€ ìƒê°í•´ë³¼ ê³¼ì œì´ë‹¤  
 	assignScoutIfNeeded();
 	moveScoutUnit();
 
-	// Âü°í·Î, scoutUnit ÀÇ ÀÌµ¿¿¡ ÀÇÇØ ¹ß°ßµÈ Á¤º¸¸¦ Ã³¸®ÇÏ´Â °ÍÀº InformationManager.update() ¿¡¼­ ¼öÇàÇÔ
+	// ì°¸ê³ ë¡œ, scoutUnit ì˜ ì´ë™ì— ì˜í•´ ë°œê²¬ëœ ì •ë³´ë¥¼ ì²˜ë¦¬í•˜ëŠ” ê²ƒì€ InformationManager.update() ì—ì„œ ìˆ˜í–‰í•¨
 }
 
-// »ó´ë¹æ MainBaseLocation À§Ä¡¸¦ ¸ð¸£¸é¼­, Á¤Âû À¯´ÖÀÌ ÁöÁ¤µÇ¾îÀÖÁö ¾Ê°Å³ª Á¤Âû À¯´ÖÀÌ Á×¾úÀ¸¸é, ResourceDepot ÀÌ ¾Æ´Ñ ´Ù¸¥ °Ç¹°ÀÌ ÀÖÀ» °æ¿ì, ¹Ì³×¶ö ÀÏ²Û Áß¿¡¼­ »õ·Î ÁöÁ¤.
-// »ó´ë¹æ MainBaseLocation À§Ä¡¸¦ ¾Ë°íÀÖÀ¸¸é, Á¤Âû À¯´ÖÀÌ Á×¾ú¾îµµ »õ·Î ÁöÁ¤ ¾ÈÇÔ
+// ìƒëŒ€ë°© MainBaseLocation ìœ„ì¹˜ë¥¼ ëª¨ë¥´ë©´ì„œ, ì •ì°° ìœ ë‹›ì´ ì§€ì •ë˜ì–´ìžˆì§€ ì•Šê±°ë‚˜ ì •ì°° ìœ ë‹›ì´ ì£½ì—ˆìœ¼ë©´, ResourceDepot ì´ ì•„ë‹Œ ë‹¤ë¥¸ ê±´ë¬¼ì´ ìžˆì„ ê²½ìš°, ë¯¸ë„¤ëž„ ì¼ê¾¼ ì¤‘ì—ì„œ ìƒˆë¡œ ì§€ì •.
+// ìƒëŒ€ë°© MainBaseLocation ìœ„ì¹˜ë¥¼ ì•Œê³ ìžˆìœ¼ë©´, ì •ì°° ìœ ë‹›ì´ ì£½ì—ˆì–´ë„ ìƒˆë¡œ ì§€ì • ì•ˆí•¨
 void ScoutManager::assignScoutIfNeeded()
 {
 	BWTA::BaseLocation * enemyBaseLocation = InformationManager::Instance().getMainBaseLocation(BWAPI::Broodwar->enemy());
@@ -45,7 +45,7 @@ void ScoutManager::assignScoutIfNeeded()
 			currentScoutUnit = nullptr;
 			currentScoutStatus = ScoutStatus::NoScout;
 
-			// first building (Pylon / Supply Depot / Spawning Pool) À» °Ç¼³ ½ÃÀÛÇÑ ÈÄ, °¡Àå °¡±îÀÌ¿¡ ÀÖ´Â Worker ¸¦ Á¤ÂûÀ¯´ÖÀ¸·Î ÁöÁ¤ÇÑ´Ù
+			// first building (Pylon / Supply Depot / Spawning Pool) ì„ ê±´ì„¤ ì‹œìž‘í•œ í›„, ê°€ìž¥ ê°€ê¹Œì´ì— ìžˆëŠ” Worker ë¥¼ ì •ì°°ìœ ë‹›ìœ¼ë¡œ ì§€ì •í•œë‹¤
 			BWAPI::Unit firstBuilding = nullptr;
 
 			for (auto & unit : BWAPI::Broodwar->self()->getUnits())
@@ -63,14 +63,14 @@ void ScoutManager::assignScoutIfNeeded()
 				BWAPI::Unit unit = WorkerManager::Instance().getClosestMineralWorkerTo(firstBuilding->getPosition());
 
 				// if we find a worker (which we should) add it to the scout units
-				// Á¤Âû ³ª°¥ ÀÏ²ÛÀÌ ¾øÀ¸¸é, ¾Æ¹«°Íµµ ÇÏÁö ¾Ê´Â´Ù
+				// ì •ì°° ë‚˜ê°ˆ ì¼ê¾¼ì´ ì—†ìœ¼ë©´, ì•„ë¬´ê²ƒë„ í•˜ì§€ ì•ŠëŠ”ë‹¤
 				if (unit)
 				{
 					// set unit as scout unit
 					currentScoutUnit = unit;
 					WorkerManager::Instance().setScoutWorker(currentScoutUnit);
 
-					// Âü°í·Î, ÀÏ²ÛÀÇ Á¤Âû ÀÓ¹«¸¦ ÇØÁ¦ÇÏ·Á¸é, ´ÙÀ½°ú °°ÀÌ ÇÏ¸é µÈ´Ù
+					// ì°¸ê³ ë¡œ, ì¼ê¾¼ì˜ ì •ì°° ìž„ë¬´ë¥¼ í•´ì œí•˜ë ¤ë©´, ë‹¤ìŒê³¼ ê°™ì´ í•˜ë©´ ëœë‹¤
 					//WorkerManager::Instance().setIdleWorker(currentScoutUnit);
 				}
 			}
@@ -79,8 +79,8 @@ void ScoutManager::assignScoutIfNeeded()
 }
 
 
-// »ó´ë¹æ MainBaseLocation À§Ä¡¸¦ ¸ð¸£´Â »óÈ²ÀÌ¸é, StartLocation µé¿¡ ´ëÇØ ¾Æ±ºÀÇ MainBaseLocation¿¡¼­ °¡±î¿î °ÍºÎÅÍ ¼ø¼­´ë·Î Á¤Âû
-// »ó´ë¹æ MainBaseLocation À§Ä¡¸¦ ¾Æ´Â »óÈ²ÀÌ¸é, ÇØ´ç BaseLocation ÀÌ ÀÖ´Â RegionÀÇ °¡ÀåÀÚ¸®¸¦ µû¶ó °è¼Ó ÀÌµ¿ÇÔ (Á¤Âû À¯´ÖÀÌ Á×À»¶§±îÁö) 
+// ìƒëŒ€ë°© MainBaseLocation ìœ„ì¹˜ë¥¼ ëª¨ë¥´ëŠ” ìƒí™©ì´ë©´, StartLocation ë“¤ì— ëŒ€í•´ ì•„êµ°ì˜ MainBaseLocationì—ì„œ ê°€ê¹Œìš´ ê²ƒë¶€í„° ìˆœì„œëŒ€ë¡œ ì •ì°°
+// ìƒëŒ€ë°© MainBaseLocation ìœ„ì¹˜ë¥¼ ì•„ëŠ” ìƒí™©ì´ë©´, í•´ë‹¹ BaseLocation ì´ ìžˆëŠ” Regionì˜ ê°€ìž¥ìžë¦¬ë¥¼ ë”°ë¼ ê³„ì† ì´ë™í•¨ (ì •ì°° ìœ ë‹›ì´ ì£½ì„ë•Œê¹Œì§€) 
 void ScoutManager::moveScoutUnit()
 {
 	if (!currentScoutUnit || currentScoutUnit->exists() == false || currentScoutUnit->getHitPoints() <= 0 )
@@ -95,8 +95,8 @@ void ScoutManager::moveScoutUnit()
 
 	if (enemyBaseLocation == nullptr)
 	{
-		// currentScoutTargetBaseLocation °¡ null ÀÌ°Å³ª Á¤Âû À¯´ÖÀÌ currentScoutTargetBaseLocation ¿¡ µµÂøÇßÀ¸¸é 
-		// ¾Æ±º MainBaseLocation À¸·ÎºÎÅÍ °¡Àå °¡±î¿î ¹ÌÁ¤Âû BaseLocation À» »õ·Î¿î Á¤Âû ´ë»ó currentScoutTargetBaseLocation À¸·Î Àâ¾Æ¼­ ÀÌµ¿
+		// currentScoutTargetBaseLocation ê°€ null ì´ê±°ë‚˜ ì •ì°° ìœ ë‹›ì´ currentScoutTargetBaseLocation ì— ë„ì°©í–ˆìœ¼ë©´ 
+		// ì•„êµ° MainBaseLocation ìœ¼ë¡œë¶€í„° ê°€ìž¥ ê°€ê¹Œìš´ ë¯¸ì •ì°° BaseLocation ì„ ìƒˆë¡œìš´ ì •ì°° ëŒ€ìƒ currentScoutTargetBaseLocation ìœ¼ë¡œ ìž¡ì•„ì„œ ì´ë™
 		if (currentScoutTargetBaseLocation == nullptr || currentScoutUnit->getDistance(currentScoutTargetBaseLocation->getPosition()) < 5 * TILE_SIZE) 
 		{
 			currentScoutStatus = ScoutStatus::MovingToAnotherBaseLocation;
@@ -106,10 +106,10 @@ void ScoutManager::moveScoutUnit()
 			BWTA::BaseLocation * closestBaseLocation = nullptr;
 			for (BWTA::BaseLocation * startLocation : BWTA::getStartLocations())
 			{
-				// if we haven't explored it yet (¹æ¹®Çß¾ú´ø °÷Àº ´Ù½Ã °¡º¼ ÇÊ¿ä ¾øÀ½)
+				// if we haven't explored it yet (ë°©ë¬¸í–ˆì—ˆë˜ ê³³ì€ ë‹¤ì‹œ ê°€ë³¼ í•„ìš” ì—†ìŒ)
 				if (BWAPI::Broodwar->isExplored(startLocation->getTilePosition()) == false)
 				{
-					// GroundDistance ¸¦ ±âÁØÀ¸·Î °¡Àå °¡±î¿î °÷À¸·Î ¼±Á¤
+					// GroundDistance ë¥¼ ê¸°ì¤€ìœ¼ë¡œ ê°€ìž¥ ê°€ê¹Œìš´ ê³³ìœ¼ë¡œ ì„ ì •
 					tempDistance = (int)(InformationManager::Instance().getMainBaseLocation(BWAPI::Broodwar->self())->getGroundDistance(startLocation) + 0.5);
 				
 					if (tempDistance > 0 && tempDistance < closestDistance) {
@@ -203,8 +203,8 @@ BWAPI::Position ScoutManager::getScoutFleePositionFromEnemyRegionVertices()
 	}
 }
 
-// Enemy MainBaseLocation ÀÌ ÀÖ´Â Region ÀÇ °¡ÀåÀÚ¸®¸¦  enemyBaseRegionVertices ¿¡ ÀúÀåÇÑ´Ù
-// Region ³» ¸ðµç °Ç¹°À» Eliminate ½ÃÅ°±â À§ÇÑ Áöµµ Å½»ö ·ÎÁ÷ ÀÛ¼º½Ã Âü°íÇÒ ¼ö ÀÖ´Ù
+// Enemy MainBaseLocation ì´ ìžˆëŠ” Region ì˜ ê°€ìž¥ìžë¦¬ë¥¼  enemyBaseRegionVertices ì— ì €ìž¥í•œë‹¤
+// Region ë‚´ ëª¨ë“  ê±´ë¬¼ì„ Eliminate ì‹œí‚¤ê¸° ìœ„í•œ ì§€ë„ íƒìƒ‰ ë¡œì§ ìž‘ì„±ì‹œ ì°¸ê³ í•  ìˆ˜ ìžˆë‹¤
 void ScoutManager::calculateEnemyRegionVertices()
 {
 	BWTA::BaseLocation * enemyBaseLocation = InformationManager::Instance().getMainBaseLocation(BWAPI::Broodwar->enemy());
@@ -217,8 +217,8 @@ void ScoutManager::calculateEnemyRegionVertices()
 		return;
 	}
 
-	// ¾Æ±º Main BaseLocation À¸·ÎºÎÅÍ °¡±î¿î ¼ø¼­´ë·Î Á¤·ÄµÈ Å¸ÀÏµéÀÇ ÀüÃ¼ ¸ñ·ÏÀ» °®°í¿Í¼­, enemyRegion ¿¡ ÇØ´çÇÏ´Â Å¸ÀÏµé¸¸ Ãß·Á³»¸é, 
-	// enemyRegion ÀÇ Å¸ÀÏ Áß ¾Æ±º Main BaseLocation À¸·ÎºÎÅÍ °¡Àå °¡±î¿î ¼ø¼­´ë·Î Á¤·ÄµÈ Å¸ÀÏµéÀÇ ¸ñ·ÏÀ» ¸¸µé ¼ö ÀÖ´Ù
+	// ì•„êµ° Main BaseLocation ìœ¼ë¡œë¶€í„° ê°€ê¹Œìš´ ìˆœì„œëŒ€ë¡œ ì •ë ¬ëœ íƒ€ì¼ë“¤ì˜ ì „ì²´ ëª©ë¡ì„ ê°–ê³ ì™€ì„œ, enemyRegion ì— í•´ë‹¹í•˜ëŠ” íƒ€ì¼ë“¤ë§Œ ì¶”ë ¤ë‚´ë©´, 
+	// enemyRegion ì˜ íƒ€ì¼ ì¤‘ ì•„êµ° Main BaseLocation ìœ¼ë¡œë¶€í„° ê°€ìž¥ ê°€ê¹Œìš´ ìˆœì„œëŒ€ë¡œ ì •ë ¬ëœ íƒ€ì¼ë“¤ì˜ ëª©ë¡ì„ ë§Œë“¤ ìˆ˜ ìžˆë‹¤
 	const BWAPI::Position basePosition = BWAPI::Position(BWAPI::Broodwar->self()->getStartLocation());	
 	const std::vector<BWAPI::TilePosition> & closestTobase = MapTools::Instance().getClosestTilesTo(basePosition);
 
@@ -246,7 +246,7 @@ void ScoutManager::calculateEnemyRegionVertices()
 			surrounded = false;
 		}
 
-		// RegionÀÇ °¡ÀåÀÚ¸® Å¸ÀÏµé (surrounded µÇÁö ¾ÊÀº Å¸ÀÏµé)¸¸ Ãß°¡ÇÑ´Ù
+		// Regionì˜ ê°€ìž¥ìžë¦¬ íƒ€ì¼ë“¤ (surrounded ë˜ì§€ ì•Šì€ íƒ€ì¼ë“¤)ë§Œ ì¶”ê°€í•œë‹¤
 		// push the tiles that aren't surrounded 
 		if (!surrounded && BWAPI::Broodwar->isBuildable(tp))
 		{
