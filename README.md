@@ -74,6 +74,8 @@
 
   * [Eclipse](https://eclipse.org/)
 
+* 소스코드 파일 인코딩 방식 : UTF-8 (without signature /BOM)
+
 
 ## BasicBot 개발 History
 
