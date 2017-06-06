@@ -48,13 +48,13 @@ public class StrategyManager {
 			isInitialBuildOrderFinished = true;
 		}
 
-		//executeWorkerTraining();
+		executeWorkerTraining();
 
-		//executeSupplyManagement();
+		executeSupplyManagement();
 
-		//executeBasicCombatUnitTraining();
+		executeBasicCombatUnitTraining();
 
-		//executeCombat();
+		executeCombat();
 	}
 
 	public void setInitialBuildOrder() {

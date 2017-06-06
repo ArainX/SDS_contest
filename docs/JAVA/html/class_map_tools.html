@@ -26,7 +26,7 @@
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;">
    <div id="projectname">BasicBot
-   &#160;<span id="projectnumber">v0.9 beta</span>
+   &#160;<span id="projectnumber">v0.94 beta</span>
    </div>
    <div id="projectbrief">BasicBot for Starcraft: Broodwar 1.16.1 with BWAPI 4.1.2</div>
   </td>
@@ -93,6 +93,9 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <div class="summary">
 <a href="#pub-methods">Public Member Functions</a> &#124;
 <a href="#pub-static-methods">Static Public Member Functions</a> &#124;
+<a href="#pri-methods">Private Member Functions</a> &#124;
+<a href="#pri-attribs">Private Attributes</a> &#124;
+<a href="#pri-static-attribs">Static Private Attributes</a> &#124;
 <a href="class_map_tools-members.html">List of all members</a>  </div>
   <div class="headertitle">
 <div class="title">MapTools Class Reference</div>  </div>
@@ -126,6 +129,31 @@ Public Member Functions</h2></td></tr>
 Static Public Member Functions</h2></td></tr>
 <tr class="memitem:adc6318557433d94d445b6d34431a1c5f"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="class_map_tools.html">MapTools</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_map_tools.html#adc6318557433d94d445b6d34431a1c5f">Instance</a> ()</td></tr>
 <tr class="separator:adc6318557433d94d445b6d34431a1c5f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-methods"></a>
+Private Member Functions</h2></td></tr>
+<tr class="memitem:ad332c2a3ee8ac8dc6a1f02994bd90ced"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_map_tools.html#ad332c2a3ee8ac8dc6a1f02994bd90ced">getGroundDistance</a> (Position origin, Position destination)</td></tr>
+<tr class="separator:ad332c2a3ee8ac8dc6a1f02994bd90ced"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-attribs"></a>
+Private Attributes</h2></td></tr>
+<tr class="memitem:a2e38d6329bd8a5e18388543acc24cafd"><td class="memItemLeft" align="right" valign="top">Map&lt; Position, <a class="el" href="class_distance_map.html">DistanceMap</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_map_tools.html#a2e38d6329bd8a5e18388543acc24cafd">allMaps</a> = new HashMap&lt;Position, <a class="el" href="class_distance_map.html">DistanceMap</a>&gt;()</td></tr>
+<tr class="separator:a2e38d6329bd8a5e18388543acc24cafd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a455364f71b4eec0b74f093059fb63d02"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_map_tools.html#a455364f71b4eec0b74f093059fb63d02">cols</a></td></tr>
+<tr class="separator:a455364f71b4eec0b74f093059fb63d02"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab6e188ecddf941abbf3fadd1de1047a5"><td class="memItemLeft" align="right" valign="top">int[]&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_map_tools.html#ab6e188ecddf941abbf3fadd1de1047a5">fringe</a></td></tr>
+<tr class="separator:ab6e188ecddf941abbf3fadd1de1047a5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0d43d0285d04df767a93121748f7ba11"><td class="memItemLeft" align="right" valign="top">boolean[]&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_map_tools.html#a0d43d0285d04df767a93121748f7ba11">map</a></td></tr>
+<tr class="separator:a0d43d0285d04df767a93121748f7ba11"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5216d974ec75e7274787b8e8335bbc36"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_map_tools.html#a5216d974ec75e7274787b8e8335bbc36">rows</a></td></tr>
+<tr class="separator:a5216d974ec75e7274787b8e8335bbc36"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa99c2306e363e133cb05af139c92af47"><td class="memItemLeft" align="right" valign="top">boolean[]&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_map_tools.html#aa99c2306e363e133cb05af139c92af47">units</a></td></tr>
+<tr class="separator:aa99c2306e363e133cb05af139c92af47"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-static-attribs"></a>
+Static Private Attributes</h2></td></tr>
+<tr class="memitem:a8c97db0065b4bee6f38d0d12227ff41b"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="class_map_tools.html">MapTools</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_map_tools.html#a8c97db0065b4bee6f38d0d12227ff41b">instance</a> = new <a class="el" href="class_map_tools.html">MapTools</a>()</td></tr>
+<tr class="separator:a8c97db0065b4bee6f38d0d12227ff41b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>provides useful tools for analyzing the starcraft map calculates connectivity and distances using flood fills </p>
@@ -146,7 +174,53 @@ Static Public Member Functions</h2></td></tr>
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
-<a class="anchor" id="adc6318557433d94d445b6d34431a1c5f"></a>
+<a class="anchor" id="a1cf1d2b6dfdab15048a492c68eaee0ec"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void MapTools.computeDistance </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="class_distance_map.html">DistanceMap</a>&#160;</td>
+          <td class="paramname"><em>dmap</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">final Position&#160;</td>
+          <td class="paramname"><em>p</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>computes walk distance from Position P to all other points on the map </p>
+
+</div>
+</div>
+<a class="anchor" id="a2bdbc06f460e1fac1b1d60bb69631764"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">final Vector&lt;TilePosition&gt; MapTools.getClosestTilesTo </td>
+          <td>(</td>
+          <td class="paramtype">Position&#160;</td>
+          <td class="paramname"><em>pos</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Position 에서 가까운 순서대로 타일의 목록을 반환한다 </p>
+
+</div>
+</div>
+<a class="anchor" id="ad332c2a3ee8ac8dc6a1f02994bd90ced"></a>
 <div class="memitem">
 <div class="memproto">
 <table class="mlabels">
@@ -154,20 +228,31 @@ Static Public Member Functions</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">static <a class="el" href="class_map_tools.html">MapTools</a> MapTools.Instance </td>
+          <td class="memname">int MapTools.getGroundDistance </td>
           <td>(</td>
-          <td class="paramname"></td><td>)</td>
+          <td class="paramtype">Position&#160;</td>
+          <td class="paramname"><em>origin</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
           <td></td>
+          <td class="paramtype">Position&#160;</td>
+          <td class="paramname"><em>destination</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
         </tr>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
 
-<p>static singleton 객체를 리턴합니다 </p>
+<p>from 에서 to 까지 지상유닛이 이동할 경우의 거리 (walk distance) </p>
 
 </div>
 </div>
@@ -199,29 +284,44 @@ Static Public Member Functions</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="ae5bebc1c37b782e81631ade39045e8e1"></a>
+<a class="anchor" id="a198ece507257a2bdb51f5c5498ee1559"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">final boolean MapTools.unexplored </td>
+          <td class="memname">TilePosition MapTools.getTilePosition </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="class_distance_map.html">DistanceMap</a>&#160;</td>
-          <td class="paramname"><em>dmap</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>index</em></td><td>)</td>
           <td></td>
-          <td class="paramtype">final int&#160;</td>
-          <td class="paramname"><em>index</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
         </tr>
       </table>
 </div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="adc6318557433d94d445b6d34431a1c5f"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static <a class="el" href="class_map_tools.html">MapTools</a> MapTools.Instance </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>static singleton 객체를 리턴합니다 </p>
 
 </div>
 </div>
@@ -242,23 +342,6 @@ Static Public Member Functions</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="a0759ec4a227de0146e5b7e9b701575b5"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void MapTools.setBWAPIMapData </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>reads in the map data from bwapi and stores it in our map format </p>
-
-</div>
-</div>
 <a class="anchor" id="a5b50cbcf925c6bb2ba124b8304a7d810"></a>
 <div class="memitem">
 <div class="memproto">
@@ -271,34 +354,6 @@ Static Public Member Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-
-</div>
-</div>
-<a class="anchor" id="a1cf1d2b6dfdab15048a492c68eaee0ec"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void MapTools.computeDistance </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="class_distance_map.html">DistanceMap</a>&#160;</td>
-          <td class="paramname"><em>dmap</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">final Position&#160;</td>
-          <td class="paramname"><em>p</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>computes walk distance from Position P to all other points on the map </p>
 
 </div>
 </div>
@@ -334,37 +389,195 @@ Static Public Member Functions</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="a2bdbc06f460e1fac1b1d60bb69631764"></a>
+<a class="anchor" id="a0759ec4a227de0146e5b7e9b701575b5"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">final Vector&lt;TilePosition&gt; MapTools.getClosestTilesTo </td>
+          <td class="memname">void MapTools.setBWAPIMapData </td>
           <td>(</td>
-          <td class="paramtype">Position&#160;</td>
-          <td class="paramname"><em>pos</em></td><td>)</td>
+          <td class="paramname"></td><td>)</td>
           <td></td>
         </tr>
       </table>
 </div><div class="memdoc">
 
-<p>Position 에서 가까운 순서대로 타일의 목록을 반환한다 </p>
+<p>reads in the map data from bwapi and stores it in our map format </p>
 
 </div>
 </div>
-<a class="anchor" id="a198ece507257a2bdb51f5c5498ee1559"></a>
+<a class="anchor" id="ae5bebc1c37b782e81631ade39045e8e1"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">TilePosition MapTools.getTilePosition </td>
+          <td class="memname">final boolean MapTools.unexplored </td>
           <td>(</td>
-          <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>index</em></td><td>)</td>
+          <td class="paramtype"><a class="el" href="class_distance_map.html">DistanceMap</a>&#160;</td>
+          <td class="paramname"><em>dmap</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
           <td></td>
+          <td class="paramtype">final int&#160;</td>
+          <td class="paramname"><em>index</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
         </tr>
       </table>
 </div><div class="memdoc">
+
+</div>
+</div>
+<h2 class="groupheader">Member Data Documentation</h2>
+<a class="anchor" id="a2e38d6329bd8a5e18388543acc24cafd"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">Map&lt;Position, <a class="el" href="class_distance_map.html">DistanceMap</a>&gt; MapTools.allMaps = new HashMap&lt;Position, <a class="el" href="class_distance_map.html">DistanceMap</a>&gt;()</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>a cache of already computed distance maps </p>
+
+</div>
+</div>
+<a class="anchor" id="a455364f71b4eec0b74f093059fb63d02"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int MapTools.cols</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="ab6e188ecddf941abbf3fadd1de1047a5"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int [] MapTools.fringe</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>the fringe vector which is used as a sort of 'open list' </p>
+
+</div>
+</div>
+<a class="anchor" id="a8c97db0065b4bee6f38d0d12227ff41b"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_map_tools.html">MapTools</a> MapTools.instance = new <a class="el" href="class_map_tools.html">MapTools</a>()</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="a0d43d0285d04df767a93121748f7ba11"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">boolean [] MapTools.map</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>the map stored at TilePosition resolution, values are 0/1 for walkable or not walkable </p>
+
+</div>
+</div>
+<a class="anchor" id="a5216d974ec75e7274787b8e8335bbc36"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int MapTools.rows</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="aa99c2306e363e133cb05af139c92af47"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">boolean [] MapTools.units</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>map that stores whether a unit is on this position </p>
 
 </div>
 </div>
@@ -372,7 +585,7 @@ Static Public Member Functions</h2></td></tr>
 <!-- HTML footer for doxygen 1.8.8-->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Mon May 29 2017 22:47:42 for BasicBot by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Fri Jun 2 2017 17:03:25 for BasicBot by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.8
 </small></address>

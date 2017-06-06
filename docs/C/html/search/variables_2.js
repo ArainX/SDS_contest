@@ -1,17 +1,17 @@
 var searchData=
 [
-  ['desiredposition',['desiredPosition',['../class_my_bot_1_1_construction_task.html#ad893d8338cb421ddd350f55a8d10360f',1,'MyBot::ConstructionTask']]],
-  ['drawbuildinginfo',['DrawBuildingInfo',['../namespace_config_1_1_debug.html#ae6e5e968e87552ff013bb1f5a642d468',1,'Config::Debug']]],
-  ['drawbwtainfo',['DrawBWTAInfo',['../namespace_config_1_1_debug.html#a4e7e9918b9a153d5c48b29995fc6cf22',1,'Config::Debug']]],
-  ['drawenemyunitinfo',['DrawEnemyUnitInfo',['../namespace_config_1_1_debug.html#a59abfdfb0426cd3901c290e358f15dcc',1,'Config::Debug']]],
-  ['drawgameinfo',['DrawGameInfo',['../namespace_config_1_1_debug.html#ae7d08a487248ce32529f390223e2ccb4',1,'Config::Debug']]],
-  ['drawmapgrid',['DrawMapGrid',['../namespace_config_1_1_debug.html#a92517230b668806d78c69a1aace8c1bb',1,'Config::Debug']]],
-  ['drawmousecursorinfo',['DrawMouseCursorInfo',['../namespace_config_1_1_debug.html#a95c75b09f5d2ce6e78b2d9f811f1d005',1,'Config::Debug']]],
-  ['drawproductioninfo',['DrawProductionInfo',['../namespace_config_1_1_debug.html#af5bfbc58af605fb2ea4075e07ed095dc',1,'Config::Debug']]],
-  ['drawreservedbuildingtiles',['DrawReservedBuildingTiles',['../namespace_config_1_1_debug.html#adef6edcfc1a8b500fcc312ba7c6d8753',1,'Config::Debug']]],
-  ['drawresourceinfo',['DrawResourceInfo',['../namespace_config_1_1_debug.html#a06c9f5be3b080005c15d7ac5643479da',1,'Config::Debug']]],
-  ['drawscoutinfo',['DrawScoutInfo',['../namespace_config_1_1_debug.html#a895e4645c8b4ac78a2d857df73fc5c29',1,'Config::Debug']]],
-  ['drawunithealthbars',['DrawUnitHealthBars',['../namespace_config_1_1_debug.html#a02cfdc01935e2c15783f3468c783b092',1,'Config::Debug']]],
-  ['drawunittargetinfo',['DrawUnitTargetInfo',['../namespace_config_1_1_debug.html#a1bd827f96da843474cd81e4124dbfc2e',1,'Config::Debug']]],
-  ['drawworkerinfo',['DrawWorkerInfo',['../namespace_config_1_1_debug.html#a5aa452ed55bab1ae51df6c2813d93ed5',1,'Config::Debug']]]
+  ['cells',['cells',['../class_my_bot_1_1_map_grid.html#a33b965d54e0562169595fb0d3e2b75eb',1,'MyBot::MapGrid']]],
+  ['cellsize',['cellSize',['../class_my_bot_1_1_map_grid.html#aa78677d2b0331e971e10525274a7c310',1,'MyBot::MapGrid']]],
+  ['center',['center',['../class_my_bot_1_1_grid_cell.html#a91f29b55e1e2db3f9113dd862d6850c0',1,'MyBot::GridCell']]],
+  ['cols',['cols',['../class_my_bot_1_1_distance_map.html#aa5b5a18657798e2c7d3d8b201b52f5a6',1,'MyBot::DistanceMap::cols()'],['../class_my_bot_1_1_map_grid.html#ae6867c38fb21a47f6235e698536e8aea',1,'MyBot::MapGrid::cols()']]],
+  ['completed',['completed',['../struct_my_bot_1_1_unit_info.html#a68723884632bd9e6af9e845a3dca03a6',1,'MyBot::UnitInfo']]],
+  ['constructionqueue',['constructionQueue',['../class_my_bot_1_1_construction_manager.html#a49fb0134db71f0faa957b8f0f2eed1d8',1,'MyBot::ConstructionManager']]],
+  ['constructionworker',['constructionWorker',['../class_my_bot_1_1_construction_task.html#a0fa717d77aa70f60049d26bae80c4fa0',1,'MyBot::ConstructionTask']]],
+  ['currentrepairworker',['currentRepairWorker',['../class_my_bot_1_1_worker_manager.html#a04cfde66336fcc5369e3a1d69ccb3ddc',1,'MyBot::WorkerManager']]],
+  ['currentscoutfreetovertexindex',['currentScoutFreeToVertexIndex',['../class_my_bot_1_1_scout_manager.html#af529507f3892e8c4e5c0ab2af36c35c6',1,'MyBot::ScoutManager']]],
+  ['currentscoutstatus',['currentScoutStatus',['../class_my_bot_1_1_scout_manager.html#a091ba2ebbb6d5c489e629cb5856c5648',1,'MyBot::ScoutManager']]],
+  ['currentscouttargetbaselocation',['currentScoutTargetBaseLocation',['../class_my_bot_1_1_scout_manager.html#a582514020a7010aac10d2422f04b4fe5',1,'MyBot::ScoutManager']]],
+  ['currentscouttargetdistance',['currentScoutTargetDistance',['../class_my_bot_1_1_scout_manager.html#a40100af0dfd8509cf0c2399390c6959c',1,'MyBot::ScoutManager']]],
+  ['currentscouttargetposition',['currentScoutTargetPosition',['../class_my_bot_1_1_scout_manager.html#a04f596f9322bf050bbd1f9684ca743a0',1,'MyBot::ScoutManager']]],
+  ['currentscoutunit',['currentScoutUnit',['../class_my_bot_1_1_scout_manager.html#a06654abc56a96e06c984a8211357813c',1,'MyBot::ScoutManager']]]
 ];

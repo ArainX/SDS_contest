@@ -26,7 +26,7 @@
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;">
    <div id="projectname">BasicBot
-   &#160;<span id="projectnumber">v0.9 beta</span>
+   &#160;<span id="projectnumber">v0.94 beta</span>
    </div>
    <div id="projectbrief">BasicBot for Starcraft: Broodwar 1.16.1 with BWAPI 4.1.2</div>
   </td>
@@ -93,12 +93,18 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <div class="summary">
 <a href="#nested-classes">Classes</a> &#124;
 <a href="#pub-methods">Public Member Functions</a> &#124;
+<a href="#pri-attribs">Private Attributes</a> &#124;
 <a href="class_build_order_queue-members.html">List of all members</a>  </div>
   <div class="headertitle">
 <div class="title">BuildOrderQueue Class Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
 <table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="nested-classes"></a>
+Classes</h2></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="enum_build_order_queue_1_1_seed_position_strategy.html">SeedPositionStrategy</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:a046cdbd06bb730f1f9161116cdae2281"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_build_order_queue.html#a046cdbd06bb730f1f9161116cdae2281">BuildOrderQueue</a> ()</td></tr>
@@ -199,6 +205,21 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:a3f1c3a6737e7e363eb26392d5225822d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aeed2fcfa3bde83a11d32a13195f15cee"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_build_order_queue.html#aeed2fcfa3bde83a11d32a13195f15cee">skipCurrentItem</a> ()</td></tr>
 <tr class="separator:aeed2fcfa3bde83a11d32a13195f15cee"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-attribs"></a>
+Private Attributes</h2></td></tr>
+<tr class="memitem:a13211704b5e5cf89d814b264aa102829"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_build_order_queue.html#a13211704b5e5cf89d814b264aa102829">defaultPrioritySpacing</a></td></tr>
+<tr class="separator:a13211704b5e5cf89d814b264aa102829"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac382f786e4ece127283e72ce471839a1"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_build_order_queue.html#ac382f786e4ece127283e72ce471839a1">highestPriority</a></td></tr>
+<tr class="separator:ac382f786e4ece127283e72ce471839a1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0d2ce8eb95509df3182364cfb200f2dc"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_build_order_queue.html#a0d2ce8eb95509df3182364cfb200f2dc">lowestPriority</a></td></tr>
+<tr class="separator:a0d2ce8eb95509df3182364cfb200f2dc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a94a032c05a54b5e0bf12957f96c91c32"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_build_order_queue.html#a94a032c05a54b5e0bf12957f96c91c32">numSkippedItems</a></td></tr>
+<tr class="separator:a94a032c05a54b5e0bf12957f96c91c32"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a74baf4372edc634e9239f4b508167190"><td class="memItemLeft" align="right" valign="top">Deque&lt; <a class="el" href="class_build_order_item.html">BuildOrderItem</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_build_order_queue.html#a74baf4372edc634e9239f4b508167190">queue</a> = new ArrayDeque&lt;<a class="el" href="class_build_order_item.html">BuildOrderItem</a>&gt;()</td></tr>
+<tr class="separator:a74baf4372edc634e9239f4b508167190"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae155eaf1f519b6c356a7a9328c64158c"><td class="memItemLeft" align="right" valign="top"><a class="el" href="enum_build_order_queue_1_1_seed_position_strategy.html">SeedPositionStrategy</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_build_order_queue.html#ae155eaf1f519b6c356a7a9328c64158c">seedLocationStrategy</a></td></tr>
+<tr class="separator:ae155eaf1f519b6c356a7a9328c64158c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>빌드 오더 목록 자료구조 class </p>
@@ -219,6 +240,21 @@ Public Member Functions</h2></td></tr>
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
+<a class="anchor" id="a39e621148e071c13bfe0872ca2cecb48"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">boolean BuildOrderQueue.canSkipCurrentItem </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
 <a class="anchor" id="ad18c479cb303d3facbc6469e01d81182"></a>
 <div class="memitem">
 <div class="memproto">
@@ -242,23 +278,6 @@ Public Member Functions</h2></td></tr>
       <table class="memname">
         <tr>
           <td class="memname"><a class="el" href="class_build_order_item.html">BuildOrderItem</a> BuildOrderQueue.getHighestPriorityItem </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>returns the highest priority item </p>
-
-</div>
-</div>
-<a class="anchor" id="aa77aad2859549fe2106329b937bacd4d"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="class_build_order_item.html">BuildOrderItem</a> BuildOrderQueue.getNextItem </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td></td>
@@ -392,12 +411,12 @@ Public Member Functions</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="aeed2fcfa3bde83a11d32a13195f15cee"></a>
+<a class="anchor" id="aa77aad2859549fe2106329b937bacd4d"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void BuildOrderQueue.skipCurrentItem </td>
+          <td class="memname"><a class="el" href="class_build_order_item.html">BuildOrderItem</a> BuildOrderQueue.getNextItem </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td></td>
@@ -405,16 +424,16 @@ Public Member Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>increments skippedItems </p>
+<p>returns the highest priority item </p>
 
 </div>
 </div>
-<a class="anchor" id="a39e621148e071c13bfe0872ca2cecb48"></a>
+<a class="anchor" id="a8516a80b9582e33df199598ae0479b41"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">boolean BuildOrderQueue.canSkipCurrentItem </td>
+          <td class="memname">Deque&lt;<a class="el" href="class_build_order_item.html">BuildOrderItem</a>&gt; BuildOrderQueue.getQueue </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td></td>
@@ -424,21 +443,36 @@ Public Member Functions</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="a69b240921623698b4d82afe8109ff7f3"></a>
+<a class="anchor" id="ab42b0adce134d59e7240311870de8d0f"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void BuildOrderQueue.queueItem </td>
+          <td class="memname">boolean BuildOrderQueue.isEmpty </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="class_build_order_item.html">BuildOrderItem</a>&#160;</td>
-          <td class="paramname"><em>b</em></td><td>)</td>
+          <td class="paramname"></td><td>)</td>
           <td></td>
         </tr>
       </table>
 </div><div class="memdoc">
 
-<p>queues something with a given priority </p>
+</div>
+</div>
+<a class="anchor" id="a6a28d8094b23f7461cb1d98a5ce8545f"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_build_order_item.html">BuildOrderItem</a> BuildOrderQueue.operator </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>i</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>overload the bracket operator for ease of use </p>
 
 </div>
 </div>
@@ -1282,20 +1316,21 @@ Public Member Functions</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="ae7f1f4a1feadec6842737bf032d9166f"></a>
+<a class="anchor" id="a69b240921623698b4d82afe8109ff7f3"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void BuildOrderQueue.removeHighestPriorityItem </td>
+          <td class="memname">void BuildOrderQueue.queueItem </td>
           <td>(</td>
-          <td class="paramname"></td><td>)</td>
+          <td class="paramtype"><a class="el" href="class_build_order_item.html">BuildOrderItem</a>&#160;</td>
+          <td class="paramname"><em>b</em></td><td>)</td>
           <td></td>
         </tr>
       </table>
 </div><div class="memdoc">
 
-<p>removes the highest priority item </p>
+<p>queues something with a given priority </p>
 
 </div>
 </div>
@@ -1316,6 +1351,23 @@ Public Member Functions</h2></td></tr>
 
 </div>
 </div>
+<a class="anchor" id="ae7f1f4a1feadec6842737bf032d9166f"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void BuildOrderQueue.removeHighestPriorityItem </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>removes the highest priority item </p>
+
+</div>
+</div>
 <a class="anchor" id="a3f1c3a6737e7e363eb26392d5225822d"></a>
 <div class="memitem">
 <div class="memproto">
@@ -1333,12 +1385,12 @@ Public Member Functions</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="ab42b0adce134d59e7240311870de8d0f"></a>
+<a class="anchor" id="aeed2fcfa3bde83a11d32a13195f15cee"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">boolean BuildOrderQueue.isEmpty </td>
+          <td class="memname">void BuildOrderQueue.skipCurrentItem </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td></td>
@@ -1346,37 +1398,131 @@ Public Member Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>increments skippedItems </p>
+
 </div>
 </div>
-<a class="anchor" id="a6a28d8094b23f7461cb1d98a5ce8545f"></a>
+<h2 class="groupheader">Member Data Documentation</h2>
+<a class="anchor" id="a13211704b5e5cf89d814b264aa102829"></a>
 <div class="memitem">
 <div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="class_build_order_item.html">BuildOrderItem</a> BuildOrderQueue.operator </td>
-          <td>(</td>
-          <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>i</em></td><td>)</td>
-          <td></td>
+          <td class="memname">int BuildOrderQueue.defaultPrioritySpacing</td>
         </tr>
       </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
 </div><div class="memdoc">
 
-<p>overload the bracket operator for ease of use </p>
+</div>
+</div>
+<a class="anchor" id="ac382f786e4ece127283e72ce471839a1"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int BuildOrderQueue.highestPriority</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
 
 </div>
 </div>
-<a class="anchor" id="a8516a80b9582e33df199598ae0479b41"></a>
+<a class="anchor" id="a0d2ce8eb95509df3182364cfb200f2dc"></a>
 <div class="memitem">
 <div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">Deque&lt;<a class="el" href="class_build_order_item.html">BuildOrderItem</a>&gt; BuildOrderQueue.getQueue </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
+          <td class="memname">int BuildOrderQueue.lowestPriority</td>
         </tr>
       </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="a94a032c05a54b5e0bf12957f96c91c32"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int BuildOrderQueue.numSkippedItems</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>iteration 을 하기 위한 참고값 highest priority 인 <a class="el" href="class_build_order_item.html" title="빌드 명령 ">BuildOrderItem</a> 으로부터 몇개나 skip 했는가. </p>
+
+</div>
+</div>
+<a class="anchor" id="a74baf4372edc634e9239f4b508167190"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">Deque&lt;<a class="el" href="class_build_order_item.html">BuildOrderItem</a>&gt; BuildOrderQueue.queue = new ArrayDeque&lt;<a class="el" href="class_build_order_item.html">BuildOrderItem</a>&gt;()</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p><a class="el" href="class_build_order_item.html" title="빌드 명령 ">BuildOrderItem</a> 들을 Double Ended Queue 자료구조로 관리합니다 lowest priority 인 BuildOrderItem은 front 에, highest priority 인 <a class="el" href="class_build_order_item.html" title="빌드 명령 ">BuildOrderItem</a> 은 back 에 위치하게 합니다 </p>
+
+</div>
+</div>
+<a class="anchor" id="ae155eaf1f519b6c356a7a9328c64158c"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="enum_build_order_queue_1_1_seed_position_strategy.html">SeedPositionStrategy</a> BuildOrderQueue.seedLocationStrategy</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
 </div><div class="memdoc">
 
 </div>
@@ -1385,7 +1531,7 @@ Public Member Functions</h2></td></tr>
 <!-- HTML footer for doxygen 1.8.8-->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Mon May 29 2017 22:47:41 for BasicBot by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Fri Jun 2 2017 17:03:24 for BasicBot by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.8
 </small></address>

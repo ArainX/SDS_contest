@@ -26,7 +26,7 @@
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;">
    <div id="projectname">BasicBot
-   &#160;<span id="projectnumber">v0.9 beta</span>
+   &#160;<span id="projectnumber">v0.94 beta</span>
    </div>
    <div id="projectbrief">BasicBot for Starcraft: Broodwar 1.16.1 with BWAPI 4.1.2</div>
   </td>
@@ -93,6 +93,8 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <div class="summary">
 <a href="#pub-methods">Public Member Functions</a> &#124;
 <a href="#pub-static-methods">Static Public Member Functions</a> &#124;
+<a href="#pri-attribs">Private Attributes</a> &#124;
+<a href="#pri-static-attribs">Static Private Attributes</a> &#124;
 <a href="class_strategy_manager-members.html">List of all members</a>  </div>
   <div class="headertitle">
 <div class="title">StrategyManager Class Reference</div>  </div>
@@ -124,6 +126,20 @@ Public Member Functions</h2></td></tr>
 Static Public Member Functions</h2></td></tr>
 <tr class="memitem:a8754cb7b442c724bd4b26b9721113d2c"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="class_strategy_manager.html">StrategyManager</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_strategy_manager.html#a8754cb7b442c724bd4b26b9721113d2c">Instance</a> ()</td></tr>
 <tr class="separator:a8754cb7b442c724bd4b26b9721113d2c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-attribs"></a>
+Private Attributes</h2></td></tr>
+<tr class="memitem:aab7f0a8155528ddb06f80f28d670e246"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_command_util.html">CommandUtil</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_strategy_manager.html#aab7f0a8155528ddb06f80f28d670e246">commandUtil</a> = new <a class="el" href="class_command_util.html">CommandUtil</a>()</td></tr>
+<tr class="separator:aab7f0a8155528ddb06f80f28d670e246"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8427ef855c04c001f5132a3933be7486"><td class="memItemLeft" align="right" valign="top">boolean&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_strategy_manager.html#a8427ef855c04c001f5132a3933be7486">isFullScaleAttackStarted</a></td></tr>
+<tr class="separator:a8427ef855c04c001f5132a3933be7486"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aad67fe45e44d68cfd31c7fe64e38bd2c"><td class="memItemLeft" align="right" valign="top">boolean&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_strategy_manager.html#aad67fe45e44d68cfd31c7fe64e38bd2c">isInitialBuildOrderFinished</a></td></tr>
+<tr class="separator:aad67fe45e44d68cfd31c7fe64e38bd2c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-static-attribs"></a>
+Static Private Attributes</h2></td></tr>
+<tr class="memitem:aa181c3f33cd0d77c19e9ce4546428f50"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="class_strategy_manager.html">StrategyManager</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_strategy_manager.html#aa181c3f33cd0d77c19e9ce4546428f50">instance</a> = new <a class="el" href="class_strategy_manager.html">StrategyManager</a>()</td></tr>
+<tr class="separator:aa181c3f33cd0d77c19e9ce4546428f50"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>상황을 판단하여, 정찰, 빌드, 공격, 방어 등을 수행하도록 총괄 지휘를 하는 class <a class="el" href="class_information_manager.html" title="게임 상황정보 중 일부를 자체 자료구조 및 변수들에 저장하고 업데이트하는 class 현재 게임 상황정보는 BW...">InformationManager</a> 에 있는 정보들로부터 상황을 판단하고, <a class="el" href="class_build_manager.html" title="빌드(건물 건설 / 유닛 훈련 / 테크 리서치 / 업그레이드) 명령을 순차적으로 실행하기 위해 빌드 큐를 관리...">BuildManager</a> 의 buildQueue에 빌드 (건물 건설 / 유닛 훈련 / 테크 리서치 / 업그레이드) 명령을 입력합니다. 정찰, 빌드, 공격, 방어 등을 수행하는 코드가 들어가는 class </p>
@@ -144,128 +160,6 @@ Static Public Member Functions</h2></td></tr>
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
-<a class="anchor" id="a8754cb7b442c724bd4b26b9721113d2c"></a>
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">static <a class="el" href="class_strategy_manager.html">StrategyManager</a> StrategyManager.Instance </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">static</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>static singleton 객체를 리턴합니다 </p>
-
-</div>
-</div>
-<a class="anchor" id="a1b465e188d453d09190be634db1a6d5c"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void StrategyManager.onStart </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>경기가 시작될 때 일회적으로 전략 초기 세팅 관련 로직을 실행합니다 </p>
-
-</div>
-</div>
-<a class="anchor" id="aaa482622ac37a231703e795ef4718ac5"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void StrategyManager.onEnd </td>
-          <td>(</td>
-          <td class="paramtype">boolean&#160;</td>
-          <td class="paramname"><em>isWinner</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>경기가 종료될 때 일회적으로 전략 결과 정리 관련 로직을 실행합니다 </p>
-
-</div>
-</div>
-<a class="anchor" id="ac2b9a1a1a9cadcff8ad5fedf3c481856"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void StrategyManager.update </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>경기 진행 중 매 프레임마다 경기 전략 관련 로직을 실행합니다 </p>
-
-</div>
-</div>
-<a class="anchor" id="aad8d20ae0b7c4115783b96c7c6021aa2"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void StrategyManager.setInitialBuildOrder </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-</div>
-</div>
-<a class="anchor" id="ad027705574b93ae0e92e190bf791b95e"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void StrategyManager.executeWorkerTraining </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-</div>
-</div>
-<a class="anchor" id="a5f9939e2b2eb43c32554aee3e15ac74f"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void StrategyManager.executeSupplyManagement </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-</div>
-</div>
 <a class="anchor" id="a06f8dbe2c67dd21a30f3fe4abeda70b2"></a>
 <div class="memitem">
 <div class="memproto">
@@ -296,11 +190,214 @@ Static Public Member Functions</h2></td></tr>
 
 </div>
 </div>
+<a class="anchor" id="a5f9939e2b2eb43c32554aee3e15ac74f"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void StrategyManager.executeSupplyManagement </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="ad027705574b93ae0e92e190bf791b95e"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void StrategyManager.executeWorkerTraining </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="a8754cb7b442c724bd4b26b9721113d2c"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static <a class="el" href="class_strategy_manager.html">StrategyManager</a> StrategyManager.Instance </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>static singleton 객체를 리턴합니다 </p>
+
+</div>
+</div>
+<a class="anchor" id="aaa482622ac37a231703e795ef4718ac5"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void StrategyManager.onEnd </td>
+          <td>(</td>
+          <td class="paramtype">boolean&#160;</td>
+          <td class="paramname"><em>isWinner</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>경기가 종료될 때 일회적으로 전략 결과 정리 관련 로직을 실행합니다 </p>
+
+</div>
+</div>
+<a class="anchor" id="a1b465e188d453d09190be634db1a6d5c"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void StrategyManager.onStart </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>경기가 시작될 때 일회적으로 전략 초기 세팅 관련 로직을 실행합니다 </p>
+
+</div>
+</div>
+<a class="anchor" id="aad8d20ae0b7c4115783b96c7c6021aa2"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void StrategyManager.setInitialBuildOrder </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="ac2b9a1a1a9cadcff8ad5fedf3c481856"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void StrategyManager.update </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>경기 진행 중 매 프레임마다 경기 전략 관련 로직을 실행합니다 </p>
+
+</div>
+</div>
+<h2 class="groupheader">Member Data Documentation</h2>
+<a class="anchor" id="aab7f0a8155528ddb06f80f28d670e246"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_command_util.html">CommandUtil</a> StrategyManager.commandUtil = new <a class="el" href="class_command_util.html">CommandUtil</a>()</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="aa181c3f33cd0d77c19e9ce4546428f50"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_strategy_manager.html">StrategyManager</a> StrategyManager.instance = new <a class="el" href="class_strategy_manager.html">StrategyManager</a>()</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="a8427ef855c04c001f5132a3933be7486"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">boolean StrategyManager.isFullScaleAttackStarted</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="aad67fe45e44d68cfd31c7fe64e38bd2c"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">boolean StrategyManager.isInitialBuildOrderFinished</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
 </div><!-- contents -->
 <!-- HTML footer for doxygen 1.8.8-->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Mon May 29 2017 22:47:42 for BasicBot by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Fri Jun 2 2017 17:03:25 for BasicBot by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.8
 </small></address>

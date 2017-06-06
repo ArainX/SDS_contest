@@ -1,11 +1,11 @@
 var searchData=
 [
-  ['mainbasebackyard',['MainBaseBackYard',['../enum_build_order_item_1_1_seed_position_strategy.html#a52775021c309e743aa71d8988fdcf9ee',1,'BuildOrderItem::SeedPositionStrategy']]],
-  ['mainbaselocation',['MainBaseLocation',['../enum_build_order_item_1_1_seed_position_strategy.html#aec4c9d7ad746865a2c5d85442ab0dce2',1,'BuildOrderItem::SeedPositionStrategy']]],
-  ['map_5fgrid_5fsize',['MAP_GRID_SIZE',['../class_config.html#a1f43e95a74e8690d43d74bef5c01b664',1,'Config']]],
-  ['metatype',['metaType',['../class_build_order_item.html#a3d3d678565e687c2a6f781e62aa4e9c4',1,'BuildOrderItem']]],
-  ['minerals',['Minerals',['../enum_worker_data_1_1_worker_job.html#a9d863bf4dd167df1cd679fd3bd9aa54d',1,'WorkerData::WorkerJob']]],
-  ['move',['Move',['../enum_worker_data_1_1_worker_job.html#a36cddc5cc56d0ce157b56c237077faa6',1,'WorkerData::WorkerJob']]],
-  ['movearoundenemybaselocation',['MoveAroundEnemyBaseLocation',['../enum_scout_manager_1_1_scout_status.html#a8b7994593be783613743bba7fa0b8efc',1,'ScoutManager::ScoutStatus']]],
-  ['movingtoanotherbaselocation',['MovingToAnotherBaseLocation',['../enum_scout_manager_1_1_scout_status.html#a2a7de5166edde38067a676445e8602ce',1,'ScoutManager::ScoutStatus']]]
+  ['lastbuildcommandgivenframe',['lastBuildCommandGivenFrame',['../class_construction_task.html#a8f4012250129f6bca75446d03dbeb9ef',1,'ConstructionTask']]],
+  ['lastconstructionworkerid',['lastConstructionWorkerID',['../class_construction_task.html#a729b24234bfc5a94c73dff28bcd1de62',1,'ConstructionTask']]],
+  ['lasthealth',['lastHealth',['../class_unit_info.html#a95b729c9c1c307b95c2e21d89e9a3d8c',1,'UnitInfo']]],
+  ['lastposition',['lastPosition',['../class_unit_info.html#aa2711753794a049c4bb15d0653ecbd4a',1,'UnitInfo']]],
+  ['lastshields',['lastShields',['../class_unit_info.html#ae8a8d4296df4728ac1d36bf1fb97c0e1',1,'UnitInfo']]],
+  ['lastupdated',['lastUpdated',['../class_distance_map.html#a4749392a420a267d79623dc8e01f8603',1,'DistanceMap.lastUpdated()'],['../class_map_grid.html#a5d614887c02055706d92fa1288fa1c41',1,'MapGrid.lastUpdated()']]],
+  ['logfilename',['LogFilename',['../class_config.html#a891c129a3ff7d1e2e21c9233ef41f018',1,'Config']]],
+  ['lowestpriority',['lowestPriority',['../class_build_order_queue.html#a0d2ce8eb95509df3182364cfb200f2dc',1,'BuildOrderQueue']]]
 ];

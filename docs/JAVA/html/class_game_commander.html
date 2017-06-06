@@ -26,7 +26,7 @@
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;">
    <div id="projectname">BasicBot
-   &#160;<span id="projectnumber">v0.9 beta</span>
+   &#160;<span id="projectnumber">v0.94 beta</span>
    </div>
    <div id="projectbrief">BasicBot for Starcraft: Broodwar 1.16.1 with BWAPI 4.1.2</div>
   </td>
@@ -92,6 +92,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="header">
   <div class="summary">
 <a href="#pub-methods">Public Member Functions</a> &#124;
+<a href="#pri-attribs">Private Attributes</a> &#124;
 <a href="class_game_commander-members.html">List of all members</a>  </div>
   <div class="headertitle">
 <div class="title">GameCommander Class Reference</div>  </div>
@@ -128,27 +129,15 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:a14040c884cc93ac25c826b43870804e1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a0cf84cc29a440209f6b78c7f6eb3b93f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_game_commander.html#a0cf84cc29a440209f6b78c7f6eb3b93f">onUnitShow</a> (Unit unit)</td></tr>
 <tr class="separator:a0cf84cc29a440209f6b78c7f6eb3b93f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-attribs"></a>
+Private Attributes</h2></td></tr>
+<tr class="memitem:a5efd489491ad7bfc88b91af1042af8a4"><td class="memItemLeft" align="right" valign="top">boolean&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_game_commander.html#a5efd489491ad7bfc88b91af1042af8a4">isToFindError</a> = false</td></tr>
+<tr class="separator:a5efd489491ad7bfc88b91af1042af8a4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>실제 봇프로그램의 본체가 되는 class 스타크래프트 경기 도중 발생하는 이벤트들이 적절하게 처리되도록 해당 Manager 객체에게 이벤트를 전달하는 관리자 Controller 역할을 합니다 </p>
 </div><h2 class="groupheader">Member Function Documentation</h2>
-<a class="anchor" id="a7867ef2d6f65b530ccea76b95f36d400"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void GameCommander.onStart </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>경기가 시작될 때 일회적으로 발생하는 이벤트를 처리합니다 </p>
-
-</div>
-</div>
 <a class="anchor" id="ac5bd55e90eb436781d883a51fe086e47"></a>
 <div class="memitem">
 <div class="memproto">
@@ -181,6 +170,87 @@ Public Member Functions</h2></td></tr>
 </div><div class="memdoc">
 
 <p>경기 진행 중 매 프레임마다 발생하는 이벤트를 처리합니다 </p>
+
+</div>
+</div>
+<a class="anchor" id="add15bd2b1bd764b17ee59b8fce7e29ba"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void GameCommander.onReceiveText </td>
+          <td>(</td>
+          <td class="paramtype">Player&#160;</td>
+          <td class="paramname"><em>player</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">String&#160;</td>
+          <td class="paramname"><em>text</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>다른 플레이어로부터 텍스트를 전달받았을 때 발생하는 이벤트를 처리합니다 </p>
+
+</div>
+</div>
+<a class="anchor" id="a1a6b680cca3dd6c296cb406b48811736"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void GameCommander.onSendText </td>
+          <td>(</td>
+          <td class="paramtype">String&#160;</td>
+          <td class="paramname"><em>text</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>텍스트를 입력 후 엔터를 하여 다른 플레이어들에게 텍스트를 전달하려 할 때 발생하는 이벤트를 처리합니다 </p>
+
+</div>
+</div>
+<a class="anchor" id="a7867ef2d6f65b530ccea76b95f36d400"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void GameCommander.onStart </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>경기가 시작될 때 일회적으로 발생하는 이벤트를 처리합니다 </p>
+
+</div>
+</div>
+<a class="anchor" id="a1cd9a5916af09f95101ce068846d30c2"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void GameCommander.onUnitComplete </td>
+          <td>(</td>
+          <td class="paramtype">Unit&#160;</td>
+          <td class="paramname"><em>unit</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>유닛(건물/지상유닛/공중유닛)의 하던 일 (건물 건설, 업그레이드, 지상유닛 훈련 등)이 끝났을 때 발생하는 이벤트를 처리합니다 </p>
 
 </div>
 </div>
@@ -220,60 +290,6 @@ Public Member Functions</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="a51695d242b6b6ac2704fe481df90e6d3"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void GameCommander.onUnitMorph </td>
-          <td>(</td>
-          <td class="paramtype">Unit&#160;</td>
-          <td class="paramname"><em>unit</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>유닛(건물/지상유닛/공중유닛)이 Morph 될 때 발생하는 이벤트를 처리합니다 Zerg 종족의 유닛은 건물 건설이나 지상유닛/공중유닛 생산에서 거의 대부분 Morph 형태로 진행됩니다 </p>
-
-</div>
-</div>
-<a class="anchor" id="a14040c884cc93ac25c826b43870804e1"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void GameCommander.onUnitRenegade </td>
-          <td>(</td>
-          <td class="paramtype">Unit&#160;</td>
-          <td class="paramname"><em>unit</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>유닛(건물/지상유닛/공중유닛)의 소속 플레이어가 바뀔 때 발생하는 이벤트를 처리합니다 Gas Geyser에 어떤 플레이어가 Refinery 건물을 건설했을 때, Refinery 건물이 파괴되었을 때, Protoss 종족 Dark Archon 의 Mind Control 에 의해 소속 플레이어가 바뀔 때 발생합니다 </p>
-
-</div>
-</div>
-<a class="anchor" id="a1cd9a5916af09f95101ce068846d30c2"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void GameCommander.onUnitComplete </td>
-          <td>(</td>
-          <td class="paramtype">Unit&#160;</td>
-          <td class="paramname"><em>unit</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>유닛(건물/지상유닛/공중유닛)의 하던 일 (건물 건설, 업그레이드, 지상유닛 훈련 등)이 끝났을 때 발생하는 이벤트를 처리합니다 </p>
-
-</div>
-</div>
 <a class="anchor" id="a7e4f90d4f5e66549e942c82991c75fe6"></a>
 <div class="memitem">
 <div class="memproto">
@@ -310,24 +326,6 @@ Public Member Functions</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="a0cf84cc29a440209f6b78c7f6eb3b93f"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void GameCommander.onUnitShow </td>
-          <td>(</td>
-          <td class="paramtype">Unit&#160;</td>
-          <td class="paramname"><em>unit</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>유닛(건물/지상유닛/공중유닛)이 Show 될 때 발생하는 이벤트를 처리합니다 아군 유닛이 Create 되었을 때 라든가, 적군 유닛이 Discover 되었을 때 발생합니다 </p>
-
-</div>
-</div>
 <a class="anchor" id="a24f3080133518730e709f9b02897f894"></a>
 <div class="memitem">
 <div class="memproto">
@@ -346,49 +344,80 @@ Public Member Functions</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="a1a6b680cca3dd6c296cb406b48811736"></a>
+<a class="anchor" id="a51695d242b6b6ac2704fe481df90e6d3"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void GameCommander.onSendText </td>
+          <td class="memname">void GameCommander.onUnitMorph </td>
           <td>(</td>
-          <td class="paramtype">String&#160;</td>
-          <td class="paramname"><em>text</em></td><td>)</td>
+          <td class="paramtype">Unit&#160;</td>
+          <td class="paramname"><em>unit</em></td><td>)</td>
           <td></td>
         </tr>
       </table>
 </div><div class="memdoc">
 
-<p>텍스트를 입력 후 엔터를 하여 다른 플레이어들에게 텍스트를 전달하려 할 때 발생하는 이벤트를 처리합니다 </p>
+<p>유닛(건물/지상유닛/공중유닛)이 Morph 될 때 발생하는 이벤트를 처리합니다 Zerg 종족의 유닛은 건물 건설이나 지상유닛/공중유닛 생산에서 거의 대부분 Morph 형태로 진행됩니다 </p>
 
 </div>
 </div>
-<a class="anchor" id="add15bd2b1bd764b17ee59b8fce7e29ba"></a>
+<a class="anchor" id="a14040c884cc93ac25c826b43870804e1"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void GameCommander.onReceiveText </td>
+          <td class="memname">void GameCommander.onUnitRenegade </td>
           <td>(</td>
-          <td class="paramtype">Player&#160;</td>
-          <td class="paramname"><em>player</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
+          <td class="paramtype">Unit&#160;</td>
+          <td class="paramname"><em>unit</em></td><td>)</td>
           <td></td>
-          <td class="paramtype">String&#160;</td>
-          <td class="paramname"><em>text</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
         </tr>
       </table>
 </div><div class="memdoc">
 
-<p>다른 플레이어로부터 텍스트를 전달받았을 때 발생하는 이벤트를 처리합니다 </p>
+<p>유닛(건물/지상유닛/공중유닛)의 소속 플레이어가 바뀔 때 발생하는 이벤트를 처리합니다 Gas Geyser에 어떤 플레이어가 Refinery 건물을 건설했을 때, Refinery 건물이 파괴되었을 때, Protoss 종족 Dark Archon 의 Mind Control 에 의해 소속 플레이어가 바뀔 때 발생합니다 </p>
+
+</div>
+</div>
+<a class="anchor" id="a0cf84cc29a440209f6b78c7f6eb3b93f"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void GameCommander.onUnitShow </td>
+          <td>(</td>
+          <td class="paramtype">Unit&#160;</td>
+          <td class="paramname"><em>unit</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>유닛(건물/지상유닛/공중유닛)이 Show 될 때 발생하는 이벤트를 처리합니다 아군 유닛이 Create 되었을 때 라든가, 적군 유닛이 Discover 되었을 때 발생합니다 </p>
+
+</div>
+</div>
+<h2 class="groupheader">Member Data Documentation</h2>
+<a class="anchor" id="a5efd489491ad7bfc88b91af1042af8a4"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">boolean GameCommander.isToFindError = false</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>디버깅용 플래그 : 어느 Manager 가 에러를 일으키는지 알기위한 플래그 </p>
 
 </div>
 </div>
@@ -396,7 +425,7 @@ Public Member Functions</h2></td></tr>
 <!-- HTML footer for doxygen 1.8.8-->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Mon May 29 2017 22:47:42 for BasicBot by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Fri Jun 2 2017 17:03:25 for BasicBot by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.8
 </small></address>

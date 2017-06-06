@@ -26,7 +26,7 @@
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;">
    <div id="projectname">BasicBot
-   &#160;<span id="projectnumber">v0.9 beta</span>
+   &#160;<span id="projectnumber">v0.94 beta</span>
    </div>
    <div id="projectbrief">BasicBot for Starcraft: Broodwar 1.16.1 with BWAPI 4.1.2</div>
   </td>
@@ -116,34 +116,6 @@ Functions</h2></td></tr>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>이동 (move), 공격 (attack), 수리 (repair), 우클릭 (rightClick) 등 유닛 컨트롤 명령을 내릴 때 각종 체크해야할 사항들을 체크한 후 명령 내리도록 하는 헬퍼 함수들 </p>
 </div><h2 class="groupheader">Function Documentation</h2>
-<a class="anchor" id="aad1defaefd3cbcf16c46d5d2872bf3c6"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void MyBot::CommandUtil::attackUnit </td>
-          <td>(</td>
-          <td class="paramtype">BWAPI::Unit&#160;</td>
-          <td class="paramname"><em>attacker</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">BWAPI::Unit&#160;</td>
-          <td class="paramname"><em>target</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>attacker 가 target 을 공격하도록 명령 합니다 </p>
-
-</div>
-</div>
 <a class="anchor" id="a567def244c0330d79a4bb4d9c619a2f6"></a>
 <div class="memitem">
 <div class="memproto">
@@ -169,6 +141,34 @@ Functions</h2></td></tr>
 </div><div class="memdoc">
 
 <p>attacker 가 targetPosition 을 향해 공격 가도록 명령 합니다 </p>
+
+</div>
+</div>
+<a class="anchor" id="aad1defaefd3cbcf16c46d5d2872bf3c6"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void MyBot::CommandUtil::attackUnit </td>
+          <td>(</td>
+          <td class="paramtype">BWAPI::Unit&#160;</td>
+          <td class="paramname"><em>attacker</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">BWAPI::Unit&#160;</td>
+          <td class="paramname"><em>target</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>attacker 가 target 을 공격하도록 명령 합니다 </p>
 
 </div>
 </div>
@@ -200,34 +200,6 @@ Functions</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="ac149c5bc882bb249a3dd8d2052873127"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void MyBot::CommandUtil::rightClick </td>
-          <td>(</td>
-          <td class="paramtype">BWAPI::Unit&#160;</td>
-          <td class="paramname"><em>unit</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">BWAPI::Unit&#160;</td>
-          <td class="paramname"><em>target</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>unit 이 target 에 대해 어떤 행위를 하도록 명령 합니다 일꾼 유닛이 Mineral Field 에게 : Mineral 자원 채취 일꾼 유닛이 Refinery 건물에게 : Gas 자원 채취 전투 유닛이 다른 아군 유닛에게 : Move 명령 전투 유닛이 다른 적군 유닛에게 : Attack 명령 </p>
-
-</div>
-</div>
 <a class="anchor" id="ac595d09fca6f444e27cdd6c96cb9dbf9"></a>
 <div class="memitem">
 <div class="memproto">
@@ -256,11 +228,39 @@ Functions</h2></td></tr>
 
 </div>
 </div>
+<a class="anchor" id="ac149c5bc882bb249a3dd8d2052873127"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void MyBot::CommandUtil::rightClick </td>
+          <td>(</td>
+          <td class="paramtype">BWAPI::Unit&#160;</td>
+          <td class="paramname"><em>unit</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">BWAPI::Unit&#160;</td>
+          <td class="paramname"><em>target</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>unit 이 target 에 대해 어떤 행위를 하도록 명령 합니다 일꾼 유닛이 Mineral Field 에게 : Mineral 자원 채취 일꾼 유닛이 Refinery 건물에게 : Gas 자원 채취 전투 유닛이 다른 아군 유닛에게 : Move 명령 전투 유닛이 다른 적군 유닛에게 : Attack 명령 </p>
+
+</div>
+</div>
 </div><!-- contents -->
 <!-- HTML footer for doxygen 1.8.8-->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Mon May 29 2017 22:47:28 for BasicBot by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Fri Jun 2 2017 17:06:08 for BasicBot by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.8
 </small></address>

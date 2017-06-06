@@ -1,6 +1,12 @@
 var searchData=
 [
-  ['default',['Default',['../enum_worker_data_1_1_worker_job.html#a3ee8c27622b4ff90148cde7a7dfa944f',1,'WorkerData::WorkerJob']]],
+  ['default',['Default',['../enum_meta_type_1_1_meta_types.html#a1225c51739a9a91763515df365e4ee15',1,'MetaType.MetaTypes.Default()'],['../enum_worker_data_1_1_worker_job.html#a3ee8c27622b4ff90148cde7a7dfa944f',1,'WorkerData.WorkerJob.Default()']]],
+  ['defaultpriorityspacing',['defaultPrioritySpacing',['../class_build_order_queue.html#a13211704b5e5cf89d814b264aa102829',1,'BuildOrderQueue']]],
+  ['depots',['depots',['../class_worker_data.html#a46d91d6d75afaf81e55ae7268ede508b',1,'WorkerData']]],
+  ['depotworkercount',['depotWorkerCount',['../class_worker_data.html#abf159d34642887e6eed7eab06d6b32b1',1,'WorkerData']]],
+  ['desiredposition',['desiredPosition',['../class_construction_task.html#a59c2f200f30833dca9717499b43fa3e6',1,'ConstructionTask']]],
+  ['dist',['dist',['../class_distance_map.html#a7a41b0e688a4bc5ebf1d7787e457d516',1,'DistanceMap']]],
+  ['dotradius',['dotRadius',['../class_u_x_manager.html#aa219de7641b8e29419731a002a6ce8a7',1,'UXManager']]],
   ['drawbuildinginfo',['DrawBuildingInfo',['../class_config.html#aae25586f4711c0718cef95e09f6fc1be',1,'Config']]],
   ['drawbwtainfo',['DrawBWTAInfo',['../class_config.html#aadae75c24e76e397e41be78b9fa026c5',1,'Config']]],
   ['drawenemyunitinfo',['DrawEnemyUnitInfo',['../class_config.html#a7d58406c1d6fc80d05d3f10ca4f3aaf8',1,'Config']]],

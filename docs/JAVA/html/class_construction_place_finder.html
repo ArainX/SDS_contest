@@ -26,7 +26,7 @@
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;">
    <div id="projectname">BasicBot
-   &#160;<span id="projectnumber">v0.9 beta</span>
+   &#160;<span id="projectnumber">v0.94 beta</span>
    </div>
    <div id="projectbrief">BasicBot for Starcraft: Broodwar 1.16.1 with BWAPI 4.1.2</div>
   </td>
@@ -94,6 +94,8 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <a href="#nested-classes">Classes</a> &#124;
 <a href="#pub-methods">Public Member Functions</a> &#124;
 <a href="#pub-static-methods">Static Public Member Functions</a> &#124;
+<a href="#pri-attribs">Private Attributes</a> &#124;
+<a href="#pri-static-attribs">Static Private Attributes</a> &#124;
 <a href="class_construction_place_finder-members.html">List of all members</a>  </div>
   <div class="headertitle">
 <div class="title">ConstructionPlaceFinder Class Reference</div>  </div>
@@ -142,56 +144,39 @@ Public Member Functions</h2></td></tr>
 Static Public Member Functions</h2></td></tr>
 <tr class="memitem:a49e11ef63897dc2b1fa28e6a3df6249c"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="class_construction_place_finder.html">ConstructionPlaceFinder</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_construction_place_finder.html#a49e11ef63897dc2b1fa28e6a3df6249c">Instance</a> ()</td></tr>
 <tr class="separator:a49e11ef63897dc2b1fa28e6a3df6249c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-attribs"></a>
+Private Attributes</h2></td></tr>
+<tr class="memitem:a5a64a02cf4804d17e0c11f4e4910610a"><td class="memItemLeft" align="right" valign="top">boolean[][]&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_construction_place_finder.html#a5a64a02cf4804d17e0c11f4e4910610a">reserveMap</a> = new boolean[128][128]</td></tr>
+<tr class="separator:a5a64a02cf4804d17e0c11f4e4910610a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa0baff1a1e4005b18d33b1f013ef8366"><td class="memItemLeft" align="right" valign="top">Set&lt; TilePosition &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_construction_place_finder.html#aa0baff1a1e4005b18d33b1f013ef8366">tilesToAvoid</a> = new HashSet&lt;TilePosition&gt;()</td></tr>
+<tr class="separator:aa0baff1a1e4005b18d33b1f013ef8366"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-static-attribs"></a>
+Static Private Attributes</h2></td></tr>
+<tr class="memitem:a8648055fecefd11edd9c24949e27a8b0"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="class_construction_place_finder.html">ConstructionPlaceFinder</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_construction_place_finder.html#a8648055fecefd11edd9c24949e27a8b0">instance</a> = new <a class="el" href="class_construction_place_finder.html">ConstructionPlaceFinder</a>()</td></tr>
+<tr class="separator:a8648055fecefd11edd9c24949e27a8b0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7cfdfd591d316d3bc93ef9f69f84ab82"><td class="memItemLeft" align="right" valign="top">static boolean&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_construction_place_finder.html#a7cfdfd591d316d3bc93ef9f69f84ab82">isInitialized</a> = false</td></tr>
+<tr class="separator:a7cfdfd591d316d3bc93ef9f69f84ab82"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>건설위치 탐색을 위한 class </p>
 </div><h2 class="groupheader">Member Function Documentation</h2>
-<a class="anchor" id="a49e11ef63897dc2b1fa28e6a3df6249c"></a>
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">static <a class="el" href="class_construction_place_finder.html">ConstructionPlaceFinder</a> ConstructionPlaceFinder.Instance </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">static</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>static singleton 객체를 리턴합니다 </p>
-
-</div>
-</div>
-<a class="anchor" id="ac3600a3aaad68598a637705b0e2ebafa"></a>
+<a class="anchor" id="a69216f2f912ceeb4394c8ec300f11fbf"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">final TilePosition ConstructionPlaceFinder.getBuildLocationWithSeedPositionAndStrategy </td>
+          <td class="memname">final boolean ConstructionPlaceFinder.canBuildHere </td>
           <td>(</td>
-          <td class="paramtype">UnitType&#160;</td>
-          <td class="paramname"><em>buildingType</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
           <td class="paramtype">TilePosition&#160;</td>
-          <td class="paramname"><em>seedPosition</em>, </td>
+          <td class="paramname"><em>position</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="enum_build_order_item_1_1_seed_position_strategy.html">BuildOrderItem.SeedPositionStrategy</a>&#160;</td>
-          <td class="paramname"><em>seedPositionStrategy</em>&#160;</td>
+          <td class="paramtype">final <a class="el" href="class_construction_task.html">ConstructionTask</a>&#160;</td>
+          <td class="paramname"><em>b</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -201,7 +186,75 @@ Static Public Member Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>seedPosition 및 seedPositionStrategy 파라메터를 활용해서 건물 건설 가능 위치를 탐색해서 리턴합니다 seedPosition 주위에서 가능한 곳을 선정하거나, seedPositionStrategy 에 따라 지형 분석결과 해당 지점 주위에서 가능한 곳을 선정합니다 seedPosition, seedPositionStrategy 을 입력하지 않으면, MainBaseLocation 주위에서 가능한 곳을 리턴합니다 </p>
+<p>해당 위치에 건물 건설이 가능한지 여부를 리턴합니다 </p>
+
+</div>
+</div>
+<a class="anchor" id="a0193f6c4ea94ed8d4ef3b31be6c6cfd3"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">final boolean ConstructionPlaceFinder.canBuildHereWithSpace </td>
+          <td>(</td>
+          <td class="paramtype">TilePosition&#160;</td>
+          <td class="paramname"><em>position</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">final <a class="el" href="class_construction_task.html">ConstructionTask</a>&#160;</td>
+          <td class="paramname"><em>b</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>buildingGapSpace</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>해당 위치에 건물 건설이 가능한지 여부를 buildingGapSpace 조건을 포함해서 판단하여 리턴합니다 Broodwar 의 canBuildHere, isBuildableTile, isReservedTile 를 체크합니다 </p>
+
+</div>
+</div>
+<a class="anchor" id="a32d01f4942c4ed8c1b9fd4fb9294b71e"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void ConstructionPlaceFinder.freeTiles </td>
+          <td>(</td>
+          <td class="paramtype">TilePosition&#160;</td>
+          <td class="paramname"><em>position</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>width</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>height</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>건물 건설 예정 타일로 예약했던 것을 해제합니다 </p>
 
 </div>
 </div>
@@ -273,27 +326,27 @@ Static Public Member Functions</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="a0193f6c4ea94ed8d4ef3b31be6c6cfd3"></a>
+<a class="anchor" id="ac3600a3aaad68598a637705b0e2ebafa"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">final boolean ConstructionPlaceFinder.canBuildHereWithSpace </td>
+          <td class="memname">final TilePosition ConstructionPlaceFinder.getBuildLocationWithSeedPositionAndStrategy </td>
           <td>(</td>
+          <td class="paramtype">UnitType&#160;</td>
+          <td class="paramname"><em>buildingType</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
           <td class="paramtype">TilePosition&#160;</td>
-          <td class="paramname"><em>position</em>, </td>
+          <td class="paramname"><em>seedPosition</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">final <a class="el" href="class_construction_task.html">ConstructionTask</a>&#160;</td>
-          <td class="paramname"><em>b</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>buildingGapSpace</em>&#160;</td>
+          <td class="paramtype"><a class="el" href="enum_build_order_item_1_1_seed_position_strategy.html">BuildOrderItem.SeedPositionStrategy</a>&#160;</td>
+          <td class="paramname"><em>seedPositionStrategy</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -303,35 +356,7 @@ Static Public Member Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>해당 위치에 건물 건설이 가능한지 여부를 buildingGapSpace 조건을 포함해서 판단하여 리턴합니다 Broodwar 의 canBuildHere, isBuildableTile, isReservedTile 를 체크합니다 </p>
-
-</div>
-</div>
-<a class="anchor" id="a69216f2f912ceeb4394c8ec300f11fbf"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">final boolean ConstructionPlaceFinder.canBuildHere </td>
-          <td>(</td>
-          <td class="paramtype">TilePosition&#160;</td>
-          <td class="paramname"><em>position</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">final <a class="el" href="class_construction_task.html">ConstructionTask</a>&#160;</td>
-          <td class="paramname"><em>b</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>해당 위치에 건물 건설이 가능한지 여부를 리턴합니다 </p>
+<p>seedPosition 및 seedPositionStrategy 파라메터를 활용해서 건물 건설 가능 위치를 탐색해서 리턴합니다 seedPosition 주위에서 가능한 곳을 선정하거나, seedPositionStrategy 에 따라 지형 분석결과 해당 지점 주위에서 가능한 곳을 선정합니다 seedPosition, seedPositionStrategy 을 입력하지 않으면, MainBaseLocation 주위에서 가능한 곳을 리턴합니다 </p>
 
 </div>
 </div>
@@ -353,31 +378,62 @@ Static Public Member Functions</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="a99940201daf20c9486d654af20bd29bb"></a>
+<a class="anchor" id="a24dbc8c36ca40aa29e91a1e34b44d6dd"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">final boolean ConstructionPlaceFinder.isOverlapsWithBaseLocation </td>
+          <td class="memname">boolean [][] ConstructionPlaceFinder.getReserveMap </td>
           <td>(</td>
-          <td class="paramtype">TilePosition&#160;</td>
-          <td class="paramname"><em>tile</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
+          <td class="paramname"></td><td>)</td>
           <td></td>
-          <td class="paramtype">UnitType&#160;</td>
-          <td class="paramname"><em>type</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
         </tr>
       </table>
 </div><div class="memdoc">
 
-<p>해당 위치가 BaseLocation 과 겹치는지 여부를 리턴합니다 BaseLocation 에는 ResourceDepot 건물만 건설하고, 다른 건물은 건설하지 않기 위함입니다 </p>
+<p>reserveMap을 리턴합니다 </p>
+
+</div>
+</div>
+<a class="anchor" id="abae8ee606457904da3e466b9643058c7"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">Set&lt;TilePosition&gt; ConstructionPlaceFinder.getTilesToAvoid </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>BaseLocation 과 Mineral / Geyser 사이의 타일들의 목록을 리턴합니다 </p>
+
+</div>
+</div>
+<a class="anchor" id="a49e11ef63897dc2b1fa28e6a3df6249c"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static <a class="el" href="class_construction_place_finder.html">ConstructionPlaceFinder</a> ConstructionPlaceFinder.Instance </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>static singleton 객체를 리턴합니다 </p>
 
 </div>
 </div>
@@ -415,6 +471,88 @@ Static Public Member Functions</h2></td></tr>
 
 </div>
 </div>
+<a class="anchor" id="a99940201daf20c9486d654af20bd29bb"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">final boolean ConstructionPlaceFinder.isOverlapsWithBaseLocation </td>
+          <td>(</td>
+          <td class="paramtype">TilePosition&#160;</td>
+          <td class="paramname"><em>tile</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">UnitType&#160;</td>
+          <td class="paramname"><em>type</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>해당 위치가 BaseLocation 과 겹치는지 여부를 리턴합니다 BaseLocation 에는 ResourceDepot 건물만 건설하고, 다른 건물은 건설하지 않기 위함입니다 </p>
+
+</div>
+</div>
+<a class="anchor" id="abab19b930974c702c8cec8bf18b3394e"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">final boolean ConstructionPlaceFinder.isReservedTile </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>x</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>y</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="aeec9d45f7b6adaee00b803648555a959"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">final boolean ConstructionPlaceFinder.isTilesToAvoid </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>x</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>y</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>(x, y) 가 BaseLocation 과 Mineral / Geyser 사이의 타일에 해당하는지 여부를 리턴합니다 </p>
+
+</div>
+</div>
 <a class="anchor" id="aad511a523ab48641ff0506562ade56f0"></a>
 <div class="memitem">
 <div class="memproto">
@@ -449,111 +587,6 @@ Static Public Member Functions</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="a32d01f4942c4ed8c1b9fd4fb9294b71e"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void ConstructionPlaceFinder.freeTiles </td>
-          <td>(</td>
-          <td class="paramtype">TilePosition&#160;</td>
-          <td class="paramname"><em>position</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>width</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>height</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>건물 건설 예정 타일로 예약했던 것을 해제합니다 </p>
-
-</div>
-</div>
-<a class="anchor" id="abab19b930974c702c8cec8bf18b3394e"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">final boolean ConstructionPlaceFinder.isReservedTile </td>
-          <td>(</td>
-          <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>x</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>y</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-</div>
-</div>
-<a class="anchor" id="a24dbc8c36ca40aa29e91a1e34b44d6dd"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">boolean [][] ConstructionPlaceFinder.getReserveMap </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>reserveMap을 리턴합니다 </p>
-
-</div>
-</div>
-<a class="anchor" id="aeec9d45f7b6adaee00b803648555a959"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">final boolean ConstructionPlaceFinder.isTilesToAvoid </td>
-          <td>(</td>
-          <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>x</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>y</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>(x, y) 가 BaseLocation 과 Mineral / Geyser 사이의 타일에 해당하는지 여부를 리턴합니다 </p>
-
-</div>
-</div>
 <a class="anchor" id="a99b17076efeca51fad6b20cc283a0e34"></a>
 <div class="memitem">
 <div class="memproto">
@@ -571,20 +604,88 @@ Static Public Member Functions</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="abae8ee606457904da3e466b9643058c7"></a>
+<h2 class="groupheader">Member Data Documentation</h2>
+<a class="anchor" id="a8648055fecefd11edd9c24949e27a8b0"></a>
 <div class="memitem">
 <div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">Set&lt;TilePosition&gt; ConstructionPlaceFinder.getTilesToAvoid </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
+          <td class="memname"><a class="el" href="class_construction_place_finder.html">ConstructionPlaceFinder</a> ConstructionPlaceFinder.instance = new <a class="el" href="class_construction_place_finder.html">ConstructionPlaceFinder</a>()</td>
         </tr>
       </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
 </div><div class="memdoc">
 
-<p>BaseLocation 과 Mineral / Geyser 사이의 타일들의 목록을 리턴합니다 </p>
+</div>
+</div>
+<a class="anchor" id="a7cfdfd591d316d3bc93ef9f69f84ab82"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">boolean ConstructionPlaceFinder.isInitialized = false</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="a5a64a02cf4804d17e0c11f4e4910610a"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">boolean [][] ConstructionPlaceFinder.reserveMap = new boolean[128][128]</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>건물 건설 예정 타일을 저장해놓기 위한 2차원 배열 TilePosition 단위이기 때문에 보통 128*128 사이즈가 된다 참고로, 건물이 이미 지어진 타일은 저장하지 않는다 </p>
+
+</div>
+</div>
+<a class="anchor" id="aa0baff1a1e4005b18d33b1f013ef8366"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">Set&lt;TilePosition&gt; ConstructionPlaceFinder.tilesToAvoid = new HashSet&lt;TilePosition&gt;()</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>BaseLocation 과 Mineral / Geyser 사이의 타일들을 담는 자료구조. 여기에는 Addon 이외에는 건물을 짓지 않도록 합니다 </p>
 
 </div>
 </div>
@@ -592,7 +693,7 @@ Static Public Member Functions</h2></td></tr>
 <!-- HTML footer for doxygen 1.8.8-->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Mon May 29 2017 22:47:42 for BasicBot by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Fri Jun 2 2017 17:03:25 for BasicBot by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.8
 </small></address>

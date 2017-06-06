@@ -26,7 +26,7 @@
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;">
    <div id="projectname">BasicBot
-   &#160;<span id="projectnumber">v0.9 beta</span>
+   &#160;<span id="projectnumber">v0.94 beta</span>
    </div>
    <div id="projectbrief">BasicBot for Starcraft: Broodwar 1.16.1 with BWAPI 4.1.2</div>
   </td>
@@ -120,45 +120,17 @@ Variables</h2></td></tr>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>게임로직 관련 파라메터 </p>
 </div><h2 class="groupheader">Variable Documentation</h2>
-<a class="anchor" id="aaab73aa0be50cacea83f499fe0725b8f"></a>
+<a class="anchor" id="af331d43c8a7c42f66f834477c7ed15b5"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">int Config::Macro::WorkersPerRefinery = 3</td>
+          <td class="memname">int Config::Macro::BuildingDefenseTowerSpacing = 0</td>
         </tr>
       </table>
 </div><div class="memdoc">
 
-<p>각각의 Refinery 마다 투입할 일꾼 최대 숫자 </p>
-
-</div>
-</div>
-<a class="anchor" id="acbccb9b54ec188d1f64e89ff67e2c393"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">int Config::Macro::BuildingSpacing = 2</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>건물과 건물간 띄울 최소한의 간격 - 일반적인 건물의 경우 </p>
-
-</div>
-</div>
-<a class="anchor" id="ad731472aac233183715721674aec0fb3"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">int Config::Macro::BuildingResourceDepotSpacing = 0</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>건물과 건물간 띄울 최소한의 간격 - ResourceDepot 건물의 경우 (Nexus, Hatchery, Command Center) </p>
+<p>건물과 건물간 띄울 최소한의 간격 - 방어 건물의 경우 (포톤캐논. 성큰콜로니. 스포어콜로니. 터렛. 벙커) </p>
 
 </div>
 </div>
@@ -190,6 +162,34 @@ Variables</h2></td></tr>
 
 </div>
 </div>
+<a class="anchor" id="ad731472aac233183715721674aec0fb3"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int Config::Macro::BuildingResourceDepotSpacing = 0</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>건물과 건물간 띄울 최소한의 간격 - ResourceDepot 건물의 경우 (Nexus, Hatchery, Command Center) </p>
+
+</div>
+</div>
+<a class="anchor" id="acbccb9b54ec188d1f64e89ff67e2c393"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int Config::Macro::BuildingSpacing = 2</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>건물과 건물간 띄울 최소한의 간격 - 일반적인 건물의 경우 </p>
+
+</div>
+</div>
 <a class="anchor" id="a9bebd3dfbf3478a6bfee2e077b0ddb87"></a>
 <div class="memitem">
 <div class="memproto">
@@ -204,17 +204,17 @@ Variables</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="af331d43c8a7c42f66f834477c7ed15b5"></a>
+<a class="anchor" id="aaab73aa0be50cacea83f499fe0725b8f"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">int Config::Macro::BuildingDefenseTowerSpacing = 0</td>
+          <td class="memname">int Config::Macro::WorkersPerRefinery = 3</td>
         </tr>
       </table>
 </div><div class="memdoc">
 
-<p>건물과 건물간 띄울 최소한의 간격 - 방어 건물의 경우 (포톤캐논. 성큰콜로니. 스포어콜로니. 터렛. 벙커) </p>
+<p>각각의 Refinery 마다 투입할 일꾼 최대 숫자 </p>
 
 </div>
 </div>
@@ -222,7 +222,7 @@ Variables</h2></td></tr>
 <!-- HTML footer for doxygen 1.8.8-->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Mon May 29 2017 22:47:28 for BasicBot by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Fri Jun 2 2017 17:06:07 for BasicBot by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.8
 </small></address>

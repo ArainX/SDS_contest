@@ -26,7 +26,7 @@
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;">
    <div id="projectname">BasicBot
-   &#160;<span id="projectnumber">v0.9 beta</span>
+   &#160;<span id="projectnumber">v0.94 beta</span>
    </div>
    <div id="projectbrief">BasicBot for Starcraft: Broodwar 1.16.1 with BWAPI 4.1.2</div>
   </td>
@@ -94,6 +94,8 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <a href="#nested-classes">Classes</a> &#124;
 <a href="#pub-methods">Public Member Functions</a> &#124;
 <a href="#pub-static-methods">Static Public Member Functions</a> &#124;
+<a href="#pri-attribs">Private Attributes</a> &#124;
+<a href="#pri-static-attribs">Static Private Attributes</a> &#124;
 <a href="class_scout_manager-members.html">List of all members</a>  </div>
   <div class="headertitle">
 <div class="title">ScoutManager Class Reference</div>  </div>
@@ -132,52 +134,32 @@ Public Member Functions</h2></td></tr>
 Static Public Member Functions</h2></td></tr>
 <tr class="memitem:adb083b137ff434a8100aa48cc270d26b"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="class_scout_manager.html">ScoutManager</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_scout_manager.html#adb083b137ff434a8100aa48cc270d26b">Instance</a> ()</td></tr>
 <tr class="separator:adb083b137ff434a8100aa48cc270d26b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-attribs"></a>
+Private Attributes</h2></td></tr>
+<tr class="memitem:a4c2a12364fb51681ca5150dabc766fc3"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_command_util.html">CommandUtil</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_scout_manager.html#a4c2a12364fb51681ca5150dabc766fc3">commandUtil</a> = new <a class="el" href="class_command_util.html">CommandUtil</a>()</td></tr>
+<tr class="separator:a4c2a12364fb51681ca5150dabc766fc3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1d08f709b487a79e0688b863e9628265"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_scout_manager.html#a1d08f709b487a79e0688b863e9628265">currentScoutFreeToVertexIndex</a> = -1</td></tr>
+<tr class="separator:a1d08f709b487a79e0688b863e9628265"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae6e5083be95db548947d818ed9889801"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_scout_manager.html#ae6e5083be95db548947d818ed9889801">currentScoutStatus</a></td></tr>
+<tr class="separator:ae6e5083be95db548947d818ed9889801"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af132e956917606ccf6f66ec9a7416e39"><td class="memItemLeft" align="right" valign="top">BaseLocation&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_scout_manager.html#af132e956917606ccf6f66ec9a7416e39">currentScoutTargetBaseLocation</a> = null</td></tr>
+<tr class="separator:af132e956917606ccf6f66ec9a7416e39"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa3badd9887ef61a60bf5edbc4b3a1e1e"><td class="memItemLeft" align="right" valign="top">Position&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_scout_manager.html#aa3badd9887ef61a60bf5edbc4b3a1e1e">currentScoutTargetPosition</a> = Position.None</td></tr>
+<tr class="separator:aa3badd9887ef61a60bf5edbc4b3a1e1e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abf07b2b5b6625e58136e059dc69693ad"><td class="memItemLeft" align="right" valign="top">Unit&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_scout_manager.html#abf07b2b5b6625e58136e059dc69693ad">currentScoutUnit</a></td></tr>
+<tr class="separator:abf07b2b5b6625e58136e059dc69693ad"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9587e0d425b9803191efbd506dc07b1c"><td class="memItemLeft" align="right" valign="top">Vector&lt; Position &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_scout_manager.html#a9587e0d425b9803191efbd506dc07b1c">enemyBaseRegionVertices</a> = new Vector&lt;Position&gt;()</td></tr>
+<tr class="separator:a9587e0d425b9803191efbd506dc07b1c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-static-attribs"></a>
+Static Private Attributes</h2></td></tr>
+<tr class="memitem:ae99687294514f9a78f51217fe17cdb31"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="class_scout_manager.html">ScoutManager</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_scout_manager.html#ae99687294514f9a78f51217fe17cdb31">instance</a> = new <a class="el" href="class_scout_manager.html">ScoutManager</a>()</td></tr>
+<tr class="separator:ae99687294514f9a78f51217fe17cdb31"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>게임 초반에 일꾼 유닛 중에서 정찰 유닛을 하나 지정하고, 정찰 유닛을 이동시켜 정찰을 수행하는 class 적군의 BaseLocation 위치를 알아내는 것까지만 개발되어있습니다 </p>
 </div><h2 class="groupheader">Member Function Documentation</h2>
-<a class="anchor" id="adb083b137ff434a8100aa48cc270d26b"></a>
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">static <a class="el" href="class_scout_manager.html">ScoutManager</a> ScoutManager.Instance </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">static</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>static singleton 객체를 리턴합니다 </p>
-
-</div>
-</div>
-<a class="anchor" id="aa138f4abbc911fdc047091f1289ab8fc"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void ScoutManager.update </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>정찰 유닛을 지정하고, 정찰 상태를 업데이트하고, 정찰 유닛을 이동시킵니다 </p>
-
-</div>
-</div>
 <a class="anchor" id="ac392b7952597340d65d696445977492d"></a>
 <div class="memitem">
 <div class="memproto">
@@ -192,38 +174,6 @@ Static Public Member Functions</h2></td></tr>
 </div><div class="memdoc">
 
 <p>정찰 유닛을 필요하면 새로 지정합니다 </p>
-
-</div>
-</div>
-<a class="anchor" id="af0fc186032ca480d6838046a37317a26"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void ScoutManager.moveScoutUnit </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>정찰 유닛을 이동시킵니다 </p>
-
-</div>
-</div>
-<a class="anchor" id="a7f10fa206e5e4afc1c05209284c613e7"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">Position ScoutManager.getScoutFleePositionFromEnemyRegionVertices </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
 
 </div>
 </div>
@@ -258,12 +208,12 @@ Static Public Member Functions</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="a54a6546d33ea52f34f28837afeccdbb5"></a>
+<a class="anchor" id="a27c4ae340d8867423b9d7fe7d8143e67"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">Unit ScoutManager.getScoutUnit </td>
+          <td class="memname">Vector&lt;Position&gt; ScoutManager.getEnemyRegionVertices </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td></td>
@@ -271,7 +221,22 @@ Static Public Member Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>정찰 유닛을 리턴합니다 </p>
+<p>적군의 <a class="el" href="class_main.html">Main</a> Base Location 이 있는 Region 의 경계선에 해당하는 Vertex 들의 목록을 리턴합니다 </p>
+
+</div>
+</div>
+<a class="anchor" id="a7f10fa206e5e4afc1c05209284c613e7"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">Position ScoutManager.getScoutFleePositionFromEnemyRegionVertices </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
 
 </div>
 </div>
@@ -307,12 +272,12 @@ Static Public Member Functions</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="a27c4ae340d8867423b9d7fe7d8143e67"></a>
+<a class="anchor" id="a54a6546d33ea52f34f28837afeccdbb5"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">Vector&lt;Position&gt; ScoutManager.getEnemyRegionVertices </td>
+          <td class="memname">Unit ScoutManager.getScoutUnit </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td></td>
@@ -320,7 +285,227 @@ Static Public Member Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>적군의 <a class="el" href="class_main.html">Main</a> Base Location 이 있는 Region 의 경계선에 해당하는 Vertex 들의 목록을 리턴합니다 </p>
+<p>정찰 유닛을 리턴합니다 </p>
+
+</div>
+</div>
+<a class="anchor" id="adb083b137ff434a8100aa48cc270d26b"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static <a class="el" href="class_scout_manager.html">ScoutManager</a> ScoutManager.Instance </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>static singleton 객체를 리턴합니다 </p>
+
+</div>
+</div>
+<a class="anchor" id="af0fc186032ca480d6838046a37317a26"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void ScoutManager.moveScoutUnit </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>정찰 유닛을 이동시킵니다 </p>
+
+</div>
+</div>
+<a class="anchor" id="aa138f4abbc911fdc047091f1289ab8fc"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void ScoutManager.update </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>정찰 유닛을 지정하고, 정찰 상태를 업데이트하고, 정찰 유닛을 이동시킵니다 </p>
+
+</div>
+</div>
+<h2 class="groupheader">Member Data Documentation</h2>
+<a class="anchor" id="a4c2a12364fb51681ca5150dabc766fc3"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_command_util.html">CommandUtil</a> ScoutManager.commandUtil = new <a class="el" href="class_command_util.html">CommandUtil</a>()</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="a1d08f709b487a79e0688b863e9628265"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int ScoutManager.currentScoutFreeToVertexIndex = -1</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="ae6e5083be95db548947d818ed9889801"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int ScoutManager.currentScoutStatus</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="af132e956917606ccf6f66ec9a7416e39"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">BaseLocation ScoutManager.currentScoutTargetBaseLocation = null</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="aa3badd9887ef61a60bf5edbc4b3a1e1e"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">Position ScoutManager.currentScoutTargetPosition = Position.None</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="abf07b2b5b6625e58136e059dc69693ad"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">Unit ScoutManager.currentScoutUnit</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="a9587e0d425b9803191efbd506dc07b1c"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">Vector&lt;Position&gt; ScoutManager.enemyBaseRegionVertices = new Vector&lt;Position&gt;()</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="ae99687294514f9a78f51217fe17cdb31"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_scout_manager.html">ScoutManager</a> ScoutManager.instance = new <a class="el" href="class_scout_manager.html">ScoutManager</a>()</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
 
 </div>
 </div>
@@ -328,7 +513,7 @@ Static Public Member Functions</h2></td></tr>
 <!-- HTML footer for doxygen 1.8.8-->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Mon May 29 2017 22:47:42 for BasicBot by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Fri Jun 2 2017 17:03:25 for BasicBot by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.8
 </small></address>
