@@ -26,7 +26,7 @@
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;">
    <div id="projectname">BasicBot
-   &#160;<span id="projectnumber">v0.9 beta</span>
+   &#160;<span id="projectnumber">v0.95 beta</span>
    </div>
    <div id="projectbrief">BasicBot for Starcraft: Broodwar 1.16.1 with BWAPI 4.1.2</div>
   </td>
@@ -93,6 +93,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <div class="summary">
 <a href="#pub-methods">Public Member Functions</a> &#124;
 <a href="#pub-static-attribs">Static Public Attributes</a> &#124;
+<a href="#pri-attribs">Private Attributes</a> &#124;
 <a href="class_my_bot_module-members.html">List of all members</a>  </div>
   <div class="headertitle">
 <div class="title">MyBotModule Class Reference</div>  </div>
@@ -146,43 +147,18 @@ Public Member Functions</h2></td></tr>
 Static Public Attributes</h2></td></tr>
 <tr class="memitem:a78a214bbe0430a3e844a02a609ad92d9"><td class="memItemLeft" align="right" valign="top">static Game&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_my_bot_module.html#a78a214bbe0430a3e844a02a609ad92d9">Broodwar</a></td></tr>
 <tr class="separator:a78a214bbe0430a3e844a02a609ad92d9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-attribs"></a>
+Private Attributes</h2></td></tr>
+<tr class="memitem:af59e98ff2ccf2610487a492a8d82d9b5"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_game_commander.html">GameCommander</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_my_bot_module.html#af59e98ff2ccf2610487a492a8d82d9b5">gameCommander</a></td></tr>
+<tr class="separator:af59e98ff2ccf2610487a492a8d82d9b5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8406d33a90e034cac0a4c832a1669ff0"><td class="memItemLeft" align="right" valign="top">Mirror&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_my_bot_module.html#a8406d33a90e034cac0a4c832a1669ff0">mirror</a> = new Mirror()</td></tr>
+<tr class="separator:a8406d33a90e034cac0a4c832a1669ff0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>봇프로그램의 기본적인 뼈대 구조를 정의한 class 로서, 스타크래프트 대결 도중 발생하는 이벤트들을 <a class="el" href="class_game_commander.html" title="실제 봇프로그램의 본체가 되는 class 스타크래프트 경기 도중 발생하는 이벤트들이 적절하게 처리되도록 해...">GameCommander</a> class 인스턴스에게 전달합니다. <a class="el" href="class_my_bot_module.html" title="봇프로그램의 기본적인 뼈대 구조를 정의한 class 로서, 스타크래프트 대결 도중 발생하는 이벤트들을 GameC...">MyBotModule</a> class는 수정을 하지 말고, 실제 봇프로그램 개발은 <a class="el" href="class_game_commander.html" title="실제 봇프로그램의 본체가 되는 class 스타크래프트 경기 도중 발생하는 이벤트들이 적절하게 처리되도록 해...">GameCommander</a> class 를 수정하는 형태로 진행하도록 합니다 </p>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="class_game_commander.html" title="실제 봇프로그램의 본체가 되는 class 스타크래프트 경기 도중 발생하는 이벤트들이 적절하게 처리되도록 해...">GameCommander</a> </dd></dl>
 </div><h2 class="groupheader">Member Function Documentation</h2>
-<a class="anchor" id="a3b0f3d9ff01c3f0b3a88d7713c952250"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void MyBotModule.run </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-</div>
-</div>
-<a class="anchor" id="af997d3bc3bd5e5a54f187ce88cb910e0"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void MyBotModule.onStart </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>경기가 시작될 때 일회적으로 발생하는 이벤트를 처리합니다 </p>
-
-</div>
-</div>
 <a class="anchor" id="a36879dd057ded6fae796c93d491fc0a6"></a>
 <div class="memitem">
 <div class="memproto">
@@ -218,21 +194,39 @@ Static Public Attributes</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="ad28e1fc45827a1353712d6b97bc751c8"></a>
+<a class="anchor" id="aa3afd9d61d2c2ba8accf0a1c7291089f"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void MyBotModule.onSendText </td>
+          <td class="memname">void MyBotModule.onNukeDetect </td>
           <td>(</td>
-          <td class="paramtype">String&#160;</td>
-          <td class="paramname"><em>text</em></td><td>)</td>
+          <td class="paramtype">Position&#160;</td>
+          <td class="paramname"><em>target</em></td><td>)</td>
           <td></td>
         </tr>
       </table>
 </div><div class="memdoc">
 
-<p>텍스트를 입력 후 엔터를 하여 다른 플레이어들에게 텍스트를 전달하려 할 때 발생하는 이벤트를 처리합니다 </p>
+<p>핵미사일 발사가 감지되었을 때 발생하는 이벤트를 처리합니다 </p>
+
+</div>
+</div>
+<a class="anchor" id="aed0c493fe04da7aad635276c731b4612"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void MyBotModule.onPlayerLeft </td>
+          <td>(</td>
+          <td class="paramtype">Player&#160;</td>
+          <td class="paramname"><em>player</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>다른 플레이어가 대결을 나갔을 때 발생하는 이벤트를 처리합니다 </p>
 
 </div>
 </div>
@@ -264,39 +258,74 @@ Static Public Attributes</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="aed0c493fe04da7aad635276c731b4612"></a>
+<a class="anchor" id="a34c604697e4542f61a3bb3fdf61ad0e8"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void MyBotModule.onPlayerLeft </td>
+          <td class="memname">void MyBotModule.onSaveGame </td>
           <td>(</td>
-          <td class="paramtype">Player&#160;</td>
-          <td class="paramname"><em>player</em></td><td>)</td>
+          <td class="paramtype">String&#160;</td>
+          <td class="paramname"><em>gameName</em></td><td>)</td>
           <td></td>
         </tr>
       </table>
 </div><div class="memdoc">
 
-<p>다른 플레이어가 대결을 나갔을 때 발생하는 이벤트를 처리합니다 </p>
+<p>게임을 저장할 때 발생하는 이벤트를 처리합니다 </p>
 
 </div>
 </div>
-<a class="anchor" id="aa3afd9d61d2c2ba8accf0a1c7291089f"></a>
+<a class="anchor" id="ad28e1fc45827a1353712d6b97bc751c8"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void MyBotModule.onNukeDetect </td>
+          <td class="memname">void MyBotModule.onSendText </td>
           <td>(</td>
-          <td class="paramtype">Position&#160;</td>
-          <td class="paramname"><em>target</em></td><td>)</td>
+          <td class="paramtype">String&#160;</td>
+          <td class="paramname"><em>text</em></td><td>)</td>
           <td></td>
         </tr>
       </table>
 </div><div class="memdoc">
 
-<p>핵미사일 발사가 감지되었을 때 발생하는 이벤트를 처리합니다 </p>
+<p>텍스트를 입력 후 엔터를 하여 다른 플레이어들에게 텍스트를 전달하려 할 때 발생하는 이벤트를 처리합니다 </p>
+
+</div>
+</div>
+<a class="anchor" id="af997d3bc3bd5e5a54f187ce88cb910e0"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void MyBotModule.onStart </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>경기가 시작될 때 일회적으로 발생하는 이벤트를 처리합니다 </p>
+
+</div>
+</div>
+<a class="anchor" id="abc551e835c489ef29a4ae04b0884ff6b"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void MyBotModule.onUnitComplete </td>
+          <td>(</td>
+          <td class="paramtype">Unit&#160;</td>
+          <td class="paramname"><em>unit</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>유닛(건물/지상유닛/공중유닛)의 하던 일 (건물 건설, 업그레이드, 지상유닛 훈련 등)이 끝났을 때 발생하는 이벤트를 처리합니다 </p>
 
 </div>
 </div>
@@ -318,24 +347,6 @@ Static Public Attributes</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="af0b5de5d0ab47871626cb5235f3171c1"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void MyBotModule.onUnitMorph </td>
-          <td>(</td>
-          <td class="paramtype">Unit&#160;</td>
-          <td class="paramname"><em>unit</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>유닛(건물/지상유닛/공중유닛)이 Morph 될 때 발생하는 이벤트를 처리합니다 Zerg 종족의 유닛은 건물 건설이나 지상유닛/공중유닛 생산에서 거의 대부분 Morph 형태로 진행됩니다 </p>
-
-</div>
-</div>
 <a class="anchor" id="aa9963fcc7097a1d8fcceb525ea106de8"></a>
 <div class="memitem">
 <div class="memproto">
@@ -351,60 +362,6 @@ Static Public Attributes</h2></td></tr>
 </div><div class="memdoc">
 
 <p>유닛(건물/지상유닛/공중유닛)이 Destroy 될 때 발생하는 이벤트를 처리합니다 </p>
-
-</div>
-</div>
-<a class="anchor" id="a5f1ad2dc02b483fc8adbf5a1e4709b26"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void MyBotModule.onUnitShow </td>
-          <td>(</td>
-          <td class="paramtype">Unit&#160;</td>
-          <td class="paramname"><em>unit</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>유닛(건물/지상유닛/공중유닛)이 Show 될 때 발생하는 이벤트를 처리합니다 아군 유닛이 Create 되었을 때 라든가, 적군 유닛이 Discover 되었을 때 발생합니다 </p>
-
-</div>
-</div>
-<a class="anchor" id="a22a02f5f7b4daa3df36c2c7dc6c79d27"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void MyBotModule.onUnitHide </td>
-          <td>(</td>
-          <td class="paramtype">Unit&#160;</td>
-          <td class="paramname"><em>unit</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>유닛(건물/지상유닛/공중유닛)이 Hide 될 때 발생하는 이벤트를 처리합니다 보이던 유닛이 Hide 될 때 발생합니다 </p>
-
-</div>
-</div>
-<a class="anchor" id="a1729e51b94889651f23bc2ec8fe106ce"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void MyBotModule.onUnitRenegade </td>
-          <td>(</td>
-          <td class="paramtype">Unit&#160;</td>
-          <td class="paramname"><em>unit</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>유닛(건물/지상유닛/공중유닛)의 소속 플레이어가 바뀔 때 발생하는 이벤트를 처리합니다 Gas Geyser에 어떤 플레이어가 Refinery 건물을 건설했을 때, Refinery 건물이 파괴되었을 때, Protoss 종족 Dark Archon 의 Mind Control 에 의해 소속 플레이어가 바뀔 때 발생합니다 </p>
 
 </div>
 </div>
@@ -444,12 +401,12 @@ Static Public Attributes</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="abc551e835c489ef29a4ae04b0884ff6b"></a>
+<a class="anchor" id="a22a02f5f7b4daa3df36c2c7dc6c79d27"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void MyBotModule.onUnitComplete </td>
+          <td class="memname">void MyBotModule.onUnitHide </td>
           <td>(</td>
           <td class="paramtype">Unit&#160;</td>
           <td class="paramname"><em>unit</em></td><td>)</td>
@@ -458,25 +415,61 @@ Static Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>유닛(건물/지상유닛/공중유닛)의 하던 일 (건물 건설, 업그레이드, 지상유닛 훈련 등)이 끝났을 때 발생하는 이벤트를 처리합니다 </p>
+<p>유닛(건물/지상유닛/공중유닛)이 Hide 될 때 발생하는 이벤트를 처리합니다 보이던 유닛이 Hide 될 때 발생합니다 </p>
 
 </div>
 </div>
-<a class="anchor" id="a34c604697e4542f61a3bb3fdf61ad0e8"></a>
+<a class="anchor" id="af0b5de5d0ab47871626cb5235f3171c1"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void MyBotModule.onSaveGame </td>
+          <td class="memname">void MyBotModule.onUnitMorph </td>
           <td>(</td>
-          <td class="paramtype">String&#160;</td>
-          <td class="paramname"><em>gameName</em></td><td>)</td>
+          <td class="paramtype">Unit&#160;</td>
+          <td class="paramname"><em>unit</em></td><td>)</td>
           <td></td>
         </tr>
       </table>
 </div><div class="memdoc">
 
-<p>게임을 저장할 때 발생하는 이벤트를 처리합니다 </p>
+<p>유닛(건물/지상유닛/공중유닛)이 Morph 될 때 발생하는 이벤트를 처리합니다 Zerg 종족의 유닛은 건물 건설이나 지상유닛/공중유닛 생산에서 거의 대부분 Morph 형태로 진행됩니다 </p>
+
+</div>
+</div>
+<a class="anchor" id="a1729e51b94889651f23bc2ec8fe106ce"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void MyBotModule.onUnitRenegade </td>
+          <td>(</td>
+          <td class="paramtype">Unit&#160;</td>
+          <td class="paramname"><em>unit</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>유닛(건물/지상유닛/공중유닛)의 소속 플레이어가 바뀔 때 발생하는 이벤트를 처리합니다 Gas Geyser에 어떤 플레이어가 Refinery 건물을 건설했을 때, Refinery 건물이 파괴되었을 때, Protoss 종족 Dark Archon 의 Mind Control 에 의해 소속 플레이어가 바뀔 때 발생합니다 </p>
+
+</div>
+</div>
+<a class="anchor" id="a5f1ad2dc02b483fc8adbf5a1e4709b26"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void MyBotModule.onUnitShow </td>
+          <td>(</td>
+          <td class="paramtype">Unit&#160;</td>
+          <td class="paramname"><em>unit</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>유닛(건물/지상유닛/공중유닛)이 Show 될 때 발생하는 이벤트를 처리합니다 아군 유닛이 Create 되었을 때 라든가, 적군 유닛이 Discover 되었을 때 발생합니다 </p>
 
 </div>
 </div>
@@ -495,6 +488,21 @@ Static Public Attributes</h2></td></tr>
 </div><div class="memdoc">
 
 <p>사용자가 입력한 text 를 parse 해서 처리합니다 </p>
+
+</div>
+</div>
+<a class="anchor" id="a3b0f3d9ff01c3f0b3a88d7713c952250"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void MyBotModule.run </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
 
 </div>
 </div>
@@ -521,11 +529,56 @@ Static Public Attributes</h2></td></tr>
 
 </div>
 </div>
+<a class="anchor" id="af59e98ff2ccf2610487a492a8d82d9b5"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_game_commander.html">GameCommander</a> MyBotModule.gameCommander</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>실제 봇프로그램 </p>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="class_game_commander.html" title="실제 봇프로그램의 본체가 되는 class 스타크래프트 경기 도중 발생하는 이벤트들이 적절하게 처리되도록 해...">GameCommander</a> </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a8406d33a90e034cac0a4c832a1669ff0"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">Mirror MyBotModule.mirror = new Mirror()</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>BWAPI 에 해당하는 내부 객체 </p>
+
+</div>
+</div>
 </div><!-- contents -->
 <!-- HTML footer for doxygen 1.8.8-->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Mon May 29 2017 22:47:42 for BasicBot by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Fri Jun 9 2017 21:29:50 for BasicBot by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.8
 </small></address>

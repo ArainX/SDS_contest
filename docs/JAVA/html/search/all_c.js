@@ -1,5 +1,7 @@
 var searchData=
 [
+  ['occupiedbaselocations',['occupiedBaseLocations',['../class_information_manager.html#af6d7137a1142cf94ac7e76df0ae16351',1,'InformationManager']]],
+  ['occupiedregions',['occupiedRegions',['../class_information_manager.html#a99a871302b641d7029baee735ee81238',1,'InformationManager']]],
   ['onend',['onEnd',['../class_game_commander.html#ac5bd55e90eb436781d883a51fe086e47',1,'GameCommander.onEnd()'],['../class_my_bot_module.html#a36879dd057ded6fae796c93d491fc0a6',1,'MyBotModule.onEnd()'],['../class_strategy_manager.html#aaa482622ac37a231703e795ef4718ac5',1,'StrategyManager.onEnd()']]],
   ['onframe',['onFrame',['../class_game_commander.html#aed648b450d0603c630bac36bdd019d2a',1,'GameCommander.onFrame()'],['../class_my_bot_module.html#acf3e9979cd142f49a453713fb769767d',1,'MyBotModule.onFrame()']]],
   ['onnukedetect',['onNukeDetect',['../class_my_bot_module.html#aa3afd9d61d2c2ba8accf0a1c7291089f',1,'MyBotModule']]],
@@ -18,5 +20,8 @@ var searchData=
   ['onunitrenegade',['onUnitRenegade',['../class_game_commander.html#a14040c884cc93ac25c826b43870804e1',1,'GameCommander.onUnitRenegade()'],['../class_information_manager.html#a294593211c2bf2f7a51023ec191c144f',1,'InformationManager.onUnitRenegade()'],['../class_my_bot_module.html#a1729e51b94889651f23bc2ec8fe106ce',1,'MyBotModule.onUnitRenegade()']]],
   ['onunitshow',['onUnitShow',['../class_game_commander.html#a0cf84cc29a440209f6b78c7f6eb3b93f',1,'GameCommander.onUnitShow()'],['../class_information_manager.html#a726b95b698b65da54555369bcb9b230a',1,'InformationManager.onUnitShow()'],['../class_my_bot_module.html#a5f1ad2dc02b483fc8adbf5a1e4709b26',1,'MyBotModule.onUnitShow()'],['../class_worker_manager.html#a5959a9f3c3e58f68bc354f550265c83a',1,'WorkerManager.onUnitShow()']]],
   ['operator',['operator',['../class_build_order_queue.html#a6a28d8094b23f7461cb1d98a5ce8545f',1,'BuildOrderQueue']]],
+  ['oppunits',['oppUnits',['../class_distance_map_1_1_grid_cell.html#aadf6b0927064b84f61856b98bb84e4eb',1,'DistanceMap.GridCell.oppUnits()'],['../class_map_grid_1_1_grid_cell.html#aec72c1b63017d3dc4d7d5cabdcb3e8ab',1,'MapGrid.GridCell.oppUnits()']]],
+  ['orange',['orange',['../class_u_x_manager.html#a00139c1a13c65099e480b60ae2e3b693',1,'UXManager']]],
+  ['ourunits',['ourUnits',['../class_distance_map_1_1_grid_cell.html#a8525f2f0c2f8398c82122f5e9945934e',1,'DistanceMap.GridCell.ourUnits()'],['../class_map_grid_1_1_grid_cell.html#a741fdb5a4c1aaf1a805055b0e0c6ec39',1,'MapGrid.GridCell.ourUnits()']]],
   ['overwritetofile',['overwriteToFile',['../class_common.html#a16987c786c8147c0b3d2e5d17c3de120',1,'Common']]]
 ];

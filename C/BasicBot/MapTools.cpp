@@ -1,4 +1,4 @@
-#include "MapTools.h"
+﻿#include "MapTools.h"
 
 using namespace MyBot;
 

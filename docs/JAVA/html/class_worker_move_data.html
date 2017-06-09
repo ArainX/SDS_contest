@@ -26,7 +26,7 @@
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;">
    <div id="projectname">BasicBot
-   &#160;<span id="projectnumber">v0.9 beta</span>
+   &#160;<span id="projectnumber">v0.95 beta</span>
    </div>
    <div id="projectbrief">BasicBot for Starcraft: Broodwar 1.16.1 with BWAPI 4.1.2</div>
   </td>
@@ -92,6 +92,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="header">
   <div class="summary">
 <a href="#pub-methods">Public Member Functions</a> &#124;
+<a href="#pri-attribs">Private Attributes</a> &#124;
 <a href="class_worker_move_data-members.html">List of all members</a>  </div>
   <div class="headertitle">
 <div class="title">WorkerMoveData Class Reference</div>  </div>
@@ -108,6 +109,15 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:a088c30d238ac9c50093eadf3f73fba31"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad25830ad06c894b03b1484bffb4f3415"><td class="memItemLeft" align="right" valign="top">Position&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_worker_move_data.html#ad25830ad06c894b03b1484bffb4f3415">getPosition</a> ()</td></tr>
 <tr class="separator:ad25830ad06c894b03b1484bffb4f3415"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-attribs"></a>
+Private Attributes</h2></td></tr>
+<tr class="memitem:aa09c1affe846b395347ea0be5c054422"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_worker_move_data.html#aa09c1affe846b395347ea0be5c054422">gasNeeded</a></td></tr>
+<tr class="separator:aa09c1affe846b395347ea0be5c054422"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7f0fd6d35420f1d51dbf8ff1a92b3f90"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_worker_move_data.html#a7f0fd6d35420f1d51dbf8ff1a92b3f90">mineralsNeeded</a></td></tr>
+<tr class="separator:a7f0fd6d35420f1d51dbf8ff1a92b3f90"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a37e18f18477ac469e0d2b8f57cc77831"><td class="memItemLeft" align="right" valign="top">Position&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_worker_move_data.html#a37e18f18477ac469e0d2b8f57cc77831">position</a></td></tr>
+<tr class="separator:a37e18f18477ac469e0d2b8f57cc77831"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a class="anchor" id="a1f8c3f744b3d2ae4c86e5a36932c7daf"></a>
@@ -143,12 +153,12 @@ Public Member Functions</h2></td></tr>
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
-<a class="anchor" id="a088c30d238ac9c50093eadf3f73fba31"></a>
+<a class="anchor" id="a0f574d7f8187c88d3dd71cb127e8fa4d"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">int WorkerMoveData.getMineralsNeeded </td>
+          <td class="memname">int WorkerMoveData.getGasNeeded </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td></td>
@@ -158,12 +168,12 @@ Public Member Functions</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="a0f574d7f8187c88d3dd71cb127e8fa4d"></a>
+<a class="anchor" id="a088c30d238ac9c50093eadf3f73fba31"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">int WorkerMoveData.getGasNeeded </td>
+          <td class="memname">int WorkerMoveData.getMineralsNeeded </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td></td>
@@ -188,11 +198,72 @@ Public Member Functions</h2></td></tr>
 
 </div>
 </div>
+<h2 class="groupheader">Member Data Documentation</h2>
+<a class="anchor" id="aa09c1affe846b395347ea0be5c054422"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int WorkerMoveData.gasNeeded</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="a7f0fd6d35420f1d51dbf8ff1a92b3f90"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int WorkerMoveData.mineralsNeeded</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="a37e18f18477ac469e0d2b8f57cc77831"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">Position WorkerMoveData.position</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
 </div><!-- contents -->
 <!-- HTML footer for doxygen 1.8.8-->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Mon May 29 2017 22:47:42 for BasicBot by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Fri Jun 9 2017 21:29:50 for BasicBot by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.8
 </small></address>

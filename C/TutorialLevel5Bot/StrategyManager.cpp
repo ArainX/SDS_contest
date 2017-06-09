@@ -1,4 +1,4 @@
-#include "StrategyManager.h"
+﻿#include "StrategyManager.h"
 
 using namespace MyBot;
 
@@ -265,7 +265,7 @@ void StrategyManager::executeCombat()
 			if (InformationManager::Instance().enemyPlayer != nullptr
 				&& InformationManager::Instance().enemyRace != BWAPI::Races::Unknown
 				&& InformationManager::Instance().getOccupiedBaseLocations(InformationManager::Instance().enemyPlayer).size() > 0)
-			{				
+			{
 				isFullScaleAttackStarted = true;
 			}
 		}

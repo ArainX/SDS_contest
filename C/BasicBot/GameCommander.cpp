@@ -1,4 +1,4 @@
-#include "GameCommander.h"
+﻿#include "GameCommander.h"
 
 using namespace MyBot;
 
@@ -40,9 +40,7 @@ void GameCommander::onFrame()
 
 	// 각 유닛의 위치를 자체 MapGrid 자료구조에 저장
 	MapGrid::Instance().update();
-
-	MapTools::Instance().draw();
-
+		
 	if (isToFindError) std::cout << "c";
 
 	// economy and base managers

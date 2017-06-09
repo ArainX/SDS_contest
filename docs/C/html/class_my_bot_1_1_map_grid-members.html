@@ -26,7 +26,7 @@
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;">
    <div id="projectname">BasicBot
-   &#160;<span id="projectnumber">v0.9 beta</span>
+   &#160;<span id="projectnumber">v0.95 beta</span>
    </div>
    <div id="projectbrief">BasicBot for Starcraft: Broodwar 1.16.1 with BWAPI 4.1.2</div>
   </td>
@@ -101,9 +101,15 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 
 <p>This is the complete list of members for <a class="el" href="class_my_bot_1_1_map_grid.html">MyBot::MapGrid</a>, including all inherited members.</p>
 <table class="directory">
-  <tr class="even"><td class="entry"><a class="el" href="class_my_bot_1_1_map_grid.html#a8394d800d09023b95db781f2fc365927">getCell</a>(BWAPI::Position pos)</td><td class="entry"><a class="el" href="class_my_bot_1_1_map_grid.html">MyBot::MapGrid</a></td><td class="entry"></td></tr>
-  <tr><td class="entry"><a class="el" href="class_my_bot_1_1_map_grid.html#a472c3b879525f62a8b6ffd2f469a18b9">getCell</a>(BWAPI::Unit unit)</td><td class="entry"><a class="el" href="class_my_bot_1_1_map_grid.html">MyBot::MapGrid</a></td><td class="entry"></td></tr>
-  <tr class="even"><td class="entry"><a class="el" href="class_my_bot_1_1_map_grid.html#aafb3f68b81bce1fa3763d3e92fc9d0a7">getCellByIndex</a>(int r, int c)</td><td class="entry"><a class="el" href="class_my_bot_1_1_map_grid.html">MyBot::MapGrid</a></td><td class="entry"></td></tr>
+  <tr class="even"><td class="entry"><a class="el" href="class_my_bot_1_1_map_grid.html#a193e513ed8dec1f2fdf50b8a5378a8ea">calculateCellCenters</a>()</td><td class="entry"><a class="el" href="class_my_bot_1_1_map_grid.html">MyBot::MapGrid</a></td><td class="entry"><span class="mlabel">private</span></td></tr>
+  <tr><td class="entry"><a class="el" href="class_my_bot_1_1_map_grid.html#a33b965d54e0562169595fb0d3e2b75eb">cells</a></td><td class="entry"><a class="el" href="class_my_bot_1_1_map_grid.html">MyBot::MapGrid</a></td><td class="entry"><span class="mlabel">private</span></td></tr>
+  <tr class="even"><td class="entry"><a class="el" href="class_my_bot_1_1_map_grid.html#aa78677d2b0331e971e10525274a7c310">cellSize</a></td><td class="entry"><a class="el" href="class_my_bot_1_1_map_grid.html">MyBot::MapGrid</a></td><td class="entry"><span class="mlabel">private</span></td></tr>
+  <tr><td class="entry"><a class="el" href="class_my_bot_1_1_map_grid.html#a064e210558aad3d822e5492084e5a783">clearGrid</a>()</td><td class="entry"><a class="el" href="class_my_bot_1_1_map_grid.html">MyBot::MapGrid</a></td><td class="entry"><span class="mlabel">private</span></td></tr>
+  <tr class="even"><td class="entry"><a class="el" href="class_my_bot_1_1_map_grid.html#ae6867c38fb21a47f6235e698536e8aea">cols</a></td><td class="entry"><a class="el" href="class_my_bot_1_1_map_grid.html">MyBot::MapGrid</a></td><td class="entry"><span class="mlabel">private</span></td></tr>
+  <tr><td class="entry"><a class="el" href="class_my_bot_1_1_map_grid.html#a8394d800d09023b95db781f2fc365927">getCell</a>(BWAPI::Position pos)</td><td class="entry"><a class="el" href="class_my_bot_1_1_map_grid.html">MyBot::MapGrid</a></td><td class="entry"></td></tr>
+  <tr class="even"><td class="entry"><a class="el" href="class_my_bot_1_1_map_grid.html#a472c3b879525f62a8b6ffd2f469a18b9">getCell</a>(BWAPI::Unit unit)</td><td class="entry"><a class="el" href="class_my_bot_1_1_map_grid.html">MyBot::MapGrid</a></td><td class="entry"></td></tr>
+  <tr><td class="entry"><a class="el" href="class_my_bot_1_1_map_grid.html#aafb3f68b81bce1fa3763d3e92fc9d0a7">getCellByIndex</a>(int r, int c)</td><td class="entry"><a class="el" href="class_my_bot_1_1_map_grid.html">MyBot::MapGrid</a></td><td class="entry"></td></tr>
+  <tr class="even"><td class="entry"><a class="el" href="class_my_bot_1_1_map_grid.html#ae97927c25f5d23a23e963d8be2ab3d4c">getCellCenter</a>(int x, int y)</td><td class="entry"><a class="el" href="class_my_bot_1_1_map_grid.html">MyBot::MapGrid</a></td><td class="entry"><span class="mlabel">private</span></td></tr>
   <tr><td class="entry"><a class="el" href="class_my_bot_1_1_map_grid.html#a9450254b40099ff2ce62e9ba4673010f">getCellSize</a>()</td><td class="entry"><a class="el" href="class_my_bot_1_1_map_grid.html">MyBot::MapGrid</a></td><td class="entry"></td></tr>
   <tr class="even"><td class="entry"><a class="el" href="class_my_bot_1_1_map_grid.html#a98aed8d7fbb4ee2eaedb82b08dcd0b4d">getCols</a>()</td><td class="entry"><a class="el" href="class_my_bot_1_1_map_grid.html">MyBot::MapGrid</a></td><td class="entry"></td></tr>
   <tr><td class="entry"><a class="el" href="class_my_bot_1_1_map_grid.html#a10ad322f2b8fb6afc2f6d08cdf06c514">getLeastExplored</a>()</td><td class="entry"><a class="el" href="class_my_bot_1_1_map_grid.html">MyBot::MapGrid</a></td><td class="entry"></td></tr>
@@ -112,12 +118,18 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <tr class="even"><td class="entry"><a class="el" href="class_my_bot_1_1_map_grid.html#a7fb60271e98876a605a8aaf39ac11e6c">getRows</a>()</td><td class="entry"><a class="el" href="class_my_bot_1_1_map_grid.html">MyBot::MapGrid</a></td><td class="entry"></td></tr>
   <tr><td class="entry"><a class="el" href="class_my_bot_1_1_map_grid.html#aa0de03de206cb52f6529deba0d7bfd29">getUnitsNear</a>(BWAPI::Unitset &amp;units, BWAPI::Position center, int radius, bool ourUnits, bool oppUnits)</td><td class="entry"><a class="el" href="class_my_bot_1_1_map_grid.html">MyBot::MapGrid</a></td><td class="entry"></td></tr>
   <tr class="even"><td class="entry"><a class="el" href="class_my_bot_1_1_map_grid.html#abcf3316a21c59a9af495763e7d678d58">Instance</a>()</td><td class="entry"><a class="el" href="class_my_bot_1_1_map_grid.html">MyBot::MapGrid</a></td><td class="entry"><span class="mlabel">static</span></td></tr>
+  <tr><td class="entry"><a class="el" href="class_my_bot_1_1_map_grid.html#a1529dd96de090d3c98cfa2226c998e01">lastUpdated</a></td><td class="entry"><a class="el" href="class_my_bot_1_1_map_grid.html">MyBot::MapGrid</a></td><td class="entry"><span class="mlabel">private</span></td></tr>
+  <tr class="even"><td class="entry"><a class="el" href="class_my_bot_1_1_map_grid.html#a2b435c78a2934902270a17106c732453">MapGrid</a>()</td><td class="entry"><a class="el" href="class_my_bot_1_1_map_grid.html">MyBot::MapGrid</a></td><td class="entry"><span class="mlabel">private</span></td></tr>
+  <tr><td class="entry"><a class="el" href="class_my_bot_1_1_map_grid.html#a9eb570c37f28b10116d5b8c2e1a65c99">MapGrid</a>(int mapWidth, int mapHeight, int cellSize)</td><td class="entry"><a class="el" href="class_my_bot_1_1_map_grid.html">MyBot::MapGrid</a></td><td class="entry"><span class="mlabel">private</span></td></tr>
+  <tr class="even"><td class="entry"><a class="el" href="class_my_bot_1_1_map_grid.html#ace7f6f06716f6cce6bce3216fbd8f5f1">mapHeight</a></td><td class="entry"><a class="el" href="class_my_bot_1_1_map_grid.html">MyBot::MapGrid</a></td><td class="entry"><span class="mlabel">private</span></td></tr>
+  <tr><td class="entry"><a class="el" href="class_my_bot_1_1_map_grid.html#a452b1893662211ecc240908ec30c50c3">mapWidth</a></td><td class="entry"><a class="el" href="class_my_bot_1_1_map_grid.html">MyBot::MapGrid</a></td><td class="entry"><span class="mlabel">private</span></td></tr>
+  <tr class="even"><td class="entry"><a class="el" href="class_my_bot_1_1_map_grid.html#a57e232a5f6e7553926c8e4ea69ad6d8f">rows</a></td><td class="entry"><a class="el" href="class_my_bot_1_1_map_grid.html">MyBot::MapGrid</a></td><td class="entry"><span class="mlabel">private</span></td></tr>
   <tr><td class="entry"><a class="el" href="class_my_bot_1_1_map_grid.html#ae0acbce5ea5cb2b07d989852a32dfc19">update</a>()</td><td class="entry"><a class="el" href="class_my_bot_1_1_map_grid.html">MyBot::MapGrid</a></td><td class="entry"></td></tr>
 </table></div><!-- contents -->
 <!-- HTML footer for doxygen 1.8.8-->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Mon May 29 2017 22:47:28 for BasicBot by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Fri Jun 9 2017 11:48:30 for BasicBot by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.8
 </small></address>

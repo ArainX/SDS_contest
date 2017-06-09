@@ -1,4 +1,4 @@
-#include "ConstructionManager.h"
+﻿#include "ConstructionManager.h"
 
 using namespace MyBot;
 

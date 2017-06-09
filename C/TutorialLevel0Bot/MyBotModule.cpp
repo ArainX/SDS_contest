@@ -1,4 +1,4 @@
-#include "MyBotModule.h"
+﻿#include "MyBotModule.h"
 
 using namespace BWAPI;
 using namespace BWTA;

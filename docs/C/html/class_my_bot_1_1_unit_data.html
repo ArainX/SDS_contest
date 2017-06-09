@@ -26,7 +26,7 @@
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;">
    <div id="projectname">BasicBot
-   &#160;<span id="projectnumber">v0.9 beta</span>
+   &#160;<span id="projectnumber">v0.95 beta</span>
    </div>
    <div id="projectbrief">BasicBot for Starcraft: Broodwar 1.16.1 with BWAPI 4.1.2</div>
   </td>
@@ -96,6 +96,8 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="header">
   <div class="summary">
 <a href="#pub-methods">Public Member Functions</a> &#124;
+<a href="#pri-methods">Private Member Functions</a> &#124;
+<a href="#pri-attribs">Private Attributes</a> &#124;
 <a href="class_my_bot_1_1_unit_data-members.html">List of all members</a>  </div>
   <div class="headertitle">
 <div class="title">MyBot::UnitData Class Reference</div>  </div>
@@ -116,15 +118,35 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:ad6f46af943861611d475029363a26798"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a70389e370c5c01a64f64e8c38ba6604e"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_my_bot_1_1_unit_data.html#a70389e370c5c01a64f64e8c38ba6604e">getNumUnits</a> (BWAPI::UnitType t) const </td></tr>
 <tr class="separator:a70389e370c5c01a64f64e8c38ba6604e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5b0e3fb63cb6be7517250b690b26f15e"><td class="memItemLeft" align="right" valign="top">const std::map&lt; BWAPI::Unit, <br class="typebreak" />
-<a class="el" href="struct_my_bot_1_1_unit_info.html">UnitInfo</a> &gt; &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_my_bot_1_1_unit_data.html#a5b0e3fb63cb6be7517250b690b26f15e">getUnits</a> () const </td></tr>
-<tr class="separator:a5b0e3fb63cb6be7517250b690b26f15e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a62c7324f744e3656c33aadd7158b4a50"><td class="memItemLeft" align="right" valign="top">const std::map&lt; BWAPI::Unit, <br class="typebreak" />
+<a class="el" href="struct_my_bot_1_1_unit_info.html">UnitInfo</a> &gt; &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_my_bot_1_1_unit_data.html#a62c7324f744e3656c33aadd7158b4a50">getUnitAndUnitInfoMap</a> () const </td></tr>
+<tr class="separator:a62c7324f744e3656c33aadd7158b4a50"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa00d018d5f2d5e20edcb9ed40bacb96a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_my_bot_1_1_unit_data.html#aa00d018d5f2d5e20edcb9ed40bacb96a">removeBadUnits</a> ()</td></tr>
 <tr class="separator:aa00d018d5f2d5e20edcb9ed40bacb96a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af19e2b6992fd2fa4cb81bf131d930c28"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_my_bot_1_1_unit_data.html#af19e2b6992fd2fa4cb81bf131d930c28">removeUnit</a> (BWAPI::Unit unit)</td></tr>
 <tr class="separator:af19e2b6992fd2fa4cb81bf131d930c28"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:abb344c06e3246e0ddcbae7872a3a0143"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_my_bot_1_1_unit_data.html#abb344c06e3246e0ddcbae7872a3a0143">updateUnitInfo</a> (BWAPI::Unit unit)</td></tr>
 <tr class="separator:abb344c06e3246e0ddcbae7872a3a0143"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-methods"></a>
+Private Member Functions</h2></td></tr>
+<tr class="memitem:a2138263d38f8a7c4e3806e3c30a74d62"><td class="memItemLeft" align="right" valign="top">const bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_my_bot_1_1_unit_data.html#a2138263d38f8a7c4e3806e3c30a74d62">isBadUnitInfo</a> (const <a class="el" href="struct_my_bot_1_1_unit_info.html">UnitInfo</a> &amp;ui) const </td></tr>
+<tr class="separator:a2138263d38f8a7c4e3806e3c30a74d62"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-attribs"></a>
+Private Attributes</h2></td></tr>
+<tr class="memitem:a158ee1fd0036b5de50badaef996ad318"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_my_bot_1_1_unit_data.html#a158ee1fd0036b5de50badaef996ad318">gasLost</a></td></tr>
+<tr class="separator:a158ee1fd0036b5de50badaef996ad318"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5f92d8e28c7b1fc9d42527d9737660df"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_my_bot_1_1_unit_data.html#a5f92d8e28c7b1fc9d42527d9737660df">mineralsLost</a></td></tr>
+<tr class="separator:a5f92d8e28c7b1fc9d42527d9737660df"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abfbc008a10f509253c57cda72adef2c5"><td class="memItemLeft" align="right" valign="top">std::vector&lt; int &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_my_bot_1_1_unit_data.html#abfbc008a10f509253c57cda72adef2c5">numCreatedUnits</a></td></tr>
+<tr class="separator:abfbc008a10f509253c57cda72adef2c5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6f12339b4bc723e1176e885bd5af6ca4"><td class="memItemLeft" align="right" valign="top">std::vector&lt; int &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_my_bot_1_1_unit_data.html#a6f12339b4bc723e1176e885bd5af6ca4">numDeadUnits</a></td></tr>
+<tr class="separator:a6f12339b4bc723e1176e885bd5af6ca4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a42d762a715db6c3120704cd5866e1778"><td class="memItemLeft" align="right" valign="top">std::vector&lt; int &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_my_bot_1_1_unit_data.html#a42d762a715db6c3120704cd5866e1778">numUnits</a></td></tr>
+<tr class="separator:a42d762a715db6c3120704cd5866e1778"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0d78b1a38e72365f9daea9e3c4c9cbac"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespace_my_bot.html#aad17dfb7cf6287af0f9c93b75c47ffd6">UnitAndUnitInfoMap</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_my_bot_1_1_unit_data.html#a0d78b1a38e72365f9daea9e3c4c9cbac">unitAndUnitInfoMap</a></td></tr>
+<tr class="separator:a0d78b1a38e72365f9daea9e3c4c9cbac"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a class="anchor" id="af0f31d59153c74e95f1cead74bbc40d4"></a>
@@ -143,76 +165,6 @@ Public Member Functions</h2></td></tr>
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
-<a class="anchor" id="abb344c06e3246e0ddcbae7872a3a0143"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void UnitData::updateUnitInfo </td>
-          <td>(</td>
-          <td class="paramtype">BWAPI::Unit&#160;</td>
-          <td class="paramname"><em>unit</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>유닛의 상태정보를 업데이트합니다 </p>
-
-</div>
-</div>
-<a class="anchor" id="af19e2b6992fd2fa4cb81bf131d930c28"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void UnitData::removeUnit </td>
-          <td>(</td>
-          <td class="paramtype">BWAPI::Unit&#160;</td>
-          <td class="paramname"><em>unit</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>파괴/사망한 유닛을 자료구조에서 제거합니다 </p>
-
-</div>
-</div>
-<a class="anchor" id="aa00d018d5f2d5e20edcb9ed40bacb96a"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void UnitData::removeBadUnits </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>포인터가 null 이 되었거나, 파괴되어 Resource_Vespene_Geyser로 돌아간 Refinery, 예전에는 건물이 있었던 걸로 저장해두었는데 지금은 파괴되어 없어진 건물 (특히, 테란의 경우 불타서 소멸한 건물) 데이터를 제거합니다 </p>
-
-</div>
-</div>
-<a class="anchor" id="a6e75953ea9daadc2851a54bbe79f9cfa"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">int UnitData::getMineralsLost </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td> const</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>사망한 유닛을 생산하는데 소요되었던 Mineral 의 누적값 (얼마나 손해를 보았는가 계산하기 위함임) 을 리턴합니다 </p>
-
-</div>
-</div>
 <a class="anchor" id="ac59850c74036b547c9c7e421c6e985d5"></a>
 <div class="memitem">
 <div class="memproto">
@@ -230,39 +182,20 @@ Public Member Functions</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="a70389e370c5c01a64f64e8c38ba6604e"></a>
+<a class="anchor" id="a6e75953ea9daadc2851a54bbe79f9cfa"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">int UnitData::getNumUnits </td>
+          <td class="memname">int UnitData::getMineralsLost </td>
           <td>(</td>
-          <td class="paramtype">BWAPI::UnitType&#160;</td>
-          <td class="paramname"><em>t</em></td><td>)</td>
+          <td class="paramname"></td><td>)</td>
           <td> const</td>
         </tr>
       </table>
 </div><div class="memdoc">
 
-<p>해당 UnitType 의 식별된 Unit 숫자를 리턴합니다 </p>
-
-</div>
-</div>
-<a class="anchor" id="ad6f46af943861611d475029363a26798"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">int UnitData::getNumDeadUnits </td>
-          <td>(</td>
-          <td class="paramtype">BWAPI::UnitType&#160;</td>
-          <td class="paramname"><em>t</em></td><td>)</td>
-          <td> const</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>해당 UnitType 의 식별된 Unit 파괴/사망 누적값을 리턴합니다 </p>
+<p>사망한 유닛을 생산하는데 소요되었던 Mineral 의 누적값 (얼마나 손해를 보았는가 계산하기 위함임) 을 리턴합니다 </p>
 
 </div>
 </div>
@@ -284,12 +217,48 @@ Public Member Functions</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="a5b0e3fb63cb6be7517250b690b26f15e"></a>
+<a class="anchor" id="ad6f46af943861611d475029363a26798"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">const std::map&lt; BWAPI::Unit, <a class="el" href="struct_my_bot_1_1_unit_info.html">UnitInfo</a> &gt; &amp; UnitData::getUnits </td>
+          <td class="memname">int UnitData::getNumDeadUnits </td>
+          <td>(</td>
+          <td class="paramtype">BWAPI::UnitType&#160;</td>
+          <td class="paramname"><em>t</em></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>해당 UnitType 의 식별된 Unit 파괴/사망 누적값을 리턴합니다 </p>
+
+</div>
+</div>
+<a class="anchor" id="a70389e370c5c01a64f64e8c38ba6604e"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int UnitData::getNumUnits </td>
+          <td>(</td>
+          <td class="paramtype">BWAPI::UnitType&#160;</td>
+          <td class="paramname"><em>t</em></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>해당 UnitType 의 식별된 Unit 숫자를 리턴합니다 </p>
+
+</div>
+</div>
+<a class="anchor" id="a62c7324f744e3656c33aadd7158b4a50"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const std::map&lt; BWAPI::Unit, <a class="el" href="struct_my_bot_1_1_unit_info.html">UnitInfo</a> &gt; &amp; UnitData::getUnitAndUnitInfoMap </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td> const</td>
@@ -299,11 +268,221 @@ Public Member Functions</h2></td></tr>
 
 </div>
 </div>
+<a class="anchor" id="a2138263d38f8a7c4e3806e3c30a74d62"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const bool UnitData::isBadUnitInfo </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="struct_my_bot_1_1_unit_info.html">UnitInfo</a> &amp;&#160;</td>
+          <td class="paramname"><em>ui</em></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="aa00d018d5f2d5e20edcb9ed40bacb96a"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void UnitData::removeBadUnits </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>포인터가 null 이 되었거나, 파괴되어 Resource_Vespene_Geyser로 돌아간 Refinery, 예전에는 건물이 있었던 걸로 저장해두었는데 지금은 파괴되어 없어진 건물 (특히, 테란의 경우 불타서 소멸한 건물) 데이터를 제거합니다 </p>
+
+</div>
+</div>
+<a class="anchor" id="af19e2b6992fd2fa4cb81bf131d930c28"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void UnitData::removeUnit </td>
+          <td>(</td>
+          <td class="paramtype">BWAPI::Unit&#160;</td>
+          <td class="paramname"><em>unit</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>파괴/사망한 유닛을 자료구조에서 제거합니다 </p>
+
+</div>
+</div>
+<a class="anchor" id="abb344c06e3246e0ddcbae7872a3a0143"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void UnitData::updateUnitInfo </td>
+          <td>(</td>
+          <td class="paramtype">BWAPI::Unit&#160;</td>
+          <td class="paramname"><em>unit</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>유닛의 상태정보를 업데이트합니다 </p>
+
+</div>
+</div>
+<h2 class="groupheader">Member Data Documentation</h2>
+<a class="anchor" id="a158ee1fd0036b5de50badaef996ad318"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int MyBot::UnitData::gasLost</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>사망한 유닛을 생산하는데 소요되었던 Gas 의 누적값 (얼마나 손해를 보았는가 계산하기 위함임) </p>
+
+</div>
+</div>
+<a class="anchor" id="a5f92d8e28c7b1fc9d42527d9737660df"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int MyBot::UnitData::mineralsLost</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>사망한 유닛을 생산하는데 소요되었던 Mineral 의 누적값 (얼마나 손해를 보았는가 계산하기 위함임) </p>
+
+</div>
+</div>
+<a class="anchor" id="abfbc008a10f509253c57cda72adef2c5"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::vector&lt;int&gt; MyBot::UnitData::numCreatedUnits</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>UnitType별 건설/훈련했던 유닛 숫자 누적값 C++ 에서는 UnitType 의 열거형 값을 Key 로 사용하지만, JAVA 에서는 UnitType 의 열거형 값이 부재하므로 Unit.getType() 값을 Key 로 사용함 </p>
+
+</div>
+</div>
+<a class="anchor" id="a6f12339b4bc723e1176e885bd5af6ca4"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::vector&lt;int&gt; MyBot::UnitData::numDeadUnits</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>UnitType별 파괴/사망한 유닛 숫자 누적값 C++ 에서는 UnitType 의 열거형 값을 Key 로 사용하지만, JAVA 에서는 UnitType 의 열거형 값이 부재하므로 Unit.getType() 값을 Key 로 사용함 </p>
+
+</div>
+</div>
+<a class="anchor" id="a42d762a715db6c3120704cd5866e1778"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::vector&lt;int&gt; MyBot::UnitData::numUnits</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>UnitType별 존재하는 유닛 숫자 카운트. 적군 유닛의 경우 식별된 유닛 숫자 카운트 C++ 에서는 UnitType 의 열거형 값을 Key 로 사용하지만, JAVA 에서는 UnitType 의 열거형 값이 부재하므로 Unit.getType() 값을 Key 로 사용함 </p>
+
+</div>
+</div>
+<a class="anchor" id="a0d78b1a38e72365f9daea9e3c4c9cbac"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="namespace_my_bot.html#aad17dfb7cf6287af0f9c93b75c47ffd6">UnitAndUnitInfoMap</a> MyBot::UnitData::unitAndUnitInfoMap</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Unit 과 <a class="el" href="struct_my_bot_1_1_unit_info.html" title="해당 Unit의 ID, UnitType, 소속 Player, HitPoint, lastPosition, completed(건물이 완성된 것인지) 등을 �...">UnitInfo</a> 를 Map 형태로 저장하는 자료구조 C++ 에서는 Unit 포인터를 Key 로 사용하지만, JAVA 에서는 Unit 자료구조의 equals 메쏘드 때문에 오작동하므로 Unit.getID() 값을 Key 로 사용함 </p>
+
+</div>
+</div>
 </div><!-- contents -->
 <!-- HTML footer for doxygen 1.8.8-->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Mon May 29 2017 22:47:28 for BasicBot by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Fri Jun 9 2017 11:48:30 for BasicBot by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.8
 </small></address>

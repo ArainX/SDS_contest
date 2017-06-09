@@ -1,12 +1,24 @@
 var searchData=
 [
-  ['addconstructiontask',['addConstructionTask',['../class_my_bot_1_1_construction_manager.html#a9e9b867552312504e453a356ee224aee',1,'MyBot::ConstructionManager']]],
-  ['adddepot',['addDepot',['../class_my_bot_1_1_worker_data.html#aee2e8194a40408b580ed96064a556c78',1,'MyBot::WorkerData']]],
-  ['addsorted',['addSorted',['../class_my_bot_1_1_distance_map.html#a39efbdb061ab505d4175efb21a11bfb6',1,'MyBot::DistanceMap']]],
-  ['addtomineralpatch',['addToMineralPatch',['../class_my_bot_1_1_worker_data.html#a32fbbf5e06624ab15299863cb9d37633',1,'MyBot::WorkerData']]],
-  ['addworker',['addWorker',['../class_my_bot_1_1_worker_data.html#a606e5f5c8233dd2c9b3cd7eaa9324ec1',1,'MyBot::WorkerData::addWorker(BWAPI::Unit unit)'],['../class_my_bot_1_1_worker_data.html#a7ada91bbdab42921e832ccaace02d150',1,'MyBot::WorkerData::addWorker(BWAPI::Unit unit, WorkerJob job, BWAPI::Unit jobUnit)'],['../class_my_bot_1_1_worker_data.html#af3c8779344893bd504fb34ed730c309a',1,'MyBot::WorkerData::addWorker(BWAPI::Unit unit, WorkerJob job, BWAPI::UnitType jobUnitType)']]],
-  ['appendtexttofile',['appendTextToFile',['../namespace_my_bot_1_1_logger.html#a39c6cbbeb07f0107a4562209a8c676f7',1,'MyBot::Logger::appendTextToFile(const std::string &amp;logFile, const std::string &amp;msg)'],['../namespace_my_bot_1_1_logger.html#ab74de52a38fc846a9bafb9e3abb9392b',1,'MyBot::Logger::appendTextToFile(const std::string &amp;logFile, const char *fmt,...)']]],
-  ['assigned',['Assigned',['../namespace_my_bot_1_1_construction_status.html#a4d42dcba504a50ecc4b2d996cccb036aa131041b5bfc3628fb2125b979ba8cf20',1,'MyBot::ConstructionStatus']]],
-  ['attackmove',['attackMove',['../namespace_my_bot_1_1_command_util.html#a567def244c0330d79a4bb4d9c619a2f6',1,'MyBot::CommandUtil']]],
-  ['attackunit',['attackUnit',['../namespace_my_bot_1_1_command_util.html#aad1defaefd3cbcf16c46d5d2872bf3c6',1,'MyBot::CommandUtil']]]
+  ['_5fallmaps',['_allMaps',['../class_my_bot_1_1_map_tools.html#af4f5fc194127aca709eff61eb09b64f7',1,'MyBot::MapTools']]],
+  ['_5fcols',['_cols',['../class_my_bot_1_1_map_tools.html#aa5ee456f23d4f876542f972ee93cdb7b',1,'MyBot::MapTools']]],
+  ['_5ffirstchokepoint',['_firstChokePoint',['../class_my_bot_1_1_information_manager.html#a051d66f07eee24555d82a02330b234f9',1,'MyBot::InformationManager']]],
+  ['_5ffirstexpansionlocation',['_firstExpansionLocation',['../class_my_bot_1_1_information_manager.html#acff8c2d7e83b5d52287d2652c0179b29',1,'MyBot::InformationManager']]],
+  ['_5ffringe',['_fringe',['../class_my_bot_1_1_map_tools.html#a81ae83415fa642c6210e7efee2de4d23',1,'MyBot::MapTools']]],
+  ['_5fmainbaselocationchanged',['_mainBaseLocationChanged',['../class_my_bot_1_1_information_manager.html#a704624390594909be45a672672001218',1,'MyBot::InformationManager']]],
+  ['_5fmainbaselocations',['_mainBaseLocations',['../class_my_bot_1_1_information_manager.html#a505d2efca750bd04ad289b165b591587',1,'MyBot::InformationManager']]],
+  ['_5fmap',['_map',['../class_my_bot_1_1_map_tools.html#a3078816333f814f4aa808dee3c08f64d',1,'MyBot::MapTools']]],
+  ['_5foccupiedbaselocations',['_occupiedBaseLocations',['../class_my_bot_1_1_information_manager.html#a8c6432df6f303cf49318a5a2e45a97e1',1,'MyBot::InformationManager']]],
+  ['_5foccupiedregions',['_occupiedRegions',['../class_my_bot_1_1_information_manager.html#a0e0c7e58e6c9318df5c6ec1b275b28af',1,'MyBot::InformationManager']]],
+  ['_5frace',['_race',['../class_my_bot_1_1_meta_type.html#ab618870f0dd7eee204dfd613a13e357b',1,'MyBot::MetaType']]],
+  ['_5freservemap',['_reserveMap',['../class_my_bot_1_1_construction_place_finder.html#a86401aa6fad30600fa51276925583e1b',1,'MyBot::ConstructionPlaceFinder']]],
+  ['_5frows',['_rows',['../class_my_bot_1_1_map_tools.html#a888f01f12bddb46369268df8d7d7ab95',1,'MyBot::MapTools']]],
+  ['_5fsecondchokepoint',['_secondChokePoint',['../class_my_bot_1_1_information_manager.html#a6e9a1102afb814d91fdeab3ed8dc6ddf',1,'MyBot::InformationManager']]],
+  ['_5ftechtype',['_techType',['../class_my_bot_1_1_meta_type.html#afcd965eacafeead8dc9fd0c0e1b4eb9d',1,'MyBot::MetaType']]],
+  ['_5ftilestoavoid',['_tilesToAvoid',['../class_my_bot_1_1_construction_place_finder.html#ac8da13e645b784623eb5adfa98681226',1,'MyBot::ConstructionPlaceFinder']]],
+  ['_5ftype',['_type',['../class_my_bot_1_1_meta_type.html#a7354f5f286d8d756d4570bb772202356',1,'MyBot::MetaType']]],
+  ['_5funitdata',['_unitData',['../class_my_bot_1_1_information_manager.html#a4cb823a6ed5d7ec916902c9abc37210a',1,'MyBot::InformationManager']]],
+  ['_5funits',['_units',['../class_my_bot_1_1_map_tools.html#a680e09e8e02ed86a639d6c78b3062f87',1,'MyBot::MapTools']]],
+  ['_5funittype',['_unitType',['../class_my_bot_1_1_meta_type.html#adb59c7dc5899cb6f338dc1e0b7f6d68b',1,'MyBot::MetaType']]],
+  ['_5fupgradetype',['_upgradeType',['../class_my_bot_1_1_meta_type.html#a5f9e9340038912fc5f3556520d9f6cba',1,'MyBot::MetaType']]]
 ];

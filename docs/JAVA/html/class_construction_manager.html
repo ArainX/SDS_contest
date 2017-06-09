@@ -26,7 +26,7 @@
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;">
    <div id="projectname">BasicBot
-   &#160;<span id="projectnumber">v0.9 beta</span>
+   &#160;<span id="projectnumber">v0.95 beta</span>
    </div>
    <div id="projectbrief">BasicBot for Starcraft: Broodwar 1.16.1 with BWAPI 4.1.2</div>
   </td>
@@ -93,6 +93,9 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <div class="summary">
 <a href="#pub-methods">Public Member Functions</a> &#124;
 <a href="#pub-static-methods">Static Public Member Functions</a> &#124;
+<a href="#pac-attribs">Package Attributes</a> &#124;
+<a href="#pri-attribs">Private Attributes</a> &#124;
+<a href="#pri-static-attribs">Static Private Attributes</a> &#124;
 <a href="class_construction_manager-members.html">List of all members</a>  </div>
   <div class="headertitle">
 <div class="title">ConstructionManager Class Reference</div>  </div>
@@ -142,35 +145,29 @@ Public Member Functions</h2></td></tr>
 Static Public Member Functions</h2></td></tr>
 <tr class="memitem:abe9bb4c125732cd80da9bf2138f77a5e"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="class_construction_manager.html">ConstructionManager</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_construction_manager.html#abe9bb4c125732cd80da9bf2138f77a5e">Instance</a> ()</td></tr>
 <tr class="separator:abe9bb4c125732cd80da9bf2138f77a5e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pac-attribs"></a>
+Package Attributes</h2></td></tr>
+<tr class="memitem:a478b6bc5503be21b069661e3e770c2a5"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_command_util.html">CommandUtil</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_construction_manager.html#a478b6bc5503be21b069661e3e770c2a5">commandUtil</a> = new <a class="el" href="class_command_util.html">CommandUtil</a>()</td></tr>
+<tr class="separator:a478b6bc5503be21b069661e3e770c2a5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-attribs"></a>
+Private Attributes</h2></td></tr>
+<tr class="memitem:a3087945908afe17b66dc88d593cfeffd"><td class="memItemLeft" align="right" valign="top">Vector&lt; <a class="el" href="class_construction_task.html">ConstructionTask</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_construction_manager.html#a3087945908afe17b66dc88d593cfeffd">constructionQueue</a> = new Vector&lt;<a class="el" href="class_construction_task.html">ConstructionTask</a>&gt;()</td></tr>
+<tr class="separator:a3087945908afe17b66dc88d593cfeffd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab56f1f6f12c2820ee90c6cf557fd1086"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_construction_manager.html#ab56f1f6f12c2820ee90c6cf557fd1086">reservedGas</a> = 0</td></tr>
+<tr class="separator:ab56f1f6f12c2820ee90c6cf557fd1086"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0a92a0bcfa0c70e00b929b006f57a686"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_construction_manager.html#a0a92a0bcfa0c70e00b929b006f57a686">reservedMinerals</a> = 0</td></tr>
+<tr class="separator:a0a92a0bcfa0c70e00b929b006f57a686"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-static-attribs"></a>
+Static Private Attributes</h2></td></tr>
+<tr class="memitem:a0149018cc15ae3630c9e93cd894cde99"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="class_construction_manager.html">ConstructionManager</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_construction_manager.html#a0149018cc15ae3630c9e93cd894cde99">instance</a> = new <a class="el" href="class_construction_manager.html">ConstructionManager</a>()</td></tr>
+<tr class="separator:a0149018cc15ae3630c9e93cd894cde99"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>건물 건설 Construction 명령 목록을 리스트로 관리하고, 건물 건설 명령이 잘 수행되도록 컨트롤하는 class </p>
 </div><h2 class="groupheader">Member Function Documentation</h2>
-<a class="anchor" id="abe9bb4c125732cd80da9bf2138f77a5e"></a>
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">static <a class="el" href="class_construction_manager.html">ConstructionManager</a> ConstructionManager.Instance </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">static</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>static singleton 객체를 리턴합니다 </p>
-
-</div>
-</div>
 <a class="anchor" id="a8667a460bb441ff68278eab817eb6fcd"></a>
 <div class="memitem">
 <div class="memproto">
@@ -199,6 +196,40 @@ Static Public Member Functions</h2></td></tr>
 
 </div>
 </div>
+<a class="anchor" id="a211f907510f8a2d1fa75f82962ddaee2"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void ConstructionManager.assignWorkersToUnassignedBuildings </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>건설 진행상태가 Unassigned 인 <a class="el" href="class_construction_task.html" title="건물 건설 Construction Task 자료구조 ">ConstructionTask</a> 에 대해 건설 위치 및 건설 일꾼을 지정하고, 건설 진행상태를 Assigned 로 변경합니다 </p>
+
+</div>
+</div>
+<a class="anchor" id="a99f434440f5eca7efa1cecbddcf6bae7"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">Vector&lt;UnitType&gt; ConstructionManager.buildingsQueued </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>constructionQueue 내 <a class="el" href="class_construction_task.html" title="건물 건설 Construction Task 자료구조 ">ConstructionTask</a> 갯수를 리턴합니다 </p>
+
+</div>
+</div>
 <a class="anchor" id="a6c9290a9a2a1b9cc157241d06a3aab39"></a>
 <div class="memitem">
 <div class="memproto">
@@ -224,6 +255,225 @@ Static Public Member Functions</h2></td></tr>
 </div><div class="memdoc">
 
 <p>constructionQueue 에서 <a class="el" href="class_construction_task.html" title="건물 건설 Construction Task 자료구조 ">ConstructionTask</a> 를 취소합니다 </p>
+
+</div>
+</div>
+<a class="anchor" id="a5ecf65be2413b2e6b5ddb5cde872f0e7"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void ConstructionManager.checkForCompletedBuildings </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>건설이 완료된 <a class="el" href="class_construction_task.html" title="건물 건설 Construction Task 자료구조 ">ConstructionTask</a> 를 삭제하고, 테란 종족의 경우 건설 일꾼을 해제합니다 </p>
+
+</div>
+</div>
+<a class="anchor" id="a7417e6447c7bf5a80ea165bb70ad8e23"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void ConstructionManager.checkForDeadlockConstruction </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>건설 데드락을 체크하고, 해결합니다 </p>
+
+</div>
+</div>
+<a class="anchor" id="addd9962d63d1938194681ddfc26f8739"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void ConstructionManager.checkForDeadTerranBuilders </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>테란의 경우 건설 진행상태가 UnderConstruction 이지만 건설 일꾼이 죽은 경우, 다른 건설 일꾼을 지정해서 건설이 속행되도록 합니다 테란은 건설을 시작한 후, 건설 도중에 일꾼이 죽을 수 있습니다. 이 경우, 건물에 대해 다시 다른 SCV를 할당합니다 참고로, 프로토스 / 저그는 건설을 시작하면 일꾼 포인터를 null 로 만들기 때문에 (constructionWorker = null) 건설 도중에 죽은 일꾼을 신경쓸 필요 없습니다 </p>
+
+</div>
+</div>
+<a class="anchor" id="ae86f7d3ace06d6c71a28c42a7509ab1e"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void ConstructionManager.checkForStartedConstruction </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>건설이 시작되면, 해당 <a class="el" href="class_construction_task.html" title="건물 건설 Construction Task 자료구조 ">ConstructionTask</a> 의 건설 진행상태를 UnderConstruction 으로 변경하고 저그 및 프로토스 종족의 경우 건설 일꾼을 해제합니다 </p>
+
+</div>
+</div>
+<a class="anchor" id="a9a81e231cb6052dabd7f075d596cdb3a"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void ConstructionManager.constructAssignedBuildings </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>건설 진행상태가 Assigned 인 <a class="el" href="class_construction_task.html" title="건물 건설 Construction Task 자료구조 ">ConstructionTask</a> 에 대해, 건설이 시작되기 전에 일꾼이 죽었으면 건설 진행상태를 Unassigned 로 변경하고 건설 장소가 unexplored 이면 건설 일꾼을 해당 장소로 이동시키고 건설 일꾼에게 build 명령을 안내렸으면 건설 일꾼에게 build 명령을 내리고 건설 일꾼이 건설을 실행하지 않는 상태가 되었으면 건설 일꾼을 해제하고 건설 진행상태를 Unassigned 로 변경합니다 </p>
+
+</div>
+</div>
+<a class="anchor" id="a7173f9e3e8be347e691222ab6b495b7b"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">Vector&lt;<a class="el" href="class_construction_task.html">ConstructionTask</a>&gt; ConstructionManager.getConstructionQueue </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="add67a4a60eae3e25e92f4cff660fefc2"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int ConstructionManager.getConstructionQueueItemCount </td>
+          <td>(</td>
+          <td class="paramtype">UnitType&#160;</td>
+          <td class="paramname"><em>queryType</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">TilePosition&#160;</td>
+          <td class="paramname"><em>queryTilePosition</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>constructionQueue 내 <a class="el" href="class_construction_task.html" title="건물 건설 Construction Task 자료구조 ">ConstructionTask</a> 갯수를 리턴합니다 queryTilePosition 을 입력한 경우, 위치간 거리까지도 고려합니다 </p>
+
+</div>
+</div>
+<a class="anchor" id="a2b4a295890e7951494d0be4cc24cc545"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int ConstructionManager.getReservedGas </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Construction 을 위해 예비해둔 Gas 숫자를 리턴합니다 </p>
+
+</div>
+</div>
+<a class="anchor" id="aff1d14be29a885b05dba1c2a0a24973e"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int ConstructionManager.getReservedMinerals </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Construction 을 위해 예비해둔 Mineral 숫자를 리턴합니다 </p>
+
+</div>
+</div>
+<a class="anchor" id="abe9bb4c125732cd80da9bf2138f77a5e"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static <a class="el" href="class_construction_manager.html">ConstructionManager</a> ConstructionManager.Instance </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>static singleton 객체를 리턴합니다 </p>
+
+</div>
+</div>
+<a class="anchor" id="af9c8456e392d11f80c7203bc336668f8"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">boolean ConstructionManager.isBuildingPositionExplored </td>
+          <td>(</td>
+          <td class="paramtype">final <a class="el" href="class_construction_task.html">ConstructionTask</a>&#160;</td>
+          <td class="paramname"><em>b</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="ae0e965e1f347e61225c9b047defb8cf8"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">boolean ConstructionManager.isEvolvedBuilding </td>
+          <td>(</td>
+          <td class="paramtype">UnitType&#160;</td>
+          <td class="paramname"><em>type</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
 
 </div>
 </div>
@@ -277,231 +527,110 @@ Static Public Member Functions</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="a211f907510f8a2d1fa75f82962ddaee2"></a>
+<h2 class="groupheader">Member Data Documentation</h2>
+<a class="anchor" id="a478b6bc5503be21b069661e3e770c2a5"></a>
 <div class="memitem">
 <div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">void ConstructionManager.assignWorkersToUnassignedBuildings </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
+          <td class="memname"><a class="el" href="class_command_util.html">CommandUtil</a> ConstructionManager.commandUtil = new <a class="el" href="class_command_util.html">CommandUtil</a>()</td>
         </tr>
       </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">package</span></span>  </td>
+  </tr>
+</table>
 </div><div class="memdoc">
 
-<p>건설 진행상태가 Unassigned 인 <a class="el" href="class_construction_task.html" title="건물 건설 Construction Task 자료구조 ">ConstructionTask</a> 에 대해 건설 위치 및 건설 일꾼을 지정하고, 건설 진행상태를 Assigned 로 변경합니다 </p>
+<p>minerals reserved for planned buildings </p>
 
 </div>
 </div>
-<a class="anchor" id="a9a81e231cb6052dabd7f075d596cdb3a"></a>
+<a class="anchor" id="a3087945908afe17b66dc88d593cfeffd"></a>
 <div class="memitem">
 <div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">void ConstructionManager.constructAssignedBuildings </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
+          <td class="memname">Vector&lt;<a class="el" href="class_construction_task.html">ConstructionTask</a>&gt; ConstructionManager.constructionQueue = new Vector&lt;<a class="el" href="class_construction_task.html">ConstructionTask</a>&gt;()</td>
         </tr>
       </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
 </div><div class="memdoc">
 
-<p>건설 진행상태가 Assigned 인 <a class="el" href="class_construction_task.html" title="건물 건설 Construction Task 자료구조 ">ConstructionTask</a> 에 대해, 건설이 시작되기 전에 일꾼이 죽었으면 건설 진행상태를 Unassigned 로 변경하고 건설 장소가 unexplored 이면 건설 일꾼을 해당 장소로 이동시키고 건설 일꾼에게 build 명령을 안내렸으면 건설 일꾼에게 build 명령을 내리고 건설 일꾼이 건설을 실행하지 않는 상태가 되었으면 건설 일꾼을 해제하고 건설 진행상태를 Unassigned 로 변경합니다 </p>
+<p>건설 필요 자원을 미리 예약해놓고, 건설 대상 장소가 미개척 장소인 경우 건설 일꾼을 이동시켜 결국 건설이 시작되게 하고, 건설 일꾼이 도중에 죽는 경우 다른 건설 일꾼을 지정하여 건설을 수행하게 하기 위해 Construction Task 들의 목록을 constructionQueue 로 유지합니다 </p>
 
 </div>
 </div>
-<a class="anchor" id="ae86f7d3ace06d6c71a28c42a7509ab1e"></a>
+<a class="anchor" id="a0149018cc15ae3630c9e93cd894cde99"></a>
 <div class="memitem">
 <div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">void ConstructionManager.checkForStartedConstruction </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
+          <td class="memname"><a class="el" href="class_construction_manager.html">ConstructionManager</a> ConstructionManager.instance = new <a class="el" href="class_construction_manager.html">ConstructionManager</a>()</td>
         </tr>
       </table>
-</div><div class="memdoc">
-
-<p>건설이 시작되면, 해당 <a class="el" href="class_construction_task.html" title="건물 건설 Construction Task 자료구조 ">ConstructionTask</a> 의 건설 진행상태를 UnderConstruction 으로 변경하고 저그 및 프로토스 종족의 경우 건설 일꾼을 해제합니다 </p>
-
-</div>
-</div>
-<a class="anchor" id="addd9962d63d1938194681ddfc26f8739"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void ConstructionManager.checkForDeadTerranBuilders </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>테란의 경우 건설 진행상태가 UnderConstruction 이지만 건설 일꾼이 죽은 경우, 다른 건설 일꾼을 지정해서 건설이 속행되도록 합니다 테란은 건설을 시작한 후, 건설 도중에 일꾼이 죽을 수 있습니다. 이 경우, 건물에 대해 다시 다른 SCV를 할당합니다 참고로, 프로토스 / 저그는 건설을 시작하면 일꾼 포인터를 null 로 만들기 때문에 (constructionWorker = null) 건설 도중에 죽은 일꾼을 신경쓸 필요 없습니다 </p>
-
-</div>
-</div>
-<a class="anchor" id="a5ecf65be2413b2e6b5ddb5cde872f0e7"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void ConstructionManager.checkForCompletedBuildings </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>건설이 완료된 <a class="el" href="class_construction_task.html" title="건물 건설 Construction Task 자료구조 ">ConstructionTask</a> 를 삭제하고, 테란 종족의 경우 건설 일꾼을 해제합니다 </p>
-
-</div>
-</div>
-<a class="anchor" id="a7417e6447c7bf5a80ea165bb70ad8e23"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void ConstructionManager.checkForDeadlockConstruction </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>건설 데드락을 체크하고, 해결합니다 </p>
-
-</div>
-</div>
-<a class="anchor" id="ae0e965e1f347e61225c9b047defb8cf8"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">boolean ConstructionManager.isEvolvedBuilding </td>
-          <td>(</td>
-          <td class="paramtype">UnitType&#160;</td>
-          <td class="paramname"><em>type</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
 </div><div class="memdoc">
 
 </div>
 </div>
-<a class="anchor" id="af9c8456e392d11f80c7203bc336668f8"></a>
+<a class="anchor" id="ab56f1f6f12c2820ee90c6cf557fd1086"></a>
 <div class="memitem">
 <div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">boolean ConstructionManager.isBuildingPositionExplored </td>
-          <td>(</td>
-          <td class="paramtype">final <a class="el" href="class_construction_task.html">ConstructionTask</a>&#160;</td>
-          <td class="paramname"><em>b</em></td><td>)</td>
-          <td></td>
+          <td class="memname">int ConstructionManager.reservedGas = 0</td>
         </tr>
       </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
 </div><div class="memdoc">
 
 </div>
 </div>
-<a class="anchor" id="aff1d14be29a885b05dba1c2a0a24973e"></a>
+<a class="anchor" id="a0a92a0bcfa0c70e00b929b006f57a686"></a>
 <div class="memitem">
 <div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">int ConstructionManager.getReservedMinerals </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
+          <td class="memname">int ConstructionManager.reservedMinerals = 0</td>
         </tr>
       </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
 </div><div class="memdoc">
 
-<p>Construction 을 위해 예비해둔 Mineral 숫자를 리턴합니다 </p>
-
-</div>
-</div>
-<a class="anchor" id="a2b4a295890e7951494d0be4cc24cc545"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">int ConstructionManager.getReservedGas </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Construction 을 위해 예비해둔 Gas 숫자를 리턴합니다 </p>
-
-</div>
-</div>
-<a class="anchor" id="a99f434440f5eca7efa1cecbddcf6bae7"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">Vector&lt;UnitType&gt; ConstructionManager.buildingsQueued </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>constructionQueue 내 <a class="el" href="class_construction_task.html" title="건물 건설 Construction Task 자료구조 ">ConstructionTask</a> 갯수를 리턴합니다 </p>
-
-</div>
-</div>
-<a class="anchor" id="add67a4a60eae3e25e92f4cff660fefc2"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">int ConstructionManager.getConstructionQueueItemCount </td>
-          <td>(</td>
-          <td class="paramtype">UnitType&#160;</td>
-          <td class="paramname"><em>queryType</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">TilePosition&#160;</td>
-          <td class="paramname"><em>queryTilePosition</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>constructionQueue 내 <a class="el" href="class_construction_task.html" title="건물 건설 Construction Task 자료구조 ">ConstructionTask</a> 갯수를 리턴합니다 queryTilePosition 을 입력한 경우, 위치간 거리까지도 고려합니다 </p>
-
-</div>
-</div>
-<a class="anchor" id="a7173f9e3e8be347e691222ab6b495b7b"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">Vector&lt;<a class="el" href="class_construction_task.html">ConstructionTask</a>&gt; ConstructionManager.getConstructionQueue </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
+<p>gas reserved for planned buildings </p>
 
 </div>
 </div>
@@ -509,7 +638,7 @@ Static Public Member Functions</h2></td></tr>
 <!-- HTML footer for doxygen 1.8.8-->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Mon May 29 2017 22:47:42 for BasicBot by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Fri Jun 9 2017 21:29:50 for BasicBot by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.8
 </small></address>

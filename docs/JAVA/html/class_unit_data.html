@@ -26,7 +26,7 @@
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;">
    <div id="projectname">BasicBot
-   &#160;<span id="projectnumber">v0.9 beta</span>
+   &#160;<span id="projectnumber">v0.95 beta</span>
    </div>
    <div id="projectbrief">BasicBot for Starcraft: Broodwar 1.16.1 with BWAPI 4.1.2</div>
   </td>
@@ -92,6 +92,8 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="header">
   <div class="summary">
 <a href="#pub-methods">Public Member Functions</a> &#124;
+<a href="#pac-attribs">Package Attributes</a> &#124;
+<a href="#pri-attribs">Private Attributes</a> &#124;
 <a href="class_unit_data-members.html">List of all members</a>  </div>
   <div class="headertitle">
 <div class="title">UnitData Class Reference</div>  </div>
@@ -118,8 +120,8 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:ae12b45d2c5513d50b2b03c9bff0b67ca"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a0452f3ba8bbca3c9ac5b4b0b22babcca"><td class="memItemLeft" align="right" valign="top">Map&lt; String, Integer &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_unit_data.html#a0452f3ba8bbca3c9ac5b4b0b22babcca">getNumUnits</a> ()</td></tr>
 <tr class="separator:a0452f3ba8bbca3c9ac5b4b0b22babcca"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad605cead32464a8a760906a4357d39a3"><td class="memItemLeft" align="right" valign="top">final Map&lt; Unit, <a class="el" href="class_unit_info.html">UnitInfo</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_unit_data.html#ad605cead32464a8a760906a4357d39a3">getUnits</a> ()</td></tr>
-<tr class="separator:ad605cead32464a8a760906a4357d39a3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a326d4325fbb5259ed54b8362c34ec328"><td class="memItemLeft" align="right" valign="top">final Map&lt; Integer, <a class="el" href="class_unit_info.html">UnitInfo</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_unit_data.html#a326d4325fbb5259ed54b8362c34ec328">getUnitAndUnitInfoMap</a> ()</td></tr>
+<tr class="separator:a326d4325fbb5259ed54b8362c34ec328"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aaa1fd4b55719ae7aed9a697c8b02aebe"><td class="memItemLeft" align="right" valign="top">final boolean&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_unit_data.html#aaa1fd4b55719ae7aed9a697c8b02aebe">isBadUnitInfo</a> (final <a class="el" href="class_unit_info.html">UnitInfo</a> ui)</td></tr>
 <tr class="separator:aaa1fd4b55719ae7aed9a697c8b02aebe"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a48540ca908cb23c4980740128b9ce778"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_unit_data.html#a48540ca908cb23c4980740128b9ce778">removeBadUnits</a> ()</td></tr>
@@ -128,6 +130,26 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:a424577498ffd92b9db8b0757e7d28d91"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aed9e79dd99f26951e55a0574048ff280"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_unit_data.html#aed9e79dd99f26951e55a0574048ff280">updateUnitInfo</a> (Unit unit)</td></tr>
 <tr class="separator:aed9e79dd99f26951e55a0574048ff280"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pac-attribs"></a>
+Package Attributes</h2></td></tr>
+<tr class="memitem:ae8da6ad92a10bd01ab8383b30beb60df"><td class="memItemLeft" align="right" valign="top">Vector&lt; Integer &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_unit_data.html#ae8da6ad92a10bd01ab8383b30beb60df">badUnitstoRemove</a> = new Vector&lt;Integer&gt;()</td></tr>
+<tr class="separator:ae8da6ad92a10bd01ab8383b30beb60df"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a89e9948d6ba884052db85b1d86603ec5"><td class="memItemLeft" align="right" valign="top">Map&lt; String, Integer &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_unit_data.html#a89e9948d6ba884052db85b1d86603ec5">numCreatedUnits</a> = new HashMap&lt;String,Integer&gt;()</td></tr>
+<tr class="separator:a89e9948d6ba884052db85b1d86603ec5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0f02cefb7067cd03bbafe83559fd3fd2"><td class="memItemLeft" align="right" valign="top">Map&lt; String, Integer &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_unit_data.html#a0f02cefb7067cd03bbafe83559fd3fd2">numDeadUnits</a> = new HashMap&lt;String,Integer&gt;()</td></tr>
+<tr class="separator:a0f02cefb7067cd03bbafe83559fd3fd2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6612fa7a4b24a5b2fc3ed4d6367c8f0e"><td class="memItemLeft" align="right" valign="top">Map&lt; String, Integer &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_unit_data.html#a6612fa7a4b24a5b2fc3ed4d6367c8f0e">numUnits</a> = new HashMap&lt;String,Integer&gt;()</td></tr>
+<tr class="separator:a6612fa7a4b24a5b2fc3ed4d6367c8f0e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a429588b4272cb69a04de9e468d154179"><td class="memItemLeft" align="right" valign="top">Map&lt; Integer, <a class="el" href="class_unit_info.html">UnitInfo</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_unit_data.html#a429588b4272cb69a04de9e468d154179">unitAndUnitInfoMap</a> = new HashMap&lt;Integer,<a class="el" href="class_unit_info.html">UnitInfo</a>&gt;()</td></tr>
+<tr class="separator:a429588b4272cb69a04de9e468d154179"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-attribs"></a>
+Private Attributes</h2></td></tr>
+<tr class="memitem:a368203a6223eb5e6951baa4f0cb9af8c"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_unit_data.html#a368203a6223eb5e6951baa4f0cb9af8c">gasLost</a> = 0</td></tr>
+<tr class="separator:a368203a6223eb5e6951baa4f0cb9af8c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1b3fc4d329c3016c2fb276d95f2bbe21"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_unit_data.html#a1b3fc4d329c3016c2fb276d95f2bbe21">mineralsLost</a> = 0</td></tr>
+<tr class="separator:a1b3fc4d329c3016c2fb276d95f2bbe21"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a class="anchor" id="ab14659d130c67075a5d6577ab16948e0"></a>
@@ -146,75 +168,6 @@ Public Member Functions</h2></td></tr>
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
-<a class="anchor" id="aed9e79dd99f26951e55a0574048ff280"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void UnitData.updateUnitInfo </td>
-          <td>(</td>
-          <td class="paramtype">Unit&#160;</td>
-          <td class="paramname"><em>unit</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>유닛의 상태정보를 업데이트합니다 </p>
-
-</div>
-</div>
-<a class="anchor" id="a424577498ffd92b9db8b0757e7d28d91"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void UnitData.removeUnit </td>
-          <td>(</td>
-          <td class="paramtype">Unit&#160;</td>
-          <td class="paramname"><em>unit</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>파괴/사망한 유닛을 자료구조에서 제거합니다 </p>
-
-</div>
-</div>
-<a class="anchor" id="a48540ca908cb23c4980740128b9ce778"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void UnitData.removeBadUnits </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>포인터가 null 이 되었거나, 파괴되어 Resource_Vespene_Geyser로 돌아간 Refinery, 예전에는 건물이 있었던 걸로 저장해두었는데 지금은 파괴되어 없어진 건물 (특히, 테란의 경우 불타서 소멸한 건물) 데이터를 제거합니다 </p>
-
-</div>
-</div>
-<a class="anchor" id="aaa1fd4b55719ae7aed9a697c8b02aebe"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">final boolean UnitData.isBadUnitInfo </td>
-          <td>(</td>
-          <td class="paramtype">final <a class="el" href="class_unit_info.html">UnitInfo</a>&#160;</td>
-          <td class="paramname"><em>ui</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-</div>
-</div>
 <a class="anchor" id="af7b99d0ce36dea48980d26de3ee1af46"></a>
 <div class="memitem">
 <div class="memproto">
@@ -249,12 +202,12 @@ Public Member Functions</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="ae12b45d2c5513d50b2b03c9bff0b67ca"></a>
+<a class="anchor" id="a1b58ef9186c2360f4c709bf95b50bf04"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">final int UnitData.getNumUnits </td>
+          <td class="memname">final int UnitData.getNumCreatedUnits </td>
           <td>(</td>
           <td class="paramtype">String&#160;</td>
           <td class="paramname"><em>t</em></td><td>)</td>
@@ -263,7 +216,22 @@ Public Member Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>해당 UnitType 의 식별된 Unit 숫자를 리턴합니다 </p>
+<p>해당 UnitType 의 식별된 Unit 건설/훈련 누적값을 리턴합니다 </p>
+
+</div>
+</div>
+<a class="anchor" id="a20ee9e337124355bebfb5c0606a03195"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">Map&lt;String, Integer&gt; UnitData.getNumCreatedUnits </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
 
 </div>
 </div>
@@ -285,39 +253,6 @@ Public Member Functions</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="a1b58ef9186c2360f4c709bf95b50bf04"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">final int UnitData.getNumCreatedUnits </td>
-          <td>(</td>
-          <td class="paramtype">String&#160;</td>
-          <td class="paramname"><em>t</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>해당 UnitType 의 식별된 Unit 건설/훈련 누적값을 리턴합니다 </p>
-
-</div>
-</div>
-<a class="anchor" id="ad605cead32464a8a760906a4357d39a3"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">final Map&lt;Unit,<a class="el" href="class_unit_info.html">UnitInfo</a>&gt; UnitData.getUnits </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-</div>
-</div>
 <a class="anchor" id="a26a02c3b5aa8b2dfde511c4f2dc9bc8e"></a>
 <div class="memitem">
 <div class="memproto">
@@ -333,18 +268,21 @@ Public Member Functions</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="a20ee9e337124355bebfb5c0606a03195"></a>
+<a class="anchor" id="ae12b45d2c5513d50b2b03c9bff0b67ca"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">Map&lt;String, Integer&gt; UnitData.getNumCreatedUnits </td>
+          <td class="memname">final int UnitData.getNumUnits </td>
           <td>(</td>
-          <td class="paramname"></td><td>)</td>
+          <td class="paramtype">String&#160;</td>
+          <td class="paramname"><em>t</em></td><td>)</td>
           <td></td>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>해당 UnitType 의 식별된 Unit 숫자를 리턴합니다 </p>
 
 </div>
 </div>
@@ -363,11 +301,250 @@ Public Member Functions</h2></td></tr>
 
 </div>
 </div>
+<a class="anchor" id="a326d4325fbb5259ed54b8362c34ec328"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">final Map&lt;Integer,<a class="el" href="class_unit_info.html">UnitInfo</a>&gt; UnitData.getUnitAndUnitInfoMap </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="aaa1fd4b55719ae7aed9a697c8b02aebe"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">final boolean UnitData.isBadUnitInfo </td>
+          <td>(</td>
+          <td class="paramtype">final <a class="el" href="class_unit_info.html">UnitInfo</a>&#160;</td>
+          <td class="paramname"><em>ui</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="a48540ca908cb23c4980740128b9ce778"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void UnitData.removeBadUnits </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>포인터가 null 이 되었거나, 파괴되어 Resource_Vespene_Geyser로 돌아간 Refinery, 예전에는 건물이 있었던 걸로 저장해두었는데 지금은 파괴되어 없어진 건물 (특히, 테란의 경우 불타서 소멸한 건물) 데이터를 제거합니다 </p>
+
+</div>
+</div>
+<a class="anchor" id="a424577498ffd92b9db8b0757e7d28d91"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void UnitData.removeUnit </td>
+          <td>(</td>
+          <td class="paramtype">Unit&#160;</td>
+          <td class="paramname"><em>unit</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>파괴/사망한 유닛을 자료구조에서 제거합니다 </p>
+
+</div>
+</div>
+<a class="anchor" id="aed9e79dd99f26951e55a0574048ff280"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void UnitData.updateUnitInfo </td>
+          <td>(</td>
+          <td class="paramtype">Unit&#160;</td>
+          <td class="paramname"><em>unit</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>유닛의 상태정보를 업데이트합니다 </p>
+
+</div>
+</div>
+<h2 class="groupheader">Member Data Documentation</h2>
+<a class="anchor" id="ae8da6ad92a10bd01ab8383b30beb60df"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">Vector&lt;Integer&gt; UnitData.badUnitstoRemove = new Vector&lt;Integer&gt;()</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">package</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>unitAndUnitInfoMap 에서 제거해야할 데이터들 </p>
+
+</div>
+</div>
+<a class="anchor" id="a368203a6223eb5e6951baa4f0cb9af8c"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int UnitData.gasLost = 0</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>사망한 유닛을 생산하는데 소요되었던 Gas 의 누적값 (얼마나 손해를 보았는가 계산하기 위함임) </p>
+
+</div>
+</div>
+<a class="anchor" id="a1b3fc4d329c3016c2fb276d95f2bbe21"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int UnitData.mineralsLost = 0</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>사망한 유닛을 생산하는데 소요되었던 Mineral 의 누적값 (얼마나 손해를 보았는가 계산하기 위함임) </p>
+
+</div>
+</div>
+<a class="anchor" id="a89e9948d6ba884052db85b1d86603ec5"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">Map&lt;String,Integer&gt; UnitData.numCreatedUnits = new HashMap&lt;String,Integer&gt;()</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">package</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>UnitType별 건설/훈련했던 유닛 숫자 누적값 C++ 에서는 UnitType 의 열거형 값을 Key 로 사용하지만, JAVA 에서는 UnitType 의 열거형 값이 부재하므로 Unit.getType() 값을 Key 로 사용함 </p>
+
+</div>
+</div>
+<a class="anchor" id="a0f02cefb7067cd03bbafe83559fd3fd2"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">Map&lt;String,Integer&gt; UnitData.numDeadUnits = new HashMap&lt;String,Integer&gt;()</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">package</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>UnitType별 파괴/사망한 유닛 숫자 누적값 C++ 에서는 UnitType 의 열거형 값을 Key 로 사용하지만, JAVA 에서는 UnitType 의 열거형 값이 부재하므로 Unit.getType() 값을 Key 로 사용함 </p>
+
+</div>
+</div>
+<a class="anchor" id="a6612fa7a4b24a5b2fc3ed4d6367c8f0e"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">Map&lt;String,Integer&gt; UnitData.numUnits = new HashMap&lt;String,Integer&gt;()</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">package</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>UnitType별 존재하는 유닛 숫자 카운트. 적군 유닛의 경우 식별된 유닛 숫자 카운트 C++ 에서는 UnitType 의 열거형 값을 Key 로 사용하지만, JAVA 에서는 UnitType 의 열거형 값이 부재하므로 Unit.getType() 값을 Key 로 사용함 </p>
+
+</div>
+</div>
+<a class="anchor" id="a429588b4272cb69a04de9e468d154179"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">Map&lt;Integer,<a class="el" href="class_unit_info.html">UnitInfo</a>&gt; UnitData.unitAndUnitInfoMap = new HashMap&lt;Integer,<a class="el" href="class_unit_info.html">UnitInfo</a>&gt;()</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">package</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Unit 과 <a class="el" href="class_unit_info.html" title="해당 Unit의 ID, UnitType, 소속 Player, HitPoint, lastPosition, completed(건물이 완성된 것인지) 등을 �...">UnitInfo</a> 를 Map 형태로 저장하는 자료구조 C++ 에서는 Unit 포인터를 Key 로 사용하지만, JAVA 에서는 Unit 자료구조의 equals 메쏘드 때문에 오작동하므로 Unit.getID() 값을 Key 로 사용함 </p>
+
+</div>
+</div>
 </div><!-- contents -->
 <!-- HTML footer for doxygen 1.8.8-->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Mon May 29 2017 22:47:42 for BasicBot by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Fri Jun 9 2017 21:29:50 for BasicBot by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.8
 </small></address>

@@ -26,7 +26,7 @@
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;">
    <div id="projectname">BasicBot
-   &#160;<span id="projectnumber">v0.9 beta</span>
+   &#160;<span id="projectnumber">v0.95 beta</span>
    </div>
    <div id="projectbrief">BasicBot for Starcraft: Broodwar 1.16.1 with BWAPI 4.1.2</div>
   </td>
@@ -97,6 +97,8 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <div class="summary">
 <a href="#pub-methods">Public Member Functions</a> &#124;
 <a href="#pub-static-methods">Static Public Member Functions</a> &#124;
+<a href="#pri-methods">Private Member Functions</a> &#124;
+<a href="#pri-attribs">Private Attributes</a> &#124;
 <a href="class_my_bot_1_1_construction_manager-members.html">List of all members</a>  </div>
   <div class="headertitle">
 <div class="title">MyBot::ConstructionManager Class Reference</div>  </div>
@@ -126,11 +128,45 @@ Public Member Functions</h2></td></tr>
 Static Public Member Functions</h2></td></tr>
 <tr class="memitem:a476d28168845d92a14f33d5781237270"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="class_my_bot_1_1_construction_manager.html">ConstructionManager</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_my_bot_1_1_construction_manager.html#a476d28168845d92a14f33d5781237270">Instance</a> ()</td></tr>
 <tr class="separator:a476d28168845d92a14f33d5781237270"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-methods"></a>
+Private Member Functions</h2></td></tr>
+<tr class="memitem:a593f55ace42683c896e1164b07c6e8ac"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_my_bot_1_1_construction_manager.html#a593f55ace42683c896e1164b07c6e8ac">ConstructionManager</a> ()</td></tr>
+<tr class="separator:a593f55ace42683c896e1164b07c6e8ac"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad5f582e11e9ea7bbc38f05a4a7705dfb"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_my_bot_1_1_construction_manager.html#ad5f582e11e9ea7bbc38f05a4a7705dfb">assignWorkersToUnassignedBuildings</a> ()</td></tr>
+<tr class="separator:ad5f582e11e9ea7bbc38f05a4a7705dfb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5524efc266c018cfe6b9864c4531651c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_my_bot_1_1_construction_manager.html#a5524efc266c018cfe6b9864c4531651c">checkForCompletedBuildings</a> ()</td></tr>
+<tr class="separator:a5524efc266c018cfe6b9864c4531651c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af78a388a21c95518f1aacf16f67dfad9"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_my_bot_1_1_construction_manager.html#af78a388a21c95518f1aacf16f67dfad9">checkForDeadlockConstruction</a> ()</td></tr>
+<tr class="separator:af78a388a21c95518f1aacf16f67dfad9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7cead70b08ecd2196749ddba6829c4b5"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_my_bot_1_1_construction_manager.html#a7cead70b08ecd2196749ddba6829c4b5">checkForDeadTerranBuilders</a> ()</td></tr>
+<tr class="separator:a7cead70b08ecd2196749ddba6829c4b5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8ce8ab4d88d30c8603e80fba4841c259"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_my_bot_1_1_construction_manager.html#a8ce8ab4d88d30c8603e80fba4841c259">checkForStartedConstruction</a> ()</td></tr>
+<tr class="separator:a8ce8ab4d88d30c8603e80fba4841c259"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a623d2ea4647a7114f1693972ebb02657"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_my_bot_1_1_construction_manager.html#a623d2ea4647a7114f1693972ebb02657">constructAssignedBuildings</a> ()</td></tr>
+<tr class="separator:a623d2ea4647a7114f1693972ebb02657"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4368c97877d9670f0c3204f8d69635c5"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_my_bot_1_1_construction_manager.html#a4368c97877d9670f0c3204f8d69635c5">isBuildingPositionExplored</a> (const <a class="el" href="class_my_bot_1_1_construction_task.html">ConstructionTask</a> &amp;b) const </td></tr>
+<tr class="separator:a4368c97877d9670f0c3204f8d69635c5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae4c0f97a6f54237b2bc27c00b26b8d96"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_my_bot_1_1_construction_manager.html#ae4c0f97a6f54237b2bc27c00b26b8d96">isEvolvedBuilding</a> (BWAPI::UnitType type)</td></tr>
+<tr class="separator:ae4c0f97a6f54237b2bc27c00b26b8d96"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab9efe8b7aa9a3c9f4cea1a2bbe2b7369"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_my_bot_1_1_construction_manager.html#ab9efe8b7aa9a3c9f4cea1a2bbe2b7369">removeCompletedConstructionTasks</a> (const std::vector&lt; <a class="el" href="class_my_bot_1_1_construction_task.html">ConstructionTask</a> &gt; &amp;toRemove)</td></tr>
+<tr class="separator:ab9efe8b7aa9a3c9f4cea1a2bbe2b7369"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab7bc17d2c5875227cf87080fb43c3d9b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_my_bot_1_1_construction_manager.html#ab7bc17d2c5875227cf87080fb43c3d9b">validateWorkersAndBuildings</a> ()</td></tr>
+<tr class="separator:ab7bc17d2c5875227cf87080fb43c3d9b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-attribs"></a>
+Private Attributes</h2></td></tr>
+<tr class="memitem:a49fb0134db71f0faa957b8f0f2eed1d8"><td class="memItemLeft" align="right" valign="top">std::vector&lt; <a class="el" href="class_my_bot_1_1_construction_task.html">ConstructionTask</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_my_bot_1_1_construction_manager.html#a49fb0134db71f0faa957b8f0f2eed1d8">constructionQueue</a></td></tr>
+<tr class="separator:a49fb0134db71f0faa957b8f0f2eed1d8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abbb4d8bb665cffe6b7d520ec46acc54a"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_my_bot_1_1_construction_manager.html#abbb4d8bb665cffe6b7d520ec46acc54a">reservedGas</a></td></tr>
+<tr class="separator:abbb4d8bb665cffe6b7d520ec46acc54a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af6f631d9bbdb8807faf46de34def45ab"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_my_bot_1_1_construction_manager.html#af6f631d9bbdb8807faf46de34def45ab">reservedMinerals</a></td></tr>
+<tr class="separator:af6f631d9bbdb8807faf46de34def45ab"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>건물 건설 Construction 명령 목록을 리스트로 관리하고, 건물 건설 명령이 잘 수행되도록 컨트롤하는 class </p>
-</div><h2 class="groupheader">Member Function Documentation</h2>
-<a class="anchor" id="a476d28168845d92a14f33d5781237270"></a>
+</div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a class="anchor" id="a593f55ace42683c896e1164b07c6e8ac"></a>
 <div class="memitem">
 <div class="memproto">
 <table class="mlabels">
@@ -138,7 +174,7 @@ Static Public Member Functions</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="class_my_bot_1_1_construction_manager.html">ConstructionManager</a> &amp; ConstructionManager::Instance </td>
+          <td class="memname">ConstructionManager::ConstructionManager </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td></td>
@@ -146,49 +182,14 @@ Static Public Member Functions</h2></td></tr>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
 
-<p>static singleton 객체를 리턴합니다 </p>
-
 </div>
 </div>
-<a class="anchor" id="a8791292ab6d05b5a4599228a05871d0a"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void ConstructionManager::update </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>constructionQueue 에 대해 Dead lock 이 있으면 제거하고, constructionQueue 내 <a class="el" href="class_my_bot_1_1_construction_task.html" title="건물 건설 Construction Task 자료구조 ">ConstructionTask</a> 들이 진행되도록 관리합니다 </p>
-
-</div>
-</div>
-<a class="anchor" id="afae68b629253c4221c1caf5f0c8d66a4"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">std::vector&lt; <a class="el" href="class_my_bot_1_1_construction_task.html">ConstructionTask</a> &gt; * ConstructionManager::getConstructionQueue </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>constructionQueue 를 리턴합니다 </p>
-
-</div>
-</div>
+<h2 class="groupheader">Member Function Documentation</h2>
 <a class="anchor" id="a9e9b867552312504e453a356ee224aee"></a>
 <div class="memitem">
 <div class="memproto">
@@ -214,6 +215,48 @@ Static Public Member Functions</h2></td></tr>
 </div><div class="memdoc">
 
 <p>constructionQueue 에 <a class="el" href="class_my_bot_1_1_construction_task.html" title="건물 건설 Construction Task 자료구조 ">ConstructionTask</a> 를 추가합니다 </p>
+
+</div>
+</div>
+<a class="anchor" id="ad5f582e11e9ea7bbc38f05a4a7705dfb"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void ConstructionManager::assignWorkersToUnassignedBuildings </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>STEP 2: ASSIGN WORKERS TO BUILDINGS WITHOUT THEM. </p>
+
+</div>
+</div>
+<a class="anchor" id="a221be91826788c6ce3eb7b73aca37e43"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::vector&lt; BWAPI::UnitType &gt; ConstructionManager::buildingsQueued </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>constructionQueue 내 <a class="el" href="class_my_bot_1_1_construction_task.html" title="건물 건설 Construction Task 자료구조 ">ConstructionTask</a> 갯수를 리턴합니다 </p>
 
 </div>
 </div>
@@ -245,6 +288,148 @@ Static Public Member Functions</h2></td></tr>
 
 </div>
 </div>
+<a class="anchor" id="a5524efc266c018cfe6b9864c4531651c"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void ConstructionManager::checkForCompletedBuildings </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>STEP 6: CHECK FOR COMPLETED BUILDINGS. </p>
+
+</div>
+</div>
+<a class="anchor" id="af78a388a21c95518f1aacf16f67dfad9"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void ConstructionManager::checkForDeadlockConstruction </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>건설 데드락을 체크하고, 해결합니다 </p>
+
+</div>
+</div>
+<a class="anchor" id="a7cead70b08ecd2196749ddba6829c4b5"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void ConstructionManager::checkForDeadTerranBuilders </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>STEP 5: IF WE ARE TERRAN, THIS MATTERS 테란은 건설을 시작한 후, 건설 도중에 일꾼이 죽을 수 있습니다. 이 경우, 건물에 대해 다시 다른 SCV를 할당합니다 참고로, 프로토스 / 저그는 건설을 시작하면 일꾼 포인터를 null 로 만들기 때문에 (constructionWorker = null) 건설 도중에 죽은 일꾼을 신경쓸 필요 없습니다 </p>
+
+</div>
+</div>
+<a class="anchor" id="a8ce8ab4d88d30c8603e80fba4841c259"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void ConstructionManager::checkForStartedConstruction </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>STEP 4: UPDATE DATA STRUCTURES FOR BUILDINGS STARTING CONSTRUCTION. </p>
+
+</div>
+</div>
+<a class="anchor" id="a623d2ea4647a7114f1693972ebb02657"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void ConstructionManager::constructAssignedBuildings </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>STEP 3: ISSUE CONSTRUCTION ORDERS TO ASSIGN BUILDINGS AS NEEDED. </p>
+
+</div>
+</div>
+<a class="anchor" id="afae68b629253c4221c1caf5f0c8d66a4"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::vector&lt; <a class="el" href="class_my_bot_1_1_construction_task.html">ConstructionTask</a> &gt; * ConstructionManager::getConstructionQueue </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>constructionQueue 를 리턴합니다 </p>
+
+</div>
+</div>
 <a class="anchor" id="a2d3d76c8132ab1dd9640b23cc6dd7f6c"></a>
 <div class="memitem">
 <div class="memproto">
@@ -273,12 +458,12 @@ Static Public Member Functions</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="a221be91826788c6ce3eb7b73aca37e43"></a>
+<a class="anchor" id="a96d488e702ee64586e126084b6899a8e"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">std::vector&lt; BWAPI::UnitType &gt; ConstructionManager::buildingsQueued </td>
+          <td class="memname">int ConstructionManager::getReservedGas </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td></td>
@@ -286,7 +471,7 @@ Static Public Member Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>constructionQueue 내 <a class="el" href="class_my_bot_1_1_construction_task.html" title="건물 건설 Construction Task 자료구조 ">ConstructionTask</a> 갯수를 리턴합니다 </p>
+<p>Construction 을 위해 예비해둔 Gas 숫자를 리턴합니다 </p>
 
 </div>
 </div>
@@ -307,12 +492,111 @@ Static Public Member Functions</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="a96d488e702ee64586e126084b6899a8e"></a>
+<a class="anchor" id="a476d28168845d92a14f33d5781237270"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_my_bot_1_1_construction_manager.html">ConstructionManager</a> &amp; ConstructionManager::Instance </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>static singleton 객체를 리턴합니다 </p>
+
+</div>
+</div>
+<a class="anchor" id="a4368c97877d9670f0c3204f8d69635c5"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool ConstructionManager::isBuildingPositionExplored </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="class_my_bot_1_1_construction_task.html">ConstructionTask</a> &amp;&#160;</td>
+          <td class="paramname"><em>b</em></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="ae4c0f97a6f54237b2bc27c00b26b8d96"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool ConstructionManager::isEvolvedBuilding </td>
+          <td>(</td>
+          <td class="paramtype">BWAPI::UnitType&#160;</td>
+          <td class="paramname"><em>type</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="ab9efe8b7aa9a3c9f4cea1a2bbe2b7369"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void ConstructionManager::removeCompletedConstructionTasks </td>
+          <td>(</td>
+          <td class="paramtype">const std::vector&lt; <a class="el" href="class_my_bot_1_1_construction_task.html">ConstructionTask</a> &gt; &amp;&#160;</td>
+          <td class="paramname"><em>toRemove</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>constructionQueue 에서 건설 상태가 UnderConstruction 인 <a class="el" href="class_my_bot_1_1_construction_task.html" title="건물 건설 Construction Task 자료구조 ">ConstructionTask</a> 여러개를 삭제합니다 건설을 시작했었던 <a class="el" href="class_my_bot_1_1_construction_task.html" title="건물 건설 Construction Task 자료구조 ">ConstructionTask</a> 이기 때문에 _reservedMinerals, _reservedGas 는 건드리지 않는다 </p>
+
+</div>
+</div>
+<a class="anchor" id="a8791292ab6d05b5a4599228a05871d0a"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">int ConstructionManager::getReservedGas </td>
+          <td class="memname">void ConstructionManager::update </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td></td>
@@ -320,7 +604,99 @@ Static Public Member Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Construction 을 위해 예비해둔 Gas 숫자를 리턴합니다 </p>
+<p>constructionQueue 에 대해 Dead lock 이 있으면 제거하고, constructionQueue 내 <a class="el" href="class_my_bot_1_1_construction_task.html" title="건물 건설 Construction Task 자료구조 ">ConstructionTask</a> 들이 진행되도록 관리합니다 </p>
+
+</div>
+</div>
+<a class="anchor" id="ab7bc17d2c5875227cf87080fb43c3d9b"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void ConstructionManager::validateWorkersAndBuildings </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>STEP 1: DO BOOK KEEPING ON WORKERS WHICH MAY HAVE DIED. </p>
+
+</div>
+</div>
+<h2 class="groupheader">Member Data Documentation</h2>
+<a class="anchor" id="a49fb0134db71f0faa957b8f0f2eed1d8"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::vector&lt;<a class="el" href="class_my_bot_1_1_construction_task.html">ConstructionTask</a>&gt; MyBot::ConstructionManager::constructionQueue</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>건설 필요 자원을 미리 예약해놓고, 건설 대상 장소가 미개척 장소인 경우 건설 일꾼을 이동시켜 결국 건설이 시작되게 하고, 건설 일꾼이 도중에 죽는 경우 다른 건설 일꾼을 지정하여 건설을 수행하게 하기 위해 Construction Task 들의 목록을 constructionQueue 로 유지합니다 </p>
+
+</div>
+</div>
+<a class="anchor" id="abbb4d8bb665cffe6b7d520ec46acc54a"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int MyBot::ConstructionManager::reservedGas</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>gas reserved for planned buildings </p>
+
+</div>
+</div>
+<a class="anchor" id="af6f631d9bbdb8807faf46de34def45ab"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int MyBot::ConstructionManager::reservedMinerals</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>minerals reserved for planned buildings </p>
 
 </div>
 </div>
@@ -328,7 +704,7 @@ Static Public Member Functions</h2></td></tr>
 <!-- HTML footer for doxygen 1.8.8-->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Mon May 29 2017 22:47:28 for BasicBot by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Fri Jun 9 2017 11:48:29 for BasicBot by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.8
 </small></address>

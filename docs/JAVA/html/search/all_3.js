@@ -1,8 +1,14 @@
 var searchData=
 [
-  ['default',['Default',['../enum_worker_data_1_1_worker_job.html#a3ee8c27622b4ff90148cde7a7dfa944f',1,'WorkerData::WorkerJob']]],
+  ['default',['Default',['../enum_meta_type_1_1_meta_types.html#a1225c51739a9a91763515df365e4ee15',1,'MetaType.MetaTypes.Default()'],['../enum_worker_data_1_1_worker_job.html#a3ee8c27622b4ff90148cde7a7dfa944f',1,'WorkerData.WorkerJob.Default()']]],
+  ['defaultpriorityspacing',['defaultPrioritySpacing',['../class_build_order_queue.html#a13211704b5e5cf89d814b264aa102829',1,'BuildOrderQueue']]],
   ['depothasenoughmineralworkers',['depotHasEnoughMineralWorkers',['../class_worker_data.html#a610e14550dc9717384cd74c438d636cb',1,'WorkerData']]],
+  ['depots',['depots',['../class_worker_data.html#a46d91d6d75afaf81e55ae7268ede508b',1,'WorkerData']]],
+  ['depotworkercount',['depotWorkerCount',['../class_worker_data.html#abf159d34642887e6eed7eab06d6b32b1',1,'WorkerData']]],
+  ['desiredposition',['desiredPosition',['../class_construction_task.html#a59c2f200f30833dca9717499b43fa3e6',1,'ConstructionTask']]],
+  ['dist',['dist',['../class_distance_map.html#a7a41b0e688a4bc5ebf1d7787e457d516',1,'DistanceMap']]],
   ['distancemap',['DistanceMap',['../class_distance_map.html',1,'DistanceMap'],['../class_distance_map.html#a50ba91205357499987af531d5f0d22eb',1,'DistanceMap.DistanceMap()'],['../class_distance_map.html#a23d4a092b2c13d557919d744e7c8ff49',1,'DistanceMap.DistanceMap(int mapWidth, int mapHeight, int cellSize)']]],
+  ['dotradius',['dotRadius',['../class_u_x_manager.html#aa219de7641b8e29419731a002a6ce8a7',1,'UXManager']]],
   ['drawapm',['drawAPM',['../class_u_x_manager.html#ae3590dae82f4142951b9cbba052de593',1,'UXManager']]],
   ['drawbuildinginfo',['DrawBuildingInfo',['../class_config.html#aae25586f4711c0718cef95e09f6fc1be',1,'Config']]],
   ['drawbuildorderqueueonscreen',['drawBuildOrderQueueOnScreen',['../class_u_x_manager.html#aca5c11d1eaea28f7dadfdfb6d1c1a83c',1,'UXManager']]],

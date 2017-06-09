@@ -1,4 +1,4 @@
-#include "UXManager.h"
+﻿#include "UXManager.h"
 
 using namespace MyBot;
 

@@ -1,4 +1,4 @@
-#include "GameCommander.h"
+﻿#include "GameCommander.h"
 
 using namespace MyBot;
 

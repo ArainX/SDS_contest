@@ -26,7 +26,7 @@
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;">
    <div id="projectname">BasicBot
-   &#160;<span id="projectnumber">v0.9 beta</span>
+   &#160;<span id="projectnumber">v0.95 beta</span>
    </div>
    <div id="projectbrief">BasicBot for Starcraft: Broodwar 1.16.1 with BWAPI 4.1.2</div>
   </td>
@@ -93,12 +93,18 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <div class="summary">
 <a href="#nested-classes">Classes</a> &#124;
 <a href="#pub-methods">Public Member Functions</a> &#124;
+<a href="#pri-attribs">Private Attributes</a> &#124;
 <a href="class_meta_type-members.html">List of all members</a>  </div>
   <div class="headertitle">
 <div class="title">MetaType Class Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
 <table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="nested-classes"></a>
+Classes</h2></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="enum_meta_type_1_1_meta_types.html">MetaTypes</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:af2c4fc758737568d82f1600afda0eb21"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_meta_type.html#af2c4fc758737568d82f1600afda0eb21">MetaType</a> ()</td></tr>
@@ -141,6 +147,19 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:a92f375c783ece16b9f00298c0a00df12"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac3922dce060f58ba980873a1d687d301"><td class="memItemLeft" align="right" valign="top">final UnitType&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_meta_type.html#ac3922dce060f58ba980873a1d687d301">whatBuilds</a> ()</td></tr>
 <tr class="separator:ac3922dce060f58ba980873a1d687d301"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-attribs"></a>
+Private Attributes</h2></td></tr>
+<tr class="memitem:a3bccddb03f4a4bb72c293d6a6bab608b"><td class="memItemLeft" align="right" valign="top">Race&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_meta_type.html#a3bccddb03f4a4bb72c293d6a6bab608b">race</a></td></tr>
+<tr class="separator:a3bccddb03f4a4bb72c293d6a6bab608b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a14cab1ac353c602996e26cd0324f3814"><td class="memItemLeft" align="right" valign="top">TechType&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_meta_type.html#a14cab1ac353c602996e26cd0324f3814">techType</a></td></tr>
+<tr class="separator:a14cab1ac353c602996e26cd0324f3814"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a73fff0437f36dbf5870b1cdf7331d9f0"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_meta_type.html#a73fff0437f36dbf5870b1cdf7331d9f0">type</a></td></tr>
+<tr class="separator:a73fff0437f36dbf5870b1cdf7331d9f0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5c12544337263ead4d64ebb7ccfa2590"><td class="memItemLeft" align="right" valign="top">UnitType&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_meta_type.html#a5c12544337263ead4d64ebb7ccfa2590">unitType</a></td></tr>
+<tr class="separator:a5c12544337263ead4d64ebb7ccfa2590"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4ca7f94708fbba52495ce83bddbccc3e"><td class="memItemLeft" align="right" valign="top">UpgradeType&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_meta_type.html#a4ca7f94708fbba52495ce83bddbccc3e">upgradeType</a></td></tr>
+<tr class="separator:a4ca7f94708fbba52495ce83bddbccc3e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p><a class="el" href="class_build_manager.html" title="빌드(건물 건설 / 유닛 훈련 / 테크 리서치 / 업그레이드) 명령을 순차적으로 실행하기 위해 빌드 큐를 관리...">BuildManager</a> 등에서 UnitType, TechType, UpgradeType 구분없이 동일한 Method 로 실행할 수 있게 하기 위해 만든 Wrapper class. </p>
@@ -209,12 +228,28 @@ Public Member Functions</h2></td></tr>
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
-<a class="anchor" id="a92f375c783ece16b9f00298c0a00df12"></a>
+<a class="anchor" id="adc2594253e300d9d06a47498f55d5ca7"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">final int MetaType.type </td>
+          <td class="memname">boolean MetaType.equals </td>
+          <td>(</td>
+          <td class="paramtype">Object&#160;</td>
+          <td class="paramname"><em>o</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="a51df6c98372a1149dd93a7c4ee027611"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">final int MetaType.gasPrice </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td></td>
@@ -224,42 +259,12 @@ Public Member Functions</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="aae666cbc345f1cbabe1ab0f043220d71"></a>
+<a class="anchor" id="a53570640c1535a485c863dd9761be142"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">final boolean MetaType.isUnit </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-</div>
-</div>
-<a class="anchor" id="ae0e4b1e0d3e8c9db9809235cb0ee52a6"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">final boolean MetaType.isTech </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-</div>
-</div>
-<a class="anchor" id="ada2d7926d9096bfd66cae4e447b91b48"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">final boolean MetaType.isUpgrade </td>
+          <td class="memname">final String MetaType.getName </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td></td>
@@ -275,6 +280,51 @@ Public Member Functions</h2></td></tr>
       <table class="memname">
         <tr>
           <td class="memname">final Race MetaType.getRace </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="a18b1d1803d8306fecac9b258379f4e0e"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">final TechType MetaType.getTechType </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="a86d1763a5f64a22e95536becc63e94ea"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">final UnitType MetaType.getUnitType </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="a72c0b4122c4ba4e40f65be6d20281eeb"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">final UpgradeType MetaType.getUpgradeType </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td></td>
@@ -314,12 +364,12 @@ Public Member Functions</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="a86d1763a5f64a22e95536becc63e94ea"></a>
+<a class="anchor" id="ae0e4b1e0d3e8c9db9809235cb0ee52a6"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">final UnitType MetaType.getUnitType </td>
+          <td class="memname">final boolean MetaType.isTech </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td></td>
@@ -329,12 +379,12 @@ Public Member Functions</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="a18b1d1803d8306fecac9b258379f4e0e"></a>
+<a class="anchor" id="aae666cbc345f1cbabe1ab0f043220d71"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">final TechType MetaType.getTechType </td>
+          <td class="memname">final boolean MetaType.isUnit </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td></td>
@@ -344,27 +394,12 @@ Public Member Functions</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="a72c0b4122c4ba4e40f65be6d20281eeb"></a>
+<a class="anchor" id="ada2d7926d9096bfd66cae4e447b91b48"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">final UpgradeType MetaType.getUpgradeType </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-</div>
-</div>
-<a class="anchor" id="a51a0d548d129226f5e32809019ea2db0"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">int MetaType.supplyRequired </td>
+          <td class="memname">final boolean MetaType.isUpgrade </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td></td>
@@ -389,12 +424,27 @@ Public Member Functions</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="a51df6c98372a1149dd93a7c4ee027611"></a>
+<a class="anchor" id="a51a0d548d129226f5e32809019ea2db0"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">final int MetaType.gasPrice </td>
+          <td class="memname">int MetaType.supplyRequired </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="a92f375c783ece16b9f00298c0a00df12"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">final int MetaType.type </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td></td>
@@ -419,33 +469,103 @@ Public Member Functions</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="a53570640c1535a485c863dd9761be142"></a>
+<h2 class="groupheader">Member Data Documentation</h2>
+<a class="anchor" id="a3bccddb03f4a4bb72c293d6a6bab608b"></a>
 <div class="memitem">
 <div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">final String MetaType.getName </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
+          <td class="memname">Race MetaType.race</td>
         </tr>
       </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
 </div><div class="memdoc">
 
 </div>
 </div>
-<a class="anchor" id="adc2594253e300d9d06a47498f55d5ca7"></a>
+<a class="anchor" id="a14cab1ac353c602996e26cd0324f3814"></a>
 <div class="memitem">
 <div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">boolean MetaType.equals </td>
-          <td>(</td>
-          <td class="paramtype">Object&#160;</td>
-          <td class="paramname"><em>o</em></td><td>)</td>
-          <td></td>
+          <td class="memname">TechType MetaType.techType</td>
         </tr>
       </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="a73fff0437f36dbf5870b1cdf7331d9f0"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int MetaType.type</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="a5c12544337263ead4d64ebb7ccfa2590"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">UnitType MetaType.unitType</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="a4ca7f94708fbba52495ce83bddbccc3e"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">UpgradeType MetaType.upgradeType</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
 </div><div class="memdoc">
 
 </div>
@@ -454,7 +574,7 @@ Public Member Functions</h2></td></tr>
 <!-- HTML footer for doxygen 1.8.8-->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Mon May 29 2017 22:47:42 for BasicBot by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Fri Jun 9 2017 21:29:50 for BasicBot by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.8
 </small></address>

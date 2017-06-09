@@ -1,4 +1,4 @@
-#include "InformationManager.h"
+﻿#include "InformationManager.h"
 
 using namespace MyBot;
 

@@ -1,4 +1,4 @@
-#include "Common.h"
+﻿#include "Common.h"
 #include "UnitData.h"
 
 using namespace MyBot;

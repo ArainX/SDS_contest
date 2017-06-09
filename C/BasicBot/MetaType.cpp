@@ -1,4 +1,4 @@
-#include "MetaType.h"
+﻿#include "MetaType.h"
 
 using namespace MyBot;
 

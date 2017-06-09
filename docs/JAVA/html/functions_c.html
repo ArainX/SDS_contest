@@ -26,7 +26,7 @@
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;">
    <div id="projectname">BasicBot
-   &#160;<span id="projectnumber">v0.9 beta</span>
+   &#160;<span id="projectnumber">v0.95 beta</span>
    </div>
    <div id="projectbrief">BasicBot for Starcraft: Broodwar 1.16.1 with BWAPI 4.1.2</div>
   </td>
@@ -104,6 +104,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
       <li><a href="functions_u.html#index_u"><span>u</span></a></li>
       <li><a href="functions_v.html#index_v"><span>v</span></a></li>
       <li><a href="functions_w.html#index_w"><span>w</span></a></li>
+      <li><a href="functions_y.html#index_y"><span>y</span></a></li>
     </ul>
   </div>
 </div><!-- top -->
@@ -153,14 +154,22 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <li>cancelConstructionTask()
 : <a class="el" href="class_construction_manager.html#a6c9290a9a2a1b9cc157241d06a3aab39">ConstructionManager</a>
 </li>
-<li>canMake()
-: <a class="el" href="class_build_manager.html#a522498ed806f8461dda0cb0a8d6ebf63">BuildManager</a>
-</li>
 <li>canMakeNow()
 : <a class="el" href="class_build_manager.html#abd72804aa1138486264595952910dd64">BuildManager</a>
 </li>
 <li>canSkipCurrentItem()
 : <a class="el" href="class_build_order_queue.html#a39e621148e071c13bfe0872ca2cecb48">BuildOrderQueue</a>
+</li>
+<li>cells
+: <a class="el" href="class_distance_map.html#a493b41fde85bde23a65728f5db964081">DistanceMap</a>
+</li>
+<li>cellSize
+: <a class="el" href="class_distance_map.html#a0a7bf8ffc98b98870441a6cb2564ebd8">DistanceMap</a>
+, <a class="el" href="class_map_grid.html#ad4d689f9201925db1f02eb794da5ff62">MapGrid</a>
+</li>
+<li>center
+: <a class="el" href="class_distance_map_1_1_grid_cell.html#a258a50e9aa9351e9e0f781331aa1bf7a">DistanceMap.GridCell</a>
+, <a class="el" href="class_map_grid_1_1_grid_cell.html#a42c4ba42150c215c651fe0f531bf2436">MapGrid.GridCell</a>
 </li>
 <li>checkBuildOrderQueueDeadlockAndAndFixIt()
 : <a class="el" href="class_build_manager.html#aa39d41c3903cc5177ee5d4c9847da8c9">BuildManager</a>
@@ -211,8 +220,23 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <li>ColorUnitNotNearEnemy
 : <a class="el" href="class_config.html#a7fd462a287fa6d284ac59599920ccd2b">Config</a>
 </li>
+<li>cols
+: <a class="el" href="class_distance_map.html#ad5198b61893cda367f91e9e2e674d3a4">DistanceMap</a>
+, <a class="el" href="class_map_grid.html#aba85dbe35b50d87d5321a085b52ac96f">MapGrid</a>
+, <a class="el" href="class_map_tools.html#a455364f71b4eec0b74f093059fb63d02">MapTools</a>
+</li>
 <li>Combat
 : <a class="el" href="enum_worker_data_1_1_worker_job.html#a93113b80916151ce54d8825b10835330">WorkerData.WorkerJob</a>
+</li>
+<li>commandUtil
+: <a class="el" href="class_construction_manager.html#a478b6bc5503be21b069661e3e770c2a5">ConstructionManager</a>
+, <a class="el" href="class_scout_manager.html#a4c2a12364fb51681ca5150dabc766fc3">ScoutManager</a>
+, <a class="el" href="class_strategy_manager.html#aab7f0a8155528ddb06f80f28d670e246">StrategyManager</a>
+, <a class="el" href="class_worker_data.html#a78bc172eeecb13f2d528b96597da9344">WorkerData</a>
+, <a class="el" href="class_worker_manager.html#a6f09d125faa27b420977ad3a25490fdb">WorkerManager</a>
+</li>
+<li>completed
+: <a class="el" href="class_unit_info.html#a751bd1f4d238f4e905dfcf4be4705a37">UnitInfo</a>
 </li>
 <li>computeDistance()
 : <a class="el" href="class_map_tools.html#a1cf1d2b6dfdab15048a492c68eaee0ec">MapTools</a>
@@ -220,15 +244,42 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <li>constructAssignedBuildings()
 : <a class="el" href="class_construction_manager.html#a9a81e231cb6052dabd7f075d596cdb3a">ConstructionManager</a>
 </li>
+<li>constructionQueue
+: <a class="el" href="class_construction_manager.html#a3087945908afe17b66dc88d593cfeffd">ConstructionManager</a>
+</li>
 <li>ConstructionTask()
 : <a class="el" href="class_construction_task.html#ae6a4a84aa2fed3f542fd6088f74c5f4a">ConstructionTask</a>
+</li>
+<li>constructionWorker
+: <a class="el" href="class_construction_task.html#a91cc428ca77d7ea31278a20355ece75c">ConstructionTask</a>
+</li>
+<li>currentRepairWorker
+: <a class="el" href="class_worker_manager.html#afac69b69eb62ef2071ef95f8df6cc8fc">WorkerManager</a>
+</li>
+<li>currentScoutFreeToVertexIndex
+: <a class="el" href="class_scout_manager.html#a1d08f709b487a79e0688b863e9628265">ScoutManager</a>
+</li>
+<li>currentScoutStatus
+: <a class="el" href="class_scout_manager.html#ae6e5083be95db548947d818ed9889801">ScoutManager</a>
+</li>
+<li>currentScoutTargetBaseLocation
+: <a class="el" href="class_scout_manager.html#af132e956917606ccf6f66ec9a7416e39">ScoutManager</a>
+</li>
+<li>currentScoutTargetPosition
+: <a class="el" href="class_scout_manager.html#aa3badd9887ef61a60bf5edbc4b3a1e1e">ScoutManager</a>
+</li>
+<li>currentScoutUnit
+: <a class="el" href="class_scout_manager.html#abf07b2b5b6625e58136e059dc69693ad">ScoutManager</a>
+</li>
+<li>cyan
+: <a class="el" href="class_u_x_manager.html#a75bf3a07e5a989015950b288795d2680">UXManager</a>
 </li>
 </ul>
 </div><!-- contents -->
 <!-- HTML footer for doxygen 1.8.8-->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Mon May 29 2017 22:47:42 for BasicBot by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Fri Jun 9 2017 21:29:51 for BasicBot by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.8
 </small></address>

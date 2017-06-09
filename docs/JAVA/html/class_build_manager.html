@@ -26,7 +26,7 @@
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;">
    <div id="projectname">BasicBot
-   &#160;<span id="projectnumber">v0.9 beta</span>
+   &#160;<span id="projectnumber">v0.95 beta</span>
    </div>
    <div id="projectbrief">BasicBot for Starcraft: Broodwar 1.16.1 with BWAPI 4.1.2</div>
   </td>
@@ -94,6 +94,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <a href="#pub-methods">Public Member Functions</a> &#124;
 <a href="#pub-static-methods">Static Public Member Functions</a> &#124;
 <a href="#pub-attribs">Public Attributes</a> &#124;
+<a href="#pri-static-attribs">Static Private Attributes</a> &#124;
 <a href="class_build_manager-members.html">List of all members</a>  </div>
   <div class="headertitle">
 <div class="title">BuildManager Class Reference</div>  </div>
@@ -102,8 +103,6 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a522498ed806f8461dda0cb0a8d6ebf63"><td class="memItemLeft" align="right" valign="top">boolean&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_build_manager.html#a522498ed806f8461dda0cb0a8d6ebf63">canMake</a> (<a class="el" href="class_meta_type.html">MetaType</a> t)</td></tr>
-<tr class="separator:a522498ed806f8461dda0cb0a8d6ebf63"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:abd72804aa1138486264595952910dd64"><td class="memItemLeft" align="right" valign="top">boolean&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_build_manager.html#abd72804aa1138486264595952910dd64">canMakeNow</a> (Unit producer, <a class="el" href="class_meta_type.html">MetaType</a> t)</td></tr>
 <tr class="separator:abd72804aa1138486264595952910dd64"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa39d41c3903cc5177ee5d4c9847da8c9"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_build_manager.html#aa39d41c3903cc5177ee5d4c9847da8c9">checkBuildOrderQueueDeadlockAndAndFixIt</a> ()</td></tr>
@@ -144,42 +143,91 @@ Static Public Member Functions</h2></td></tr>
 Public Attributes</h2></td></tr>
 <tr class="memitem:a9b87bfaa262a4c4ab559e4fe89605f67"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_build_order_queue.html">BuildOrderQueue</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_build_manager.html#a9b87bfaa262a4c4ab559e4fe89605f67">buildQueue</a> = new <a class="el" href="class_build_order_queue.html">BuildOrderQueue</a>()</td></tr>
 <tr class="separator:a9b87bfaa262a4c4ab559e4fe89605f67"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-static-attribs"></a>
+Static Private Attributes</h2></td></tr>
+<tr class="memitem:a0969b4bf83546080d554dfbb77fd7f3d"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="class_build_manager.html">BuildManager</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_build_manager.html#a0969b4bf83546080d554dfbb77fd7f3d">instance</a> = new <a class="el" href="class_build_manager.html">BuildManager</a>()</td></tr>
+<tr class="separator:a0969b4bf83546080d554dfbb77fd7f3d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>빌드(건물 건설 / 유닛 훈련 / 테크 리서치 / 업그레이드) 명령을 순차적으로 실행하기 위해 빌드 큐를 관리하고, 빌드 큐에 있는 명령을 하나씩 실행하는 class 빌드 명령 중 건물 건설 명령은 ConstructionManager로 전달합니다 </p>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="class_construction_manager.html" title="건물 건설 Construction 명령 목록을 리스트로 관리하고, 건물 건설 명령이 잘 수행되도록 컨트롤하는 class...">ConstructionManager</a> </dd></dl>
 </div><h2 class="groupheader">Member Function Documentation</h2>
-<a class="anchor" id="a97e4689e7051f4d1e58855fcc1fd93cf"></a>
+<a class="anchor" id="abd72804aa1138486264595952910dd64"></a>
 <div class="memitem">
 <div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">static <a class="el" href="class_build_manager.html">BuildManager</a> BuildManager.Instance </td>
+          <td class="memname">boolean BuildManager.canMakeNow </td>
+          <td>(</td>
+          <td class="paramtype">Unit&#160;</td>
+          <td class="paramname"><em>producer</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="class_meta_type.html">MetaType</a>&#160;</td>
+          <td class="paramname"><em>t</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="aa39d41c3903cc5177ee5d4c9847da8c9"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void BuildManager.checkBuildOrderQueueDeadlockAndAndFixIt </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td></td>
         </tr>
       </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">static</span></span>  </td>
-  </tr>
-</table>
 </div><div class="memdoc">
 
-<p>static singleton 객체를 리턴합니다 </p>
-
 </div>
 </div>
-<a class="anchor" id="a4a1592989af699d2f1bb869aea86d896"></a>
+<a class="anchor" id="a47e32598ca5e52ff907e876feae5b716"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void BuildManager.update </td>
+          <td class="memname">Unit BuildManager.getAnotherProducer </td>
+          <td>(</td>
+          <td class="paramtype">Unit&#160;</td>
+          <td class="paramname"><em>producer</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">Position&#160;</td>
+          <td class="paramname"><em>closestTo</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>해당 <a class="el" href="class_meta_type.html" title="BuildManager 등에서 UnitType, TechType, UpgradeType 구분없이 동일한 Method 로 실행할 수 있게 하기 위�...">MetaType</a> 을 build 할 수 있는, getProducer 리턴값과 다른 producer 를 찾아 반환합니다 프로토스 종족 유닛 중 Protoss_Archon / Protoss_Dark_Archon 을 빌드할 때 사용합니다 </p>
+
+</div>
+</div>
+<a class="anchor" id="afeed974e6c3440bfbd0eeabd5a28f2af"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int BuildManager.getAvailableGas </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td></td>
@@ -187,7 +235,95 @@ Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>buildQueue 에 대해 Dead lock 이 있으면 제거하고, 가장 우선순위가 높은 <a class="el" href="class_build_order_item.html" title="빌드 명령 ">BuildOrderItem</a> 를 실행되도록 시도합니다 </p>
+</div>
+</div>
+<a class="anchor" id="afae7824aed4490448713cb69e31b897f"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int BuildManager.getAvailableMinerals </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="a1a163b025c1028a02776a13848933e5e"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_build_order_queue.html">BuildOrderQueue</a> BuildManager.getBuildQueue </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p><a class="el" href="class_build_order_item.html" title="빌드 명령 ">BuildOrderItem</a> 들의 목록을 저장하는 buildQueue 를 리턴합니다 </p>
+
+</div>
+</div>
+<a class="anchor" id="a87e20733f5ed3e37fff0cb936cdf1c1a"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">Unit BuildManager.getClosestUnitToPosition </td>
+          <td>(</td>
+          <td class="paramtype">final List&lt; Unit &gt;&#160;</td>
+          <td class="paramname"><em>units</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">Position&#160;</td>
+          <td class="paramname"><em>closestTo</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="af3c139e677a88e38d56da4631979bef4"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">TilePosition BuildManager.getDesiredPosition </td>
+          <td>(</td>
+          <td class="paramtype">UnitType&#160;</td>
+          <td class="paramname"><em>unitType</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">TilePosition&#160;</td>
+          <td class="paramname"><em>seedPosition</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="enum_build_order_item_1_1_seed_position_strategy.html">BuildOrderItem.SeedPositionStrategy</a>&#160;</td>
+          <td class="paramname"><em>seedPositionStrategy</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
 
 </div>
 </div>
@@ -279,164 +415,6 @@ Public Attributes</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="a47e32598ca5e52ff907e876feae5b716"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">Unit BuildManager.getAnotherProducer </td>
-          <td>(</td>
-          <td class="paramtype">Unit&#160;</td>
-          <td class="paramname"><em>producer</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">Position&#160;</td>
-          <td class="paramname"><em>closestTo</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>해당 <a class="el" href="class_meta_type.html" title="BuildManager 등에서 UnitType, TechType, UpgradeType 구분없이 동일한 Method 로 실행할 수 있게 하기 위�...">MetaType</a> 을 build 할 수 있는, getProducer 리턴값과 다른 producer 를 찾아 반환합니다 프로토스 종족 유닛 중 Protoss_Archon / Protoss_Dark_Archon 을 빌드할 때 사용합니다 </p>
-
-</div>
-</div>
-<a class="anchor" id="a87e20733f5ed3e37fff0cb936cdf1c1a"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">Unit BuildManager.getClosestUnitToPosition </td>
-          <td>(</td>
-          <td class="paramtype">final List&lt; Unit &gt;&#160;</td>
-          <td class="paramname"><em>units</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">Position&#160;</td>
-          <td class="paramname"><em>closestTo</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-</div>
-</div>
-<a class="anchor" id="abd72804aa1138486264595952910dd64"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">boolean BuildManager.canMakeNow </td>
-          <td>(</td>
-          <td class="paramtype">Unit&#160;</td>
-          <td class="paramname"><em>producer</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype"><a class="el" href="class_meta_type.html">MetaType</a>&#160;</td>
-          <td class="paramname"><em>t</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-</div>
-</div>
-<a class="anchor" id="a522498ed806f8461dda0cb0a8d6ebf63"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">boolean BuildManager.canMake </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="class_meta_type.html">MetaType</a>&#160;</td>
-          <td class="paramname"><em>t</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-</div>
-</div>
-<a class="anchor" id="af3c139e677a88e38d56da4631979bef4"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">TilePosition BuildManager.getDesiredPosition </td>
-          <td>(</td>
-          <td class="paramtype">UnitType&#160;</td>
-          <td class="paramname"><em>unitType</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">TilePosition&#160;</td>
-          <td class="paramname"><em>seedPosition</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype"><a class="el" href="enum_build_order_item_1_1_seed_position_strategy.html">BuildOrderItem.SeedPositionStrategy</a>&#160;</td>
-          <td class="paramname"><em>seedPositionStrategy</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-</div>
-</div>
-<a class="anchor" id="afae7824aed4490448713cb69e31b897f"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">int BuildManager.getAvailableMinerals </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-</div>
-</div>
-<a class="anchor" id="afeed974e6c3440bfbd0eeabd5a28f2af"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">int BuildManager.getAvailableGas </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-</div>
-</div>
 <a class="anchor" id="ab2a68b3debda9cd80324dbd93f59c7cd"></a>
 <div class="memitem">
 <div class="memproto">
@@ -450,6 +428,49 @@ Public Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="a97e4689e7051f4d1e58855fcc1fd93cf"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static <a class="el" href="class_build_manager.html">BuildManager</a> BuildManager.Instance </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>static singleton 객체를 리턴합니다 </p>
+
+</div>
+</div>
+<a class="anchor" id="a15a8824536534621b9c8a188c8492932"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">boolean BuildManager.isProducerWillExist </td>
+          <td>(</td>
+          <td class="paramtype">UnitType&#160;</td>
+          <td class="paramname"><em>producerType</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>buildQueue 의 Dead lock 여부를 판단하기 위해, 가장 우선순위가 높은 <a class="el" href="class_build_order_item.html" title="빌드 명령 ">BuildOrderItem</a> 의 producer 가 존재하게될 것인지 여부를 리턴합니다 </p>
 
 </div>
 </div>
@@ -479,12 +500,12 @@ Public Attributes</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="a1a163b025c1028a02776a13848933e5e"></a>
+<a class="anchor" id="a4a1592989af699d2f1bb869aea86d896"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="class_build_order_queue.html">BuildOrderQueue</a> BuildManager.getBuildQueue </td>
+          <td class="memname">void BuildManager.update </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td></td>
@@ -492,40 +513,7 @@ Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p><a class="el" href="class_build_order_item.html" title="빌드 명령 ">BuildOrderItem</a> 들의 목록을 저장하는 buildQueue 를 리턴합니다 </p>
-
-</div>
-</div>
-<a class="anchor" id="a15a8824536534621b9c8a188c8492932"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">boolean BuildManager.isProducerWillExist </td>
-          <td>(</td>
-          <td class="paramtype">UnitType&#160;</td>
-          <td class="paramname"><em>producerType</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>buildQueue 의 Dead lock 여부를 판단하기 위해, 가장 우선순위가 높은 <a class="el" href="class_build_order_item.html" title="빌드 명령 ">BuildOrderItem</a> 의 producer 가 존재하게될 것인지 여부를 리턴합니다 </p>
-
-</div>
-</div>
-<a class="anchor" id="aa39d41c3903cc5177ee5d4c9847da8c9"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void BuildManager.checkBuildOrderQueueDeadlockAndAndFixIt </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
+<p>buildQueue 에 대해 Dead lock 이 있으면 제거하고, 가장 우선순위가 높은 <a class="el" href="class_build_order_item.html" title="빌드 명령 ">BuildOrderItem</a> 를 실행되도록 시도합니다 </p>
 
 </div>
 </div>
@@ -544,11 +532,31 @@ Public Attributes</h2></td></tr>
 
 </div>
 </div>
+<a class="anchor" id="a0969b4bf83546080d554dfbb77fd7f3d"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_build_manager.html">BuildManager</a> BuildManager.instance = new <a class="el" href="class_build_manager.html">BuildManager</a>()</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
 </div><!-- contents -->
 <!-- HTML footer for doxygen 1.8.8-->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Mon May 29 2017 22:47:41 for BasicBot by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Fri Jun 9 2017 21:29:49 for BasicBot by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.8
 </small></address>

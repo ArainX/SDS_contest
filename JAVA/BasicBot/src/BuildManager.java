@@ -482,25 +482,6 @@ public class BuildManager {
 		return canMake;
 	}
 
-	public boolean canMake(MetaType t) {
-		boolean canMake = false;
-
-		if (canMake) {
-			if (t.isUnit()) {
-				// Checks all the requirements include resources, supply,
-				// technology tree, availability, and required units
-				canMake = MyBotModule.Broodwar.canMake(t.getUnitType());
-			} else if (t.isTech()) {
-				canMake = MyBotModule.Broodwar.canResearch(t.getTechType());
-			} else if (t.isUpgrade()) {
-				canMake = MyBotModule.Broodwar.canUpgrade(t.getUpgradeType());
-			}
-		}
-
-		return canMake;
-
-	}
-
 	// 건설 가능 위치를 찾는다
 	// seedLocationStrategy 가 SeedPositionSpecified 인 경우에는 그 근처만 찾아보고,
 	// SeedPositionSpecified 이 아닌 경우에는 seedLocationStrategy 를 조금씩 바꿔가며 계속 찾아본다.

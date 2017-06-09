@@ -26,7 +26,7 @@
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;">
    <div id="projectname">BasicBot
-   &#160;<span id="projectnumber">v0.9 beta</span>
+   &#160;<span id="projectnumber">v0.95 beta</span>
    </div>
    <div id="projectbrief">BasicBot for Starcraft: Broodwar 1.16.1 with BWAPI 4.1.2</div>
   </td>
@@ -93,6 +93,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <div class="summary">
 <a href="#nested-classes">Classes</a> &#124;
 <a href="#pub-methods">Public Member Functions</a> &#124;
+<a href="#pri-attribs">Private Attributes</a> &#124;
 <a href="class_construction_task-members.html">List of all members</a>  </div>
   <div class="headertitle">
 <div class="title">ConstructionTask Class Reference</div>  </div>
@@ -108,7 +109,7 @@ Classes</h2></td></tr>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:a7bc9eaed8776386bc4ac31ad41d66cd6"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_construction_task.html#a7bc9eaed8776386bc4ac31ad41d66cd6">ConstructionTask</a> ()</td></tr>
 <tr class="separator:a7bc9eaed8776386bc4ac31ad41d66cd6"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae6a4a84aa2fed3f542fd6088f74c5f4a"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_construction_task.html#ae6a4a84aa2fed3f542fd6088f74c5f4a">ConstructionTask</a> (UnitType t, TilePosition desiredPosition)</td></tr>
+<tr class="memitem:ae6a4a84aa2fed3f542fd6088f74c5f4a"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_construction_task.html#ae6a4a84aa2fed3f542fd6088f74c5f4a">ConstructionTask</a> (UnitType t, TilePosition <a class="el" href="class_construction_task.html#a59c2f200f30833dca9717499b43fa3e6">desiredPosition</a>)</td></tr>
 <tr class="separator:ae6a4a84aa2fed3f542fd6088f74c5f4a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a63d1aa89ef9b08615bb223d5e1dbdd56"><td class="memItemLeft" align="right" valign="top">boolean&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_construction_task.html#a63d1aa89ef9b08615bb223d5e1dbdd56">equals</a> (Object obj)</td></tr>
 <tr class="separator:a63d1aa89ef9b08615bb223d5e1dbdd56"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -132,26 +133,49 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:a1f038f730d5e1c01a995e57e36c7da14"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab522739e2f720bf23e01c4b6d54f9543"><td class="memItemLeft" align="right" valign="top">boolean&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_construction_task.html#ab522739e2f720bf23e01c4b6d54f9543">isUnderConstruction</a> ()</td></tr>
 <tr class="separator:ab522739e2f720bf23e01c4b6d54f9543"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a62faf339ddf08f1eab39f9f91f72eecd"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_construction_task.html#a62faf339ddf08f1eab39f9f91f72eecd">setBuildCommandGiven</a> (boolean buildCommandGiven)</td></tr>
+<tr class="memitem:a62faf339ddf08f1eab39f9f91f72eecd"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_construction_task.html#a62faf339ddf08f1eab39f9f91f72eecd">setBuildCommandGiven</a> (boolean <a class="el" href="class_construction_task.html#ac05db333bf7d21bad9541885e0606cf6">buildCommandGiven</a>)</td></tr>
 <tr class="separator:a62faf339ddf08f1eab39f9f91f72eecd"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1e43209dde630f1d275934595d449900"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_construction_task.html#a1e43209dde630f1d275934595d449900">setBuildingUnit</a> (Unit buildingUnit)</td></tr>
+<tr class="memitem:a1e43209dde630f1d275934595d449900"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_construction_task.html#a1e43209dde630f1d275934595d449900">setBuildingUnit</a> (Unit <a class="el" href="class_construction_task.html#aef2ac2248097c46f2e4e694b23b64d7c">buildingUnit</a>)</td></tr>
 <tr class="separator:a1e43209dde630f1d275934595d449900"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab694640ee7cf655848df280d98271e58"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_construction_task.html#ab694640ee7cf655848df280d98271e58">setConstructionWorker</a> (Unit constructionWorker)</td></tr>
+<tr class="memitem:ab694640ee7cf655848df280d98271e58"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_construction_task.html#ab694640ee7cf655848df280d98271e58">setConstructionWorker</a> (Unit <a class="el" href="class_construction_task.html#a91cc428ca77d7ea31278a20355ece75c">constructionWorker</a>)</td></tr>
 <tr class="separator:ab694640ee7cf655848df280d98271e58"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa5f99b72d550747bdfef1d3a174f0ba4"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_construction_task.html#aa5f99b72d550747bdfef1d3a174f0ba4">setDesiredPosition</a> (TilePosition desiredPosition)</td></tr>
+<tr class="memitem:aa5f99b72d550747bdfef1d3a174f0ba4"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_construction_task.html#aa5f99b72d550747bdfef1d3a174f0ba4">setDesiredPosition</a> (TilePosition <a class="el" href="class_construction_task.html#a59c2f200f30833dca9717499b43fa3e6">desiredPosition</a>)</td></tr>
 <tr class="separator:aa5f99b72d550747bdfef1d3a174f0ba4"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a3d6b8960c541fc2ec2e7ddf3b4d2d8ab"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_construction_task.html#a3d6b8960c541fc2ec2e7ddf3b4d2d8ab">setFinalPosition</a> (TilePosition finalPosition)</td></tr>
+<tr class="memitem:a3d6b8960c541fc2ec2e7ddf3b4d2d8ab"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_construction_task.html#a3d6b8960c541fc2ec2e7ddf3b4d2d8ab">setFinalPosition</a> (TilePosition <a class="el" href="class_construction_task.html#ab08cb7d5c1700c9f9fed0ce6cfc1bedd">finalPosition</a>)</td></tr>
 <tr class="separator:a3d6b8960c541fc2ec2e7ddf3b4d2d8ab"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6cccffc697c49ed656fa9a1316048e68"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_construction_task.html#a6cccffc697c49ed656fa9a1316048e68">setLastBuildCommandGivenFrame</a> (int lastBuildCommandGivenFrame)</td></tr>
+<tr class="memitem:a6cccffc697c49ed656fa9a1316048e68"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_construction_task.html#a6cccffc697c49ed656fa9a1316048e68">setLastBuildCommandGivenFrame</a> (int <a class="el" href="class_construction_task.html#a8f4012250129f6bca75446d03dbeb9ef">lastBuildCommandGivenFrame</a>)</td></tr>
 <tr class="separator:a6cccffc697c49ed656fa9a1316048e68"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6591f0f60d5f05889632e7edeb1c8110"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_construction_task.html#a6591f0f60d5f05889632e7edeb1c8110">setLastConstructionWorkerID</a> (int lastConstructionWorkerID)</td></tr>
+<tr class="memitem:a6591f0f60d5f05889632e7edeb1c8110"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_construction_task.html#a6591f0f60d5f05889632e7edeb1c8110">setLastConstructionWorkerID</a> (int <a class="el" href="class_construction_task.html#a729b24234bfc5a94c73dff28bcd1de62">lastConstructionWorkerID</a>)</td></tr>
 <tr class="separator:a6591f0f60d5f05889632e7edeb1c8110"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab1088f9fa97cd3e5592a20a0aaeaf060"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_construction_task.html#ab1088f9fa97cd3e5592a20a0aaeaf060">setStatus</a> (int status)</td></tr>
+<tr class="memitem:ab1088f9fa97cd3e5592a20a0aaeaf060"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_construction_task.html#ab1088f9fa97cd3e5592a20a0aaeaf060">setStatus</a> (int <a class="el" href="class_construction_task.html#aab6199d47affb13f9ebda94f2907d9e5">status</a>)</td></tr>
 <tr class="separator:ab1088f9fa97cd3e5592a20a0aaeaf060"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2df30a9b79008b21d839755170f9428a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_construction_task.html#a2df30a9b79008b21d839755170f9428a">setType</a> (UnitType type)</td></tr>
+<tr class="memitem:a2df30a9b79008b21d839755170f9428a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_construction_task.html#a2df30a9b79008b21d839755170f9428a">setType</a> (UnitType <a class="el" href="class_construction_task.html#aea8b1d23a627da820dfddeeed4ff8c6e">type</a>)</td></tr>
 <tr class="separator:a2df30a9b79008b21d839755170f9428a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a3523cdd0baff788e48a0d6d81a687c1e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_construction_task.html#a3523cdd0baff788e48a0d6d81a687c1e">setUnderConstruction</a> (boolean underConstruction)</td></tr>
+<tr class="memitem:a3523cdd0baff788e48a0d6d81a687c1e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_construction_task.html#a3523cdd0baff788e48a0d6d81a687c1e">setUnderConstruction</a> (boolean <a class="el" href="class_construction_task.html#aef832ead826bae64e5649f08af9dbfce">underConstruction</a>)</td></tr>
 <tr class="separator:a3523cdd0baff788e48a0d6d81a687c1e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-attribs"></a>
+Private Attributes</h2></td></tr>
+<tr class="memitem:ac05db333bf7d21bad9541885e0606cf6"><td class="memItemLeft" align="right" valign="top">boolean&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_construction_task.html#ac05db333bf7d21bad9541885e0606cf6">buildCommandGiven</a></td></tr>
+<tr class="separator:ac05db333bf7d21bad9541885e0606cf6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aef2ac2248097c46f2e4e694b23b64d7c"><td class="memItemLeft" align="right" valign="top">Unit&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_construction_task.html#aef2ac2248097c46f2e4e694b23b64d7c">buildingUnit</a></td></tr>
+<tr class="separator:aef2ac2248097c46f2e4e694b23b64d7c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a91cc428ca77d7ea31278a20355ece75c"><td class="memItemLeft" align="right" valign="top">Unit&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_construction_task.html#a91cc428ca77d7ea31278a20355ece75c">constructionWorker</a></td></tr>
+<tr class="separator:a91cc428ca77d7ea31278a20355ece75c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a59c2f200f30833dca9717499b43fa3e6"><td class="memItemLeft" align="right" valign="top">TilePosition&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_construction_task.html#a59c2f200f30833dca9717499b43fa3e6">desiredPosition</a></td></tr>
+<tr class="separator:a59c2f200f30833dca9717499b43fa3e6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab08cb7d5c1700c9f9fed0ce6cfc1bedd"><td class="memItemLeft" align="right" valign="top">TilePosition&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_construction_task.html#ab08cb7d5c1700c9f9fed0ce6cfc1bedd">finalPosition</a></td></tr>
+<tr class="separator:ab08cb7d5c1700c9f9fed0ce6cfc1bedd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8f4012250129f6bca75446d03dbeb9ef"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_construction_task.html#a8f4012250129f6bca75446d03dbeb9ef">lastBuildCommandGivenFrame</a></td></tr>
+<tr class="separator:a8f4012250129f6bca75446d03dbeb9ef"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a729b24234bfc5a94c73dff28bcd1de62"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_construction_task.html#a729b24234bfc5a94c73dff28bcd1de62">lastConstructionWorkerID</a></td></tr>
+<tr class="separator:a729b24234bfc5a94c73dff28bcd1de62"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aab6199d47affb13f9ebda94f2907d9e5"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_construction_task.html#aab6199d47affb13f9ebda94f2907d9e5">status</a></td></tr>
+<tr class="separator:aab6199d47affb13f9ebda94f2907d9e5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aea8b1d23a627da820dfddeeed4ff8c6e"><td class="memItemLeft" align="right" valign="top">UnitType&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_construction_task.html#aea8b1d23a627da820dfddeeed4ff8c6e">type</a></td></tr>
+<tr class="separator:aea8b1d23a627da820dfddeeed4ff8c6e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aef832ead826bae64e5649f08af9dbfce"><td class="memItemLeft" align="right" valign="top">boolean&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_construction_task.html#aef832ead826bae64e5649f08af9dbfce">underConstruction</a></td></tr>
+<tr class="separator:aef832ead826bae64e5649f08af9dbfce"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>건물 건설 Construction Task 자료구조 </p>
@@ -198,12 +222,31 @@ Public Member Functions</h2></td></tr>
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
-<a class="anchor" id="a57fb061dab641cead9340af9a6eb1ebd"></a>
+<a class="anchor" id="a63d1aa89ef9b08615bb223d5e1dbdd56"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">UnitType ConstructionTask.getType </td>
+          <td class="memname">boolean ConstructionTask.equals </td>
+          <td>(</td>
+          <td class="paramtype">Object&#160;</td>
+          <td class="paramname"><em>obj</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>equals override </p>
+<p>buildings are equal if their worker unit or building unit are equal </p>
+
+</div>
+</div>
+<a class="anchor" id="a78992c39bfaa7d92b61fda30fde7013b"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">Unit ConstructionTask.getBuildingUnit </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td></td>
@@ -219,37 +262,6 @@ Public Member Functions</h2></td></tr>
       <table class="memname">
         <tr>
           <td class="memname">Unit ConstructionTask.getConstructionWorker </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-</div>
-</div>
-<a class="anchor" id="ab1088f9fa97cd3e5592a20a0aaeaf060"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void ConstructionTask.setStatus </td>
-          <td>(</td>
-          <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>status</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-</div>
-</div>
-<a class="anchor" id="a47904fa91a6a95a044e83d8effd8555a"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">int ConstructionTask.getStatus </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td></td>
@@ -289,12 +301,12 @@ Public Member Functions</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="a78992c39bfaa7d92b61fda30fde7013b"></a>
+<a class="anchor" id="ae1eade1682a46dc2f3e0a462fa12fb38"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">Unit ConstructionTask.getBuildingUnit </td>
+          <td class="memname">int ConstructionTask.getLastBuildCommandGivenFrame </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td></td>
@@ -319,15 +331,14 @@ Public Member Functions</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="a3d6b8960c541fc2ec2e7ddf3b4d2d8ab"></a>
+<a class="anchor" id="a47904fa91a6a95a044e83d8effd8555a"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void ConstructionTask.setFinalPosition </td>
+          <td class="memname">int ConstructionTask.getStatus </td>
           <td>(</td>
-          <td class="paramtype">TilePosition&#160;</td>
-          <td class="paramname"><em>finalPosition</em></td><td>)</td>
+          <td class="paramname"></td><td>)</td>
           <td></td>
         </tr>
       </table>
@@ -335,15 +346,14 @@ Public Member Functions</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="ab694640ee7cf655848df280d98271e58"></a>
+<a class="anchor" id="a57fb061dab641cead9340af9a6eb1ebd"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void ConstructionTask.setConstructionWorker </td>
+          <td class="memname">UnitType ConstructionTask.getType </td>
           <td>(</td>
-          <td class="paramtype">Unit&#160;</td>
-          <td class="paramname"><em>constructionWorker</em></td><td>)</td>
+          <td class="paramname"></td><td>)</td>
           <td></td>
         </tr>
       </table>
@@ -351,15 +361,29 @@ Public Member Functions</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="a6591f0f60d5f05889632e7edeb1c8110"></a>
+<a class="anchor" id="a1f038f730d5e1c01a995e57e36c7da14"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void ConstructionTask.setLastConstructionWorkerID </td>
+          <td class="memname">boolean ConstructionTask.isBuildCommandGiven </td>
           <td>(</td>
-          <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>lastConstructionWorkerID</em></td><td>)</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="ab522739e2f720bf23e01c4b6d54f9543"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">boolean ConstructionTask.isUnderConstruction </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
           <td></td>
         </tr>
       </table>
@@ -383,14 +407,15 @@ Public Member Functions</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="ae1eade1682a46dc2f3e0a462fa12fb38"></a>
+<a class="anchor" id="a1e43209dde630f1d275934595d449900"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">int ConstructionTask.getLastBuildCommandGivenFrame </td>
+          <td class="memname">void ConstructionTask.setBuildingUnit </td>
           <td>(</td>
-          <td class="paramname"></td><td>)</td>
+          <td class="paramtype">Unit&#160;</td>
+          <td class="paramname"><em>buildingUnit</em></td><td>)</td>
           <td></td>
         </tr>
       </table>
@@ -398,77 +423,15 @@ Public Member Functions</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="a6cccffc697c49ed656fa9a1316048e68"></a>
+<a class="anchor" id="ab694640ee7cf655848df280d98271e58"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void ConstructionTask.setLastBuildCommandGivenFrame </td>
+          <td class="memname">void ConstructionTask.setConstructionWorker </td>
           <td>(</td>
-          <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>lastBuildCommandGivenFrame</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-</div>
-</div>
-<a class="anchor" id="ab522739e2f720bf23e01c4b6d54f9543"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">boolean ConstructionTask.isUnderConstruction </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-</div>
-</div>
-<a class="anchor" id="a3523cdd0baff788e48a0d6d81a687c1e"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void ConstructionTask.setUnderConstruction </td>
-          <td>(</td>
-          <td class="paramtype">boolean&#160;</td>
-          <td class="paramname"><em>underConstruction</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-</div>
-</div>
-<a class="anchor" id="a1f038f730d5e1c01a995e57e36c7da14"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">boolean ConstructionTask.isBuildCommandGiven </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-</div>
-</div>
-<a class="anchor" id="a2df30a9b79008b21d839755170f9428a"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void ConstructionTask.setType </td>
-          <td>(</td>
-          <td class="paramtype">UnitType&#160;</td>
-          <td class="paramname"><em>type</em></td><td>)</td>
+          <td class="paramtype">Unit&#160;</td>
+          <td class="paramname"><em>constructionWorker</em></td><td>)</td>
           <td></td>
         </tr>
       </table>
@@ -492,15 +455,15 @@ Public Member Functions</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="a1e43209dde630f1d275934595d449900"></a>
+<a class="anchor" id="a3d6b8960c541fc2ec2e7ddf3b4d2d8ab"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void ConstructionTask.setBuildingUnit </td>
+          <td class="memname">void ConstructionTask.setFinalPosition </td>
           <td>(</td>
-          <td class="paramtype">Unit&#160;</td>
-          <td class="paramname"><em>buildingUnit</em></td><td>)</td>
+          <td class="paramtype">TilePosition&#160;</td>
+          <td class="paramname"><em>finalPosition</em></td><td>)</td>
           <td></td>
         </tr>
       </table>
@@ -508,22 +471,304 @@ Public Member Functions</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="a63d1aa89ef9b08615bb223d5e1dbdd56"></a>
+<a class="anchor" id="a6cccffc697c49ed656fa9a1316048e68"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">boolean ConstructionTask.equals </td>
+          <td class="memname">void ConstructionTask.setLastBuildCommandGivenFrame </td>
           <td>(</td>
-          <td class="paramtype">Object&#160;</td>
-          <td class="paramname"><em>obj</em></td><td>)</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>lastBuildCommandGivenFrame</em></td><td>)</td>
           <td></td>
         </tr>
       </table>
 </div><div class="memdoc">
 
-<p>equals override </p>
-<p>buildings are equal if their worker unit or building unit are equal </p>
+</div>
+</div>
+<a class="anchor" id="a6591f0f60d5f05889632e7edeb1c8110"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void ConstructionTask.setLastConstructionWorkerID </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>lastConstructionWorkerID</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="ab1088f9fa97cd3e5592a20a0aaeaf060"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void ConstructionTask.setStatus </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>status</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="a2df30a9b79008b21d839755170f9428a"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void ConstructionTask.setType </td>
+          <td>(</td>
+          <td class="paramtype">UnitType&#160;</td>
+          <td class="paramname"><em>type</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="a3523cdd0baff788e48a0d6d81a687c1e"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void ConstructionTask.setUnderConstruction </td>
+          <td>(</td>
+          <td class="paramtype">boolean&#160;</td>
+          <td class="paramname"><em>underConstruction</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<h2 class="groupheader">Member Data Documentation</h2>
+<a class="anchor" id="ac05db333bf7d21bad9541885e0606cf6"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">boolean ConstructionTask.buildCommandGiven</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>해당 건물의 건설 Construction Task 를 받은 일꾼 유닛에게 build 명령을 지시하였는지 여부. 한번도 안가본 타일에는 build 명령을 내릴 수 없으므로, 일단 buildCommandGiven = false 인 상태로 일꾼을 해당 타일 위치로 이동시킨 후, 일꾼이 해당 타일 위치 근처로 오면 buildCommand 지시를 합니다 </p>
+
+</div>
+</div>
+<a class="anchor" id="aef2ac2248097c46f2e4e694b23b64d7c"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">Unit ConstructionTask.buildingUnit</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>해당 건물의 건설 Construction 을 실행하는 유닛 buildingUnit 값은 처음에 nullptr 로 세팅되고, construction 이 시작되어 isBeingConstructed, underConstrunction 상태가 되어야 비로소 값이 채워진다 </p>
+
+</div>
+</div>
+<a class="anchor" id="a91cc428ca77d7ea31278a20355ece75c"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">Unit ConstructionTask.constructionWorker</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>해당 건물의 건설 Construction Task 를 받은 일꾼 유닛 </p>
+
+</div>
+</div>
+<a class="anchor" id="a59c2f200f30833dca9717499b43fa3e6"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">TilePosition ConstructionTask.desiredPosition</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>건물을 지으려고 계획한 위치 일꾼이 건물을 지으러 가는 도중 해당 위치에 장애물이 있게 되는등 문제가 생기면 이 위치를 중심으로 다시 건물 지을 위치를 탐색해서 정합니다 </p>
+
+</div>
+</div>
+<a class="anchor" id="ab08cb7d5c1700c9f9fed0ce6cfc1bedd"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">TilePosition ConstructionTask.finalPosition</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>건물이 실제로 건설되는 위치 </p>
+
+</div>
+</div>
+<a class="anchor" id="a8f4012250129f6bca75446d03dbeb9ef"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int ConstructionTask.lastBuildCommandGivenFrame</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>해당 건물의 건설 Construction Task 를 받은 일꾼 유닛에게 build 명령을 지시한 시각 </p>
+
+</div>
+</div>
+<a class="anchor" id="a729b24234bfc5a94c73dff28bcd1de62"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int ConstructionTask.lastConstructionWorkerID</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>해당 건물의 건설 Construction Task 를 최근에 받았던 일꾼 유닛의 ID 일꾼 유닛이 Construction Task 를 받았지만 실제 수행은 못하는 상태일 경우, 새롭게 일꾼 유닛을 선정해서 Construction Task 를 부여하는데, 매번 똑같은 일꾼 유닛이 Construction Task 를 받지 않게 하기 위해서 관리 </p>
+
+</div>
+</div>
+<a class="anchor" id="aab6199d47affb13f9ebda94f2907d9e5"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int ConstructionTask.status</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>건물 건설 Construction Task 의 진행 상태 </p>
+
+</div>
+</div>
+<a class="anchor" id="aea8b1d23a627da820dfddeeed4ff8c6e"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">UnitType ConstructionTask.type</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>건물의 타입 </p>
+
+</div>
+</div>
+<a class="anchor" id="aef832ead826bae64e5649f08af9dbfce"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">boolean ConstructionTask.underConstruction</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Construction Task 가 건설 작업 시작했는가 여부 </p>
 
 </div>
 </div>
@@ -531,7 +776,7 @@ Public Member Functions</h2></td></tr>
 <!-- HTML footer for doxygen 1.8.8-->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Mon May 29 2017 22:47:42 for BasicBot by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Fri Jun 9 2017 21:29:50 for BasicBot by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.8
 </small></address>

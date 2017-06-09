@@ -26,7 +26,7 @@
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;">
    <div id="projectname">BasicBot
-   &#160;<span id="projectnumber">v0.9 beta</span>
+   &#160;<span id="projectnumber">v0.95 beta</span>
    </div>
    <div id="projectbrief">BasicBot for Starcraft: Broodwar 1.16.1 with BWAPI 4.1.2</div>
   </td>
@@ -186,6 +186,13 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 : <a class="el" href="class_distance_map.html#a9b0a8bf161617cb16fc3368699f6c051">DistanceMap</a>
 , <a class="el" href="class_map_grid.html#a2bb6d46aae0f1a3aa3f9db28d037c536">MapGrid</a>
 </li>
+<li>getCellSize()
+: <a class="el" href="class_distance_map.html#a1f6a44200fafd5b579b643726875ed3c">DistanceMap</a>
+, <a class="el" href="class_map_grid.html#aa31a32edf581cf4a7a8dde18d6d42310">MapGrid</a>
+</li>
+<li>getCenter()
+: <a class="el" href="class_map_grid_1_1_grid_cell.html#af42310d354a4277739f989b3328022c7">MapGrid.GridCell</a>
+</li>
 <li>getClosestEnemyUnitFromWorker()
 : <a class="el" href="class_worker_manager.html#a7dd9f910d4e28a19239455b843e8d4b4">WorkerManager</a>
 </li>
@@ -206,6 +213,10 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </li>
 <li>getClosestVertexIndex()
 : <a class="el" href="class_scout_manager.html#a70f4666a48e842789bee7bb93efe4053">ScoutManager</a>
+</li>
+<li>getCols()
+: <a class="el" href="class_distance_map.html#ab705da812de7932c70618771232b6b23">DistanceMap</a>
+, <a class="el" href="class_map_grid.html#aec9dfc0b6de02b37678dc96f00ffa462">MapGrid</a>
 </li>
 <li>getConstructionQueue()
 : <a class="el" href="class_construction_manager.html#a7173f9e3e8be347e691222ab6b495b7b">ConstructionManager</a>
@@ -244,15 +255,18 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <li>getGasNeeded()
 : <a class="el" href="class_worker_move_data.html#a0f574d7f8187c88d3dd71cb127e8fa4d">WorkerMoveData</a>
 </li>
+<li>getGroundDistance()
+: <a class="el" href="class_map_tools.html#ad332c2a3ee8ac8dc6a1f02994bd90ced">MapTools</a>
+</li>
 <li>getHighestPriorityItem()
 : <a class="el" href="class_build_order_queue.html#a3bddc7f44614dd2410c87b08b283c78a">BuildOrderQueue</a>
 </li>
 <li>getIndex()
-: <a class="el" href="class_distance_map.html#a5052e0a670a806bf71217a3b176ea325">DistanceMap</a>
+: <a class="el" href="class_distance_map.html#a3ea6c7af2153a603656956cf4115d6bb">DistanceMap</a>
 , <a class="el" href="class_map_tools.html#a8bef38ed98839f139d81b9b5047f1970">MapTools</a>
 </li>
 <li>getItemCount()
-: <a class="el" href="class_build_order_queue.html#a39e57a7e7a6cb29f2aadbf1b92c51c68">BuildOrderQueue</a>
+: <a class="el" href="class_build_order_queue.html#a209c21dfa75fa8cd24a1f84093b8ee00">BuildOrderQueue</a>
 </li>
 <li>getJobCode()
 : <a class="el" href="class_worker_data.html#a0f03ebcf91e660ee5c7977fc9d13a636">WorkerData</a>
@@ -278,6 +292,14 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </li>
 <li>getMainBaseLocation()
 : <a class="el" href="class_information_manager.html#ade9d43ca2d69347649e7bba763fd103f">InformationManager</a>
+</li>
+<li>getMapHeight()
+: <a class="el" href="class_distance_map.html#a1dd8807ec281dab2e359fb317b46525e">DistanceMap</a>
+, <a class="el" href="class_map_grid.html#af958c2d98af41b708a8ab10260906917">MapGrid</a>
+</li>
+<li>getMapWidth()
+: <a class="el" href="class_distance_map.html#a4fefdbc1068e92eef7e0dc2e7f9ba037">DistanceMap</a>
+, <a class="el" href="class_map_grid.html#ae1672029c234cd5e87068548a7f352d9">MapGrid</a>
 </li>
 <li>getMineralPatchesNearDepot()
 : <a class="el" href="class_worker_data.html#ac8ad5b00e642e1845710b573151ff935">WorkerData</a>
@@ -307,7 +329,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 : <a class="el" href="class_worker_data.html#a96dcea4facab44d88273cf6be2d00b11">WorkerData</a>
 </li>
 <li>getNumCreatedUnits()
-: <a class="el" href="class_unit_data.html#a1b58ef9186c2360f4c709bf95b50bf04">UnitData</a>
+: <a class="el" href="class_unit_data.html#a20ee9e337124355bebfb5c0606a03195">UnitData</a>
 </li>
 <li>getNumDeadUnits()
 : <a class="el" href="class_unit_data.html#a2d36e891f389acda5191c1f74f2f2508">UnitData</a>
@@ -326,7 +348,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </li>
 <li>getNumUnits()
 : <a class="el" href="class_information_manager.html#a3012b6c89ec4937d872fbbf73b8481c4">InformationManager</a>
-, <a class="el" href="class_unit_data.html#a0452f3ba8bbca3c9ac5b4b0b22babcca">UnitData</a>
+, <a class="el" href="class_unit_data.html#ae12b45d2c5513d50b2b03c9bff0b67ca">UnitData</a>
 </li>
 <li>getNumWorkers()
 : <a class="el" href="class_worker_data.html#a855fa591e1caf12a94ecb79fd3d523b3">WorkerData</a>
@@ -370,6 +392,10 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <li>getReserveMap()
 : <a class="el" href="class_construction_place_finder.html#a24dbc8c36ca40aa29e91a1e34b44d6dd">ConstructionPlaceFinder</a>
 </li>
+<li>getRows()
+: <a class="el" href="class_distance_map.html#a844a3618478de3a66aaf204edca90cdc">DistanceMap</a>
+, <a class="el" href="class_map_grid.html#aa4860ebebaef648f79948fca62a08c11">MapGrid</a>
+</li>
 <li>getScoutFleePositionFromEnemyRegionVertices()
 : <a class="el" href="class_scout_manager.html#a7f10fa206e5e4afc1c05209284c613e7">ScoutManager</a>
 </li>
@@ -410,17 +436,15 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <li>getUnit()
 : <a class="el" href="class_unit_info.html#ac41e8ad56884e1442e7b7d07b4119a7c">UnitInfo</a>
 </li>
+<li>getUnitAndUnitInfoMap()
+: <a class="el" href="class_information_manager.html#a241f5f6390136b0973daa5746d54be0a">InformationManager</a>
+, <a class="el" href="class_unit_data.html#a326d4325fbb5259ed54b8362c34ec328">UnitData</a>
+</li>
 <li>getUnitData()
 : <a class="el" href="class_information_manager.html#a31046c841fe401e011a1e60333451bb3">InformationManager</a>
 </li>
 <li>getUnitID()
 : <a class="el" href="class_unit_info.html#a4faa976aee5fe53259058870778e5220">UnitInfo</a>
-</li>
-<li>getUnitInfo()
-: <a class="el" href="class_information_manager.html#a5e3e6363bee53ac8b2844e33ebcc72d4">InformationManager</a>
-</li>
-<li>getUnits()
-: <a class="el" href="class_unit_data.html#ad605cead32464a8a760906a4357d39a3">UnitData</a>
 </li>
 <li>getUnitsNear()
 : <a class="el" href="class_distance_map.html#ad8bac19219c127ec9b28c16df788f324">DistanceMap</a>
@@ -462,12 +486,16 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <li>getWorkerType()
 : <a class="el" href="class_information_manager.html#ad38569d1b0bbe4283bb8865309e4a765">InformationManager</a>
 </li>
+<li>GridCell()
+: <a class="el" href="class_distance_map_1_1_grid_cell.html#ab226a7f2f8d414979be664838dffd00c">DistanceMap.GridCell</a>
+, <a class="el" href="class_map_grid_1_1_grid_cell.html#a370af3d8e3d0df9b54c782289942e162">MapGrid.GridCell</a>
+</li>
 </ul>
 </div><!-- contents -->
 <!-- HTML footer for doxygen 1.8.8-->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Mon May 29 2017 22:47:42 for BasicBot by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Fri Jun 9 2017 21:29:51 for BasicBot by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.8
 </small></address>
