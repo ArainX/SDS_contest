@@ -15,7 +15,7 @@ var searchData=
   ['removedepot',['removeDepot',['../class_worker_data.html#a276961370dfd5d9c0a49b844c98e4a7b',1,'WorkerData']]],
   ['removehighestpriorityitem',['removeHighestPriorityItem',['../class_build_order_queue.html#ae7f1f4a1feadec6842737bf032d9166f',1,'BuildOrderQueue']]],
   ['removeunit',['removeUnit',['../class_unit_data.html#a424577498ffd92b9db8b0757e7d28d91',1,'UnitData']]],
-  ['repair',['Repair',['../enum_worker_data_1_1_worker_job.html#ab834639e065d6bed18625b7fd2484439',1,'WorkerData.WorkerJob.Repair()'],['../class_command_util.html#a3ae3d4c3d6f6e5ddfbb4af946fd77fc5',1,'CommandUtil.repair()']]],
+  ['repair',['repair',['../class_command_util.html#a3ae3d4c3d6f6e5ddfbb4af946fd77fc5',1,'CommandUtil.repair()'],['../enum_worker_data_1_1_worker_job.html#ab834639e065d6bed18625b7fd2484439',1,'WorkerData.WorkerJob.Repair()']]],
   ['reservedgas',['reservedGas',['../class_construction_manager.html#ab56f1f6f12c2820ee90c6cf557fd1086',1,'ConstructionManager']]],
   ['reservedminerals',['reservedMinerals',['../class_construction_manager.html#a0a92a0bcfa0c70e00b929b006f57a686',1,'ConstructionManager']]],
   ['reservemap',['reserveMap',['../class_construction_place_finder.html#a5a64a02cf4804d17e0c11f4e4910610a',1,'ConstructionPlaceFinder']]],

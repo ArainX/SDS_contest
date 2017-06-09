@@ -18,7 +18,7 @@ var searchData=
   ['mineralslost',['mineralsLost',['../class_unit_data.html#a1b3fc4d329c3016c2fb276d95f2bbe21',1,'UnitData']]],
   ['mineralsneeded',['mineralsNeeded',['../class_worker_move_data.html#a7f0fd6d35420f1d51dbf8ff1a92b3f90',1,'WorkerMoveData']]],
   ['mirror',['mirror',['../class_my_bot_module.html#a8406d33a90e034cac0a4c832a1669ff0',1,'MyBotModule']]],
-  ['move',['move',['../class_command_util.html#a36aa012bfecb4b8b8e80c33c01200633',1,'CommandUtil.move()'],['../enum_worker_data_1_1_worker_job.html#a36cddc5cc56d0ce157b56c237077faa6',1,'WorkerData.WorkerJob.Move()']]],
+  ['move',['Move',['../enum_worker_data_1_1_worker_job.html#a36cddc5cc56d0ce157b56c237077faa6',1,'WorkerData.WorkerJob.Move()'],['../class_command_util.html#a36aa012bfecb4b8b8e80c33c01200633',1,'CommandUtil.move()']]],
   ['movearoundenemybaselocation',['MoveAroundEnemyBaseLocation',['../enum_scout_manager_1_1_scout_status.html#a8b7994593be783613743bba7fa0b8efc',1,'ScoutManager::ScoutStatus']]],
   ['movescoutunit',['moveScoutUnit',['../class_scout_manager.html#af0fc186032ca480d6838046a37317a26',1,'ScoutManager']]],
   ['moveto',['moveTo',['../class_distance_map.html#a668aeff7486c8357eef55d604452bb38',1,'DistanceMap']]],

@@ -1,4 +1,4 @@
-#include "BuildManager.h"
+﻿#include "BuildManager.h"
 
 using namespace MyBot;
 
@@ -395,31 +395,6 @@ bool BuildManager::canMakeNow(BWAPI::Unit producer, MetaType t)
 	}
 
 	return canMake;
-}
-
-bool BuildManager::canMake(MetaType t)
-{
-	bool canMake = false;
-
-	if (canMake)
-	{
-		if (t.isUnit())
-		{
-			// Checks all the requirements include resources, supply, technology tree, availability, and required units
-			canMake = BWAPI::Broodwar->canMake(t.getUnitType());
-		}
-		else if (t.isTech())
-		{
-			canMake = BWAPI::Broodwar->canResearch(t.getTechType());
-		}
-		else if (t.isUpgrade())
-		{
-			canMake = BWAPI::Broodwar->canUpgrade(t.getUpgradeType());
-		}
-	}
-
-	return canMake;
-
 }
 
 // 건설 가능 위치를 찾는다

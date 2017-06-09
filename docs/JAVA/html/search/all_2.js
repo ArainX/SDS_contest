@@ -9,7 +9,6 @@ var searchData=
   ['canbuildhere',['canBuildHere',['../class_construction_place_finder.html#a69216f2f912ceeb4394c8ec300f11fbf',1,'ConstructionPlaceFinder']]],
   ['canbuildherewithspace',['canBuildHereWithSpace',['../class_construction_place_finder.html#a0193f6c4ea94ed8d4ef3b31be6c6cfd3',1,'ConstructionPlaceFinder']]],
   ['cancelconstructiontask',['cancelConstructionTask',['../class_construction_manager.html#a6c9290a9a2a1b9cc157241d06a3aab39',1,'ConstructionManager']]],
-  ['canmake',['canMake',['../class_build_manager.html#a522498ed806f8461dda0cb0a8d6ebf63',1,'BuildManager']]],
   ['canmakenow',['canMakeNow',['../class_build_manager.html#abd72804aa1138486264595952910dd64',1,'BuildManager']]],
   ['canskipcurrentitem',['canSkipCurrentItem',['../class_build_order_queue.html#a39e621148e071c13bfe0872ca2cecb48',1,'BuildOrderQueue']]],
   ['cells',['cells',['../class_distance_map.html#a493b41fde85bde23a65728f5db964081',1,'DistanceMap']]],

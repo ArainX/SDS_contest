@@ -1,4 +1,4 @@
-#include "StrategyManager.h"
+﻿#include "StrategyManager.h"
 
 using namespace MyBot;
 
@@ -36,20 +36,6 @@ void StrategyManager::update()
 	executeBasicCombatUnitTraining();
 
 	executeCombat();
-
-	/*
-	if (InformationManager::Instance().getMainBaseLocation(InformationManager::Instance().selfPlayer) != nullptr
-		&& InformationManager::Instance().getMainBaseLocation(InformationManager::Instance().enemyPlayer) != nullptr) 
-	{
-		std::vector<BWAPI::TilePosition> tiles = MapTools::Instance().getClosestTilesTo(InformationManager::Instance().getMainBaseLocation(InformationManager::Instance().enemyPlayer)->getPosition());
-
-		int i = 0;
-		for (auto & tile : tiles) {
-			BWAPI::Broodwar->drawTextMap(tile.x * 32 + 16, tile.y * 32 + 16, "%d", i);
-			i++;
-		}
-	}
-	*/
 }
 
 void StrategyManager::setInitialBuildOrder()

@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 
 #include "Common.h"
 #include "BuildOrderQueue.h"
@@ -32,7 +32,6 @@ namespace MyBot
 		bool                hasNumCompletedUnitType(BWAPI::UnitType type, int num);
 
 		bool                canMakeNow(BWAPI::Unit producer, MetaType t);
-		bool                canMake(MetaType t);
 
 		BWAPI::TilePosition getDesiredPosition(BWAPI::UnitType unitType, BWAPI::TilePosition seedPosition, BuildOrderItem::SeedPositionStrategy seedPositionStrategy);
 

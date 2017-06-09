@@ -1,4 +1,4 @@
-#include "ConstructionPlaceFinder.h"
+﻿#include "ConstructionPlaceFinder.h"
 
 using namespace MyBot;
 

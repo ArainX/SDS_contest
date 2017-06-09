@@ -59,6 +59,8 @@
 
   * Visual Studio 2013
 
+  * 파일 인코딩 : UTF-8 with signature (BOM)
+
 * JAVA
 
   * BWMirror 2.5 (BWAPI 4.1.2 및 BWTA 2 가 포함되어 있음)
@@ -67,7 +69,7 @@
 
   * Eclipse or IntelliJ
 
-* 소스코드 파일 인코딩 방식 : UTF-8 (without signature / BOM)
+  * 파일 인코딩 : UTF-8 without signature (BOM)
 
 ## BasicBot 개발 History
 

@@ -1,4 +1,4 @@
-#include "WorkerData.h"
+﻿#include "WorkerData.h"
 #include "CommandUtil.h"
 
 using namespace MyBot;

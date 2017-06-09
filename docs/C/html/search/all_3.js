@@ -11,7 +11,6 @@ var searchData=
   ['canbuildhere',['canBuildHere',['../class_my_bot_1_1_construction_place_finder.html#a2a2518bdfce913dade5b60b434d501fb',1,'MyBot::ConstructionPlaceFinder']]],
   ['canbuildherewithspace',['canBuildHereWithSpace',['../class_my_bot_1_1_construction_place_finder.html#a8ae913e51489397beef87a436e2c2db8',1,'MyBot::ConstructionPlaceFinder']]],
   ['cancelconstructiontask',['cancelConstructionTask',['../class_my_bot_1_1_construction_manager.html#a3f31f43adac768d136094ec92c810593',1,'MyBot::ConstructionManager']]],
-  ['canmake',['canMake',['../class_my_bot_1_1_build_manager.html#a00fd401f9cc70ea299b18255ef5d8586',1,'MyBot::BuildManager']]],
   ['canmakenow',['canMakeNow',['../class_my_bot_1_1_build_manager.html#afc130287fa725260a181fbfa817b1223',1,'MyBot::BuildManager']]],
   ['canskipcurrentitem',['canSkipCurrentItem',['../class_my_bot_1_1_build_order_queue.html#aea6b2dd2c8d4a20cd4f3429eaacc89eb',1,'MyBot::BuildOrderQueue']]],
   ['cells',['cells',['../class_my_bot_1_1_map_grid.html#a33b965d54e0562169595fb0d3e2b75eb',1,'MyBot::MapGrid']]],

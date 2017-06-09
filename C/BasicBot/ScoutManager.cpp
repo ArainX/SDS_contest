@@ -1,4 +1,4 @@
-#include "ScoutManager.h"
+﻿#include "ScoutManager.h"
 #include "BuildManager.h"
 #include "MapTools.h"
 
