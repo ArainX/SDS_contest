@@ -164,7 +164,8 @@ void MyBotModule::onUnitMorph(BWAPI::Unit unit){
 
 void MyBotModule::onUnitDestroy(BWAPI::Unit unit){
 	if (!BWAPI::Broodwar->isReplay()){
-
+		/*
+		// Use Map Settings 에도 잘 작동하도록 수정 필요
 		// 패배 여부 체크 후 GG
 		int buildingCount = 0;
 		int workerCount = 0;
@@ -181,6 +182,7 @@ void MyBotModule::onUnitDestroy(BWAPI::Unit unit){
 			BWAPI::Broodwar->sendText("GG");
 			BWAPI::Broodwar->leaveGame();
 		}
+		*/
 
 		gameCommander.onUnitDestroy(unit);
 	}

@@ -199,7 +199,8 @@ public class MyBotModule extends DefaultBWListener {
 	@Override
 	public void onUnitDestroy(Unit unit){
 		if (!Broodwar.isReplay()) {
-			
+			/*
+			// Use Map Settings 에도 잘 작동하도록 수정 필요
 			// 패배 여부 체크 후 GG
 			int buildingCount = 0;
 			int workerCount = 0;
@@ -216,6 +217,7 @@ public class MyBotModule extends DefaultBWListener {
 				Broodwar.sendText("GG");
 				Broodwar.leaveGame();
 			}
+			*/
 			
 			gameCommander.onUnitDestroy(unit);
 		}
