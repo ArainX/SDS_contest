@@ -37,6 +37,7 @@ public class CommandUtil {
 
 	public void attackMove(Unit attacker, final Position targetPosition)
 	{
+		// Position 객체에 대해서는 == 가 아니라 equals() 로 비교해야 합니다		
 		if (attacker == null || !targetPosition.isValid())
 		{
 			return;
@@ -52,7 +53,7 @@ public class CommandUtil {
 		UnitCommand currentCommand = attacker.getLastCommand();
 
 		// if we've already told this unit to attack this target, ignore this command
-		if (currentCommand.getUnitCommandType() == UnitCommandType.Attack_Move &&	currentCommand.getTargetPosition() == targetPosition)
+		if (currentCommand.getUnitCommandType() == UnitCommandType.Attack_Move &&	currentCommand.getTargetPosition().equals(targetPosition))
 		{
 			return;
 		}
@@ -78,7 +79,7 @@ public class CommandUtil {
 		UnitCommand currentCommand = attacker.getLastCommand();
 
 		// if we've already told this unit to move to this position, ignore this command
-		if ((currentCommand.getUnitCommandType() == UnitCommandType.Move) && (currentCommand.getTargetPosition() == targetPosition) && attacker.isMoving())
+		if ((currentCommand.getUnitCommandType() == UnitCommandType.Move) && (currentCommand.getTargetPosition().equals(targetPosition)) && attacker.isMoving())
 		{
 			return;
 		}
@@ -104,7 +105,7 @@ public class CommandUtil {
 		UnitCommand currentCommand = unit.getLastCommand();
 
 		// if we've already told this unit to move to this position, ignore this command
-		if ((currentCommand.getUnitCommandType() == UnitCommandType.Right_Click_Unit) && (currentCommand.getTargetPosition() == target.getPosition()))
+		if ((currentCommand.getUnitCommandType() == UnitCommandType.Right_Click_Unit) && (target.getPosition().equals(currentCommand.getTargetPosition())))
 		{
 			return;
 		}
@@ -176,8 +177,7 @@ public class CommandUtil {
 			&& unit.getHitPoints() > 0
 			&& unit.exists()
 			&& unit.getType() != UnitType.Unknown
-			&& unit.getPosition().getX() != Position.Unknown.getX()
-			&& unit.getPosition().getY() != Position.Unknown.getY())
+			&& unit.getPosition().isValid())
 		{
 			return true;
 		}

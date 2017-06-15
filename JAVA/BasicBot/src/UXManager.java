@@ -607,6 +607,15 @@ public class UXManager {
 				MyBotModule.Broodwar.drawLineMap(red1.get(i6), red2.get(i6), Color.Red);	
 			}			
 
+			// OccupiedBaseLocation 을 원으로 표시
+			for (BaseLocation baseLocation : InformationManager.Instance().getOccupiedBaseLocations(InformationManager.Instance().selfPlayer)) {
+				MyBotModule.Broodwar.drawCircleMap(baseLocation.getPosition(), 10 * Config.TILE_SIZE, Color.Blue);	
+			}
+			for (BaseLocation baseLocation : InformationManager.Instance().getOccupiedBaseLocations(InformationManager.Instance().enemyPlayer)) {
+				MyBotModule.Broodwar.drawCircleMap(baseLocation.getPosition(), 10 * Config.TILE_SIZE, Color.Red);	
+			}
+
+			// ChokePoint, BaseLocation 을 텍스트로 표시
 			if (InformationManager.Instance().getFirstChokePoint(MyBotModule.Broodwar.self()) != null) {
 				MyBotModule.Broodwar.drawTextMap(InformationManager.Instance().getMainBaseLocation(MyBotModule.Broodwar.self()).getPosition(), "My MainBaseLocation");
 			}
@@ -820,6 +829,10 @@ public class UXManager {
 	/// Unit 의 Id 를 Map 에 표시합니다
 	public void drawUnitIdOnMap() {
 		for (Unit unit : MyBotModule.Broodwar.self().getUnits())
+		{
+			MyBotModule.Broodwar.drawTextMap(unit.getPosition().getX(), unit.getPosition().getY() + 5, "" + white + unit.getID());
+		}
+		for (Unit unit : MyBotModule.Broodwar.enemy().getUnits())
 		{
 			MyBotModule.Broodwar.drawTextMap(unit.getPosition().getX(), unit.getPosition().getY() + 5, "" + white + unit.getID());
 		}

@@ -46,29 +46,6 @@ public class WorkerManager {
 		// for each of our Workers
 		for (Unit worker : workerData.getWorkers())
 		{
-			//if (workerData.getWorkerJob(worker) == WorkerData::Build && worker.getBuildType() == BWAPI::UnitTypes::None)
-			//{
-			//	std::cout << "construction worker " << worker.getID() << "buildtype BWAPI::UnitTypes::None " << std::endl;
-			//}
-
-			/*
-			if (worker.isCarryingMinerals()) {
-				std::cout << "mineral worker isCarryingMinerals " << worker.getID() 
-					<< " isIdle: " << worker.isIdle()
-					<< " isCompleted: " << worker.isCompleted()
-					<< " isInterruptible: " << worker.isInterruptible()
-					<< " target Name: " << worker.getTarget().getType().getName()
-					<< " job: " << workerData.getWorkerJob(worker)
-					<< " exists " << worker.exists()
-					<< " isConstructing " << worker.isConstructing()
-					<< " isMorphing " << worker.isMorphing()
-					<< " isMoving " << worker.isMoving()
-					<< " isBeingConstructed " << worker.isBeingConstructed()
-					<< " isStuck " << worker.isStuck()
-					<< std::endl;
-			}
-			*/
-
 			if (!worker.isCompleted())
 			{
 				continue;
@@ -77,23 +54,6 @@ public class WorkerManager {
 			// 게임상에서 worker가 isIdle 상태가 되었으면 (새로 탄생했거나, 그전 임무가 끝난 경우), WorkerData 도 Idle 로 맞춘 후, handleGasWorkers, handleIdleWorkers 등에서 새 임무를 지정한다 
 			if ( worker.isIdle() )
 			{
-				/*
-				if ((workerData.getWorkerJob(worker) == WorkerData::Build)
-					|| (workerData.getWorkerJob(worker) == WorkerData::Move)
-					|| (workerData.getWorkerJob(worker) == WorkerData::Scout)) {
-
-					std::cout << "idle worker " << worker.getID()
-						<< " job: " << workerData.getWorkerJob(worker)
-						<< " exists " << worker.exists()
-						<< " isConstructing " << worker.isConstructing()
-						<< " isMorphing " << worker.isMorphing()
-						<< " isMoving " << worker.isMoving()
-						<< " isBeingConstructed " << worker.isBeingConstructed()
-						<< " isStuck " << worker.isStuck()
-						<< std::endl;
-				}
-				*/
-
 				// workerData 에서 Build / Move / Scout 로 임무지정한 경우, worker 는 즉 임무 수행 도중 (임무 완료 전) 에 일시적으로 isIdle 상태가 될 수 있다 
 				if ((workerData.getWorkerJob(worker) != WorkerData.WorkerJob.Build)
 					&& (workerData.getWorkerJob(worker) != WorkerData.WorkerJob.Move)
@@ -272,7 +232,7 @@ public class WorkerManager {
 			{
 				double dist = worker.getDistance(p);
 
-				if (closestWorker == null || dist < closestDist)
+				if (closestWorker == null || (dist < closestDist && worker.isCarryingMinerals() == false && worker.isCarryingGas() == false ))
 	            {
 					closestWorker = worker;
 	                dist = closestDist;
@@ -390,7 +350,7 @@ public class WorkerManager {
 			if (unit.isCompleted() && workerData.getWorkerJob(unit) == WorkerData.WorkerJob.Minerals)
 			{
 				double distance = unit.getDistance(refinery);
-				if (closestWorker == null || distance < closestDistance)
+				if (closestWorker == null || (distance < closestDistance && unit.isCarryingMinerals() == false && unit.isCarryingGas() == false ))
 				{
 					closestWorker = unit;
 					closestDistance = distance;
@@ -434,7 +394,7 @@ public class WorkerManager {
 			{
 				// if it is a new closest distance, set the pointer
 				double distance = unit.getDistance(buildingPosition.toPosition());
-				if (closestMovingWorker == null || distance < closestMovingWorkerDistance)
+				if (closestMovingWorker == null || (distance < closestMovingWorkerDistance && unit.isCarryingMinerals() == false && unit.isCarryingGas() == false ))
 				{
 					if (BWTA.isConnected(unit.getTilePosition(), buildingPosition)) {
 						closestMovingWorker = unit;
@@ -449,7 +409,7 @@ public class WorkerManager {
 			{
 				// if it is a new closest distance, set the pointer
 				double distance = unit.getDistance(buildingPosition.toPosition());
-				if (closestMiningWorker == null || distance < closestMiningWorkerDistance)
+				if (closestMiningWorker == null || (distance < closestMiningWorkerDistance && unit.isCarryingMinerals() == false && unit.isCarryingGas() == false ))
 				{
 					if (BWTA.isConnected(unit.getTilePosition(), buildingPosition)) {
 						closestMiningWorker = unit;
@@ -458,13 +418,6 @@ public class WorkerManager {
 				}
 			}
 		}
-		
-		/*
-		if (closestMiningWorker)
-			std::cout << "closestMiningWorker " << closestMiningWorker.getID() << std::endl;
-		if (closestMovingWorker)
-			std::cout << "closestMovingWorker " << closestMovingWorker.getID() << std::endl;
-		*/
 		
 		Unit chosenWorker = closestMovingWorker != null ? closestMovingWorker : closestMiningWorker;
 
@@ -524,7 +477,7 @@ public class WorkerManager {
 			{
 				// if it is a new closest distance, set the pointer
 				double distance = unit.getDistance(p);
-				if (closestWorker == null || distance < closestDistance)
+				if (closestWorker == null || (distance < closestDistance && unit.isCarryingMinerals() == false && unit.isCarryingGas() == false ))
 				{
 					closestWorker = unit;
 					closestDistance = distance;

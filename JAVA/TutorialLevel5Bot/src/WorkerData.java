@@ -142,7 +142,9 @@ public class WorkerData {
 
 	public void addToMineralPatch(Unit unit, int num)
 	{
-	    if (!workersOnMineralPatch.containsKey(unit.getID()))
+		if (unit == null) { return; }
+
+		if (!workersOnMineralPatch.containsKey(unit.getID()))
 	    {
 	        workersOnMineralPatch.put(unit.getID(), num);
 	    }
@@ -191,7 +193,14 @@ public class WorkerData {
 		else if (job == WorkerJob.Gas)
 		{
 			// increase the count of workers assigned to this refinery
-			refineryWorkerCount.put(jobUnit.getID(), refineryWorkerCount.get(jobUnit.getID()) + 1);
+			if(refineryWorkerCount.get(jobUnit.getID()) == null)
+			{
+				refineryWorkerCount.put(jobUnit.getID(), 1);					
+			}
+			else 
+			{
+				refineryWorkerCount.put(jobUnit.getID(), refineryWorkerCount.get(jobUnit.getID()) + 1);			
+			}
 
 			// set the refinery the worker is working on
 			workerRefineryMap.put(unit.getID(), jobUnit);

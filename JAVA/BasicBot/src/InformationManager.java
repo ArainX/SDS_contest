@@ -81,8 +81,10 @@ public class InformationManager {
 		mainBaseLocationChanged.put(selfPlayer, new Boolean(true));
 
 		occupiedBaseLocations.get(selfPlayer).add(mainBaseLocations.get(selfPlayer));
-		updateOccupiedRegions(BWTA.getRegion(mainBaseLocations.get(selfPlayer).getTilePosition()),
+		if (mainBaseLocations.get(selfPlayer) != null) {
+			updateOccupiedRegions(BWTA.getRegion(mainBaseLocations.get(selfPlayer).getTilePosition()),
 				MyBotModule.Broodwar.self());
+		}
 
 		mainBaseLocations.put(enemyPlayer, null);
 		mainBaseLocationChanged.put(enemyPlayer, new Boolean(false));

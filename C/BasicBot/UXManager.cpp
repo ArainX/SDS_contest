@@ -666,6 +666,10 @@ void UXManager::drawUnitIdOnMap() {
 	{
 		BWAPI::Broodwar->drawTextMap(unit->getPosition().x, unit->getPosition().y + 5, "\x07%d", unit->getID());
 	}
+	for (auto & unit : BWAPI::Broodwar->enemy()->getUnits())
+	{
+		BWAPI::Broodwar->drawTextMap(unit->getPosition().x, unit->getPosition().y + 5, "\x07%d", unit->getID());
+	}
 }
 
 
