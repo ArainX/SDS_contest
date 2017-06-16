@@ -19,7 +19,7 @@ public class ConstructionTask {
 	/// 건물의 타입
 	private UnitType type;
 	
-	/// 건물을 지으려고 계획한 위치
+	/// 건물을 지으려고 계획한 위치<br>
 	/// 일꾼이 건물을 지으러 가는 도중 해당 위치에 장애물이 있게 되는등 문제가 생기면 이 위치를 중심으로 다시 건물 지을 위치를 탐색해서 정합니다
 	private TilePosition desiredPosition;
 	
@@ -32,20 +32,20 @@ public class ConstructionTask {
 	/// 해당 건물의 건설 Construction Task 를 받은 일꾼 유닛
 	private Unit constructionWorker;
 	
-	/// 해당 건물의 건설 Construction 을 실행하는 유닛
+	/// 해당 건물의 건설 Construction 을 실행하는 유닛<br>
 	/// buildingUnit 값은 처음에 nullptr 로 세팅되고, construction 이 시작되어 isBeingConstructed, underConstrunction 상태가 되어야 비로소 값이 채워진다
 	private Unit buildingUnit;
 
-	/// 해당 건물의 건설 Construction Task 를 받은 일꾼 유닛에게 build 명령을 지시하였는지 여부.
-	/// 한번도 안가본 타일에는 build 명령을 내릴 수 없으므로, 일단 buildCommandGiven = false 인 상태로 일꾼을 해당 타일 위치로 이동시킨 후, 
+	/// 해당 건물의 건설 Construction Task 를 받은 일꾼 유닛에게 build 명령을 지시하였는지 여부.<br>
+	/// 한번도 안가본 타일에는 build 명령을 내릴 수 없으므로, 일단 buildCommandGiven = false 인 상태로 일꾼을 해당 타일 위치로 이동시킨 후,<br> 
 	/// 일꾼이 해당 타일 위치 근처로 오면 buildCommand 지시를 합니다
 	private boolean buildCommandGiven;
 	
 	/// 해당 건물의 건설 Construction Task 를 받은 일꾼 유닛에게 build 명령을 지시한 시각
 	private int lastBuildCommandGivenFrame;
 	
-	/// 해당 건물의 건설 Construction Task 를 최근에 받았던 일꾼 유닛의 ID
-	/// 일꾼 유닛이 Construction Task 를 받았지만 실제 수행은 못하는 상태일 경우, 새롭게 일꾼 유닛을 선정해서 Construction Task 를 부여하는데, 
+	/// 해당 건물의 건설 Construction Task 를 최근에 받았던 일꾼 유닛의 ID<br>
+	/// 일꾼 유닛이 Construction Task 를 받았지만 실제 수행은 못하는 상태일 경우, 새롭게 일꾼 유닛을 선정해서 Construction Task 를 부여하는데,<br> 
 	/// 매번 똑같은 일꾼 유닛이 Construction Task 를 받지 않게 하기 위해서 관리
 	private int lastConstructionWorkerID;
 	

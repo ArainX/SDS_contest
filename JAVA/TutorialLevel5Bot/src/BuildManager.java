@@ -13,8 +13,12 @@ import bwapi.UnitCommand;
 import bwapi.UnitCommandType;
 import bwapi.UnitType;
 import bwapi.UpgradeType;
+import bwta.BWTA;
+import bwta.BaseLocation;
+import bwta.Chokepoint;
+import bwta.Region;
 
-/// 빌드(건물 건설 / 유닛 훈련 / 테크 리서치 / 업그레이드) 명령을 순차적으로 실행하기 위해 빌드 큐를 관리하고, 빌드 큐에 있는 명령을 하나씩 실행하는 class
+/// 빌드(건물 건설 / 유닛 훈련 / 테크 리서치 / 업그레이드) 명령을 순차적으로 실행하기 위해 빌드 큐를 관리하고, 빌드 큐에 있는 명령을 하나씩 실행하는 class<br>
 /// 빌드 명령 중 건물 건설 명령은 ConstructionManager로 전달합니다
 /// @see ConstructionManager
 public class BuildManager {
@@ -38,7 +42,7 @@ public class BuildManager {
 		if (buildQueue.isEmpty()) {
 			return;
 		}
-
+		
 		// Dead Lock 을 체크해서 제거한다
 		checkBuildOrderQueueDeadlockAndAndFixIt();
 		// Dead Lock 제거후 Empty 될 수 있다
@@ -55,8 +59,18 @@ public class BuildManager {
 		while (!buildQueue.isEmpty()) {
 			boolean isOkToRemoveQueue = true;
 
+			// seedPosition 을 도출한다
+			Position seedPosition = null;
+			if (currentItem.seedLocation != TilePosition.None) {				
+				seedPosition = currentItem.seedLocation.toPosition();
+			}
+			else {
+				seedPosition = getSeedPositionFromSeedLocationStrategy(currentItem.seedLocationStrategy);
+			}
+			
 			// this is the unit which can produce the currentItem
-			Unit producer = getProducer(currentItem.metaType, null);
+			Unit producer = getProducer(currentItem.metaType, seedPosition, currentItem.producerID);
+						
 			/*
 			 * if (currentItem.metaType.isUnit() &&
 			 * currentItem.metaType.getUnitType().isBuilding()) { if (producer
@@ -280,8 +294,10 @@ public class BuildManager {
 				continue;
 			}
 			
+			if (producerID != -1 && unit.getID() != producerID)	{ 
+				continue; 
+			}
 			
-
 			if (t.isUnit()) {
 				// if the type requires an addon and the producer doesn't have
 				// one
@@ -390,7 +406,7 @@ public class BuildManager {
 		return getProducer(t, Position.None, -1);
 	}
 
-	/// 해당 MetaType 을 build 할 수 있는, getProducer 리턴값과 다른 producer 를 찾아 반환합니다
+	/// 해당 MetaType 을 build 할 수 있는, getProducer 리턴값과 다른 producer 를 찾아 반환합니다<br>
 	/// 프로토스 종족 유닛 중 Protoss_Archon / Protoss_Dark_Archon 을 빌드할 때 사용합니다
 	public Unit getAnotherProducer(Unit producer, Position closestTo) {
 		if (producer == null)
@@ -456,8 +472,8 @@ public class BuildManager {
 		return closestUnit;
 	}
 
-	// 지금 해당 유닛을 건설/생산 할 수 있는지에 대해 자원, 서플라이, 테크 트리, producer 만을 갖고 판단한다
-	// 해당 유닛이 건물일 경우 건물 지을 위치의 적절 여부 (탐색했었던 타일인지, 건설 가능한 타일인지, 주위에 Pylon이 있는지,
+	// 지금 해당 유닛을 건설/생산 할 수 있는지에 대해 자원, 서플라이, 테크 트리, producer 만을 갖고 판단한다<br>
+	// 해당 유닛이 건물일 경우 건물 지을 위치의 적절 여부 (탐색했었던 타일인지, 건설 가능한 타일인지, 주위에 Pylon이 있는지,<br>
 	// Creep이 있는 곳인지 등) 는 판단하지 않는다
 	public boolean canMakeNow(Unit producer, MetaType t) {
 		if (producer == null) {
@@ -482,11 +498,10 @@ public class BuildManager {
 		return canMake;
 	}
 
-	// 건설 가능 위치를 찾는다
-	// seedLocationStrategy 가 SeedPositionSpecified 인 경우에는 그 근처만 찾아보고,
-	// SeedPositionSpecified 이 아닌 경우에는 seedLocationStrategy 를 조금씩 바꿔가며 계속 찾아본다.
-	// (MainBase . MainBase 주위 . MainBase 길목 . MainBase 가까운 앞마당 . MainBase 가까운
-	// 앞마당의 길목 . 다른 멀티 위치 . 탐색 종료)
+	// 건설 가능 위치를 찾는다<br>
+	// seedLocationStrategy 가 SeedPositionSpecified 인 경우에는 그 근처만 찾아보고,<br>
+	// SeedPositionSpecified 이 아닌 경우에는 seedLocationStrategy 를 조금씩 바꿔가며 계속 찾아본다.<br>
+	// (MainBase . MainBase 주위 . MainBase 길목 . MainBase 가까운 앞마당 . MainBase 가까운 앞마당의 길목 . 탐색 종료)
 	public TilePosition getDesiredPosition(UnitType unitType, TilePosition seedPosition,
 			BuildOrderItem.SeedPositionStrategy seedPositionStrategy) {
 		TilePosition desiredPosition = ConstructionPlaceFinder.Instance()
@@ -519,9 +534,6 @@ public class BuildManager {
 				seedPositionStrategy = BuildOrderItem.SeedPositionStrategy.SecondChokePoint;
 				break;
 			case SecondChokePoint:
-				seedPositionStrategy = BuildOrderItem.SeedPositionStrategy.SecondExpansionLocation;
-				break;
-			case SecondExpansionLocation:
 			case SeedPositionSpecified:
 			default:
 				findAnotherPlace = false;
@@ -616,6 +628,131 @@ public class BuildManager {
 	/// BuildOrderItem 들의 목록을 저장하는 buildQueue 를 리턴합니다
 	public BuildOrderQueue getBuildQueue() {
 		return buildQueue;
+	}
+
+	/// seedPositionStrategy 을 현재 게임상황에 맞게 seedPosition 으로 바꾸어 리턴합니다
+	private Position getSeedPositionFromSeedLocationStrategy(BuildOrderItem.SeedPositionStrategy seedLocationStrategy) {
+		Position seedPosition = null;
+		Chokepoint tempChokePoint;
+		BaseLocation tempBaseLocation;
+		TilePosition tempTilePosition = null;
+		Region tempBaseRegion;
+		int vx, vy;
+		double d, theta;
+		int bx, by;
+
+		switch (seedLocationStrategy) {
+		case MainBaseLocation:
+			tempBaseLocation = InformationManager.Instance().getMainBaseLocation(MyBotModule.Broodwar.self());
+			if (tempBaseLocation != null) {
+				seedPosition = tempBaseLocation.getPosition(); 
+			}
+			break;
+		case MainBaseBackYard:
+			tempBaseLocation = InformationManager.Instance().getMainBaseLocation(MyBotModule.Broodwar.self());
+			tempChokePoint = InformationManager.Instance().getFirstChokePoint(MyBotModule.Broodwar.self());
+			tempBaseRegion = BWTA.getRegion(tempBaseLocation.getPosition());
+
+			//std::cout << "y";
+
+			// (vx, vy) = BaseLocation 와 ChokePoint 간 차이 벡터 = 거리 d 와 각도 t 벡터. 단위는 position
+			// 스타크래프트 좌표계 : 오른쪽으로 갈수록 x 가 증가 (데카르트 좌표계와 동일). 아래로 갈수록 y가 증가 (y축만 데카르트 좌표계와 반대)
+			// 삼각함수 값은 데카르트 좌표계에서 계산하므로, vy를 부호 반대로 해서 각도 t 값을 구함 
+
+			// MainBaseLocation 이 null 이거나, ChokePoint 가 null 이면, MainBaseLocation 주위에서 가능한 곳을 리턴한다
+			if (tempBaseLocation == null ) {
+				seedPosition = tempBaseLocation.getPosition();
+				break;
+			}
+			else if (tempChokePoint == null) {
+				seedPosition = tempBaseLocation.getPosition();
+				break;
+			}
+
+			// BaseLocation 에서 ChokePoint 로의 벡터를 구한다
+			vx = tempChokePoint.getCenter().getX() - tempBaseLocation.getPosition().getX();
+			//std::cout << "vx : " << vx ;
+			vy = (tempChokePoint.getCenter().getY() - tempBaseLocation.getPosition().getY()) * (-1);
+			//std::cout << "vy : " << vy;
+			d = Math.sqrt(vx * vx + vy * vy) * 0.5; // BaseLocation 와 ChokePoint 간 거리보다 조금 짧은 거리로 조정. BaseLocation가 있는 Region은 대부분 직사각형 형태이기 때문
+			//std::cout << "d : " << d;
+			theta = Math.atan2(vy, vx + 0.0001); // 라디안 단위
+			//std::cout << "t : " << t;
+
+			// cos(t+90), sin(t+180) 등 삼각함수 Trigonometric functions of allied angles 을 이용. y축에 대해서는 반대부호로 적용
+
+			// BaseLocation 에서 ChokePoint 반대쪽 방향의 Back Yard : 데카르트 좌표계에서 (cos(t+180) = -cos(t), sin(t+180) = -sin(t))
+			bx = tempBaseLocation.getTilePosition().getX() - (int)(d * Math.cos(theta) / Config.TILE_SIZE);
+			by = tempBaseLocation.getTilePosition().getY() + (int)(d * Math.sin(theta) / Config.TILE_SIZE);
+			//std::cout << "i";
+			tempTilePosition = new TilePosition(bx, by);
+			// std::cout << "ConstructionPlaceFinder MainBaseBackYard tempTilePosition " << tempTilePosition.x << "," << tempTilePosition.y << std::endl;
+			
+			//std::cout << "k";
+			// 해당 지점이 같은 Region 에 속하고 Buildable 한 타일인지 확인
+			if (!tempTilePosition.isValid() || !MyBotModule.Broodwar.isBuildable(tempTilePosition.getX(), tempTilePosition.getY(), false) || tempBaseRegion != BWTA.getRegion(new Position(bx*Config.TILE_SIZE, by*Config.TILE_SIZE))) {
+				//std::cout << "l";
+
+				// BaseLocation 에서 ChokePoint 방향에 대해 오른쪽으로 90도 꺾은 방향의 Back Yard : 데카르트 좌표계에서 (cos(t-90) = sin(t),   sin(t-90) = - cos(t))
+				bx = tempBaseLocation.getTilePosition().getX() + (int)(d * Math.sin(theta) / Config.TILE_SIZE);
+				by = tempBaseLocation.getTilePosition().getY() + (int)(d * Math.cos(theta) / Config.TILE_SIZE);
+				tempTilePosition = new TilePosition(bx, by);
+				// std::cout << "ConstructionPlaceFinder MainBaseBackYard tempTilePosition " << tempTilePosition.x << "," << tempTilePosition.y << std::endl;
+				//std::cout << "m";
+
+				if (!tempTilePosition.isValid() || !MyBotModule.Broodwar.isBuildable(tempTilePosition.getX(), tempTilePosition.getY(), false)) {
+					// BaseLocation 에서 ChokePoint 방향에 대해 왼쪽으로 90도 꺾은 방향의 Back Yard : 데카르트 좌표계에서 (cos(t+90) = -sin(t),   sin(t+90) = cos(t))
+					bx = tempBaseLocation.getTilePosition().getX() - (int)(d * Math.sin(theta) / Config.TILE_SIZE);
+					by = tempBaseLocation.getTilePosition().getY() - (int)(d * Math.cos(theta) / Config.TILE_SIZE);
+					tempTilePosition = new TilePosition(bx, by);
+					// std::cout << "ConstructionPlaceFinder MainBaseBackYard tempTilePosition " << tempTilePosition.x << "," << tempTilePosition.y << std::endl;
+
+					if (!tempTilePosition.isValid() || !MyBotModule.Broodwar.isBuildable(tempTilePosition.getX(), tempTilePosition.getY(), false) || tempBaseRegion != BWTA.getRegion(new Position(bx*Config.TILE_SIZE, by*Config.TILE_SIZE))) {
+
+						// BaseLocation 에서 ChokePoint 방향 절반 지점의 Back Yard : 데카르트 좌표계에서 (cos(t),   sin(t))
+						bx = tempBaseLocation.getTilePosition().getX() + (int)(d * Math.cos(theta) / Config.TILE_SIZE);
+						by = tempBaseLocation.getTilePosition().getY() - (int)(d * Math.sin(theta) / Config.TILE_SIZE);
+						tempTilePosition = new TilePosition(bx, by);
+						// std::cout << "ConstructionPlaceFinder MainBaseBackYard tempTilePosition " << tempTilePosition.x << "," << tempTilePosition.y << std::endl;
+						//std::cout << "m";
+					}
+
+				}
+			}
+			//std::cout << "z";
+			if (!tempTilePosition.isValid() || !MyBotModule.Broodwar.isBuildable(tempTilePosition.getX(), tempTilePosition.getY(), false)) {
+				seedPosition = tempBaseLocation.getPosition();
+			}
+			else {
+				seedPosition = tempTilePosition.toPosition();
+			}
+			//std::cout << "w";
+			// std::cout << "ConstructionPlaceFinder MainBaseBackYard desiredPosition " << desiredPosition.x << "," << desiredPosition.y << std::endl;
+			break;
+
+		case FirstExpansionLocation:
+			tempBaseLocation = InformationManager.Instance().getFirstExpansionLocation(MyBotModule.Broodwar.self());
+			if (tempBaseLocation != null) {
+				seedPosition = tempBaseLocation.getPosition();
+			}
+			break;
+
+		case FirstChokePoint:
+			tempChokePoint = InformationManager.Instance().getFirstChokePoint(MyBotModule.Broodwar.self());
+			if (tempChokePoint != null) {
+				seedPosition = tempChokePoint.getCenter();
+			}
+			break;
+
+		case SecondChokePoint:
+			tempChokePoint = InformationManager.Instance().getSecondChokePoint(MyBotModule.Broodwar.self());
+			if (tempChokePoint != null) {
+				seedPosition = tempChokePoint.getCenter();
+			}
+			break;
+		}
+
+		return seedPosition;
 	}
 
 	/// buildQueue 의 Dead lock 여부를 판단하기 위해, 가장 우선순위가 높은 BuildOrderItem 의 producer 가 존재하게될 것인지 여부를 리턴합니다
@@ -717,7 +854,6 @@ public class BuildManager {
 		if (!buildQueue.isEmpty()) {
 			BuildOrderItem currentItem = buildQueue.getHighestPriorityItem();
 
-			// 수정
 			// if (buildQueue.canSkipCurrentItem() == false)
 			if (currentItem.blocking == true) {
 				boolean isDeadlockCase = false;
@@ -866,7 +1002,6 @@ public class BuildManager {
 					}
 
 					// Pylon 이 해당 지역 주위에 먼저 지어져야 하는데, Pylon 이 해당 지역 주위에 없고, 예정되어있지도 않으면 dead lock
-					// TODO 과제 : Pylon 범위를 정확하게 파악하는 것, Pylon 을 건설 중인 것, Pylon 이 건설 완료된지 얼마 안된 것도 다 포함해야 한다
 					if (!isDeadlockCase && unitType.isBuilding() && unitType.requiresPsi()
 							&& currentItem.seedLocationStrategy == BuildOrderItem.SeedPositionStrategy.SeedPositionSpecified) {
 
@@ -886,7 +1021,6 @@ public class BuildManager {
 					}
 
 					// Creep 이 해당 지역 주위에 Hatchery나 Creep Colony 등을 통해 먼저 지어져야 하는데, 해당 지역 주위에 지어지지 않고 있으면 dead lock
-					// TODO 과제 : Creep 범위를 정확하게 파악하는 것, Creep Generating 건물을 건설 중인 것, Creep Generating 건물이 건설 완료된지 얼마 안된 것도 다 포함해야 한다
 					if (!isDeadlockCase && unitType.isBuilding() && unitType.requiresCreep()
 							&& currentItem.seedLocationStrategy == BuildOrderItem.SeedPositionStrategy.SeedPositionSpecified) {
 						boolean hasFoundCreepGenerator = false;
@@ -1072,6 +1206,22 @@ public class BuildManager {
 					}
 				}
 
+				if (!isDeadlockCase) {
+					// producerID 를 지정했는데, 해당 ID 를 가진 유닛이 존재하지 않으면 dead lock
+					if (currentItem.producerID != -1 ) {
+						boolean isProducerAlive = false;
+						for (Unit unit : MyBotModule.Broodwar.self().getUnits()) {
+							if (unit != null && unit.getID() == currentItem.producerID && unit.exists() && unit.getHitPoints() > 0) {
+								isProducerAlive = true;
+								break;
+							}
+						}
+						if (isProducerAlive == false) {
+							isDeadlockCase = true;
+						}
+					}
+				}
+
 				if (isDeadlockCase) {
 					System.out.println(
 							"Build Order Dead lock case . remove BuildOrderItem " + currentItem.metaType.getName());
@@ -1082,4 +1232,6 @@ public class BuildManager {
 			}
 		}
 	}
+	
+	
 };

@@ -11,14 +11,14 @@ namespace MyBot
 		/// mapWidth
 		int cols;
 
-		/// 시작점의 X 좌표. 지도 상 각 점까지의 거리를 계산하기 위한 시작점
+		/// 시작점의 X 좌표. 지도 상 각 점까지의 거리를 계산하기 위한 시작점.<br>
 		/// 처음에는 -1
 		int startRow;
-		/// 시작점의 Y 좌표. 지도 상 각 점까지의 거리를 계산하기 위한 시작점
+		/// 시작점의 Y 좌표. 지도 상 각 점까지의 거리를 계산하기 위한 시작점.<br>
 		/// 처음에는 -1
 		int startCol;
 		
-		/// 맵 width * height 2차원 배열의 1차원 형태로 바꾼 것. getIndex 를 사용해서 전환
+		/// 맵 width * height 2차원 배열의 1차원 형태로 바꾼 것. getIndex 를 사용해서 전환.<br>
 		/// 처음에는 전부 -1 (거리갈 수 없는 곳) 로 초기화
 		std::vector<int> dist;
 		
@@ -171,7 +171,7 @@ namespace MyBot
 		/// 각 Cell 의 timeLastVisited 시간정보, timeLastOpponentSeen 시간정보, ourUnits 와 oppUnits 목록 등을 업데이트 합니다
 		void				update();
 
-		/// 해당 position 근처에 있는 아군 혹은 적군 유닛들의 목록을 UnitSet 에 저장합니다
+		/// 해당 position 근처에 있는 아군 혹은 적군 유닛들의 목록을 UnitSet 에 저장합니다.<br>
 		/// BWAPI::Broodwar->self()->getUnitsOnTile, getUnitsInRectangle, getUnitsInRadius, getClosestUnit 함수와 유사하지만 쓰임새가 다릅니다
 		void				getUnitsNear(BWAPI::Unitset & units, BWAPI::Position center, int radius, bool ourUnits, bool oppUnits);
 
@@ -190,7 +190,7 @@ namespace MyBot
 
 
 
-	/// provides useful tools for analyzing the starcraft map
+	/// provides useful tools for analyzing the starcraft map.<br>
 	/// calculates connectivity and distances using flood fills
 	class MapTools
 	{
@@ -211,18 +211,18 @@ namespace MyBot
 		void                    resetFringe();
 		BWAPI::TilePosition     getTilePosition(int index);		
 
-		/// from 에서 to 까지 지상유닛이 이동할 경우의 거리 (walk distance). 못가는 곳이면 -1.  
-		/// computeDistance 를 수행해서 _allMaps 에 저장한다
-		/// 반환값 자체는 부정확하다. 지상유닛이 못가는 곳인데도 거리가 산출된다.
-		/// getClosestTilesTo 를 계산하는 과정에서 한번 호출된다. 
-		/// 속도가 느리다
+		/// from 에서 to 까지 지상유닛이 이동할 경우의 거리 (walk distance). 못가는 곳이면 -1 <br>
+		/// computeDistance 를 수행해서 _allMaps 에 저장한다.<br>
+		/// 반환값 자체는 부정확하다. 지상유닛이 못가는 곳인데도 거리가 산출된다.<br>
+		/// getClosestTilesTo 를 계산하는 과정에서 한번 호출된다.<br>
+		/// 속도가 느리다.<br>
 		int                     getGroundDistance(BWAPI::Position from, BWAPI::Position to);
 
 		void                    computeDistance(DistanceMap & dmap, const BWAPI::Position p); ///< computes walk distance from Position P to all other points on the map
 
 		void                    search(DistanceMap & dmap, const int sR, const int sC);
 
-		/// 지도를 Parsing 해서 파일로 저장해둔다
+		/// 지도를 Parsing 해서 파일로 저장해둔다.<br>
 		/// 사용하지 않는 API
 		void                    parseMap();
 
@@ -232,7 +232,7 @@ namespace MyBot
 		/// static singleton 객체를 리턴합니다
 		static MapTools &       Instance();
 
-		/// pos 에서 가까운 순서대로 정렬된 타일의 목록을 반환한다
+		/// pos 에서 가까운 순서대로 정렬된 타일의 목록을 반환한다.<br>
 		/// pos 에서 지상유닛이 갈 수 있는 타일만 반환한다
 		const std::vector<BWAPI::TilePosition> & getClosestTilesTo(BWAPI::Position pos);
 	};

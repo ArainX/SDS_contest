@@ -15,9 +15,9 @@ namespace MyBot
 	{
 		ConstructionManager();
 
-		/// 건설 필요 자원을 미리 예약해놓고, 
-		/// 건설 대상 장소가 미개척 장소인 경우 건설 일꾼을 이동시켜 결국 건설이 시작되게 하고, 
-		/// 건설 일꾼이 도중에 죽는 경우 다른 건설 일꾼을 지정하여 건설을 수행하게 하기 위해
+		/// 건설 필요 자원을 미리 예약해놓고, <br>
+		/// 건설 대상 장소가 미개척 장소인 경우 건설 일꾼을 이동시켜 결국 건설이 시작되게 하고, <br>
+		/// 건설 일꾼이 도중에 죽는 경우 다른 건설 일꾼을 지정하여 건설을 수행하게 하기 위해<br>
 		/// Construction Task 들의 목록을 constructionQueue 로 유지합니다
 		std::vector<ConstructionTask> constructionQueue;
 
@@ -27,20 +27,20 @@ namespace MyBot
 		bool            isEvolvedBuilding(BWAPI::UnitType type);
 		bool            isBuildingPositionExplored(const ConstructionTask & b) const;
 
-		/// constructionQueue 에서 건설 상태가 UnderConstruction 인 ConstructionTask 여러개를 삭제합니다
+		/// constructionQueue 에서 건설 상태가 UnderConstruction 인 ConstructionTask 여러개를 삭제합니다<br>
 		/// 건설을 시작했었던 ConstructionTask 이기 때문에 _reservedMinerals, _reservedGas 는 건드리지 않는다
 		void            removeCompletedConstructionTasks(const std::vector<ConstructionTask> & toRemove);
 
-		/// STEP 1: DO BOOK KEEPING ON WORKERS WHICH MAY HAVE DIED
+		/// DO BOOK KEEPING ON WORKERS WHICH MAY HAVE DIED
 		void            validateWorkersAndBuildings();
-		/// STEP 2: ASSIGN WORKERS TO BUILDINGS WITHOUT THEM
+		/// ASSIGN WORKERS TO BUILDINGS WITHOUT THEM
 		void            assignWorkersToUnassignedBuildings();
-		/// STEP 3: ISSUE CONSTRUCTION ORDERS TO ASSIGN BUILDINGS AS NEEDED
+		/// ISSUE CONSTRUCTION ORDERS TO ASSIGN BUILDINGS AS NEEDED
 		void            constructAssignedBuildings();
-		/// STEP 4: UPDATE DATA STRUCTURES FOR BUILDINGS STARTING CONSTRUCTION
+		/// UPDATE DATA STRUCTURES FOR BUILDINGS STARTING CONSTRUCTION
 		void            checkForStartedConstruction();
-		/// STEP 5: IF WE ARE TERRAN, THIS MATTERS
-		/// 테란은 건설을 시작한 후, 건설 도중에 일꾼이 죽을 수 있습니다. 이 경우, 건물에 대해 다시 다른 SCV를 할당합니다
+		/// IF WE ARE TERRAN, THIS MATTERS<br>
+		/// 테란은 건설을 시작한 후, 건설 도중에 일꾼이 죽을 수 있습니다. 이 경우, 건물에 대해 다시 다른 SCV를 할당합니다<br>
 		/// 참고로, 프로토스 / 저그는 건설을 시작하면 일꾼 포인터를 null 로 만들기 때문에 (constructionWorker = null) 건설 도중에 죽은 일꾼을 신경쓸 필요 없습니다 
 		void            checkForDeadTerranBuilders();
 		/// STEP 6: CHECK FOR COMPLETED BUILDINGS
@@ -64,7 +64,7 @@ namespace MyBot
 		/// constructionQueue 에서 ConstructionTask 를 취소합니다
 		void				cancelConstructionTask(BWAPI::UnitType type, BWAPI::TilePosition desiredPosition);
 		
-		/// constructionQueue 내 ConstructionTask 갯수를 리턴합니다
+		/// constructionQueue 내 ConstructionTask 갯수를 리턴합니다<br>
 		/// queryTilePosition 을 입력한 경우, 위치간 거리까지도 고려합니다
 		int                 getConstructionQueueItemCount(BWAPI::UnitType queryType, BWAPI::TilePosition queryTilePosition = BWAPI::TilePositions::None);
 

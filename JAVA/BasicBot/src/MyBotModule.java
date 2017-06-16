@@ -33,8 +33,8 @@ import bwapi.Unit;
 import bwapi.Flag.Enum;
 import bwta.BWTA;
 
-/// 봇프로그램의 기본적인 뼈대 구조를 정의한 class 로서, 스타크래프트 대결 도중 발생하는 이벤트들을 GameCommander class 인스턴스에게 전달합니다.
-/// MyBotModule class는 수정을 하지 말고,
+/// 봇프로그램의 기본적인 뼈대 구조를 정의한 class 로서, 스타크래프트 대결 도중 발생하는 이벤트들을 GameCommander class 인스턴스에게 전달합니다.<br>
+/// MyBotModule class는 수정을 하지 말고,<br>
 /// 실제 봇프로그램 개발은 GameCommander class 를 수정하는 형태로 진행하도록 합니다
 /// @see GameCommander
 public class MyBotModule extends DefaultBWListener {
@@ -42,7 +42,7 @@ public class MyBotModule extends DefaultBWListener {
 	/// BWAPI 에 해당하는 내부 객체
 	private Mirror mirror = new Mirror();
 	
-	/// 스타크래프트 대결 상황 전체에 대한 상황 파악 및 액션 실행을 제공하는 객체  
+	/// 스타크래프트 대결 상황 전체에 대한 상황 파악 및 액션 실행을 제공하는 객체  <br>
 	/// C언어에서 BWAPI::Broodwar 에 해당합니다
 	public static Game Broodwar;
 
@@ -177,7 +177,7 @@ public class MyBotModule extends DefaultBWListener {
 		}
 	}
 
-	/// 유닛(건물/지상유닛/공중유닛)이 Morph 될 때 발생하는 이벤트를 처리합니다
+	/// 유닛(건물/지상유닛/공중유닛)이 Morph 될 때 발생하는 이벤트를 처리합니다<br>
 	/// Zerg 종족의 유닛은 건물 건설이나 지상유닛/공중유닛 생산에서 거의 대부분 Morph 형태로 진행됩니다
 	@Override
 	public void onUnitMorph(Unit unit){
@@ -223,7 +223,7 @@ public class MyBotModule extends DefaultBWListener {
 		}
 	}
 
-	/// 유닛(건물/지상유닛/공중유닛)이 Show 될 때 발생하는 이벤트를 처리합니다
+	/// 유닛(건물/지상유닛/공중유닛)이 Show 될 때 발생하는 이벤트를 처리합니다<br>
 	/// 아군 유닛이 Create 되었을 때 라든가, 적군 유닛이 Discover 되었을 때 발생합니다
 	@Override
 	public void onUnitShow(Unit unit){
@@ -232,7 +232,7 @@ public class MyBotModule extends DefaultBWListener {
 		}
 	}
 
-	/// 유닛(건물/지상유닛/공중유닛)이 Hide 될 때 발생하는 이벤트를 처리합니다
+	/// 유닛(건물/지상유닛/공중유닛)이 Hide 될 때 발생하는 이벤트를 처리합니다<br>
 	/// 보이던 유닛이 Hide 될 때 발생합니다
 	@Override
 	public void onUnitHide(Unit unit){
@@ -241,7 +241,7 @@ public class MyBotModule extends DefaultBWListener {
 		}
 	}
 
-	/// 유닛(건물/지상유닛/공중유닛)의 소속 플레이어가 바뀔 때 발생하는 이벤트를 처리합니다
+	/// 유닛(건물/지상유닛/공중유닛)의 소속 플레이어가 바뀔 때 발생하는 이벤트를 처리합니다<br>
 	/// Gas Geyser에 어떤 플레이어가 Refinery 건물을 건설했을 때, Refinery 건물이 파괴되었을 때, Protoss 종족 Dark Archon 의 Mind Control 에 의해 소속 플레이어가 바뀔 때 발생합니다
 	@Override
 	public void onUnitRenegade(Unit unit){
@@ -250,7 +250,7 @@ public class MyBotModule extends DefaultBWListener {
 		}
 	}
 
-	/// 유닛(건물/지상유닛/공중유닛)이 Discover 될 때 발생하는 이벤트를 처리합니다
+	/// 유닛(건물/지상유닛/공중유닛)이 Discover 될 때 발생하는 이벤트를 처리합니다<br>
 	/// 아군 유닛이 Create 되었을 때 라든가, 적군 유닛이 Discover 되었을 때 발생합니다
 	@Override
 	public void onUnitDiscover(Unit unit){
@@ -259,7 +259,7 @@ public class MyBotModule extends DefaultBWListener {
 		}
 	}
 
-	/// 유닛(건물/지상유닛/공중유닛)이 Evade 될 때 발생하는 이벤트를 처리합니다
+	/// 유닛(건물/지상유닛/공중유닛)이 Evade 될 때 발생하는 이벤트를 처리합니다<br>
 	/// 유닛이 Destroy 될 때 발생합니다
 	@Override
 	public void onUnitEvade(Unit unit){

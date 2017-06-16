@@ -21,7 +21,6 @@ public class BuildOrderItem {
 		FirstChokePoint,			///< 아군 첫번째 길목
 		FirstExpansionLocation,		///< 아군 첫번째 앞마당
 		SecondChokePoint,			///< 아군 두번째 길목
-		SecondExpansionLocation,	///< 아군 두번째 앞마당
 		SeedPositionSpecified		///< 별도 지정 위치
 	};
 	

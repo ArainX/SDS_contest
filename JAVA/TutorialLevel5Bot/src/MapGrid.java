@@ -206,7 +206,7 @@ public class MapGrid {
 		return getCellByIndex(pos.getY() / cellSize, pos.getX() / cellSize);
 	}
 	
-	/// 해당 position 근처에 있는 아군 혹은 적군 유닛들의 목록을 UnitSet 에 저장합니다
+	/// 해당 position 근처에 있는 아군 혹은 적군 유닛들의 목록을 UnitSet 에 저장합니다<br>
 	/// BWAPI::Broodwar->self()->getUnitsOnTile, getUnitsInRectangle, getUnitsInRadius, getClosestUnit 함수와 유사하지만 쓰임새가 다릅니다
 	public void getUnitsNear(Unitset units, Position center, int radius, boolean ourUnits, boolean oppUnits)
 	{

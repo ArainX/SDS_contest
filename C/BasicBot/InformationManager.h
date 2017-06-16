@@ -5,29 +5,29 @@
 
 namespace MyBot
 {
-	/// 게임 상황정보 중 일부를 자체 자료구조 및 변수들에 저장하고 업데이트하는 class
-	/// 현재 게임 상황정보는 BWAPI::Broodwar 를 조회하여 파악할 수 있지만, 과거 게임 상황정보는 BWAPI::Broodwar 를 통해 조회가 불가능하기 때문에 InformationManager에서 별도 관리하도록 합니다
+	/// 게임 상황정보 중 일부를 자체 자료구조 및 변수들에 저장하고 업데이트하는 class<br>
+	/// 현재 게임 상황정보는 BWAPI::Broodwar 를 조회하여 파악할 수 있지만, 과거 게임 상황정보는 BWAPI::Broodwar 를 통해 조회가 불가능하기 때문에 InformationManager에서 별도 관리하도록 합니다<br>
 	/// 또한, BWAPI::Broodwar 나 BWTA 등을 통해 조회할 수 있는 정보이지만 전처리 / 별도 관리하는 것이 유용한 것도 InformationManager에서 별도 관리하도록 합니다
 	class InformationManager 
 	{
 		InformationManager();
 
-		/// Player - UnitData(각 Unit 과 그 Unit의 UnitInfo 를 Map 형태로 저장하는 자료구조) 를 저장하는 자료구조 객체
+		/// Player - UnitData(각 Unit 과 그 Unit의 UnitInfo 를 Map 형태로 저장하는 자료구조) 를 저장하는 자료구조 객체<br>
 		std::map<BWAPI::Player, UnitData>							_unitData;
 
-		/// 해당 Player의 주요 건물들이 있는 BaseLocation. 
-		/// 처음에는 StartLocation 으로 지정. mainBaseLocation 내 모든 건물이 파괴될 경우 재지정
+		/// 해당 Player의 주요 건물들이 있는 BaseLocation. <br>
+		/// 처음에는 StartLocation 으로 지정. mainBaseLocation 내 모든 건물이 파괴될 경우 재지정<br>
 		/// 건물 여부를 기준으로 파악하기 때문에 부적절하게 판단할수도 있습니다 
 		std::map<BWAPI::Player, BWTA::BaseLocation * >				_mainBaseLocations;
 
 		/// 해당 Player의 mainBaseLocation 이 변경되었는가 (firstChokePoint, secondChokePoint, firstExpansionLocation 를 재지정 했는가)
 		std::map<BWAPI::Player, bool>								_mainBaseLocationChanged;
 
-		/// 해당 Player가 점령하고 있는 Region 이 있는 BaseLocation
+		/// 해당 Player가 점령하고 있는 Region 이 있는 BaseLocation<br>
 		/// 건물 여부를 기준으로 파악하기 때문에 부적절하게 판단할수도 있습니다 
 		std::map<BWAPI::Player, std::list<BWTA::BaseLocation *> >	_occupiedBaseLocations;
 
-		/// 해당 Player가 점령하고 있는 Region
+		/// 해당 Player가 점령하고 있는 Region<br>
 		/// 건물 여부를 기준으로 파악하기 때문에 부적절하게 판단할수도 있습니다 
 		std::map<BWAPI::Player, std::set<BWTA::Region *> >			_occupiedRegions;
 
@@ -35,7 +35,7 @@ namespace MyBot
 		std::map<BWAPI::Player, BWTA::Chokepoint *>					_firstChokePoint;
 		/// 해당 Player의 mainBaseLocation 에서 가장 가까운 BaseLocation
 		std::map<BWAPI::Player, BWTA::BaseLocation *>				_firstExpansionLocation;
-		/// 해당 Player의 mainBaseLocation 에서 두번째로 가까운 (firstChokePoint가 아닌) ChokePoint
+		/// 해당 Player의 mainBaseLocation 에서 두번째로 가까운 (firstChokePoint가 아닌) ChokePoint<br>
 		/// 게임 맵에 따라서, secondChokePoint 는 일반 상식과 다른 지점이 될 수도 있습니다
 		std::map<BWAPI::Player, BWTA::Chokepoint *>					_secondChokePoint;
 	
@@ -108,7 +108,7 @@ namespace MyBot
 
 
 
-		/// 해당 Player (아군 or 적군) 의 모든 유닛 목록 (가장 최근값) UnitAndUnitInfoMap 을 리턴합니다		 
+		/// 해당 Player (아군 or 적군) 의 모든 유닛 목록 (가장 최근값) UnitAndUnitInfoMap 을 리턴합니다<br> 
 		/// 파악된 정보만을 리턴하기 때문에 적군의 정보는 틀린 값일 수 있습니다
 		const UnitAndUnitInfoMap &           getUnitAndUnitInfoMap(BWAPI::Player player) const;
 		/// 해당 Player (아군 or 적군) 의 모든 유닛 통계 UnitData 을 리턴합니다		 

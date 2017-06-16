@@ -12,18 +12,18 @@ import bwapi.UpgradeType;
 /// 빌드 오더 목록 자료구조 class
 public class BuildOrderQueue {
 	
-	private enum SeedPositionStrategy { MainBaseLocation, MainBaseBackYard, FirstChokePoint, FirstExpansionLocation, SecondChokePoint, SecondExpansionLocation, SeedPositionSpecified };
+	private enum SeedPositionStrategy { MainBaseLocation, MainBaseBackYard, FirstChokePoint, FirstExpansionLocation, SecondChokePoint, SeedPositionSpecified };
 	private SeedPositionStrategy seedLocationStrategy;
 
 	private int highestPriority;
 	private int lowestPriority;
 	private int defaultPrioritySpacing;
 
-	/// iteration 을 하기 위한 참고값
+	/// iteration 을 하기 위한 참고값<br>
 	/// highest priority 인 BuildOrderItem 으로부터 몇개나 skip 했는가. 
 	private int numSkippedItems;
 	
-	/// BuildOrderItem 들을 Double Ended Queue 자료구조로 관리합니다
+	/// BuildOrderItem 들을 Double Ended Queue 자료구조로 관리합니다<br>
 	/// lowest priority 인 BuildOrderItem은 front 에, highest priority 인 BuildOrderItem 은 back 에 위치하게 합니다
 	private Deque<BuildOrderItem> queue = new ArrayDeque<BuildOrderItem>();
 	
@@ -224,7 +224,7 @@ public class BuildOrderQueue {
 	}
 
 	/// 빌드오더를 가장 높은 우선순위로 buildQueue 에 추가한다. blocking (다른 것을 생산하지 않고, 이것을 생산 가능하게 될 때까지 기다리는 모드) 기본값은 true 이다
-public void queueAsHighestPriority(MetaType metaType, boolean blocking, int producerID)
+	public void queueAsHighestPriority(MetaType metaType, boolean blocking, int producerID)
 	{
 		// the new priority will be higher
 		int newPriority = highestPriority + defaultPrioritySpacing;

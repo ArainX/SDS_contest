@@ -92,6 +92,7 @@ var searchData=
   ['getscoutunit',['getScoutUnit',['../class_scout_manager.html#a54a6546d33ea52f34f28837afeccdbb5',1,'ScoutManager']]],
   ['getscoutworker',['getScoutWorker',['../class_worker_manager.html#ab54c3229c9a5dda6743860d4e8df9317',1,'WorkerManager']]],
   ['getsecondchokepoint',['getSecondChokePoint',['../class_information_manager.html#a214f91620c47a1396fcca4a2f6a6e096',1,'InformationManager']]],
+  ['getseedpositionfromseedlocationstrategy',['getSeedPositionFromSeedLocationStrategy',['../class_build_manager.html#a6a5c25f29f01214ed6f8dcaf4e4a0826',1,'BuildManager']]],
   ['getsortedtiles',['getSortedTiles',['../class_distance_map.html#a9c880a71b66d5beb16e4bba013cc0d01',1,'DistanceMap']]],
   ['getstatus',['getStatus',['../class_construction_task.html#a47904fa91a6a95a044e83d8effd8555a',1,'ConstructionTask']]],
   ['gettechtype',['getTechType',['../class_meta_type.html#a18b1d1803d8306fecac9b258379f4e0e',1,'MetaType']]],

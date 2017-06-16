@@ -24,9 +24,9 @@
 
 ## BasicBot Version
 
-* **2017-05-29 : v0.9 beta Release (프리뷰 및 오픈 테스트를 위해 공개)**
+* **2017-06-16 : v1.0 Release (실제 알고리즘 경진대회에서 사용)**
 
-* **2017-06-16 : v1.0 Release 예정 (실제 알고리즘 경진대회에서 사용)**
+* **2017-05-29 : v0.9 beta Release (프리뷰 및 오픈 테스트를 위해 공개)**
 
 * [버그를 발견하여 알려주시거나 이슈를 제기하여주시면 감사의 선물을 드리겠습니다](https://github.com/SamsungSDS-Contest/2017Guide/issues)
 

@@ -21,7 +21,7 @@ import bwta.Chokepoint;
 import bwta.Polygon;
 import bwta.Region;
 
-/// 봇 프로그램 개발의 편의성 향상을 위해 게임 화면에 추가 정보들을 표시하는 class
+/// 봇 프로그램 개발의 편의성 향상을 위해 게임 화면에 추가 정보들을 표시하는 class<br>
 /// 여러 Manager 들로부터 정보를 조회하여 Screen 혹은 Map 에 정보를 표시합니다
 public class UXManager {
 
@@ -128,11 +128,11 @@ public class UXManager {
 			drawBulletsOnMap();
 		}
 		
-		// draw position of mouse cursor
+		// draw tile position of mouse cursor
 		if (Config.DrawMouseCursorInfo) {
 			int mouseX = MyBotModule.Broodwar.getMousePosition().getX() + MyBotModule.Broodwar.getScreenPosition().getX();
 			int mouseY = MyBotModule.Broodwar.getMousePosition().getY() + MyBotModule.Broodwar.getScreenPosition().getY();
-			MyBotModule.Broodwar.drawTextMap(mouseX + 20, mouseY, "(" + mouseX + ", " +  mouseY + ")");
+			MyBotModule.Broodwar.drawTextMap(mouseX + 20, mouseY, "(" + (int)(mouseX/Config.TILE_SIZE) + ", " +  (int)(mouseY/Config.TILE_SIZE) + ")");
 		}
 
 	}
@@ -413,6 +413,52 @@ public class UXManager {
 				int numCreatedUnits = InformationManager.Instance().getUnitData(InformationManager.Instance().enemyPlayer).getNumCreatedUnits(tempUnitName);
 				int numDeadUnits = InformationManager.Instance().getUnitData(InformationManager.Instance().enemyPlayer).getNumDeadUnits(tempUnitName);
 				int numUnits = InformationManager.Instance().getUnitData(InformationManager.Instance().enemyPlayer).getNumUnits(tempUnitName);
+	
+				if (numUnits > 0)
+				{
+					MyBotModule.Broodwar.drawTextScreen(x,		 currentY + 30 + ((yspace)* 10), tempUnitName);
+					MyBotModule.Broodwar.drawTextScreen(x + 120, currentY + 30 + ((yspace)* 10), "" + numCreatedUnits);
+					MyBotModule.Broodwar.drawTextScreen(x + 160, currentY + 30 + ((yspace)* 10), "" + numDeadUnits);
+					MyBotModule.Broodwar.drawTextScreen(x + 200, currentY + 30 + ((yspace)* 10), "" + numUnits);
+					yspace++;
+				}
+			}
+		}
+		
+		yspace++;
+
+		// 아군의 UnitType 별 파악된 Unit 숫자를 표시
+		allUnit = new HashSet<String>();
+		it = null;
+		if(InformationManager.Instance().getUnitData(InformationManager.Instance().selfPlayer) != null)
+		{
+			it = InformationManager.Instance().getUnitData(InformationManager.Instance().selfPlayer).getNumCreatedUnits().keySet().iterator();
+			while(it.hasNext())
+			{
+				String unit = it.next();
+				allUnit.add(unit);
+			}
+			it = InformationManager.Instance().getUnitData(InformationManager.Instance().selfPlayer).getNumDeadUnits().keySet().iterator();
+			while(it.hasNext())
+			{
+				String unit = it.next();
+				allUnit.add(unit);
+			}
+			it = InformationManager.Instance().getUnitData(InformationManager.Instance().selfPlayer).getNumUnits().keySet().iterator();
+			while(it.hasNext())
+			{
+				String unit = it.next();
+				allUnit.add(unit);
+			}
+			
+			it = allUnit.iterator();
+			// for (UnitType t : UnitType.allUnitTypes())
+			while(it.hasNext())
+			{
+				tempUnitName = it.next();
+				int numCreatedUnits = InformationManager.Instance().getUnitData(InformationManager.Instance().selfPlayer).getNumCreatedUnits(tempUnitName);
+				int numDeadUnits = InformationManager.Instance().getUnitData(InformationManager.Instance().selfPlayer).getNumDeadUnits(tempUnitName);
+				int numUnits = InformationManager.Instance().getUnitData(InformationManager.Instance().selfPlayer).getNumUnits(tempUnitName);
 	
 				if (numUnits > 0)
 				{
@@ -995,7 +1041,7 @@ public class UXManager {
 		}
 	}
 
-	/// Bullet 을 Map 에 표시합니다 
+	/// Bullet 을 Map 에 표시합니다 <br>
 	/// Cloaking Unit 의 Bullet 표시에 쓰입니다
 	public void drawBulletsOnMap()
 	{

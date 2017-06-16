@@ -26,7 +26,7 @@
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;">
    <div id="projectname">BasicBot
-   &#160;<span id="projectnumber">v0.95 beta</span>
+   &#160;<span id="projectnumber">v1.0</span>
    </div>
    <div id="projectbrief">BasicBot for Starcraft: Broodwar 1.16.1 with BWAPI 4.1.2</div>
   </td>
@@ -144,6 +144,8 @@ Private Member Functions</h2></td></tr>
 <tr class="separator:acba89d8cac979a5b83c19aa3b9901570"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a02f62907d558773cc30e7f9e66725042"><td class="memItemLeft" align="right" valign="top">BWAPI::Unit&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_my_bot_1_1_build_manager.html#a02f62907d558773cc30e7f9e66725042">getProducer</a> (<a class="el" href="class_my_bot_1_1_meta_type.html">MetaType</a> t, BWAPI::Position closestTo=BWAPI::Positions::None, int producerID=-1)</td></tr>
 <tr class="separator:a02f62907d558773cc30e7f9e66725042"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a61be72c1849e1861af534ef8a299b13e"><td class="memItemLeft" align="right" valign="top">BWAPI::Position&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_my_bot_1_1_build_manager.html#a61be72c1849e1861af534ef8a299b13e">getSeedPositionFromSeedLocationStrategy</a> (<a class="el" href="struct_my_bot_1_1_build_order_item.html#a0c05c4436d22ba5345efeb87e170dd72">BuildOrderItem::SeedPositionStrategy</a> seedPositionStrategy)</td></tr>
+<tr class="separator:a61be72c1849e1861af534ef8a299b13e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a30f7afb13b92ee5257c53d5b13c24b86"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_my_bot_1_1_build_manager.html#a30f7afb13b92ee5257c53d5b13c24b86">hasEnoughResources</a> (<a class="el" href="class_my_bot_1_1_meta_type.html">MetaType</a> type)</td></tr>
 <tr class="separator:a30f7afb13b92ee5257c53d5b13c24b86"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7a5073b34d43a4f0a6e8e68604a7cae7"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_my_bot_1_1_build_manager.html#a7a5073b34d43a4f0a6e8e68604a7cae7">hasNumCompletedUnitType</a> (BWAPI::UnitType type, int num)</td></tr>
@@ -152,7 +154,9 @@ Private Member Functions</h2></td></tr>
 <tr class="separator:ab8e3c028173ec46fb2775ff243ad8d30"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>빌드(건물 건설 / 유닛 훈련 / 테크 리서치 / 업그레이드) 명령을 순차적으로 실행하기 위해 빌드 큐를 관리하고, 빌드 큐에 있는 명령을 하나씩 실행하는 class 빌드 명령 중 건물 건설 명령은 ConstructionManager로 전달합니다 </p>
+<div class="textblock"><p>빌드(건물 건설 / 유닛 훈련 / 테크 리서치 / 업그레이드) 명령을 순차적으로 실행하기 위해 빌드 큐를 관리하고, 빌드 큐에 있는 명령을 하나씩 실행하는 class<br />
+ 빌드 명령 중 건물 건설 명령은 ConstructionManager로 전달합니다<br />
+ </p>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="class_my_bot_1_1_construction_manager.html" title="건물 건설 Construction 명령 목록을 리스트로 관리하고, 건물 건설 명령이 잘 수행되도록 컨트롤하는 class...">ConstructionManager</a> </dd></dl>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a class="anchor" id="ab8f49fd2c3da21c983c7911f5ff8d330"></a>
@@ -268,7 +272,8 @@ Private Member Functions</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>해당 <a class="el" href="class_my_bot_1_1_meta_type.html" title="BuildManager 등에서 UnitType, TechType, UpgradeType 구분없이 동일한 Method 로 실행할 수 있게 하기 위�...">MetaType</a> 을 build 할 수 있는, getProducer 리턴값과 다른 producer 를 찾아 반환합니다 프로토스 종족 유닛 중 Protoss_Archon / Protoss_Dark_Archon 을 빌드할 때 사용합니다 </p>
+<p>해당 <a class="el" href="class_my_bot_1_1_meta_type.html" title="BuildManager 등에서 UnitType, TechType, UpgradeType 구분없이 동일한 Method 로 실행할 수 있게 하기 위�...">MetaType</a> 을 build 할 수 있는, getProducer 리턴값과 다른 producer 를 찾아 반환합니다<br />
+ 프로토스 종족 유닛 중 Protoss_Archon / Protoss_Dark_Archon 을 빌드할 때 사용합니다 </p>
 
 </div>
 </div>
@@ -459,6 +464,32 @@ Private Member Functions</h2></td></tr>
 
 </div>
 </div>
+<a class="anchor" id="a61be72c1849e1861af534ef8a299b13e"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">BWAPI::Position BuildManager::getSeedPositionFromSeedLocationStrategy </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="struct_my_bot_1_1_build_order_item.html#a0c05c4436d22ba5345efeb87e170dd72">BuildOrderItem::SeedPositionStrategy</a>&#160;</td>
+          <td class="paramname"><em>seedPositionStrategy</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>seedPositionStrategy 을 현재 게임상황에 맞게 seedPosition 으로 바꾸어 리턴합니다 </p>
+
+</div>
+</div>
 <a class="anchor" id="a30f7afb13b92ee5257c53d5b13c24b86"></a>
 <div class="memitem">
 <div class="memproto">
@@ -630,7 +661,7 @@ Private Member Functions</h2></td></tr>
 <!-- HTML footer for doxygen 1.8.8-->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Fri Jun 9 2017 11:48:29 for BasicBot by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Fri Jun 16 2017 18:34:14 for BasicBot by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.8
 </small></address>
