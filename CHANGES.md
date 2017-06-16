@@ -1,5 +1,21 @@
 # Change Log
 
+## v1.0 Release (2017-06-16)
+
+* fix minor bug : BuildManager.java 의 update, checkBuildOrderQueueDeadlockAndAndFixIt 함수 수정
+
+  * 변경 사유 : 특정 unitID 혹은 seedLocation 를 지정해서 빌드오더를 입력하는 경우에 대해 잘 처리하도록 수정
+
+* change Config default value : drawMapGrid 등 일부 값을 false 로 변경
+
+* remove SeedPositionStrategy.SecondExpansionLocation : 참가자의 전략적 선택에 관한것이라서 제거
+
+## v0.96 beta (2017-06-15)
+
+* fix critical bug : CommandUtil.java 의 attackMove, move, rightClick 함수 버그 수정
+
+* fix critical bug : CommandUtil.java 의 IsValidUnit 함수 버그 수정
+
 ## v0.95 beta (2017-06-09)
 
 * change C++ encoding : UTF-8 without signature 에서 UTF-8 with signature 로 변경

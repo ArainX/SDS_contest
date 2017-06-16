@@ -12,6 +12,6 @@ var searchData=
   ['workerrepairmap',['workerRepairMap',['../class_worker_data.html#a827e5a2f820ba5cb7b002ec0b2053c13',1,'WorkerData']]],
   ['workers',['workers',['../class_worker_data.html#aed6daccb0e9902afc837f2f2500f8c15',1,'WorkerData']]],
   ['workersonmineralpatch',['workersOnMineralPatch',['../class_worker_data.html#ad6981caac93e6a9f7c81cabeaf53bce7',1,'WorkerData']]],
-  ['workersperrefinery',['WorkersPerRefinery',['../class_config.html#aba459852d90a0135fdbaad427d14f085',1,'Config']]],
-  ['writedirectory',['WriteDirectory',['../class_config.html#a8d5a061fdf32efa002ca20212cac648a',1,'Config']]]
+  ['workersperrefinery',['WorkersPerRefinery',['../class_config.html#a50f39bb6febaec774b602b7bc9ed38e6',1,'Config']]],
+  ['writedirectory',['WriteDirectory',['../class_config.html#a4464fbfb1bd41ae974786dea8359c1a4',1,'Config']]]
 ];

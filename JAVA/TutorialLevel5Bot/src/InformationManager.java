@@ -20,8 +20,8 @@ import bwta.BaseLocation;
 import bwta.Chokepoint;
 import bwta.Region;
 
-/// 게임 상황정보 중 일부를 자체 자료구조 및 변수들에 저장하고 업데이트하는 class
-/// 현재 게임 상황정보는 BWAPI::Broodwar 를 조회하여 파악할 수 있지만, 과거 게임 상황정보는 BWAPI::Broodwar 를 통해 조회가 불가능하기 때문에 InformationManager에서 별도 관리하도록 합니다
+/// 게임 상황정보 중 일부를 자체 자료구조 및 변수들에 저장하고 업데이트하는 class<br>
+/// 현재 게임 상황정보는 BWAPI::Broodwar 를 조회하여 파악할 수 있지만, 과거 게임 상황정보는 BWAPI::Broodwar 를 통해 조회가 불가능하기 때문에 InformationManager에서 별도 관리하도록 합니다<br>
 /// 또한, BWAPI::Broodwar 나 BWTA 등을 통해 조회할 수 있는 정보이지만 전처리 / 별도 관리하는 것이 유용한 것도 InformationManager에서 별도 관리하도록 합니다
 public class InformationManager {
 	private static InformationManager instance = new InformationManager();
@@ -31,19 +31,19 @@ public class InformationManager {
 	public Race selfRace;			///< 적군 Player		
 	public Race enemyRace;			///< 적군 Player의 종족  
 
-	/// 해당 Player의 주요 건물들이 있는 BaseLocation. 
-	/// 처음에는 StartLocation 으로 지정. mainBaseLocation 내 모든 건물이 파괴될 경우 재지정
+	/// 해당 Player의 주요 건물들이 있는 BaseLocation. <br>
+	/// 처음에는 StartLocation 으로 지정. mainBaseLocation 내 모든 건물이 파괴될 경우 재지정<br>
 	/// 건물 여부를 기준으로 파악하기 때문에 부적절하게 판단할수도 있습니다 
 	private Map<Player, BaseLocation> mainBaseLocations = new HashMap<Player, BaseLocation>();
 
 	/// 해당 Player의 mainBaseLocation 이 변경되었는가 (firstChokePoint, secondChokePoint, firstExpansionLocation 를 재지정 했는가)
 	private Map<Player, Boolean> mainBaseLocationChanged = new HashMap<Player, Boolean>();
 
-	/// 해당 Player가 점령하고 있는 Region 이 있는 BaseLocation
+	/// 해당 Player가 점령하고 있는 Region 이 있는 BaseLocation<br>
 	/// 건물 여부를 기준으로 파악하기 때문에 부적절하게 판단할수도 있습니다 
 	private Map<Player, List<BaseLocation>> occupiedBaseLocations = new HashMap<Player, List<BaseLocation>>();
 
-	/// 해당 Player가 점령하고 있는 Region
+	/// 해당 Player가 점령하고 있는 Region<br>
 	/// 건물 여부를 기준으로 파악하기 때문에 부적절하게 판단할수도 있습니다 
 	private Map<Player, Set<Region>> occupiedRegions = new HashMap<Player, Set<Region>>();
 
@@ -51,7 +51,7 @@ public class InformationManager {
 	private Map<Player, Chokepoint> firstChokePoint = new HashMap<Player, Chokepoint>();
 	/// 해당 Player의 mainBaseLocation 에서 가장 가까운 BaseLocation
 	private Map<Player, BaseLocation> firstExpansionLocation = new HashMap<Player, BaseLocation>();
-	/// 해당 Player의 mainBaseLocation 에서 두번째로 가까운 (firstChokePoint가 아닌) ChokePoint
+	/// 해당 Player의 mainBaseLocation 에서 두번째로 가까운 (firstChokePoint가 아닌) ChokePoint<br>
 	/// 게임 맵에 따라서, secondChokePoint 는 일반 상식과 다른 지점이 될 수도 있습니다
 	private Map<Player, Chokepoint> secondChokePoint = new HashMap<Player, Chokepoint>();
 
@@ -169,7 +169,7 @@ public class InformationManager {
 		updateUnitInfo(unit); 
 	}
 	
-	/// Unit 에 대한 정보를 업데이트합니다 
+	/// Unit 에 대한 정보를 업데이트합니다 <br>
 	/// 유닛이 파괴/사망한 경우, 해당 유닛 정보를 삭제합니다
 	public void onUnitDestroy(Unit unit) {
 		if (unit.getType().isNeutral()) {
@@ -502,7 +502,7 @@ public class InformationManager {
 		return false;
 	}
 
-	/// 해당 Player (아군 or 적군) 의 모든 유닛 목록 (가장 최근값) UnitAndUnitInfoMap 을 리턴합니다		 
+	/// 해당 Player (아군 or 적군) 의 모든 유닛 목록 (가장 최근값) UnitAndUnitInfoMap 을 리턴합니다<br>	 
 	/// 파악된 정보만을 리턴하기 때문에 적군의 정보는 틀린 값일 수 있습니다
 	public final Map<Integer, UnitInfo> getUnitAndUnitInfoMap(Player player) {
 		return getUnitData(player).getUnitAndUnitInfoMap();
@@ -533,7 +533,7 @@ public class InformationManager {
 		return firstExpansionLocation.get(player);
 	}
 
-	/// 해당 Player (아군 or 적군) 의 Main BaseLocation 에서 두번째로 가까운 ChokePoint 를 리턴합니다		 
+	/// 해당 Player (아군 or 적군) 의 Main BaseLocation 에서 두번째로 가까운 ChokePoint 를 리턴합니다<br>		 
 	/// 게임 맵에 따라서, secondChokePoint 는 일반 상식과 다른 지점이 될 수도 있습니다
 	public Chokepoint getSecondChokePoint(Player player) {
 		return secondChokePoint.get(player);

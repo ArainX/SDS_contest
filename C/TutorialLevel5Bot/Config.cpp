@@ -45,14 +45,14 @@ namespace Config
 		bool DrawUnitHealthBars = true;
 		bool DrawProductionInfo = true;
 		bool DrawScoutInfo = true;
-		bool DrawResourceInfo = true;
+		bool DrawResourceInfo = false;
 		bool DrawWorkerInfo = true;
-		bool DrawReservedBuildingTiles = true;
+		bool DrawReservedBuildingTiles = false;
 		bool DrawBuildingInfo = true;
 		bool DrawMouseCursorInfo = true;
 		bool DrawEnemyUnitInfo = true;
 		bool DrawBWTAInfo = true;
-		bool DrawMapGrid = true;
+		bool DrawMapGrid = false;
 		bool DrawUnitTargetInfo = true;
 	}
 

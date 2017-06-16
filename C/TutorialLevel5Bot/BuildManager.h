@@ -6,8 +6,8 @@
 
 namespace MyBot
 {
-	/// 빌드(건물 건설 / 유닛 훈련 / 테크 리서치 / 업그레이드) 명령을 순차적으로 실행하기 위해 빌드 큐를 관리하고, 빌드 큐에 있는 명령을 하나씩 실행하는 class
-	/// 빌드 명령 중 건물 건설 명령은 ConstructionManager로 전달합니다
+	/// 빌드(건물 건설 / 유닛 훈련 / 테크 리서치 / 업그레이드) 명령을 순차적으로 실행하기 위해 빌드 큐를 관리하고, 빌드 큐에 있는 명령을 하나씩 실행하는 class<br>
+	/// 빌드 명령 중 건물 건설 명령은 ConstructionManager로 전달합니다<br>
 	/// @see ConstructionManager
 	class BuildManager
 	{
@@ -19,7 +19,7 @@ namespace MyBot
 		/// @param producerID 파라메타 입력 시 해당 ID의 unit 만 producer 후보가 될 수 있습니다
 		BWAPI::Unit			getProducer(MetaType t, BWAPI::Position closestTo = BWAPI::Positions::None, int producerID = -1);
 
-		/// 해당 MetaType 을 build 할 수 있는, getProducer 리턴값과 다른 producer 를 찾아 반환합니다
+		/// 해당 MetaType 을 build 할 수 있는, getProducer 리턴값과 다른 producer 를 찾아 반환합니다<br>
 		/// 프로토스 종족 유닛 중 Protoss_Archon / Protoss_Dark_Archon 을 빌드할 때 사용합니다
 		BWAPI::Unit			getAnotherProducer(BWAPI::Unit producer, BWAPI::Position closestTo = BWAPI::Positions::None);
 
@@ -34,6 +34,9 @@ namespace MyBot
 		bool                canMakeNow(BWAPI::Unit producer, MetaType t);
 
 		BWAPI::TilePosition getDesiredPosition(BWAPI::UnitType unitType, BWAPI::TilePosition seedPosition, BuildOrderItem::SeedPositionStrategy seedPositionStrategy);
+
+		/// seedPositionStrategy 을 현재 게임상황에 맞게 seedPosition 으로 바꾸어 리턴합니다
+		BWAPI::Position		getSeedPositionFromSeedLocationStrategy(BuildOrderItem::SeedPositionStrategy seedPositionStrategy);
 
 		void				checkBuildOrderQueueDeadlockAndAndFixIt();
 

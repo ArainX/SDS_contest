@@ -25,7 +25,6 @@ void ScoutManager::update()
 	if (BWAPI::Broodwar->getFrameCount() % 6 != 0) return;
 
 	// scoutUnit 을 지정하고, scoutUnit 의 이동을 컨트롤함. 
-	// TODO 과제 : 여러 scoutUnit 을 동시에 운용하거나, scoutUnit 이 길목에서 적군에 의해 사망하여 정찰이 계속 실패하는 경우, 중후반 정찰에 대한 처리 등은 생각해볼 과제이다  
 	assignScoutIfNeeded();
 	moveScoutUnit();
 

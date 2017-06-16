@@ -127,12 +127,12 @@ void UXManager::update()
 	
 	//std::cout << 14;
 
-	// draw position of mouse cursor
+	// draw tile position of mouse cursor
 	if (Config::Debug::DrawMouseCursorInfo)
 	{
 		int mouseX = BWAPI::Broodwar->getMousePosition().x + BWAPI::Broodwar->getScreenPosition().x;
 		int mouseY = BWAPI::Broodwar->getMousePosition().y + BWAPI::Broodwar->getScreenPosition().y;
-		BWAPI::Broodwar->drawTextMap(mouseX + 20, mouseY, "(%d, %d)", mouseX, mouseY);
+		BWAPI::Broodwar->drawTextMap(mouseX + 20, mouseY, "(%d, %d)", (int)(mouseX/TILE_SIZE), (int)(mouseY/TILE_SIZE));
 	}
 }
 
@@ -404,6 +404,24 @@ void UXManager::drawUnitStatisticsOnScreen(int x, int y)
 			yspace++;
 		}
 	}
+	yspace++;
+
+	// 아군의 UnitType 별 파악된 Unit 숫자를 표시
+	for (BWAPI::UnitType t : BWAPI::UnitTypes::allUnitTypes())
+	{
+		int numCreatedUnits = InformationManager::Instance().getUnitData(BWAPI::Broodwar->self()).getNumCreatedUnits(t);
+		int numDeadUnits = InformationManager::Instance().getUnitData(BWAPI::Broodwar->self()).getNumDeadUnits(t);
+		int numUnits = InformationManager::Instance().getUnitData(BWAPI::Broodwar->self()).getNumUnits(t);
+
+		if (numUnits > 0)
+		{
+			BWAPI::Broodwar->drawTextScreen(x, currentY + 30 + ((yspace)* 10), "%s", t.getName().c_str());
+			BWAPI::Broodwar->drawTextScreen(x + 120, currentY + 30 + ((yspace)* 10), "%d", numCreatedUnits);
+			BWAPI::Broodwar->drawTextScreen(x + 160, currentY + 30 + ((yspace)* 10), "%d", numDeadUnits);
+			BWAPI::Broodwar->drawTextScreen(x + 200, currentY + 30 + ((yspace)* 10), "%d", numUnits);
+			yspace++;
+		}
+	}
 }
 
 void UXManager::drawBWTAResultOnMap()
@@ -663,6 +681,10 @@ void UXManager::drawConstructionQueueOnScreenAndMap(int x, int y)
 
 void UXManager::drawUnitIdOnMap() {
 	for (auto & unit : BWAPI::Broodwar->self()->getUnits())
+	{
+		BWAPI::Broodwar->drawTextMap(unit->getPosition().x, unit->getPosition().y + 5, "\x07%d", unit->getID());
+	}
+	for (auto & unit : BWAPI::Broodwar->enemy()->getUnits())
 	{
 		BWAPI::Broodwar->drawTextMap(unit->getPosition().x, unit->getPosition().y + 5, "\x07%d", unit->getID());
 	}

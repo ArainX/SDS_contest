@@ -9,23 +9,23 @@ import bwapi.UnitType;
 
 public class UnitData {
 
-	/// Unit 과 UnitInfo 를 Map 형태로 저장하는 자료구조 
-	/// C++ 에서는 Unit 포인터를 Key 로 사용하지만, 
+	/// Unit 과 UnitInfo 를 Map 형태로 저장하는 자료구조 <br>
+	/// C++ 에서는 Unit 포인터를 Key 로 사용하지만, <br>
 	/// JAVA 에서는 Unit 자료구조의 equals 메쏘드 때문에 오작동하므로 Unit.getID() 값을 Key 로 사용함
 	Map<Integer,UnitInfo> unitAndUnitInfoMap = new HashMap<Integer,UnitInfo>();
 	
-	/// UnitType별 파괴/사망한 유닛 숫자 누적값
-	/// C++ 에서는 UnitType 의 열거형 값을 Key 로 사용하지만, 
+	/// UnitType별 파괴/사망한 유닛 숫자 누적값<br>
+	/// C++ 에서는 UnitType 의 열거형 값을 Key 로 사용하지만, <br>
 	/// JAVA 에서는 UnitType 의 열거형 값이 부재하므로 Unit.getType() 값을 Key 로 사용함
 	Map<String,Integer> numDeadUnits = new HashMap<String,Integer>();
 	
-	/// UnitType별 건설/훈련했던 유닛 숫자 누적값
-	/// C++ 에서는 UnitType 의 열거형 값을 Key 로 사용하지만, 
+	/// UnitType별 건설/훈련했던 유닛 숫자 누적값<br>
+	/// C++ 에서는 UnitType 의 열거형 값을 Key 로 사용하지만, <br>
 	/// JAVA 에서는 UnitType 의 열거형 값이 부재하므로 Unit.getType() 값을 Key 로 사용함
 	Map<String,Integer> numCreatedUnits = new HashMap<String,Integer>();
 	
-	/// UnitType별 존재하는 유닛 숫자 카운트. 적군 유닛의 경우 식별된 유닛 숫자 카운트
-	/// C++ 에서는 UnitType 의 열거형 값을 Key 로 사용하지만, 
+	/// UnitType별 존재하는 유닛 숫자 카운트. 적군 유닛의 경우 식별된 유닛 숫자 카운트<br>
+	/// C++ 에서는 UnitType 의 열거형 값을 Key 로 사용하지만, <br>
 	/// JAVA 에서는 UnitType 의 열거형 값이 부재하므로 Unit.getType() 값을 Key 로 사용함
 	Map<String,Integer> numUnits = new HashMap<String,Integer>();
 	

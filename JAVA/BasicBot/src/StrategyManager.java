@@ -9,9 +9,9 @@ import bwta.BWTA;
 import bwta.BaseLocation;
 import bwta.Chokepoint;
 
-/// 상황을 판단하여, 정찰, 빌드, 공격, 방어 등을 수행하도록 총괄 지휘를 하는 class
-/// InformationManager 에 있는 정보들로부터 상황을 판단하고, 
-/// BuildManager 의 buildQueue에 빌드 (건물 건설 / 유닛 훈련 / 테크 리서치 / 업그레이드) 명령을 입력합니다.
+/// 상황을 판단하여, 정찰, 빌드, 공격, 방어 등을 수행하도록 총괄 지휘를 하는 class <br>
+/// InformationManager 에 있는 정보들로부터 상황을 판단하고, <br>
+/// BuildManager 의 buildQueue에 빌드 (건물 건설 / 유닛 훈련 / 테크 리서치 / 업그레이드) 명령을 입력합니다.<br>
 /// 정찰, 빌드, 공격, 방어 등을 수행하는 코드가 들어가는 class
 public class StrategyManager {
 
@@ -544,7 +544,7 @@ public class StrategyManager {
 		}
 	}
 
-	// Supply DeadLock 예방 및 SupplyProvider 가 부족해질 상황 에 대한 선제적 대응으로서
+	// Supply DeadLock 예방 및 SupplyProvider 가 부족해질 상황 에 대한 선제적 대응으로서<br>
 	// SupplyProvider를 추가 건설/생산한다
 	public void executeSupplyManagement() {
 

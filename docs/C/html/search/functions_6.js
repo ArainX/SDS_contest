@@ -86,6 +86,7 @@ var searchData=
   ['getscoutunit',['getScoutUnit',['../class_my_bot_1_1_scout_manager.html#a411e7afbe75574af5533aa128399922a',1,'MyBot::ScoutManager']]],
   ['getscoutworker',['getScoutWorker',['../class_my_bot_1_1_worker_manager.html#ae0181d0b19fd13f5d10d5059c1d5635e',1,'MyBot::WorkerManager']]],
   ['getsecondchokepoint',['getSecondChokePoint',['../class_my_bot_1_1_information_manager.html#a920d8fc8320744cb19f78aa81984874c',1,'MyBot::InformationManager']]],
+  ['getseedpositionfromseedlocationstrategy',['getSeedPositionFromSeedLocationStrategy',['../class_my_bot_1_1_build_manager.html#a61be72c1849e1861af534ef8a299b13e',1,'MyBot::BuildManager']]],
   ['getsortedtiles',['getSortedTiles',['../class_my_bot_1_1_distance_map.html#a9e4a2d633c9ecefd9c540859495191f3',1,'MyBot::DistanceMap']]],
   ['gettechtype',['getTechType',['../class_my_bot_1_1_meta_type.html#ab363244ba3f9251da691ac1bb362b87e',1,'MyBot::MetaType']]],
   ['gettileposition',['getTilePosition',['../class_my_bot_1_1_map_tools.html#acae8525dd948da14b728aef52a0427b9',1,'MyBot::MapTools']]],

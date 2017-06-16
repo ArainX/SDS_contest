@@ -73,7 +73,7 @@ namespace MyBot
 		BWAPI::Unit getClosestResourceDepotFromWorker(BWAPI::Unit worker);
 
 
-		/// Mineral 일꾼 유닛들 중에서 Gas 임무를 수행할 일꾼 유닛을 정해서 리턴합니다
+		/// Mineral 일꾼 유닛들 중에서 Gas 임무를 수행할 일꾼 유닛을 정해서 리턴합니다<br>
 		/// Idle 일꾼은 Build, Repair, Scout 등 다른 임무에 먼저 투입되어야 하기 때문에 Mineral 일꾼 중에서만 정합니다
 		BWAPI::Unit chooseGasWorkerFromMineralWorkers(BWAPI::Unit refinery);
 		int         getNumGasWorkers();
@@ -83,10 +83,10 @@ namespace MyBot
 		void        setScoutWorker(BWAPI::Unit worker);
 		bool        isScoutWorker(BWAPI::Unit worker);
 
-		/// buildingPosition 에서 가장 가까운 Move 혹은 Idle 혹은 Mineral 일꾼 유닛들 중에서 Construction 임무를 수행할 일꾼 유닛을 정해서 리턴합니다
-		/// Move / Idle Worker 중에서 먼저 선정하고, 없으면 Mineral Worker 중에서 선정합니다
-		/// 일꾼 유닛이 2개 이상이면, avoidWorkerID 에 해당하는 worker 는 선정하지 않도록 합니다
-		/// if setJobAsConstructionWorker is true (default), it will be flagged as a builder unit
+		/// buildingPosition 에서 가장 가까운 Move 혹은 Idle 혹은 Mineral 일꾼 유닛들 중에서 Construction 임무를 수행할 일꾼 유닛을 정해서 리턴합니다<br>
+		/// Move / Idle Worker 중에서 먼저 선정하고, 없으면 Mineral Worker 중에서 선정합니다<br>
+		/// 일꾼 유닛이 2개 이상이면, avoidWorkerID 에 해당하는 worker 는 선정하지 않도록 합니다<br>
+		/// if setJobAsConstructionWorker is true (default), it will be flagged as a builder unit<br>
 		/// if setJobAsConstructionWorker is false, we just want to see which worker will build a building
 		BWAPI::Unit chooseConstuctionWorkerClosestTo(BWAPI::UnitType buildingType, BWAPI::TilePosition buildingPosition, bool setJobAsConstructionWorker = true, int avoidWorkerID = 0);
 		void        setConstructionWorker(BWAPI::Unit worker, BWAPI::UnitType buildingType);

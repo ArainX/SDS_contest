@@ -26,7 +26,7 @@
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;">
    <div id="projectname">BasicBot
-   &#160;<span id="projectnumber">v0.95 beta</span>
+   &#160;<span id="projectnumber">v1.0</span>
    </div>
    <div id="projectbrief">BasicBot for Starcraft: Broodwar 1.16.1 with BWAPI 4.1.2</div>
   </td>
@@ -242,7 +242,9 @@ Static Private Attributes</h2></td></tr>
 <tr class="separator:ae1a181143d63fbead75f860476990922"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>게임 상황정보 중 일부를 자체 자료구조 및 변수들에 저장하고 업데이트하는 class 현재 게임 상황정보는 BWAPI::Broodwar 를 조회하여 파악할 수 있지만, 과거 게임 상황정보는 BWAPI::Broodwar 를 통해 조회가 불가능하기 때문에 InformationManager에서 별도 관리하도록 합니다 또한, BWAPI::Broodwar 나 BWTA 등을 통해 조회할 수 있는 정보이지만 전처리 / 별도 관리하는 것이 유용한 것도 InformationManager에서 별도 관리하도록 합니다 </p>
+<div class="textblock"><p>게임 상황정보 중 일부를 자체 자료구조 및 변수들에 저장하고 업데이트하는 class<br />
+ 현재 게임 상황정보는 BWAPI::Broodwar 를 조회하여 파악할 수 있지만, 과거 게임 상황정보는 BWAPI::Broodwar 를 통해 조회가 불가능하기 때문에 InformationManager에서 별도 관리하도록 합니다<br />
+ 또한, BWAPI::Broodwar 나 BWTA 등을 통해 조회할 수 있는 정보이지만 전처리 / 별도 관리하는 것이 유용한 것도 InformationManager에서 별도 관리하도록 합니다 </p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a class="anchor" id="a2f121b8c1421bd48452ce65f04f1607d"></a>
 <div class="memitem">
@@ -739,7 +741,8 @@ Static Private Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>해당 Player (아군 or 적군) 의 <a class="el" href="class_main.html">Main</a> BaseLocation 에서 두번째로 가까운 ChokePoint 를 리턴합니다 게임 맵에 따라서, secondChokePoint 는 일반 상식과 다른 지점이 될 수도 있습니다 </p>
+<p>해당 Player (아군 or 적군) 의 <a class="el" href="class_main.html">Main</a> BaseLocation 에서 두번째로 가까운 ChokePoint 를 리턴합니다<br />
+ 게임 맵에 따라서, secondChokePoint 는 일반 상식과 다른 지점이 될 수도 있습니다 </p>
 
 </div>
 </div>
@@ -757,7 +760,8 @@ Static Private Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>해당 Player (아군 or 적군) 의 모든 유닛 목록 (가장 최근값) UnitAndUnitInfoMap 을 리턴합니다 파악된 정보만을 리턴하기 때문에 적군의 정보는 틀린 값일 수 있습니다 </p>
+<p>해당 Player (아군 or 적군) 의 모든 유닛 목록 (가장 최근값) UnitAndUnitInfoMap 을 리턴합니다<br />
+ 파악된 정보만을 리턴하기 때문에 적군의 정보는 틀린 값일 수 있습니다 </p>
 
 </div>
 </div>
@@ -980,7 +984,8 @@ Static Private Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Unit 에 대한 정보를 업데이트합니다 유닛이 파괴/사망한 경우, 해당 유닛 정보를 삭제합니다 </p>
+<p>Unit 에 대한 정보를 업데이트합니다 <br />
+ 유닛이 파괴/사망한 경우, 해당 유닛 정보를 삭제합니다 </p>
 
 </div>
 </div>
@@ -1297,7 +1302,9 @@ Static Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>해당 Player의 주요 건물들이 있는 BaseLocation. 처음에는 StartLocation 으로 지정. mainBaseLocation 내 모든 건물이 파괴될 경우 재지정 건물 여부를 기준으로 파악하기 때문에 부적절하게 판단할수도 있습니다 </p>
+<p>해당 Player의 주요 건물들이 있는 BaseLocation. <br />
+ 처음에는 StartLocation 으로 지정. mainBaseLocation 내 모든 건물이 파괴될 경우 재지정<br />
+ 건물 여부를 기준으로 파악하기 때문에 부적절하게 판단할수도 있습니다 </p>
 
 </div>
 </div>
@@ -1319,7 +1326,8 @@ Static Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>해당 Player가 점령하고 있는 Region 이 있는 BaseLocation 건물 여부를 기준으로 파악하기 때문에 부적절하게 판단할수도 있습니다 </p>
+<p>해당 Player가 점령하고 있는 Region 이 있는 BaseLocation<br />
+ 건물 여부를 기준으로 파악하기 때문에 부적절하게 판단할수도 있습니다 </p>
 
 </div>
 </div>
@@ -1341,7 +1349,8 @@ Static Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>해당 Player가 점령하고 있는 Region 건물 여부를 기준으로 파악하기 때문에 부적절하게 판단할수도 있습니다 </p>
+<p>해당 Player가 점령하고 있는 Region<br />
+ 건물 여부를 기준으로 파악하기 때문에 부적절하게 판단할수도 있습니다 </p>
 
 </div>
 </div>
@@ -1363,7 +1372,8 @@ Static Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>해당 Player의 mainBaseLocation 에서 두번째로 가까운 (firstChokePoint가 아닌) ChokePoint 게임 맵에 따라서, secondChokePoint 는 일반 상식과 다른 지점이 될 수도 있습니다 </p>
+<p>해당 Player의 mainBaseLocation 에서 두번째로 가까운 (firstChokePoint가 아닌) ChokePoint<br />
+ 게임 맵에 따라서, secondChokePoint 는 일반 상식과 다른 지점이 될 수도 있습니다 </p>
 
 </div>
 </div>
@@ -1421,7 +1431,7 @@ Static Private Attributes</h2></td></tr>
 <!-- HTML footer for doxygen 1.8.8-->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Fri Jun 9 2017 21:29:50 for BasicBot by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Fri Jun 16 2017 18:34:29 for BasicBot by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.8
 </small></address>

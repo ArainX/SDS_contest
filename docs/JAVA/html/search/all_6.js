@@ -96,6 +96,7 @@ var searchData=
   ['getscoutunit',['getScoutUnit',['../class_scout_manager.html#a54a6546d33ea52f34f28837afeccdbb5',1,'ScoutManager']]],
   ['getscoutworker',['getScoutWorker',['../class_worker_manager.html#ab54c3229c9a5dda6743860d4e8df9317',1,'WorkerManager']]],
   ['getsecondchokepoint',['getSecondChokePoint',['../class_information_manager.html#a214f91620c47a1396fcca4a2f6a6e096',1,'InformationManager']]],
+  ['getseedpositionfromseedlocationstrategy',['getSeedPositionFromSeedLocationStrategy',['../class_build_manager.html#a6a5c25f29f01214ed6f8dcaf4e4a0826',1,'BuildManager']]],
   ['getsortedtiles',['getSortedTiles',['../class_distance_map.html#a9c880a71b66d5beb16e4bba013cc0d01',1,'DistanceMap']]],
   ['getstatus',['getStatus',['../class_construction_task.html#a47904fa91a6a95a044e83d8effd8555a',1,'ConstructionTask']]],
   ['gettechtype',['getTechType',['../class_meta_type.html#a18b1d1803d8306fecac9b258379f4e0e',1,'MetaType']]],
@@ -121,8 +122,8 @@ var searchData=
   ['getworkertype',['getWorkerType',['../class_information_manager.html#a9ca0efd6dfa25948db59e0881351324d',1,'InformationManager.getWorkerType()'],['../class_information_manager.html#ad38569d1b0bbe4283bb8865309e4a765',1,'InformationManager.getWorkerType(Race race)']]],
   ['green1',['green1',['../class_u_x_manager.html#ab3cb1d8e28aa108d5c7ced13b4277050',1,'UXManager']]],
   ['green2',['green2',['../class_u_x_manager.html#ab277f6942fcd395a316dda53455d43e4',1,'UXManager']]],
-  ['gridcell',['GridCell',['../class_distance_map_1_1_grid_cell.html',1,'DistanceMap']]],
   ['gridcell',['GridCell',['../class_distance_map_1_1_grid_cell.html#ab226a7f2f8d414979be664838dffd00c',1,'DistanceMap.GridCell.GridCell()'],['../class_map_grid_1_1_grid_cell.html#a370af3d8e3d0df9b54c782289942e162',1,'MapGrid.GridCell.GridCell()']]],
   ['gridcell',['GridCell',['../class_map_grid_1_1_grid_cell.html',1,'MapGrid']]],
+  ['gridcell',['GridCell',['../class_distance_map_1_1_grid_cell.html',1,'DistanceMap']]],
   ['gridcells',['gridCells',['../class_distance_map.html#a05dcbdec80b139b16573a1f59dcb9313',1,'DistanceMap.gridCells()'],['../class_map_grid.html#a676bc405bafd0fa05a7127f1c311d473',1,'MapGrid.gridCells()']]]
 ];

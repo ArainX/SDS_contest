@@ -23,11 +23,11 @@ namespace MyBot
 		/// attacker 가 targetPosition 을 향해 이동 가도록 명령 합니다
 		void move(BWAPI::Unit attacker, const BWAPI::Position & targetPosition);
 
-		/// unit 이 target 에 대해 어떤 행위를 하도록 명령 합니다
-		/// 일꾼 유닛이 Mineral Field 에게 : Mineral 자원 채취
-		/// 일꾼 유닛이 Refinery 건물에게 : Gas 자원 채취
-		/// 전투 유닛이 다른 아군 유닛에게 : Move 명령
-		/// 전투 유닛이 다른 적군 유닛에게 : Attack 명령
+		/// unit 이 target 에 대해 어떤 행위를 하도록 명령 합니다<br>
+		/// 일꾼 유닛이 Mineral Field 에게 : Mineral 자원 채취<br>
+		/// 일꾼 유닛이 Refinery 건물에게 : Gas 자원 채취<br>
+		/// 전투 유닛이 다른 아군 유닛에게 : Move 명령<br>
+		/// 전투 유닛이 다른 적군 유닛에게 : Attack 명령<br>
 		void rightClick(BWAPI::Unit unit, BWAPI::Unit target);
 
 		/// unit 이 target 에 대해 수리 하도록 명령 합니다 

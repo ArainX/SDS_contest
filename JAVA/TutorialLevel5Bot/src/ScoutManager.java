@@ -10,7 +10,7 @@ import bwta.BWTA;
 import bwta.BaseLocation;
 import bwta.Region;
 
-/// 게임 초반에 일꾼 유닛 중에서 정찰 유닛을 하나 지정하고, 정찰 유닛을 이동시켜 정찰을 수행하는 class
+/// 게임 초반에 일꾼 유닛 중에서 정찰 유닛을 하나 지정하고, 정찰 유닛을 이동시켜 정찰을 수행하는 class<br>
 /// 적군의 BaseLocation 위치를 알아내는 것까지만 개발되어있습니다
 public class ScoutManager {
 
@@ -44,7 +44,6 @@ public class ScoutManager {
 		if (MyBotModule.Broodwar.getFrameCount() % 6 != 0) return;
 		
 		// scoutUnit 을 지정하고, scoutUnit 의 이동을 컨트롤함. 
-		// TODO 과제 : 여러 scoutUnit 을 동시에 운용하거나, scoutUnit 이 길목에서 적군에 의해 사망하여 정찰이 계속 실패하는 경우, 중후반 정찰에 대한 처리 등은 생각해볼 과제이다  
 		assignScoutIfNeeded();
 		moveScoutUnit();
 

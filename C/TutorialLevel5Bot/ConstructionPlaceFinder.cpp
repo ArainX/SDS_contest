@@ -22,7 +22,6 @@ BWAPI::TilePosition	ConstructionPlaceFinder::getBuildLocationWithSeedPositionAnd
 	BWAPI::TilePosition desiredPosition = BWAPI::TilePositions::None;
 
 	// seedPosition 을 입력한 경우 그 근처에서 찾는다
-	// TODO 과제 : 그 근처에서 못찾으면 어떻게 할지 생각해볼 과제이다 
 	if (seedPosition != BWAPI::TilePositions::None  && seedPosition.isValid() )
 	{
 		//std::cout << "getBuildLocationNear " << seedPosition.x << ", " << seedPosition.y << std::endl;
@@ -148,22 +147,6 @@ BWAPI::TilePosition	ConstructionPlaceFinder::getBuildLocationWithSeedPositionAnd
 			tempChokePoint = InformationManager::Instance().getSecondChokePoint(BWAPI::Broodwar->self());
 			if (tempChokePoint) {
 				desiredPosition = getBuildLocationNear(buildingType, BWAPI::TilePosition(tempChokePoint->getCenter()));
-			}
-			break;
-
-		case BuildOrderItem::SeedPositionStrategy::SecondExpansionLocation:
-			if (InformationManager::Instance().getOccupiedBaseLocations(BWAPI::Broodwar->self()).size() > 1) {
-				for (BWTA::BaseLocation * baseLocation : InformationManager::Instance().getOccupiedBaseLocations(BWAPI::Broodwar->self())) {
-
-					if (baseLocation != InformationManager::Instance().getMainBaseLocation(BWAPI::Broodwar->self())
-						&& baseLocation != InformationManager::Instance().getFirstExpansionLocation(BWAPI::Broodwar->self()))
-					{
-						tempTilePosition = baseLocation->getTilePosition();
-					}
-				}
-				if (tempTilePosition != BWAPI::TilePositions::None) {
-					desiredPosition = tempTilePosition;
-				}
 			}
 			break;
 

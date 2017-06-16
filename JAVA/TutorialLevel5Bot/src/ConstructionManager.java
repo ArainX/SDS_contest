@@ -13,9 +13,9 @@ import bwta.Region;
 /// 건물 건설 Construction 명령 목록을 리스트로 관리하고, 건물 건설 명령이 잘 수행되도록 컨트롤하는 class
 public class ConstructionManager {
 
-	/// 건설 필요 자원을 미리 예약해놓고, 
-	/// 건설 대상 장소가 미개척 장소인 경우 건설 일꾼을 이동시켜 결국 건설이 시작되게 하고, 
-	/// 건설 일꾼이 도중에 죽는 경우 다른 건설 일꾼을 지정하여 건설을 수행하게 하기 위해
+	/// 건설 필요 자원을 미리 예약해놓고, <br>
+	/// 건설 대상 장소가 미개척 장소인 경우 건설 일꾼을 이동시켜 결국 건설이 시작되게 하고, <br>
+	/// 건설 일꾼이 도중에 죽는 경우 다른 건설 일꾼을 지정하여 건설을 수행하게 하기 위해<br>
 	/// Construction Task 들의 목록을 constructionQueue 로 유지합니다
 	private Vector<ConstructionTask> constructionQueue = new Vector<ConstructionTask>();
 	
@@ -75,7 +75,7 @@ public class ConstructionManager {
 	    }
 	}
 
-	/// constructionQueue 에서 건설 상태가 UnderConstruction 인 ConstructionTask 여러개를 삭제합니다
+	/// constructionQueue 에서 건설 상태가 UnderConstruction 인 ConstructionTask 여러개를 삭제합니다<br>
 	/// 건설을 시작했었던 ConstructionTask 이기 때문에 _reservedMinerals, _reservedGas 는 건드리지 않는다
 	public void removeCompletedConstructionTasks(final Vector<ConstructionTask> toRemove)
 	{
@@ -199,10 +199,10 @@ public class ConstructionManager {
 	    }
 	}
 
-	/// 건설 진행상태가 Assigned 인 ConstructionTask 에 대해,
-	/// 건설이 시작되기 전에 일꾼이 죽었으면 건설 진행상태를 Unassigned 로 변경하고
-	/// 건설 장소가 unexplored 이면 건설 일꾼을 해당 장소로 이동시키고
-	/// 건설 일꾼에게 build 명령을 안내렸으면 건설 일꾼에게 build 명령을 내리고
+	/// 건설 진행상태가 Assigned 인 ConstructionTask 에 대해,<br>
+	/// 건설이 시작되기 전에 일꾼이 죽었으면 건설 진행상태를 Unassigned 로 변경하고<br>
+	/// 건설 장소가 unexplored 이면 건설 일꾼을 해당 장소로 이동시키고<br>
+	/// 건설 일꾼에게 build 명령을 안내렸으면 건설 일꾼에게 build 명령을 내리고<br>
 	/// 건설 일꾼이 건설을 실행하지 않는 상태가 되었으면 건설 일꾼을 해제하고 건설 진행상태를 Unassigned 로 변경합니다
 	public void constructAssignedBuildings()
 	{
@@ -314,7 +314,7 @@ public class ConstructionManager {
 	    }
 	}
 
-	/// 건설이 시작되면, 해당 ConstructionTask 의 건설 진행상태를 UnderConstruction 으로 변경하고
+	/// 건설이 시작되면, 해당 ConstructionTask 의 건설 진행상태를 UnderConstruction 으로 변경하고<br>
 	/// 저그 및 프로토스 종족의 경우 건설 일꾼을 해제합니다
 	public void checkForStartedConstruction()
 	{				
@@ -375,8 +375,8 @@ public class ConstructionManager {
 	    }
 	}
 
-	/// 테란의 경우 건설 진행상태가 UnderConstruction 이지만 건설 일꾼이 죽은 경우, 다른 건설 일꾼을 지정해서 건설이 속행되도록 합니다
-	/// 테란은 건설을 시작한 후, 건설 도중에 일꾼이 죽을 수 있습니다. 이 경우, 건물에 대해 다시 다른 SCV를 할당합니다
+	/// 테란의 경우 건설 진행상태가 UnderConstruction 이지만 건설 일꾼이 죽은 경우, 다른 건설 일꾼을 지정해서 건설이 속행되도록 합니다<br>
+	/// 테란은 건설을 시작한 후, 건설 도중에 일꾼이 죽을 수 있습니다. 이 경우, 건물에 대해 다시 다른 SCV를 할당합니다<br>
 	/// 참고로, 프로토스 / 저그는 건설을 시작하면 일꾼 포인터를 null 로 만들기 때문에 (constructionWorker = null) 건설 도중에 죽은 일꾼을 신경쓸 필요 없습니다 
 	public void checkForDeadTerranBuilders()
 	{
@@ -416,7 +416,7 @@ public class ConstructionManager {
 		}
 	}
 
-	/// 건설이 완료된 ConstructionTask 를 삭제하고,  
+	/// 건설이 완료된 ConstructionTask 를 삭제하고,<br>  
 	/// 테란 종족의 경우 건설 일꾼을 해제합니다
 	public void checkForCompletedBuildings()
 	{
@@ -617,7 +617,7 @@ public class ConstructionManager {
 	    return buildingsQueued;
 	}
 
-	/// constructionQueue 내 ConstructionTask 갯수를 리턴합니다
+	/// constructionQueue 내 ConstructionTask 갯수를 리턴합니다<br>
 	/// queryTilePosition 을 입력한 경우, 위치간 거리까지도 고려합니다
 	public int getConstructionQueueItemCount(UnitType queryType, TilePosition queryTilePosition)
 	{

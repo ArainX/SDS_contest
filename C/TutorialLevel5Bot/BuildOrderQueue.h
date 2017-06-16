@@ -14,15 +14,14 @@ namespace MyBot
 		BWAPI::TilePosition seedLocation;	///< 건설 위치
 		int					producerID;		///< producer unitID (건물ID, 유닛ID)
 
-		/// 건설위치 초안 결정 정책
-		/// 향후 적진 길목, 언덕 위 등 추가
+		/// 건설위치 초안 결정 정책.<br>
+		/// 향후 적진 길목, 언덕 위 등 추가 가능
 		enum SeedPositionStrategy { 
 			MainBaseLocation,			///< 아군 베이스
 			MainBaseBackYard,			///< 아군 베이스 뒷편
 			FirstChokePoint,			///< 아군 첫번째 길목
 			FirstExpansionLocation,		///< 아군 첫번째 앞마당
 			SecondChokePoint,			///< 아군 두번째 길목
-			SecondExpansionLocation,	///< 아군 두번째 앞마당
 			SeedPositionSpecified		///< 별도 지정 위치
 		};
 		SeedPositionStrategy		seedLocationStrategy;	///< 건설위치 초안 결정 정책
@@ -75,7 +74,7 @@ namespace MyBot
 	/// 빌드 오더 목록 자료구조 class
 	class BuildOrderQueue
 	{
-		/// BuildOrderItem 들을 Double Ended Queue 자료구조로 관리합니다
+		/// BuildOrderItem 들을 Double Ended Queue 자료구조로 관리합니다.<br>
 		/// lowest priority 인 BuildOrderItem은 front 에, highest priority 인 BuildOrderItem 은 back 에 위치하게 합니다
 		std::deque< BuildOrderItem >			queue;
 
@@ -83,7 +82,7 @@ namespace MyBot
 		int highestPriority;
 		int defaultPrioritySpacing;
 
-		/// iteration 을 하기 위한 참고값
+		/// iteration 을 하기 위한 참고값.<br>
 		/// highest priority 인 BuildOrderItem 으로부터 몇개나 skip 했는가. 
 		int numSkippedItems;
 
