@@ -101,6 +101,6 @@ namespace MyBot
 		/// 해당 UnitType 의 식별된 Unit 건설/훈련 누적값을 리턴합니다
 		int		getNumCreatedUnits(BWAPI::UnitType t)		const;
 
-		const	std::map<BWAPI::Unit, UnitInfo> & getUnitAndUnitInfoMap() const;
+		std::map<BWAPI::Unit, UnitInfo> & getUnitAndUnitInfoMap();
 	};
 }

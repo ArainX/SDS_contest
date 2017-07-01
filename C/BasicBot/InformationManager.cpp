@@ -145,7 +145,7 @@ int InformationManager::getNumUnits(BWAPI::UnitType t, BWAPI::Player player)
 }
 
 
-const UnitData & InformationManager::getUnitData(BWAPI::Player player) const
+UnitData & InformationManager::getUnitData(BWAPI::Player player) 
 {
     return _unitData.find(player)->second;
 }
@@ -409,7 +409,7 @@ bool InformationManager::existsPlayerBuildingInRegion(BWTA::Region * region, BWA
 }
 
 // 해당 Player 의 UnitAndUnitInfoMap 을 갖고온다
-const UnitAndUnitInfoMap & InformationManager::getUnitAndUnitInfoMap(BWAPI::Player player) const
+UnitAndUnitInfoMap & InformationManager::getUnitAndUnitInfoMap(BWAPI::Player player) 
 {
 	return getUnitData(player).getUnitAndUnitInfoMap();
 }
