@@ -26,6 +26,9 @@ public class WorkerData {
 		Default 		///< 기본. 미설정 상태. 
 	};
 	
+	/// 미네랄 숫자 대비 미네랄 일꾼 숫자의 적정 비율
+	double					mineralAndMineralWorkerRatio;						
+	
 	/// 일꾼 목록
 	private List<Unit> workers = new ArrayList<Unit>();
 	/// ResourceDepot 목록
@@ -46,6 +49,8 @@ public class WorkerData {
 	
 	public WorkerData() 
 	{
+		mineralAndMineralWorkerRatio = 2;
+		
 	     for (Unit unit : MyBotModule.Broodwar.getAllUnits())
 		{
 			if ((unit.getType() == UnitType.Resource_Mineral_Field))
@@ -377,6 +382,7 @@ public class WorkerData {
 		return WorkerJob.Default;
 	}
 
+	/// ResourceDepot 에 충분한 수(미네랄 덩이 수 * mineralAndMineralWorkerRatio ) 의 미네랄 일꾼이 배정되어있는가 
 	public boolean depotHasEnoughMineralWorkers(Unit depot)
 	{
 		if (depot == null) { return false; }
@@ -384,7 +390,11 @@ public class WorkerData {
 		int assignedWorkers = getNumAssignedWorkers(depot);
 		int mineralsNearDepot = getMineralsNearDepot(depot);
 
-		if (assignedWorkers >= mineralsNearDepot * 3)
+		// 충분한 수의 미네랄 일꾼 수를 얼마로 정할 것인가 : 
+		// (근처 미네랄 수) * 1.5배 ~ 2배 정도가 적당
+		// 근처 미네랄 수가 8개 라면, 일꾼 8마리여도 좋지만, 12마리면 조금 더 빠르다. 16마리여도 충분하다. 24마리면 너무 많은 숫자이다.
+		// 근처 미네랄 수가 0개 인 경우에는, 무조건 충분한 수의 미네랄 일꾼이 꽉 차있는 것이다
+		if (assignedWorkers >= (int)(mineralsNearDepot * mineralAndMineralWorkerRatio))
 		{
 			return true;
 		}
@@ -424,6 +434,7 @@ public class WorkerData {
 	    return mineralsNearDepot;
 	}
 
+	/// ResourceDepot 반경 200 point 이내의 미네랄 덩이 수를 반환합니다
 	public int getMineralsNearDepot(Unit depot)
 	{
 		if (depot == null) { return 0; }

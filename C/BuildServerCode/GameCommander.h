@@ -1,13 +1,40 @@
-﻿#pragma once
+﻿
+// GameCommander 소스코드는 예시입니다
 
-#include "Common.h"
-#include "InformationManager.h"
-#include "WorkerManager.h"
-#include "BuildManager.h"
-#include "ConstructionManager.h"
-#include "ScoutManager.h"
-#include "StrategyManager.h"
-#include "UXManager.h"
+#pragma once
+
+#define _USE_MATH_DEFINES
+
+#include <cmath>
+#include <math.h>
+#include <cstdio>
+#include <cstdlib>
+
+#include <stdarg.h>
+#include <stdexcept>
+#include <string>
+#include <iostream>
+#include <fstream>
+#include <sstream>
+#include <algorithm>
+#include <vector>
+#include <deque>
+#include <list>
+#include <set>
+#include <map>
+#include <array>
+#include <ctime>
+#include <iomanip>
+
+#include <winsock2.h>
+#include <windows.h>
+
+#include <BWAPI.h>
+#include <BWAPI/Client.h>
+#include <BWTA.h>
+
+#include <thread>
+#include <chrono>
 
 namespace MyBot
 {
@@ -15,13 +42,6 @@ namespace MyBot
 	/// 스타크래프트 경기 도중 발생하는 이벤트들이 적절하게 처리되도록 해당 Manager 객체에게 이벤트를 전달하는 관리자 Controller 역할을 합니다
 	class GameCommander 
 	{
-		bool isFlag1;
-		bool isFlag2;
-		bool isFlag3;
-
-		/// 디버깅용 플래그 : 어느 Manager 가 에러를 일으키는지 알기위한 플래그
-		bool isToFindError;
-
 	public:
 
 		GameCommander();
@@ -76,6 +96,7 @@ namespace MyBot
 		void onSendText(std::string text);
 		/// 다른 플레이어로부터 텍스트를 전달받았을 때 발생하는 이벤트를 처리합니다
 		void onReceiveText(BWAPI::Player player, std::string text);
+
 	};
 
 }

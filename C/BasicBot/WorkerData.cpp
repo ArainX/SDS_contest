@@ -5,7 +5,11 @@ using namespace MyBot;
 
 WorkerData::WorkerData() 
 {
-     for (auto & unit : BWAPI::Broodwar->getAllUnits())
+	// BasicBot 1.1 Patch Start
+	mineralAndMineralWorkerRatio = 1.5;
+	// BasicBot 1.1 Patch End
+
+	for (auto & unit : BWAPI::Broodwar->getAllUnits())
 	{
 		if ((unit->getType() == BWAPI::UnitTypes::Resource_Mineral_Field))
 		{
@@ -297,7 +301,11 @@ bool WorkerData::depotHasEnoughMineralWorkers(BWAPI::Unit depot)
 	int assignedWorkers = getNumAssignedWorkers(depot);
 	int mineralsNearDepot = getMineralsNearDepot(depot);
 
-	if (assignedWorkers >= mineralsNearDepot * 3)
+	// 충분한 수의 미네랄 일꾼 수를 얼마로 정할 것인가 : 
+	// (근처 미네랄 수) * 1.5배 ~ 2배 정도가 적당
+	// 근처 미네랄 수가 8개 라면, 일꾼 8마리여도 좋지만, 12마리면 조금 더 빠르다. 16마리여도 충분하다. 24마리면 너무 많은 숫자이다.
+	// 근처 미네랄 수가 0개 인 경우에는, 무조건 충분한 수의 미네랄 일꾼이 꽉 차있는 것이다
+	if (assignedWorkers >= (int)(mineralsNearDepot * mineralAndMineralWorkerRatio))
 	{
 		return true;
 	}

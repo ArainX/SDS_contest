@@ -10,8 +10,6 @@
 #include <chrono>
 #include <string>
 
-#include "Common.h"
-#include "CommandUtil.h"
 #include "GameCommander.h"
 #include "UXManager.h"
 
@@ -26,7 +24,7 @@ namespace MyBot
 	/// <br><br>
 	/// 알고리즘 경진대회 의 공정하고 효율적인 운영을 위해 Main, MyBotModule, UXManager 파일은 참가자들이 제출하는 소스코드를 무시하고 덮어쓴 후 빌드합니다 <br>
 	///
-	/// 알고리즘 경진대회 빌드서버가 사용하는 Main, MyBotModule, UXManager 파일을 예시적으로 BasicBot 에 반영하였습니다 <br>
+	/// 알고리즘 경진대회 빌드서버가 사용하는 Main, MyBotModule, UXManager 파일을 예시적으로 MyBotModule 에 반영하였습니다 <br>
 	/// 실제 알고리즘 경진대회 빌드서버에서는 코드를 일부 수정해서 빌드하게 할 수 있습니다 <br>
 	///
 	/// 알고리즘 경진대회 빌드서버가 사용하는 Main 은 MyBotModule 을 실행시키는 기능을 수행합니다. <br>
@@ -60,7 +58,7 @@ namespace MyBot
 		/// 유닛(건물/지상유닛/공중유닛)이 Morph 될 때 발생하는 이벤트를 처리합니다
 		/// Zerg 종족의 유닛은 건물 건설이나 지상유닛/공중유닛 생산에서 거의 대부분 Morph 형태로 진행됩니다
 		void onUnitMorph(BWAPI::Unit unit);
-
+		
 		/// 유닛(건물/지상유닛/공중유닛)의 소속 플레이어가 바뀔 때 발생하는 이벤트를 처리합니다.<br>
 		/// Gas Geyser에 어떤 플레이어가 Refinery 건물을 건설했을 때, Refinery 건물이 파괴되었을 때, Protoss 종족 Dark Archon 의 Mind Control 에 의해 소속 플레이어가 바뀔 때 발생합니다
 		void onUnitRenegade(BWAPI::Unit unit);
@@ -96,6 +94,14 @@ namespace MyBot
 		void onReceiveText(BWAPI::Player player, std::string text);
 
 	private:
+		/// 게임설정 파일을 반영합니다.
+		void parseConfigFile(const std::string & filename);
+		/// 파일을 읽어서 String을 반환합니다.
+		std::vector<std::string> getLines(const std::string & filename);
+		int numLocalSpeed;						///< 로컬 스피드 
+		int numFrameSkip;						///< frameskip		
+		int maxDurationForLostCondition;		///< 패배 조건이 만족된채 게임을 유지시키는 최대 프레임 수
+
 		void initializeLostConditionVariables();
 		void parseTextCommand(const std::string & commandLine);	/// 사용자가 입력한 text 를 parse 해서 처리합니다
 		void checkLostConditions();
@@ -103,13 +109,11 @@ namespace MyBot
 		bool isToCheckGameLostCondition;		///< 자동 패배 체크 실행 여부		
 		bool isGameLostConditionSatisfied;		///< 자동 패배 체크 결과		
 		int gameLostConditionSatisfiedFrame;	///< 자동 패배 조건이 시작된 프레임 시점
-		int maxDurationForGameLostCondition;	///< 자동 패배 조건이 만족된채 게임을 유지시키는 최대 프레임 수
 		void checkGameLostConditionAndLeaveGame();	///< 자동 패배 조건을 체크하여, 조건 만족 시 GG 선언하고 게임을 나갑니다
-
+				
 		bool isToCheckTimeOut;					///< 타임 아웃 체크 실행 여부		
 		int timeOutConditionSatisfiedFrame;		///< 타임 아웃 조건이 시작된 프레임 시점		
 		bool isTimeOutConditionSatisfied;		///< 타임 아웃 체크 결과		
-		int maxDurationForTimeOutLostCondition;	///< 타임 아웃 조건이 만족된채 게임을 유지시키는 최대 프레임 수		
 		std::vector<int> timerLimits;			///< 타임 아웃 한계시간 (ms/frame)
 		std::vector<int> timerLimitsBound;		///< 타임 아웃 초과한계횟수
 		std::vector<int> timerLimitsExceeded;	///< 타임 아웃 초과횟수
@@ -117,9 +121,9 @@ namespace MyBot
 		std::vector<long long> timeElapsedAtFrame;	///< 해당 프레임에서 사용한 시간 (ms)		
 		void checkTimeOutConditionAndLeaveGame();	///< 타임 아웃 조건을 체크하여, 조건 만족 시 GG 선언하고 게임을 나갑니다
 
-
+		
 		bool isToTestTimeOut;					///< 타임 아웃 체크 테스트 실행 여부
-		int timeOverTestDuration;
+		int timeOverTestDuration;				
 		int timeOverTestFrameCountLimit;
 		int timeOverTestFrameCount;
 		void doTimeOutDelay();					///< 타임 아웃 체크 테스트 실행 

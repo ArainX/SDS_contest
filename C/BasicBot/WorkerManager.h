@@ -20,6 +20,8 @@ namespace MyBot
 		void        updateWorkerStatus();
 
 		/// Idle 일꾼을 Mineral 일꾼으로 만듭니다
+		/// Mineral worker 숫자가 많이 지정되어있지 않은, 주위에 Mineral 이 있는, 거리가 가까운 Resource Depot 을 찾아서
+		/// 그 Resource Depot 근처의 Mineral 을 채취하게 합니다
 		void        handleIdleWorkers();
 
 		void        handleGasWorkers();
@@ -27,6 +29,7 @@ namespace MyBot
 		void        handleCombatWorkers();
 		void        handleRepairWorkers();
 
+		/// Resource Depot (센터 건물)에 너무 많은 수의 Mineral worker 들이 지정되어 있다면, 해당 일꾼을 Idle 상태로 만듭니다
 		void        rebalanceWorkers();
 
 		WorkerManager();
@@ -42,10 +45,13 @@ namespace MyBot
 		void        onUnitDestroy(BWAPI::Unit unit);
 
 		/// 일꾼 유닛들의 상태를 저장하는 workerData 객체를 업데이트합니다
+		/// 저그 드론 유닛이 건물로 Morph 하다가 취소해서 다시 드론으로 Morph 하게 된 경우에도 호출됩니다
 		void        onUnitMorph(BWAPI::Unit unit);
 
 		/// 일꾼 유닛들의 상태를 저장하는 workerData 객체를 업데이트합니다
-		void        onUnitShow(BWAPI::Unit unit);
+		/// Terran_SCV, Protoss_Probe 유닛 훈련이 끝나서 탄생할 경우, Zerg_Drone 유닛의 Morph 가 끝나서 탄생할 경우,
+		/// Zerg_Drone 유닛이 건물로 Morph 가 끝나서 건물이 완성되었을 경우 호출됩니다
+		void        onUnitComplete(BWAPI::Unit unit);
 		
 		
 		/// 일꾼 유닛들의 상태를 저장하는 workerData 객체를 리턴합니다

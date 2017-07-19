@@ -1,6 +1,6 @@
 /*
 +----------------------------------------------------------------------+
-| BasicBot                                                             |
+| BuildServerCode                                                             |
 +----------------------------------------------------------------------+
 | Samsung SDS - 2017 Algorithm Contest                                 |
 +----------------------------------------------------------------------+
@@ -23,10 +23,12 @@
 +----------------------------------------------------------------------+
 */
 
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
 import java.util.ArrayList;
 import java.util.Arrays;
 
-import bwapi.Color;
 import bwapi.DefaultBWListener;
 import bwapi.Game;
 import bwapi.Mirror;
@@ -62,15 +64,23 @@ public class MyBotModule extends DefaultBWListener {
 	private Mirror mirror = new Mirror();
 	
 	/// 스타크래프트 대결 상황 전체에 대한 상황 파악 및 액션 실행을 제공하는 객체  <br>
-	/// C언어에서 BWAPI::Broodwar 에 해당합니다
+	/// C언어에서 MyBotModule.Broodwar 에 해당합니다
 	public static Game Broodwar;
 
 	/// 실제 봇프로그램
 	/// @see GameCommander			
 	private GameCommander gameCommander;
 
-	
-	
+	/// 로컬 스피드 
+	/// 토너먼트 클라이언트 실행엔진에서 처리하지만 혹시나 몰라서 이중처리
+	private int numLocalSpeed = 20;
+
+	/// frameskip
+	/// 토너먼트 클라이언트 실행엔진에서 처리하지만 혹시나 몰라서 이중처리
+	private int numFrameSkip = 0;
+
+	/// 패배 조건이 만족된채 게임을 유지시키는 최대 프레임 수
+	private int maxDurationForLostCondition = 200;
 
 	
 	private boolean isExceptionLostConditionSatisfied = false;	/// Exception 으로 인한 패배 체크 결과
@@ -80,12 +90,10 @@ public class MyBotModule extends DefaultBWListener {
 	private boolean isToCheckGameLostCondition = true;			/// 자동 패배 체크 실행 여부
 	private boolean isGameLostConditionSatisfied = false;		/// 자동 패배 체크 결과
 	private int gameLostConditionSatisfiedFrame = 0;			/// 자동 패배 조건이 시작된 프레임 시점
-	private int maxDurationForGameLostCondition = 100;			/// 자동 패배 조건이 만족된채 게임을 유지시키는 최대 프레임 수
 		
 	private boolean isToCheckTimeOut = true;					/// 타임 아웃 체크 실행 여부
 	private int timeOutConditionSatisfiedFrame = 0;				/// 타임 아웃 조건이 시작된 프레임 시점
 	private boolean isTimeOutConditionSatisfied = false;		/// 타임 아웃 체크 결과
-	private int maxDurationForTimeOutLostCondition = 20;		/// 타임 아웃 조건이 만족된채 게임을 유지시키는 최대 프레임 수
 	private ArrayList<Integer> timerLimits = new ArrayList<Integer>();			///< 타임 아웃 한계시간 (ms/frame)
 	private ArrayList<Integer> timerLimitsBound = new ArrayList<Integer>();		///< 타임 아웃 초과한계횟수
 	private ArrayList<Integer> timerLimitsExceeded = new ArrayList<Integer>();	///< 타임 아웃 초과횟수
@@ -97,8 +105,6 @@ public class MyBotModule extends DefaultBWListener {
 	private int timeOverTestFrameCountLimit = 0;
 	private int timeOverTestFrameCount = 0;						///< 타임 아웃 체크 테스트 실행 
 
-	
-	
 	
 	public void run() {
 		mirror.getModule().setEventListener(this);
@@ -118,14 +124,21 @@ public class MyBotModule extends DefaultBWListener {
 		}
 
 		initializeLostConditionVariables();
-		
-		// Config 파일 관리가 번거롭고, 배포 및 사용시 Config 파일 위치를 지정해주는 것이 번거롭기 때문에, 
-		// Config 를 파일로부터 읽어들이지 않고, Config 클래스의 값을 사용하도록 한다.
-		if(Config.EnableCompleteMapInformation){
+
+		/// 전체 맵 정보 허용 여부 : 불허
+		/// 토너먼트 클라이언트 실행엔진에서도 불허 처리하지만 혹시나 몰라서 이중처리
+		boolean isToEnableCompleteMapInformation = false;
+
+		/// UserInput 허용 여부 : 불허
+		/// 토너먼트 클라이언트 실행엔진에서도 불허 처리하지만 혹시나 몰라서 이중처리
+		// TODO : 테스트때만 true, 실제 사용시에서는 false 로 변경
+		boolean isToEnableUserInput = true;
+
+		if(isToEnableCompleteMapInformation){
 			Broodwar.enableFlag(Enum.CompleteMapInformation.getValue());
 		}
 
-		if(Config.EnableUserInput){
+		if(isToEnableUserInput){
 			Broodwar.enableFlag(Enum.UserInput.getValue());
 		}
 
@@ -135,9 +148,9 @@ public class MyBotModule extends DefaultBWListener {
 		// Fastest: 42 ms/frame.  1초에 24 frame. 일반적으로 1초에 24frame을 기준 게임속도로 한다
 		// Normal: 67 ms/frame. 1초에 15 frame
 		// As fast as possible : 0 ms/frame. CPU가 할수있는 가장 빠른 속도. 
-		Broodwar.setLocalSpeed(Config.SetLocalSpeed);
+		Broodwar.setLocalSpeed(numLocalSpeed);
 		// frameskip을 늘리면 화면 표시도 업데이트 안하므로 훨씬 빠르다
-		Broodwar.setFrameSkip(Config.SetFrameSkip);
+		Broodwar.setFrameSkip(numFrameSkip);
 
 		System.out.println("Map analyzing started");
 		BWTA.readMap();
@@ -166,6 +179,7 @@ public class MyBotModule extends DefaultBWListener {
 	/// 경기 진행 중 매 프레임마다 발생하는 이벤트를 처리합니다
 	@Override
 	public void onFrame() {
+
 		if (Broodwar.isReplay()) {
 			return;
 		}
@@ -209,7 +223,7 @@ public class MyBotModule extends DefaultBWListener {
 			if (isExceptionLostConditionSatisfied) {
 				MyBotModule.Broodwar.drawTextScreen(250, 100, "I lost because of EXCEPTION");
 
-				if (MyBotModule.Broodwar.getFrameCount() - exceptionLostConditionSatisfiedFrame >= maxDurationForExceptionLostCondition) {
+				if (MyBotModule.Broodwar.getFrameCount() - exceptionLostConditionSatisfiedFrame >= maxDurationForLostCondition) {
 					MyBotModule.Broodwar.leaveGame();
 				}
 			}
@@ -344,7 +358,7 @@ public class MyBotModule extends DefaultBWListener {
 			}
 
 			// 빌드서버에서는 향후 적용
-			gameCommander.onNukeDetect(target);
+			//gameCommander.onNukeDetect(target);
 		}
 	}
 
@@ -357,7 +371,7 @@ public class MyBotModule extends DefaultBWListener {
 			}
 			
 			// 빌드서버에서는 향후 적용
-			gameCommander.onPlayerLeft(player);
+			//gameCommander.onPlayerLeft(player);
 		}
 	}
 
@@ -370,11 +384,10 @@ public class MyBotModule extends DefaultBWListener {
 			}
 
 			// 빌드서버에서는 향후 적용
-			gameCommander.onSaveGame(gameName);
+			//gameCommander.onSaveGame(gameName);
 		}
 	}
 	
-
 	/// 텍스트를 입력 후 엔터를 하여 다른 플레이어들에게 텍스트를 전달하려 할 때 발생하는 이벤트를 처리합니다
 	@Override
 	public void onSendText(String text){		
@@ -416,6 +429,50 @@ public class MyBotModule extends DefaultBWListener {
 		timerLimits.add(10000);
 		timerLimitsBound.add(2);
 		timerLimitsExceeded.add(0);
+		
+	    parseConfigFile("bwapi-data\\tm_settings.ini");
+	}
+	
+
+	private void parseConfigFile(String filename) {
+	    File file = new File(filename);
+	    
+	    if (file.exists()) {
+	  		timerLimits.clear();
+	  		timerLimitsBound.clear();
+	  		timerLimitsExceeded.clear();
+	  		
+	  		try (BufferedReader br = new BufferedReader(new FileReader(file));) {
+		        String line = null;
+		  	    while ((line = br.readLine()) != null) {
+			  	      String[] split = line.split(" ");
+			  	      
+			  	      if ("LocalSpeed".equals(split[0])) {
+			  	    	  numLocalSpeed = Integer.parseInt(split[1]);
+			  	      } 
+			  	      else if ("FrameSkip".equals(split[0])) {
+			  	    	  numFrameSkip = Integer.parseInt(split[1]);
+			  	      } 
+			  	      else if ("Timeout".equals(split[0])) {
+			  	    	  timerLimits.add(Integer.parseInt(split[1]));
+			  	    	  timerLimitsBound.add(Integer.parseInt(split[2]));
+			  	    	  timerLimitsExceeded.add(0);
+			  	      } 
+			  	      else if ("MaxDurationForLostCondition".equals(split[0])) {
+			  	    	  maxDurationForLostCondition = Integer.parseInt(split[1]);
+			  	      } 
+			  	      else {
+			  	    	  MyBotModule.Broodwar.drawTextScreen(250, 100, "Invalid Option in Tournament Module Settings: " + split[0]);
+			  	      }
+		  	    }
+	  		} 
+	  		catch (Exception e) {
+	  			e.printStackTrace();
+	  		}
+	    } 
+	    else {
+	      MyBotModule.Broodwar.drawTextScreen(250, 100, "Tournament Module Settings File Not Found, Using Defaults " + file.getPath());
+	    }
 	}
 	
 	/// 사용자가 입력한 text 를 parse 해서 처리합니다
@@ -565,10 +622,10 @@ public class MyBotModule extends DefaultBWListener {
 
 			MyBotModule.Broodwar.drawTextScreen(250, 100, "I lost because I HAVE NO UNIT TO DEFEAT ENEMY PLAYER");
 			MyBotModule.Broodwar.drawTextScreen(250, 115, "I will leave game in " 
-					+ (maxDurationForGameLostCondition - (MyBotModule.Broodwar.getFrameCount() - gameLostConditionSatisfiedFrame)) 
+					+ (maxDurationForLostCondition - (MyBotModule.Broodwar.getFrameCount() - gameLostConditionSatisfiedFrame)) 
 					+ " frames");
 
-			if (MyBotModule.Broodwar.getFrameCount() - gameLostConditionSatisfiedFrame >= maxDurationForGameLostCondition) {
+			if (MyBotModule.Broodwar.getFrameCount() - gameLostConditionSatisfiedFrame >= maxDurationForLostCondition) {
 				MyBotModule.Broodwar.leaveGame();
 			}
 		}
@@ -665,7 +722,7 @@ public class MyBotModule extends DefaultBWListener {
 
 				MyBotModule.Broodwar.drawTextScreen(250, 100, "I lost because of TIMEOUT");
 
-				if (MyBotModule.Broodwar.getFrameCount() - timeOutConditionSatisfiedFrame >= maxDurationForTimeOutLostCondition) {
+				if (MyBotModule.Broodwar.getFrameCount() - timeOutConditionSatisfiedFrame >= maxDurationForLostCondition) {
 					MyBotModule.Broodwar.leaveGame();
 				}
 			}

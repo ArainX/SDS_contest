@@ -145,7 +145,7 @@ int InformationManager::getNumUnits(BWAPI::UnitType t, BWAPI::Player player)
 }
 
 
-const UnitData & InformationManager::getUnitData(BWAPI::Player player) const
+UnitData & InformationManager::getUnitData(BWAPI::Player player) 
 {
     return _unitData.find(player)->second;
 }
@@ -182,6 +182,7 @@ void InformationManager::updateBaseLocationInfo()
 				if (enemyStartLocationFound == false) {
 					enemyStartLocationFound = true;
 					_mainBaseLocations[enemyPlayer] = startLocation;
+					std::cout << "_mainBaseLocations[enemyPlayer] find by exploration as " << startLocation->getTilePosition().x << "," << startLocation->getTilePosition().y << std::endl;
 					_mainBaseLocationChanged[enemyPlayer] = true;
 				}
 			}
@@ -206,6 +207,7 @@ void InformationManager::updateBaseLocationInfo()
 			_mainBaseLocations[enemyPlayer] = unexplored;
 			_mainBaseLocationChanged[enemyPlayer] = true;
 			_occupiedBaseLocations[enemyPlayer].push_back(unexplored);
+			std::cout << "_mainBaseLocations[enemyPlayer] find by elimination as " << unexplored->getTilePosition().x << "," << unexplored->getTilePosition().y << std::endl;
 		}
 	}
 
@@ -226,13 +228,20 @@ void InformationManager::updateBaseLocationInfo()
 
 	// enemy의 mainBaseLocations을 발견한 후, 그곳에 있는 건물을 모두 파괴한 경우 _occupiedBaseLocations 중에서 _mainBaseLocations 를 선정한다
 	if (_mainBaseLocations[enemyPlayer] != nullptr) {
-		if (existsPlayerBuildingInRegion(BWTA::getRegion(_mainBaseLocations[enemyPlayer]->getTilePosition()), enemyPlayer) == false)
-		{
-			for (std::list<BWTA::BaseLocation*>::const_iterator iterator = _occupiedBaseLocations[enemyPlayer].begin(), end = _occupiedBaseLocations[enemyPlayer].end(); iterator != end; ++iterator) {
-				if (existsPlayerBuildingInRegion(BWTA::getRegion((*iterator)->getTilePosition()), enemyPlayer) == true) {
-					_mainBaseLocations[enemyPlayer] = *iterator;
-					_mainBaseLocationChanged[enemyPlayer] = true;
-					break;
+
+		// 적군의 빠른 앞마당 건물 건설 + 아군의 가장 마지막 정찰 방문의 경우, enemy의 mainBaseLocations를 방문안한 상태에서는 건물이 하나도 없다고 판단하여 mainBaseLocation 을 변경하는 현상이 발생해서
+		// enemy의 mainBaseLocations을 실제 방문했었던 적이 한번은 있어야 한다라는 조건 추가.  
+		if (BWAPI::Broodwar->isExplored(_mainBaseLocations[enemyPlayer]->getTilePosition())) {
+
+			if (existsPlayerBuildingInRegion(BWTA::getRegion(_mainBaseLocations[enemyPlayer]->getTilePosition()), enemyPlayer) == false)
+			{
+				for (std::list<BWTA::BaseLocation*>::const_iterator iterator = _occupiedBaseLocations[enemyPlayer].begin(), end = _occupiedBaseLocations[enemyPlayer].end(); iterator != end; ++iterator) {
+					if (existsPlayerBuildingInRegion(BWTA::getRegion((*iterator)->getTilePosition()), enemyPlayer) == true) {
+						_mainBaseLocations[enemyPlayer] = *iterator;
+						_mainBaseLocationChanged[enemyPlayer] = true;
+						std::cout << "_mainBaseLocations[enemyPlayer] changed by destruction as " << _mainBaseLocations[enemyPlayer]->getTilePosition().x << "," << _mainBaseLocations[enemyPlayer]->getTilePosition().y << std::endl;
+						break;
+					}
 				}
 			}
 		}
@@ -409,7 +418,7 @@ bool InformationManager::existsPlayerBuildingInRegion(BWTA::Region * region, BWA
 }
 
 // 해당 Player 의 UnitAndUnitInfoMap 을 갖고온다
-const UnitAndUnitInfoMap & InformationManager::getUnitAndUnitInfoMap(BWAPI::Player player) const
+UnitAndUnitInfoMap & InformationManager::getUnitAndUnitInfoMap(BWAPI::Player player) 
 {
 	return getUnitData(player).getUnitAndUnitInfoMap();
 }

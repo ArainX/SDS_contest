@@ -1,6 +1,6 @@
 ﻿/*
 +----------------------------------------------------------------------+
-| BasicBot                                                             |
+| BuildServerCode                                                        |
 +----------------------------------------------------------------------+
 | Samsung SDS - 2017 Algorithm Contest                                 |
 +----------------------------------------------------------------------+
@@ -38,6 +38,23 @@ MyBotModule::~MyBotModule(){
 
 void MyBotModule::onStart(){
 	
+	/// 전체 맵 정보 허용 여부 : 불허
+	/// 토너먼트 클라이언트 실행엔진에서도 불허 처리하지만 혹시나 몰라서 이중처리
+	bool isToEnableCompleteMapInformation = false;
+	
+	/// UserInput 허용 여부 : 불허
+	/// 토너먼트 클라이언트 실행엔진에서도 불허 처리하지만 혹시나 몰라서 이중처리
+	// TODO : 테스트때만 true, 실제 사용시에서는 false 로 변경
+	bool isToEnableUserInput = true;
+
+	/// 로컬 스피드 
+	/// 토너먼트 클라이언트 실행엔진에서 처리하지만 혹시나 몰라서 이중처리
+	int numLocalSpeed = 20;
+
+	/// frameskip
+	/// 토너먼트 클라이언트 실행엔진에서 처리하지만 혹시나 몰라서 이중처리
+	int numFrameSkip = 0;
+
 	if (BWAPI::Broodwar->isReplay()) {
 		return;
 	}
@@ -45,28 +62,25 @@ void MyBotModule::onStart(){
 	time_t t;
 	srand((unsigned int)(time(&t)));
 
-	// Config 파일 관리가 번거롭고, 배포 및 사용시 Config 파일 위치를 지정해주는 것이 번거롭기 때문에, 
-	// Config 를 파일로부터 읽어들이지 않고, Config 클래스의 값을 사용하도록 합니다.
-	if (Config::BWAPIOptions::EnableCompleteMapInformation)
+	if (isToEnableCompleteMapInformation)
 	{
 		BWAPI::Broodwar->enableFlag(BWAPI::Flag::CompleteMapInformation);
 	}
 
-	if (Config::BWAPIOptions::EnableUserInput)
+	if (isToEnableUserInput)
 	{
 		BWAPI::Broodwar->enableFlag(BWAPI::Flag::UserInput);
 	}
 
 	Broodwar->setCommandOptimizationLevel(1);
 
-
 	// Speedups for automated play, sets the number of milliseconds bwapi spends in each frame
 	// Fastest: 42 ms/frame.  1초에 24 frame. 일반적으로 1초에 24frame을 기준 게임속도로 합니다
 	// Normal: 67 ms/frame. 1초에 15 frame
 	// As fast as possible : 0 ms/frame. CPU가 할수있는 가장 빠른 속도. 
-	BWAPI::Broodwar->setLocalSpeed(Config::BWAPIOptions::SetLocalSpeed);
+//	BWAPI::Broodwar->setLocalSpeed(numLocalSpeed);
 	// frameskip을 늘리면 화면 표시도 업데이트 안하므로 훨씬 빠릅니다
-	BWAPI::Broodwar->setFrameSkip(Config::BWAPIOptions::SetFrameSkip);
+//	BWAPI::Broodwar->setFrameSkip(numFrameSkip);
 	
 	std::cout << "Map analyzing started" << std::endl;
 	BWTA::readMap();
@@ -87,7 +101,6 @@ void MyBotModule::onEnd(bool isWinner){
 }
 
 void MyBotModule::onFrame(){
-
 	if (BWAPI::Broodwar->isReplay()) {
 		return;
 	}
@@ -225,7 +238,7 @@ void MyBotModule::onNukeDetect(BWAPI::Position target){
 		}
 
 		// 빌드서버에서는 향후 적용
-		gameCommander.onNukeDetect(target);
+		//gameCommander.onNukeDetect(target);
 	}
 }
 
@@ -237,7 +250,7 @@ void MyBotModule::onPlayerLeft(BWAPI::Player player){
 		}
 
 		// 빌드서버에서는 향후 적용
-		gameCommander.onPlayerLeft(player);
+		//gameCommander.onPlayerLeft(player);
 	}
 }
 
@@ -249,7 +262,7 @@ void MyBotModule::onSaveGame(std::string gameName){
 		}
 
 		// 빌드서버에서는 향후 적용
-		gameCommander.onSaveGame(gameName);
+		//gameCommander.onSaveGame(gameName);
 	}
 }
 
@@ -262,7 +275,7 @@ void MyBotModule::onSendText(std::string text){
 	parseTextCommand(text);
 
 	gameCommander.onSendText(text);
-		
+
 	BWAPI::Broodwar->sendText("%s", text.c_str());
 }
 
@@ -277,22 +290,9 @@ void MyBotModule::onReceiveText(BWAPI::Player player, std::string text){
 
 void MyBotModule::initializeLostConditionVariables()
 {
-	// 자동 패배 조건 체크 관련 변수들 초기화
-	isToCheckGameLostCondition = true;
-	isGameLostConditionSatisfied = false;
-	gameLostConditionSatisfiedFrame = 0;
-	// 자동 패배 조건이 만족된채 게임을 유지시키는 최대 프레임 수 : 100 프레임
-	maxDurationForGameLostCondition = 100;
-
-	// 타임아웃 체크 관련 변수들 초기화
-	isToCheckTimeOut = true;
-	isTimeOutConditionSatisfied = false;
-	timeOutConditionSatisfiedFrame = 0;
-	// 타임 아웃 조건이 만족된채 게임을 유지시키는 최대 프레임 수 : 5 프레임
-	maxDurationForTimeOutLostCondition = 5;
-
-	timeStartedAtFrame.resize(100000, 0);
-	timeElapsedAtFrame.resize(100000, 0);
+	numLocalSpeed = 20;
+	numFrameSkip = 0;
+	maxDurationForLostCondition = 200;
 
 	timerLimits.push_back(55);
 	timerLimitsBound.push_back(320);
@@ -305,6 +305,25 @@ void MyBotModule::initializeLostConditionVariables()
 	timerLimits.push_back(10000);
 	timerLimitsBound.push_back(2);
 	timerLimitsExceeded.push_back(0);
+
+	parseConfigFile("bwapi-data\\tm_settings.ini");
+	
+	std::cout << "numLocalSpeed " << numLocalSpeed << std::endl;
+	std::cout << "numFrameSkip " << numFrameSkip << std::endl;
+	std::cout << "maxDurationForLostCondition " << maxDurationForLostCondition << std::endl;
+	
+	// 자동 패배 조건 체크 관련 변수들 초기화
+	isToCheckGameLostCondition = true;
+	isGameLostConditionSatisfied = false;
+	gameLostConditionSatisfiedFrame = 0;
+
+	// 타임아웃 체크 관련 변수들 초기화
+	isToCheckTimeOut = true;
+	isTimeOutConditionSatisfied = false;
+	timeOutConditionSatisfiedFrame = 0;
+
+	timeStartedAtFrame.resize(100000, 0);
+	timeElapsedAtFrame.resize(100000, 0);
 
 	// 타임아웃 체크 테스트 관련 변수들 초기화
 	isToTestTimeOut = false;
@@ -409,8 +428,6 @@ void MyBotModule::checkLostConditions()
 // TODO (향후 추가여부 검토) : '일꾼은 있지만 커맨드센터도 없고 보유 미네랄도 없고 지도에 미네랄이 하나도 없는 경우' 처럼 게임 승리를 이끌 가능성이 현실적으로 전혀 없는 경우까지 추가 체크
 void MyBotModule::checkGameLostConditionAndLeaveGame()
 {
-	bool isLostGame = false;
-
 	int canProduceBuildingCount = 0;
 	int canAttackBuildingCount = 0;
 	int canDoSomeThingNonBuildingUnitCount = 0;
@@ -468,9 +485,9 @@ void MyBotModule::checkGameLostConditionAndLeaveGame()
 	if (isGameLostConditionSatisfied) {
 
 		BWAPI::Broodwar->drawTextScreen(250, 100, "I lost because I HAVE NO UNIT TO DEFEAT ENEMY PLAYER");
-		BWAPI::Broodwar->drawTextScreen(250, 115, "I will leave game in %d frames", maxDurationForGameLostCondition - (BWAPI::Broodwar->getFrameCount() - gameLostConditionSatisfiedFrame));
+		BWAPI::Broodwar->drawTextScreen(250, 115, "I will leave game in %d frames", maxDurationForLostCondition - (BWAPI::Broodwar->getFrameCount() - gameLostConditionSatisfiedFrame));
 
-		if (BWAPI::Broodwar->getFrameCount() - gameLostConditionSatisfiedFrame >= maxDurationForGameLostCondition) {
+		if (BWAPI::Broodwar->getFrameCount() - gameLostConditionSatisfiedFrame >= maxDurationForLostCondition) {
 			BWAPI::Broodwar->leaveGame();
 		}
 	}
@@ -508,7 +525,7 @@ void MyBotModule::checkTimeOutConditionAndLeaveGame()
 		BWAPI::Broodwar->drawTextScreen(260, 5, "FrameCount :");
 		BWAPI::Broodwar->drawTextScreen(340, 5, "%d", BWAPI::Broodwar->getFrameCount());
 		BWAPI::Broodwar->drawTextScreen(370, 5, "(%3d:%2d)", (int)(BWAPI::Broodwar->getFrameCount() / (23.8 * 60)), (int)((int)(BWAPI::Broodwar->getFrameCount() / 23.8) % 60));
-
+						
 		// 타임아웃 체크 현황을 화면에 표시
 		int y = 15;
 		for (size_t t(0); t < timerLimits.size(); ++t)
@@ -522,8 +539,8 @@ void MyBotModule::checkTimeOutConditionAndLeaveGame()
 		int y = 100;
 		for (int i = BWAPI::Broodwar->getFrameCount() - 9; i < BWAPI::Broodwar->getFrameCount(); ++i)
 		{
-		Broodwar->drawTextScreen(260, y, "[%5d] : %20lld %5d ms", i, timeStartedAtFrame[i], timeElapsedAtFrame[i]);
-		y += 10;
+			Broodwar->drawTextScreen(260, y, "[%5d] : %20lld %5d ms", i, timeStartedAtFrame[i], timeElapsedAtFrame[i]);
+			y += 10;
 		}
 
 		// 최대 많은 시간을 소요한 프레임을 화면에 표시
@@ -532,10 +549,10 @@ void MyBotModule::checkTimeOutConditionAndLeaveGame()
 		long long maxTimeElapsedAtFrame = 0;
 		for (int i = 0; i < BWAPI::Broodwar->getFrameCount(); ++i)
 		{
-		if (maxTimeElapsedAtFrame < timeElapsedAtFrame[i]) {
-		maxTimeElapsedAtFrame = timeElapsedAtFrame[i];
-		maxI = i;
-		}
+			if (maxTimeElapsedAtFrame < timeElapsedAtFrame[i]) {
+				maxTimeElapsedAtFrame = timeElapsedAtFrame[i];
+				maxI = i;
+			}
 		}
 		Broodwar->drawTextScreen(260, y, "[%5d] : %20lld %5d ms", maxI, timeStartedAtFrame[maxI], timeElapsedAtFrame[maxI]);
 		*/
@@ -564,11 +581,89 @@ void MyBotModule::checkTimeOutConditionAndLeaveGame()
 
 			Broodwar->drawTextScreen(250, 100, "I lost because of TIMEOUT");
 
-			if (Broodwar->getFrameCount() - timeOutConditionSatisfiedFrame >= maxDurationForTimeOutLostCondition) {
+			if (Broodwar->getFrameCount() - timeOutConditionSatisfiedFrame >= maxDurationForLostCondition) {
 				Broodwar->leaveGame();
 			}
 		}
-
-
 	}
+}
+
+
+void MyBotModule::parseConfigFile(const std::string & filename) {
+	std::vector<std::string> lines(getLines(filename));
+
+	if (lines.size() > 0)
+	{
+		timerLimits.clear();
+		timerLimitsBound.clear();
+		timerLimitsExceeded.clear();
+	}
+
+	for (size_t l(0); l<lines.size(); ++l)
+	{
+		std::istringstream iss(lines[l]);
+		std::string option;
+		iss >> option;
+
+		if (strcmp(option.c_str(), "LocalSpeed") == 0)
+		{
+			iss >> numLocalSpeed;
+		}
+		else if (strcmp(option.c_str(), "FrameSkip") == 0)
+		{
+			iss >> numFrameSkip;
+		}
+		else if (strcmp(option.c_str(), "Timeout") == 0)
+		{
+			int timeLimit = 0;
+			int bound = 0;
+
+			iss >> timeLimit;
+			iss >> bound;
+
+			timerLimits.push_back(timeLimit);
+			timerLimitsBound.push_back(bound);
+			timerLimitsExceeded.push_back(0);
+		}
+		else if (strcmp(option.c_str(), "MaxDurationForLostCondition") == 0)
+		{
+			iss >> maxDurationForLostCondition;
+		}
+		else
+		{
+			BWAPI::Broodwar->drawTextScreen(250, 100, "Invalid Option in Tournament Module Settings: %s", option.c_str());
+		}
+	}
+}
+
+std::vector<std::string> MyBotModule::getLines(const std::string & filename)
+{
+	// set up the file
+	std::ifstream fin(filename.c_str());
+	if (!fin.is_open())
+	{
+		BWAPI::Broodwar->drawTextScreen(250, 100, "Tournament Module Settings File %s Not Found, Using Defaults", filename.c_str());
+		return std::vector<std::string>();
+	}
+
+	std::string line;
+
+	std::vector<std::string> lines;
+
+	// each line of the file will be a new player to add
+	while (fin.good())
+	{
+		// get the line and set up the string stream
+		getline(fin, line);
+
+		// skip blank lines and comments
+		if (line.length() > 1 && line[0] != '#')
+		{
+			lines.push_back(line);
+		}
+	}
+
+	fin.close();
+
+	return lines;
 }

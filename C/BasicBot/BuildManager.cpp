@@ -42,8 +42,17 @@ void BuildManager::update()
 			seedPosition = getSeedPositionFromSeedLocationStrategy(currentItem.seedLocationStrategy);
 		}
 
+		/*
+		std::cout << "Build " << currentItem.metaType.getName() 
+			<< " seedLocation : " << currentItem.seedLocation.x << "," << currentItem.seedLocation.y 
+			<< " seedLocationStrategy " << currentItem.seedLocationStrategy 
+			<< " seedPosition : " << seedPosition.x / TILE_SIZE << "," << seedPosition.y / TILE_SIZE
+			<< std::endl;
+		*/
+
 		// this is the unit which can produce the currentItem
-		BWAPI::Unit producer = getProducer(currentItem.metaType, BWAPI::Position(currentItem.seedLocation), currentItem.producerID);
+		//BWAPI::Unit producer = getProducer(currentItem.metaType, BWAPI::Position(currentItem.seedLocation), currentItem.producerID);
+		BWAPI::Unit producer = getProducer(currentItem.metaType, seedPosition, currentItem.producerID);
 
 		/*
 		if (currentItem.metaType.isUnit() && currentItem.metaType.getUnitType().isBuilding() ) {
@@ -317,7 +326,14 @@ BWAPI::Unit BuildManager::getProducer(MetaType t, BWAPI::Position closestTo, int
         candidateProducers.insert(unit);
     }
 
-    return getClosestUnitToPosition(candidateProducers, closestTo);
+
+	//std::cout << "getProducer to produce " << t.getName()
+	//	<< " producerType " << producerType.getName()
+	//	<< " candidateProducers size " << candidateProducers.size() 
+	//	<< " getClosestTo " << closestTo.x / TILE_SIZE << "," << closestTo.y / TILE_SIZE 
+	//	<< std::endl;
+
+	return getClosestUnitToPosition(candidateProducers, closestTo);
 }
 
 // Protoss_Archon / Protoss_Dark_Archon 를 만들기 위해 producer 와 같은 type의, producer 가 아닌 다른 Unit 중에서 가장 가까운 Unit을 찾는다
@@ -352,7 +368,7 @@ BWAPI::Unit BuildManager::getClosestUnitToPosition(const BWAPI::Unitset & units,
     }
 
     // if we don't care where the unit is return the first one we have
-	if (closestTo == BWAPI::Positions::None)
+	if (closestTo == BWAPI::Positions::None || closestTo == BWAPI::Positions::Invalid || closestTo == BWAPI::Positions::Unknown)
     {
         return *(units.begin());
     }
@@ -365,6 +381,9 @@ BWAPI::Unit BuildManager::getClosestUnitToPosition(const BWAPI::Unitset & units,
 		if (unit == nullptr) continue;
 
 		double distance = unit->getDistance(closestTo);
+
+		//std::cout << "distance to " << unit->getType().getName() << " is " << distance << std::endl;
+
 		if (!closestUnit || distance < minDist) 
         {
 			closestUnit = unit;
@@ -568,7 +587,7 @@ BWAPI::Position	BuildManager::getSeedPositionFromSeedLocationStrategy(BuildOrder
 
 	case BuildOrderItem::SeedPositionStrategy::MainBaseLocation:
 		tempBaseLocation = InformationManager::Instance().getMainBaseLocation(BWAPI::Broodwar->self());
-		if (tempBaseLocation == nullptr) {
+		if (tempBaseLocation != nullptr) {
 			seedPosition = tempBaseLocation->getPosition();
 		}
 		break;
@@ -585,73 +604,65 @@ BWAPI::Position	BuildManager::getSeedPositionFromSeedLocationStrategy(BuildOrder
 		// 삼각함수 값은 데카르트 좌표계에서 계산하므로, vy를 부호 반대로 해서 각도 t 값을 구함 
 
 		// MainBaseLocation 이 null 이거나, ChokePoint 가 null 이면, MainBaseLocation 주위에서 가능한 곳을 리턴한다
-		if (tempBaseLocation == nullptr) {
-			//std::cout << "q";
-			seedPosition = tempBaseLocation->getPosition();
-			break;
-		}
-		else if (tempChokePoint == nullptr) {
-			//std::cout << "r";
-			seedPosition = tempBaseLocation->getPosition();
-			break;
-		}
+		if (tempBaseLocation != nullptr && tempChokePoint != nullptr) {
 
-		// BaseLocation 에서 ChokePoint 로의 벡터를 구한다
-		vx = tempChokePoint->getCenter().x - tempBaseLocation->getPosition().x;
-		//std::cout << "vx : " << vx ;
-		vy = (tempChokePoint->getCenter().y - tempBaseLocation->getPosition().y) * (-1);
-		//std::cout << "vy : " << vy;
-		d = std::sqrt(vx * vx + vy * vy) * 0.5; // BaseLocation 와 ChokePoint 간 거리보다 조금 짧은 거리로 조정. BaseLocation가 있는 Region은 대부분 직사각형 형태이기 때문
-		//std::cout << "d : " << d;
-		t = std::atan2(vy, vx + 0.0001); // 라디안 단위
-		//std::cout << "t : " << t;
+			// BaseLocation 에서 ChokePoint 로의 벡터를 구한다
+			vx = tempChokePoint->getCenter().x - tempBaseLocation->getPosition().x;
+			//std::cout << "vx : " << vx ;
+			vy = (tempChokePoint->getCenter().y - tempBaseLocation->getPosition().y) * (-1);
+			//std::cout << "vy : " << vy;
+			d = std::sqrt(vx * vx + vy * vy) * 0.5; // BaseLocation 와 ChokePoint 간 거리보다 조금 짧은 거리로 조정. BaseLocation가 있는 Region은 대부분 직사각형 형태이기 때문
+			//std::cout << "d : " << d;
+			t = std::atan2(vy, vx + 0.0001); // 라디안 단위
+			//std::cout << "t : " << t;
 
-		// cos(t+90), sin(t+180) 등 삼각함수 Trigonometric functions of allied angles 을 이용. y축에 대해서는 반대부호로 적용
+			// cos(t+90), sin(t+180) 등 삼각함수 Trigonometric functions of allied angles 을 이용. y축에 대해서는 반대부호로 적용
 
-		// BaseLocation 에서 ChokePoint 반대쪽 방향의 Back Yard : 데카르트 좌표계에서 (cos(t+180) = -cos(t), sin(t+180) = -sin(t))
-		bx = tempBaseLocation->getTilePosition().x - (int)(d * std::cos(t) / TILE_SIZE);
-		by = tempBaseLocation->getTilePosition().y + (int)(d * std::sin(t) / TILE_SIZE);
-		//std::cout << "i";
-		tempTilePosition = BWAPI::TilePosition(bx, by);
-		// std::cout << "ConstructionPlaceFinder MainBaseBackYard tempTilePosition " << tempTilePosition.x << "," << tempTilePosition.y << std::endl;
-
-		//std::cout << "k";
-		// 해당 지점이 같은 Region 에 속하고 Buildable 한 타일인지 확인
-		if (!tempTilePosition.isValid() || !BWAPI::Broodwar->isBuildable(tempTilePosition.x, tempTilePosition.y, false) || tempBaseRegion != BWTA::getRegion(BWAPI::Position(bx*TILE_SIZE, by*TILE_SIZE))) {
-			//std::cout << "l";
-
-			// BaseLocation 에서 ChokePoint 방향에 대해 오른쪽으로 90도 꺾은 방향의 Back Yard : 데카르트 좌표계에서 (cos(t-90) = sin(t),   sin(t-90) = - cos(t))
-			bx = tempBaseLocation->getTilePosition().x + (int)(d * std::sin(t) / TILE_SIZE);
-			by = tempBaseLocation->getTilePosition().y + (int)(d * std::cos(t) / TILE_SIZE);
+			// BaseLocation 에서 ChokePoint 반대쪽 방향의 Back Yard : 데카르트 좌표계에서 (cos(t+180) = -cos(t), sin(t+180) = -sin(t))
+			bx = tempBaseLocation->getTilePosition().x - (int)(d * std::cos(t) / TILE_SIZE);
+			by = tempBaseLocation->getTilePosition().y + (int)(d * std::sin(t) / TILE_SIZE);
+			//std::cout << "i";
 			tempTilePosition = BWAPI::TilePosition(bx, by);
 			// std::cout << "ConstructionPlaceFinder MainBaseBackYard tempTilePosition " << tempTilePosition.x << "," << tempTilePosition.y << std::endl;
-			//std::cout << "m";
 
-			if (!tempTilePosition.isValid() || !BWAPI::Broodwar->isBuildable(tempTilePosition.x, tempTilePosition.y, false)) {
-				// BaseLocation 에서 ChokePoint 방향에 대해 왼쪽으로 90도 꺾은 방향의 Back Yard : 데카르트 좌표계에서 (cos(t+90) = -sin(t),   sin(t+90) = cos(t))
-				bx = tempBaseLocation->getTilePosition().x - (int)(d * std::sin(t) / TILE_SIZE);
-				by = tempBaseLocation->getTilePosition().y - (int)(d * std::cos(t) / TILE_SIZE);
+			//std::cout << "k";
+			// 해당 지점이 같은 Region 에 속하고 Buildable 한 타일인지 확인
+			if (!tempTilePosition.isValid() || !BWAPI::Broodwar->isBuildable(tempTilePosition.x, tempTilePosition.y, false) || tempBaseRegion != BWTA::getRegion(BWAPI::Position(bx*TILE_SIZE, by*TILE_SIZE))) {
+				//std::cout << "l";
+
+				// BaseLocation 에서 ChokePoint 방향에 대해 오른쪽으로 90도 꺾은 방향의 Back Yard : 데카르트 좌표계에서 (cos(t-90) = sin(t),   sin(t-90) = - cos(t))
+				bx = tempBaseLocation->getTilePosition().x + (int)(d * std::sin(t) / TILE_SIZE);
+				by = tempBaseLocation->getTilePosition().y + (int)(d * std::cos(t) / TILE_SIZE);
 				tempTilePosition = BWAPI::TilePosition(bx, by);
 				// std::cout << "ConstructionPlaceFinder MainBaseBackYard tempTilePosition " << tempTilePosition.x << "," << tempTilePosition.y << std::endl;
+				//std::cout << "m";
 
-				if (!tempTilePosition.isValid() || !BWAPI::Broodwar->isBuildable(tempTilePosition.x, tempTilePosition.y, false) || tempBaseRegion != BWTA::getRegion(BWAPI::Position(bx*TILE_SIZE, by*TILE_SIZE))) {
-
-					// BaseLocation 에서 ChokePoint 방향 절반 지점의 Back Yard : 데카르트 좌표계에서 (cos(t),   sin(t))
-					bx = tempBaseLocation->getTilePosition().x + (int)(d * std::cos(t) / TILE_SIZE);
-					by = tempBaseLocation->getTilePosition().y - (int)(d * std::sin(t) / TILE_SIZE);
+				if (!tempTilePosition.isValid() || !BWAPI::Broodwar->isBuildable(tempTilePosition.x, tempTilePosition.y, false)) {
+					// BaseLocation 에서 ChokePoint 방향에 대해 왼쪽으로 90도 꺾은 방향의 Back Yard : 데카르트 좌표계에서 (cos(t+90) = -sin(t),   sin(t+90) = cos(t))
+					bx = tempBaseLocation->getTilePosition().x - (int)(d * std::sin(t) / TILE_SIZE);
+					by = tempBaseLocation->getTilePosition().y - (int)(d * std::cos(t) / TILE_SIZE);
 					tempTilePosition = BWAPI::TilePosition(bx, by);
 					// std::cout << "ConstructionPlaceFinder MainBaseBackYard tempTilePosition " << tempTilePosition.x << "," << tempTilePosition.y << std::endl;
-					//std::cout << "m";
-				}
 
+					if (!tempTilePosition.isValid() || !BWAPI::Broodwar->isBuildable(tempTilePosition.x, tempTilePosition.y, false) || tempBaseRegion != BWTA::getRegion(BWAPI::Position(bx*TILE_SIZE, by*TILE_SIZE))) {
+
+						// BaseLocation 에서 ChokePoint 방향 절반 지점의 Back Yard : 데카르트 좌표계에서 (cos(t),   sin(t))
+						bx = tempBaseLocation->getTilePosition().x + (int)(d * std::cos(t) / TILE_SIZE);
+						by = tempBaseLocation->getTilePosition().y - (int)(d * std::sin(t) / TILE_SIZE);
+						tempTilePosition = BWAPI::TilePosition(bx, by);
+						// std::cout << "ConstructionPlaceFinder MainBaseBackYard tempTilePosition " << tempTilePosition.x << "," << tempTilePosition.y << std::endl;
+						//std::cout << "m";
+					}
+
+				}
 			}
-		}
-		//std::cout << "z";
-		if (!tempTilePosition.isValid() || !BWAPI::Broodwar->isBuildable(tempTilePosition.x, tempTilePosition.y, false)) {
-			seedPosition = tempBaseLocation->getPosition();
-		}
-		else {
-			seedPosition = BWAPI::Position(tempTilePosition);
+			//std::cout << "z";
+			if (!tempTilePosition.isValid() || !BWAPI::Broodwar->isBuildable(tempTilePosition.x, tempTilePosition.y, false)) {
+				seedPosition = tempBaseLocation->getPosition();
+			}
+			else {
+				seedPosition = BWAPI::Position(tempTilePosition);
+			}
 		}
 		//std::cout << "w";
 		// std::cout << "ConstructionPlaceFinder MainBaseBackYard desiredPosition " << desiredPosition.x << "," << desiredPosition.y << std::endl;
@@ -803,13 +814,26 @@ void BuildManager::checkBuildOrderQueueDeadlockAndAndFixIt()
 				<< std::endl;
 				*/
 
-				// 건물을 생산하는 유닛이나, 유닛을 생산하는 건물이 존재하지 않고, 건설 예정이지도 않으면 dead lock
+				// 건물을 생산하는 유닛이나, 유닛을 생산하는 건물이 존재하지 않고, 훈련/건설 예정이지도 않으면 dead lock
 				if (isProducerWillExist(producerType) == false) {
 					isDeadlockCase = true;
 				}
 
+				// 건물의 경우, 건물을 생산할 수 있는 자원이 없으면 일단 데드락 체크를 보류함.
+				if (unitType.isBuilding()) {
+
+					if (hasEnoughResources(currentItem.metaType) == false)
+					{
+						isDeadlockCase = false;
+					}
+					// BWAPI::Broodwar->canMake : Checks all the requirements include resources, supply, technology tree, availability, and required units
+					else if (BWAPI::Broodwar->canMake(unitType) == false) {
+						isDeadlockCase = false;
+					}
+				}
+
 				// Refinery 건물의 경우, Refinery 가 건설되지 않은 Geyser가 있는 경우에만 가능
-				if (!isDeadlockCase && unitType == InformationManager::Instance().getRefineryBuildingType())
+				if (!isDeadlockCase && unitType.isRefinery())
 				{
 					bool hasAvailableGeyser = true;
 
