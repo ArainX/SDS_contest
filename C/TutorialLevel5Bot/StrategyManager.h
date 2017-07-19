@@ -13,9 +13,9 @@
 
 namespace MyBot
 {
-	/// 상황을 판단하여, 정찰, 빌드, 공격, 방어 등을 수행하도록 총괄 지휘를 하는 class
-	/// InformationManager 에 있는 정보들로부터 상황을 판단하고, 
-	/// BuildManager 의 buildQueue에 빌드 (건물 건설 / 유닛 훈련 / 테크 리서치 / 업그레이드) 명령을 입력합니다.
+	/// 상황을 판단하여, 정찰, 빌드, 공격, 방어 등을 수행하도록 총괄 지휘를 하는 class<br>
+	/// InformationManager 에 있는 정보들로부터 상황을 판단하고, <br>
+	/// BuildManager 의 buildQueue에 빌드 (건물 건설 / 유닛 훈련 / 테크 리서치 / 업그레이드) 명령을 입력합니다.<br>
 	/// 정찰, 빌드, 공격, 방어 등을 수행하는 코드가 들어가는 class
 	class StrategyManager
 	{
@@ -43,5 +43,34 @@ namespace MyBot
 
 		/// 경기 진행 중 매 프레임마다 경기 전략 관련 로직을 실행합니다
 		void update();
+
+		// BasicBot 1.1 Patch Start ////////////////////////////////////////////////
+
+	private:
+		/// 한 게임에 대한 기록을 저장하는 자료구조
+		class GameRecord {
+		public:
+			std::string mapName;
+			std::string enemyName;
+			std::string enemyRace;
+			std::string enemyRealRace;
+			std::string myName;
+			std::string myRace;
+			int gameFrameCount = 0;
+			int myWinCount = 0;
+			int myLoseCount = 0;
+		};
+		/// 과거 전체 게임들의 기록을 저장하는 자료구조
+		std::vector<GameRecord> gameRecordList;
+
+		/// 과거 전체 게임 기록을 로딩합니다
+		void loadGameRecordList();
+		/// 과거 전체 게임 기록 + 이번 게임 기록을 저장합니다
+		void saveGameRecordList(bool isWinner);
+		/// 이번 게임 중간에 상시적으로 로그를 저장합니다
+		void saveGameLog();
+
+		// BasicBot 1.1 Patch End //////////////////////////////////////////////////
+
 	};
 }

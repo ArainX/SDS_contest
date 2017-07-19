@@ -1,5 +1,7 @@
 var searchData=
 [
+  ['savegamelog',['saveGameLog',['../class_my_bot_1_1_strategy_manager.html#a0f29809d630ac63ce8172ea859179a3a',1,'MyBot::StrategyManager']]],
+  ['savegamerecordlist',['saveGameRecordList',['../class_my_bot_1_1_strategy_manager.html#acb84f4ccf2bb6633e99fe437b84439e6',1,'MyBot::StrategyManager']]],
   ['scoutmanager',['ScoutManager',['../class_my_bot_1_1_scout_manager.html#a02a9a7fa8bfcdd0db032feb23f37ef53',1,'MyBot::ScoutManager']]],
   ['search',['search',['../class_my_bot_1_1_map_tools.html#a0f81a0a818bbb1c8d07f4e028706a30a',1,'MyBot::MapTools']]],
   ['selectunitoftype',['selectUnitOfType',['../class_my_bot_1_1_build_manager.html#ab8e3c028173ec46fb2775ff243ad8d30',1,'MyBot::BuildManager']]],

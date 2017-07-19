@@ -2,8 +2,7 @@ var searchData=
 [
   ['race',['race',['../class_meta_type.html#a3bccddb03f4a4bb72c293d6a6bab608b',1,'MetaType']]],
   ['readdirectory',['ReadDirectory',['../class_config.html#a38e7871525087234f7537c28c79f863e',1,'Config']]],
-  ['readfile',['readFile',['../class_common.html#a48757be6d36669d6864fa9c9e276e3f6',1,'Common']]],
-  ['readresults',['readResults',['../class_common.html#a3be7966c59e5abb7c59b01387b666bdf',1,'Common']]],
+  ['readfile',['readFile',['../class_common.html#acf8f3b4e8d841001384b7f42be90978c',1,'Common']]],
   ['rebalanceworkers',['rebalanceWorkers',['../class_worker_manager.html#a7df6caae537af19e4b0fdef595027317',1,'WorkerManager']]],
   ['red',['red',['../class_u_x_manager.html#ade1ac71647abf7671424e1fa16731e65',1,'UXManager']]],
   ['red1',['red1',['../class_u_x_manager.html#a873afe210710cf8246f9d2b968e69024',1,'UXManager']]],
@@ -15,7 +14,7 @@ var searchData=
   ['removedepot',['removeDepot',['../class_worker_data.html#a276961370dfd5d9c0a49b844c98e4a7b',1,'WorkerData']]],
   ['removehighestpriorityitem',['removeHighestPriorityItem',['../class_build_order_queue.html#ae7f1f4a1feadec6842737bf032d9166f',1,'BuildOrderQueue']]],
   ['removeunit',['removeUnit',['../class_unit_data.html#a424577498ffd92b9db8b0757e7d28d91',1,'UnitData']]],
-  ['repair',['repair',['../class_command_util.html#a3ae3d4c3d6f6e5ddfbb4af946fd77fc5',1,'CommandUtil.repair()'],['../enum_worker_data_1_1_worker_job.html#ab834639e065d6bed18625b7fd2484439',1,'WorkerData.WorkerJob.Repair()']]],
+  ['repair',['Repair',['../enum_worker_data_1_1_worker_job.html#ab834639e065d6bed18625b7fd2484439',1,'WorkerData.WorkerJob.Repair()'],['../class_command_util.html#a3ae3d4c3d6f6e5ddfbb4af946fd77fc5',1,'CommandUtil.repair()']]],
   ['reservedgas',['reservedGas',['../class_construction_manager.html#ab56f1f6f12c2820ee90c6cf557fd1086',1,'ConstructionManager']]],
   ['reservedminerals',['reservedMinerals',['../class_construction_manager.html#a0a92a0bcfa0c70e00b929b006f57a686',1,'ConstructionManager']]],
   ['reservemap',['reserveMap',['../class_construction_place_finder.html#a5a64a02cf4804d17e0c11f4e4910610a',1,'ConstructionPlaceFinder']]],

@@ -2,7 +2,7 @@
 
 using namespace MyBot;
 
-BuildManager::BuildManager() 
+BuildManager::BuildManager()
 {
 }
 
@@ -27,15 +27,18 @@ void BuildManager::update()
 	BuildOrderItem currentItem = buildQueue.getHighestPriorityItem();
 
 	//std::cout << "current HighestPriorityItem" << currentItem.metaType.getName() << std::endl;
-	
+
 	// while there is still something left in the buildQueue
-	while (!buildQueue.isEmpty()) 
+	while (!buildQueue.isEmpty())
 	{
 		bool isOkToRemoveQueue = true;
 
+		// BasicBot 1.1 Patch Start ////////////////////////////////////////////////
+
 		// seedPosition 을 도출한다
 		BWAPI::Position seedPosition = BWAPI::Positions::None;
-		if (currentItem.seedLocation != BWAPI::TilePositions::None) {
+		if (currentItem.seedLocation != BWAPI::TilePositions::None && currentItem.seedLocation != BWAPI::TilePositions::Invalid
+			&& currentItem.seedLocation != BWAPI::TilePositions::Unknown && currentItem.seedLocation.isValid()) {
 			seedPosition = BWAPI::Position(currentItem.seedLocation);
 		}
 		else {
@@ -43,16 +46,18 @@ void BuildManager::update()
 		}
 
 		// this is the unit which can produce the currentItem
-		BWAPI::Unit producer = getProducer(currentItem.metaType, BWAPI::Position(currentItem.seedLocation), currentItem.producerID);
+		BWAPI::Unit producer = getProducer(currentItem.metaType, seedPosition, currentItem.producerID);
+
+		// BasicBot 1.1 Patch End //////////////////////////////////////////////////
 
 		/*
 		if (currentItem.metaType.isUnit() && currentItem.metaType.getUnitType().isBuilding() ) {
-			if (producer) {
-				std::cout << "Build " << currentItem.metaType.getName() << " producer : " << producer->getType().getName() << " ID : " << producer->getID() << std::endl;
-			}
-			else {
-				std::cout << "Build " << currentItem.metaType.getName() << " producer nullptr" << std::endl;
-			}
+		if (producer) {
+		std::cout << "Build " << currentItem.metaType.getName() << " producer : " << producer->getType().getName() << " ID : " << producer->getID() << std::endl;
+		}
+		else {
+		std::cout << "Build " << currentItem.metaType.getName() << " producer nullptr" << std::endl;
+		}
 		}
 		*/
 
@@ -65,10 +70,10 @@ void BuildManager::update()
 			// check to see if we can make it right now
 			// 지금 해당 유닛을 건설/생산 할 수 있는지에 대해 자원, 서플라이, 테크 트리, producer 만을 갖고 판단한다
 			canMake = canMakeNow(producer, currentItem.metaType);
-			
+
 			/*
 			if (currentItem.metaType.isUnit() && currentItem.metaType.getUnitType().isBuilding() ) {
-				std::cout << "Build " << currentItem.metaType.getName() << " canMakeNow : " << canMake << std::endl;
+			std::cout << "Build " << currentItem.metaType.getName() << " canMakeNow : " << canMake << std::endl;
 			}
 			*/
 
@@ -88,7 +93,7 @@ void BuildManager::update()
 
 		// if we can make the current item, create it
 		if (producer != nullptr && canMake == true)
-		{			
+		{
 			MetaType t = currentItem.metaType;
 
 			if (t.isUnit())
@@ -107,9 +112,9 @@ void BuildManager::update()
 					// Addon 건물을 짓기 시작하면 canBuildAddon = false, isConstructing = true, canCommand = true 가 되고 (Addon 건물 건설 취소는 가능하나 Train 등 커맨드는 불가능)
 					// 완성되면 canBuildAddon = false, isConstructing = false 가 된다
 					else if (t.getUnitType().isAddon()) {
-						
+
 						//std::cout << "addon build start " << std::endl;
-						
+
 						producer->buildAddon(t.getUnitType());
 						// 테란 Addon 건물의 경우 정상적으로 buildAddon 명령을 내려도 SCV가 모건물 근처에 있을 때 한동안 buildAddon 명령이 취소되는 경우가 있어서
 						// 모건물이 isConstructing = true 상태로 바뀐 것을 확인한 후 buildQueue 에서 제거해야한다
@@ -119,7 +124,7 @@ void BuildManager::update()
 						//std::cout << "8";
 					}
 					// 그외 대부분 건물의 경우
-					else 
+					else
 					{
 						// ConstructionPlaceFinder 를 통해 건설 가능 위치 desiredPosition 를 알아내서
 						// ConstructionManager 의 ConstructionTask Queue에 추가를 해서 desiredPosition 에 건설을 하게 한다. 
@@ -162,7 +167,7 @@ void BuildManager::update()
 					}
 					// 프로토스 지상유닛 / 공중유닛
 					else if (t.getUnitType().getRace() == BWAPI::Races::Protoss)
-					{						
+					{
 						// 프로토스 종족 유닛 중 Protoss_Archon 은 기존 Protoss_High_Templar 두 유닛을 합체시키는 기술을 써서 만든다 
 						if (t.getUnitType() == BWAPI::UnitTypes::Protoss_Archon)
 						{
@@ -171,7 +176,7 @@ void BuildManager::update()
 						// 프로토스 종족 유닛 중 Protoss_Dark_Archon 은 기존 Protoss_Dark_Templar 두 유닛을 합체시키는 기술을 써서 만든다 
 						else if (t.getUnitType() == BWAPI::UnitTypes::Protoss_Dark_Archon)
 						{
-							producer->useTech( BWAPI::TechTypes::Dark_Archon_Meld, secondProducer);
+							producer->useTech(BWAPI::TechTypes::Dark_Archon_Meld, secondProducer);
 						}
 						else {
 							producer->train(t.getUnitType());
@@ -194,12 +199,12 @@ void BuildManager::update()
 			}
 
 			//std::cout << std::endl << " build " << t.getName() << " started " << std::endl;
-			
+
 			// remove it from the buildQueue
 			if (isOkToRemoveQueue) {
 				buildQueue.removeCurrentItem();
 			}
-			
+
 			// don't actually loop around in here
 			break;
 		}
@@ -208,9 +213,9 @@ void BuildManager::update()
 		{
 			// skip it and get the next one
 			buildQueue.skipCurrentItem();
-			currentItem = buildQueue.getNextItem();				
+			currentItem = buildQueue.getNextItem();
 		}
-		else 
+		else
 		{
 			// so break out
 			break;
@@ -220,17 +225,17 @@ void BuildManager::update()
 
 BWAPI::Unit BuildManager::getProducer(MetaType t, BWAPI::Position closestTo, int producerID)
 {
-    // get the type of unit that builds this
-    BWAPI::UnitType producerType = t.whatBuilds();
+	// get the type of unit that builds this
+	BWAPI::UnitType producerType = t.whatBuilds();
 
-    // make a set of all candidate producers
-    BWAPI::Unitset candidateProducers;
-    for (auto & unit : BWAPI::Broodwar->self()->getUnits())
-    {
+	// make a set of all candidate producers
+	BWAPI::Unitset candidateProducers;
+	for (auto & unit : BWAPI::Broodwar->self()->getUnits())
+	{
 		if (unit == nullptr) continue;
 
-        // reasons a unit can not train the desired type
-        if (unit->getType() != producerType)                    { continue; }
+		// reasons a unit can not train the desired type
+		if (unit->getType() != producerType)                    { continue; }
 		if (!unit->exists())	                                { continue; }
 		if (!unit->isCompleted())                               { continue; }
 		if (unit->isTraining())                                 { continue; }
@@ -239,7 +244,7 @@ BWAPI::Unit BuildManager::getProducer(MetaType t, BWAPI::Position closestTo, int
 		if (unit->isLifted())                                   { continue; }
 
 		if (producerID != -1 && unit->getID() != producerID)	{ continue; }
-        
+
 		// if the type requires an addon and the producer doesn't have one
 		typedef std::pair<BWAPI::UnitType, int> ReqPair;
 		for (const ReqPair & pair : t.getUnitType().requiredUnits())
@@ -254,47 +259,47 @@ BWAPI::Unit BuildManager::getProducer(MetaType t, BWAPI::Position closestTo, int
 			}
 		}
 
-        // if the type is an addon 
-        if (t.getUnitType().isAddon())
-        {
-            // if the unit already has an addon, it can't make one
-            if (unit->getAddon() != nullptr)					{ continue; }
+		// if the type is an addon 
+		if (t.getUnitType().isAddon())
+		{
+			// if the unit already has an addon, it can't make one
+			if (unit->getAddon() != nullptr)					{ continue; }
 
 			// 모건물은 건설되고 있는 중에는 isCompleted = false, isConstructing = true, canBuildAddon = false 이다가
 			// 건설이 완성된 후 몇 프레임동안은 isCompleted = true 이지만, canBuildAddon = false 인 경우가 있다
-			if (!unit->canBuildAddon() )						{ continue; }
+			if (!unit->canBuildAddon())						{ continue; }
 
-            // if we just told this unit to build an addon, then it will not be building another one
-            // this deals with the frame-delay of telling a unit to build an addon and it actually starting to build
-            if (unit->getLastCommand().getType() == BWAPI::UnitCommandTypes::Build_Addon 
-                && (BWAPI::Broodwar->getFrameCount() - unit->getLastCommandFrame() < 10)) 
-            { 
-                continue; 
-            }
+			// if we just told this unit to build an addon, then it will not be building another one
+			// this deals with the frame-delay of telling a unit to build an addon and it actually starting to build
+			if (unit->getLastCommand().getType() == BWAPI::UnitCommandTypes::Build_Addon
+				&& (BWAPI::Broodwar->getFrameCount() - unit->getLastCommandFrame() < 10))
+			{
+				continue;
+			}
 
-            bool isBlocked = false;
+			bool isBlocked = false;
 
-            // if the unit doesn't have space to build an addon, it can't make one
+			// if the unit doesn't have space to build an addon, it can't make one
 			BWAPI::TilePosition addonPosition(
-				unit->getTilePosition().x + unit->getType().tileWidth(), 
+				unit->getTilePosition().x + unit->getType().tileWidth(),
 				unit->getTilePosition().y + unit->getType().tileHeight() - t.getUnitType().tileHeight());
-            
-            for (int i=0; i<t.getUnitType().tileWidth(); ++i)
-            {
-                for (int j=0; j<t.getUnitType().tileHeight(); ++j)
-                {
+
+			for (int i = 0; i<t.getUnitType().tileWidth(); ++i)
+			{
+				for (int j = 0; j<t.getUnitType().tileHeight(); ++j)
+				{
 					BWAPI::TilePosition tilePos(addonPosition.x + i, addonPosition.y + j);
 
-                    // if the map won't let you build here, we can't build it.  
+					// if the map won't let you build here, we can't build it.  
 					// 맵 타일 자체가 건설 불가능한 타일인 경우 + 기존 건물이 해당 타일에 이미 있는경우
-                    if (!BWAPI::Broodwar->isBuildable(tilePos, true))
-                    {
-                        isBlocked = true;
-                    }
+					if (!BWAPI::Broodwar->isBuildable(tilePos, true))
+					{
+						isBlocked = true;
+					}
 
-                    // if there are any units on the addon tile, we can't build it
+					// if there are any units on the addon tile, we can't build it
 					// 아군 유닛은 Addon 지을 위치에 있어도 괜찮음. (적군 유닛은 Addon 지을 위치에 있으면 건설 안되는지는 아직 불확실함)
-                    BWAPI::Unitset uot = BWAPI::Broodwar->getUnitsOnTile(tilePos.x, tilePos.y);
+					BWAPI::Unitset uot = BWAPI::Broodwar->getUnitsOnTile(tilePos.x, tilePos.y);
 					for (auto & u : uot) {
 						//std::cout << std::endl << "Construct " << t.getName() 
 						//	<< " beside "<< unit->getType().getName() << "(" << unit->getID() <<")" 
@@ -303,21 +308,21 @@ BWAPI::Unit BuildManager::getProducer(MetaType t, BWAPI::Position closestTo, int
 						if (u->getPlayer() != InformationManager::Instance().selfPlayer) {
 							isBlocked = false;
 						}
-					}					
+					}
 				}
-            }
+			}
 
-            if (isBlocked)
-            {
-                continue;
-            }
-        }
+			if (isBlocked)
+			{
+				continue;
+			}
+		}
 
-        // if we haven't cut it, add it to the set of candidates
-        candidateProducers.insert(unit);
-    }
+		// if we haven't cut it, add it to the set of candidates
+		candidateProducers.insert(unit);
+	}
 
-    return getClosestUnitToPosition(candidateProducers, closestTo);
+	return getClosestUnitToPosition(candidateProducers, closestTo);
 }
 
 // Protoss_Archon / Protoss_Dark_Archon 를 만들기 위해 producer 와 같은 type의, producer 가 아닌 다른 Unit 중에서 가장 가까운 Unit을 찾는다
@@ -336,7 +341,7 @@ BWAPI::Unit BuildManager::getAnotherProducer(BWAPI::Unit producer, BWAPI::Positi
 		if (!unit->isCompleted())                               { continue; }
 		if (unit->isTraining())                                 { continue; }
 		if (!unit->exists())                                    { continue; }
-		if (unit->getHitPoints()+unit->getEnergy()<=0)          { continue; }
+		if (unit->getHitPoints() + unit->getEnergy() <= 0)          { continue; }
 
 		candidateProducers.insert(unit);
 	}
@@ -346,33 +351,40 @@ BWAPI::Unit BuildManager::getAnotherProducer(BWAPI::Unit producer, BWAPI::Positi
 
 BWAPI::Unit BuildManager::getClosestUnitToPosition(const BWAPI::Unitset & units, BWAPI::Position closestTo)
 {
-    if (units.size() == 0)
-    {
-        return nullptr;
-    }
+	if (units.size() == 0)
+	{
+		return nullptr;
+	}
 
-    // if we don't care where the unit is return the first one we have
-	if (closestTo == BWAPI::Positions::None)
-    {
-        return *(units.begin());
-    }
+	// BasicBot 1.1 Patch Start ////////////////////////////////////////////////
 
-    BWAPI::Unit closestUnit = nullptr;
-    double minDist(1000000000);
+	// if we don't care where the unit is return the first one we have
+	if (closestTo == BWAPI::Positions::None || closestTo == BWAPI::Positions::Invalid || closestTo == BWAPI::Positions::Unknown || closestTo.isValid() == false)
+	{
+		return *(units.begin());
+	}
 
-	for (auto & unit : units) 
-    {
+	// BasicBot 1.1 Patch End //////////////////////////////////////////////////
+
+	BWAPI::Unit closestUnit = nullptr;
+	double minDist(1000000000);
+
+	for (auto & unit : units)
+	{
 		if (unit == nullptr) continue;
 
 		double distance = unit->getDistance(closestTo);
-		if (!closestUnit || distance < minDist) 
-        {
+
+		//std::cout << "distance to " << unit->getType().getName() << " is " << distance << std::endl;
+
+		if (!closestUnit || distance < minDist)
+		{
 			closestUnit = unit;
 			minDist = distance;
 		}
 	}
 
-    return closestUnit;
+	return closestUnit;
 }
 
 // 지금 해당 유닛을 건설/생산 할 수 있는지에 대해 자원, 서플라이, 테크 트리, producer 만을 갖고 판단한다
@@ -413,11 +425,11 @@ BWAPI::TilePosition BuildManager::getDesiredPosition(BWAPI::UnitType unitType, B
 	BWAPI::TilePosition desiredPosition = ConstructionPlaceFinder::Instance().getBuildLocationWithSeedPositionAndStrategy(unitType, seedPosition, seedPositionStrategy);
 
 	/*
-	 std::cout << "ConstructionPlaceFinder getBuildLocationWithSeedPositionAndStrategy "
-		<< unitType.getName().c_str()
-		<< " strategy " << seedPositionStrategy
-		<< " seedPosition " << seedPosition.x << "," << seedPosition.y
-		<< " desiredPosition " << desiredPosition.x << "," << desiredPosition.y << std::endl;
+	std::cout << "ConstructionPlaceFinder getBuildLocationWithSeedPositionAndStrategy "
+	<< unitType.getName().c_str()
+	<< " strategy " << seedPositionStrategy
+	<< " seedPosition " << seedPosition.x << "," << seedPosition.y
+	<< " desiredPosition " << desiredPosition.x << "," << desiredPosition.y << std::endl;
 	*/
 
 	// desiredPosition 을 찾을 수 없는 경우
@@ -448,11 +460,11 @@ BWAPI::TilePosition BuildManager::getDesiredPosition(BWAPI::UnitType unitType, B
 		if (findAnotherPlace) {
 			desiredPosition = ConstructionPlaceFinder::Instance().getBuildLocationWithSeedPositionAndStrategy(unitType, seedPosition, seedPositionStrategy);
 			/*
-			 std::cout << "ConstructionPlaceFinder getBuildLocationWithSeedPositionAndStrategy "
-				<< unitType.getName().c_str()
-				<< " strategy " << seedPositionStrategy
-				<< " seedPosition " << seedPosition.x << "," << seedPosition.y
-				<< " desiredPosition " << desiredPosition.x << "," << desiredPosition.y << std::endl;
+			std::cout << "ConstructionPlaceFinder getBuildLocationWithSeedPositionAndStrategy "
+			<< unitType.getName().c_str()
+			<< " strategy " << seedPositionStrategy
+			<< " seedPosition " << seedPosition.x << "," << seedPosition.y
+			<< " desiredPosition " << desiredPosition.x << "," << desiredPosition.y << std::endl;
 			*/
 		}
 		// 다른 곳을 더 찾아보지 않고, 끝낸다
@@ -477,7 +489,7 @@ int BuildManager::getAvailableGas()
 }
 
 // return whether or not we meet resources, including building reserves
-bool BuildManager::hasEnoughResources(MetaType type) 
+bool BuildManager::hasEnoughResources(MetaType type)
 {
 	// return whether or not we meet the resources
 	return (type.mineralPrice() <= getAvailableMinerals()) && (type.gasPrice() <= getAvailableGas());
@@ -485,10 +497,10 @@ bool BuildManager::hasEnoughResources(MetaType type)
 
 
 // selects a unit of a given type
-BWAPI::Unit BuildManager::selectUnitOfType(BWAPI::UnitType type, BWAPI::Position closestTo) 
+BWAPI::Unit BuildManager::selectUnitOfType(BWAPI::UnitType type, BWAPI::Position closestTo)
 {
 	// if we have none of the unit type, return nullptr right away
-	if (BWAPI::Broodwar->self()->completedUnitCount(type) == 0) 
+	if (BWAPI::Broodwar->self()->completedUnitCount(type) == 0)
 	{
 		return nullptr;
 	}
@@ -496,14 +508,14 @@ BWAPI::Unit BuildManager::selectUnitOfType(BWAPI::UnitType type, BWAPI::Position
 	BWAPI::Unit unit = nullptr;
 
 	// if we are concerned about the position of the unit, that takes priority
-    if (closestTo != BWAPI::Positions::None) 
-    {
+	if (closestTo != BWAPI::Positions::None)
+	{
 		double minDist(1000000000);
 
-		for (auto & u : BWAPI::Broodwar->self()->getUnits()) 
-        {
-			if (u->getType() == type) 
-            {
+		for (auto & u : BWAPI::Broodwar->self()->getUnits())
+		{
+			if (u->getType() == type)
+			{
 				double distance = u->getDistance(closestTo);
 				if (!unit || distance < minDist) {
 					unit = u;
@@ -512,25 +524,25 @@ BWAPI::Unit BuildManager::selectUnitOfType(BWAPI::UnitType type, BWAPI::Position
 			}
 		}
 
-	// if it is a building and we are worried about selecting the unit with the least
-	// amount of training time remaining
-	} 
-    else if (type.isBuilding()) 
-    {
-		for (auto & u : BWAPI::Broodwar->self()->getUnits()) 
-        {
-			if (u->getType() == type && u->isCompleted() && !u->isTraining() && !u->isLifted() &&u->isPowered()) {
+		// if it is a building and we are worried about selecting the unit with the least
+		// amount of training time remaining
+	}
+	else if (type.isBuilding())
+	{
+		for (auto & u : BWAPI::Broodwar->self()->getUnits())
+		{
+			if (u->getType() == type && u->isCompleted() && !u->isTraining() && !u->isLifted() && u->isPowered()) {
 
 				return u;
 			}
 		}
 		// otherwise just return the first unit we come across
-	} 
-    else 
-    {
-		for (auto & u : BWAPI::Broodwar->self()->getUnits()) 
+	}
+	else
+	{
+		for (auto & u : BWAPI::Broodwar->self()->getUnits())
 		{
-			if (u->getType() == type && u->isCompleted() && u->getHitPoints() > 0 && !u->isLifted() &&u->isPowered()) 
+			if (u->getType() == type && u->isCompleted() && u->getHitPoints() > 0 && !u->isLifted() && u->isPowered())
 			{
 				return u;
 			}
@@ -550,11 +562,13 @@ BuildManager & BuildManager::Instance()
 
 BuildOrderQueue * BuildManager::getBuildQueue()
 {
-	return & buildQueue;
+	return &buildQueue;
 }
 
 BWAPI::Position	BuildManager::getSeedPositionFromSeedLocationStrategy(BuildOrderItem::SeedPositionStrategy seedPositionStrategy)
 {
+	// BasicBot 1.1 Patch Start ////////////////////////////////////////////////
+
 	BWAPI::Position seedPosition = BWAPI::Positions::None;
 	BWTA::Chokepoint* tempChokePoint;
 	BWTA::BaseLocation* tempBaseLocation;
@@ -568,7 +582,8 @@ BWAPI::Position	BuildManager::getSeedPositionFromSeedLocationStrategy(BuildOrder
 
 	case BuildOrderItem::SeedPositionStrategy::MainBaseLocation:
 		tempBaseLocation = InformationManager::Instance().getMainBaseLocation(BWAPI::Broodwar->self());
-		if (tempBaseLocation == nullptr) {
+
+		if (tempBaseLocation) {
 			seedPosition = tempBaseLocation->getPosition();
 		}
 		break;
@@ -585,74 +600,69 @@ BWAPI::Position	BuildManager::getSeedPositionFromSeedLocationStrategy(BuildOrder
 		// 삼각함수 값은 데카르트 좌표계에서 계산하므로, vy를 부호 반대로 해서 각도 t 값을 구함 
 
 		// MainBaseLocation 이 null 이거나, ChokePoint 가 null 이면, MainBaseLocation 주위에서 가능한 곳을 리턴한다
-		if (tempBaseLocation == nullptr) {
-			//std::cout << "q";
-			seedPosition = tempBaseLocation->getPosition();
-			break;
-		}
-		else if (tempChokePoint == nullptr) {
-			//std::cout << "r";
-			seedPosition = tempBaseLocation->getPosition();
-			break;
-		}
+		if (tempBaseLocation != nullptr && tempChokePoint != nullptr) {
 
-		// BaseLocation 에서 ChokePoint 로의 벡터를 구한다
-		vx = tempChokePoint->getCenter().x - tempBaseLocation->getPosition().x;
-		//std::cout << "vx : " << vx ;
-		vy = (tempChokePoint->getCenter().y - tempBaseLocation->getPosition().y) * (-1);
-		//std::cout << "vy : " << vy;
-		d = std::sqrt(vx * vx + vy * vy) * 0.5; // BaseLocation 와 ChokePoint 간 거리보다 조금 짧은 거리로 조정. BaseLocation가 있는 Region은 대부분 직사각형 형태이기 때문
-		//std::cout << "d : " << d;
-		t = std::atan2(vy, vx + 0.0001); // 라디안 단위
-		//std::cout << "t : " << t;
+			// BaseLocation 에서 ChokePoint 로의 벡터를 구한다
+			vx = tempChokePoint->getCenter().x - tempBaseLocation->getPosition().x;
+			//std::cout << "vx : " << vx ;
+			vy = (tempChokePoint->getCenter().y - tempBaseLocation->getPosition().y) * (-1);
+			//std::cout << "vy : " << vy;
+			d = std::sqrt(vx * vx + vy * vy) * 0.5; // BaseLocation 와 ChokePoint 간 거리보다 조금 짧은 거리로 조정. BaseLocation가 있는 Region은 대부분 직사각형 형태이기 때문
+			//std::cout << "d : " << d;
+			t = std::atan2(vy, vx + 0.0001); // 라디안 단위
+			//std::cout << "t : " << t;
 
-		// cos(t+90), sin(t+180) 등 삼각함수 Trigonometric functions of allied angles 을 이용. y축에 대해서는 반대부호로 적용
+			// cos(t+90), sin(t+180) 등 삼각함수 Trigonometric functions of allied angles 을 이용. y축에 대해서는 반대부호로 적용
 
-		// BaseLocation 에서 ChokePoint 반대쪽 방향의 Back Yard : 데카르트 좌표계에서 (cos(t+180) = -cos(t), sin(t+180) = -sin(t))
-		bx = tempBaseLocation->getTilePosition().x - (int)(d * std::cos(t) / TILE_SIZE);
-		by = tempBaseLocation->getTilePosition().y + (int)(d * std::sin(t) / TILE_SIZE);
-		//std::cout << "i";
-		tempTilePosition = BWAPI::TilePosition(bx, by);
-		// std::cout << "ConstructionPlaceFinder MainBaseBackYard tempTilePosition " << tempTilePosition.x << "," << tempTilePosition.y << std::endl;
-
-		//std::cout << "k";
-		// 해당 지점이 같은 Region 에 속하고 Buildable 한 타일인지 확인
-		if (!tempTilePosition.isValid() || !BWAPI::Broodwar->isBuildable(tempTilePosition.x, tempTilePosition.y, false) || tempBaseRegion != BWTA::getRegion(BWAPI::Position(bx*TILE_SIZE, by*TILE_SIZE))) {
-			//std::cout << "l";
-
-			// BaseLocation 에서 ChokePoint 방향에 대해 오른쪽으로 90도 꺾은 방향의 Back Yard : 데카르트 좌표계에서 (cos(t-90) = sin(t),   sin(t-90) = - cos(t))
-			bx = tempBaseLocation->getTilePosition().x + (int)(d * std::sin(t) / TILE_SIZE);
-			by = tempBaseLocation->getTilePosition().y + (int)(d * std::cos(t) / TILE_SIZE);
+			// BaseLocation 에서 ChokePoint 반대쪽 방향의 Back Yard : 데카르트 좌표계에서 (cos(t+180) = -cos(t), sin(t+180) = -sin(t))
+			bx = tempBaseLocation->getTilePosition().x - (int)(d * std::cos(t) / TILE_SIZE);
+			by = tempBaseLocation->getTilePosition().y + (int)(d * std::sin(t) / TILE_SIZE);
+			//std::cout << "i";
 			tempTilePosition = BWAPI::TilePosition(bx, by);
 			// std::cout << "ConstructionPlaceFinder MainBaseBackYard tempTilePosition " << tempTilePosition.x << "," << tempTilePosition.y << std::endl;
-			//std::cout << "m";
 
-			if (!tempTilePosition.isValid() || !BWAPI::Broodwar->isBuildable(tempTilePosition.x, tempTilePosition.y, false)) {
-				// BaseLocation 에서 ChokePoint 방향에 대해 왼쪽으로 90도 꺾은 방향의 Back Yard : 데카르트 좌표계에서 (cos(t+90) = -sin(t),   sin(t+90) = cos(t))
-				bx = tempBaseLocation->getTilePosition().x - (int)(d * std::sin(t) / TILE_SIZE);
-				by = tempBaseLocation->getTilePosition().y - (int)(d * std::cos(t) / TILE_SIZE);
+			//std::cout << "k";
+			// 해당 지점이 같은 Region 에 속하고 Buildable 한 타일인지 확인
+			if (!tempTilePosition.isValid() || !BWAPI::Broodwar->isBuildable(tempTilePosition.x, tempTilePosition.y, false) || tempBaseRegion != BWTA::getRegion(BWAPI::Position(bx*TILE_SIZE, by*TILE_SIZE))) {
+				//std::cout << "l";
+
+				// BaseLocation 에서 ChokePoint 방향에 대해 오른쪽으로 90도 꺾은 방향의 Back Yard : 데카르트 좌표계에서 (cos(t-90) = sin(t),   sin(t-90) = - cos(t))
+				bx = tempBaseLocation->getTilePosition().x + (int)(d * std::sin(t) / TILE_SIZE);
+				by = tempBaseLocation->getTilePosition().y + (int)(d * std::cos(t) / TILE_SIZE);
 				tempTilePosition = BWAPI::TilePosition(bx, by);
 				// std::cout << "ConstructionPlaceFinder MainBaseBackYard tempTilePosition " << tempTilePosition.x << "," << tempTilePosition.y << std::endl;
+				//std::cout << "m";
 
-				if (!tempTilePosition.isValid() || !BWAPI::Broodwar->isBuildable(tempTilePosition.x, tempTilePosition.y, false) || tempBaseRegion != BWTA::getRegion(BWAPI::Position(bx*TILE_SIZE, by*TILE_SIZE))) {
-
-					// BaseLocation 에서 ChokePoint 방향 절반 지점의 Back Yard : 데카르트 좌표계에서 (cos(t),   sin(t))
-					bx = tempBaseLocation->getTilePosition().x + (int)(d * std::cos(t) / TILE_SIZE);
-					by = tempBaseLocation->getTilePosition().y - (int)(d * std::sin(t) / TILE_SIZE);
+				if (!tempTilePosition.isValid() || !BWAPI::Broodwar->isBuildable(tempTilePosition.x, tempTilePosition.y, false)) {
+					// BaseLocation 에서 ChokePoint 방향에 대해 왼쪽으로 90도 꺾은 방향의 Back Yard : 데카르트 좌표계에서 (cos(t+90) = -sin(t),   sin(t+90) = cos(t))
+					bx = tempBaseLocation->getTilePosition().x - (int)(d * std::sin(t) / TILE_SIZE);
+					by = tempBaseLocation->getTilePosition().y - (int)(d * std::cos(t) / TILE_SIZE);
 					tempTilePosition = BWAPI::TilePosition(bx, by);
 					// std::cout << "ConstructionPlaceFinder MainBaseBackYard tempTilePosition " << tempTilePosition.x << "," << tempTilePosition.y << std::endl;
-					//std::cout << "m";
-				}
 
+					if (!tempTilePosition.isValid() || !BWAPI::Broodwar->isBuildable(tempTilePosition.x, tempTilePosition.y, false) || tempBaseRegion != BWTA::getRegion(BWAPI::Position(bx*TILE_SIZE, by*TILE_SIZE))) {
+
+						// BaseLocation 에서 ChokePoint 방향 절반 지점의 Back Yard : 데카르트 좌표계에서 (cos(t),   sin(t))
+						bx = tempBaseLocation->getTilePosition().x + (int)(d * std::cos(t) / TILE_SIZE);
+						by = tempBaseLocation->getTilePosition().y - (int)(d * std::sin(t) / TILE_SIZE);
+						tempTilePosition = BWAPI::TilePosition(bx, by);
+						// std::cout << "ConstructionPlaceFinder MainBaseBackYard tempTilePosition " << tempTilePosition.x << "," << tempTilePosition.y << std::endl;
+						//std::cout << "m";
+					}
+
+				}
+			}
+
+			//std::cout << "z";
+			if (tempTilePosition.isValid() == false
+				|| BWAPI::Broodwar->isBuildable(tempTilePosition.x, tempTilePosition.y, false) == false) {
+				seedPosition = BWAPI::Position(tempTilePosition);
+			}
+			else {
+				seedPosition = tempBaseLocation->getPosition();
 			}
 		}
-		//std::cout << "z";
-		if (!tempTilePosition.isValid() || !BWAPI::Broodwar->isBuildable(tempTilePosition.x, tempTilePosition.y, false)) {
-			seedPosition = tempBaseLocation->getPosition();
-		}
-		else {
-			seedPosition = BWAPI::Position(tempTilePosition);
-		}
+
 		//std::cout << "w";
 		// std::cout << "ConstructionPlaceFinder MainBaseBackYard desiredPosition " << desiredPosition.x << "," << desiredPosition.y << std::endl;
 		break;
@@ -680,6 +690,8 @@ BWAPI::Position	BuildManager::getSeedPositionFromSeedLocationStrategy(BuildOrder
 	}
 
 	return seedPosition;
+
+	// BasicBot 1.1 Patch End //////////////////////////////////////////////////
 }
 
 bool BuildManager::isProducerWillExist(BWAPI::UnitType producerType)
@@ -803,19 +815,19 @@ void BuildManager::checkBuildOrderQueueDeadlockAndAndFixIt()
 				<< std::endl;
 				*/
 
-				// 건물을 생산하는 유닛이나, 유닛을 생산하는 건물이 존재하지 않고, 건설 예정이지도 않으면 dead lock
+				// 건물을 생산하는 유닛이나, 유닛을 생산하는 건물이 존재하지 않고, 훈련/건설 예정이지도 않으면 dead lock
 				if (isProducerWillExist(producerType) == false) {
 					isDeadlockCase = true;
 				}
 
 				// Refinery 건물의 경우, Refinery 가 건설되지 않은 Geyser가 있는 경우에만 가능
-				if (!isDeadlockCase && unitType == InformationManager::Instance().getRefineryBuildingType())
+				if (!isDeadlockCase && unitType.isRefinery())
 				{
 					bool hasAvailableGeyser = true;
 
 					// Refinery가 지어질 수 있는 장소를 찾아본다
 					BWAPI::TilePosition testLocation = getDesiredPosition(unitType, currentItem.seedLocation, currentItem.seedLocationStrategy);
-					
+
 					// Refinery 를 지으려는 장소를 찾을 수 없으면 dead lock
 					if (testLocation == BWAPI::TilePositions::None || testLocation == BWAPI::TilePositions::Invalid || testLocation.isValid() == false) {
 						std::cout << "Build Order Dead lock case -> Cann't find place to construct " << unitType.getName() << std::endl;
@@ -827,6 +839,13 @@ void BuildManager::checkBuildOrderQueueDeadlockAndAndFixIt()
 						for (auto & u : uot) {
 							if (u->getType().isRefinery() && u->exists()) {
 								hasAvailableGeyser = false;
+
+								// BasicBot 1.1 Patch Start ////////////////////////////////////////////////
+
+								std::cout << "Build Order Dead lock case -> Refinery Building was built already at " << testLocation.x << ", " << testLocation.y << std::endl;
+
+								// BasicBot 1.1 Patch End ////////////////////////////////////////////////
+
 								break;
 							}
 						}
@@ -836,7 +855,7 @@ void BuildManager::checkBuildOrderQueueDeadlockAndAndFixIt()
 						isDeadlockCase = true;
 					}
 				}
-				
+
 				// 선행 기술 리서치가 되어있지 않고, 리서치 중이지도 않으면 dead lock
 				if (!isDeadlockCase && requiredTechType != BWAPI::TechTypes::None)
 				{
@@ -863,36 +882,49 @@ void BuildManager::checkBuildOrderQueueDeadlockAndAndFixIt()
 							<< std::endl;
 							*/
 
-							// 선행 건물 / 유닛이 존재하지 않고, 생산 중이지도 않고
-							if (BWAPI::Broodwar->self()->completedUnitCount(requiredUnitType) == 0
-								&& BWAPI::Broodwar->self()->incompleteUnitCount(requiredUnitType) == 0)
+							// BasicBot 1.1 Patch Start ////////////////////////////////////////////////
+
+							// 만들려는 유닛이 Zerg_Mutalisk 이거나 Zerg_Scourge 이고, 선행 유닛이 Zerg_Spire 인 경우, Zerg_Greater_Spire 가 있으면 dead lock 이 아니다
+							if ((unitType == BWAPI::UnitTypes::Zerg_Mutalisk || unitType == BWAPI::UnitTypes::Zerg_Scourge)
+								&& requiredUnitType == BWAPI::UnitTypes::Zerg_Spire
+								&& BWAPI::Broodwar->self()->allUnitCount(BWAPI::UnitTypes::Zerg_Greater_Spire) > 0)
 							{
-								// 선행 건물이 건설 예정이지도 않으면 dead lock
-								if (requiredUnitType.isBuilding())
+								isDeadlockCase = false;
+							}
+							else
+
+								// BasicBot 1.1 Patch End //////////////////////////////////////////////////
+
+								// 선행 건물 / 유닛이 존재하지 않고, 생산 중이지도 않고
+								if (BWAPI::Broodwar->self()->completedUnitCount(requiredUnitType) == 0
+									&& BWAPI::Broodwar->self()->incompleteUnitCount(requiredUnitType) == 0)
 								{
-									if (ConstructionManager::Instance().getConstructionQueueItemCount(requiredUnitType) == 0) {
-										isDeadlockCase = true;
-									}
-								}
-								// 선행 유닛이 Larva 인 Zerg 유닛의 경우, Larva, Hatchery, Lair, Hive 가 하나도 존재하지 않고, 건설 예정이지 않은 경우에 dead lock
-								else if (requiredUnitType == BWAPI::UnitTypes::Zerg_Larva)
-								{
-									if (BWAPI::Broodwar->self()->completedUnitCount(BWAPI::UnitTypes::Zerg_Hatchery) == 0
-										&& BWAPI::Broodwar->self()->incompleteUnitCount(BWAPI::UnitTypes::Zerg_Hatchery) == 0
-										&& BWAPI::Broodwar->self()->completedUnitCount(BWAPI::UnitTypes::Zerg_Lair) == 0
-										&& BWAPI::Broodwar->self()->incompleteUnitCount(BWAPI::UnitTypes::Zerg_Lair) == 0
-										&& BWAPI::Broodwar->self()->completedUnitCount(BWAPI::UnitTypes::Zerg_Hive) == 0
-										&& BWAPI::Broodwar->self()->incompleteUnitCount(BWAPI::UnitTypes::Zerg_Hive) == 0)
+									// 선행 건물이 건설 예정이지도 않으면 dead lock
+									if (requiredUnitType.isBuilding())
 									{
-										if (ConstructionManager::Instance().getConstructionQueueItemCount(BWAPI::UnitTypes::Zerg_Hatchery) == 0
-											&& ConstructionManager::Instance().getConstructionQueueItemCount(BWAPI::UnitTypes::Zerg_Lair) == 0
-											&& ConstructionManager::Instance().getConstructionQueueItemCount(BWAPI::UnitTypes::Zerg_Hive) == 0)
-										{
+										if (ConstructionManager::Instance().getConstructionQueueItemCount(requiredUnitType) == 0) {
 											isDeadlockCase = true;
 										}
 									}
+									// 선행 유닛이 Larva 인 Zerg 유닛의 경우, Larva, Hatchery, Lair, Hive 가 하나도 존재하지 않고, 건설 예정이지 않은 경우에 dead lock
+									else if (requiredUnitType == BWAPI::UnitTypes::Zerg_Larva)
+									{
+										if (BWAPI::Broodwar->self()->completedUnitCount(BWAPI::UnitTypes::Zerg_Hatchery) == 0
+											&& BWAPI::Broodwar->self()->incompleteUnitCount(BWAPI::UnitTypes::Zerg_Hatchery) == 0
+											&& BWAPI::Broodwar->self()->completedUnitCount(BWAPI::UnitTypes::Zerg_Lair) == 0
+											&& BWAPI::Broodwar->self()->incompleteUnitCount(BWAPI::UnitTypes::Zerg_Lair) == 0
+											&& BWAPI::Broodwar->self()->completedUnitCount(BWAPI::UnitTypes::Zerg_Hive) == 0
+											&& BWAPI::Broodwar->self()->incompleteUnitCount(BWAPI::UnitTypes::Zerg_Hive) == 0)
+										{
+											if (ConstructionManager::Instance().getConstructionQueueItemCount(BWAPI::UnitTypes::Zerg_Hatchery) == 0
+												&& ConstructionManager::Instance().getConstructionQueueItemCount(BWAPI::UnitTypes::Zerg_Lair) == 0
+												&& ConstructionManager::Instance().getConstructionQueueItemCount(BWAPI::UnitTypes::Zerg_Hive) == 0)
+											{
+												isDeadlockCase = true;
+											}
+										}
+									}
 								}
-							}
 						}
 					}
 				}
@@ -909,14 +941,14 @@ void BuildManager::checkBuildOrderQueueDeadlockAndAndFixIt()
 
 				// Pylon 이 필요한 건물인 경우, 해당 지역 주위에 먼저 지어져야 하는데, Pylon 이 해당 지역 주위에 없으면 dead lock
 				// Pylon 범위를 정확하게 파악하거나  만들어질 예정인것, 건설진행중인 것은 일단 체크하지 않는다
-				if (!isDeadlockCase && unitType.isBuilding() && unitType.requiresPsi() 
+				if (!isDeadlockCase && unitType.isBuilding() && unitType.requiresPsi()
 					&& currentItem.seedLocationStrategy == BuildOrderItem::SeedPositionStrategy::SeedPositionSpecified)
 				{
 					bool hasFoundPylon = false;
 					BWAPI::Unitset ourUnits = BWAPI::Broodwar->getUnitsInRadius(BWAPI::Position(currentItem.seedLocation), 4 * TILE_SIZE);
 
 					for (auto & u : ourUnits) {
-						if (u->getPlayer() == BWAPI::Broodwar->self() 
+						if (u->getPlayer() == BWAPI::Broodwar->self()
 							&& u->getType() == BWAPI::UnitTypes::Protoss_Pylon) {
 							hasFoundPylon = true;
 						}
@@ -938,7 +970,7 @@ void BuildManager::checkBuildOrderQueueDeadlockAndAndFixIt()
 					for (auto & u : ourUnits) {
 						if (u->getPlayer() == BWAPI::Broodwar->self()
 							&& (u->getType() == BWAPI::UnitTypes::Zerg_Hatchery || u->getType() == BWAPI::UnitTypes::Zerg_Lair || u->getType() == BWAPI::UnitTypes::Zerg_Hive
-								|| u->getType() == BWAPI::UnitTypes::Zerg_Creep_Colony || u->getType() == BWAPI::UnitTypes::Zerg_Sunken_Colony || u->getType() == BWAPI::UnitTypes::Zerg_Spore_Colony) )
+							|| u->getType() == BWAPI::UnitTypes::Zerg_Creep_Colony || u->getType() == BWAPI::UnitTypes::Zerg_Sunken_Colony || u->getType() == BWAPI::UnitTypes::Zerg_Spore_Colony))
 						{
 							hasFoundCreepGenerator = true;
 						}

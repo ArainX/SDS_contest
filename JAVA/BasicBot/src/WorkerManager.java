@@ -212,7 +212,12 @@ public class WorkerManager {
 		if (!p.isValid()) return null;
 
 	    Unit closestWorker = null;
-	    double closestDist = 100000000;
+	    
+		// BasicBot 1.1 Patch Start ////////////////////////////////////////////////
+	    
+	    double closestDist = 1000000000;
+
+	    // BasicBot 1.1 Patch End //////////////////////////////////////////////////
 
 		if (currentRepairWorker != null && currentRepairWorker.exists() && currentRepairWorker.getHitPoints() > 0)
 	    {
@@ -267,7 +272,12 @@ public class WorkerManager {
 	public Unit getClosestMineralWorkerTo(Position target)
 	{
 		Unit closestUnit = null;
-		double closestDist = 100000;
+
+		// BasicBot 1.1 Patch Start ////////////////////////////////////////////////
+
+		double closestDist = 1000000000;
+
+		// BasicBot 1.1 Patch End //////////////////////////////////////////////////
 
 		for (Unit unit : MyBotModule.Broodwar.self().getUnits())
 		{
@@ -292,6 +302,7 @@ public class WorkerManager {
 	/// 해당 일꾼 유닛 unit 으로부터 가장 가까운 ResourceDepot 건물을 리턴합니다
 	public Unit getClosestResourceDepotFromWorker(Unit worker)
 	{
+		// BasicBot 1.1 Patch Start ////////////////////////////////////////////////
 		if (worker == null) return null;
 
 		Unit closestDepot = null;
@@ -357,6 +368,8 @@ public class WorkerManager {
 		}
 
 		return closestDepot;
+		
+		// BasicBot 1.1 Patch End //////////////////////////////////////////////////
 	}
 
 	/// 해당 일꾼 유닛 unit 의 WorkerJob 값를 Idle 로 변경합니다
@@ -374,7 +387,12 @@ public class WorkerManager {
 		if (refinery == null) return null;
 
 		Unit closestWorker = null;
-		double closestDistance = 0;
+		
+		// BasicBot 1.1 Patch Start ////////////////////////////////////////////////
+
+		double closestDistance = 1000000000;
+
+		// BasicBot 1.1 Patch End //////////////////////////////////////////////////
 
 		for (Unit unit : workerData.getWorkers())
 		{
@@ -411,8 +429,13 @@ public class WorkerManager {
 		// variables to hold the closest worker of each type to the building
 		Unit closestMovingWorker = null;
 		Unit closestMiningWorker = null;
-		double closestMovingWorkerDistance = 0;
-		double closestMiningWorkerDistance = 0;
+
+		// BasicBot 1.1 Patch Start ////////////////////////////////////////////////
+
+		double closestMovingWorkerDistance = 1000000000;
+		double closestMiningWorkerDistance = 1000000000;
+
+		// BasicBot 1.1 Patch End //////////////////////////////////////////////////
 
 		// look through each worker that had moved there first
 		for (Unit unit : workerData.getWorkers())
@@ -498,8 +521,13 @@ public class WorkerManager {
 	{
 		// set up the pointer
 		Unit closestWorker = null;
-		double closestDistance = 0;
 
+		// BasicBot 1.1 Patch Start ////////////////////////////////////////////////
+
+		double closestDistance = 1000000000;
+
+		// BasicBot 1.1 Patch End //////////////////////////////////////////////////
+		
 		// for each worker we currently have
 		for (Unit unit : workerData.getWorkers())
 		{
@@ -527,8 +555,13 @@ public class WorkerManager {
 	{
 		// set up the pointer
 		Unit closestWorker = null;
-		double closestDistance = 0;
 
+		// BasicBot 1.1 Patch Start ////////////////////////////////////////////////
+
+		double closestDistance = 1000000000;
+
+		// BasicBot 1.1 Patch End //////////////////////////////////////////////////
+		
 		// for each worker we currently have
 		for (Unit unit : workerData.getWorkers())
 		{
@@ -617,21 +650,63 @@ public class WorkerManager {
 	{
 		if (unit == null) return;
 
+		// BasicBot 1.1 Patch Start ////////////////////////////////////////////////
+
+		// onUnitComplete 에서 처리하도록 수정
 		// if something morphs into a worker, add it
-		if (unit.getType().isWorker() && unit.getPlayer() == MyBotModule.Broodwar.self() && unit.getHitPoints() >= 0)
-		{
-			workerData.addWorker(unit);
-		}
+		//if (unit.getType().isWorker() && unit.getPlayer() == MyBotModule.Broodwar.self() && unit.getHitPoints() >= 0)
+		//{
+		//	workerData.addWorker(unit);
+		//}
 
 		// if something morphs into a building, it was a worker (Zerg Drone)
 		if (unit.getType().isBuilding() && unit.getPlayer() == MyBotModule.Broodwar.self() && unit.getPlayer().getRace() == Race.Zerg)
 		{
 			// 해당 worker 를 workerData 에서 삭제한다
 			workerData.workerDestroyed(unit);
+			rebalanceWorkers();
 		}
+
+		// BasicBot 1.1 Patch End //////////////////////////////////////////////////
 	}
 
+	// BasicBot 1.1 Patch Start ////////////////////////////////////////////////
+
+	// onUnitShow 메소드 제거
+	/*
+	// 일꾼 유닛들의 상태를 저장하는 workerData 객체를 업데이트합니다
+	public void onUnitShow(Unit unit)
+	{
+		if (unit == null) return;
+
+		// add the depot if it exists
+		if (unit.getType().isResourceDepot() && unit.getPlayer() == MyBotModule.Broodwar.self())
+		{
+			workerData.addDepot(unit);
+		}
+
+		// add the worker
+		if (unit.getType().isWorker() && unit.getPlayer() == MyBotModule.Broodwar.self() && unit.getHitPoints() >= 0)
+		{
+			workerData.addWorker(unit);
+		}
+
+		if (unit.getType().isResourceDepot() && unit.getPlayer() == MyBotModule.Broodwar.self())
+		{
+			rebalanceWorkers();
+		}
+
+	}
+	*/
+	
+	// onUnitComplete 메소드 추가
+
 	/// 일꾼 유닛들의 상태를 저장하는 workerData 객체를 업데이트합니다
+	/// Terran_SCV, Protoss_Probe 유닛 훈련이 끝나서 탄생할 경우, 
+	/// Zerg_Drone 유닛이 탄생하는 경우,
+	/// Zerg_Drone 유닛이 건물로 Morph 가 끝나서 건물이 완성되는 경우,
+	/// Zerg_Drone 유닛의 Zerg_Extractor 건물로의 Morph 를 취소시켜서 Zerg_Drone 유닛이 새롭게 탄생하는 경우
+	/// 호출됩니다
 	public void onUnitComplete(Unit unit)
 	{
 		if (unit == null) return;
@@ -647,9 +722,11 @@ public class WorkerManager {
 		if (unit.getType().isWorker() && unit.getPlayer() == MyBotModule.Broodwar.self() && unit.getHitPoints() >= 0)
 		{
 			workerData.addWorker(unit);
+			rebalanceWorkers();
 		}
-
 	}
+
+	// BasicBot 1.1 Patch End //////////////////////////////////////////////////
 
 	// 일하고있는 resource depot 에 충분한 수의 mineral worker 들이 지정되어 있다면, idle 상태로 만든다
 	// idle worker 에게 mineral job 을 부여할 때, mineral worker 가 부족한 resource depot 으로 이동하게 된다  
@@ -675,6 +752,8 @@ public class WorkerManager {
 		}
 	}
 
+	// BasicBot 1.1 Patch Start ////////////////////////////////////////////////
+
 	/// 일꾼 유닛들의 상태를 저장하는 workerData 객체를 업데이트합니다
 	public void onUnitDestroy(Unit unit) 
 	{
@@ -699,6 +778,8 @@ public class WorkerManager {
 			rebalanceWorkers();
 		}
 	}
+
+	// BasicBot 1.1 Patch End //////////////////////////////////////////////////
 
 	public boolean isMineralWorker(Unit worker)
 	{

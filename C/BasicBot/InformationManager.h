@@ -108,9 +108,14 @@ namespace MyBot
 
 
 
+		// BasicBot 1.1 Patch Start ////////////////////////////////////////////////
+
 		/// 해당 Player (아군 or 적군) 의 모든 유닛 목록 (가장 최근값) UnitAndUnitInfoMap 을 리턴합니다<br> 
 		/// 파악된 정보만을 리턴하기 때문에 적군의 정보는 틀린 값일 수 있습니다
 		UnitAndUnitInfoMap &    getUnitAndUnitInfoMap(BWAPI::Player player);
+
+		// BasicBot 1.1 Patch End //////////////////////////////////////////////////
+
 		/// 해당 Player (아군 or 적군) 의 모든 유닛 통계 UnitData 을 리턴합니다		 
 		UnitData &				getUnitData(BWAPI::Player player);
 

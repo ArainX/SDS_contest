@@ -4,12 +4,7 @@ using namespace MyBot;
 
 GameCommander::GameCommander(){
 	isToFindError = false;
-
-	isFlag1 = false;
-	isFlag2 = false;
-	isFlag3 = false;
 }
-
 GameCommander::~GameCommander(){
 }
 
@@ -75,20 +70,30 @@ void GameCommander::onFrame()
 	if (isToFindError) std::cout << "h)";
 }
 
+// BasicBot 1.1 Patch Start ////////////////////////////////////////////////
+
 void GameCommander::onUnitShow(BWAPI::Unit unit)			
 { 
 	InformationManager::Instance().onUnitShow(unit); 
 }
+
+// BasicBot 1.1 Patch End //////////////////////////////////////////////////
 
 void GameCommander::onUnitHide(BWAPI::Unit unit)			
 {
 	InformationManager::Instance().onUnitHide(unit); 
 }
 
-void GameCommander::onUnitCreate(BWAPI::Unit unit)		
+// BasicBot 1.1 Patch Start ////////////////////////////////////////////////
+
+void GameCommander::onUnitCreate(BWAPI::Unit unit)
 { 
 	InformationManager::Instance().onUnitCreate(unit);
 }
+
+// BasicBot 1.1 Patch End //////////////////////////////////////////////////
+
+// BasicBot 1.1 Patch Start ////////////////////////////////////////////////
 
 void GameCommander::onUnitComplete(BWAPI::Unit unit)
 {
@@ -98,7 +103,9 @@ void GameCommander::onUnitComplete(BWAPI::Unit unit)
 	WorkerManager::Instance().onUnitComplete(unit);
 }
 
-void GameCommander::onUnitDestroy(BWAPI::Unit unit)		
+// BasicBot 1.1 Patch End //////////////////////////////////////////////////
+
+void GameCommander::onUnitDestroy(BWAPI::Unit unit)
 {
 	// ResourceDepot 및 Worker 에 대한 처리
 	WorkerManager::Instance().onUnitDestroy(unit);
@@ -130,6 +137,8 @@ void GameCommander::onUnitEvade(BWAPI::Unit unit)
 {
 }
 
+// BasicBot 1.1 Patch Start ////////////////////////////////////////////////
+
 void GameCommander::onNukeDetect(BWAPI::Position target)
 {
 }
@@ -142,94 +151,10 @@ void GameCommander::onSaveGame(std::string gameName)
 {
 }
 
+// BasicBot 1.1 Patch End //////////////////////////////////////////////////
+
 void GameCommander::onSendText(std::string text)
 {
-	if (isFlag1 == false
-		&& text == "l") 
-	{
-		for (auto & unit : BWAPI::Broodwar->self()->getUnits())
-		{
-			if (unit->getType() == BWAPI::UnitTypes::Zerg_Lair && unit->isCompleted() )
-			{
-				// No
-				//unit->issueCommand(BWAPI::UnitCommand::research(unit, BWAPI::TechTypes::Burrowing));
-				
-				// No
-				//unit->useTech(BWAPI::TechTypes::Burrowing);
-				
-				//BWAPI::Unitset unitset;
-				//unitset.insert(unit);
-				BWAPI::Broodwar->self()->issu
-				break;
-			}
-		}
-
-		//BuildManager::Instance().buildQueue.queueAsLowestPriority(MetaType(BWAPI::TechTypes::Burrowing), BuildOrderItem::SeedPositionStrategy::FirstExpansionLocation);
-		isFlag1 = true;
-	}
-
-	if (isFlag2 == false
-		&& text == "z")
-	{
-		for (auto & unit : BWAPI::Broodwar->self()->getUnits())
-		{
-			if (unit->getType() == BWAPI::UnitTypes::Zerg_Greater_Spire && unit->isCompleted())
-			{
-				unit->issueCommand(BWAPI::UnitCommand::upgrade(unit, BWAPI::UpgradeTypes::Zerg_Flyer_Attacks));
-
-				break;
-			}
-		}
-
-
-		//BuildManager::Instance().buildQueue.queueAsLowestPriority(MetaType(BWAPI::UpgradeTypes::Ventral_Sacs), BuildOrderItem::SeedPositionStrategy::FirstExpansionLocation);
-		isFlag2 = true;
-	}
-
-	if (isFlag3 == false
-		&& text == "e")
-	{
-		BWAPI::TilePosition closestGeyser = BWAPI::TilePositions::None;
-		double minGeyserDistanceFromHome = std::numeric_limits<double>::max();
-
-		for (BWTA::BaseLocation * baseLocation : InformationManager::Instance().getOccupiedBaseLocations(InformationManager::Instance().selfPlayer)) {
-			for (auto & geyser : baseLocation->getGeysers()) {
-
-				BWAPI::Position geyserPos = geyser->getInitialPosition();
-				BWAPI::TilePosition geyserTilePos = geyser->getInitialTilePosition();
-
-				// geyser 근처에 ResourceDepot 이 존재하면
-				bool isResourceDepotCompleted = false;
-				for (auto & unit : BWAPI::Broodwar->self()->getUnits())
-				{
-					if (unit->getType().isResourceDepot() && unit->isCompleted() && unit->getDistance(geyserPos) < 300)
-					{
-						isResourceDepotCompleted = true;
-					}
-				}
-
-				if (isResourceDepotCompleted)
-				{
-					// geyser 위치에 Refinery 가 건설되어있지 않으면
-					bool isAlreadyRefineryBuilt = false;
-					for (auto & uot : BWAPI::Broodwar->getUnitsOnTile(geyserTilePos)) {
-						if (uot->getType().isRefinery()) {
-							isAlreadyRefineryBuilt = true;
-							break;
-						}
-					}
-
-					if (isAlreadyRefineryBuilt == false) {
-						BuildManager::Instance().buildQueue.queueAsLowestPriority(BWAPI::UnitTypes::Zerg_Extractor, 
-							geyserTilePos);
-					}
-				}
-			}
-		}
-
-		isFlag3 = true;
-	}
-
 }
 
 void GameCommander::onReceiveText(BWAPI::Player player, std::string text)

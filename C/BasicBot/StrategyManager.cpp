@@ -16,26 +16,24 @@ StrategyManager::StrategyManager()
 
 void StrategyManager::onStart()
 {
+	// BasicBot 1.1 Patch Start ////////////////////////////////////////////////
+	
 	// 과거 게임 기록을 로딩합니다
 	loadGameRecordList();
 
+	// BasicBot 1.1 Patch End //////////////////////////////////////////////////
+	
 	setInitialBuildOrder();
-
-	BWAPI::Broodwar->sendText("show me the money");
-	BWAPI::Broodwar->sendText("operation cwal");
-
-	BuildManager::Instance().buildQueue.queueAsLowestPriority(BWAPI::UnitTypes::Zerg_Lair);
-	BuildManager::Instance().buildQueue.queueAsLowestPriority(BWAPI::UnitTypes::Zerg_Spire);
-	BuildManager::Instance().buildQueue.queueAsLowestPriority(BWAPI::UnitTypes::Zerg_Queens_Nest);
-	BuildManager::Instance().buildQueue.queueAsLowestPriority(BWAPI::UnitTypes::Zerg_Hive);
-	BuildManager::Instance().buildQueue.queueAsLowestPriority(BWAPI::UnitTypes::Zerg_Greater_Spire);
-
 }
 
 void StrategyManager::onEnd(bool isWinner)
 {	
+	// BasicBot 1.1 Patch Start ////////////////////////////////////////////////
+
 	// 과거 게임 기록 + 이번 게임 기록을 저장합니다
 	saveGameRecordList(isWinner);
+
+	// BasicBot 1.1 Patch End //////////////////////////////////////////////////
 }
 
 void StrategyManager::update()
@@ -44,16 +42,20 @@ void StrategyManager::update()
 		isInitialBuildOrderFinished = true;
 	}
 		
-	//executeWorkerTraining();
+	executeWorkerTraining();
 
 	executeSupplyManagement();
 
-	//executeBasicCombatUnitTraining();
+	executeBasicCombatUnitTraining();
 
-	//executeCombat();
+	executeCombat();
+
+	// BasicBot 1.1 Patch Start ////////////////////////////////////////////////
 
 	// 이번 게임의 로그를 남깁니다
 	saveGameLog();
+
+	// BasicBot 1.1 Patch End //////////////////////////////////////////////////
 }
 
 void StrategyManager::setInitialBuildOrder()
@@ -219,13 +221,13 @@ void StrategyManager::setInitialBuildOrder()
 		// 벌쳐 이동속도 업
 		BuildManager::Instance().buildQueue.queueAsLowestPriority(BWAPI::UpgradeTypes::Ion_Thrusters);
 		// 시즈탱크 시즈모드
-		BuildManager::Instance().buildQueue.queueAsLowestPriority(BWAPI::UnitTypes::Terran_Siege_Tank_Tank_Mode);
+		BuildManager::Instance().buildQueue.queueAsLowestPriority(BWAPI::TechTypes::Tank_Siege_Mode);
 
 		// 벌쳐
 		BuildManager::Instance().buildQueue.queueAsLowestPriority(BWAPI::UnitTypes::Terran_Vulture);
 
 		// 시즈탱크
-		BuildManager::Instance().buildQueue.queueAsLowestPriority(BWAPI::TechTypes::Tank_Siege_Mode);
+		BuildManager::Instance().buildQueue.queueAsLowestPriority(BWAPI::UnitTypes::Terran_Siege_Tank_Tank_Mode);
 
 		// 아머니
 		BuildManager::Instance().buildQueue.queueAsLowestPriority(BWAPI::UnitTypes::Terran_Armory);
@@ -395,6 +397,7 @@ void StrategyManager::setInitialBuildOrder()
 		// 스파이어 -> 그레이트 스파이어
 		BuildManager::Instance().buildQueue.queueAsLowestPriority(BWAPI::UnitTypes::Zerg_Greater_Spire);
 		BuildManager::Instance().buildQueue.queueAsLowestPriority(BWAPI::UnitTypes::Zerg_Guardian);
+		BuildManager::Instance().buildQueue.queueAsLowestPriority(BWAPI::UnitTypes::Zerg_Mutalisk);
 		BuildManager::Instance().buildQueue.queueAsLowestPriority(BWAPI::UnitTypes::Zerg_Devourer);
 
 		// 울트라리스크
@@ -493,6 +496,12 @@ void StrategyManager::executeWorkerTraining()
 // Supply DeadLock 예방 및 SupplyProvider 가 부족해질 상황 에 대한 선제적 대응으로서 SupplyProvider를 추가 건설/생산한다
 void StrategyManager::executeSupplyManagement()
 {
+	// BasicBot 1.1 Patch Start ////////////////////////////////////////////////
+
+	// 주석 추가
+	// InitialBuildOrder 진행중 혹은 그후라도 서플라이 건물이 파괴되어 데드락이 발생할 수 있는데, 이 상황에 대한 해결은 참가자께서 해주셔야 합니다.
+	// 오버로드가 학살당하거나, 서플라이 건물이 집중 파괴되는 상황에 대해  무조건적으로 서플라이 빌드 추가를 실행하기 보다 먼저 전략적 대책 판단이 필요할 것입니다
+
 	// InitialBuildOrder 진행중에는 아무것도 하지 않습니다
 	if (isInitialBuildOrderFinished == false) {
 		return;
@@ -537,7 +546,8 @@ void StrategyManager::executeSupplyManagement()
 				onBuildingSupplyCount += ConstructionManager::Instance().getConstructionQueueItemCount(InformationManager::Instance().getBasicSupplyProviderUnitType()) * InformationManager::Instance().getBasicSupplyProviderUnitType().supplyProvided();
 			}
 
-			std::cout << "currentSupplyShortage : " << currentSupplyShortage << " onBuildingSupplyCount : " << onBuildingSupplyCount << std::endl;
+			// 주석처리
+			//std::cout << "currentSupplyShortage : " << currentSupplyShortage << " onBuildingSupplyCount : " << onBuildingSupplyCount << std::endl;
 
 			if (currentSupplyShortage > onBuildingSupplyCount) {
 
@@ -550,13 +560,15 @@ void StrategyManager::executeSupplyManagement()
 					}
 				}
 				if (isToEnqueue) {
-					std::cout << "enqueue supply provider " << InformationManager::Instance().getBasicSupplyProviderUnitType().getName().c_str() << std::endl;
+					// 주석처리
+					//std::cout << "enqueue supply provider " << InformationManager::Instance().getBasicSupplyProviderUnitType().getName().c_str() << std::endl;
 					BuildManager::Instance().buildQueue.queueAsHighestPriority(MetaType(InformationManager::Instance().getBasicSupplyProviderUnitType()), true);
 				}
 			}
 
 		}
 	}
+	// BasicBot 1.1 Patch End ////////////////////////////////////////////////
 }
 
 void StrategyManager::executeBasicCombatUnitTraining()

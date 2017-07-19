@@ -2,6 +2,8 @@
 
 namespace Config
 {
+	// BasicBot 1.1 Patch Start ////////////////////////////////////////////////
+
 	namespace BotInfo
 	{
 		std::string BotName = "NoNameBot";
@@ -14,6 +16,8 @@ namespace Config
 		std::string ReadDirectory = "bwapi-data\\read\\";
 		std::string WriteDirectory = "bwapi-data\\write\\";		
     }
+
+	// BasicBot 1.1 Patch End //////////////////////////////////////////////////
 
 	namespace BWAPIOptions
 	{
@@ -45,7 +49,7 @@ namespace Config
 		bool DrawUnitHealthBars = true;
 		bool DrawProductionInfo = true;
 		bool DrawScoutInfo = true;
-		bool DrawResourceInfo = true;
+		bool DrawResourceInfo = false;
 		bool DrawWorkerInfo = true;
 		bool DrawReservedBuildingTiles = false;
 		bool DrawBuildingInfo = true;

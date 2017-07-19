@@ -2,6 +2,7 @@ var searchData=
 [
   ['depothasenoughmineralworkers',['depotHasEnoughMineralWorkers',['../class_worker_data.html#a610e14550dc9717384cd74c438d636cb',1,'WorkerData']]],
   ['distancemap',['DistanceMap',['../class_distance_map.html#a50ba91205357499987af531d5f0d22eb',1,'DistanceMap.DistanceMap()'],['../class_distance_map.html#a23d4a092b2c13d557919d744e7c8ff49',1,'DistanceMap.DistanceMap(int mapWidth, int mapHeight, int cellSize)']]],
+  ['dotimeoutdelay',['doTimeOutDelay',['../class_my_bot_module.html#a0241e367fb16b87dd8cc59b522c3288b',1,'MyBotModule']]],
   ['drawapm',['drawAPM',['../class_u_x_manager.html#ae3590dae82f4142951b9cbba052de593',1,'UXManager']]],
   ['drawbuildorderqueueonscreen',['drawBuildOrderQueueOnScreen',['../class_u_x_manager.html#aca5c11d1eaea28f7dadfdfb6d1c1a83c',1,'UXManager']]],
   ['drawbuildstatusonscreen',['drawBuildStatusOnScreen',['../class_u_x_manager.html#acd25ff510e14d15e3f202050734e95b7',1,'UXManager']]],

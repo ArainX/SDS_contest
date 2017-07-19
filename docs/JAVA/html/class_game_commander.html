@@ -26,7 +26,7 @@
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;">
    <div id="projectname">BasicBot
-   &#160;<span id="projectnumber">v1.0</span>
+   &#160;<span id="projectnumber">v1.1</span>
    </div>
    <div id="projectbrief">BasicBot for Starcraft: Broodwar 1.16.1 with BWAPI 4.1.2</div>
   </td>
@@ -105,8 +105,14 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:ac5bd55e90eb436781d883a51fe086e47"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aed648b450d0603c630bac36bdd019d2a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_game_commander.html#aed648b450d0603c630bac36bdd019d2a">onFrame</a> ()</td></tr>
 <tr class="separator:aed648b450d0603c630bac36bdd019d2a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a737f1309746c270b14f0e210342bb2d6"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_game_commander.html#a737f1309746c270b14f0e210342bb2d6">onNukeDetect</a> (Position target)</td></tr>
+<tr class="separator:a737f1309746c270b14f0e210342bb2d6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a746b923de49d891f27889c4166d43f9e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_game_commander.html#a746b923de49d891f27889c4166d43f9e">onPlayerLeft</a> (Player player)</td></tr>
+<tr class="separator:a746b923de49d891f27889c4166d43f9e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:add15bd2b1bd764b17ee59b8fce7e29ba"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_game_commander.html#add15bd2b1bd764b17ee59b8fce7e29ba">onReceiveText</a> (Player player, String text)</td></tr>
 <tr class="separator:add15bd2b1bd764b17ee59b8fce7e29ba"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6c92a94f3f576e3930c58ed6e8d87779"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_game_commander.html#a6c92a94f3f576e3930c58ed6e8d87779">onSaveGame</a> (String gameName)</td></tr>
+<tr class="separator:a6c92a94f3f576e3930c58ed6e8d87779"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a1a6b680cca3dd6c296cb406b48811736"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_game_commander.html#a1a6b680cca3dd6c296cb406b48811736">onSendText</a> (String text)</td></tr>
 <tr class="separator:a1a6b680cca3dd6c296cb406b48811736"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7867ef2d6f65b530ccea76b95f36d400"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_game_commander.html#a7867ef2d6f65b530ccea76b95f36d400">onStart</a> ()</td></tr>
@@ -174,6 +180,42 @@ Private Attributes</h2></td></tr>
 
 </div>
 </div>
+<a class="anchor" id="a737f1309746c270b14f0e210342bb2d6"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void GameCommander.onNukeDetect </td>
+          <td>(</td>
+          <td class="paramtype">Position&#160;</td>
+          <td class="paramname"><em>target</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>핵미사일 발사가 감지되었을 때 발생하는 이벤트를 처리합니다 </p>
+
+</div>
+</div>
+<a class="anchor" id="a746b923de49d891f27889c4166d43f9e"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void GameCommander.onPlayerLeft </td>
+          <td>(</td>
+          <td class="paramtype">Player&#160;</td>
+          <td class="paramname"><em>player</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>다른 플레이어가 대결을 나갔을 때 발생하는 이벤트를 처리합니다 </p>
+
+</div>
+</div>
 <a class="anchor" id="add15bd2b1bd764b17ee59b8fce7e29ba"></a>
 <div class="memitem">
 <div class="memproto">
@@ -199,6 +241,24 @@ Private Attributes</h2></td></tr>
 </div><div class="memdoc">
 
 <p>다른 플레이어로부터 텍스트를 전달받았을 때 발생하는 이벤트를 처리합니다 </p>
+
+</div>
+</div>
+<a class="anchor" id="a6c92a94f3f576e3930c58ed6e8d87779"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void GameCommander.onSaveGame </td>
+          <td>(</td>
+          <td class="paramtype">String&#160;</td>
+          <td class="paramname"><em>gameName</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>게임을 저장할 때 발생하는 이벤트를 처리합니다 </p>
 
 </div>
 </div>
@@ -432,7 +492,7 @@ Private Attributes</h2></td></tr>
 <!-- HTML footer for doxygen 1.8.8-->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Fri Jun 16 2017 18:34:29 for BasicBot by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Thu Jul 20 2017 00:30:40 for BasicBot by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.8
 </small></address>

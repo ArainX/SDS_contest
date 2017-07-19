@@ -30,7 +30,11 @@ using namespace BWTA;
 using namespace MyBot;
 
 MyBotModule::MyBotModule(){
+	// BasicBot 1.1 Patch Start ////////////////////////////////////////////////
+
 	initializeLostConditionVariables();
+
+	// BasicBot 1.1 Patch End //////////////////////////////////////////////////
 }
 
 MyBotModule::~MyBotModule(){
@@ -92,6 +96,8 @@ void MyBotModule::onFrame(){
 		return;
 	}
 
+	// BasicBot 1.1 Patch Start ////////////////////////////////////////////////
+
 	// timeStartedAtFrame 를 갱신한다
 	if (timeStartedAtFrame[BWAPI::Broodwar->getFrameCount()] == 0) {
 		timeStartedAtFrame[BWAPI::Broodwar->getFrameCount()] = std::chrono::duration_cast<std::chrono::milliseconds>(std::chrono::system_clock::now().time_since_epoch()).count();
@@ -113,10 +119,15 @@ void MyBotModule::onFrame(){
 	}
 
 	// 화면 출력 및 사용자 입력 처리
+	// 빌드서버에서는 Dependency가 없는 빌드서버 전용 UXManager 를 실행시킵니다
 	UXManager::Instance().update();
 
 	checkLostConditions();
+
+	// BasicBot 1.1 Patch End //////////////////////////////////////////////////
 }
+
+// BasicBot 1.1 Patch Start ////////////////////////////////////////////////
 
 void MyBotModule::onUnitCreate(BWAPI::Unit unit){
 	if (!BWAPI::Broodwar->isReplay()) {
@@ -405,8 +416,7 @@ void MyBotModule::checkLostConditions()
 
 // 현재 자동 패배조건 : 생산능력을 가진 건물이 하나도 없음 && 공격능력을 가진/가질수있는 건물이 하나도 없음 && 생산/공격/특수능력을 가진 비건물 유닛이 하나도 없음
 // 토너먼트 서버에서 게임을 무의미하게 제한시간까지 플레이시키는 경우가 없도록 하기 위함임
-//
-// TODO (향후 추가여부 검토) : '일꾼은 있지만 커맨드센터도 없고 보유 미네랄도 없고 지도에 미네랄이 하나도 없는 경우' 처럼 게임 승리를 이끌 가능성이 현실적으로 전혀 없는 경우까지 추가 체크
+// 향후 추가 검토 중 : '일꾼은 있지만 커맨드센터도 없고 보유 미네랄도 없고 지도에 미네랄이 하나도 없는 경우' 처럼 게임 승리를 이끌 가능성이 현실적으로 전혀 없는 경우까지 추가 체크
 void MyBotModule::checkGameLostConditionAndLeaveGame()
 {
 	bool isLostGame = false;
@@ -565,10 +575,14 @@ void MyBotModule::checkTimeOutConditionAndLeaveGame()
 			Broodwar->drawTextScreen(250, 100, "I lost because of TIMEOUT");
 
 			if (Broodwar->getFrameCount() - timeOutConditionSatisfiedFrame >= maxDurationForTimeOutLostCondition) {
-				Broodwar->leaveGame();
+
+				// 빌드서버에서는 실제로 게임을 종료시켜버립니다
+				//Broodwar->leaveGame();
 			}
 		}
 
 
 	}
 }
+
+// BasicBot 1.1 Patch End //////////////////////////////////////////////////

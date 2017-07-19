@@ -26,7 +26,7 @@
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;">
    <div id="projectname">BasicBot
-   &#160;<span id="projectnumber">v1.0</span>
+   &#160;<span id="projectnumber">v1.1</span>
    </div>
    <div id="projectbrief">BasicBot for Starcraft: Broodwar 1.16.1 with BWAPI 4.1.2</div>
   </td>
@@ -132,18 +132,21 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <li>InformationManager()
 : <a class="el" href="class_information_manager.html#a2f121b8c1421bd48452ce65f04f1607d">InformationManager</a>
 </li>
+<li>initializeLostConditionVariables()
+: <a class="el" href="class_my_bot_module.html#a539fd17aecb560d916589da3bda377a8">MyBotModule</a>
+</li>
 <li>instance
 : <a class="el" href="class_build_manager.html#a0969b4bf83546080d554dfbb77fd7f3d">BuildManager</a>
 </li>
 <li>Instance()
 : <a class="el" href="class_build_manager.html#a97e4689e7051f4d1e58855fcc1fd93cf">BuildManager</a>
+, <a class="el" href="class_construction_manager.html#abe9bb4c125732cd80da9bf2138f77a5e">ConstructionManager</a>
 </li>
 <li>instance
 : <a class="el" href="class_construction_manager.html#a0149018cc15ae3630c9e93cd894cde99">ConstructionManager</a>
 </li>
 <li>Instance()
-: <a class="el" href="class_construction_manager.html#abe9bb4c125732cd80da9bf2138f77a5e">ConstructionManager</a>
-, <a class="el" href="class_construction_place_finder.html#a49e11ef63897dc2b1fa28e6a3df6249c">ConstructionPlaceFinder</a>
+: <a class="el" href="class_construction_place_finder.html#a49e11ef63897dc2b1fa28e6a3df6249c">ConstructionPlaceFinder</a>
 </li>
 <li>instance
 : <a class="el" href="class_construction_place_finder.html#a8648055fecefd11edd9c24949e27a8b0">ConstructionPlaceFinder</a>
@@ -153,13 +156,13 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </li>
 <li>instance
 : <a class="el" href="class_distance_map.html#abbbffe7732638caf22d94395a78ae654">DistanceMap</a>
+, <a class="el" href="class_information_manager.html#ae1a181143d63fbead75f860476990922">InformationManager</a>
 </li>
 <li>Instance()
 : <a class="el" href="class_information_manager.html#ad159a0348d57c7a4df85b22b18a1a5e4">InformationManager</a>
 </li>
 <li>instance
-: <a class="el" href="class_information_manager.html#ae1a181143d63fbead75f860476990922">InformationManager</a>
-, <a class="el" href="class_map_grid.html#adac366ab44cf059ba5c238fe53fdb460">MapGrid</a>
+: <a class="el" href="class_map_grid.html#adac366ab44cf059ba5c238fe53fdb460">MapGrid</a>
 </li>
 <li>Instance()
 : <a class="el" href="class_map_grid.html#a0f92f737a40713cca58b91a9fbc42ca6">MapGrid</a>
@@ -175,13 +178,13 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </li>
 <li>Instance()
 : <a class="el" href="class_scout_manager.html#adb083b137ff434a8100aa48cc270d26b">ScoutManager</a>
+, <a class="el" href="class_strategy_manager.html#a8754cb7b442c724bd4b26b9721113d2c">StrategyManager</a>
 </li>
 <li>instance
 : <a class="el" href="class_strategy_manager.html#aa181c3f33cd0d77c19e9ce4546428f50">StrategyManager</a>
 </li>
 <li>Instance()
-: <a class="el" href="class_strategy_manager.html#a8754cb7b442c724bd4b26b9721113d2c">StrategyManager</a>
-, <a class="el" href="class_u_x_manager.html#add8e178c4d7568c95764d4be3b087114">UXManager</a>
+: <a class="el" href="class_u_x_manager.html#add8e178c4d7568c95764d4be3b087114">UXManager</a>
 </li>
 <li>instance
 : <a class="el" href="class_u_x_manager.html#a11ab1eb7301de12ee33e3120df93514b">UXManager</a>
@@ -225,8 +228,14 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <li>isEvolvedBuilding()
 : <a class="el" href="class_construction_manager.html#ae0e965e1f347e61225c9b047defb8cf8">ConstructionManager</a>
 </li>
+<li>isExceptionLostConditionSatisfied
+: <a class="el" href="class_my_bot_module.html#aeed64794baa02819ee8664f35ac6bb5c">MyBotModule</a>
+</li>
 <li>isFullScaleAttackStarted
 : <a class="el" href="class_strategy_manager.html#a8427ef855c04c001f5132a3933be7486">StrategyManager</a>
+</li>
+<li>isGameLostConditionSatisfied
+: <a class="el" href="class_my_bot_module.html#ac17524ea2fe98cea735fdf96a2c1fa25">MyBotModule</a>
 </li>
 <li>isInitialBuildOrderFinished
 : <a class="el" href="class_strategy_manager.html#aad67fe45e44d68cfd31c7fe64e38bd2c">StrategyManager</a>
@@ -258,8 +267,20 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <li>isTilesToAvoid()
 : <a class="el" href="class_construction_place_finder.html#aeec9d45f7b6adaee00b803648555a959">ConstructionPlaceFinder</a>
 </li>
+<li>isTimeOutConditionSatisfied
+: <a class="el" href="class_my_bot_module.html#ae713724acc1c430b37caf6bacf660f44">MyBotModule</a>
+</li>
+<li>isToCheckGameLostCondition
+: <a class="el" href="class_my_bot_module.html#a275d2334b25b014e067d40c9f7caa7ab">MyBotModule</a>
+</li>
+<li>isToCheckTimeOut
+: <a class="el" href="class_my_bot_module.html#a99742a556aa38ebaf1399cbe16a6f73c">MyBotModule</a>
+</li>
 <li>isToFindError
 : <a class="el" href="class_game_commander.html#a5efd489491ad7bfc88b91af1042af8a4">GameCommander</a>
+</li>
+<li>isToTestTimeOut
+: <a class="el" href="class_my_bot_module.html#ad682dab4af6ec45b5058e52a5a8ec3f1">MyBotModule</a>
 </li>
 <li>isUnderConstruction()
 : <a class="el" href="class_construction_task.html#ab522739e2f720bf23e01c4b6d54f9543">ConstructionTask</a>
@@ -278,7 +299,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <!-- HTML footer for doxygen 1.8.8-->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Fri Jun 16 2017 18:34:30 for BasicBot by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Thu Jul 20 2017 00:30:40 for BasicBot by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.8
 </small></address>
