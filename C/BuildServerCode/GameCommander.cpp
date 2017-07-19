@@ -59,6 +59,18 @@ void GameCommander::onUnitEvade(BWAPI::Unit unit)
 {
 }
 
+void GameCommander::onNukeDetect(BWAPI::Position target)
+{
+}
+
+void GameCommander::onPlayerLeft(BWAPI::Player player)
+{
+}
+
+void GameCommander::onSaveGame(std::string gameName)
+{
+}
+
 void GameCommander::onSendText(std::string text)
 {
 }

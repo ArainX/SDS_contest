@@ -1,6 +1,7 @@
 // GameCommander 소스코드는 예시입니다
 
 import bwapi.Player;
+import bwapi.Position;
 import bwapi.Unit;
 
 /// 실제 봇프로그램의 본체가 되는 class<br>
@@ -66,6 +67,18 @@ public class GameCommander {
 	public void onUnitHide(Unit unit) {
 	}
 	
+	/// 핵미사일 발사가 감지되었을 때 발생하는 이벤트를 처리합니다
+	public void onNukeDetect(Position target){
+	}
+
+	/// 다른 플레이어가 대결을 나갔을 때 발생하는 이벤트를 처리합니다
+	public void onPlayerLeft(Player player){
+	}
+
+	/// 게임을 저장할 때 발생하는 이벤트를 처리합니다
+	public void onSaveGame(String gameName){
+	}
+		
 	/// 텍스트를 입력 후 엔터를 하여 다른 플레이어들에게 텍스트를 전달하려 할 때 발생하는 이벤트를 처리합니다
 	public void onSendText(String text){
 	}

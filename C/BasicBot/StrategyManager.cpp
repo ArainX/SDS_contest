@@ -16,11 +16,26 @@ StrategyManager::StrategyManager()
 
 void StrategyManager::onStart()
 {
+	// 과거 게임 기록을 로딩합니다
+	loadGameRecordList();
+
 	setInitialBuildOrder();
+
+	BWAPI::Broodwar->sendText("show me the money");
+	BWAPI::Broodwar->sendText("operation cwal");
+
+	BuildManager::Instance().buildQueue.queueAsLowestPriority(BWAPI::UnitTypes::Zerg_Lair);
+	BuildManager::Instance().buildQueue.queueAsLowestPriority(BWAPI::UnitTypes::Zerg_Spire);
+	BuildManager::Instance().buildQueue.queueAsLowestPriority(BWAPI::UnitTypes::Zerg_Queens_Nest);
+	BuildManager::Instance().buildQueue.queueAsLowestPriority(BWAPI::UnitTypes::Zerg_Hive);
+	BuildManager::Instance().buildQueue.queueAsLowestPriority(BWAPI::UnitTypes::Zerg_Greater_Spire);
+
 }
 
 void StrategyManager::onEnd(bool isWinner)
 {	
+	// 과거 게임 기록 + 이번 게임 기록을 저장합니다
+	saveGameRecordList(isWinner);
 }
 
 void StrategyManager::update()
@@ -29,13 +44,16 @@ void StrategyManager::update()
 		isInitialBuildOrderFinished = true;
 	}
 		
-	executeWorkerTraining();
+	//executeWorkerTraining();
 
 	executeSupplyManagement();
 
-	executeBasicCombatUnitTraining();
+	//executeBasicCombatUnitTraining();
 
-	executeCombat();
+	//executeCombat();
+
+	// 이번 게임의 로그를 남깁니다
+	saveGameLog();
 }
 
 void StrategyManager::setInitialBuildOrder()
@@ -636,5 +654,126 @@ void StrategyManager::executeCombat()
 			}
 		}
 	}
+}
+
+void StrategyManager::loadGameRecordList()
+{
+	// 과거의 게임에서 bwapi-data\write 폴더에 기록했던 파일은 대회 서버가 bwapi-data\read 폴더로 옮겨놓습니다
+	// 따라서, 파일 로딩은 bwapi-data\read 폴더로부터 하시면 됩니다
+	std::string gameRecordFileName = "bwapi-data\\read\\BasicBot_GameRecord.dat";
+
+	FILE *file;
+	errno_t err;
+	if ((err = fopen_s(&file, gameRecordFileName.c_str(), "r")) != 0)
+	{
+		std::cout << "loadGameRecord failed. Could not open file :" << gameRecordFileName.c_str() << std::endl;
+	}
+	else
+	{
+		std::cout << "loadGameRecord from file: " << gameRecordFileName.c_str() << std::endl;
+		char line[4096];
+		while (fgets(line, sizeof line, file) != nullptr)
+		{
+			std::stringstream ss(line);
+
+			GameRecord tempGameRecord;
+			ss >> tempGameRecord.mapName;
+			ss >> tempGameRecord.myName;
+			ss >> tempGameRecord.myRace;
+			ss >> tempGameRecord.myWinCount;
+			ss >> tempGameRecord.myLoseCount;
+			ss >> tempGameRecord.enemyName;
+			ss >> tempGameRecord.enemyRace;
+			ss >> tempGameRecord.enemyRealRace;
+			ss >> tempGameRecord.gameFrameCount;
+
+			gameRecordList.push_back(tempGameRecord);
+		}
+		fclose(file);
+	}
+}
+
+void StrategyManager::saveGameRecordList(bool isWinner)
+{
+	// 이번 게임의 파일 저장은 bwapi-data\write 폴더에 하시면 됩니다.
+	// bwapi-data\write 폴더에 저장된 파일은 대회 서버가 다음 경기 때 bwapi-data\read 폴더로 옮겨놓습니다
+	std::string gameRecordFileName = "bwapi-data\\write\\BasicBot_GameRecord.dat";
+
+	std::cout << "saveGameRecord to file: " << gameRecordFileName.c_str() << std::endl;
+
+	std::string mapName = BWAPI::Broodwar->mapFileName();
+	std::replace(mapName.begin(), mapName.end(), ' ', '_');
+	std::string enemyName = BWAPI::Broodwar->enemy()->getName();
+	std::replace(enemyName.begin(), enemyName.end(), ' ', '_');
+	std::string myName = BWAPI::Broodwar->self()->getName();
+	std::replace(myName.begin(), myName.end(), ' ', '_');
+
+	/// 이번 게임에 대한 기록
+	GameRecord thisGameRecord;
+	thisGameRecord.mapName = mapName;
+	thisGameRecord.myName = myName;
+	thisGameRecord.myRace = BWAPI::Broodwar->self()->getRace().c_str();
+	thisGameRecord.enemyName = enemyName;
+	thisGameRecord.enemyRace = BWAPI::Broodwar->enemy()->getRace().c_str();
+	thisGameRecord.enemyRealRace = InformationManager::Instance().enemyRace.c_str();
+	thisGameRecord.gameFrameCount = BWAPI::Broodwar->getFrameCount();
+	if (isWinner) {
+		thisGameRecord.myWinCount = 1;
+		thisGameRecord.myLoseCount = 0;
+	}
+	else {
+		thisGameRecord.myWinCount = 0;
+		thisGameRecord.myLoseCount = 1;
+	}
+	// 이번 게임 기록을 전체 게임 기록에 추가
+	gameRecordList.push_back(thisGameRecord);
+
+	// 전체 게임 기록 write
+	std::stringstream ss;
+	for (GameRecord gameRecord : gameRecordList) {
+		ss << gameRecord.mapName << " "
+			<< gameRecord.myName << " "
+			<< gameRecord.myRace << " "
+			<< gameRecord.myWinCount << " "
+			<< gameRecord.myLoseCount << " "
+			<< gameRecord.enemyName << " "
+			<< gameRecord.enemyRace << " "
+			<< gameRecord.enemyRealRace << " "
+			<< gameRecord.gameFrameCount << "\n";
+
+	}
+	Logger::overwriteToFile(gameRecordFileName, ss.str());
+}
+
+void StrategyManager::saveGameLog()
+{
+	// 100 프레임 (5초) 마다 1번씩 로그를 기록합니다
+	// 참가팀 당 용량 제한이 있고, 타임아웃도 있기 때문에 자주 하지 않는 것이 좋습니다
+	// 로그는 봇 개발 시 디버깅 용도로 사용하시는 것이 좋습니다
+	if (BWAPI::Broodwar->getFrameCount() % 100 != 0) {
+		return;
+	}
+
+	std::string gameLogFileName = "bwapi-data\\write\\BasicBot_LastGameLog.dat";
+
+	std::string mapName = BWAPI::Broodwar->mapFileName();
+	std::replace(mapName.begin(), mapName.end(), ' ', '_');
+	std::string enemyName = BWAPI::Broodwar->enemy()->getName();
+	std::replace(enemyName.begin(), enemyName.end(), ' ', '_');
+	std::string myName = BWAPI::Broodwar->self()->getName();
+	std::replace(myName.begin(), myName.end(), ' ', '_');
+
+	std::stringstream ss;
+	ss << mapName << " "
+		<< myName << " "
+		<< BWAPI::Broodwar->self()->getRace().c_str() << " "
+		<< enemyName << " "
+		<< InformationManager::Instance().enemyRace.c_str() << " "
+		<< BWAPI::Broodwar->getFrameCount() << " "
+		<< BWAPI::Broodwar->self()->supplyUsed() << " "
+		<< BWAPI::Broodwar->self()->supplyTotal() << " "
+		<< "\n";
+
+	Logger::appendTextToFile(gameLogFileName, ss.str());
 }
 

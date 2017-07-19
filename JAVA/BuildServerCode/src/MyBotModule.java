@@ -23,12 +23,12 @@
 +----------------------------------------------------------------------+
 */
 
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
 import java.util.ArrayList;
 import java.util.Arrays;
 
-import javax.swing.plaf.basic.BasicInternalFrameTitlePane.SystemMenuBar;
-
-import bwapi.Color;
 import bwapi.DefaultBWListener;
 import bwapi.Game;
 import bwapi.Mirror;
@@ -39,21 +39,25 @@ import bwapi.UnitType;
 import bwapi.Flag.Enum;
 import bwta.BWTA;
 
-/// 알고리즘 경진대회 의 공정하고 효율적인 운영을 위해 Main, MyBotModule, UXManager 파일은 참가자들이 제출하는 소스코드를 무시하고 덮어쓴 후 빌드합니다 <br>
-///
-/// BuildServerCode 는 알고리즘 경진대회 빌드서버가 사용하는 Main, MyBotModule, UXManager 파일을 예시적으로 공개하는 것입니다 <br>
-/// 실제 알고리즘 경진대회 빌드서버에서는 코드를 일부 수정해서 빌드하게 될 수도 있습니다 <br>
-///
-/// Main 은 MyBotModule 을 실행시키는 기능을 수행합니다. <br>
-/// MyBotModule 은 GameCommander 에게 이벤트를 전달하는 기능을 수행하며, 게임 속도 지연 여부 파악, 게임 무승부 상황 파악 등을 통해 게임을 강제 패배시키거나 강제 종료시키는 행동을 수행합니다. <br>
-/// UX Manager 는 알고리즘 경진대회 운영, 사후 판정 등에 필요한 최소한의 내용만 화면에 표시합니다. <br>
-///
-/// <br><br>
+
 /// MyBotModule 은 봇프로그램의 기본적인 뼈대 구조를 정의한 class 로서, 스타크래프트 경기 도중 발생하는 이벤트들을 GameCommander class 인스턴스에게 전달합니다.<br>
 ///
 /// MyBotModule class는 수정을 하지 말고,<br>
 /// 실제 봇프로그램 개발은 GameCommander class 를 수정하는 형태로 진행하도록 합니다.<br>
 /// @see GameCommander
+///
+/// <br><br>
+/// 알고리즘 경진대회 의 공정하고 효율적인 운영을 위해 Main, MyBotModule, UXManager 파일은 참가자들이 제출하는 소스코드를 무시하고 덮어쓴 후 빌드합니다 <br>
+///
+/// 알고리즘 경진대회 빌드서버가 사용하는 Main, MyBotModule, UXManager 파일을 예시적으로 MyBotModule 에 반영하였습니다 <br>
+/// 실제 알고리즘 경진대회 빌드서버에서는 코드를 일부 수정해서 빌드하게 할 수 있습니다 <br>
+///
+/// 알고리즘 경진대회 빌드서버가 사용하는 Main 은 MyBotModule 을 실행시키는 기능을 수행합니다. <br>
+/// 알고리즘 경진대회 빌드서버가 사용하는 MyBotModule 은 GameCommander 에게 이벤트를 전달하는 기능을 수행하며, 게임 속도 지연 여부 파악, 게임 무승부 상황 파악 등을 통해 게임을 강제 패배시키거나 강제 종료시키는 행동을 수행합니다. <br>
+/// 알고리즘 경진대회 빌드서버가 사용하는 UX Manager 는 알고리즘 경진대회 운영, 사후 판정 등에 필요한 최소한의 내용만 화면에 표시합니다. <br>
+/// 이 파일들은 InformationManager 등 다른 파일들과 Dependency가 없도록 개발되었기 때문에, <br>
+/// 참가자들은 InformationManager 등 다른 파일들을 자유롭게 수정하실 수 있습니다. 
+/// 
 public class MyBotModule extends DefaultBWListener {
 
 	/// BWAPI 에 해당하는 내부 객체
@@ -67,39 +71,41 @@ public class MyBotModule extends DefaultBWListener {
 	/// @see GameCommander			
 	private GameCommander gameCommander;
 
-	/// 자동 패배 체크 실행 여부
-	boolean isToCheckLostCondition = true;
+	/// 로컬 스피드 
+	/// 토너먼트 클라이언트 실행엔진에서 처리하지만 혹시나 몰라서 이중처리
+	private int numLocalSpeed = 20;
 
-	/// 자동 패배 체크 결과
-	boolean isLostConditionSatisfied = false;
+	/// frameskip
+	/// 토너먼트 클라이언트 실행엔진에서 처리하지만 혹시나 몰라서 이중처리
+	private int numFrameSkip = 0;
 
-	/// 자동 패배 조건이 시작된 프레임 시점
-	int lostConditionSatisfiedFrame = 0;
+	/// 패배 조건이 만족된채 게임을 유지시키는 최대 프레임 수
+	private int maxDurationForLostCondition = 200;
 
-	/// 자동 패배 조건이 만족된채 게임을 유지시키는 최대 프레임 수
-	int maxDurationForLostCondition = 100;
+	
+	private boolean isExceptionLostConditionSatisfied = false;	/// Exception 으로 인한 패배 체크 결과
+	private int exceptionLostConditionSatisfiedFrame = 0;		/// Exception 패배 조건이 시작된 프레임 시점
+	private int maxDurationForExceptionLostCondition = 20;		/// Exception 패배 조건이 만족된채 게임을 유지시키는 최대 프레임 수
+	
+	private boolean isToCheckGameLostCondition = true;			/// 자동 패배 체크 실행 여부
+	private boolean isGameLostConditionSatisfied = false;		/// 자동 패배 체크 결과
+	private int gameLostConditionSatisfiedFrame = 0;			/// 자동 패배 조건이 시작된 프레임 시점
+		
+	private boolean isToCheckTimeOut = true;					/// 타임 아웃 체크 실행 여부
+	private int timeOutConditionSatisfiedFrame = 0;				/// 타임 아웃 조건이 시작된 프레임 시점
+	private boolean isTimeOutConditionSatisfied = false;		/// 타임 아웃 체크 결과
+	private ArrayList<Integer> timerLimits = new ArrayList<Integer>();			///< 타임 아웃 한계시간 (ms/frame)
+	private ArrayList<Integer> timerLimitsBound = new ArrayList<Integer>();		///< 타임 아웃 초과한계횟수
+	private ArrayList<Integer> timerLimitsExceeded = new ArrayList<Integer>();	///< 타임 아웃 초과횟수
+	private long[] timeStartedAtFrame = new long[100000];		///< 해당 프레임을 시작한 시각
+	private long[] timeElapsedAtFrame = new long[100000];		///< 해당 프레임에서 사용한 시간 (ms)		
 
+	private boolean isToTestTimeOut = false;					///< 타임 아웃 체크 테스트 실행 여부
+	private int timeOverTestDuration = 0;
+	private int timeOverTestFrameCountLimit = 0;
+	private int timeOverTestFrameCount = 0;						///< 타임 아웃 체크 테스트 실행 
 
-	/// 타임 아웃 체크 실행 여부
-	boolean isToCheckTimeOut = true;
-
-	/// 타임 아웃 관련 변수들
-	int timeOverConditionSatisfiedFrame = 0;
-	ArrayList<Integer> timeOutExceeded = new ArrayList<Integer>();
-	ArrayList<Integer> timerLimits = new ArrayList<Integer>();
-	ArrayList<Integer> timerLimitsBound = new ArrayList<Integer>();
-	ArrayList<Integer> timerLimitsExceeded = new ArrayList<Integer>();
-
-	long[] timeStartedAtFrame = new long[100000];
-	long[] timeElapsedAtFrame = new long[100000];
-
-	/// 타임 아웃 체크 실행 테스트
-	boolean isToTestTimeOut = false;
-	int timeOverTestDuration = 0;
-	int timeOverTestFrameCountLimit = 0;
-	int timeOverTestFrameCount = 0;
-
-
+	
 	public void run() {
 		mirror.getModule().setEventListener(this);
 		mirror.startGame();
@@ -111,44 +117,23 @@ public class MyBotModule extends DefaultBWListener {
 
 		Broodwar = mirror.getGame();
 		
+		gameCommander = new GameCommander();
+
 		if (Broodwar.isReplay()) {
 			return;
 		}
 
-		gameCommander = new GameCommander();
-
-
-		timerLimits.add(55);
-		timerLimitsBound.add(320);
-		timerLimitsExceeded.add(0);
-
-		timerLimits.add(1000);
-		timerLimitsBound.add(10);
-		timerLimitsExceeded.add(0);
-
-		timerLimits.add(10000);
-		timerLimitsBound.add(2);
-		timerLimitsExceeded.add(0);
-
+		initializeLostConditionVariables();
 
 		/// 전체 맵 정보 허용 여부 : 불허
 		/// 토너먼트 클라이언트 실행엔진에서도 불허 처리하지만 혹시나 몰라서 이중처리
 		boolean isToEnableCompleteMapInformation = false;
-
 
 		/// UserInput 허용 여부 : 불허
 		/// 토너먼트 클라이언트 실행엔진에서도 불허 처리하지만 혹시나 몰라서 이중처리
 		// TODO : 테스트때만 true, 실제 사용시에서는 false 로 변경
 		boolean isToEnableUserInput = true;
 
-		/// 로컬 스피드 
-		/// 토너먼트 클라이언트 실행엔진에서 처리하지만 혹시나 몰라서 이중처리
-		int numLocalSpeed = 20;
-
-		/// frameskip
-		/// 토너먼트 클라이언트 실행엔진에서 처리하지만 혹시나 몰라서 이중처리
-		int numFrameSkip = 0;
-		
 		if(isToEnableCompleteMapInformation){
 			Broodwar.enableFlag(Enum.CompleteMapInformation.getValue());
 		}
@@ -216,76 +201,38 @@ public class MyBotModule extends DefaultBWListener {
 			timeStartedAtFrame[Broodwar.getFrameCount()] = System.currentTimeMillis();
 		}
 		else {
-			gameCommander.onFrame();
-		}
+			
+			try {
+				gameCommander.onFrame();
+			} 
+			catch (Exception e) {
+				
+				Broodwar.sendText("[Error Stack Trace]");
+				System.out.println("[Error Stack Trace]");
+				for (StackTraceElement ste : e.getStackTrace()) {
+					Broodwar.sendText(ste.toString());
+					System.out.println(ste.toString());
+				}
+				Broodwar.sendText("GG");
+
+				isExceptionLostConditionSatisfied = true;
+				
+				exceptionLostConditionSatisfiedFrame = Broodwar.getFrameCount();
+			}
+			
+			if (isExceptionLostConditionSatisfied) {
+				MyBotModule.Broodwar.drawTextScreen(250, 100, "I lost because of EXCEPTION");
+
+				if (MyBotModule.Broodwar.getFrameCount() - exceptionLostConditionSatisfiedFrame >= maxDurationForLostCondition) {
+					MyBotModule.Broodwar.leaveGame();
+				}
+			}
+	    }
 		
 		// 화면 출력 및 사용자 입력 처리
 		UXManager.Instance().update();
 
-		// 패배조건 체크
-		if (isToCheckLostCondition) {
-			checkLostConditionAndLeaveGame();
-		}
-
-		// 타임아웃 테스트
-		if (isToTestTimeOut) {
-			doTimeOutDelay();
-		}
-
-		if (isToCheckTimeOut) {
-			// 타임아웃 체크
-			checkTimeOutConditionAndLeaveGame();
-		}
-	}
-
-	/// 텍스트를 입력 후 엔터를 하여 다른 플레이어들에게 텍스트를 전달하려 할 때 발생하는 이벤트를 처리합니다
-	@Override
-	public void onSendText(String text){		
-		
-		if (timeStartedAtFrame[Broodwar.getFrameCount()] == 0) {
-			timeStartedAtFrame[Broodwar.getFrameCount()] = System.currentTimeMillis();
-		}
-		
-		ParseTextCommand(text);
-		
-		gameCommander.onSendText(text);
-
-		// Display the text to the game
-		Broodwar.sendText(text);
-	}
-
-	/// 다른 플레이어로부터 텍스트를 전달받았을 때 발생하는 이벤트를 처리합니다
-	@Override
-	public void onReceiveText(Player player, String text){
-		if (timeStartedAtFrame[Broodwar.getFrameCount()] == 0) {
-			timeStartedAtFrame[Broodwar.getFrameCount()] = System.currentTimeMillis();
-		}
-		
-		Broodwar.printf(player.getName() + " said \"" + text + "\"");
-
-		gameCommander.onReceiveText(player, text);
-	}
-
-	/// 다른 플레이어가 대결을 나갔을 때 발생하는 이벤트를 처리합니다
-	@Override
-	public void onPlayerLeft(Player player){
-		if (!Broodwar.isReplay()) {
-			if (timeStartedAtFrame[Broodwar.getFrameCount()] == 0) {
-				timeStartedAtFrame[Broodwar.getFrameCount()] = System.currentTimeMillis();
-			}
-			
-			Broodwar.printf(player.getName() + " has left the game.");
-		}
-	}
-
-	/// 핵미사일 발사가 감지되었을 때 발생하는 이벤트를 처리합니다
-	@Override
-	public void onNukeDetect(Position target){
-		if (!Broodwar.isReplay()) {
-			if (timeStartedAtFrame[Broodwar.getFrameCount()] == 0) {
-				timeStartedAtFrame[Broodwar.getFrameCount()] = System.currentTimeMillis();
-			}
-		}
+		checkLostConditions();
 	}
 
 	/// 유닛(건물/지상유닛/공중유닛)이 Create 될 때 발생하는 이벤트를 처리합니다
@@ -297,19 +244,6 @@ public class MyBotModule extends DefaultBWListener {
 			}
 			
 			gameCommander.onUnitCreate(unit);
-		} 
-	}
-
-	/// 유닛(건물/지상유닛/공중유닛)이 Morph 될 때 발생하는 이벤트를 처리합니다<br>
-	/// Zerg 종족의 유닛은 건물 건설이나 지상유닛/공중유닛 생산에서 거의 대부분 Morph 형태로 진행됩니다
-	@Override
-	public void onUnitMorph(Unit unit){
-		if (!Broodwar.isReplay()) {
-			if (timeStartedAtFrame[Broodwar.getFrameCount()] == 0) {
-				timeStartedAtFrame[Broodwar.getFrameCount()] = System.currentTimeMillis();
-			}
-			
-			gameCommander.onUnitMorph(unit);
 		} 
 	}
 
@@ -325,29 +259,28 @@ public class MyBotModule extends DefaultBWListener {
 		}
 	}
 
-	/// 유닛(건물/지상유닛/공중유닛)이 Show 될 때 발생하는 이벤트를 처리합니다<br>
-	/// 아군 유닛이 Create 되었을 때 라든가, 적군 유닛이 Discover 되었을 때 발생합니다
+	/// 유닛(건물/지상유닛/공중유닛)이 Morph 될 때 발생하는 이벤트를 처리합니다<br>
+	/// Zerg 종족의 유닛은 건물 건설이나 지상유닛/공중유닛 생산에서 거의 대부분 Morph 형태로 진행됩니다
 	@Override
-	public void onUnitShow(Unit unit){
+	public void onUnitMorph(Unit unit){
 		if (!Broodwar.isReplay()) {
 			if (timeStartedAtFrame[Broodwar.getFrameCount()] == 0) {
 				timeStartedAtFrame[Broodwar.getFrameCount()] = System.currentTimeMillis();
 			}
 			
-			gameCommander.onUnitShow(unit);
-		}
+			gameCommander.onUnitMorph(unit);
+		} 
 	}
-
-	/// 유닛(건물/지상유닛/공중유닛)이 Hide 될 때 발생하는 이벤트를 처리합니다<br>
-	/// 보이던 유닛이 Hide 될 때 발생합니다
+	
+	/// 유닛(건물/지상유닛/공중유닛)의 하던 일 (건물 건설, 업그레이드, 지상유닛 훈련 등)이 끝났을 때 발생하는 이벤트를 처리합니다
 	@Override
-	public void onUnitHide(Unit unit){
+	public void onUnitComplete(Unit unit){
 		if (!Broodwar.isReplay()) {
 			if (timeStartedAtFrame[Broodwar.getFrameCount()] == 0) {
 				timeStartedAtFrame[Broodwar.getFrameCount()] = System.currentTimeMillis();
 			}
 			
-			gameCommander.onUnitHide(unit);
+			gameCommander.onUnitComplete(unit);
 		}
 	}
 
@@ -390,24 +323,158 @@ public class MyBotModule extends DefaultBWListener {
 		}
 	}
 
-	/// 유닛(건물/지상유닛/공중유닛)의 하던 일 (건물 건설, 업그레이드, 지상유닛 훈련 등)이 끝났을 때 발생하는 이벤트를 처리합니다
+	/// 유닛(건물/지상유닛/공중유닛)이 Show 될 때 발생하는 이벤트를 처리합니다<br>
+	/// 아군 유닛이 Create 되었을 때 라든가, 적군 유닛이 Discover 되었을 때 발생합니다
 	@Override
-	public void onUnitComplete(Unit unit){
+	public void onUnitShow(Unit unit){
 		if (!Broodwar.isReplay()) {
 			if (timeStartedAtFrame[Broodwar.getFrameCount()] == 0) {
 				timeStartedAtFrame[Broodwar.getFrameCount()] = System.currentTimeMillis();
 			}
 			
-			gameCommander.onUnitComplete(unit);
+			gameCommander.onUnitShow(unit);
+		}
+	}
+
+	/// 유닛(건물/지상유닛/공중유닛)이 Hide 될 때 발생하는 이벤트를 처리합니다<br>
+	/// 보이던 유닛이 Hide 될 때 발생합니다
+	@Override
+	public void onUnitHide(Unit unit){
+		if (!Broodwar.isReplay()) {
+			if (timeStartedAtFrame[Broodwar.getFrameCount()] == 0) {
+				timeStartedAtFrame[Broodwar.getFrameCount()] = System.currentTimeMillis();
+			}
+			
+			gameCommander.onUnitHide(unit);
+		}
+	}
+
+	/// 핵미사일 발사가 감지되었을 때 발생하는 이벤트를 처리합니다
+	@Override
+	public void onNukeDetect(Position target){
+		if (!Broodwar.isReplay()) {
+			if (timeStartedAtFrame[Broodwar.getFrameCount()] == 0) {
+				timeStartedAtFrame[Broodwar.getFrameCount()] = System.currentTimeMillis();
+			}
+
+			// 빌드서버에서는 향후 적용
+			//gameCommander.onNukeDetect(target);
+		}
+	}
+
+	/// 다른 플레이어가 대결을 나갔을 때 발생하는 이벤트를 처리합니다
+	@Override
+	public void onPlayerLeft(Player player){
+		if (!Broodwar.isReplay()) {
+			if (timeStartedAtFrame[Broodwar.getFrameCount()] == 0) {
+				timeStartedAtFrame[Broodwar.getFrameCount()] = System.currentTimeMillis();
+			}
+			
+			// 빌드서버에서는 향후 적용
+			//gameCommander.onPlayerLeft(player);
 		}
 	}
 
 	/// 게임을 저장할 때 발생하는 이벤트를 처리합니다
 	@Override
 	public void onSaveGame(String gameName){
+		if (!Broodwar.isReplay()) {
+			if (timeStartedAtFrame[Broodwar.getFrameCount()] == 0) {
+				timeStartedAtFrame[Broodwar.getFrameCount()] = System.currentTimeMillis();
+			}
+
+			// 빌드서버에서는 향후 적용
+			//gameCommander.onSaveGame(gameName);
+		}
+	}
+	
+	/// 텍스트를 입력 후 엔터를 하여 다른 플레이어들에게 텍스트를 전달하려 할 때 발생하는 이벤트를 처리합니다
+	@Override
+	public void onSendText(String text){		
+		
+		if (timeStartedAtFrame[Broodwar.getFrameCount()] == 0) {
+			timeStartedAtFrame[Broodwar.getFrameCount()] = System.currentTimeMillis();
+		}
+		
+		ParseTextCommand(text);
+		
+		gameCommander.onSendText(text);
+
+		// Display the text to the game
+		Broodwar.sendText(text);
+	}
+
+	/// 다른 플레이어로부터 텍스트를 전달받았을 때 발생하는 이벤트를 처리합니다
+	@Override
+	public void onReceiveText(Player player, String text){
+		if (timeStartedAtFrame[Broodwar.getFrameCount()] == 0) {
+			timeStartedAtFrame[Broodwar.getFrameCount()] = System.currentTimeMillis();
+		}
+		
+		Broodwar.printf(player.getName() + " said \"" + text + "\"");
+
+		gameCommander.onReceiveText(player, text);
+	}
+	
+	private void initializeLostConditionVariables(){
+		
+		timerLimits.add(55);
+		timerLimitsBound.add(320);
+		timerLimitsExceeded.add(0);
+
+		timerLimits.add(1000);
+		timerLimitsBound.add(10);
+		timerLimitsExceeded.add(0);
+
+		timerLimits.add(10000);
+		timerLimitsBound.add(2);
+		timerLimitsExceeded.add(0);
+		
+	    parseConfigFile("bwapi-data\\tm_settings.ini");
 	}
 	
 
+	private void parseConfigFile(String filename) {
+	    File file = new File(filename);
+	    
+	    if (file.exists()) {
+	  		timerLimits.clear();
+	  		timerLimitsBound.clear();
+	  		timerLimitsExceeded.clear();
+	  		
+	  		try (BufferedReader br = new BufferedReader(new FileReader(file));) {
+		        String line = null;
+		  	    while ((line = br.readLine()) != null) {
+			  	      String[] split = line.split(" ");
+			  	      
+			  	      if ("LocalSpeed".equals(split[0])) {
+			  	    	  numLocalSpeed = Integer.parseInt(split[1]);
+			  	      } 
+			  	      else if ("FrameSkip".equals(split[0])) {
+			  	    	  numFrameSkip = Integer.parseInt(split[1]);
+			  	      } 
+			  	      else if ("Timeout".equals(split[0])) {
+			  	    	  timerLimits.add(Integer.parseInt(split[1]));
+			  	    	  timerLimitsBound.add(Integer.parseInt(split[2]));
+			  	    	  timerLimitsExceeded.add(0);
+			  	      } 
+			  	      else if ("MaxDurationForLostCondition".equals(split[0])) {
+			  	    	  maxDurationForLostCondition = Integer.parseInt(split[1]);
+			  	      } 
+			  	      else {
+			  	    	  MyBotModule.Broodwar.drawTextScreen(250, 100, "Invalid Option in Tournament Module Settings: " + split[0]);
+			  	      }
+		  	    }
+	  		} 
+	  		catch (Exception e) {
+	  			e.printStackTrace();
+	  		}
+	    } 
+	    else {
+	      MyBotModule.Broodwar.drawTextScreen(250, 100, "Tournament Module Settings File Not Found, Using Defaults " + file.getPath());
+	    }
+	}
+	
 	/// 사용자가 입력한 text 를 parse 해서 처리합니다
 	public void ParseTextCommand(String commandString)
 	{
@@ -473,14 +540,30 @@ public class MyBotModule extends DefaultBWListener {
 		}
 	}
 
+	private void checkLostConditions() {
+		
+		// 패배조건 체크
+		if (isToCheckGameLostCondition) {
+			checkLostConditionAndLeaveGame();
+		}
+
+		// 타임아웃 테스트
+		if (isToTestTimeOut) {
+			doTimeOutDelay();
+		}
+
+		if (isToCheckTimeOut) {
+			// 타임아웃 체크
+			checkTimeOutConditionAndLeaveGame();
+		}
+	}
+
 	// 현재 자동 패배조건 : 생산능력을 가진 건물이 하나도 없음 && 공격능력을 가진/가질수있는 건물이 하나도 없음 && 생산/공격/특수능력을 가진 비건물 유닛이 하나도 없음
 	// 토너먼트 서버에서 게임을 무의미하게 제한시간까지 플레이시키는 경우가 없도록 하기 위함임
 	//
 	// TODO (향후 추가여부 검토) : '일꾼은 있지만 커맨드센터도 없고 보유 미네랄도 없고 지도에 미네랄이 하나도 없는 경우' 처럼 게임 승리를 이끌 가능성이 현실적으로 전혀 없는 경우까지 추가 체크
 	public void checkLostConditionAndLeaveGame()
 	{
-		boolean isLostGame = false;
-
 		int canProduceBuildingCount = 0;
 		int canAttackBuildingCount = 0;
 		int canDoSomeThingNonBuildingUnitCount = 0;
@@ -521,33 +604,30 @@ public class MyBotModule extends DefaultBWListener {
 		//MyBotModule.Broodwar.drawTextScreen(250, 140, "canDoSomeThing NonBuilding Count : " + canDoSomeThingNonBuildingUnitCount);
 
 		// 자동 패배조건 만족하게 된 프레임 기록
-		if (canDoSomeThingNonBuildingUnitCount == 0 && canProduceBuildingCount == 0 && canAttackBuildingCount == 0 && isLostConditionSatisfied == false) {
-			MyBotModule.Broodwar.sendText("I can't defeat enemy player");
-			isLostConditionSatisfied = true;
-			lostConditionSatisfiedFrame = MyBotModule.Broodwar.getFrameCount();
+		if (canDoSomeThingNonBuildingUnitCount == 0 && canProduceBuildingCount == 0 && canAttackBuildingCount == 0 && isGameLostConditionSatisfied == false) {
+			MyBotModule.Broodwar.sendText("I lost because I HAVE NO UNIT TO DEFEAT ENEMY PLAYER");
+			MyBotModule.Broodwar.sendText("GG");
+			System.out.println("I lost because I HAVE NO UNIT TO DEFEAT ENEMY PLAYER");
+
+			isGameLostConditionSatisfied = true;
+			gameLostConditionSatisfiedFrame = MyBotModule.Broodwar.getFrameCount();
 		}
 		// 자동 패배조건 벗어나게 되면 리셋
 		else if (canDoSomeThingNonBuildingUnitCount != 0 || canProduceBuildingCount != 0 || canAttackBuildingCount != 0) {
-			isLostConditionSatisfied = false;
+			isGameLostConditionSatisfied = false;
 		}
 
 		// 자동 패배조건 만족 상황이 일정시간 동안 지속되었으면 게임 패배로 처리
-		if (isLostConditionSatisfied) {
+		if (isGameLostConditionSatisfied) {
 
-			MyBotModule.Broodwar.drawTextScreen(250, 100, "I can't defeat enemy player. I will leave game in " 
-					+ (maxDurationForLostCondition - (MyBotModule.Broodwar.getFrameCount() - lostConditionSatisfiedFrame)) 
+			MyBotModule.Broodwar.drawTextScreen(250, 100, "I lost because I HAVE NO UNIT TO DEFEAT ENEMY PLAYER");
+			MyBotModule.Broodwar.drawTextScreen(250, 115, "I will leave game in " 
+					+ (maxDurationForLostCondition - (MyBotModule.Broodwar.getFrameCount() - gameLostConditionSatisfiedFrame)) 
 					+ " frames");
 
-			if (MyBotModule.Broodwar.getFrameCount() - lostConditionSatisfiedFrame >= maxDurationForLostCondition) {
-				isLostGame = true;
+			if (MyBotModule.Broodwar.getFrameCount() - gameLostConditionSatisfiedFrame >= maxDurationForLostCondition) {
+				MyBotModule.Broodwar.leaveGame();
 			}
-		}
-
-		// 패배 시 GG 치고 게임 종료
-		if (isLostGame) {
-			System.out.println("I lost because I HAVE NO UNIT TO DEFEAT ENEMY PLAYER");
-			MyBotModule.Broodwar.sendText("GG");
-			MyBotModule.Broodwar.leaveGame();
 		}
 	}
 
@@ -627,15 +707,28 @@ public class MyBotModule extends DefaultBWListener {
 
 					if (timerLimitsExceeded.get(t).equals(timerLimitsBound.get(t)))
 					{
-						timeOverConditionSatisfiedFrame = Broodwar.getFrameCount();
+						isTimeOutConditionSatisfied = true;
+						timeOutConditionSatisfiedFrame = Broodwar.getFrameCount();
+						
 						Broodwar.sendText("I lost because of TIMEOUT ("+timerLimitsBound.get(t)+" frames exceed "+timerLimits.get(t)+" ms/frame)");
 						System.out.println("I lost because of TIMEOUT ("+timerLimitsBound.get(t)+" frames exceed "+timerLimits.get(t)+" ms/frame)");
 						Broodwar.sendText("GG");
-						Broodwar.leaveGame();
 					}
+				}
+			}
+			
+			// 자동 패배조건 만족 상황이 일정시간 동안 지속되었으면 게임 패배로 처리
+			if (isTimeOutConditionSatisfied) {
+
+				MyBotModule.Broodwar.drawTextScreen(250, 100, "I lost because of TIMEOUT");
+
+				if (MyBotModule.Broodwar.getFrameCount() - timeOutConditionSatisfiedFrame >= maxDurationForLostCondition) {
+					MyBotModule.Broodwar.leaveGame();
 				}
 			}
 		}
 
-	}	
+	}
+	
+	
 }

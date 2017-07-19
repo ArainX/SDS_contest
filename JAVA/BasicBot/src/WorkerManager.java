@@ -295,32 +295,65 @@ public class WorkerManager {
 		if (worker == null) return null;
 
 		Unit closestDepot = null;
-		double closestDistance = 0;
+		double closestDistance = 1000000000;
 
+		// 완성된, 공중에 떠있지 않고 땅에 정착해있는, ResourceDepot 혹은 Lair 나 Hive로 변형중인 Hatchery 중에서
+		// 첫째로 미네랄 일꾼수가 꽉 차지않은 곳
+		// 둘째로 가까운 곳을 찾는다
 		for (Unit unit : MyBotModule.Broodwar.self().getUnits())
 		{
 			if (unit == null) continue;
 			
-			// 가장 가까운, 일꾼수가 꽉 차지않은, 완성된 ResourceDepot (혹은 Lair 나 Hive로 변형중인 건물)을 찾는다
 			if (unit.getType().isResourceDepot()
-				&& (unit.isCompleted() || unit.getType() == UnitType.Zerg_Lair || unit.getType() == UnitType.Zerg_Hive) )
+				&& (unit.isCompleted() || unit.getType() == UnitType.Zerg_Lair || unit.getType() == UnitType.Zerg_Hive) 
+				&& unit.isLifted() == false)
 			{
-				double distance = unit.getDistance(worker);
-
-				// 일단 여러 ResourceDepot 중 하나는 선택되도록 한다
-				if (closestDepot == null)
-				{
-					closestDepot = unit;
-					closestDistance = distance;
-				}
-				// 더 가까운 ResourceDepot 이 있고, 일꾼 수가 꽉 차지 않았다면 거기 가도록 한다
-				else if (distance < closestDistance
-					&& workerData.depotHasEnoughMineralWorkers(unit) == false) 
-				{
-					closestDepot = unit;
-					closestDistance = distance;
+				if (workerData.depotHasEnoughMineralWorkers(unit) == false) {
+					double distance = unit.getDistance(worker);
+					if (closestDistance > distance) {
+						closestDepot = unit;
+						closestDistance = distance;
+					}
 				}
 			}
+		}
+		
+		// 모든 ResourceDepot 이 다 일꾼수가 꽉 차있거나, 완성된 ResourceDepot 이 하나도 없고 건설중이라면, 
+		// ResourceDepot 주위에 미네랄이 남아있는 곳 중에서 가까운 곳이 선택되도록 한다
+		if (closestDepot == null) {
+			for (Unit unit : MyBotModule.Broodwar.self().getUnits())
+			{
+				if (unit == null) continue;
+				
+				if (unit.getType().isResourceDepot())
+				{
+					if (workerData.getMineralsNearDepot(unit) > 0) {
+						double distance = unit.getDistance(worker);
+						if (closestDistance > distance) {
+							closestDepot = unit;
+							closestDistance = distance;
+						}
+					}
+				}
+			}
+			
+		}
+
+		// 모든 ResourceDepot 주위에 미네랄이 하나도 없다면, 일꾼에게 가장 가까운 곳을 선택한다  
+		if (closestDepot == null) {
+			for (Unit unit : MyBotModule.Broodwar.self().getUnits())
+			{
+				if (unit == null) continue;
+				
+				if (unit.getType().isResourceDepot())
+				{
+					double distance = unit.getDistance(worker);
+					if (closestDistance > distance) {
+						closestDepot = unit;
+						closestDistance = distance;
+					}
+				}
+			}			
 		}
 
 		return closestDepot;
@@ -599,25 +632,21 @@ public class WorkerManager {
 	}
 
 	/// 일꾼 유닛들의 상태를 저장하는 workerData 객체를 업데이트합니다
-	public void onUnitShow(Unit unit)
+	public void onUnitComplete(Unit unit)
 	{
 		if (unit == null) return;
 
-		// add the depot if it exists
+		// ResourceDepot 건물이 신규 생성되면, 자료구조 추가 처리를 한 후, rebalanceWorkers 를 한다
 		if (unit.getType().isResourceDepot() && unit.getPlayer() == MyBotModule.Broodwar.self())
 		{
 			workerData.addDepot(unit);
+			rebalanceWorkers();
 		}
 
-		// add the worker
+		// 일꾼이 신규 생성되면, 자료구조 추가 처리를 한다. 
 		if (unit.getType().isWorker() && unit.getPlayer() == MyBotModule.Broodwar.self() && unit.getHitPoints() >= 0)
 		{
 			workerData.addWorker(unit);
-		}
-
-		if (unit.getType().isResourceDepot() && unit.getPlayer() == MyBotModule.Broodwar.self())
-		{
-			rebalanceWorkers();
 		}
 
 	}
@@ -651,16 +680,20 @@ public class WorkerManager {
 	{
 		if (unit == null) return;
 
+		// ResourceDepot 건물이 파괴되면, 자료구조 삭제 처리를 한 후, 일꾼들을 Idle 상태로 만들어 rebalanceWorkers 한 효과가 나게 한다
 		if (unit.getType().isResourceDepot() && unit.getPlayer() == MyBotModule.Broodwar.self())
 		{
 			workerData.removeDepot(unit);
 		}
 
+		// 일꾼이 죽으면, 자료구조 삭제 처리를 한 후, rebalanceWorkers 를 한다
 		if (unit.getType().isWorker() && unit.getPlayer() == MyBotModule.Broodwar.self()) 
 		{
 			workerData.workerDestroyed(unit);
+			rebalanceWorkers();
 		}
 
+		// 미네랄을 다 채취하면 rebalanceWorkers를 한다
 		if (unit.getType() == UnitType.Resource_Mineral_Field)
 		{
 			rebalanceWorkers();

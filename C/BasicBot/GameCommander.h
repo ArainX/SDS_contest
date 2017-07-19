@@ -15,6 +15,10 @@ namespace MyBot
 	/// 스타크래프트 경기 도중 발생하는 이벤트들이 적절하게 처리되도록 해당 Manager 객체에게 이벤트를 전달하는 관리자 Controller 역할을 합니다
 	class GameCommander 
 	{
+		bool isFlag1;
+		bool isFlag2;
+		bool isFlag3;
+
 		/// 디버깅용 플래그 : 어느 Manager 가 에러를 일으키는지 알기위한 플래그
 		bool isToFindError;
 
@@ -29,11 +33,6 @@ namespace MyBot
 		void onEnd(bool isWinner);
 		/// 경기 진행 중 매 프레임마다 발생하는 이벤트를 처리합니다
 		void onFrame();
-
-		/// 텍스트를 입력 후 엔터를 하여 다른 플레이어들에게 텍스트를 전달하려 할 때 발생하는 이벤트를 처리합니다
-		void onSendText(std::string text);
-		/// 다른 플레이어로부터 텍스트를 전달받았을 때 발생하는 이벤트를 처리합니다
-		void onReceiveText(BWAPI::Player player, std::string text);
 
 		/// 유닛(건물/지상유닛/공중유닛)이 Create 될 때 발생하는 이벤트를 처리합니다
 		void onUnitCreate(BWAPI::Unit unit);
@@ -63,6 +62,20 @@ namespace MyBot
 		/// 유닛(건물/지상유닛/공중유닛)이 Hide 될 때 발생하는 이벤트를 처리합니다<br>
 		/// 보이던 유닛이 Hide 될 때 발생합니다
 		void onUnitHide(BWAPI::Unit unit);
+
+		/// 핵미사일 발사가 감지되었을 때 발생하는 이벤트를 처리합니다
+		void onNukeDetect(BWAPI::Position target);
+
+		/// 다른 플레이어가 대결을 나갔을 때 발생하는 이벤트를 처리합니다
+		void onPlayerLeft(BWAPI::Player player);
+
+		/// 게임을 저장할 때 발생하는 이벤트를 처리합니다
+		void onSaveGame(std::string gameName);
+
+		/// 텍스트를 입력 후 엔터를 하여 다른 플레이어들에게 텍스트를 전달하려 할 때 발생하는 이벤트를 처리합니다
+		void onSendText(std::string text);
+		/// 다른 플레이어로부터 텍스트를 전달받았을 때 발생하는 이벤트를 처리합니다
+		void onReceiveText(BWAPI::Player player, std::string text);
 	};
 
 }

@@ -4,15 +4,15 @@ namespace Config
 {
 	namespace BotInfo
 	{
-		std::string BotName = "MyBot";
+		std::string BotName = "NoNameBot";
 		std::string BotAuthors = "NoName";
 	}
 
     namespace Files
     {
-		std::string LogFilename = "log.txt";
-		std::string ReadDirectory = "bwapi-data\\AI\\MyBot\\read\\";
-		std::string WriteDirectory = "bwapi-data\\AI\\MyBot\\write\\";		
+		std::string LogFilename = Config::BotInfo::BotName + "_LastGameLog.dat";
+		std::string ReadDirectory = "bwapi-data\\read\\";
+		std::string WriteDirectory = "bwapi-data\\write\\";		
     }
 
 	namespace BWAPIOptions
@@ -45,7 +45,7 @@ namespace Config
 		bool DrawUnitHealthBars = true;
 		bool DrawProductionInfo = true;
 		bool DrawScoutInfo = true;
-		bool DrawResourceInfo = false;
+		bool DrawResourceInfo = true;
 		bool DrawWorkerInfo = true;
 		bool DrawReservedBuildingTiles = false;
 		bool DrawBuildingInfo = true;

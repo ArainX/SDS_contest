@@ -482,50 +482,80 @@ BWAPI::TilePosition ConstructionPlaceFinder::getRefineryPositionNear(BWAPI::Tile
 	BWAPI::TilePosition closestGeyser = BWAPI::TilePositions::None;
 	double minGeyserDistanceFromSeedPosition = 100000000;
 
-	// for each geyser
-	for (auto & geyser : BWAPI::Broodwar->getStaticGeysers())
-	{
-		// geyser->getType() 을 하면, Unknown 이거나, Resource_Vespene_Geyser 이거나, Terran_Refinery 와 같이 건물명이 나오고, 
-		// 건물이 파괴되어도 자동으로 Resource_Vespene_Geyser 로 돌아가지 않는다
+	// 일단 seedPosition 주위에서 찾아본다
+	BWAPI::Unitset unitsetNearSeedPosition = BWAPI::Broodwar->getUnitsInRadius(BWAPI::Position(seedPosition), 8 * TILE_SIZE);
+	for (auto & u : unitsetNearSeedPosition) {
+		if (u->getType() == BWAPI::UnitTypes::Resource_Vespene_Geyser) {
 
-		BWAPI::Position geyserPos = geyser->getInitialPosition();
-		BWAPI::TilePosition geyserTilePos = geyser->getInitialTilePosition();
+			BWAPI::Position geyserPos = u->getInitialPosition();
+			BWAPI::TilePosition geyserTilePos = u->getInitialTilePosition();
 
-		//std::cout << " geyserTilePos " << geyserTilePos.x << "," << geyserTilePos.y << std::endl;
-
-		// 이미 예약되어있는가
-		if (isReservedTile(geyserTilePos.x, geyserTilePos.y)) {
-			continue;
-		}
-
-		// if it is not connected fron seedPosition, it is located in another island
-		if (!BWTA::isConnected(seedPosition, geyserTilePos))
-		{
-			continue;
-		}
-
-		// 이미 지어져 있는가
-		bool refineryAlreadyBuilt = false;
-		BWAPI::Unitset alreadyBuiltUnits = BWAPI::Broodwar->getUnitsInRadius(geyserPos, 4 * TILE_SIZE);
-		for (auto & u : alreadyBuiltUnits) {
-			if (u->getType().isRefinery() && u->exists()) {
-				refineryAlreadyBuilt = true;
+			// 이미 예약되어있는가
+			if (isReservedTile(geyserTilePos.x, geyserTilePos.y)) {
+				continue;
 			}
-		}
 
-		//std::cout << " geyser TilePos is not reserved, is connected, is not refineryAlreadyBuilt" << std::endl;
-
-		if (refineryAlreadyBuilt == false)
-		{
+			// 가스가 여러개 있는 경우 가까운 것을 선택
 			double thisDistance = BWTA::getGroundDistance(BWAPI::TilePosition(geyserPos.x / TILE_SIZE, geyserPos.y / TILE_SIZE), seedPosition);
 
 			if (thisDistance < minGeyserDistanceFromSeedPosition)
 			{
 				minGeyserDistanceFromSeedPosition = thisDistance;
-				closestGeyser = geyser->getInitialTilePosition();
+				closestGeyser = geyserTilePos;
 			}
-		}
 
+			std::cout << " geyserTilePos near seedPosition " << closestGeyser.x << "," << closestGeyser.y << std::endl;
+		}
+	}
+
+	// seedPosition 주위에 없으면 전체 맵에서 찾아본다
+	if (closestGeyser == BWAPI::TilePositions::None) {
+
+		// for each geyser
+		for (auto & geyser : BWAPI::Broodwar->getStaticGeysers())
+		{
+			// geyser->getType() 을 하면, Unknown 이거나, Resource_Vespene_Geyser 이거나, Terran_Refinery 와 같이 건물명이 나오고, 
+			// 건물이 파괴되어도 자동으로 Resource_Vespene_Geyser 로 돌아가지 않는다
+
+			BWAPI::Position geyserPos = geyser->getInitialPosition();
+			BWAPI::TilePosition geyserTilePos = geyser->getInitialTilePosition();
+
+			//std::cout << " geyserTilePos " << geyserTilePos.x << "," << geyserTilePos.y << std::endl;
+
+			// 이미 예약되어있는가
+			if (isReservedTile(geyserTilePos.x, geyserTilePos.y)) {
+				continue;
+			}
+
+			// if it is not connected fron seedPosition, it is located in another island
+			if (!BWTA::isConnected(seedPosition, geyserTilePos))
+			{
+				continue;
+			}
+
+			// 이미 지어져 있는가
+			bool refineryAlreadyBuilt = false;
+			BWAPI::Unitset alreadyBuiltUnits = BWAPI::Broodwar->getUnitsInRadius(geyserPos, 4 * TILE_SIZE);
+			for (auto & u : alreadyBuiltUnits) {
+				if (u->getType().isRefinery() && u->exists()) {
+					refineryAlreadyBuilt = true;
+				}
+			}
+
+			//std::cout << " geyser TilePos is not reserved, is connected, is not refineryAlreadyBuilt" << std::endl;
+
+			if (refineryAlreadyBuilt == false)
+			{
+				double thisDistance = BWTA::getGroundDistance(BWAPI::TilePosition(geyserPos.x / TILE_SIZE, geyserPos.y / TILE_SIZE), seedPosition);
+
+				if (thisDistance < minGeyserDistanceFromSeedPosition)
+				{
+					minGeyserDistanceFromSeedPosition = thisDistance;
+					closestGeyser = geyser->getInitialTilePosition();
+				}
+			}
+
+		}
 	}
 
 	return closestGeyser;
