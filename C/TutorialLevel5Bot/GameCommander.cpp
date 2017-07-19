@@ -70,30 +70,42 @@ void GameCommander::onFrame()
 	if (isToFindError) std::cout << "h)";
 }
 
+// BasicBot 1.1 Patch Start ////////////////////////////////////////////////
+
 void GameCommander::onUnitShow(BWAPI::Unit unit)			
 { 
 	InformationManager::Instance().onUnitShow(unit); 
-
-	// ResourceDepot 및 Worker 에 대한 처리
-	WorkerManager::Instance().onUnitShow(unit);
 }
+
+// BasicBot 1.1 Patch End //////////////////////////////////////////////////
 
 void GameCommander::onUnitHide(BWAPI::Unit unit)			
 {
 	InformationManager::Instance().onUnitHide(unit); 
 }
 
-void GameCommander::onUnitCreate(BWAPI::Unit unit)		
+// BasicBot 1.1 Patch Start ////////////////////////////////////////////////
+
+void GameCommander::onUnitCreate(BWAPI::Unit unit)
 { 
 	InformationManager::Instance().onUnitCreate(unit);
 }
 
+// BasicBot 1.1 Patch End //////////////////////////////////////////////////
+
+// BasicBot 1.1 Patch Start ////////////////////////////////////////////////
+
 void GameCommander::onUnitComplete(BWAPI::Unit unit)
 {
 	InformationManager::Instance().onUnitComplete(unit);
+
+	// ResourceDepot 및 Worker 에 대한 처리
+	WorkerManager::Instance().onUnitComplete(unit);
 }
 
-void GameCommander::onUnitDestroy(BWAPI::Unit unit)		
+// BasicBot 1.1 Patch End //////////////////////////////////////////////////
+
+void GameCommander::onUnitDestroy(BWAPI::Unit unit)
 {
 	// ResourceDepot 및 Worker 에 대한 처리
 	WorkerManager::Instance().onUnitDestroy(unit);
@@ -125,11 +137,27 @@ void GameCommander::onUnitEvade(BWAPI::Unit unit)
 {
 }
 
+// BasicBot 1.1 Patch Start ////////////////////////////////////////////////
+
+void GameCommander::onNukeDetect(BWAPI::Position target)
+{
+}
+
+void GameCommander::onPlayerLeft(BWAPI::Player player)
+{
+}
+
+void GameCommander::onSaveGame(std::string gameName)
+{
+}
+
+// BasicBot 1.1 Patch End //////////////////////////////////////////////////
+
 void GameCommander::onSendText(std::string text)
 {
 }
 
 void GameCommander::onReceiveText(BWAPI::Player player, std::string text)
-{
+{	
 }
 

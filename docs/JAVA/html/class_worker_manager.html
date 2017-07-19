@@ -26,7 +26,7 @@
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;">
    <div id="projectname">BasicBot
-   &#160;<span id="projectnumber">v1.0</span>
+   &#160;<span id="projectnumber">v1.1</span>
    </div>
    <div id="projectbrief">BasicBot for Starcraft: Broodwar 1.16.1 with BWAPI 4.1.2</div>
   </td>
@@ -143,12 +143,12 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:af99e967bc88b162679c96609cf63e03a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a86909e5b75c63fcc5d607478877da7ac"><td class="memItemLeft" align="right" valign="top">boolean&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_worker_manager.html#a86909e5b75c63fcc5d607478877da7ac">isScoutWorker</a> (Unit worker)</td></tr>
 <tr class="separator:a86909e5b75c63fcc5d607478877da7ac"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4eb5b674d9f173669becdee1b7afa613"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_worker_manager.html#a4eb5b674d9f173669becdee1b7afa613">onUnitComplete</a> (Unit unit)</td></tr>
+<tr class="separator:a4eb5b674d9f173669becdee1b7afa613"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac8ed08f8fa6565cefce4189e7df21c0b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_worker_manager.html#ac8ed08f8fa6565cefce4189e7df21c0b">onUnitDestroy</a> (Unit unit)</td></tr>
 <tr class="separator:ac8ed08f8fa6565cefce4189e7df21c0b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac68ff11dd468d5e9a4062430ffe25c0b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_worker_manager.html#ac68ff11dd468d5e9a4062430ffe25c0b">onUnitMorph</a> (Unit unit)</td></tr>
 <tr class="separator:ac68ff11dd468d5e9a4062430ffe25c0b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5959a9f3c3e58f68bc354f550265c83a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_worker_manager.html#a5959a9f3c3e58f68bc354f550265c83a">onUnitShow</a> (Unit unit)</td></tr>
-<tr class="separator:a5959a9f3c3e58f68bc354f550265c83a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7df6caae537af19e4b0fdef595027317"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_worker_manager.html#a7df6caae537af19e4b0fdef595027317">rebalanceWorkers</a> ()</td></tr>
 <tr class="separator:a7df6caae537af19e4b0fdef595027317"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aae14522c4a35ccb7dfd568052feef2cc"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_worker_manager.html#aae14522c4a35ccb7dfd568052feef2cc">setCombatWorker</a> (Unit worker)</td></tr>
@@ -588,6 +588,24 @@ Static Private Attributes</h2></td></tr>
 
 </div>
 </div>
+<a class="anchor" id="a4eb5b674d9f173669becdee1b7afa613"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void WorkerManager.onUnitComplete </td>
+          <td>(</td>
+          <td class="paramtype">Unit&#160;</td>
+          <td class="paramname"><em>unit</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>일꾼 유닛들의 상태를 저장하는 workerData 객체를 업데이트합니다 Terran_SCV, Protoss_Probe 유닛 훈련이 끝나서 탄생할 경우, Zerg_Drone 유닛이 탄생하는 경우, Zerg_Drone 유닛이 건물로 Morph 가 끝나서 건물이 완성되는 경우, Zerg_Drone 유닛의 Zerg_Extractor 건물로의 Morph 를 취소시켜서 Zerg_Drone 유닛이 새롭게 탄생하는 경우 호출됩니다 </p>
+
+</div>
+</div>
 <a class="anchor" id="ac8ed08f8fa6565cefce4189e7df21c0b"></a>
 <div class="memitem">
 <div class="memproto">
@@ -612,24 +630,6 @@ Static Private Attributes</h2></td></tr>
       <table class="memname">
         <tr>
           <td class="memname">void WorkerManager.onUnitMorph </td>
-          <td>(</td>
-          <td class="paramtype">Unit&#160;</td>
-          <td class="paramname"><em>unit</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>일꾼 유닛들의 상태를 저장하는 workerData 객체를 업데이트합니다 </p>
-
-</div>
-</div>
-<a class="anchor" id="a5959a9f3c3e58f68bc354f550265c83a"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void WorkerManager.onUnitShow </td>
           <td>(</td>
           <td class="paramtype">Unit&#160;</td>
           <td class="paramname"><em>unit</em></td><td>)</td>
@@ -973,7 +973,7 @@ Static Private Attributes</h2></td></tr>
 <!-- HTML footer for doxygen 1.8.8-->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Fri Jun 16 2017 18:34:30 for BasicBot by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Thu Jul 20 2017 00:30:40 for BasicBot by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.8
 </small></address>

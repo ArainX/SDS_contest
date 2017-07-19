@@ -4,7 +4,7 @@ var searchData=
   ['width',['width',['../struct_my_bot_1_1_rect.html#a1bcaafa8b61a549d2092c8fc3d569256',1,'MyBot::Rect']]],
   ['workerbuildingtypemap',['workerBuildingTypeMap',['../class_my_bot_1_1_worker_data.html#a9de5af780e8072b5236fd8a39c1dfc97',1,'MyBot::WorkerData']]],
   ['workerdata',['WorkerData',['../class_my_bot_1_1_worker_data.html',1,'MyBot']]],
-  ['workerdata',['WorkerData',['../class_my_bot_1_1_worker_data.html#a4acd585cf229475a925d7ca233a7716b',1,'MyBot::WorkerData::WorkerData()'],['../class_my_bot_1_1_worker_manager.html#aa435ac619cd8b6e11e105352ca61cdb7',1,'MyBot::WorkerManager::workerData()']]],
+  ['workerdata',['workerData',['../class_my_bot_1_1_worker_manager.html#aa435ac619cd8b6e11e105352ca61cdb7',1,'MyBot::WorkerManager::workerData()'],['../class_my_bot_1_1_worker_data.html#a4acd585cf229475a925d7ca233a7716b',1,'MyBot::WorkerData::WorkerData()']]],
   ['workerdepotmap',['workerDepotMap',['../class_my_bot_1_1_worker_data.html#a1db7d55a192a989664398f4c513c7c68',1,'MyBot::WorkerData']]],
   ['workerdestroyed',['workerDestroyed',['../class_my_bot_1_1_worker_data.html#aa3da45bc3fb40f4daac128ea12c3f4da',1,'MyBot::WorkerData']]],
   ['workerjob',['WorkerJob',['../class_my_bot_1_1_worker_data.html#ae1e613170be6b14b789a2a6ecfbdff76',1,'MyBot::WorkerData']]],

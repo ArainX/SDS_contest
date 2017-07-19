@@ -1,5 +1,29 @@
 # Change Log
 
+## v1.1 Release (2017-07-19)
+
+* BasicBot 신규 기능 추가
+
+  * 타임아웃 패배, 자동 패배 체크 메소드 추가
+  * 경기 결과 파일 Save / Load 및 로그파일 Save 예제 추가
+  * onNukeDetect, onPlayerLeft, onSaveGame 이벤트 처리 가능하도록 메소드 추가
+
+* BasicBot 중대한 버그 수정
+  * 빌드 실행 유닛 (일꾼/건물) 결정 로직 버그 수정
+  * 저그 뮤탈리스크 / 스커지 빌드 데드락 판단 로직 버그 수정
+  * Refinery 건물 건설 위치 탐색 로직 버그 수정 및 속도 개선
+  * 일꾼 탄생/파괴 등에 대한 업데이트 로직 버그 수정
+
+* BasicBot 기타 수정사항
+  * 멀티 기지간 일꾼 숫자 리밸런싱 조건값 수정
+  * 파일경로 기본값 수정
+  * getUnitAndUnitInfoMap 메소드에 대해 const 제거 (C++만 해당)
+  * appendTextToFile 등 메소드를 static 으로 수정 (JAVA 만 해당)
+
+* BuildServerCode 예시적으로 수록
+
+* TutorialLevel5Bot 에 BasicBot 수정사항 반영
+
 ## v1.0 Release (2017-06-16)
 
 * fix minor bug : BuildManager.java 의 update, checkBuildOrderQueueDeadlockAndAndFixIt 함수 수정

@@ -26,7 +26,7 @@
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;">
    <div id="projectname">BasicBot
-   &#160;<span id="projectnumber">v1.0</span>
+   &#160;<span id="projectnumber">v1.1</span>
    </div>
    <div id="projectbrief">BasicBot for Starcraft: Broodwar 1.16.1 with BWAPI 4.1.2</div>
   </td>
@@ -147,20 +147,76 @@ Public Member Functions</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-methods"></a>
 Private Member Functions</h2></td></tr>
-<tr class="memitem:a6e9a5f0f4d1f22bf6e4e82cd4861cb46"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_my_bot_1_1_my_bot_module.html#a6e9a5f0f4d1f22bf6e4e82cd4861cb46">ParseTextCommand</a> (const std::string &amp;commandLine)</td></tr>
-<tr class="separator:a6e9a5f0f4d1f22bf6e4e82cd4861cb46"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a573a7b62c26754b184b0f22de9fe9728"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_my_bot_1_1_my_bot_module.html#a573a7b62c26754b184b0f22de9fe9728">checkGameLostConditionAndLeaveGame</a> ()</td></tr>
+<tr class="separator:a573a7b62c26754b184b0f22de9fe9728"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2bf67392505c348b11a25811d369a4a0"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_my_bot_1_1_my_bot_module.html#a2bf67392505c348b11a25811d369a4a0">checkLostConditions</a> ()</td></tr>
+<tr class="separator:a2bf67392505c348b11a25811d369a4a0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab2fb8990d8a320db49efaeb4d3e74dea"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_my_bot_1_1_my_bot_module.html#ab2fb8990d8a320db49efaeb4d3e74dea">checkTimeOutConditionAndLeaveGame</a> ()</td></tr>
+<tr class="separator:ab2fb8990d8a320db49efaeb4d3e74dea"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1b8361bf2a3b31cbaac4f76876bb88f0"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_my_bot_1_1_my_bot_module.html#a1b8361bf2a3b31cbaac4f76876bb88f0">doTimeOutDelay</a> ()</td></tr>
+<tr class="separator:a1b8361bf2a3b31cbaac4f76876bb88f0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a59700620854040a1a647843b803be639"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_my_bot_1_1_my_bot_module.html#a59700620854040a1a647843b803be639">initializeLostConditionVariables</a> ()</td></tr>
+<tr class="separator:a59700620854040a1a647843b803be639"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac224671c8430960f48623b364acf2787"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_my_bot_1_1_my_bot_module.html#ac224671c8430960f48623b364acf2787">parseTextCommand</a> (const std::string &amp;commandLine)</td></tr>
+<tr class="separator:ac224671c8430960f48623b364acf2787"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-attribs"></a>
 Private Attributes</h2></td></tr>
 <tr class="memitem:a2016f644f27e0af2a0591dab1f6017a5"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_my_bot_1_1_game_commander.html">GameCommander</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_my_bot_1_1_my_bot_module.html#a2016f644f27e0af2a0591dab1f6017a5">gameCommander</a></td></tr>
 <tr class="separator:a2016f644f27e0af2a0591dab1f6017a5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab0fbf31653f32cb5c93fdfcabc73cd7b"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_my_bot_1_1_my_bot_module.html#ab0fbf31653f32cb5c93fdfcabc73cd7b">gameLostConditionSatisfiedFrame</a></td></tr>
+<tr class="separator:ab0fbf31653f32cb5c93fdfcabc73cd7b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a081be04864a5e6bd0415e152b61cd192"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_my_bot_1_1_my_bot_module.html#a081be04864a5e6bd0415e152b61cd192">isGameLostConditionSatisfied</a></td></tr>
+<tr class="separator:a081be04864a5e6bd0415e152b61cd192"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a589335f85bfa629ea47385b218497592"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_my_bot_1_1_my_bot_module.html#a589335f85bfa629ea47385b218497592">isTimeOutConditionSatisfied</a></td></tr>
+<tr class="separator:a589335f85bfa629ea47385b218497592"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af13c60528077a908dc3f4745320e748a"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_my_bot_1_1_my_bot_module.html#af13c60528077a908dc3f4745320e748a">isToCheckGameLostCondition</a></td></tr>
+<tr class="separator:af13c60528077a908dc3f4745320e748a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a81438f786f6304c8ab8aacfad8d8661e"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_my_bot_1_1_my_bot_module.html#a81438f786f6304c8ab8aacfad8d8661e">isToCheckTimeOut</a></td></tr>
+<tr class="separator:a81438f786f6304c8ab8aacfad8d8661e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae600812fb763cc228e4b08be82ecffa3"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_my_bot_1_1_my_bot_module.html#ae600812fb763cc228e4b08be82ecffa3">isToTestTimeOut</a></td></tr>
+<tr class="separator:ae600812fb763cc228e4b08be82ecffa3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aaa6342dc367290fb3fa43ace2175c50d"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_my_bot_1_1_my_bot_module.html#aaa6342dc367290fb3fa43ace2175c50d">maxDurationForGameLostCondition</a></td></tr>
+<tr class="separator:aaa6342dc367290fb3fa43ace2175c50d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad0fe57b1e7615aad9fa62ecb92fb0ddc"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_my_bot_1_1_my_bot_module.html#ad0fe57b1e7615aad9fa62ecb92fb0ddc">maxDurationForTimeOutLostCondition</a></td></tr>
+<tr class="separator:ad0fe57b1e7615aad9fa62ecb92fb0ddc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a30cd849d8d606852646c2b9a35b38e78"><td class="memItemLeft" align="right" valign="top">std::vector&lt; long long &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_my_bot_1_1_my_bot_module.html#a30cd849d8d606852646c2b9a35b38e78">timeElapsedAtFrame</a></td></tr>
+<tr class="separator:a30cd849d8d606852646c2b9a35b38e78"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a804680a24dbb78803f85b5b23724a599"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_my_bot_1_1_my_bot_module.html#a804680a24dbb78803f85b5b23724a599">timeOutConditionSatisfiedFrame</a></td></tr>
+<tr class="separator:a804680a24dbb78803f85b5b23724a599"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac2bb964c9df3a139402f76f343658f02"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_my_bot_1_1_my_bot_module.html#ac2bb964c9df3a139402f76f343658f02">timeOverTestDuration</a></td></tr>
+<tr class="separator:ac2bb964c9df3a139402f76f343658f02"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab984e024d175adedd02cc5a57ace82be"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_my_bot_1_1_my_bot_module.html#ab984e024d175adedd02cc5a57ace82be">timeOverTestFrameCount</a></td></tr>
+<tr class="separator:ab984e024d175adedd02cc5a57ace82be"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad9e10f3c3c0a6632a0ae941684007adc"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_my_bot_1_1_my_bot_module.html#ad9e10f3c3c0a6632a0ae941684007adc">timeOverTestFrameCountLimit</a></td></tr>
+<tr class="separator:ad9e10f3c3c0a6632a0ae941684007adc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab423471b076d0ebd8799d9c0d858fc59"><td class="memItemLeft" align="right" valign="top">std::vector&lt; int &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_my_bot_1_1_my_bot_module.html#ab423471b076d0ebd8799d9c0d858fc59">timerLimits</a></td></tr>
+<tr class="separator:ab423471b076d0ebd8799d9c0d858fc59"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4369e8617af92d023bec5e53e0ab217f"><td class="memItemLeft" align="right" valign="top">std::vector&lt; int &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_my_bot_1_1_my_bot_module.html#a4369e8617af92d023bec5e53e0ab217f">timerLimitsBound</a></td></tr>
+<tr class="separator:a4369e8617af92d023bec5e53e0ab217f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adb3a4bc6a7c03b8aa6026087861f57ad"><td class="memItemLeft" align="right" valign="top">std::vector&lt; int &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_my_bot_1_1_my_bot_module.html#adb3a4bc6a7c03b8aa6026087861f57ad">timerLimitsExceeded</a></td></tr>
+<tr class="separator:adb3a4bc6a7c03b8aa6026087861f57ad"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8e262d90651cffbcd2427fc19490cce1"><td class="memItemLeft" align="right" valign="top">std::vector&lt; long long &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_my_bot_1_1_my_bot_module.html#a8e262d90651cffbcd2427fc19490cce1">timeStartedAtFrame</a></td></tr>
+<tr class="separator:a8e262d90651cffbcd2427fc19490cce1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>봇프로그램의 기본적인 뼈대 구조를 정의한 class 로서, 스타크래프트 경기 도중 발생하는 이벤트들을 <a class="el" href="class_my_bot_1_1_game_commander.html" title="실제 봇프로그램의 본체가 되는 class  스타크래프트 경기 도중 발생하는 이벤트들이 적절하게 처리되도록 �...">GameCommander</a> class 인스턴스에게 전달합니다.<br />
- <a class="el" href="class_my_bot_1_1_my_bot_module.html" title="봇프로그램의 기본적인 뼈대 구조를 정의한 class 로서, 스타크래프트 경기 도중 발생하는 이벤트들을 GameC...">MyBotModule</a> class는 수정을 하지 말고,<br />
- 실제 봇프로그램 개발은 <a class="el" href="class_my_bot_1_1_game_commander.html" title="실제 봇프로그램의 본체가 되는 class  스타크래프트 경기 도중 발생하는 이벤트들이 적절하게 처리되도록 �...">GameCommander</a> class 를 수정하는 형태로 진행하도록 합니다.<br />
+<div class="textblock"><p><a class="el" href="class_my_bot_1_1_my_bot_module.html" title="MyBotModule 은 봇프로그램의 기본적인 뼈대 구조를 정의한 class 로서, 스타크래프트 경기 도중 발생하는 �...">MyBotModule</a> 은 봇프로그램의 기본적인 뼈대 구조를 정의한 class 로서, 스타크래프트 경기 도중 발생하는 이벤트들을 <a class="el" href="class_my_bot_1_1_game_commander.html" title="실제 봇프로그램의 본체가 되는 class  스타크래프트 경기 도중 발생하는 이벤트들이 적절하게 처리되도록 �...">GameCommander</a> class 인스턴스에게 전달합니다.<br />
  </p>
-<dl class="section see"><dt>See also</dt><dd><a class="el" href="class_my_bot_1_1_game_commander.html" title="실제 봇프로그램의 본체가 되는 class  스타크래프트 경기 도중 발생하는 이벤트들이 적절하게 처리되도록 �...">GameCommander</a> </dd></dl>
+<p><a class="el" href="class_my_bot_1_1_my_bot_module.html" title="MyBotModule 은 봇프로그램의 기본적인 뼈대 구조를 정의한 class 로서, 스타크래프트 경기 도중 발생하는 �...">MyBotModule</a> class는 수정을 하지 말고,<br />
+ 실제 봇프로그램 개발은 <a class="el" href="class_my_bot_1_1_game_commander.html" title="실제 봇프로그램의 본체가 되는 class  스타크래프트 경기 도중 발생하는 이벤트들이 적절하게 처리되도록 �...">GameCommander</a> class 를 수정하는 형태로 진행하도록 합니다.<br />
+ </p><dl class="section see"><dt>See also</dt><dd><a class="el" href="class_my_bot_1_1_game_commander.html" title="실제 봇프로그램의 본체가 되는 class  스타크래프트 경기 도중 발생하는 이벤트들이 적절하게 처리되도록 �...">GameCommander</a></dd></dl>
+<p><br />
+<br />
+ 알고리즘 경진대회 의 공정하고 효율적인 운영을 위해 Main, <a class="el" href="class_my_bot_1_1_my_bot_module.html" title="MyBotModule 은 봇프로그램의 기본적인 뼈대 구조를 정의한 class 로서, 스타크래프트 경기 도중 발생하는 �...">MyBotModule</a>, <a class="el" href="class_my_bot_1_1_u_x_manager.html" title="봇 프로그램 개발의 편의성 향상을 위해 게임 화면에 추가 정보들을 표시하는 class  여러 Manager 들로부터...">UXManager</a> 파일은 참가자들이 제출하는 소스코드를 무시하고 덮어쓴 후 빌드합니다 <br />
+</p>
+<p>알고리즘 경진대회 빌드서버가 사용하는 Main, <a class="el" href="class_my_bot_1_1_my_bot_module.html" title="MyBotModule 은 봇프로그램의 기본적인 뼈대 구조를 정의한 class 로서, 스타크래프트 경기 도중 발생하는 �...">MyBotModule</a>, <a class="el" href="class_my_bot_1_1_u_x_manager.html" title="봇 프로그램 개발의 편의성 향상을 위해 게임 화면에 추가 정보들을 표시하는 class  여러 Manager 들로부터...">UXManager</a> 파일을 예시적으로 BasicBot 에 반영하였습니다 <br />
+ 실제 알고리즘 경진대회 빌드서버에서는 코드를 일부 수정해서 빌드하게 할 수 있습니다 <br />
+</p>
+<p>알고리즘 경진대회 빌드서버가 사용하는 Main 은 <a class="el" href="class_my_bot_1_1_my_bot_module.html" title="MyBotModule 은 봇프로그램의 기본적인 뼈대 구조를 정의한 class 로서, 스타크래프트 경기 도중 발생하는 �...">MyBotModule</a> 을 실행시키는 기능을 수행합니다. <br />
+ 알고리즘 경진대회 빌드서버가 사용하는 <a class="el" href="class_my_bot_1_1_my_bot_module.html" title="MyBotModule 은 봇프로그램의 기본적인 뼈대 구조를 정의한 class 로서, 스타크래프트 경기 도중 발생하는 �...">MyBotModule</a> 은 <a class="el" href="class_my_bot_1_1_game_commander.html" title="실제 봇프로그램의 본체가 되는 class  스타크래프트 경기 도중 발생하는 이벤트들이 적절하게 처리되도록 �...">GameCommander</a> 에게 이벤트를 전달하는 기능을 수행하며, 게임 속도 지연 여부 파악, 게임 무승부 상황 파악 등을 통해 게임을 강제 패배시키거나 강제 종료시키는 행동을 수행합니다. <br />
+ 알고리즘 경진대회 빌드서버가 사용하는 UX Manager 는 알고리즘 경진대회 운영, 사후 판정 등에 필요한 최소한의 내용만 화면에 표시합니다. <br />
+ 이 파일들은 <a class="el" href="class_my_bot_1_1_information_manager.html" title="게임 상황정보 중 일부를 자체 자료구조 및 변수들에 저장하고 업데이트하는 class  현재 게임 상황정보는 B...">InformationManager</a> 등 다른 파일들과 Dependency가 없도록 개발되었기 때문에, <br />
+ 참가자들은 <a class="el" href="class_my_bot_1_1_information_manager.html" title="게임 상황정보 중 일부를 자체 자료구조 및 변수들에 저장하고 업데이트하는 class  현재 게임 상황정보는 B...">InformationManager</a> 등 다른 파일들을 자유롭게 수정하실 수 있습니다. </p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a class="anchor" id="a672ea6ac773955c4866bbd400d5e85e1"></a>
 <div class="memitem">
@@ -193,6 +249,129 @@ Private Attributes</h2></td></tr>
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
+<a class="anchor" id="a573a7b62c26754b184b0f22de9fe9728"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void MyBotModule::checkGameLostConditionAndLeaveGame </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>자동 패배 조건을 체크하여, 조건 만족 시 GG 선언하고 게임을 나갑니다 </p>
+
+</div>
+</div>
+<a class="anchor" id="a2bf67392505c348b11a25811d369a4a0"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void MyBotModule::checkLostConditions </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>사용자가 입력한 text 를 parse 해서 처리합니다 </p>
+
+</div>
+</div>
+<a class="anchor" id="ab2fb8990d8a320db49efaeb4d3e74dea"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void MyBotModule::checkTimeOutConditionAndLeaveGame </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>타임 아웃 조건을 체크하여, 조건 만족 시 GG 선언하고 게임을 나갑니다 </p>
+
+</div>
+</div>
+<a class="anchor" id="a1b8361bf2a3b31cbaac4f76876bb88f0"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void MyBotModule::doTimeOutDelay </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>타임 아웃 체크 테스트 실행 </p>
+
+</div>
+</div>
+<a class="anchor" id="a59700620854040a1a647843b803be639"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void MyBotModule::initializeLostConditionVariables </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
 <a class="anchor" id="a50b977acf0a48f9f3ae6a554119c43ff"></a>
 <div class="memitem">
 <div class="memproto">
@@ -512,7 +691,7 @@ Private Attributes</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="a6e9a5f0f4d1f22bf6e4e82cd4861cb46"></a>
+<a class="anchor" id="ac224671c8430960f48623b364acf2787"></a>
 <div class="memitem">
 <div class="memproto">
 <table class="mlabels">
@@ -520,7 +699,7 @@ Private Attributes</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">void MyBotModule::ParseTextCommand </td>
+          <td class="memname">void MyBotModule::parseTextCommand </td>
           <td>(</td>
           <td class="paramtype">const std::string &amp;&#160;</td>
           <td class="paramname"><em>commandLine</em></td><td>)</td>
@@ -533,8 +712,6 @@ Private Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-
-<p>사용자가 입력한 text 를 parse 해서 처리합니다 </p>
 
 </div>
 </div>
@@ -563,11 +740,379 @@ Private Attributes</h2></td></tr>
 
 </div>
 </div>
+<a class="anchor" id="ab0fbf31653f32cb5c93fdfcabc73cd7b"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int MyBot::MyBotModule::gameLostConditionSatisfiedFrame</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>자동 패배 조건이 시작된 프레임 시점 </p>
+
+</div>
+</div>
+<a class="anchor" id="a081be04864a5e6bd0415e152b61cd192"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool MyBot::MyBotModule::isGameLostConditionSatisfied</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>자동 패배 체크 결과 </p>
+
+</div>
+</div>
+<a class="anchor" id="a589335f85bfa629ea47385b218497592"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool MyBot::MyBotModule::isTimeOutConditionSatisfied</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>타임 아웃 체크 결과 </p>
+
+</div>
+</div>
+<a class="anchor" id="af13c60528077a908dc3f4745320e748a"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool MyBot::MyBotModule::isToCheckGameLostCondition</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>자동 패배 체크 실행 여부 </p>
+
+</div>
+</div>
+<a class="anchor" id="a81438f786f6304c8ab8aacfad8d8661e"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool MyBot::MyBotModule::isToCheckTimeOut</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>타임 아웃 체크 실행 여부 </p>
+
+</div>
+</div>
+<a class="anchor" id="ae600812fb763cc228e4b08be82ecffa3"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool MyBot::MyBotModule::isToTestTimeOut</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>타임 아웃 체크 테스트 실행 여부 </p>
+
+</div>
+</div>
+<a class="anchor" id="aaa6342dc367290fb3fa43ace2175c50d"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int MyBot::MyBotModule::maxDurationForGameLostCondition</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>자동 패배 조건이 만족된채 게임을 유지시키는 최대 프레임 수 </p>
+
+</div>
+</div>
+<a class="anchor" id="ad0fe57b1e7615aad9fa62ecb92fb0ddc"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int MyBot::MyBotModule::maxDurationForTimeOutLostCondition</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>타임 아웃 조건이 만족된채 게임을 유지시키는 최대 프레임 수 </p>
+
+</div>
+</div>
+<a class="anchor" id="a30cd849d8d606852646c2b9a35b38e78"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::vector&lt;long long&gt; MyBot::MyBotModule::timeElapsedAtFrame</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>해당 프레임에서 사용한 시간 (ms) </p>
+
+</div>
+</div>
+<a class="anchor" id="a804680a24dbb78803f85b5b23724a599"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int MyBot::MyBotModule::timeOutConditionSatisfiedFrame</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>타임 아웃 조건이 시작된 프레임 시점 </p>
+
+</div>
+</div>
+<a class="anchor" id="ac2bb964c9df3a139402f76f343658f02"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int MyBot::MyBotModule::timeOverTestDuration</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="ab984e024d175adedd02cc5a57ace82be"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int MyBot::MyBotModule::timeOverTestFrameCount</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="ad9e10f3c3c0a6632a0ae941684007adc"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int MyBot::MyBotModule::timeOverTestFrameCountLimit</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="ab423471b076d0ebd8799d9c0d858fc59"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::vector&lt;int&gt; MyBot::MyBotModule::timerLimits</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>타임 아웃 한계시간 (ms/frame) </p>
+
+</div>
+</div>
+<a class="anchor" id="a4369e8617af92d023bec5e53e0ab217f"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::vector&lt;int&gt; MyBot::MyBotModule::timerLimitsBound</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>타임 아웃 초과한계횟수 </p>
+
+</div>
+</div>
+<a class="anchor" id="adb3a4bc6a7c03b8aa6026087861f57ad"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::vector&lt;int&gt; MyBot::MyBotModule::timerLimitsExceeded</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>타임 아웃 초과횟수 </p>
+
+</div>
+</div>
+<a class="anchor" id="a8e262d90651cffbcd2427fc19490cce1"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::vector&lt;long long&gt; MyBot::MyBotModule::timeStartedAtFrame</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>해당 프레임을 시작한 시각 </p>
+
+</div>
+</div>
 </div><!-- contents -->
 <!-- HTML footer for doxygen 1.8.8-->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Fri Jun 16 2017 18:34:14 for BasicBot by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Thu Jul 20 2017 00:30:57 for BasicBot by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.8
 </small></address>

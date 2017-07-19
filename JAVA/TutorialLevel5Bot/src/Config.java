@@ -6,6 +6,8 @@ import bwapi.UnitType;
 /// 봇 프로그램 설정
 public class Config {
 	
+	// BasicBot 1.1 Patch Start ////////////////////////////////////////////////
+
 	/// 봇 이름
 	public static final String BotName = "NoNameBot";
 	/// 봇 개발자 이름
@@ -14,13 +16,14 @@ public class Config {
 	
 	
 	/// 로그 파일 이름
-	public static String LogFilename = "log.txt";
+	public static String LogFilename = BotName + "_LastGameLog.dat";
 	/// 읽기 파일 경로
-	public static String ReadDirectory = "bwapi-data\\AI\\MyBot\\read\\";
+	public static String ReadDirectory = "bwapi-data\\read\\";
 	/// 쓰기 파일 경로
-	public static String WriteDirectory = "bwapi-data\\AI\\MyBot\\write\\";		
+	public static String WriteDirectory = "bwapi-data\\write\\";		
 
-	
+	// BasicBot 1.1 Patch End //////////////////////////////////////////////////
+
 	
 
 	/// 로컬에서 게임을 실행할 때 게임스피드 (코드 제출 후 서버에서 게임을 실행할 때는 서버 설정을 사용함)<br>
@@ -28,7 +31,7 @@ public class Config {
 	/// Fastest: 42 ms/frame.  1초에 24 frame. 일반적으로 1초에 24frame을 기준 게임속도로 합니다<br>
 	/// Normal: 67 ms/frame. 1초에 15 frame<br>
 	/// As fast as possible : 0 ms/frame. CPU가 할수있는 가장 빠른 속도.
-	public static int SetLocalSpeed = 10;
+	public static int SetLocalSpeed = 20;
 	
 	/// 로컬에서 게임을 실행할 때 FrameSkip (코드 제출 후 서버에서 게임을 실행할 때는 서버 설정을 사용함)<br>
 	/// frameskip을 늘리면 화면 표시도 업데이트 안하므로 훨씬 빠릅니다

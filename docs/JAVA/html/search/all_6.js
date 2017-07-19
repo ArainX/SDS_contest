@@ -1,6 +1,10 @@
 var searchData=
 [
   ['gamecommander',['GameCommander',['../class_game_commander.html',1,'GameCommander'],['../class_my_bot_module.html#af59e98ff2ccf2610487a492a8d82d9b5',1,'MyBotModule.gameCommander()']]],
+  ['gameframecount',['gameFrameCount',['../class_strategy_manager_1_1_game_record.html#a53f2f4977d69444df831e455fb1be1ff',1,'StrategyManager::GameRecord']]],
+  ['gamelostconditionsatisfiedframe',['gameLostConditionSatisfiedFrame',['../class_my_bot_module.html#aa828565da3dbd3dea4dc175f8d5c8f7c',1,'MyBotModule']]],
+  ['gamerecord',['GameRecord',['../class_strategy_manager_1_1_game_record.html',1,'StrategyManager']]],
+  ['gamerecordlist',['gameRecordList',['../class_strategy_manager.html#aeae50dfe270b38445018a60e08d3a220',1,'StrategyManager']]],
   ['gas',['Gas',['../enum_worker_data_1_1_worker_job.html#ac6047bfaed9a502318785445bcf37cb9',1,'WorkerData::WorkerJob']]],
   ['gaslost',['gasLost',['../class_unit_data.html#a368203a6223eb5e6951baa4f0cb9af8c',1,'UnitData']]],
   ['gasneeded',['gasNeeded',['../class_worker_move_data.html#aa09c1affe846b395347ea0be5c054422',1,'WorkerMoveData']]],
@@ -123,7 +127,7 @@ var searchData=
   ['green1',['green1',['../class_u_x_manager.html#ab3cb1d8e28aa108d5c7ced13b4277050',1,'UXManager']]],
   ['green2',['green2',['../class_u_x_manager.html#ab277f6942fcd395a316dda53455d43e4',1,'UXManager']]],
   ['gridcell',['GridCell',['../class_distance_map_1_1_grid_cell.html#ab226a7f2f8d414979be664838dffd00c',1,'DistanceMap.GridCell.GridCell()'],['../class_map_grid_1_1_grid_cell.html#a370af3d8e3d0df9b54c782289942e162',1,'MapGrid.GridCell.GridCell()']]],
-  ['gridcell',['GridCell',['../class_map_grid_1_1_grid_cell.html',1,'MapGrid']]],
   ['gridcell',['GridCell',['../class_distance_map_1_1_grid_cell.html',1,'DistanceMap']]],
+  ['gridcell',['GridCell',['../class_map_grid_1_1_grid_cell.html',1,'MapGrid']]],
   ['gridcells',['gridCells',['../class_distance_map.html#a05dcbdec80b139b16573a1f59dcb9313',1,'DistanceMap.gridCells()'],['../class_map_grid.html#a676bc405bafd0fa05a7127f1c311d473',1,'MapGrid.gridCells()']]]
 ];

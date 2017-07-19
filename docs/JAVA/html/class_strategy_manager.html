@@ -26,7 +26,7 @@
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;">
    <div id="projectname">BasicBot
-   &#160;<span id="projectnumber">v1.0</span>
+   &#160;<span id="projectnumber">v1.1</span>
    </div>
    <div id="projectbrief">BasicBot for Starcraft: Broodwar 1.16.1 with BWAPI 4.1.2</div>
   </td>
@@ -91,8 +91,11 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div><!-- top -->
 <div class="header">
   <div class="summary">
+<a href="#nested-classes">Classes</a> &#124;
 <a href="#pub-methods">Public Member Functions</a> &#124;
 <a href="#pub-static-methods">Static Public Member Functions</a> &#124;
+<a href="#pac-methods">Package Functions</a> &#124;
+<a href="#pac-attribs">Package Attributes</a> &#124;
 <a href="#pri-attribs">Private Attributes</a> &#124;
 <a href="#pri-static-attribs">Static Private Attributes</a> &#124;
 <a href="class_strategy_manager-members.html">List of all members</a>  </div>
@@ -101,6 +104,11 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div><!--header-->
 <div class="contents">
 <table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="nested-classes"></a>
+Classes</h2></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_strategy_manager_1_1_game_record.html">GameRecord</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:a0bd1fcf1fc460d1e0e325efbfedd77b6"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_strategy_manager.html#a0bd1fcf1fc460d1e0e325efbfedd77b6">StrategyManager</a> ()</td></tr>
@@ -126,6 +134,20 @@ Public Member Functions</h2></td></tr>
 Static Public Member Functions</h2></td></tr>
 <tr class="memitem:a8754cb7b442c724bd4b26b9721113d2c"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="class_strategy_manager.html">StrategyManager</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_strategy_manager.html#a8754cb7b442c724bd4b26b9721113d2c">Instance</a> ()</td></tr>
 <tr class="separator:a8754cb7b442c724bd4b26b9721113d2c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pac-methods"></a>
+Package Functions</h2></td></tr>
+<tr class="memitem:ad0871a7821b557611562f1e4597586a5"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_strategy_manager.html#ad0871a7821b557611562f1e4597586a5">loadGameRecordList</a> ()</td></tr>
+<tr class="separator:ad0871a7821b557611562f1e4597586a5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a50cc7c3ce28701c82a22f668699c16c1"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_strategy_manager.html#a50cc7c3ce28701c82a22f668699c16c1">saveGameLog</a> ()</td></tr>
+<tr class="separator:a50cc7c3ce28701c82a22f668699c16c1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0f677df0a41d81f702562a4ee6b93d2d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_strategy_manager.html#a0f677df0a41d81f702562a4ee6b93d2d">saveGameRecordList</a> (boolean isWinner)</td></tr>
+<tr class="separator:a0f677df0a41d81f702562a4ee6b93d2d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pac-attribs"></a>
+Package Attributes</h2></td></tr>
+<tr class="memitem:aeae50dfe270b38445018a60e08d3a220"><td class="memItemLeft" align="right" valign="top">ArrayList&lt; <a class="el" href="class_strategy_manager_1_1_game_record.html">GameRecord</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_strategy_manager.html#aeae50dfe270b38445018a60e08d3a220">gameRecordList</a> = new ArrayList&lt;<a class="el" href="class_strategy_manager_1_1_game_record.html">GameRecord</a>&gt;()</td></tr>
+<tr class="separator:aeae50dfe270b38445018a60e08d3a220"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-attribs"></a>
 Private Attributes</h2></td></tr>
@@ -248,6 +270,31 @@ Static Private Attributes</h2></td></tr>
 
 </div>
 </div>
+<a class="anchor" id="ad0871a7821b557611562f1e4597586a5"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void StrategyManager.loadGameRecordList </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">package</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>과거 전체 게임 기록을 로딩합니다 </p>
+
+</div>
+</div>
 <a class="anchor" id="aaa482622ac37a231703e795ef4718ac5"></a>
 <div class="memitem">
 <div class="memproto">
@@ -280,6 +327,58 @@ Static Private Attributes</h2></td></tr>
 </div><div class="memdoc">
 
 <p>경기가 시작될 때 일회적으로 전략 초기 세팅 관련 로직을 실행합니다 </p>
+
+</div>
+</div>
+<a class="anchor" id="a50cc7c3ce28701c82a22f668699c16c1"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void StrategyManager.saveGameLog </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">package</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>이번 게임 중간에 상시적으로 로그를 저장합니다 </p>
+
+</div>
+</div>
+<a class="anchor" id="a0f677df0a41d81f702562a4ee6b93d2d"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void StrategyManager.saveGameRecordList </td>
+          <td>(</td>
+          <td class="paramtype">boolean&#160;</td>
+          <td class="paramname"><em>isWinner</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">package</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>과거 전체 게임 기록 + 이번 게임 기록을 저장합니다 </p>
+<p>이번 게임에 대한 기록 </p>
 
 </div>
 </div>
@@ -333,6 +432,28 @@ Static Private Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="aeae50dfe270b38445018a60e08d3a220"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">ArrayList&lt;<a class="el" href="class_strategy_manager_1_1_game_record.html">GameRecord</a>&gt; StrategyManager.gameRecordList = new ArrayList&lt;<a class="el" href="class_strategy_manager_1_1_game_record.html">GameRecord</a>&gt;()</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">package</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>과거 전체 게임들의 기록을 저장하는 자료구조 </p>
 
 </div>
 </div>
@@ -400,7 +521,7 @@ Static Private Attributes</h2></td></tr>
 <!-- HTML footer for doxygen 1.8.8-->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Fri Jun 16 2017 18:34:30 for BasicBot by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Thu Jul 20 2017 00:30:40 for BasicBot by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.8
 </small></address>

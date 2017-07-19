@@ -16,11 +16,24 @@ StrategyManager::StrategyManager()
 
 void StrategyManager::onStart()
 {
+	// BasicBot 1.1 Patch Start ////////////////////////////////////////////////
+	
+	// 과거 게임 기록을 로딩합니다
+	loadGameRecordList();
+
+	// BasicBot 1.1 Patch End //////////////////////////////////////////////////
+	
 	setInitialBuildOrder();
 }
 
 void StrategyManager::onEnd(bool isWinner)
 {	
+	// BasicBot 1.1 Patch Start ////////////////////////////////////////////////
+
+	// 과거 게임 기록 + 이번 게임 기록을 저장합니다
+	saveGameRecordList(isWinner);
+
+	// BasicBot 1.1 Patch End //////////////////////////////////////////////////
 }
 
 void StrategyManager::update()
@@ -36,6 +49,13 @@ void StrategyManager::update()
 	executeBasicCombatUnitTraining();
 
 	executeCombat();
+
+	// BasicBot 1.1 Patch Start ////////////////////////////////////////////////
+
+	// 이번 게임의 로그를 남깁니다
+	saveGameLog();
+
+	// BasicBot 1.1 Patch End //////////////////////////////////////////////////
 }
 
 void StrategyManager::setInitialBuildOrder()
@@ -201,13 +221,13 @@ void StrategyManager::setInitialBuildOrder()
 		// 벌쳐 이동속도 업
 		BuildManager::Instance().buildQueue.queueAsLowestPriority(BWAPI::UpgradeTypes::Ion_Thrusters);
 		// 시즈탱크 시즈모드
-		BuildManager::Instance().buildQueue.queueAsLowestPriority(BWAPI::UnitTypes::Terran_Siege_Tank_Tank_Mode);
+		BuildManager::Instance().buildQueue.queueAsLowestPriority(BWAPI::TechTypes::Tank_Siege_Mode);
 
 		// 벌쳐
 		BuildManager::Instance().buildQueue.queueAsLowestPriority(BWAPI::UnitTypes::Terran_Vulture);
 
 		// 시즈탱크
-		BuildManager::Instance().buildQueue.queueAsLowestPriority(BWAPI::TechTypes::Tank_Siege_Mode);
+		BuildManager::Instance().buildQueue.queueAsLowestPriority(BWAPI::UnitTypes::Terran_Siege_Tank_Tank_Mode);
 
 		// 아머니
 		BuildManager::Instance().buildQueue.queueAsLowestPriority(BWAPI::UnitTypes::Terran_Armory);
@@ -377,6 +397,7 @@ void StrategyManager::setInitialBuildOrder()
 		// 스파이어 -> 그레이트 스파이어
 		BuildManager::Instance().buildQueue.queueAsLowestPriority(BWAPI::UnitTypes::Zerg_Greater_Spire);
 		BuildManager::Instance().buildQueue.queueAsLowestPriority(BWAPI::UnitTypes::Zerg_Guardian);
+		BuildManager::Instance().buildQueue.queueAsLowestPriority(BWAPI::UnitTypes::Zerg_Mutalisk);
 		BuildManager::Instance().buildQueue.queueAsLowestPriority(BWAPI::UnitTypes::Zerg_Devourer);
 
 		// 울트라리스크
@@ -475,6 +496,12 @@ void StrategyManager::executeWorkerTraining()
 // Supply DeadLock 예방 및 SupplyProvider 가 부족해질 상황 에 대한 선제적 대응으로서 SupplyProvider를 추가 건설/생산한다
 void StrategyManager::executeSupplyManagement()
 {
+	// BasicBot 1.1 Patch Start ////////////////////////////////////////////////
+
+	// 주석 추가
+	// InitialBuildOrder 진행중 혹은 그후라도 서플라이 건물이 파괴되어 데드락이 발생할 수 있는데, 이 상황에 대한 해결은 참가자께서 해주셔야 합니다.
+	// 오버로드가 학살당하거나, 서플라이 건물이 집중 파괴되는 상황에 대해  무조건적으로 서플라이 빌드 추가를 실행하기 보다 먼저 전략적 대책 판단이 필요할 것입니다
+
 	// InitialBuildOrder 진행중에는 아무것도 하지 않습니다
 	if (isInitialBuildOrderFinished == false) {
 		return;
@@ -519,7 +546,8 @@ void StrategyManager::executeSupplyManagement()
 				onBuildingSupplyCount += ConstructionManager::Instance().getConstructionQueueItemCount(InformationManager::Instance().getBasicSupplyProviderUnitType()) * InformationManager::Instance().getBasicSupplyProviderUnitType().supplyProvided();
 			}
 
-			std::cout << "currentSupplyShortage : " << currentSupplyShortage << " onBuildingSupplyCount : " << onBuildingSupplyCount << std::endl;
+			// 주석처리
+			//std::cout << "currentSupplyShortage : " << currentSupplyShortage << " onBuildingSupplyCount : " << onBuildingSupplyCount << std::endl;
 
 			if (currentSupplyShortage > onBuildingSupplyCount) {
 
@@ -532,13 +560,15 @@ void StrategyManager::executeSupplyManagement()
 					}
 				}
 				if (isToEnqueue) {
-					std::cout << "enqueue supply provider " << InformationManager::Instance().getBasicSupplyProviderUnitType().getName().c_str() << std::endl;
+					// 주석처리
+					//std::cout << "enqueue supply provider " << InformationManager::Instance().getBasicSupplyProviderUnitType().getName().c_str() << std::endl;
 					BuildManager::Instance().buildQueue.queueAsHighestPriority(MetaType(InformationManager::Instance().getBasicSupplyProviderUnitType()), true);
 				}
 			}
 
 		}
 	}
+	// BasicBot 1.1 Patch End ////////////////////////////////////////////////
 }
 
 void StrategyManager::executeBasicCombatUnitTraining()
@@ -636,5 +666,126 @@ void StrategyManager::executeCombat()
 			}
 		}
 	}
+}
+
+void StrategyManager::loadGameRecordList()
+{
+	// 과거의 게임에서 bwapi-data\write 폴더에 기록했던 파일은 대회 서버가 bwapi-data\read 폴더로 옮겨놓습니다
+	// 따라서, 파일 로딩은 bwapi-data\read 폴더로부터 하시면 됩니다
+	std::string gameRecordFileName = "bwapi-data\\read\\BasicBot_GameRecord.dat";
+
+	FILE *file;
+	errno_t err;
+	if ((err = fopen_s(&file, gameRecordFileName.c_str(), "r")) != 0)
+	{
+		std::cout << "loadGameRecord failed. Could not open file :" << gameRecordFileName.c_str() << std::endl;
+	}
+	else
+	{
+		std::cout << "loadGameRecord from file: " << gameRecordFileName.c_str() << std::endl;
+		char line[4096];
+		while (fgets(line, sizeof line, file) != nullptr)
+		{
+			std::stringstream ss(line);
+
+			GameRecord tempGameRecord;
+			ss >> tempGameRecord.mapName;
+			ss >> tempGameRecord.myName;
+			ss >> tempGameRecord.myRace;
+			ss >> tempGameRecord.myWinCount;
+			ss >> tempGameRecord.myLoseCount;
+			ss >> tempGameRecord.enemyName;
+			ss >> tempGameRecord.enemyRace;
+			ss >> tempGameRecord.enemyRealRace;
+			ss >> tempGameRecord.gameFrameCount;
+
+			gameRecordList.push_back(tempGameRecord);
+		}
+		fclose(file);
+	}
+}
+
+void StrategyManager::saveGameRecordList(bool isWinner)
+{
+	// 이번 게임의 파일 저장은 bwapi-data\write 폴더에 하시면 됩니다.
+	// bwapi-data\write 폴더에 저장된 파일은 대회 서버가 다음 경기 때 bwapi-data\read 폴더로 옮겨놓습니다
+	std::string gameRecordFileName = "bwapi-data\\write\\BasicBot_GameRecord.dat";
+
+	std::cout << "saveGameRecord to file: " << gameRecordFileName.c_str() << std::endl;
+
+	std::string mapName = BWAPI::Broodwar->mapFileName();
+	std::replace(mapName.begin(), mapName.end(), ' ', '_');
+	std::string enemyName = BWAPI::Broodwar->enemy()->getName();
+	std::replace(enemyName.begin(), enemyName.end(), ' ', '_');
+	std::string myName = BWAPI::Broodwar->self()->getName();
+	std::replace(myName.begin(), myName.end(), ' ', '_');
+
+	/// 이번 게임에 대한 기록
+	GameRecord thisGameRecord;
+	thisGameRecord.mapName = mapName;
+	thisGameRecord.myName = myName;
+	thisGameRecord.myRace = BWAPI::Broodwar->self()->getRace().c_str();
+	thisGameRecord.enemyName = enemyName;
+	thisGameRecord.enemyRace = BWAPI::Broodwar->enemy()->getRace().c_str();
+	thisGameRecord.enemyRealRace = InformationManager::Instance().enemyRace.c_str();
+	thisGameRecord.gameFrameCount = BWAPI::Broodwar->getFrameCount();
+	if (isWinner) {
+		thisGameRecord.myWinCount = 1;
+		thisGameRecord.myLoseCount = 0;
+	}
+	else {
+		thisGameRecord.myWinCount = 0;
+		thisGameRecord.myLoseCount = 1;
+	}
+	// 이번 게임 기록을 전체 게임 기록에 추가
+	gameRecordList.push_back(thisGameRecord);
+
+	// 전체 게임 기록 write
+	std::stringstream ss;
+	for (GameRecord gameRecord : gameRecordList) {
+		ss << gameRecord.mapName << " "
+			<< gameRecord.myName << " "
+			<< gameRecord.myRace << " "
+			<< gameRecord.myWinCount << " "
+			<< gameRecord.myLoseCount << " "
+			<< gameRecord.enemyName << " "
+			<< gameRecord.enemyRace << " "
+			<< gameRecord.enemyRealRace << " "
+			<< gameRecord.gameFrameCount << "\n";
+
+	}
+	Logger::overwriteToFile(gameRecordFileName, ss.str());
+}
+
+void StrategyManager::saveGameLog()
+{
+	// 100 프레임 (5초) 마다 1번씩 로그를 기록합니다
+	// 참가팀 당 용량 제한이 있고, 타임아웃도 있기 때문에 자주 하지 않는 것이 좋습니다
+	// 로그는 봇 개발 시 디버깅 용도로 사용하시는 것이 좋습니다
+	if (BWAPI::Broodwar->getFrameCount() % 100 != 0) {
+		return;
+	}
+
+	std::string gameLogFileName = "bwapi-data\\write\\BasicBot_LastGameLog.dat";
+
+	std::string mapName = BWAPI::Broodwar->mapFileName();
+	std::replace(mapName.begin(), mapName.end(), ' ', '_');
+	std::string enemyName = BWAPI::Broodwar->enemy()->getName();
+	std::replace(enemyName.begin(), enemyName.end(), ' ', '_');
+	std::string myName = BWAPI::Broodwar->self()->getName();
+	std::replace(myName.begin(), myName.end(), ' ', '_');
+
+	std::stringstream ss;
+	ss << mapName << " "
+		<< myName << " "
+		<< BWAPI::Broodwar->self()->getRace().c_str() << " "
+		<< enemyName << " "
+		<< InformationManager::Instance().enemyRace.c_str() << " "
+		<< BWAPI::Broodwar->getFrameCount() << " "
+		<< BWAPI::Broodwar->self()->supplyUsed() << " "
+		<< BWAPI::Broodwar->self()->supplyTotal() << " "
+		<< "\n";
+
+	Logger::appendTextToFile(gameLogFileName, ss.str());
 }
 

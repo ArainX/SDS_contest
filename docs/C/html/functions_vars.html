@@ -26,7 +26,7 @@
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;">
    <div id="projectname">BasicBot
-   &#160;<span id="projectnumber">v1.0</span>
+   &#160;<span id="projectnumber">v1.1</span>
    </div>
    <div id="projectbrief">BasicBot for Starcraft: Broodwar 1.16.1 with BWAPI 4.1.2</div>
   </td>
@@ -283,11 +283,18 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <li>enemyBaseRegionVertices
 : <a class="el" href="class_my_bot_1_1_scout_manager.html#aa30435999c06f1aee0d4451294144758">MyBot::ScoutManager</a>
 </li>
+<li>enemyName
+: <a class="el" href="class_my_bot_1_1_strategy_manager_1_1_game_record.html#ac2fe92829f9aa90762561bb93fa7add2">MyBot::StrategyManager::GameRecord</a>
+</li>
 <li>enemyPlayer
 : <a class="el" href="class_my_bot_1_1_information_manager.html#ac9f99539adbd13bf94ebad4f1a0e602a">MyBot::InformationManager</a>
 </li>
 <li>enemyRace
 : <a class="el" href="class_my_bot_1_1_information_manager.html#a9fe709992656a590b2a878056d29062c">MyBot::InformationManager</a>
+, <a class="el" href="class_my_bot_1_1_strategy_manager_1_1_game_record.html#a89704342a1f59a96533f7dcb4c3b4a34">MyBot::StrategyManager::GameRecord</a>
+</li>
+<li>enemyRealRace
+: <a class="el" href="class_my_bot_1_1_strategy_manager_1_1_game_record.html#aa55b22b477f6b6d4944a77ed9a86a30f">MyBot::StrategyManager::GameRecord</a>
 </li>
 </ul>
 
@@ -302,6 +309,15 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <h3><a class="anchor" id="index_g"></a>- g -</h3><ul>
 <li>gameCommander
 : <a class="el" href="class_my_bot_1_1_my_bot_module.html#a2016f644f27e0af2a0591dab1f6017a5">MyBot::MyBotModule</a>
+</li>
+<li>gameFrameCount
+: <a class="el" href="class_my_bot_1_1_strategy_manager_1_1_game_record.html#a825c601f1f619c957ae5bc6a3d37fbc7">MyBot::StrategyManager::GameRecord</a>
+</li>
+<li>gameLostConditionSatisfiedFrame
+: <a class="el" href="class_my_bot_1_1_my_bot_module.html#ab0fbf31653f32cb5c93fdfcabc73cd7b">MyBot::MyBotModule</a>
+</li>
+<li>gameRecordList
+: <a class="el" href="class_my_bot_1_1_strategy_manager.html#a373fba151970748d2c606cb6e1234f84">MyBot::StrategyManager</a>
 </li>
 <li>gasLost
 : <a class="el" href="class_my_bot_1_1_unit_data.html#a158ee1fd0036b5de50badaef996ad318">MyBot::UnitData</a>
@@ -326,11 +342,26 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <li>isFullScaleAttackStarted
 : <a class="el" href="class_my_bot_1_1_strategy_manager.html#a3773913091d85fe04d5ae492b2653c39">MyBot::StrategyManager</a>
 </li>
+<li>isGameLostConditionSatisfied
+: <a class="el" href="class_my_bot_1_1_my_bot_module.html#a081be04864a5e6bd0415e152b61cd192">MyBot::MyBotModule</a>
+</li>
 <li>isInitialBuildOrderFinished
 : <a class="el" href="class_my_bot_1_1_strategy_manager.html#a8ebb10244d318eea1292b5acfeb1cb36">MyBot::StrategyManager</a>
 </li>
+<li>isTimeOutConditionSatisfied
+: <a class="el" href="class_my_bot_1_1_my_bot_module.html#a589335f85bfa629ea47385b218497592">MyBot::MyBotModule</a>
+</li>
+<li>isToCheckGameLostCondition
+: <a class="el" href="class_my_bot_1_1_my_bot_module.html#af13c60528077a908dc3f4745320e748a">MyBot::MyBotModule</a>
+</li>
+<li>isToCheckTimeOut
+: <a class="el" href="class_my_bot_1_1_my_bot_module.html#a81438f786f6304c8ab8aacfad8d8661e">MyBot::MyBotModule</a>
+</li>
 <li>isToFindError
 : <a class="el" href="class_my_bot_1_1_game_commander.html#a69888a3969a4afef94743a4501d2196b">MyBot::GameCommander</a>
+</li>
+<li>isToTestTimeOut
+: <a class="el" href="class_my_bot_1_1_my_bot_module.html#ae600812fb763cc228e4b08be82ecffa3">MyBot::MyBotModule</a>
 </li>
 </ul>
 
@@ -364,11 +395,23 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <li>mapHeight
 : <a class="el" href="class_my_bot_1_1_map_grid.html#ace7f6f06716f6cce6bce3216fbd8f5f1">MyBot::MapGrid</a>
 </li>
+<li>mapName
+: <a class="el" href="class_my_bot_1_1_strategy_manager_1_1_game_record.html#aa44df4ca6e681e6b4514926d0d64c90d">MyBot::StrategyManager::GameRecord</a>
+</li>
 <li>mapWidth
 : <a class="el" href="class_my_bot_1_1_map_grid.html#a452b1893662211ecc240908ec30c50c3">MyBot::MapGrid</a>
 </li>
+<li>maxDurationForGameLostCondition
+: <a class="el" href="class_my_bot_1_1_my_bot_module.html#aaa6342dc367290fb3fa43ace2175c50d">MyBot::MyBotModule</a>
+</li>
+<li>maxDurationForTimeOutLostCondition
+: <a class="el" href="class_my_bot_1_1_my_bot_module.html#ad0fe57b1e7615aad9fa62ecb92fb0ddc">MyBot::MyBotModule</a>
+</li>
 <li>metaType
 : <a class="el" href="struct_my_bot_1_1_build_order_item.html#a17602d84de5770405e0ef083ba6fc3e9">MyBot::BuildOrderItem</a>
+</li>
+<li>mineralAndMineralWorkerRatio
+: <a class="el" href="class_my_bot_1_1_worker_data.html#a9ec0a57381c5c271e54736c31459456f">MyBot::WorkerData</a>
 </li>
 <li>mineralsLost
 : <a class="el" href="class_my_bot_1_1_unit_data.html#a5f92d8e28c7b1fc9d42527d9737660df">MyBot::UnitData</a>
@@ -378,6 +421,18 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </li>
 <li>moveTo
 : <a class="el" href="class_my_bot_1_1_distance_map.html#a106c4bceea73c75ec66fb63bbbea2584">MyBot::DistanceMap</a>
+</li>
+<li>myLoseCount
+: <a class="el" href="class_my_bot_1_1_strategy_manager_1_1_game_record.html#af0012c0171c4bb03ed5ad1a237924de5">MyBot::StrategyManager::GameRecord</a>
+</li>
+<li>myName
+: <a class="el" href="class_my_bot_1_1_strategy_manager_1_1_game_record.html#ad7523f75316a71f01b8496c2de8b13fb">MyBot::StrategyManager::GameRecord</a>
+</li>
+<li>myRace
+: <a class="el" href="class_my_bot_1_1_strategy_manager_1_1_game_record.html#ab8c8cb85bce52408961aa68472e3573b">MyBot::StrategyManager::GameRecord</a>
+</li>
+<li>myWinCount
+: <a class="el" href="class_my_bot_1_1_strategy_manager_1_1_game_record.html#a1e2c8843bb0f05c40d183f75db0bd2e1">MyBot::StrategyManager::GameRecord</a>
 </li>
 </ul>
 
@@ -477,11 +532,38 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 
 
 <h3><a class="anchor" id="index_t"></a>- t -</h3><ul>
+<li>timeElapsedAtFrame
+: <a class="el" href="class_my_bot_1_1_my_bot_module.html#a30cd849d8d606852646c2b9a35b38e78">MyBot::MyBotModule</a>
+</li>
 <li>timeLastOpponentSeen
 : <a class="el" href="class_my_bot_1_1_grid_cell.html#a44156dbd93596100bd8a611ae6a5cc28">MyBot::GridCell</a>
 </li>
 <li>timeLastVisited
 : <a class="el" href="class_my_bot_1_1_grid_cell.html#af210f8b5bb1c43f627534239a3275d19">MyBot::GridCell</a>
+</li>
+<li>timeOutConditionSatisfiedFrame
+: <a class="el" href="class_my_bot_1_1_my_bot_module.html#a804680a24dbb78803f85b5b23724a599">MyBot::MyBotModule</a>
+</li>
+<li>timeOverTestDuration
+: <a class="el" href="class_my_bot_1_1_my_bot_module.html#ac2bb964c9df3a139402f76f343658f02">MyBot::MyBotModule</a>
+</li>
+<li>timeOverTestFrameCount
+: <a class="el" href="class_my_bot_1_1_my_bot_module.html#ab984e024d175adedd02cc5a57ace82be">MyBot::MyBotModule</a>
+</li>
+<li>timeOverTestFrameCountLimit
+: <a class="el" href="class_my_bot_1_1_my_bot_module.html#ad9e10f3c3c0a6632a0ae941684007adc">MyBot::MyBotModule</a>
+</li>
+<li>timerLimits
+: <a class="el" href="class_my_bot_1_1_my_bot_module.html#ab423471b076d0ebd8799d9c0d858fc59">MyBot::MyBotModule</a>
+</li>
+<li>timerLimitsBound
+: <a class="el" href="class_my_bot_1_1_my_bot_module.html#a4369e8617af92d023bec5e53e0ab217f">MyBot::MyBotModule</a>
+</li>
+<li>timerLimitsExceeded
+: <a class="el" href="class_my_bot_1_1_my_bot_module.html#adb3a4bc6a7c03b8aa6026087861f57ad">MyBot::MyBotModule</a>
+</li>
+<li>timeStartedAtFrame
+: <a class="el" href="class_my_bot_1_1_my_bot_module.html#a8e262d90651cffbcd2427fc19490cce1">MyBot::MyBotModule</a>
 </li>
 <li>type
 : <a class="el" href="class_my_bot_1_1_construction_task.html#a65a9416b64358d3c1dfc45ba76333f66">MyBot::ConstructionTask</a>
@@ -564,7 +646,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <!-- HTML footer for doxygen 1.8.8-->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Fri Jun 16 2017 18:34:15 for BasicBot by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Thu Jul 20 2017 00:30:58 for BasicBot by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.8
 </small></address>
