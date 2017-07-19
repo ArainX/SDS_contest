@@ -1,5 +1,4 @@
-﻿
-// GameCommander 소스코드는 예시입니다
+﻿// GameCommander 소스코드는 예시입니다
 
 #pragma once
 

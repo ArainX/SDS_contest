@@ -8,6 +8,7 @@ var searchData=
   ['lastupdated',['lastUpdated',['../class_my_bot_1_1_map_grid.html#a1529dd96de090d3c98cfa2226c998e01',1,'MyBot::MapGrid']]],
   ['len',['len',['../struct_my_bot_1_1double2.html#a447f0fa106cafbff2c1ced0403a10e89',1,'MyBot::double2']]],
   ['lensq',['lenSq',['../struct_my_bot_1_1double2.html#a29aca44650bb17ab5365327e05765a06',1,'MyBot::double2']]],
+  ['loadgamerecordlist',['loadGameRecordList',['../class_my_bot_1_1_strategy_manager.html#aa50970ec18cd46494eab77580c392070',1,'MyBot::StrategyManager']]],
   ['logfilename',['LogFilename',['../namespace_config_1_1_files.html#a7339d18d58fc90e1bee17a153b627179',1,'Config::Files']]],
   ['lowestpriority',['lowestPriority',['../class_my_bot_1_1_build_order_queue.html#a7e6cbce6d74afb15847269e6b7a96baa',1,'MyBot::BuildOrderQueue']]]
 ];

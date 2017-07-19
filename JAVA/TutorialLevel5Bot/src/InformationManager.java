@@ -296,15 +296,26 @@ public class InformationManager {
 		// enemy의 mainBaseLocations을 발견한 후, 그곳에 있는 건물을 모두 파괴한 경우
 		// _occupiedBaseLocations 중에서 _mainBaseLocations 를 선정한다
 		if (mainBaseLocations.get(enemyPlayer) != null) {
-			if (existsPlayerBuildingInRegion(BWTA.getRegion(mainBaseLocations.get(enemyPlayer).getTilePosition()), enemyPlayer) == false) {
-				for (BaseLocation loaction : occupiedBaseLocations.get(enemyPlayer)) {
-					if (existsPlayerBuildingInRegion(BWTA.getRegion(loaction.getTilePosition()),enemyPlayer)) {
-						mainBaseLocations.put(enemyPlayer, loaction);
-						mainBaseLocationChanged.put(enemyPlayer, new Boolean(true));				
-						break;
+			
+			// BasicBot 1.1 Patch Start ////////////////////////////////////////////////
+
+			// 적군의 빠른 앞마당 건물 건설 + 아군의 가장 마지막 정찰 방문의 경우, enemy의 mainBaseLocations를 방문안한 상태에서는 건물이 하나도 없다고 판단하여 mainBaseLocation 을 변경하는 현상이 발생해서
+			// enemy의 mainBaseLocations을 실제 방문했었던 적이 한번은 있어야 한다라는 조건 추가.  
+			if (MyBotModule.Broodwar.isExplored(mainBaseLocations.get(enemyPlayer).getTilePosition())) {
+		
+				if (existsPlayerBuildingInRegion(BWTA.getRegion(mainBaseLocations.get(enemyPlayer).getTilePosition()), enemyPlayer) == false) {
+					for (BaseLocation loaction : occupiedBaseLocations.get(enemyPlayer)) {
+						if (existsPlayerBuildingInRegion(BWTA.getRegion(loaction.getTilePosition()),enemyPlayer)) {
+							mainBaseLocations.put(enemyPlayer, loaction);
+							mainBaseLocationChanged.put(enemyPlayer, new Boolean(true));				
+							break;
+						}
 					}
 				}
 			}
+
+			// BasicBot 1.1 Patch End //////////////////////////////////////////////////
+
 		}
 
 		// self의 mainBaseLocations에 대해, 그곳에 있는 건물이 모두 파괴된 경우

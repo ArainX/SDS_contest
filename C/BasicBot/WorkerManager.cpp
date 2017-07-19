@@ -275,7 +275,12 @@ BWAPI::Unit WorkerManager::chooseRepairWorkerClosestTo(BWAPI::Position p, int ma
 	if (!p.isValid()) return nullptr;
 
     BWAPI::Unit closestWorker = nullptr;
+
+	// BasicBot 1.1 Patch Start ////////////////////////////////////////////////
+
 	double closestDist = 1000000000;
+
+	// BasicBot 1.1 Patch End //////////////////////////////////////////////////
 
 	if (currentRepairWorker != nullptr && currentRepairWorker->exists() && currentRepairWorker->getHitPoints() > 0)
     {
@@ -347,8 +352,13 @@ void WorkerManager::setMineralWorker(BWAPI::Unit unit)
 BWAPI::Unit WorkerManager::getClosestMineralWorkerTo(BWAPI::Position target)
 {
 	BWAPI::Unit closestUnit = nullptr;
+
+	// BasicBot 1.1 Patch Start ////////////////////////////////////////////////
+
 	double closestDist = 1000000000;
-	
+
+	// BasicBot 1.1 Patch End //////////////////////////////////////////////////
+
 	for (auto & unit : BWAPI::Broodwar->self()->getUnits())
 	{
 		if (!unit)
@@ -376,6 +386,8 @@ BWAPI::Unit WorkerManager::getClosestMineralWorkerTo(BWAPI::Position target)
 
 BWAPI::Unit WorkerManager::getClosestResourceDepotFromWorker(BWAPI::Unit worker)
 {
+	// BasicBot 1.1 Patch Start ////////////////////////////////////////////////
+
 	if (!worker) return nullptr;
 
 	BWAPI::Unit closestDepot = nullptr;
@@ -403,11 +415,12 @@ BWAPI::Unit WorkerManager::getClosestResourceDepotFromWorker(BWAPI::Unit worker)
 	}
 
 	// 모든 ResourceDepot 이 다 일꾼수가 꽉 차있거나, 완성된 ResourceDepot 이 하나도 없고 건설중이라면, 
-	// 주위에 미네랄이 남아있는 ResourceDepot 중에서 가까운 곳이 선택되도록 한다
+	// ResourceDepot 주위에 미네랄이 남아있는 곳 중에서 가까운 곳이 선택되도록 한다
 	if (closestDepot == nullptr) {
 		for (auto & unit : BWAPI::Broodwar->self()->getUnits())
 		{
 			if (!unit) continue;
+
 			if (unit->getType().isResourceDepot())
 			{
 				if (workerData.getMineralsNearDepot(unit) > 0) {
@@ -438,6 +451,8 @@ BWAPI::Unit WorkerManager::getClosestResourceDepotFromWorker(BWAPI::Unit worker)
 	}
 
 	return closestDepot;
+
+	// BasicBot 1.1 Patch End //////////////////////////////////////////////////
 }
 
 // other managers that need workers call this when they're done with a unit
@@ -454,7 +469,12 @@ BWAPI::Unit WorkerManager::chooseGasWorkerFromMineralWorkers(BWAPI::Unit refiner
 	if (!refinery) return nullptr;
 
 	BWAPI::Unit closestWorker = nullptr;
+
+	// BasicBot 1.1 Patch Start ////////////////////////////////////////////////
+
 	double closestDistance = 1000000000;
+
+	// BasicBot 1.1 Patch End //////////////////////////////////////////////////
 
 	for (auto & unit : workerData.getWorkers())
 	{
@@ -486,8 +506,13 @@ BWAPI::Unit WorkerManager::chooseConstuctionWorkerClosestTo(BWAPI::UnitType buil
 	// variables to hold the closest worker of each type to the building
 	BWAPI::Unit closestMovingWorker = nullptr;
 	BWAPI::Unit closestMiningWorker = nullptr;
+
+	// BasicBot 1.1 Patch Start ////////////////////////////////////////////////
+
 	double closestMovingWorkerDistance = 1000000000;
 	double closestMiningWorkerDistance = 1000000000;
+
+	// BasicBot 1.1 Patch End //////////////////////////////////////////////////
 
 	// look through each worker that had moved there first
 	for (auto & unit : workerData.getWorkers())
@@ -557,7 +582,12 @@ BWAPI::Unit WorkerManager::chooseMoveWorkerClosestTo(BWAPI::Position p)
 {
 	// set up the pointer
 	BWAPI::Unit closestWorker = nullptr;
+
+	// BasicBot 1.1 Patch Start ////////////////////////////////////////////////
+
 	double closestDistance = 1000000000;
+
+	// BasicBot 1.1 Patch End //////////////////////////////////////////////////
 
 	// for each worker we currently have
 	for (auto & unit : workerData.getWorkers())
@@ -586,7 +616,12 @@ void WorkerManager::setMoveWorker(BWAPI::Unit worker, int mineralsNeeded, int ga
 {
 	// set up the pointer
 	BWAPI::Unit closestWorker = nullptr;
+
+	// BasicBot 1.1 Patch Start ////////////////////////////////////////////////
+
 	double closestDistance = 1000000000;
+
+	// BasicBot 1.1 Patch End //////////////////////////////////////////////////
 
 	// for each worker we currently have
 	for (auto & unit : workerData.getWorkers())
@@ -638,25 +673,59 @@ void WorkerManager::onUnitMorph(BWAPI::Unit unit)
 {
 	if (!unit) return;
 
+	// BasicBot 1.1 Patch Start ////////////////////////////////////////////////
+
+	// onUnitComplete 에서 처리하도록 수정
 	// if something morphs into a worker, add it
-	if (unit->getType().isWorker() && unit->getPlayer() == BWAPI::Broodwar->self() && unit->getHitPoints() >= 0)
-	{
-		workerData.addWorker(unit);
-	}
+	//if (unit->getType().isWorker() && unit->getPlayer() == BWAPI::Broodwar->self() && unit->getHitPoints() >= 0)
+	//{
+	//	workerData.addWorker(unit);
+	//}
 
 	// if something morphs into a building, it was a worker (Zerg Drone)
 	if (unit->getType().isBuilding() && unit->getPlayer() == BWAPI::Broodwar->self() && unit->getPlayer()->getRace() == BWAPI::Races::Zerg)
 	{
 		// 해당 worker 를 workerData 에서 삭제한다
 		workerData.workerDestroyed(unit);
+		rebalanceWorkers();
 	}
+
+	// BasicBot 1.1 Patch End //////////////////////////////////////////////////
 }
 
-void WorkerManager::onUnitComplete(BWAPI::Unit unit)
+// BasicBot 1.1 Patch Start ////////////////////////////////////////////////
+
+// onUnitShow 메소드 제거
+/*
+void WorkerManager::onUnitShow(BWAPI::Unit unit)
 {
-	// BasicBot 1.1 Patch Start
 	if (!unit) return;
 
+	// add the depot if it exists
+	if (unit->getType().isResourceDepot() && unit->getPlayer() == BWAPI::Broodwar->self())
+	{
+		workerData.addDepot(unit);
+	}
+
+	// add the worker
+	if (unit->getType().isWorker() && unit->getPlayer() == BWAPI::Broodwar->self() && unit->getHitPoints() >= 0)
+	{
+		workerData.addWorker(unit);
+	}
+
+	if (unit->getType().isResourceDepot() && unit->getPlayer() == BWAPI::Broodwar->self())
+	{
+		rebalanceWorkers();
+	}
+
+}
+*/
+
+// onUnitComplete 메소드 추가
+void WorkerManager::onUnitComplete(BWAPI::Unit unit)
+{
+	if (!unit) return;
+		
 	// ResourceDepot 건물이 신규 생성되면, 자료구조 추가 처리를 한 후, rebalanceWorkers 를 한다
 	if (unit->getType().isResourceDepot() && unit->getPlayer() == BWAPI::Broodwar->self())
 	{
@@ -670,8 +739,9 @@ void WorkerManager::onUnitComplete(BWAPI::Unit unit)
 		workerData.addWorker(unit);
 		rebalanceWorkers();
 	}
-	// BasicBot 1.1 Patch End
 }
+
+// BasicBot 1.1 Patch End //////////////////////////////////////////////////
 
 // 일하고있는 resource depot 에 충분한 수의 mineral worker 들이 지정되어 있다면, idle 상태로 만든다
 // idle worker 에게 mineral job 을 부여할 때, mineral worker 가 부족한 resource depot 으로 이동하게 된다  
@@ -686,15 +756,9 @@ void WorkerManager::rebalanceWorkers()
 
 		BWAPI::Unit depot = workerData.getWorkerDepot(worker);
 
-		//if (depot) {
-		//	std::cout << std::endl << "worker ID " << worker->getID();
-		//	std::cout << " depotHasEnoughMineralWorkers " << workerData.depotHasEnoughMineralWorkers(depot);
-		//}
-
 		if (depot && workerData.depotHasEnoughMineralWorkers(depot))
 		{
 			workerData.setWorkerJob(worker, WorkerData::Idle, nullptr);
-			//std::cout << " worker " << worker->getID() << " is now idle" << std::endl;
 		}
 		else if (!depot)
 		{
@@ -703,9 +767,10 @@ void WorkerManager::rebalanceWorkers()
 	}
 }
 
-void WorkerManager::onUnitDestroy(BWAPI::Unit unit) 
+// BasicBot 1.1 Patch Start ////////////////////////////////////////////////
+
+void WorkerManager::onUnitDestroy(BWAPI::Unit unit)
 {
-	// BasicBot 1.1 Patch Start
 	if (!unit) return;
 
 	// ResourceDepot 건물이 파괴되면, 자료구조 삭제 처리를 한 후, 일꾼들을 Idle 상태로 만들어 rebalanceWorkers 한 효과가 나게 한다
@@ -726,8 +791,9 @@ void WorkerManager::onUnitDestroy(BWAPI::Unit unit)
 	{
 		rebalanceWorkers();
 	}
-	// BasicBot 1.1 Patch End
 }
+
+// BasicBot 1.1 Patch End //////////////////////////////////////////////////
 
 bool WorkerManager::isMineralWorker(BWAPI::Unit worker)
 {

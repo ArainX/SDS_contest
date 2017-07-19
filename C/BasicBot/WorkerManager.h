@@ -48,11 +48,23 @@ namespace MyBot
 		/// 저그 드론 유닛이 건물로 Morph 하다가 취소해서 다시 드론으로 Morph 하게 된 경우에도 호출됩니다
 		void        onUnitMorph(BWAPI::Unit unit);
 
+		// BasicBot 1.1 Patch Start ////////////////////////////////////////////////
+
+		// onUnitShow 메소드 제거
 		/// 일꾼 유닛들의 상태를 저장하는 workerData 객체를 업데이트합니다
-		/// Terran_SCV, Protoss_Probe 유닛 훈련이 끝나서 탄생할 경우, Zerg_Drone 유닛의 Morph 가 끝나서 탄생할 경우,
-		/// Zerg_Drone 유닛이 건물로 Morph 가 끝나서 건물이 완성되었을 경우 호출됩니다
+		//void        onUnitShow(BWAPI::Unit unit);
+
+		// onUnitComplete 메소드 추가
+		/// 일꾼 유닛들의 상태를 저장하는 workerData 객체를 업데이트합니다
+		/// Terran_SCV, Protoss_Probe 유닛 훈련이 끝나서 탄생할 경우, 
+		/// Zerg_Drone 유닛이 탄생하는 경우,
+		/// Zerg_Drone 유닛이 건물로 Morph 가 끝나서 건물이 완성되는 경우,
+		/// Zerg_Drone 유닛의 Zerg_Extractor 건물로의 Morph 를 취소시켜서 Zerg_Drone 유닛이 새롭게 탄생하는 경우
+		/// 호출됩니다
 		void        onUnitComplete(BWAPI::Unit unit);
-		
+
+		// BasicBot 1.1 Patch End //////////////////////////////////////////////////
+
 		
 		/// 일꾼 유닛들의 상태를 저장하는 workerData 객체를 리턴합니다
 		WorkerData  getWorkerData();

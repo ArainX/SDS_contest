@@ -26,7 +26,7 @@
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;">
    <div id="projectname">BasicBot
-   &#160;<span id="projectnumber">v1.0</span>
+   &#160;<span id="projectnumber">v1.1</span>
    </div>
    <div id="projectbrief">BasicBot for Starcraft: Broodwar 1.16.1 with BWAPI 4.1.2</div>
   </td>
@@ -137,12 +137,12 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:ae3ee7647406917d4e5c952f1410094ea"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aed85fafa1ea8f4c24cb196280d827b57"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_my_bot_1_1_worker_manager.html#aed85fafa1ea8f4c24cb196280d827b57">isScoutWorker</a> (BWAPI::Unit worker)</td></tr>
 <tr class="separator:aed85fafa1ea8f4c24cb196280d827b57"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac443ce5ba70929096d76df26f9083f32"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_my_bot_1_1_worker_manager.html#ac443ce5ba70929096d76df26f9083f32">onUnitComplete</a> (BWAPI::Unit unit)</td></tr>
+<tr class="separator:ac443ce5ba70929096d76df26f9083f32"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a69fbc12b54542fe20d112620d08f735a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_my_bot_1_1_worker_manager.html#a69fbc12b54542fe20d112620d08f735a">onUnitDestroy</a> (BWAPI::Unit unit)</td></tr>
 <tr class="separator:a69fbc12b54542fe20d112620d08f735a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a9d3e91fd63e01a343da7f0e2993bd2db"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_my_bot_1_1_worker_manager.html#a9d3e91fd63e01a343da7f0e2993bd2db">onUnitMorph</a> (BWAPI::Unit unit)</td></tr>
 <tr class="separator:a9d3e91fd63e01a343da7f0e2993bd2db"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6a1c52c06f32e6d59b3edd282b05e4e7"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_my_bot_1_1_worker_manager.html#a6a1c52c06f32e6d59b3edd282b05e4e7">onUnitShow</a> (BWAPI::Unit unit)</td></tr>
-<tr class="separator:a6a1c52c06f32e6d59b3edd282b05e4e7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a0891672442b0e444f6394b17f1b5e6f2"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_my_bot_1_1_worker_manager.html#a0891672442b0e444f6394b17f1b5e6f2">setCombatWorker</a> (BWAPI::Unit worker)</td></tr>
 <tr class="separator:a0891672442b0e444f6394b17f1b5e6f2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a97e147a5092baaa9d6250a6f4bcfda78"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_my_bot_1_1_worker_manager.html#a97e147a5092baaa9d6250a6f4bcfda78">setConstructionWorker</a> (BWAPI::Unit worker, BWAPI::UnitType buildingType)</td></tr>
@@ -531,7 +531,7 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Idle 일꾼을 Mineral 일꾼으로 만듭니다 </p>
+<p>Idle 일꾼을 Mineral 일꾼으로 만듭니다 Mineral worker 숫자가 많이 지정되어있지 않은, 주위에 Mineral 이 있는, 거리가 가까운 Resource Depot 을 찾아서 그 Resource Depot 근처의 Mineral 을 채취하게 합니다 </p>
 
 </div>
 </div>
@@ -654,6 +654,25 @@ Private Attributes</h2></td></tr>
 
 </div>
 </div>
+<a class="anchor" id="ac443ce5ba70929096d76df26f9083f32"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void WorkerManager::onUnitComplete </td>
+          <td>(</td>
+          <td class="paramtype">BWAPI::Unit&#160;</td>
+          <td class="paramname"><em>unit</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>일꾼 유닛들의 상태를 저장하는 workerData 객체를 업데이트합니다 </p>
+<p>일꾼 유닛들의 상태를 저장하는 workerData 객체를 업데이트합니다 Terran_SCV, Protoss_Probe 유닛 훈련이 끝나서 탄생할 경우, Zerg_Drone 유닛이 탄생하는 경우, Zerg_Drone 유닛이 건물로 Morph 가 끝나서 건물이 완성되는 경우, Zerg_Drone 유닛의 Zerg_Extractor 건물로의 Morph 를 취소시켜서 Zerg_Drone 유닛이 새롭게 탄생하는 경우 호출됩니다 </p>
+
+</div>
+</div>
 <a class="anchor" id="a69fbc12b54542fe20d112620d08f735a"></a>
 <div class="memitem">
 <div class="memproto">
@@ -686,25 +705,7 @@ Private Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>일꾼 유닛들의 상태를 저장하는 workerData 객체를 업데이트합니다 </p>
-
-</div>
-</div>
-<a class="anchor" id="a6a1c52c06f32e6d59b3edd282b05e4e7"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void WorkerManager::onUnitShow </td>
-          <td>(</td>
-          <td class="paramtype">BWAPI::Unit&#160;</td>
-          <td class="paramname"><em>unit</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>일꾼 유닛들의 상태를 저장하는 workerData 객체를 업데이트합니다 </p>
+<p>일꾼 유닛들의 상태를 저장하는 workerData 객체를 업데이트합니다 저그 드론 유닛이 건물로 Morph 하다가 취소해서 다시 드론으로 Morph 하게 된 경우에도 호출됩니다 </p>
 
 </div>
 </div>
@@ -728,6 +729,8 @@ Private Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p>Resource Depot (센터 건물)에 너무 많은 수의 Mineral worker 들이 지정되어 있다면, 해당 일꾼을 Idle 상태로 만듭니다 </p>
 
 </div>
 </div>
@@ -1015,7 +1018,7 @@ Private Attributes</h2></td></tr>
 <!-- HTML footer for doxygen 1.8.8-->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Fri Jun 16 2017 18:34:14 for BasicBot by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Thu Jul 20 2017 00:30:57 for BasicBot by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.8
 </small></address>

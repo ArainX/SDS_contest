@@ -2,7 +2,7 @@ var searchData=
 [
   ['default',['Default',['../enum_meta_type_1_1_meta_types.html#a1225c51739a9a91763515df365e4ee15',1,'MetaType.MetaTypes.Default()'],['../enum_worker_data_1_1_worker_job.html#a3ee8c27622b4ff90148cde7a7dfa944f',1,'WorkerData.WorkerJob.Default()']]],
   ['defaultpriorityspacing',['defaultPrioritySpacing',['../class_build_order_queue.html#a13211704b5e5cf89d814b264aa102829',1,'BuildOrderQueue']]],
-  ['depots',['depots',['../class_worker_data.html#a46d91d6d75afaf81e55ae7268ede508b',1,'WorkerData']]],
+  ['depots',['depots',['../class_worker_data.html#a074c11dd978be45ab86a324737050c75',1,'WorkerData']]],
   ['depotworkercount',['depotWorkerCount',['../class_worker_data.html#abf159d34642887e6eed7eab06d6b32b1',1,'WorkerData']]],
   ['desiredposition',['desiredPosition',['../class_construction_task.html#a59c2f200f30833dca9717499b43fa3e6',1,'ConstructionTask']]],
   ['dist',['dist',['../class_distance_map.html#a7a41b0e688a4bc5ebf1d7787e457d516',1,'DistanceMap']]],

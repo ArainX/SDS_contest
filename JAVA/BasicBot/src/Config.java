@@ -6,6 +6,8 @@ import bwapi.UnitType;
 /// 봇 프로그램 설정
 public class Config {
 	
+	// BasicBot 1.1 Patch Start ////////////////////////////////////////////////
+
 	/// 봇 이름
 	public static final String BotName = "NoNameBot";
 	/// 봇 개발자 이름
@@ -20,7 +22,8 @@ public class Config {
 	/// 쓰기 파일 경로
 	public static String WriteDirectory = "bwapi-data\\write\\";		
 
-	
+	// BasicBot 1.1 Patch End //////////////////////////////////////////////////
+
 	
 
 	/// 로컬에서 게임을 실행할 때 게임스피드 (코드 제출 후 서버에서 게임을 실행할 때는 서버 설정을 사용함)<br>

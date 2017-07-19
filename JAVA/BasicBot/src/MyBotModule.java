@@ -38,6 +38,7 @@ import bwapi.Flag.Enum;
 import bwta.BWTA;
 
 
+// BasicBot 1.1 Patch Start ////////////////////////////////////////////////
 /// MyBotModule 은 봇프로그램의 기본적인 뼈대 구조를 정의한 class 로서, 스타크래프트 경기 도중 발생하는 이벤트들을 GameCommander class 인스턴스에게 전달합니다.<br>
 ///
 /// MyBotModule class는 수정을 하지 말고,<br>
@@ -56,6 +57,7 @@ import bwta.BWTA;
 /// 이 파일들은 InformationManager 등 다른 파일들과 Dependency가 없도록 개발되었기 때문에, <br>
 /// 참가자들은 InformationManager 등 다른 파일들을 자유롭게 수정하실 수 있습니다. 
 /// 
+// BasicBot 1.1 Patch End //////////////////////////////////////////////////
 public class MyBotModule extends DefaultBWListener {
 
 	/// BWAPI 에 해당하는 내부 객체
@@ -71,7 +73,7 @@ public class MyBotModule extends DefaultBWListener {
 
 	
 	
-
+	// BasicBot 1.1 Patch Start ////////////////////////////////////////////////
 	
 	private boolean isExceptionLostConditionSatisfied = false;	/// Exception 으로 인한 패배 체크 결과
 	private int exceptionLostConditionSatisfiedFrame = 0;		/// Exception 패배 조건이 시작된 프레임 시점
@@ -97,6 +99,7 @@ public class MyBotModule extends DefaultBWListener {
 	private int timeOverTestFrameCountLimit = 0;
 	private int timeOverTestFrameCount = 0;						///< 타임 아웃 체크 테스트 실행 
 
+	// BasicBot 1.1 Patch End //////////////////////////////////////////////////
 	
 	
 	
@@ -117,8 +120,12 @@ public class MyBotModule extends DefaultBWListener {
 			return;
 		}
 
+		// BasicBot 1.1 Patch Start ////////////////////////////////////////////////
+
 		initializeLostConditionVariables();
 		
+		// BasicBot 1.1 Patch End //////////////////////////////////////////////////
+
 		// Config 파일 관리가 번거롭고, 배포 및 사용시 Config 파일 위치를 지정해주는 것이 번거롭기 때문에, 
 		// Config 를 파일로부터 읽어들이지 않고, Config 클래스의 값을 사용하도록 한다.
 		if(Config.EnableCompleteMapInformation){
@@ -170,6 +177,8 @@ public class MyBotModule extends DefaultBWListener {
 			return;
 		}
 
+		// BasicBot 1.1 Patch Start ////////////////////////////////////////////////
+
 		// timeStartedAtFrame 를 갱신한다
 		if (timeStartedAtFrame[Broodwar.getFrameCount()] == 0) {
 			timeStartedAtFrame[Broodwar.getFrameCount()] = System.currentTimeMillis();
@@ -216,11 +225,16 @@ public class MyBotModule extends DefaultBWListener {
 	    }
 		
 		// 화면 출력 및 사용자 입력 처리
-		UXManager.Instance().update();
+		// 빌드서버에서는 Dependency가 없는 빌드서버 전용 UXManager 를 실행시킵니다
+		//UXManager.Instance().update();
 
 		checkLostConditions();
+
+		// BasicBot 1.1 Patch End //////////////////////////////////////////////////
 	}
 
+	// BasicBot 1.1 Patch Start ////////////////////////////////////////////////
+	
 	/// 유닛(건물/지상유닛/공중유닛)이 Create 될 때 발생하는 이벤트를 처리합니다
 	@Override
 	public void onUnitCreate(Unit unit){
@@ -487,7 +501,7 @@ public class MyBotModule extends DefaultBWListener {
 		
 		// 패배조건 체크
 		if (isToCheckGameLostCondition) {
-			checkLostConditionAndLeaveGame();
+			checkGameLostConditionAndLeaveGame();
 		}
 
 		// 타임아웃 테스트
@@ -503,9 +517,8 @@ public class MyBotModule extends DefaultBWListener {
 
 	// 현재 자동 패배조건 : 생산능력을 가진 건물이 하나도 없음 && 공격능력을 가진/가질수있는 건물이 하나도 없음 && 생산/공격/특수능력을 가진 비건물 유닛이 하나도 없음
 	// 토너먼트 서버에서 게임을 무의미하게 제한시간까지 플레이시키는 경우가 없도록 하기 위함임
-	//
-	// TODO (향후 추가여부 검토) : '일꾼은 있지만 커맨드센터도 없고 보유 미네랄도 없고 지도에 미네랄이 하나도 없는 경우' 처럼 게임 승리를 이끌 가능성이 현실적으로 전혀 없는 경우까지 추가 체크
-	public void checkLostConditionAndLeaveGame()
+	// 향후 추가 검토 중 : '일꾼은 있지만 커맨드센터도 없고 보유 미네랄도 없고 지도에 미네랄이 하나도 없는 경우' 처럼 게임 승리를 이끌 가능성이 현실적으로 전혀 없는 경우까지 추가 체크
+	public void checkGameLostConditionAndLeaveGame()
 	{
 		int canProduceBuildingCount = 0;
 		int canAttackBuildingCount = 0;
@@ -666,12 +679,16 @@ public class MyBotModule extends DefaultBWListener {
 				MyBotModule.Broodwar.drawTextScreen(250, 100, "I lost because of TIMEOUT");
 
 				if (MyBotModule.Broodwar.getFrameCount() - timeOutConditionSatisfiedFrame >= maxDurationForTimeOutLostCondition) {
-					MyBotModule.Broodwar.leaveGame();
+
+					// 빌드서버에서는 실제로 게임을 종료시켜버립니다
+					//MyBotModule.Broodwar.leaveGame();
 				}
 			}
 		}
 
 	}
-	
+
+	// BasicBot 1.1 Patch End //////////////////////////////////////////////////
+
 	
 }

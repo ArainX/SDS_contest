@@ -44,6 +44,8 @@ namespace MyBot
 		/// 경기 진행 중 매 프레임마다 경기 전략 관련 로직을 실행합니다
 		void update();
 
+	// BasicBot 1.1 Patch Start ////////////////////////////////////////////////
+
 	private:
 		/// 한 게임에 대한 기록을 저장하는 자료구조
 		class GameRecord {
@@ -67,6 +69,8 @@ namespace MyBot
 		void saveGameRecordList(bool isWinner);
 		/// 이번 게임 중간에 상시적으로 로그를 저장합니다
 		void saveGameLog();
+
+	// BasicBot 1.1 Patch End //////////////////////////////////////////////////
 
 	};
 }

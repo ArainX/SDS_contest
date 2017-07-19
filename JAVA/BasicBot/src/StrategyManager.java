@@ -1,13 +1,14 @@
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.StringTokenizer;
 
 import bwapi.Race;
+import bwapi.TechType;
 import bwapi.Unit;
 import bwapi.UnitType;
+import bwapi.UpgradeType;
 import bwta.BWTA;
 import bwta.BaseLocation;
 import bwta.Chokepoint;
@@ -25,6 +26,8 @@ public class StrategyManager {
 	private boolean isFullScaleAttackStarted;
 	private boolean isInitialBuildOrderFinished;
 		
+	// BasicBot 1.1 Patch Start ////////////////////////////////////////////////
+
 	/// 한 게임에 대한 기록을 저장하는 자료구조
 	private class GameRecord {
 		String mapName;
@@ -41,6 +44,8 @@ public class StrategyManager {
 	/// 과거 전체 게임들의 기록을 저장하는 자료구조
 	ArrayList<GameRecord> gameRecordList = new ArrayList<GameRecord>();
 
+	// BasicBot 1.1 Patch End //////////////////////////////////////////////////
+
 	/// static singleton 객체를 리턴합니다
 	public static StrategyManager Instance() {
 		return instance;
@@ -53,16 +58,26 @@ public class StrategyManager {
 
 	/// 경기가 시작될 때 일회적으로 전략 초기 세팅 관련 로직을 실행합니다
 	public void onStart() {
+		
+		// BasicBot 1.1 Patch Start ////////////////////////////////////////////////
+		
 		// 과거 게임 기록을 로딩합니다
 		loadGameRecordList();
 
-		setInitialBuildOrder();		
+		// BasicBot 1.1 Patch End //////////////////////////////////////////////////
+
+		setInitialBuildOrder();
 	}
 
 	///  경기가 종료될 때 일회적으로 전략 결과 정리 관련 로직을 실행합니다
 	public void onEnd(boolean isWinner) {
+		
+		// BasicBot 1.1 Patch Start ////////////////////////////////////////////////
+		
 		// 과거 게임 기록 + 이번 게임 기록을 저장합니다
 		saveGameRecordList(isWinner);
+		
+		// BasicBot 1.1 Patch End //////////////////////////////////////////////////		
 	}
 
 	/// 경기 진행 중 매 프레임마다 경기 전략 관련 로직을 실행합니다
@@ -79,8 +94,12 @@ public class StrategyManager {
 
 		executeCombat();
 
+		// BasicBot 1.1 Patch Start ////////////////////////////////////////////////
+
 		// 이번 게임의 로그를 남깁니다
 		saveGameLog();
+		
+		// BasicBot 1.1 Patch End //////////////////////////////////////////////////
 	}
 
 	public void setInitialBuildOrder() {
@@ -269,13 +288,13 @@ public class StrategyManager {
 			// 벌쳐 이동속도 업
 			BuildManager.Instance().buildQueue.queueAsLowestPriority(UpgradeType.Ion_Thrusters, false);
 			// 시즈탱크 시즈모드
-			BuildManager.Instance().buildQueue.queueAsLowestPriority(UnitType.Terran_Siege_Tank_Tank_Mode);
+			BuildManager.Instance().buildQueue.queueAsLowestPriority(TechType.Tank_Siege_Mode, false);
 
 			// 벌쳐
 			BuildManager.Instance().buildQueue.queueAsLowestPriority(UnitType.Terran_Vulture);
 
 			// 시즈탱크
-			BuildManager.Instance().buildQueue.queueAsLowestPriority(TechType.Tank_Siege_Mode, false);
+			BuildManager.Instance().buildQueue.queueAsLowestPriority(UnitType.Terran_Siege_Tank_Tank_Mode);
 
 			// 아머니
 			BuildManager.Instance().buildQueue.queueAsLowestPriority(UnitType.Terran_Armory);
@@ -574,6 +593,12 @@ public class StrategyManager {
 	// SupplyProvider를 추가 건설/생산한다
 	public void executeSupplyManagement() {
 
+		// BasicBot 1.1 Patch Start ////////////////////////////////////////////////
+
+		// 주석 추가
+		// InitialBuildOrder 진행중 혹은 그후라도 서플라이 건물이 파괴되어 데드락이 발생할 수 있는데, 이 상황에 대한 해결은 참가자께서 해주셔야 합니다.
+		// 오버로드가 학살당하거나, 서플라이 건물이 집중 파괴되는 상황에 대해  무조건적으로 서플라이 빌드 추가를 실행하기 보다 먼저 전략적 대책 판단이 필요할 것입니다
+		
 		// InitialBuildOrder 진행중에는 아무것도 하지 않습니다
 		if (isInitialBuildOrderFinished == false) {
 			return;
@@ -619,6 +644,7 @@ public class StrategyManager {
 							* InformationManager.Instance().getBasicSupplyProviderUnitType().supplyProvided();
 				}
 
+				// 주석처리
 				//System.out.println("currentSupplyShortage : " + currentSupplyShortage + " onBuildingSupplyCount : " + onBuildingSupplyCount);
 
 				if (currentSupplyShortage > onBuildingSupplyCount) {
@@ -634,14 +660,17 @@ public class StrategyManager {
 						}
 					}
 					if (isToEnqueue) {
-						System.out.println("enqueue supply provider "
-								+ InformationManager.Instance().getBasicSupplyProviderUnitType());
+						// 주석처리
+						//System.out.println("enqueue supply provider "
+						//		+ InformationManager.Instance().getBasicSupplyProviderUnitType());
 						BuildManager.Instance().buildQueue.queueAsHighestPriority(
 								new MetaType(InformationManager.Instance().getBasicSupplyProviderUnitType()), true);
 					}
 				}
 			}
 		}
+
+		// BasicBot 1.1 Patch End ////////////////////////////////////////////////		
 	}
 
 	public void executeBasicCombatUnitTraining() {
@@ -736,6 +765,8 @@ public class StrategyManager {
 		}
 	}
 	
+	// BasicBot 1.1 Patch Start ////////////////////////////////////////////////
+
 	/// 과거 전체 게임 기록을 로딩합니다
 	void loadGameRecordList() {
 	
@@ -866,5 +897,6 @@ public class StrategyManager {
 		Common.appendTextToFile(gameLogFileName, ss.toString());
 	}
 
+	// BasicBot 1.1 Patch End //////////////////////////////////////////////////
 	
 }

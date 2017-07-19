@@ -8,6 +8,9 @@ import java.io.IOException;
 
 public class Common {
 
+	// BasicBot 1.1 Patch Start ////////////////////////////////////////////////
+	// static 함수로 변경
+
 	/// 로그 유틸
 	public static void appendTextToFile(final String logFile, final String msg)
 	{
@@ -58,4 +61,7 @@ public class Common {
 
 		return sb.toString();
 	}
+	
+	// BasicBot 1.1 Patch End //////////////////////////////////////////////////
+	
 }

@@ -4,10 +4,8 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
-import bwapi.Position;
 import bwapi.Unit;
 import bwapi.UnitType;
-import bwapi.Unitset;
 
 public class WorkerData {
 
@@ -26,13 +24,17 @@ public class WorkerData {
 		Default 		///< 기본. 미설정 상태. 
 	};
 	
+	// BasicBot 1.1 Patch Start ////////////////////////////////////////////////
+	
 	/// 미네랄 숫자 대비 미네랄 일꾼 숫자의 적정 비율
 	double					mineralAndMineralWorkerRatio;						
+
+	// BasicBot 1.1 Patch End //////////////////////////////////////////////////
 	
 	/// 일꾼 목록
-	private List<Unit> workers = new ArrayList<Unit>();
+	private ArrayList<Unit> workers = new ArrayList<Unit>();
 	/// ResourceDepot 목록
-	private List<Unit> depots = new ArrayList<Unit>();
+	private ArrayList<Unit> depots = new ArrayList<Unit>();
 	
 	private Map<Integer, WorkerJob> workerJobMap = new HashMap<Integer, WorkerJob>();
 	private Map<Integer, UnitType> workerBuildingTypeMap = new HashMap<Integer, UnitType>();
@@ -49,7 +51,11 @@ public class WorkerData {
 	
 	public WorkerData() 
 	{
+		// BasicBot 1.1 Patch Start ////////////////////////////////////////////////
+
 		mineralAndMineralWorkerRatio = 2;
+		
+		// BasicBot 1.1 Patch End //////////////////////////////////////////////////
 		
 	     for (Unit unit : MyBotModule.Broodwar.getAllUnits())
 		{
@@ -67,6 +73,80 @@ public class WorkerData {
 	
 	public void workerDestroyed(Unit unit)
 	{
+		
+		// BasicBot 1.1 Patch Start ////////////////////////////////////////////////
+
+		// workers, depotWorkerCount, refineryWorkerCount 등 자료구조에서 사망한 일꾼 정보를 제거합니다
+		for (Iterator<Unit> it = workers.iterator(); it.hasNext(); ) {
+			Unit worker = it.next();
+
+			if (worker == null ) {			
+				workers.remove(worker);
+			}
+			else {
+				if (worker.getType().isWorker() == false || worker.getPlayer() != MyBotModule.Broodwar.self() 
+						|| worker.exists() == false || worker.getHitPoints() == 0) {
+									
+					clearPreviousJob(worker);
+
+					// worker의 previousJob 이 잘못 설정되어있는 경우에 대해 정리합니다
+					if (workerMineralMap.containsKey(worker.getID())) {
+						workerMineralMap.remove(worker.getID());
+					}
+					if (workerDepotMap.containsKey(worker.getID())) {
+						workerDepotMap.remove(worker.getID());
+					}
+					if (workerRefineryMap.containsKey(worker.getID())) {
+						workerRefineryMap.remove(worker.getID());
+					}
+					if (workerRepairMap.containsKey(worker.getID())) {
+						workerRepairMap.remove(worker.getID());
+					}
+					if (workerMoveMap.containsKey(worker.getID())) {
+						workerMoveMap.remove(worker.getID());
+					}
+					if (workerBuildingTypeMap.containsKey(worker.getID())) {
+						workerBuildingTypeMap.remove(worker.getID());
+					}
+					if (workerMineralAssignment.containsKey(worker.getID())) {
+						workerMineralAssignment.remove(worker.getID());
+					}
+					if (workerJobMap.containsKey(worker.getID())) {
+						workerJobMap.remove(worker.getID());
+					}
+
+					// depotWorkerCount 를 다시 셉니다
+					for (Unit depot : depots) {
+						int count = 0;
+						for (Map.Entry<Integer, Unit> entry : workerDepotMap.entrySet())
+						{
+							if (entry.getValue().getID() == depot.getID() ) {
+								count++;
+							}
+						}
+						depotWorkerCount.put(depot.getID(), count);
+					}
+
+					// refineryWorkerCount 를 다시 셉니다
+					for (Map.Entry<Integer, Integer> entry1 : refineryWorkerCount.entrySet()) {
+						int refineryID = entry1.getKey();
+						int count = 0;
+						for (Map.Entry<Integer, Unit> entry2 : workerRefineryMap.entrySet())
+						{
+							if (refineryID == entry2.getValue().getID() ) {
+								count++;
+							}
+						}
+						refineryWorkerCount.put(refineryID, count);
+					}
+
+					workers.remove(worker);
+				}
+			}
+		}
+
+		// BasicBot 1.1 Patch End //////////////////////////////////////////////////
+		
 		if (unit == null) { return; }
 
 		clearPreviousJob(unit);
@@ -390,10 +470,12 @@ public class WorkerData {
 		int assignedWorkers = getNumAssignedWorkers(depot);
 		int mineralsNearDepot = getMineralsNearDepot(depot);
 
+		// BasicBot 1.1 Patch Start ////////////////////////////////////////////////
+		
 		// 충분한 수의 미네랄 일꾼 수를 얼마로 정할 것인가 : 
 		// (근처 미네랄 수) * 1.5배 ~ 2배 정도가 적당
-		// 근처 미네랄 수가 8개 라면, 일꾼 8마리여도 좋지만, 12마리면 조금 더 빠르다. 16마리여도 충분하다. 24마리면 너무 많은 숫자이다.
-		// 근처 미네랄 수가 0개 인 경우에는, 무조건 충분한 수의 미네랄 일꾼이 꽉 차있는 것이다
+		// 근처 미네랄 수가 8개 라면, 일꾼 8마리여도 좋지만, 12마리면 조금 더 채취가 빠르다. 16마리면 충분하다. 24마리면 너무 많은 숫자이다.
+		// 근처 미네랄 수가 0개 인 ResourceDepot은, 이미 충분한 수의 미네랄 일꾼이 꽉 차있는 것이다
 		if (assignedWorkers >= (int)(mineralsNearDepot * mineralAndMineralWorkerRatio))
 		{
 			return true;
@@ -402,6 +484,8 @@ public class WorkerData {
 		{
 			return false;
 		}
+
+		// BasicBot 1.1 Patch End //////////////////////////////////////////////////
 	}
 
 	public List<Unit> getMineralPatchesNearDepot(Unit depot)

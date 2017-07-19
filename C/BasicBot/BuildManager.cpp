@@ -32,27 +32,23 @@ void BuildManager::update()
 	while (!buildQueue.isEmpty()) 
 	{
 		bool isOkToRemoveQueue = true;
+		
+		// BasicBot 1.1 Patch Start ////////////////////////////////////////////////
 
 		// seedPosition 을 도출한다
 		BWAPI::Position seedPosition = BWAPI::Positions::None;
-		if (currentItem.seedLocation != BWAPI::TilePositions::None) {
+		if (currentItem.seedLocation != BWAPI::TilePositions::None && currentItem.seedLocation != BWAPI::TilePositions::Invalid 
+			&& currentItem.seedLocation != BWAPI::TilePositions::Unknown && currentItem.seedLocation.isValid()) {
 			seedPosition = BWAPI::Position(currentItem.seedLocation);
 		}
 		else {
 			seedPosition = getSeedPositionFromSeedLocationStrategy(currentItem.seedLocationStrategy);
 		}
 
-		/*
-		std::cout << "Build " << currentItem.metaType.getName() 
-			<< " seedLocation : " << currentItem.seedLocation.x << "," << currentItem.seedLocation.y 
-			<< " seedLocationStrategy " << currentItem.seedLocationStrategy 
-			<< " seedPosition : " << seedPosition.x / TILE_SIZE << "," << seedPosition.y / TILE_SIZE
-			<< std::endl;
-		*/
-
 		// this is the unit which can produce the currentItem
-		//BWAPI::Unit producer = getProducer(currentItem.metaType, BWAPI::Position(currentItem.seedLocation), currentItem.producerID);
 		BWAPI::Unit producer = getProducer(currentItem.metaType, seedPosition, currentItem.producerID);
+
+		// BasicBot 1.1 Patch End //////////////////////////////////////////////////
 
 		/*
 		if (currentItem.metaType.isUnit() && currentItem.metaType.getUnitType().isBuilding() ) {
@@ -238,8 +234,8 @@ BWAPI::Unit BuildManager::getProducer(MetaType t, BWAPI::Position closestTo, int
     {
 		if (unit == nullptr) continue;
 
-        // reasons a unit can not train the desired type
-        if (unit->getType() != producerType)                    { continue; }
+		// reasons a unit can not train the desired type
+		if (unit->getType() != producerType)                    { continue; }
 		if (!unit->exists())	                                { continue; }
 		if (!unit->isCompleted())                               { continue; }
 		if (unit->isTraining())                                 { continue; }
@@ -326,14 +322,7 @@ BWAPI::Unit BuildManager::getProducer(MetaType t, BWAPI::Position closestTo, int
         candidateProducers.insert(unit);
     }
 
-
-	//std::cout << "getProducer to produce " << t.getName()
-	//	<< " producerType " << producerType.getName()
-	//	<< " candidateProducers size " << candidateProducers.size() 
-	//	<< " getClosestTo " << closestTo.x / TILE_SIZE << "," << closestTo.y / TILE_SIZE 
-	//	<< std::endl;
-
-	return getClosestUnitToPosition(candidateProducers, closestTo);
+    return getClosestUnitToPosition(candidateProducers, closestTo);
 }
 
 // Protoss_Archon / Protoss_Dark_Archon 를 만들기 위해 producer 와 같은 type의, producer 가 아닌 다른 Unit 중에서 가장 가까운 Unit을 찾는다
@@ -362,16 +351,20 @@ BWAPI::Unit BuildManager::getAnotherProducer(BWAPI::Unit producer, BWAPI::Positi
 
 BWAPI::Unit BuildManager::getClosestUnitToPosition(const BWAPI::Unitset & units, BWAPI::Position closestTo)
 {
-    if (units.size() == 0)
+	if (units.size() == 0)
     {
         return nullptr;
     }
 
-    // if we don't care where the unit is return the first one we have
-	if (closestTo == BWAPI::Positions::None || closestTo == BWAPI::Positions::Invalid || closestTo == BWAPI::Positions::Unknown)
+	// BasicBot 1.1 Patch Start ////////////////////////////////////////////////
+
+	// if we don't care where the unit is return the first one we have
+	if (closestTo == BWAPI::Positions::None || closestTo == BWAPI::Positions::Invalid || closestTo == BWAPI::Positions::Unknown || closestTo.isValid() == false)
     {
         return *(units.begin());
     }
+
+	// BasicBot 1.1 Patch End //////////////////////////////////////////////////
 
     BWAPI::Unit closestUnit = nullptr;
     double minDist(1000000000);
@@ -574,6 +567,8 @@ BuildOrderQueue * BuildManager::getBuildQueue()
 
 BWAPI::Position	BuildManager::getSeedPositionFromSeedLocationStrategy(BuildOrderItem::SeedPositionStrategy seedPositionStrategy)
 {
+	// BasicBot 1.1 Patch Start ////////////////////////////////////////////////
+
 	BWAPI::Position seedPosition = BWAPI::Positions::None;
 	BWTA::Chokepoint* tempChokePoint;
 	BWTA::BaseLocation* tempBaseLocation;
@@ -587,7 +582,8 @@ BWAPI::Position	BuildManager::getSeedPositionFromSeedLocationStrategy(BuildOrder
 
 	case BuildOrderItem::SeedPositionStrategy::MainBaseLocation:
 		tempBaseLocation = InformationManager::Instance().getMainBaseLocation(BWAPI::Broodwar->self());
-		if (tempBaseLocation != nullptr) {
+
+		if (tempBaseLocation) {
 			seedPosition = tempBaseLocation->getPosition();
 		}
 		break;
@@ -656,14 +652,17 @@ BWAPI::Position	BuildManager::getSeedPositionFromSeedLocationStrategy(BuildOrder
 
 				}
 			}
+
 			//std::cout << "z";
-			if (!tempTilePosition.isValid() || !BWAPI::Broodwar->isBuildable(tempTilePosition.x, tempTilePosition.y, false)) {
-				seedPosition = tempBaseLocation->getPosition();
-			}
-			else {
+			if (tempTilePosition.isValid() == false 
+				|| BWAPI::Broodwar->isBuildable(tempTilePosition.x, tempTilePosition.y, false) == false ) {
 				seedPosition = BWAPI::Position(tempTilePosition);
 			}
+			else {
+				seedPosition = tempBaseLocation->getPosition();
+			}
 		}
+
 		//std::cout << "w";
 		// std::cout << "ConstructionPlaceFinder MainBaseBackYard desiredPosition " << desiredPosition.x << "," << desiredPosition.y << std::endl;
 		break;
@@ -691,6 +690,8 @@ BWAPI::Position	BuildManager::getSeedPositionFromSeedLocationStrategy(BuildOrder
 	}
 
 	return seedPosition;
+
+	// BasicBot 1.1 Patch End //////////////////////////////////////////////////
 }
 
 bool BuildManager::isProducerWillExist(BWAPI::UnitType producerType)
@@ -818,20 +819,7 @@ void BuildManager::checkBuildOrderQueueDeadlockAndAndFixIt()
 				if (isProducerWillExist(producerType) == false) {
 					isDeadlockCase = true;
 				}
-
-				// 건물의 경우, 건물을 생산할 수 있는 자원이 없으면 일단 데드락 체크를 보류함.
-				if (unitType.isBuilding()) {
-
-					if (hasEnoughResources(currentItem.metaType) == false)
-					{
-						isDeadlockCase = false;
-					}
-					// BWAPI::Broodwar->canMake : Checks all the requirements include resources, supply, technology tree, availability, and required units
-					else if (BWAPI::Broodwar->canMake(unitType) == false) {
-						isDeadlockCase = false;
-					}
-				}
-
+				
 				// Refinery 건물의 경우, Refinery 가 건설되지 않은 Geyser가 있는 경우에만 가능
 				if (!isDeadlockCase && unitType.isRefinery())
 				{
@@ -839,7 +827,7 @@ void BuildManager::checkBuildOrderQueueDeadlockAndAndFixIt()
 
 					// Refinery가 지어질 수 있는 장소를 찾아본다
 					BWAPI::TilePosition testLocation = getDesiredPosition(unitType, currentItem.seedLocation, currentItem.seedLocationStrategy);
-					
+										
 					// Refinery 를 지으려는 장소를 찾을 수 없으면 dead lock
 					if (testLocation == BWAPI::TilePositions::None || testLocation == BWAPI::TilePositions::Invalid || testLocation.isValid() == false) {
 						std::cout << "Build Order Dead lock case -> Cann't find place to construct " << unitType.getName() << std::endl;
@@ -851,6 +839,13 @@ void BuildManager::checkBuildOrderQueueDeadlockAndAndFixIt()
 						for (auto & u : uot) {
 							if (u->getType().isRefinery() && u->exists()) {
 								hasAvailableGeyser = false;
+
+								// BasicBot 1.1 Patch Start ////////////////////////////////////////////////
+
+								std::cout << "Build Order Dead lock case -> Refinery Building was built already at " << testLocation.x << ", " << testLocation.y << std::endl;
+
+								// BasicBot 1.1 Patch End ////////////////////////////////////////////////
+
 								break;
 							}
 						}
@@ -886,6 +881,19 @@ void BuildManager::checkBuildOrderQueueDeadlockAndAndFixIt()
 							<< " incompleteUnitCount " << BWAPI::Broodwar->self()->incompleteUnitCount(requiredUnitType)
 							<< std::endl;
 							*/
+
+							// BasicBot 1.1 Patch Start ////////////////////////////////////////////////
+
+							// 만들려는 유닛이 Zerg_Mutalisk 이거나 Zerg_Scourge 이고, 선행 유닛이 Zerg_Spire 인 경우, Zerg_Greater_Spire 가 있으면 dead lock 이 아니다
+							if ((unitType == BWAPI::UnitTypes::Zerg_Mutalisk || unitType == BWAPI::UnitTypes::Zerg_Scourge)
+								&& requiredUnitType == BWAPI::UnitTypes::Zerg_Spire
+								&& BWAPI::Broodwar->self()->allUnitCount(BWAPI::UnitTypes::Zerg_Greater_Spire) > 0)
+							{
+								isDeadlockCase = false;
+							}
+							else
+
+							// BasicBot 1.1 Patch End //////////////////////////////////////////////////
 
 							// 선행 건물 / 유닛이 존재하지 않고, 생산 중이지도 않고
 							if (BWAPI::Broodwar->self()->completedUnitCount(requiredUnitType) == 0

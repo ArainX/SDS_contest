@@ -26,7 +26,7 @@
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;">
    <div id="projectname">BasicBot
-   &#160;<span id="projectnumber">v1.0</span>
+   &#160;<span id="projectnumber">v1.1</span>
    </div>
    <div id="projectbrief">BasicBot for Starcraft: Broodwar 1.16.1 with BWAPI 4.1.2</div>
   </td>
@@ -93,6 +93,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <div class="summary">
 <a href="#nested-classes">Classes</a> &#124;
 <a href="#pub-methods">Public Member Functions</a> &#124;
+<a href="#pac-attribs">Package Attributes</a> &#124;
 <a href="#pri-attribs">Private Attributes</a> &#124;
 <a href="class_worker_data-members.html">List of all members</a>  </div>
   <div class="headertitle">
@@ -168,12 +169,17 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a243a4dea654a420faf09a71fa3999643"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_worker_data.html#a243a4dea654a420faf09a71fa3999643">workerDestroyed</a> (Unit unit)</td></tr>
 <tr class="separator:a243a4dea654a420faf09a71fa3999643"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pac-attribs"></a>
+Package Attributes</h2></td></tr>
+<tr class="memitem:ae335bf35bad6a17f420f190766c5d76d"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_worker_data.html#ae335bf35bad6a17f420f190766c5d76d">mineralAndMineralWorkerRatio</a></td></tr>
+<tr class="separator:ae335bf35bad6a17f420f190766c5d76d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-attribs"></a>
 Private Attributes</h2></td></tr>
 <tr class="memitem:a78bc172eeecb13f2d528b96597da9344"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_command_util.html">CommandUtil</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_worker_data.html#a78bc172eeecb13f2d528b96597da9344">commandUtil</a> = new <a class="el" href="class_command_util.html">CommandUtil</a>()</td></tr>
 <tr class="separator:a78bc172eeecb13f2d528b96597da9344"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a46d91d6d75afaf81e55ae7268ede508b"><td class="memItemLeft" align="right" valign="top">List&lt; Unit &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_worker_data.html#a46d91d6d75afaf81e55ae7268ede508b">depots</a> = new ArrayList&lt;Unit&gt;()</td></tr>
-<tr class="separator:a46d91d6d75afaf81e55ae7268ede508b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a074c11dd978be45ab86a324737050c75"><td class="memItemLeft" align="right" valign="top">ArrayList&lt; Unit &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_worker_data.html#a074c11dd978be45ab86a324737050c75">depots</a> = new ArrayList&lt;Unit&gt;()</td></tr>
+<tr class="separator:a074c11dd978be45ab86a324737050c75"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:abf159d34642887e6eed7eab06d6b32b1"><td class="memItemLeft" align="right" valign="top">Map&lt; Integer, Integer &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_worker_data.html#abf159d34642887e6eed7eab06d6b32b1">depotWorkerCount</a> = new HashMap&lt;Integer, Integer&gt;()</td></tr>
 <tr class="separator:abf159d34642887e6eed7eab06d6b32b1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a3addd500271c594b384e043b6f083d07"><td class="memItemLeft" align="right" valign="top">Map&lt; Integer, Integer &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_worker_data.html#a3addd500271c594b384e043b6f083d07">refineryWorkerCount</a> = new HashMap&lt;Integer, Integer&gt;()</td></tr>
@@ -194,8 +200,8 @@ Private Attributes</h2></td></tr>
 <tr class="separator:ab02bbe9736a517522d679c63fe33e266"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a827e5a2f820ba5cb7b002ec0b2053c13"><td class="memItemLeft" align="right" valign="top">Map&lt; Integer, Unit &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_worker_data.html#a827e5a2f820ba5cb7b002ec0b2053c13">workerRepairMap</a> = new HashMap&lt;Integer, Unit&gt;()</td></tr>
 <tr class="separator:a827e5a2f820ba5cb7b002ec0b2053c13"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aed6daccb0e9902afc837f2f2500f8c15"><td class="memItemLeft" align="right" valign="top">List&lt; Unit &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_worker_data.html#aed6daccb0e9902afc837f2f2500f8c15">workers</a> = new ArrayList&lt;Unit&gt;()</td></tr>
-<tr class="separator:aed6daccb0e9902afc837f2f2500f8c15"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac50ab6c99614de5155a411a063ca80c2"><td class="memItemLeft" align="right" valign="top">ArrayList&lt; Unit &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_worker_data.html#ac50ab6c99614de5155a411a063ca80c2">workers</a> = new ArrayList&lt;Unit&gt;()</td></tr>
+<tr class="separator:ac50ab6c99614de5155a411a063ca80c2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad6981caac93e6a9f7c81cabeaf53bce7"><td class="memItemLeft" align="right" valign="top">Map&lt; Integer, Integer &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_worker_data.html#ad6981caac93e6a9f7c81cabeaf53bce7">workersOnMineralPatch</a> = new HashMap&lt;Integer, Integer&gt;()</td></tr>
 <tr class="separator:ad6981caac93e6a9f7c81cabeaf53bce7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
@@ -368,6 +374,8 @@ Private Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>ResourceDepot 에 충분한 수(미네랄 덩이 수 * mineralAndMineralWorkerRatio ) 의 미네랄 일꾼이 배정되어있는가 </p>
+
 </div>
 </div>
 <a class="anchor" id="a1af160f36d14754597448a03baee7651"></a>
@@ -430,6 +438,8 @@ Private Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>ResourceDepot 반경 200 point 이내의 미네랄 덩이 수를 반환합니다 </p>
 
 </div>
 </div>
@@ -785,7 +795,7 @@ Private Attributes</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="a46d91d6d75afaf81e55ae7268ede508b"></a>
+<a class="anchor" id="a074c11dd978be45ab86a324737050c75"></a>
 <div class="memitem">
 <div class="memproto">
 <table class="mlabels">
@@ -793,7 +803,7 @@ Private Attributes</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">List&lt;Unit&gt; WorkerData.depots = new ArrayList&lt;Unit&gt;()</td>
+          <td class="memname">ArrayList&lt;Unit&gt; WorkerData.depots = new ArrayList&lt;Unit&gt;()</td>
         </tr>
       </table>
   </td>
@@ -824,6 +834,28 @@ Private Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="ae335bf35bad6a17f420f190766c5d76d"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">double WorkerData.mineralAndMineralWorkerRatio</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">package</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>미네랄 숫자 대비 미네랄 일꾼 숫자의 적정 비율 </p>
 
 </div>
 </div>
@@ -1007,7 +1039,7 @@ Private Attributes</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="aed6daccb0e9902afc837f2f2500f8c15"></a>
+<a class="anchor" id="ac50ab6c99614de5155a411a063ca80c2"></a>
 <div class="memitem">
 <div class="memproto">
 <table class="mlabels">
@@ -1015,7 +1047,7 @@ Private Attributes</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">List&lt;Unit&gt; WorkerData.workers = new ArrayList&lt;Unit&gt;()</td>
+          <td class="memname">ArrayList&lt;Unit&gt; WorkerData.workers = new ArrayList&lt;Unit&gt;()</td>
         </tr>
       </table>
   </td>
@@ -1053,7 +1085,7 @@ Private Attributes</h2></td></tr>
 <!-- HTML footer for doxygen 1.8.8-->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Fri Jun 16 2017 18:34:30 for BasicBot by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Thu Jul 20 2017 00:30:40 for BasicBot by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.8
 </small></address>

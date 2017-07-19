@@ -94,7 +94,12 @@ namespace MyBot
 		void					getBuildingWorkers(std::set<BWAPI::Unit> & mw);
 		void					getRepairWorkers(std::set<BWAPI::Unit> & mw);
 	
+		// BasicBot 1.1 Patch Start ////////////////////////////////////////////////
+
 		double					mineralAndMineralWorkerRatio;						///< 미네랄 숫자 대비 미네랄 일꾼 숫자의 적정 비율
+
+		// BasicBot 1.1 Patch End //////////////////////////////////////////////////
+
 		bool					depotHasEnoughMineralWorkers(BWAPI::Unit depot);	///< ResourceDepot 에 충분한 수(미네랄 덩이 수 * mineralAndMineralWorkerRatio ) 의 미네랄 일꾼이 배정되어있는가 
 		int						getMineralsNearDepot(BWAPI::Unit depot);			///< ResourceDepot 반경 200 point 이내의 미네랄 덩이 수를 반환합니다
 

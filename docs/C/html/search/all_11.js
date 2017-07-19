@@ -1,8 +1,10 @@
 var searchData=
 [
+  ['savegamelog',['saveGameLog',['../class_my_bot_1_1_strategy_manager.html#a0f29809d630ac63ce8172ea859179a3a',1,'MyBot::StrategyManager']]],
+  ['savegamerecordlist',['saveGameRecordList',['../class_my_bot_1_1_strategy_manager.html#acb84f4ccf2bb6633e99fe437b84439e6',1,'MyBot::StrategyManager']]],
   ['scout',['Scout',['../class_my_bot_1_1_worker_data.html#ae1e613170be6b14b789a2a6ecfbdff76acf8a322058b95d5017c3c394fac6cf7f',1,'MyBot::WorkerData']]],
-  ['scoutmanager',['ScoutManager',['../class_my_bot_1_1_scout_manager.html#a02a9a7fa8bfcdd0db032feb23f37ef53',1,'MyBot::ScoutManager']]],
   ['scoutmanager',['ScoutManager',['../class_my_bot_1_1_scout_manager.html',1,'MyBot']]],
+  ['scoutmanager',['ScoutManager',['../class_my_bot_1_1_scout_manager.html#a02a9a7fa8bfcdd0db032feb23f37ef53',1,'MyBot::ScoutManager']]],
   ['search',['search',['../class_my_bot_1_1_map_tools.html#a0f81a0a818bbb1c8d07f4e028706a30a',1,'MyBot::MapTools']]],
   ['secondchokepoint',['SecondChokePoint',['../struct_my_bot_1_1_build_order_item.html#a0c05c4436d22ba5345efeb87e170dd72a262b0c9ef1d230e524e496d0ace97d10',1,'MyBot::BuildOrderItem']]],
   ['seedlocation',['seedLocation',['../struct_my_bot_1_1_build_order_item.html#ada4830747689bac5be3e256dff9c75f9',1,'MyBot::BuildOrderItem']]],
@@ -37,7 +39,7 @@ var searchData=
   ['status',['status',['../class_my_bot_1_1_construction_task.html#a5ad632b090649fee2f79c275c145fd46',1,'MyBot::ConstructionTask']]],
   ['stopcombat',['stopCombat',['../class_my_bot_1_1_worker_manager.html#ac637db23ce65ce988be3fe8d3868102b',1,'MyBot::WorkerManager']]],
   ['stoprepairing',['stopRepairing',['../class_my_bot_1_1_worker_manager.html#ab880183acacbf81959c7765bd61f91e2',1,'MyBot::WorkerManager']]],
-  ['strategymanager',['StrategyManager',['../class_my_bot_1_1_strategy_manager.html#af5f9d21cd5b55d4b2c0ed81d8d7415c7',1,'MyBot::StrategyManager']]],
   ['strategymanager',['StrategyManager',['../class_my_bot_1_1_strategy_manager.html',1,'MyBot']]],
+  ['strategymanager',['StrategyManager',['../class_my_bot_1_1_strategy_manager.html#af5f9d21cd5b55d4b2c0ed81d8d7415c7',1,'MyBot::StrategyManager']]],
   ['supplyrequired',['supplyRequired',['../class_my_bot_1_1_meta_type.html#a3d29940d75fd3065256313894f3cd970',1,'MyBot::MetaType']]]
 ];

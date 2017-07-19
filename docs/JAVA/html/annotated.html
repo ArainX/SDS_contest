@@ -26,7 +26,7 @@
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;">
    <div id="projectname">BasicBot
-   &#160;<span id="projectnumber">v1.0</span>
+   &#160;<span id="projectnumber">v1.1</span>
    </div>
    <div id="projectbrief">BasicBot for Starcraft: Broodwar 1.16.1 with BWAPI 4.1.2</div>
   </td>
@@ -124,32 +124,32 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
  calculates connectivity and distances using flood fills </td></tr>
 <tr id="row_15_"><td class="entry"><span style="width:0px;display:inline-block;">&#160;</span><span id="arr_15_" class="arrow" onclick="toggleFolder('15_')">&#9660;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="class_meta_type.html" target="_self">MetaType</a></td><td class="desc"><a class="el" href="class_build_manager.html" title="빌드(건물 건설 / 유닛 훈련 / 테크 리서치 / 업그레이드) 명령을 순차적으로 실행하기 위해 빌드 큐를 관리...">BuildManager</a> 등에서 UnitType, TechType, UpgradeType 구분없이 동일한 Method 로 실행할 수 있게 하기 위해 만든 Wrapper class </td></tr>
 <tr id="row_15_0_" class="even"><td class="entry"><span style="width:32px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="enum_meta_type_1_1_meta_types.html" target="_self">MetaTypes</a></td><td class="desc"></td></tr>
-<tr id="row_16_"><td class="entry"><span style="width:16px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="class_my_bot_module.html" target="_self">MyBotModule</a></td><td class="desc">봇프로그램의 기본적인 뼈대 구조를 정의한 class 로서, 스타크래프트 대결 도중 발생하는 이벤트들을 <a class="el" href="class_game_commander.html" title="실제 봇프로그램의 본체가 되는 class  스타크래프트 경기 도중 발생하는 이벤트들이 적절하게 처리되도록 �...">GameCommander</a> class 인스턴스에게 전달합니다.<br />
- <a class="el" href="class_my_bot_module.html" title="봇프로그램의 기본적인 뼈대 구조를 정의한 class 로서, 스타크래프트 대결 도중 발생하는 이벤트들을 GameC...">MyBotModule</a> class는 수정을 하지 말고,<br />
- 실제 봇프로그램 개발은 <a class="el" href="class_game_commander.html" title="실제 봇프로그램의 본체가 되는 class  스타크래프트 경기 도중 발생하는 이벤트들이 적절하게 처리되도록 �...">GameCommander</a> class 를 수정하는 형태로 진행하도록 합니다 </td></tr>
+<tr id="row_16_"><td class="entry"><span style="width:16px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="class_my_bot_module.html" target="_self">MyBotModule</a></td><td class="desc"><a class="el" href="class_my_bot_module.html" title="MyBotModule 은 봇프로그램의 기본적인 뼈대 구조를 정의한 class 로서, 스타크래프트 경기 도중 발생하는 �...">MyBotModule</a> 은 봇프로그램의 기본적인 뼈대 구조를 정의한 class 로서, 스타크래프트 경기 도중 발생하는 이벤트들을 <a class="el" href="class_game_commander.html" title="실제 봇프로그램의 본체가 되는 class  스타크래프트 경기 도중 발생하는 이벤트들이 적절하게 처리되도록 �...">GameCommander</a> class 인스턴스에게 전달합니다.<br />
+ </td></tr>
 <tr id="row_17_" class="even"><td class="entry"><span style="width:0px;display:inline-block;">&#160;</span><span id="arr_17_" class="arrow" onclick="toggleFolder('17_')">&#9660;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="class_scout_manager.html" target="_self">ScoutManager</a></td><td class="desc">게임 초반에 일꾼 유닛 중에서 정찰 유닛을 하나 지정하고, 정찰 유닛을 이동시켜 정찰을 수행하는 class<br />
  적군의 BaseLocation 위치를 알아내는 것까지만 개발되어있습니다 </td></tr>
 <tr id="row_17_0_"><td class="entry"><span style="width:32px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="enum_scout_manager_1_1_scout_status.html" target="_self">ScoutStatus</a></td><td class="desc"></td></tr>
-<tr id="row_18_" class="even"><td class="entry"><span style="width:16px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="class_strategy_manager.html" target="_self">StrategyManager</a></td><td class="desc">상황을 판단하여, 정찰, 빌드, 공격, 방어 등을 수행하도록 총괄 지휘를 하는 class <br />
+<tr id="row_18_" class="even"><td class="entry"><span style="width:0px;display:inline-block;">&#160;</span><span id="arr_18_" class="arrow" onclick="toggleFolder('18_')">&#9660;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="class_strategy_manager.html" target="_self">StrategyManager</a></td><td class="desc">상황을 판단하여, 정찰, 빌드, 공격, 방어 등을 수행하도록 총괄 지휘를 하는 class <br />
  <a class="el" href="class_information_manager.html" title="게임 상황정보 중 일부를 자체 자료구조 및 변수들에 저장하고 업데이트하는 class  현재 게임 상황정보는 B...">InformationManager</a> 에 있는 정보들로부터 상황을 판단하고, <br />
  <a class="el" href="class_build_manager.html" title="빌드(건물 건설 / 유닛 훈련 / 테크 리서치 / 업그레이드) 명령을 순차적으로 실행하기 위해 빌드 큐를 관리...">BuildManager</a> 의 buildQueue에 빌드 (건물 건설 / 유닛 훈련 / 테크 리서치 / 업그레이드) 명령을 입력합니다.<br />
  정찰, 빌드, 공격, 방어 등을 수행하는 코드가 들어가는 class </td></tr>
-<tr id="row_19_"><td class="entry"><span style="width:16px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="class_unit_data.html" target="_self">UnitData</a></td><td class="desc"></td></tr>
-<tr id="row_20_" class="even"><td class="entry"><span style="width:16px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="class_unit_info.html" target="_self">UnitInfo</a></td><td class="desc">해당 Unit의 ID, UnitType, 소속 Player, HitPoint, lastPosition, completed(건물이 완성된 것인지) 등을 저장해두는 자료구조<br />
+<tr id="row_18_0_"><td class="entry"><span style="width:32px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="class_strategy_manager_1_1_game_record.html" target="_self">GameRecord</a></td><td class="desc">한 게임에 대한 기록을 저장하는 자료구조 </td></tr>
+<tr id="row_19_" class="even"><td class="entry"><span style="width:16px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="class_unit_data.html" target="_self">UnitData</a></td><td class="desc"></td></tr>
+<tr id="row_20_"><td class="entry"><span style="width:16px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="class_unit_info.html" target="_self">UnitInfo</a></td><td class="desc">해당 Unit의 ID, UnitType, 소속 Player, HitPoint, lastPosition, completed(건물이 완성된 것인지) 등을 저장해두는 자료구조<br />
  적군 유닛의 경우 아군 시야 내에 있지 않아 invisible 상태가 되었을 때 정보를 조회할수도 없어지고 파악했던 정보도 유실되기 때문에 별도 자료구조가 필요합니다 </td></tr>
-<tr id="row_21_"><td class="entry"><span style="width:16px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="class_u_x_manager.html" target="_self">UXManager</a></td><td class="desc">봇 프로그램 개발의 편의성 향상을 위해 게임 화면에 추가 정보들을 표시하는 class<br />
+<tr id="row_21_" class="even"><td class="entry"><span style="width:16px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="class_u_x_manager.html" target="_self">UXManager</a></td><td class="desc">봇 프로그램 개발의 편의성 향상을 위해 게임 화면에 추가 정보들을 표시하는 class<br />
  여러 Manager 들로부터 정보를 조회하여 Screen 혹은 Map 에 정보를 표시합니다 </td></tr>
-<tr id="row_22_" class="even"><td class="entry"><span style="width:0px;display:inline-block;">&#160;</span><span id="arr_22_" class="arrow" onclick="toggleFolder('22_')">&#9660;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="class_worker_data.html" target="_self">WorkerData</a></td><td class="desc"></td></tr>
-<tr id="row_22_0_"><td class="entry"><span style="width:32px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="enum_worker_data_1_1_worker_job.html" target="_self">WorkerJob</a></td><td class="desc">일꾼 유닛에게 지정하는 임무의 종류 </td></tr>
-<tr id="row_23_" class="even"><td class="entry"><span style="width:16px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="class_worker_manager.html" target="_self">WorkerManager</a></td><td class="desc">일꾼 유닛들의 상태를 관리하고 컨트롤하는 class </td></tr>
-<tr id="row_24_"><td class="entry"><span style="width:16px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="class_worker_move_data.html" target="_self">WorkerMoveData</a></td><td class="desc"></td></tr>
+<tr id="row_22_"><td class="entry"><span style="width:0px;display:inline-block;">&#160;</span><span id="arr_22_" class="arrow" onclick="toggleFolder('22_')">&#9660;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="class_worker_data.html" target="_self">WorkerData</a></td><td class="desc"></td></tr>
+<tr id="row_22_0_" class="even"><td class="entry"><span style="width:32px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="enum_worker_data_1_1_worker_job.html" target="_self">WorkerJob</a></td><td class="desc">일꾼 유닛에게 지정하는 임무의 종류 </td></tr>
+<tr id="row_23_"><td class="entry"><span style="width:16px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="class_worker_manager.html" target="_self">WorkerManager</a></td><td class="desc">일꾼 유닛들의 상태를 관리하고 컨트롤하는 class </td></tr>
+<tr id="row_24_" class="even"><td class="entry"><span style="width:16px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="class_worker_move_data.html" target="_self">WorkerMoveData</a></td><td class="desc"></td></tr>
 </table>
 </div><!-- directory -->
 </div><!-- contents -->
 <!-- HTML footer for doxygen 1.8.8-->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Fri Jun 16 2017 18:34:30 for BasicBot by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Thu Jul 20 2017 00:30:40 for BasicBot by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.8
 </small></address>

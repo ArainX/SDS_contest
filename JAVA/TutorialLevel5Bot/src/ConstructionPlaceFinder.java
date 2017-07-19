@@ -47,6 +47,8 @@ public class ConstructionPlaceFinder {
 	/// seedPosition, seedPositionStrategy 을 입력하지 않으면, MainBaseLocation 주위에서 가능한 곳을 리턴합니다
 	public final TilePosition getBuildLocationWithSeedPositionAndStrategy(UnitType buildingType, TilePosition seedPosition, BuildOrderItem.SeedPositionStrategy seedPositionStrategy)
 	{
+		// BasicBot 1.1 Patch Start ////////////////////////////////////////////////
+
 		TilePosition desiredPosition = TilePosition.None;
 
 		// seedPosition 을 입력한 경우 그 근처에서 찾는다
@@ -82,13 +84,8 @@ public class ConstructionPlaceFinder {
 				// 스타크래프트 좌표계 : 오른쪽으로 갈수록 x 가 증가 (데카르트 좌표계와 동일). 아래로 갈수록 y가 증가 (y축만 데카르트 좌표계와 반대)
 				// 삼각함수 값은 데카르트 좌표계에서 계산하므로, vy를 부호 반대로 해서 각도 t 값을 구함 
 
-				// MainBaseLocation 이 null 이거나, ChokePoint 가 null 이면, MainBaseLocation 주위에서 가능한 곳을 리턴한다
-				if (tempBaseLocation == null ) {
-					//std::cout << "q";
-					desiredPosition = getBuildLocationNear(buildingType, InformationManager.Instance().getMainBaseLocation(MyBotModule.Broodwar.self()).getTilePosition());
-					break;
-				}
-				else if (tempChokePoint == null) {
+				// FirstChokePoint 가 null 이면, MainBaseLocation 주위에서 가능한 곳을 리턴한다
+				if (tempChokePoint == null) {
 					//std::cout << "r";
 					desiredPosition = getBuildLocationNear(buildingType, InformationManager.Instance().getMainBaseLocation(MyBotModule.Broodwar.self()).getTilePosition());
 					break;
@@ -179,6 +176,8 @@ public class ConstructionPlaceFinder {
 		}
 
 		return desiredPosition;
+
+		// BasicBot 1.1 Patch End //////////////////////////////////////////////////
 	}
 
 	/// desiredPosition 근처에서 건물 건설 가능 위치를 탐색해서 리턴합니다<br>
@@ -516,6 +515,8 @@ public class ConstructionPlaceFinder {
 	/// seedPosition 과 가장 가까운 곳을 리턴합니다
 	public final TilePosition getRefineryPositionNear(TilePosition seedPosition)
 	{
+		// BasicBot 1.1 Patch Start ////////////////////////////////////////////////
+		
 		if (seedPosition == TilePosition.None || seedPosition == TilePosition.Unknown || seedPosition == TilePosition.Invalid || seedPosition.isValid() == false)
 		{
 			seedPosition = InformationManager.Instance().getMainBaseLocation(MyBotModule.Broodwar.self()).getTilePosition();
@@ -524,53 +525,37 @@ public class ConstructionPlaceFinder {
 		TilePosition closestGeyser = TilePosition.None;
 		double minGeyserDistanceFromSeedPosition = 100000000;
 
-		// for each geyser
+		// 전체 geyser 중에서 seedPosition 으로부터 16 TILE_SIZE 거리 이내에 있는 것을 찾는다
 		for (Unit geyser : MyBotModule.Broodwar.getStaticGeysers())
 		{
-			// geyser->getType() 을 하면, Unknown 이거나, Resource_Vespene_Geyser 이거나, Terran_Refinery 와 같이 건물명이 나오고, 
-			// 건물이 파괴되어도 자동으로 Resource_Vespene_Geyser 로 돌아가지 않는다
-
+			// geyser->getPosition() 을 하면, Unknown 으로 나올 수 있다.
+			// 반드시 geyser->getInitialPosition() 을 사용해야 한다
 			Position geyserPos = geyser.getInitialPosition();
 			TilePosition geyserTilePos = geyser.getInitialTilePosition();
-
-			//std::cout << " geyserTilePos " << geyserTilePos.x << "," << geyserTilePos.y << std::endl;
 
 			// 이미 예약되어있는가
 			if (isReservedTile(geyserTilePos.getX(), geyserTilePos.getY())) {
 				continue;
 			}
 
-			// if it is not connected fron seedPosition, it is located in another island
-			if (!BWTA.isConnected(seedPosition, geyserTilePos))
+			// geyser->getType() 을 하면, Unknown 이거나, Resource_Vespene_Geyser 이거나, Terran_Refinery 와 같이 건물명이 나오고, 
+			// 건물이 파괴되어도 자동으로 Resource_Vespene_Geyser 로 돌아가지 않는다
+			// geyser 위치에 있는 유닛들에 대해 isRefinery() 로 체크를 해봐야 한다
+
+			// seedPosition 으로부터 16 TILE_SIZE 거리 이내에 있는가
+			// Fighting Spirit 맵처럼 seedPosition 으로부터 동일한 거리 내에 geyser 가 여러개 있을 수 있는 경우 Refinery 건물을 짓기 위해서는 seedPosition 을 정확하게 입력해야 한다
+			double thisDistance = geyserTilePos.getDistance(seedPosition);
+			
+			if (thisDistance <= 16 && thisDistance < minGeyserDistanceFromSeedPosition)
 			{
-				continue;
-			}
-
-			// 이미 지어져 있는가
-			boolean refineryAlreadyBuilt = false;
-			List<Unit> alreadyBuiltUnits = MyBotModule.Broodwar.getUnitsInRadius(geyserPos, 4 * Config.TILE_SIZE);
-			for (Unit u : alreadyBuiltUnits) {
-				if (u.getType().isRefinery() && u.exists()) {
-					refineryAlreadyBuilt = true;
-				}
-			}
-
-			//std::cout << " geyser TilePos is not reserved, is connected, is not refineryAlreadyBuilt" << std::endl;
-
-			if (refineryAlreadyBuilt == false)
-			{
-				double thisDistance = BWTA.getGroundDistance(geyserPos.toTilePosition(), seedPosition);
-
-				if (thisDistance < minGeyserDistanceFromSeedPosition)
-				{
-					//std::cout << " selected " << std::endl;
-
-					minGeyserDistanceFromSeedPosition = thisDistance;
-					closestGeyser = geyser.getInitialTilePosition();
-				}
+				minGeyserDistanceFromSeedPosition = thisDistance;
+				closestGeyser = geyser.getInitialTilePosition();
 			}
 		}
+		
 		return closestGeyser;
+
+		// BasicBot 1.1 Patch End //////////////////////////////////////////////////
 	}
 
 	/// 해당 위치가 BaseLocation 과 겹치는지 여부를 리턴합니다<br>

@@ -17,6 +17,7 @@
 
 namespace MyBot
 {
+	// BasicBot 1.1 Patch Start ////////////////////////////////////////////////
 	/// MyBotModule 은 봇프로그램의 기본적인 뼈대 구조를 정의한 class 로서, 스타크래프트 경기 도중 발생하는 이벤트들을 GameCommander class 인스턴스에게 전달합니다.<br>
 	///
 	/// MyBotModule class는 수정을 하지 말고,<br>
@@ -35,6 +36,7 @@ namespace MyBot
 	/// 이 파일들은 InformationManager 등 다른 파일들과 Dependency가 없도록 개발되었기 때문에, <br>
 	/// 참가자들은 InformationManager 등 다른 파일들을 자유롭게 수정하실 수 있습니다. 
 	/// 
+	// BasicBot 1.1 Patch End //////////////////////////////////////////////////
 	class MyBotModule
 	{
 		/// 실제 봇프로그램<br>
@@ -81,6 +83,8 @@ namespace MyBot
 		/// 보이던 유닛이 Hide 될 때 발생합니다
 		void onUnitHide(BWAPI::Unit unit);
 
+		// BasicBot 1.1 Patch Start ////////////////////////////////////////////////
+
 		/// 핵미사일 발사가 감지되었을 때 발생하는 이벤트를 처리합니다
 		void onNukeDetect(BWAPI::Position target);
 
@@ -90,10 +94,15 @@ namespace MyBot
 		/// 게임을 저장할 때 발생하는 이벤트를 처리합니다
 		void onSaveGame(std::string gameName);
 
+		// BasicBot 1.1 Patch End //////////////////////////////////////////////////
+
+
 		/// 텍스트를 입력 후 엔터를 하여 다른 플레이어들에게 텍스트를 전달하려 할 때 발생하는 이벤트를 처리합니다
 		void onSendText(std::string text);
 		/// 다른 플레이어로부터 텍스트를 전달받았을 때 발생하는 이벤트를 처리합니다
 		void onReceiveText(BWAPI::Player player, std::string text);
+
+	// BasicBot 1.1 Patch Start ////////////////////////////////////////////////
 
 	private:
 		void initializeLostConditionVariables();
@@ -123,6 +132,10 @@ namespace MyBot
 		int timeOverTestFrameCountLimit;
 		int timeOverTestFrameCount;
 		void doTimeOutDelay();					///< 타임 아웃 체크 테스트 실행 
+
+
+	// BasicBot 1.1 Patch End //////////////////////////////////////////////////
+
 	};
 
 }

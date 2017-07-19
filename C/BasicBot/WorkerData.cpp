@@ -5,9 +5,11 @@ using namespace MyBot;
 
 WorkerData::WorkerData() 
 {
-	// BasicBot 1.1 Patch Start
-	mineralAndMineralWorkerRatio = 1.5;
-	// BasicBot 1.1 Patch End
+	// BasicBot 1.1 Patch Start ////////////////////////////////////////////////
+
+	mineralAndMineralWorkerRatio = 2;
+
+	// BasicBot 1.1 Patch End //////////////////////////////////////////////////
 
 	for (auto & unit : BWAPI::Broodwar->getAllUnits())
 	{
@@ -20,6 +22,78 @@ WorkerData::WorkerData()
 
 void WorkerData::workerDestroyed(BWAPI::Unit unit)
 {
+	// BasicBot 1.1 Patch Start ////////////////////////////////////////////////
+
+	// workers, depotWorkerCount, refineryWorkerCount 등 자료구조에서 사망한 일꾼 정보를 제거합니다
+	for (auto it = workers.begin(); it != workers.end(); ) {
+		BWAPI::Unit worker = *it;
+
+		if (worker == nullptr ) {			
+			it = workers.erase(it);
+		}
+		else {
+			if (worker->getType().isWorker() == false || worker->getPlayer() != BWAPI::Broodwar->self() || worker->exists() == false || worker->getHitPoints() == 0) {
+								
+				clearPreviousJob(worker);
+
+				// worker의 previousJob 이 잘못 설정되어있는 경우에 대해 정리합니다
+				if (workerMineralMap.find(worker) != workerMineralMap.end()) {
+					workerMineralMap.erase(worker);
+				}
+				if (workerDepotMap.find(worker) != workerDepotMap.end()) {
+					workerDepotMap.erase(worker);
+				}
+				if (workerRefineryMap.find(worker) != workerRefineryMap.end()) {
+					workerRefineryMap.erase(worker);
+				}
+				if (workerRepairMap.find(worker) != workerRepairMap.end()) {
+					workerRepairMap.erase(worker);
+				}
+				if (workerMoveMap.find(worker) != workerMoveMap.end()) {
+					workerMoveMap.erase(worker);
+				}
+				if (workerBuildingTypeMap.find(worker) != workerBuildingTypeMap.end()) {
+					workerBuildingTypeMap.erase(worker);
+				}
+				if (workerMineralAssignment.find(worker) != workerMineralAssignment.end()) {
+					workerMineralAssignment.erase(worker);
+				}
+				if (workerJobMap.find(worker) != workerJobMap.end()) {
+					workerJobMap.erase(worker);
+				}
+
+				// depotWorkerCount 를 다시 셉니다
+				for (auto & depot : depots) {
+					int count = 0;					
+					for (auto & it : workerDepotMap) {
+						if (it.second == depot) {
+							count ++;
+						}
+					}
+					depotWorkerCount[depot] = count;
+				}
+
+				// refineryWorkerCount 를 다시 셉니다
+				for (auto & it1 : refineryWorkerCount) {
+					int count = 0;
+					for (auto & it2 : workerRefineryMap) {
+						if (it1.first == it2.second) {
+							count ++;
+						}
+					}
+					it1.second = count;
+				}
+
+				it = workers.erase(it);
+			}
+			else {
+				++it;
+			}
+		}
+	}
+
+	// BasicBot 1.1 Patch End //////////////////////////////////////////////////
+
 	if (!unit) { return; }
 
 	clearPreviousJob(unit);
@@ -301,10 +375,12 @@ bool WorkerData::depotHasEnoughMineralWorkers(BWAPI::Unit depot)
 	int assignedWorkers = getNumAssignedWorkers(depot);
 	int mineralsNearDepot = getMineralsNearDepot(depot);
 
+	// BasicBot 1.1 Patch Start ////////////////////////////////////////////////
+
 	// 충분한 수의 미네랄 일꾼 수를 얼마로 정할 것인가 : 
 	// (근처 미네랄 수) * 1.5배 ~ 2배 정도가 적당
-	// 근처 미네랄 수가 8개 라면, 일꾼 8마리여도 좋지만, 12마리면 조금 더 빠르다. 16마리여도 충분하다. 24마리면 너무 많은 숫자이다.
-	// 근처 미네랄 수가 0개 인 경우에는, 무조건 충분한 수의 미네랄 일꾼이 꽉 차있는 것이다
+	// 근처 미네랄 수가 8개 라면, 일꾼 8마리여도 좋지만, 12마리면 조금 더 채취가 빠르다. 16마리면 충분하다. 24마리면 너무 많은 숫자이다.
+	// 근처 미네랄 수가 0개 인 ResourceDepot은, 이미 충분한 수의 미네랄 일꾼이 꽉 차있는 것이다
 	if (assignedWorkers >= (int)(mineralsNearDepot * mineralAndMineralWorkerRatio))
 	{
 		return true;
@@ -313,6 +389,8 @@ bool WorkerData::depotHasEnoughMineralWorkers(BWAPI::Unit depot)
 	{
 		return false;
 	}
+
+	// BasicBot 1.1 Patch End //////////////////////////////////////////////////
 }
 
 BWAPI::Unitset WorkerData::getMineralPatchesNearDepot(BWAPI::Unit depot)
@@ -320,7 +398,7 @@ BWAPI::Unitset WorkerData::getMineralPatchesNearDepot(BWAPI::Unit depot)
     // if there are minerals near the depot, add them to the set
     BWAPI::Unitset mineralsNearDepot;
 
-    int radius = 320;
+	int radius = 320;
 
     for (auto & unit : BWAPI::Broodwar->getAllUnits())
 	{
