@@ -18,6 +18,7 @@
 namespace MyBot
 {
 	// BasicBot 1.1 Patch Start ////////////////////////////////////////////////
+	// MyBotModule 설명 추가
 	/// MyBotModule 은 봇프로그램의 기본적인 뼈대 구조를 정의한 class 로서, 스타크래프트 경기 도중 발생하는 이벤트들을 GameCommander class 인스턴스에게 전달합니다.<br>
 	///
 	/// MyBotModule class는 수정을 하지 말고,<br>
@@ -42,6 +43,9 @@ namespace MyBot
 		/// 실제 봇프로그램<br>
 		/// @see GameCommander
 		GameCommander   gameCommander;
+
+		/// 사용자가 입력한 text 를 parse 해서 처리합니다
+		void ParseTextCommand(const std::string & commandLine);
 
 	public:
 		MyBotModule();
@@ -83,19 +87,13 @@ namespace MyBot
 		/// 보이던 유닛이 Hide 될 때 발생합니다
 		void onUnitHide(BWAPI::Unit unit);
 
-		// BasicBot 1.1 Patch Start ////////////////////////////////////////////////
-
 		/// 핵미사일 발사가 감지되었을 때 발생하는 이벤트를 처리합니다
 		void onNukeDetect(BWAPI::Position target);
 
 		/// 다른 플레이어가 대결을 나갔을 때 발생하는 이벤트를 처리합니다
 		void onPlayerLeft(BWAPI::Player player);
-
 		/// 게임을 저장할 때 발생하는 이벤트를 처리합니다
 		void onSaveGame(std::string gameName);
-
-		// BasicBot 1.1 Patch End //////////////////////////////////////////////////
-
 
 		/// 텍스트를 입력 후 엔터를 하여 다른 플레이어들에게 텍스트를 전달하려 할 때 발생하는 이벤트를 처리합니다
 		void onSendText(std::string text);
@@ -103,10 +101,10 @@ namespace MyBot
 		void onReceiveText(BWAPI::Player player, std::string text);
 
 	// BasicBot 1.1 Patch Start ////////////////////////////////////////////////
+	// 타임아웃 패배, 자동 패배 체크 관련 변수 및 메소드 선언
 
 	private:
 		void initializeLostConditionVariables();
-		void parseTextCommand(const std::string & commandLine);	/// 사용자가 입력한 text 를 parse 해서 처리합니다
 		void checkLostConditions();
 
 		bool isToCheckGameLostCondition;		///< 자동 패배 체크 실행 여부		

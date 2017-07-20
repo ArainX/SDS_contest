@@ -34,6 +34,7 @@ void BuildManager::update()
 		bool isOkToRemoveQueue = true;
 		
 		// BasicBot 1.1 Patch Start ////////////////////////////////////////////////
+		// 빌드 실행 유닛 (일꾼/건물) 결정 로직이 seedLocation 이나 seedLocationStrategy 를 잘 반영하도록 수정
 
 		// seedPosition 을 도출한다
 		BWAPI::Position seedPosition = BWAPI::Positions::None;
@@ -357,6 +358,7 @@ BWAPI::Unit BuildManager::getClosestUnitToPosition(const BWAPI::Unitset & units,
     }
 
 	// BasicBot 1.1 Patch Start ////////////////////////////////////////////////
+	// 빌드 실행 유닛 (일꾼/건물) 결정 로직이 seedLocation 이나 seedLocationStrategy 를 잘 반영하도록 수정
 
 	// if we don't care where the unit is return the first one we have
 	if (closestTo == BWAPI::Positions::None || closestTo == BWAPI::Positions::Invalid || closestTo == BWAPI::Positions::Unknown || closestTo.isValid() == false)
@@ -568,6 +570,7 @@ BuildOrderQueue * BuildManager::getBuildQueue()
 BWAPI::Position	BuildManager::getSeedPositionFromSeedLocationStrategy(BuildOrderItem::SeedPositionStrategy seedPositionStrategy)
 {
 	// BasicBot 1.1 Patch Start ////////////////////////////////////////////////
+	// 빌드 실행 유닛 (일꾼/건물) 결정 로직이 seedLocation 이나 seedLocationStrategy 를 잘 반영하도록 수정
 
 	BWAPI::Position seedPosition = BWAPI::Positions::None;
 	BWTA::Chokepoint* tempChokePoint;
@@ -841,6 +844,7 @@ void BuildManager::checkBuildOrderQueueDeadlockAndAndFixIt()
 								hasAvailableGeyser = false;
 
 								// BasicBot 1.1 Patch Start ////////////////////////////////////////////////
+								// 콘솔 출력 추가. 하지 않아도 됨
 
 								std::cout << "Build Order Dead lock case -> Refinery Building was built already at " << testLocation.x << ", " << testLocation.y << std::endl;
 
@@ -883,6 +887,7 @@ void BuildManager::checkBuildOrderQueueDeadlockAndAndFixIt()
 							*/
 
 							// BasicBot 1.1 Patch Start ////////////////////////////////////////////////
+							// Zerg_Mutalisk 나 Zerg_Scourge 를 만들려고하는데 Zerg_Greater_Spire 만 있는 경우 deadlock 으로 판정하는 버그 수정
 
 							// 만들려는 유닛이 Zerg_Mutalisk 이거나 Zerg_Scourge 이고, 선행 유닛이 Zerg_Spire 인 경우, Zerg_Greater_Spire 가 있으면 dead lock 이 아니다
 							if ((unitType == BWAPI::UnitTypes::Zerg_Mutalisk || unitType == BWAPI::UnitTypes::Zerg_Scourge)

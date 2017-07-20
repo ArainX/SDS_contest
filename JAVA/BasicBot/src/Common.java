@@ -9,7 +9,7 @@ import java.io.IOException;
 public class Common {
 
 	// BasicBot 1.1 Patch Start ////////////////////////////////////////////////
-	// static 함수로 변경
+	// appendTextToFile 등 메소드를 static 으로 수정
 
 	/// 로그 유틸
 	public static void appendTextToFile(final String logFile, final String msg)

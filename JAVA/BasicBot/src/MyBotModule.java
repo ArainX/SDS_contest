@@ -39,6 +39,7 @@ import bwta.BWTA;
 
 
 // BasicBot 1.1 Patch Start ////////////////////////////////////////////////
+// MyBotModule 설명 추가
 /// MyBotModule 은 봇프로그램의 기본적인 뼈대 구조를 정의한 class 로서, 스타크래프트 경기 도중 발생하는 이벤트들을 GameCommander class 인스턴스에게 전달합니다.<br>
 ///
 /// MyBotModule class는 수정을 하지 말고,<br>
@@ -74,6 +75,7 @@ public class MyBotModule extends DefaultBWListener {
 	
 	
 	// BasicBot 1.1 Patch Start ////////////////////////////////////////////////
+	// 타임아웃 패배, 자동 패배 체크 관련 변수 및 메소드 선언
 	
 	private boolean isExceptionLostConditionSatisfied = false;	/// Exception 으로 인한 패배 체크 결과
 	private int exceptionLostConditionSatisfiedFrame = 0;		/// Exception 패배 조건이 시작된 프레임 시점
@@ -121,6 +123,7 @@ public class MyBotModule extends DefaultBWListener {
 		}
 
 		// BasicBot 1.1 Patch Start ////////////////////////////////////////////////
+		// 타임아웃 패배, 자동 패배 체크 관련 변수 초기화
 
 		initializeLostConditionVariables();
 		
@@ -178,6 +181,7 @@ public class MyBotModule extends DefaultBWListener {
 		}
 
 		// BasicBot 1.1 Patch Start ////////////////////////////////////////////////
+		// 타임아웃 패배, 자동 패배 체크 추가
 
 		// timeStartedAtFrame 를 갱신한다
 		if (timeStartedAtFrame[Broodwar.getFrameCount()] == 0) {
@@ -226,7 +230,7 @@ public class MyBotModule extends DefaultBWListener {
 		
 		// 화면 출력 및 사용자 입력 처리
 		// 빌드서버에서는 Dependency가 없는 빌드서버 전용 UXManager 를 실행시킵니다
-		//UXManager.Instance().update();
+		UXManager.Instance().update();
 
 		checkLostConditions();
 
@@ -234,7 +238,8 @@ public class MyBotModule extends DefaultBWListener {
 	}
 
 	// BasicBot 1.1 Patch Start ////////////////////////////////////////////////
-	
+	// 타임아웃 패배, 자동 패배 체크 추가
+
 	/// 유닛(건물/지상유닛/공중유닛)이 Create 될 때 발생하는 이벤트를 처리합니다
 	@Override
 	public void onUnitCreate(Unit unit){

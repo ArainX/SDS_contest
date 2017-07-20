@@ -71,10 +71,13 @@ void GameCommander::onFrame()
 }
 
 // BasicBot 1.1 Patch Start ////////////////////////////////////////////////
-
+// 일꾼 탄생/파괴 등에 대한 업데이트 로직 버그 수정 : onUnitShow 가 아니라 onUnitComplete 에서 처리하도록 수정
 void GameCommander::onUnitShow(BWAPI::Unit unit)			
 { 
 	InformationManager::Instance().onUnitShow(unit); 
+
+	// ResourceDepot 및 Worker 에 대한 처리
+	//WorkerManager::Instance().onUnitShow(unit);
 }
 
 // BasicBot 1.1 Patch End //////////////////////////////////////////////////
@@ -84,17 +87,13 @@ void GameCommander::onUnitHide(BWAPI::Unit unit)
 	InformationManager::Instance().onUnitHide(unit); 
 }
 
-// BasicBot 1.1 Patch Start ////////////////////////////////////////////////
-
 void GameCommander::onUnitCreate(BWAPI::Unit unit)
 { 
 	InformationManager::Instance().onUnitCreate(unit);
 }
 
-// BasicBot 1.1 Patch End //////////////////////////////////////////////////
-
 // BasicBot 1.1 Patch Start ////////////////////////////////////////////////
-
+// 일꾼 탄생/파괴 등에 대한 업데이트 로직 버그 수정 : onUnitShow 가 아니라 onUnitComplete 에서 처리하도록 수정
 void GameCommander::onUnitComplete(BWAPI::Unit unit)
 {
 	InformationManager::Instance().onUnitComplete(unit);
@@ -138,6 +137,7 @@ void GameCommander::onUnitEvade(BWAPI::Unit unit)
 }
 
 // BasicBot 1.1 Patch Start ////////////////////////////////////////////////
+// onNukeDetect, onPlayerLeft, onSaveGame 이벤트를 처리할 수 있도록 메소드 추가
 
 void GameCommander::onNukeDetect(BWAPI::Position target)
 {

@@ -31,6 +31,7 @@ using namespace MyBot;
 
 MyBotModule::MyBotModule(){
 	// BasicBot 1.1 Patch Start ////////////////////////////////////////////////
+	// 타임아웃 패배, 자동 패배 체크 관련 변수 초기화
 
 	initializeLostConditionVariables();
 
@@ -97,6 +98,7 @@ void MyBotModule::onFrame(){
 	}
 
 	// BasicBot 1.1 Patch Start ////////////////////////////////////////////////
+	// 타임아웃 패배, 자동 패배 체크 추가
 
 	// timeStartedAtFrame 를 갱신한다
 	if (timeStartedAtFrame[BWAPI::Broodwar->getFrameCount()] == 0) {
@@ -128,6 +130,7 @@ void MyBotModule::onFrame(){
 }
 
 // BasicBot 1.1 Patch Start ////////////////////////////////////////////////
+// 타임아웃 패배, 자동 패배 체크 추가
 
 void MyBotModule::onUnitCreate(BWAPI::Unit unit){
 	if (!BWAPI::Broodwar->isReplay()) {
@@ -264,67 +267,7 @@ void MyBotModule::onSaveGame(std::string gameName){
 	}
 }
 
-void MyBotModule::onSendText(std::string text){
-
-	if (timeStartedAtFrame[BWAPI::Broodwar->getFrameCount()] == 0) {
-		timeStartedAtFrame[BWAPI::Broodwar->getFrameCount()] = std::chrono::duration_cast<std::chrono::milliseconds>(std::chrono::system_clock::now().time_since_epoch()).count();
-	}
-
-	parseTextCommand(text);
-
-	gameCommander.onSendText(text);
-		
-	BWAPI::Broodwar->sendText("%s", text.c_str());
-}
-
-void MyBotModule::onReceiveText(BWAPI::Player player, std::string text){
-
-	if (timeStartedAtFrame[BWAPI::Broodwar->getFrameCount()] == 0) {
-		timeStartedAtFrame[BWAPI::Broodwar->getFrameCount()] = std::chrono::duration_cast<std::chrono::milliseconds>(std::chrono::system_clock::now().time_since_epoch()).count();
-	}
-
-	gameCommander.onReceiveText(player, text);
-}
-
-void MyBotModule::initializeLostConditionVariables()
-{
-	// 자동 패배 조건 체크 관련 변수들 초기화
-	isToCheckGameLostCondition = true;
-	isGameLostConditionSatisfied = false;
-	gameLostConditionSatisfiedFrame = 0;
-	// 자동 패배 조건이 만족된채 게임을 유지시키는 최대 프레임 수 : 100 프레임
-	maxDurationForGameLostCondition = 100;
-
-	// 타임아웃 체크 관련 변수들 초기화
-	isToCheckTimeOut = true;
-	isTimeOutConditionSatisfied = false;
-	timeOutConditionSatisfiedFrame = 0;
-	// 타임 아웃 조건이 만족된채 게임을 유지시키는 최대 프레임 수 : 5 프레임
-	maxDurationForTimeOutLostCondition = 5;
-
-	timeStartedAtFrame.resize(100000, 0);
-	timeElapsedAtFrame.resize(100000, 0);
-
-	timerLimits.push_back(55);
-	timerLimitsBound.push_back(320);
-	timerLimitsExceeded.push_back(0);
-
-	timerLimits.push_back(1000);
-	timerLimitsBound.push_back(10);
-	timerLimitsExceeded.push_back(0);
-
-	timerLimits.push_back(10000);
-	timerLimitsBound.push_back(2);
-	timerLimitsExceeded.push_back(0);
-
-	// 타임아웃 체크 테스트 관련 변수들 초기화
-	isToTestTimeOut = false;
-	timeOverTestDuration = 0;
-	timeOverTestFrameCountLimit = 0;
-	timeOverTestFrameCount = 0;
-}
-
-void MyBotModule::parseTextCommand(const std::string & commandString)
+void MyBotModule::ParseTextCommand(const std::string & commandString)
 {
 	// Make sure to use %s and pass the text as a parameter,
 	// otherwise you may run into problems when you use the %(percent) character!
@@ -393,6 +336,65 @@ void MyBotModule::parseTextCommand(const std::string & commandString)
 	}
 }
 
+void MyBotModule::onSendText(std::string text){
+
+	if (timeStartedAtFrame[BWAPI::Broodwar->getFrameCount()] == 0) {
+		timeStartedAtFrame[BWAPI::Broodwar->getFrameCount()] = std::chrono::duration_cast<std::chrono::milliseconds>(std::chrono::system_clock::now().time_since_epoch()).count();
+	}
+
+	ParseTextCommand(text);
+
+	gameCommander.onSendText(text);
+		
+	BWAPI::Broodwar->sendText("%s", text.c_str());
+}
+
+void MyBotModule::onReceiveText(BWAPI::Player player, std::string text){
+
+	if (timeStartedAtFrame[BWAPI::Broodwar->getFrameCount()] == 0) {
+		timeStartedAtFrame[BWAPI::Broodwar->getFrameCount()] = std::chrono::duration_cast<std::chrono::milliseconds>(std::chrono::system_clock::now().time_since_epoch()).count();
+	}
+
+	gameCommander.onReceiveText(player, text);
+}
+
+void MyBotModule::initializeLostConditionVariables()
+{
+	// 자동 패배 조건 체크 관련 변수들 초기화
+	isToCheckGameLostCondition = true;
+	isGameLostConditionSatisfied = false;
+	gameLostConditionSatisfiedFrame = 0;
+	// 자동 패배 조건이 만족된채 게임을 유지시키는 최대 프레임 수 : 100 프레임
+	maxDurationForGameLostCondition = 100;
+
+	// 타임아웃 체크 관련 변수들 초기화
+	isToCheckTimeOut = true;
+	isTimeOutConditionSatisfied = false;
+	timeOutConditionSatisfiedFrame = 0;
+	// 타임 아웃 조건이 만족된채 게임을 유지시키는 최대 프레임 수 : 5 프레임
+	maxDurationForTimeOutLostCondition = 5;
+
+	timeStartedAtFrame.resize(100000, 0);
+	timeElapsedAtFrame.resize(100000, 0);
+
+	timerLimits.push_back(55);
+	timerLimitsBound.push_back(320);
+	timerLimitsExceeded.push_back(0);
+
+	timerLimits.push_back(1000);
+	timerLimitsBound.push_back(10);
+	timerLimitsExceeded.push_back(0);
+
+	timerLimits.push_back(10000);
+	timerLimitsBound.push_back(2);
+	timerLimitsExceeded.push_back(0);
+
+	// 타임아웃 체크 테스트 관련 변수들 초기화
+	isToTestTimeOut = false;
+	timeOverTestDuration = 0;
+	timeOverTestFrameCountLimit = 0;
+	timeOverTestFrameCount = 0;
+}
 
 void MyBotModule::checkLostConditions()
 {

@@ -27,6 +27,7 @@ public class StrategyManager {
 	private boolean isInitialBuildOrderFinished;
 		
 	// BasicBot 1.1 Patch Start ////////////////////////////////////////////////
+	// 경기 결과 파일 Save / Load 및 로그파일 Save 예제 추가를 위한 변수 및 메소드 선언
 
 	/// 한 게임에 대한 기록을 저장하는 자료구조
 	private class GameRecord {
@@ -60,6 +61,7 @@ public class StrategyManager {
 	public void onStart() {
 		
 		// BasicBot 1.1 Patch Start ////////////////////////////////////////////////
+		// 경기 결과 파일 Save / Load 및 로그파일 Save 예제 추가
 		
 		// 과거 게임 기록을 로딩합니다
 		loadGameRecordList();
@@ -73,6 +75,7 @@ public class StrategyManager {
 	public void onEnd(boolean isWinner) {
 		
 		// BasicBot 1.1 Patch Start ////////////////////////////////////////////////
+		// 경기 결과 파일 Save / Load 및 로그파일 Save 예제 추가
 		
 		// 과거 게임 기록 + 이번 게임 기록을 저장합니다
 		saveGameRecordList(isWinner);
@@ -95,6 +98,7 @@ public class StrategyManager {
 		executeCombat();
 
 		// BasicBot 1.1 Patch Start ////////////////////////////////////////////////
+		// 경기 결과 파일 Save / Load 및 로그파일 Save 예제 추가
 
 		// 이번 게임의 로그를 남깁니다
 		saveGameLog();
@@ -594,10 +598,17 @@ public class StrategyManager {
 	public void executeSupplyManagement() {
 
 		// BasicBot 1.1 Patch Start ////////////////////////////////////////////////
+		// 가이드 추가 및 콘솔 출력 명령 주석 처리
 
-		// 주석 추가
 		// InitialBuildOrder 진행중 혹은 그후라도 서플라이 건물이 파괴되어 데드락이 발생할 수 있는데, 이 상황에 대한 해결은 참가자께서 해주셔야 합니다.
 		// 오버로드가 학살당하거나, 서플라이 건물이 집중 파괴되는 상황에 대해  무조건적으로 서플라이 빌드 추가를 실행하기 보다 먼저 전략적 대책 판단이 필요할 것입니다
+
+		// BWAPI::Broodwar->self()->supplyUsed() > BWAPI::Broodwar->self()->supplyTotal()  인 상황이거나
+		// BWAPI::Broodwar->self()->supplyUsed() + 빌드매니저 최상단 훈련 대상 유닛의 unit->getType().supplyRequired() > BWAPI::Broodwar->self()->supplyTotal() 인 경우
+		// 서플라이 추가를 하지 않으면 더이상 유닛 훈련이 안되기 때문에 deadlock 상황이라고 볼 수도 있습니다.
+		// 저그 종족의 경우 일꾼을 건물로 Morph 시킬 수 있기 때문에 고의적으로 이런 상황을 만들기도 하고, 
+		// 전투에 의해 유닛이 많이 죽을 것으로 예상되는 상황에서는 고의적으로 서플라이 추가를 하지 않을수도 있기 때문에
+		// 참가자께서 잘 판단하셔서 개발하시기 바랍니다.
 		
 		// InitialBuildOrder 진행중에는 아무것도 하지 않습니다
 		if (isInitialBuildOrderFinished == false) {
@@ -766,13 +777,16 @@ public class StrategyManager {
 	}
 	
 	// BasicBot 1.1 Patch Start ////////////////////////////////////////////////
+	// 경기 결과 파일 Save / Load 및 로그파일 Save 예제 추가
 
 	/// 과거 전체 게임 기록을 로딩합니다
 	void loadGameRecordList() {
 	
 		// 과거의 게임에서 bwapi-data\write 폴더에 기록했던 파일은 대회 서버가 bwapi-data\read 폴더로 옮겨놓습니다
 		// 따라서, 파일 로딩은 bwapi-data\read 폴더로부터 하시면 됩니다
-		String gameRecordFileName = "bwapi-data\\read\\BasicBot_GameRecord.dat";
+
+		// TODO : 파일명은 각자 봇 명에 맞게 수정하시기 바랍니다
+		String gameRecordFileName = "bwapi-data\\read\\NoNameBot_GameRecord.dat";
 		
 		BufferedReader br = null;
 		try {
@@ -817,7 +831,9 @@ public class StrategyManager {
 
 		// 이번 게임의 파일 저장은 bwapi-data\write 폴더에 하시면 됩니다.
 		// bwapi-data\write 폴더에 저장된 파일은 대회 서버가 다음 경기 때 bwapi-data\read 폴더로 옮겨놓습니다
-		String gameRecordFileName = "bwapi-data\\write\\BasicBot_GameRecord.dat";
+
+		// TODO : 파일명은 각자 봇 명에 맞게 수정하시기 바랍니다
+		String gameRecordFileName = "bwapi-data\\write\\NoNameBot_GameRecord.dat";
 
 		System.out.println("saveGameRecord to file: " + gameRecordFileName);
 
@@ -875,7 +891,8 @@ public class StrategyManager {
 			return;
 		}
 
-		String gameLogFileName = "bwapi-data\\write\\BasicBot_LastGameLog.dat";
+		// TODO : 파일명은 각자 봇 명에 맞게 수정하시기 바랍니다
+		String gameLogFileName = "bwapi-data\\write\\NoNameBot_LastGameLog.dat";
 
 		String mapName = MyBotModule.Broodwar.mapFileName();
 		mapName = mapName.replace(' ', '_');

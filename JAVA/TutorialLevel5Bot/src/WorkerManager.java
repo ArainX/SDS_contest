@@ -214,6 +214,7 @@ public class WorkerManager {
 	    Unit closestWorker = null;
 	    
 		// BasicBot 1.1 Patch Start ////////////////////////////////////////////////
+		// 변수 기본값 수정
 	    
 	    double closestDist = 1000000000;
 
@@ -274,6 +275,7 @@ public class WorkerManager {
 		Unit closestUnit = null;
 
 		// BasicBot 1.1 Patch Start ////////////////////////////////////////////////
+		// 변수 기본값 수정
 
 		double closestDist = 1000000000;
 
@@ -303,6 +305,8 @@ public class WorkerManager {
 	public Unit getClosestResourceDepotFromWorker(Unit worker)
 	{
 		// BasicBot 1.1 Patch Start ////////////////////////////////////////////////
+		// 멀티 기지간 일꾼 숫자 리밸런싱이 잘 일어나도록 버그 수정
+		
 		if (worker == null) return null;
 
 		Unit closestDepot = null;
@@ -389,6 +393,7 @@ public class WorkerManager {
 		Unit closestWorker = null;
 		
 		// BasicBot 1.1 Patch Start ////////////////////////////////////////////////
+		// 변수 기본값 수정
 
 		double closestDistance = 1000000000;
 
@@ -431,6 +436,7 @@ public class WorkerManager {
 		Unit closestMiningWorker = null;
 
 		// BasicBot 1.1 Patch Start ////////////////////////////////////////////////
+		// 변수 기본값 수정
 
 		double closestMovingWorkerDistance = 1000000000;
 		double closestMiningWorkerDistance = 1000000000;
@@ -523,6 +529,7 @@ public class WorkerManager {
 		Unit closestWorker = null;
 
 		// BasicBot 1.1 Patch Start ////////////////////////////////////////////////
+		// 변수 기본값 수정
 
 		double closestDistance = 1000000000;
 
@@ -557,6 +564,7 @@ public class WorkerManager {
 		Unit closestWorker = null;
 
 		// BasicBot 1.1 Patch Start ////////////////////////////////////////////////
+		// 변수 기본값 수정
 
 		double closestDistance = 1000000000;
 
@@ -651,6 +659,7 @@ public class WorkerManager {
 		if (unit == null) return;
 
 		// BasicBot 1.1 Patch Start ////////////////////////////////////////////////
+		// 일꾼 탄생/파괴 등에 대한 업데이트 로직 버그 수정
 
 		// onUnitComplete 에서 처리하도록 수정
 		// if something morphs into a worker, add it
@@ -671,6 +680,7 @@ public class WorkerManager {
 	}
 
 	// BasicBot 1.1 Patch Start ////////////////////////////////////////////////
+	// 일꾼 탄생/파괴 등에 대한 업데이트 로직 버그 수정 : onUnitShow 가 아니라 onUnitComplete 에서 처리하도록 수정
 
 	// onUnitShow 메소드 제거
 	/*
@@ -753,6 +763,7 @@ public class WorkerManager {
 	}
 
 	// BasicBot 1.1 Patch Start ////////////////////////////////////////////////
+	// 일꾼 탄생/파괴 등에 대한 업데이트 로직 버그 수정 및 멀티 기지간 일꾼 숫자 리밸런싱이 잘 일어나도록 수정
 
 	/// 일꾼 유닛들의 상태를 저장하는 workerData 객체를 업데이트합니다
 	public void onUnitDestroy(Unit unit) 

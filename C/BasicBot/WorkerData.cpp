@@ -6,6 +6,7 @@ using namespace MyBot;
 WorkerData::WorkerData() 
 {
 	// BasicBot 1.1 Patch Start ////////////////////////////////////////////////
+	// 멀티 기지간 일꾼 숫자 리밸런싱 조건값 수정 : 미네랄 갯수 * 2 배 초과일 경우 리밸런싱
 
 	mineralAndMineralWorkerRatio = 2;
 
@@ -376,6 +377,7 @@ bool WorkerData::depotHasEnoughMineralWorkers(BWAPI::Unit depot)
 	int mineralsNearDepot = getMineralsNearDepot(depot);
 
 	// BasicBot 1.1 Patch Start ////////////////////////////////////////////////
+	// 멀티 기지간 일꾼 숫자 리밸런싱 조건값 수정 : 미네랄 갯수 * 2 배 초과일 경우 리밸런싱
 
 	// 충분한 수의 미네랄 일꾼 수를 얼마로 정할 것인가 : 
 	// (근처 미네랄 수) * 1.5배 ~ 2배 정도가 적당

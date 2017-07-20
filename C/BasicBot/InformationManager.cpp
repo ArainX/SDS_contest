@@ -228,8 +228,10 @@ void InformationManager::updateBaseLocationInfo()
 	if (_mainBaseLocations[enemyPlayer] != nullptr) {
 
 		// BasicBot 1.1 Patch Start ////////////////////////////////////////////////
+		// 적 MainBaseLocation 업데이트 로직 버그 수정
 
-		// 적군의 빠른 앞마당 건물 건설 + 아군의 가장 마지막 정찰 방문의 경우, enemy의 mainBaseLocations를 방문안한 상태에서는 건물이 하나도 없다고 판단하여 mainBaseLocation 을 변경하는 현상이 발생해서
+		// 적군의 빠른 앞마당 건물 건설 + 아군의 가장 마지막 정찰 방문의 경우, 
+		// enemy의 mainBaseLocations를 방문안한 상태에서는 건물이 하나도 없다고 판단하여 mainBaseLocation 을 변경하는 현상이 발생해서
 		// enemy의 mainBaseLocations을 실제 방문했었던 적이 한번은 있어야 한다라는 조건 추가.  
 		if (BWAPI::Broodwar->isExplored(_mainBaseLocations[enemyPlayer]->getTilePosition())) {
 
@@ -420,6 +422,7 @@ bool InformationManager::existsPlayerBuildingInRegion(BWTA::Region * region, BWA
 }
 
 // BasicBot 1.1 Patch Start ////////////////////////////////////////////////
+// getUnitAndUnitInfoMap 메소드에 대해 const 제거
 
 // 해당 Player 의 UnitAndUnitInfoMap 을 갖고온다
 UnitAndUnitInfoMap & InformationManager::getUnitAndUnitInfoMap(BWAPI::Player player)

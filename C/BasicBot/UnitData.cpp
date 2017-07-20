@@ -123,6 +123,7 @@ int UnitData::getNumCreatedUnits(BWAPI::UnitType t) const
 }
 
 // BasicBot 1.1 Patch Start ////////////////////////////////////////////////
+// getUnitAndUnitInfoMap 메소드에 대해 const 제거
 
 std::map<BWAPI::Unit, UnitInfo> & UnitData::getUnitAndUnitInfoMap()
 { 

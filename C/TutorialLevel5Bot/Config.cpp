@@ -3,6 +3,7 @@
 namespace Config
 {
 	// BasicBot 1.1 Patch Start ////////////////////////////////////////////////
+	// 봇 이름 및 파일 경로 기본값 변경
 
 	namespace BotInfo
 	{

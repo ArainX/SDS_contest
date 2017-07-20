@@ -48,6 +48,7 @@ public class ConstructionPlaceFinder {
 	public final TilePosition getBuildLocationWithSeedPositionAndStrategy(UnitType buildingType, TilePosition seedPosition, BuildOrderItem.SeedPositionStrategy seedPositionStrategy)
 	{
 		// BasicBot 1.1 Patch Start ////////////////////////////////////////////////
+		// 빌드 실행 유닛 (일꾼/건물) 결정 로직이 seedLocation 이나 seedLocationStrategy 를 잘 반영하도록 수정
 
 		TilePosition desiredPosition = TilePosition.None;
 
@@ -516,6 +517,7 @@ public class ConstructionPlaceFinder {
 	public final TilePosition getRefineryPositionNear(TilePosition seedPosition)
 	{
 		// BasicBot 1.1 Patch Start ////////////////////////////////////////////////
+		// Refinery 건물 건설 위치 탐색 로직 버그 수정 및 속도 개선 : seedPosition 주위에서만 geyser를 찾도록, 이미 Refinery가 지어져있는지 체크하지 않도록 수정
 		
 		if (seedPosition == TilePosition.None || seedPosition == TilePosition.Unknown || seedPosition == TilePosition.Invalid || seedPosition.isValid() == false)
 		{
