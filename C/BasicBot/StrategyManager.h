@@ -45,6 +45,7 @@ namespace MyBot
 		void update();
 
 	// BasicBot 1.1 Patch Start ////////////////////////////////////////////////
+	// 경기 결과 파일 Save / Load 및 로그파일 Save 예제 추가를 위한 변수 및 메소드 선언
 
 	private:
 		/// 한 게임에 대한 기록을 저장하는 자료구조

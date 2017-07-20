@@ -277,6 +277,7 @@ BWAPI::Unit WorkerManager::chooseRepairWorkerClosestTo(BWAPI::Position p, int ma
     BWAPI::Unit closestWorker = nullptr;
 
 	// BasicBot 1.1 Patch Start ////////////////////////////////////////////////
+	// 변수 기본값 수정
 
 	double closestDist = 1000000000;
 
@@ -354,6 +355,7 @@ BWAPI::Unit WorkerManager::getClosestMineralWorkerTo(BWAPI::Position target)
 	BWAPI::Unit closestUnit = nullptr;
 
 	// BasicBot 1.1 Patch Start ////////////////////////////////////////////////
+	// 변수 기본값 수정
 
 	double closestDist = 1000000000;
 
@@ -387,6 +389,7 @@ BWAPI::Unit WorkerManager::getClosestMineralWorkerTo(BWAPI::Position target)
 BWAPI::Unit WorkerManager::getClosestResourceDepotFromWorker(BWAPI::Unit worker)
 {
 	// BasicBot 1.1 Patch Start ////////////////////////////////////////////////
+	// 멀티 기지간 일꾼 숫자 리밸런싱이 잘 일어나도록 버그 수정
 
 	if (!worker) return nullptr;
 
@@ -471,6 +474,7 @@ BWAPI::Unit WorkerManager::chooseGasWorkerFromMineralWorkers(BWAPI::Unit refiner
 	BWAPI::Unit closestWorker = nullptr;
 
 	// BasicBot 1.1 Patch Start ////////////////////////////////////////////////
+	// 변수 기본값 수정
 
 	double closestDistance = 1000000000;
 
@@ -508,6 +512,7 @@ BWAPI::Unit WorkerManager::chooseConstuctionWorkerClosestTo(BWAPI::UnitType buil
 	BWAPI::Unit closestMiningWorker = nullptr;
 
 	// BasicBot 1.1 Patch Start ////////////////////////////////////////////////
+	// 변수 기본값 수정
 
 	double closestMovingWorkerDistance = 1000000000;
 	double closestMiningWorkerDistance = 1000000000;
@@ -584,6 +589,7 @@ BWAPI::Unit WorkerManager::chooseMoveWorkerClosestTo(BWAPI::Position p)
 	BWAPI::Unit closestWorker = nullptr;
 
 	// BasicBot 1.1 Patch Start ////////////////////////////////////////////////
+	// 변수 기본값 수정
 
 	double closestDistance = 1000000000;
 
@@ -618,6 +624,7 @@ void WorkerManager::setMoveWorker(BWAPI::Unit worker, int mineralsNeeded, int ga
 	BWAPI::Unit closestWorker = nullptr;
 
 	// BasicBot 1.1 Patch Start ////////////////////////////////////////////////
+	// 변수 기본값 수정
 
 	double closestDistance = 1000000000;
 
@@ -674,6 +681,7 @@ void WorkerManager::onUnitMorph(BWAPI::Unit unit)
 	if (!unit) return;
 
 	// BasicBot 1.1 Patch Start ////////////////////////////////////////////////
+	// 일꾼 탄생/파괴 등에 대한 업데이트 로직 버그 수정
 
 	// onUnitComplete 에서 처리하도록 수정
 	// if something morphs into a worker, add it
@@ -694,6 +702,7 @@ void WorkerManager::onUnitMorph(BWAPI::Unit unit)
 }
 
 // BasicBot 1.1 Patch Start ////////////////////////////////////////////////
+// 일꾼 탄생/파괴 등에 대한 업데이트 로직 버그 수정 : onUnitShow 가 아니라 onUnitComplete 에서 처리하도록 수정
 
 // onUnitShow 메소드 제거
 /*
@@ -768,6 +777,7 @@ void WorkerManager::rebalanceWorkers()
 }
 
 // BasicBot 1.1 Patch Start ////////////////////////////////////////////////
+// 일꾼 탄생/파괴 등에 대한 업데이트 로직 버그 수정 및 멀티 기지간 일꾼 숫자 리밸런싱이 잘 일어나도록 수정
 
 void WorkerManager::onUnitDestroy(BWAPI::Unit unit)
 {

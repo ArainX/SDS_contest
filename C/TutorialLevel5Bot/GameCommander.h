@@ -60,6 +60,7 @@ namespace MyBot
 		void onUnitHide(BWAPI::Unit unit);
 
 		// BasicBot 1.1 Patch Start ////////////////////////////////////////////////
+		// onNukeDetect, onPlayerLeft, onSaveGame 이벤트를 처리할 수 있도록 메소드 추가
 
 		/// 핵미사일 발사가 감지되었을 때 발생하는 이벤트를 처리합니다
 		void onNukeDetect(BWAPI::Position target);

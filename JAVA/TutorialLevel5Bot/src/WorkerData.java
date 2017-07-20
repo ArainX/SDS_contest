@@ -25,6 +25,7 @@ public class WorkerData {
 	};
 	
 	// BasicBot 1.1 Patch Start ////////////////////////////////////////////////
+	// 멀티 기지간 일꾼 숫자 리밸런싱 조건값 수정 : 미네랄 갯수 * 2 배 초과일 경우 리밸런싱
 	
 	/// 미네랄 숫자 대비 미네랄 일꾼 숫자의 적정 비율
 	double					mineralAndMineralWorkerRatio;						
@@ -52,6 +53,7 @@ public class WorkerData {
 	public WorkerData() 
 	{
 		// BasicBot 1.1 Patch Start ////////////////////////////////////////////////
+		// 멀티 기지간 일꾼 숫자 리밸런싱 조건값 수정 : 미네랄 갯수 * 2 배 초과일 경우 리밸런싱
 
 		mineralAndMineralWorkerRatio = 2;
 		

@@ -75,14 +75,10 @@ public class GameCommander {
 		if ( isToFindError) System.out.print("h)");
 	}
 
-	// BasicBot 1.1 Patch Start ////////////////////////////////////////////////
-
 	/// 유닛(건물/지상유닛/공중유닛)이 Create 될 때 발생하는 이벤트를 처리합니다
 	public void onUnitCreate(Unit unit) { 
 		InformationManager.Instance().onUnitCreate(unit);
 	}
-
-	// BasicBot 1.1 Patch End //////////////////////////////////////////////////
 
 	///  유닛(건물/지상유닛/공중유닛)이 Destroy 될 때 발생하는 이벤트를 처리합니다
 	public void onUnitDestroy(Unit unit) {
@@ -111,6 +107,7 @@ public class GameCommander {
 	}
 
 	// BasicBot 1.1 Patch Start ////////////////////////////////////////////////
+	// 일꾼 탄생/파괴 등에 대한 업데이트 로직 버그 수정 : onUnitShow 가 아니라 onUnitComplete 에서 처리하도록 수정
 
 	/// 유닛(건물/지상유닛/공중유닛)의 하던 일 (건물 건설, 업그레이드, 지상유닛 훈련 등)이 끝났을 때 발생하는 이벤트를 처리합니다
 	public void onUnitComplete(Unit unit)
@@ -134,6 +131,7 @@ public class GameCommander {
 	}	
 
 	// BasicBot 1.1 Patch Start ////////////////////////////////////////////////
+	// 일꾼 탄생/파괴 등에 대한 업데이트 로직 버그 수정 : onUnitShow 가 아니라 onUnitComplete 에서 처리하도록 수정
 
 	/// 유닛(건물/지상유닛/공중유닛)이 Show 될 때 발생하는 이벤트를 처리합니다<br>
 	/// 아군 유닛이 Create 되었을 때 라든가, 적군 유닛이 Discover 되었을 때 발생합니다
@@ -153,6 +151,7 @@ public class GameCommander {
 	}
 
 	// BasicBot 1.1 Patch Start ////////////////////////////////////////////////
+	// onNukeDetect, onPlayerLeft, onSaveGame 이벤트를 처리할 수 있도록 메소드 추가
 
 	/// 핵미사일 발사가 감지되었을 때 발생하는 이벤트를 처리합니다
 	public void onNukeDetect(Position target){

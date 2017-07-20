@@ -49,6 +49,7 @@ namespace MyBot
 		void        onUnitMorph(BWAPI::Unit unit);
 
 		// BasicBot 1.1 Patch Start ////////////////////////////////////////////////
+		// 일꾼 탄생/파괴 등에 대한 업데이트 로직 버그 수정 : onUnitShow 가 아니라 onUnitComplete 에서 처리하도록 수정
 
 		// onUnitShow 메소드 제거
 		/// 일꾼 유닛들의 상태를 저장하는 workerData 객체를 업데이트합니다

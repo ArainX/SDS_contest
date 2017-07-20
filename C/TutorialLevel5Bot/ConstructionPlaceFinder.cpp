@@ -20,6 +20,7 @@ ConstructionPlaceFinder & ConstructionPlaceFinder::Instance()
 BWAPI::TilePosition	ConstructionPlaceFinder::getBuildLocationWithSeedPositionAndStrategy(BWAPI::UnitType buildingType, BWAPI::TilePosition seedPosition, BuildOrderItem::SeedPositionStrategy seedPositionStrategy) const
 {
 	// BasicBot 1.1 Patch Start ////////////////////////////////////////////////
+	// 빌드 실행 유닛 (일꾼/건물) 결정 로직이 seedLocation 이나 seedLocationStrategy 를 잘 반영하도록 수정
 
 	BWAPI::TilePosition desiredPosition = BWAPI::TilePositions::None;
 
@@ -474,6 +475,7 @@ bool ConstructionPlaceFinder::canBuildHere(BWAPI::TilePosition position, const C
 BWAPI::TilePosition ConstructionPlaceFinder::getRefineryPositionNear(BWAPI::TilePosition seedPosition) const
 {
 	// BasicBot 1.1 Patch Start ////////////////////////////////////////////////
+	// Refinery 건물 건설 위치 탐색 로직 버그 수정 및 속도 개선 : seedPosition 주위에서만 geyser를 찾도록, 이미 Refinery가 지어져있는지 체크하지 않도록 수정
 
 	if (seedPosition == BWAPI::TilePositions::None || seedPosition == BWAPI::TilePositions::Unknown || seedPosition == BWAPI::TilePositions::Invalid || seedPosition.isValid() == false)
 	{

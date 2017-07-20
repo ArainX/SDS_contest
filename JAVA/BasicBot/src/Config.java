@@ -7,6 +7,7 @@ import bwapi.UnitType;
 public class Config {
 	
 	// BasicBot 1.1 Patch Start ////////////////////////////////////////////////
+	// 봇 이름 및 파일 경로 기본값 변경
 
 	/// 봇 이름
 	public static final String BotName = "NoNameBot";
