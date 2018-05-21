@@ -2,7 +2,7 @@
 
 ## 프로젝트 개요
 
-* 2017 삼성SDS 알고리즘 경진대회를 위한 프로젝트
+* 2018 삼성SDS 알고리즘 경진대회를 위한 프로젝트
 
 * [Wiki : 경진대회 개발환경 설정 방법, 봇 개발 튜터리얼 및 가이드 제공](https://github.com/SamsungSDS-Contest/2017Guide/wiki)
 
