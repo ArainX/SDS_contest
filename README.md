@@ -4,9 +4,9 @@
 
 * 2018 삼성SDS 알고리즘 경진대회를 위한 프로젝트
 
-* [Wiki : 경진대회 개발환경 설정 방법, 봇 개발 튜터리얼 및 가이드 제공](https://github.com/SamsungSDS-Contest/2017Guide/wiki)
+* [Wiki : 경진대회 개발환경 설정 방법, 봇 개발 튜터리얼 및 가이드 제공](https://github.com/SamsungSDS-Contest/Guide/wiki)
 
-* [Code : 경진대회 봇 프로그램 개발의 시작점으로 사용할 BasicBot 소스코드 제공](https://github.com/SamsungSDS-Contest/2017Guide)
+* [Code : 경진대회 봇 프로그램 개발의 시작점으로 사용할 BasicBot 소스코드 제공](https://github.com/SamsungSDS-Contest/Guide)
 
 ## BasicBot 개발 취지 및 특이사항
 
@@ -16,7 +16,7 @@
 
   * 단, Main, MyBotModule, UXManager 는 제출하더라도 원활한 대회 진행을 위해 봇 컴파일에 반영하지않음
 
-* [먼저 wiki 에서 개발환경 설정 방법, 튜터리얼 및 가이드를 읽어본 후 개발하는 것을 권장함](https://github.com/SamsungSDS-Contest/2017Guide/wiki)
+* [먼저 wiki 에서 개발환경 설정 방법, 튜터리얼 및 가이드를 읽어본 후 개발하는 것을 권장함](https://github.com/SamsungSDS-Contest/Guide/wiki)
 
 ## BasicBot 설치방법
 
@@ -30,12 +30,12 @@
 
 * **2017-05-29 : v0.9 beta Release (프리뷰 및 오픈 테스트를 위해 공개)**
 
-* [버그를 발견하여 알려주시거나 이슈를 제기하여주시면 감사의 선물을 드리겠습니다](https://github.com/SamsungSDS-Contest/2017Guide/issues)
+* [버그를 발견하여 알려주시거나 이슈를 제기하여주시면 감사의 선물을 드리겠습니다](https://github.com/SamsungSDS-Contest/Guide/issues)
 
 
 ## BasicBot API Documentation
 
-* BasicBot API Documentation 웹사이트 : [https://samsungsds-contest.github.io/2017Guide/](https://samsungsds-contest.github.io/2017Guide/)
+* BasicBot API Documentation 웹사이트 : [https://samsungsds-contest.github.io/2017Guide/](https://samsungsds-contest.github.io/Guide/)
 
 # 상세 설명
 
@@ -49,7 +49,7 @@
 |docs\\JAVA|BasicBot API Documentation - JAVA 버전|
 |Doxygen|BasicBot API Documentation 웹사이트 생성 자동화를 위한 Doxygen 설정 파일|
 
-## BasicBot 디펜던시 및 권장 개발환경 ([wiki 에 상세 가이드](https://github.com/SamsungSDS-Contest/2017Guide/wiki))
+## BasicBot 디펜던시 및 권장 개발환경 ([wiki 에 상세 가이드](https://github.com/SamsungSDS-Contest/Guide/wiki))
 
 * StarCraft : Brood War 1.16.1
 
