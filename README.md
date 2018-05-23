@@ -35,7 +35,7 @@
 
 ## BasicBot API Documentation
 
-* BasicBot API Documentation 웹사이트 : [https://samsungsds-contest.github.io/2017Guide/](https://samsungsds-contest.github.io/Guide/)
+* BasicBot API Documentation 웹사이트 : [https://samsungsds-contest.github.io/Guide/](https://samsungsds-contest.github.io/Guide/)
 
 # 상세 설명
 
@@ -51,7 +51,7 @@
 
 ## BasicBot 디펜던시 및 권장 개발환경 ([wiki 에 상세 가이드](https://github.com/SamsungSDS-Contest/Guide/wiki))
 
-* StarCraft : Brood War 1.16.1
+* StarCraft : Brood War 1.16.1.1
 
 * C++
 
