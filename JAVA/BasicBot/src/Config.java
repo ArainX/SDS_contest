@@ -19,9 +19,9 @@ public class Config {
 	/// 로그 파일 이름
 	public static String LogFilename = BotName + "_LastGameLog.dat";
 	/// 읽기 파일 경로
-	public static String ReadDirectory = "bwapi-data\\read\\";
+	public static String ReadDirectory = "c:\\starcraft\\bwapi-data\\read\\";
 	/// 쓰기 파일 경로
-	public static String WriteDirectory = "bwapi-data\\write\\";		
+	public static String WriteDirectory = "c:\\starcraft\\bwapi-data\\write\\";		
 
 	// BasicBot 1.1 Patch End //////////////////////////////////////////////////
 

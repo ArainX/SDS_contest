@@ -786,7 +786,7 @@ public class StrategyManager {
 		// 따라서, 파일 로딩은 bwapi-data\read 폴더로부터 하시면 됩니다
 
 		// TODO : 파일명은 각자 봇 명에 맞게 수정하시기 바랍니다
-		String gameRecordFileName = "bwapi-data\\read\\NoNameBot_GameRecord.dat";
+		String gameRecordFileName = "c:\\starcraft\\bwapi-data\\read\\NoNameBot_GameRecord.dat";
 		
 		BufferedReader br = null;
 		try {
@@ -833,7 +833,7 @@ public class StrategyManager {
 		// bwapi-data\write 폴더에 저장된 파일은 대회 서버가 다음 경기 때 bwapi-data\read 폴더로 옮겨놓습니다
 
 		// TODO : 파일명은 각자 봇 명에 맞게 수정하시기 바랍니다
-		String gameRecordFileName = "bwapi-data\\write\\NoNameBot_GameRecord.dat";
+		String gameRecordFileName = "c:\\starcraft\\bwapi-data\\write\\NoNameBot_GameRecord.dat";
 
 		System.out.println("saveGameRecord to file: " + gameRecordFileName);
 
@@ -892,7 +892,7 @@ public class StrategyManager {
 		}
 
 		// TODO : 파일명은 각자 봇 명에 맞게 수정하시기 바랍니다
-		String gameLogFileName = "bwapi-data\\write\\NoNameBot_LastGameLog.dat";
+		String gameLogFileName = "c:\\starcraft\\bwapi-data\\write\\NoNameBot_LastGameLog.dat";
 
 		String mapName = MyBotModule.Broodwar.mapFileName();
 		mapName = mapName.replace(' ', '_');
