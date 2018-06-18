@@ -4,6 +4,8 @@ public class GameCommander {
 	
 	public void onStart() 
 	{
+		MyBotModule.Broodwar.printf("Game Start~~");
+		BuildManager.Instance().setDefaultWorker();
 	}
 
 	public void onEnd(boolean isWinner)

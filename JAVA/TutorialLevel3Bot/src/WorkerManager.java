@@ -274,7 +274,7 @@ public class WorkerManager {
 		// Mineral 에 assign 된 worker 숫자를 변경한다
 		if (workerCountOnMineral.containsKey(new Integer(mineral.getID())))
 		{
-			workerCountOnMineral.replace(new Integer(mineral.getID()), new Integer(workerCountOnMineral.get(mineral.getID()) + num));
+			workerCountOnMineral.put(new Integer(mineral.getID()), new Integer(workerCountOnMineral.get(mineral.getID()) + num));
 		}
 		else
 		{

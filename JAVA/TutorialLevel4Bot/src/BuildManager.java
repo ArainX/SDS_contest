@@ -1,9 +1,18 @@
+import java.util.HashMap;
+import java.util.Map;
+
 import bwapi.Race;
 import bwapi.TilePosition;
 import bwapi.Unit;
 import bwapi.UnitType;
+import bwta.BWTA;
+import bwta.BaseLocation;
 
 public class BuildManager {
+	
+	private static Map<Integer, Integer> workerNumber = new HashMap<Integer, Integer>();
+	
+	public static InformationManager informationManager;
 
 	private static BuildManager instance = new BuildManager();
 
@@ -13,27 +22,45 @@ public class BuildManager {
 
 	public void update() {
 		
-		//constructBuildings();
+		constructBuildings();
 
-		//buildCombatUnits();
+		buildCombatUnits();
 
 		buildWorkerUnits();
 	}
 	
+	public void setDefaultWorker()
+	{	
+		// startLocation에 worker 4마리 초기세팅
+		int startLocation = 0;
+		for (Unit unit : MyBotModule.Broodwar.self().getUnits())
+		{
+			if (unit.getType().isResourceDepot())
+			{
+				startLocation = unit.getID();
+				break;
+			}
+		}
+		System.out.println("###### SetDefaultWorker 4" );
+		workerNumber.put(startLocation, 4);
+	}
 	
 	private void buildWorkerUnits()
 	{
 		// 자원이 50이상 있으면 일꾼 유닛을 훈련한다
+		
 		if (MyBotModule.Broodwar.self().minerals() >= 50) {
 			buildWorkerUnit();
 		}
 	}
-	
+
 	private void buildWorkerUnit()
 	{
 		Unit producer = null;
 	
 		UnitType targetUnitType = UnitType.None;
+		
+		int baseLocation = 0;
 	
 		if (MyBotModule.Broodwar.self().getRace() == Race.Protoss) {
 			targetUnitType = UnitType.Protoss_Probe;
@@ -49,9 +76,18 @@ public class BuildManager {
 		for (Unit unit : MyBotModule.Broodwar.self().getUnits())
 		{
 			if (unit.getType().isResourceDepot() ){
+				
+				baseLocation = unit.getID();
+				
+				// 해당 depot에 배속된 worker가 19마리 이상이면 생산하지 않는다
+				if (workerNumber.get(baseLocation) > 18) continue;
 	
 				if (MyBotModule.Broodwar.canMake(targetUnitType, unit) && unit.isTraining() == false && unit.isMorphing() == false) {
-	
+								
+					int beforeWorkers = workerNumber.get(baseLocation);
+
+					workerNumber.put(baseLocation, beforeWorkers+1);
+					
 					producer = unit;
 	
 					if (MyBotModule.Broodwar.self().getRace() != Race.Zerg) {
