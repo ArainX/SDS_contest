@@ -155,6 +155,7 @@ public class MyBotModule extends DefaultBWListener {
 	public void onUnitShow(Unit unit){
 		if (unit.getPlayer().isNeutral() == false) {
 			Broodwar.printf(unit.getType() + " " + unit.getID() + " showed at " + unit.getTilePosition().getX() + ", " + unit.getTilePosition().getY());
+			Broodwar.printf("유닛이 나타났다아아아앙");
 		}		
 		
 		if (!Broodwar.isReplay()) {
@@ -166,6 +167,7 @@ public class MyBotModule extends DefaultBWListener {
 	public void onUnitHide(Unit unit){
 		if (unit.getPlayer().isNeutral() == false) {
 			Broodwar.printf(unit.getType() + " " + unit.getID() + " hid at " + unit.getTilePosition().getX() + ", " + unit.getTilePosition().getY());
+			Broodwar.printf("어엇? 유닛이 어디갔징..");
 		}		
 		
 		if (!Broodwar.isReplay()) {
